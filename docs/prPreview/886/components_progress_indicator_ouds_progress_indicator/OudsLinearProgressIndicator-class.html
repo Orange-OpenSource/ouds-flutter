@@ -73,7 +73,7 @@ standard progress; semantic (<a href="../components_common_ouds_icon_status/Posi
 when the operation carries a meaning.</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/animated.html">animated</a>: Enables smooth value-change animation (determinate only).
 Automatically disabled when the OS reduced-motion setting is on.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progress.html">progress</a>: Value between <code>0.0</code> and <code>1.0</code>. Pass <code>null</code> for indeterminate.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/value.html">value</a>: Value between <code>0.0</code> and <code>1.0</code>. Pass <code>null</code> for indeterminate.</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/gapSize.html">gapSize</a>: Gap between the active bar and its track — <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorGapSize.html">OudsProgressIndicatorGapSize</a>.</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/track.html">track</a>: Whether the background track bar is visible.</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/semanticLabel.html">semanticLabel</a>: Accessibility label for assistive technologies.</li>
@@ -82,7 +82,7 @@ end of the active bar.</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/helperText.html">helperText</a>: Optional text displayed below the indicator.</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/helperTextAlignment.html">helperTextAlignment</a>: Horizontal alignment of the helper text —
 <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a>.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/percentage.html">percentage</a>: When <code>true</code>, the helper text is generated from <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progress.html">progress</a>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/percentage.html">percentage</a>: When <code>true</code>, the helper text is generated from <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/value.html">value</a>
 and formatted as a percentage; when <code>false</code>, <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/helperText.html">helperText</a> is used.</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/spaceBeforePercentage.html">spaceBeforePercentage</a>: Inserts a non-breaking space before the <code>%</code>
 symbol when <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/percentage.html">percentage</a> is <code>true</code> (e.g. <code>75 %</code> instead of <code>75%</code>).</li>
@@ -135,7 +135,7 @@ symbol when <a href="../components_progress_indicator_ouds_progress_indicator/Ou
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsLinearProgressIndicator.new" class="callable">
-          <span class="name"><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/OudsLinearProgressIndicator.html">OudsLinearProgressIndicator</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-progressType"><span class="type-annotation"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorType.html">OudsProgressIndicatorType</a>?</span> <span class="parameter-name">progressType</span> = <span class="default-value">OudsProgressIndicatorType.determinate</span>, </span><span class="parameter" id="param-status"><span class="type-annotation"><a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></span> <span class="parameter-name">status</span> = <span class="default-value">const Neutral()</span>, </span><span class="parameter" id="param-animated"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">animated</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-progress"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">progress</span>, </span><span class="parameter" id="param-gapSize"><span class="type-annotation"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorGapSize.html">OudsProgressIndicatorGapSize</a></span> <span class="parameter-name">gapSize</span> = <span class="default-value">OudsProgressIndicatorGapSize.defaultSize</span>, </span><span class="parameter" id="param-track"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">track</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-semanticLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticLabel</span>, </span><span class="parameter" id="param-stopIndicator"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">stopIndicator</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-helperText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">helperText</span>, </span><span class="parameter" id="param-helperTextAlignment"><span class="type-annotation"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a></span> <span class="parameter-name">helperTextAlignment</span> = <span class="default-value">OudsProgressIndicatorHelperTextAlignment.center</span>, </span><span class="parameter" id="param-percentage"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">percentage</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-spaceBeforePercentage"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">spaceBeforePercentage</span> = <span class="default-value">false</span></span>})</span>
+          <span class="name"><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/OudsLinearProgressIndicator.html">OudsLinearProgressIndicator</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-progressType"><span class="type-annotation"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorType.html">OudsProgressIndicatorType</a>?</span> <span class="parameter-name">progressType</span> = <span class="default-value">OudsProgressIndicatorType.determinate</span>, </span><span class="parameter" id="param-status"><span class="type-annotation"><a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></span> <span class="parameter-name">status</span> = <span class="default-value">const Neutral()</span>, </span><span class="parameter" id="param-animated"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">animated</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-value"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">value</span>, </span><span class="parameter" id="param-gapSize"><span class="type-annotation"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorGapSize.html">OudsProgressIndicatorGapSize</a></span> <span class="parameter-name">gapSize</span> = <span class="default-value">OudsProgressIndicatorGapSize.defaultSize</span>, </span><span class="parameter" id="param-track"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">track</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-semanticLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticLabel</span>, </span><span class="parameter" id="param-stopIndicator"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">stopIndicator</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-helperText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">helperText</span>, </span><span class="parameter" id="param-helperTextAlignment"><span class="type-annotation"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a></span> <span class="parameter-name">helperTextAlignment</span> = <span class="default-value">OudsProgressIndicatorHelperTextAlignment.center</span>, </span><span class="parameter" id="param-percentage"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">percentage</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-spaceBeforePercentage"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">spaceBeforePercentage</span> = <span class="default-value">false</span></span>})</span>
         </dt>
         <dd>
           
@@ -234,18 +234,6 @@ percentage (e.g. <code>75%</code>). <a href="../components_progress_indicator_ou
 
 </dd>
 
-        <dt id="progress" class="property inherited">
-  <span class="name"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progress.html">progress</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span>
-  
-
-</dt>
-<dd class="inherited">
-  
-  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
-
-</dd>
-
         <dt id="progressType" class="property inherited">
   <span class="name"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progressType.html">progressType</a></span>
   <span class="signature">&#8594; <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorType.html">OudsProgressIndicatorType</a>?</span>
@@ -322,6 +310,18 @@ percentage (e.g. <code>75%</code>). <a href="../components_progress_indicator_ou
         <dt id="track" class="property inherited">
   <span class="name"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/track.html">track</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  
+  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="value" class="property inherited">
+  <span class="name"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/value.html">value</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span>
   
 
 </dt>
