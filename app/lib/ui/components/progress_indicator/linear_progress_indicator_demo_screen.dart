@@ -154,39 +154,79 @@ class _LinearProgressIndicatorDemoState
   Widget build(BuildContext context) {
     customizationState = ProgressIndicatorCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+    });
 
-    return LightDarkBox(
-      child: OudsLinearProgressIndicator(
-        progressType: ProgressIndicatorCustomizationUtils.getProgressType(
-          customizationState!.selectedType,
+    if (customizationState?.hasOnColoredBox == true) {
+      return ComponentDemoBox(
+        colored: customizationState?.hasOnColoredBox == true,
+        child: OudsLinearProgressIndicator(
+          progressType: ProgressIndicatorCustomizationUtils.getProgressType(
+            customizationState!.selectedType,
+          ),
+          status: ProgressIndicatorCustomizationUtils.getStatus(
+            customizationState!.selectedStatus,
+          ),
+          value: ProgressIndicatorCustomizationUtils.getProgressValue(
+            customizationState!.value,
+          ),
+          track: customizationState!.hasTrack,
+          animated: customizationState!.hasAnimation,
+          gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
+            customizationState!.selectedGapSize,
+          ),
+          stopIndicator: customizationState!.hasStopIndicator,
+          percentage: customizationState!.hasHelperText
+              ? customizationState!.hasPercentage
+              : false,
+          spaceBeforePercentage: customizationState!.hasSpaceBefore,
+          helperTextAlignment:
+              ProgressIndicatorCustomizationUtils.getHelperTextAlignment(
+                customizationState!.selectedAlignment,
+              ),
+          helperText: customizationState!.hasHelperText
+              ? customizationState!.helperText
+              : null,
+          semanticLabel:
+              context.l10n.app_components_progressIndicator_progress_a11y,
         ),
-        status: ProgressIndicatorCustomizationUtils.getStatus(
-          customizationState!.selectedStatus,
+      );
+    } else {
+      return LightDarkBox(
+        child: OudsLinearProgressIndicator(
+          progressType: ProgressIndicatorCustomizationUtils.getProgressType(
+            customizationState!.selectedType,
+          ),
+          status: ProgressIndicatorCustomizationUtils.getStatus(
+            customizationState!.selectedStatus,
+          ),
+          value: ProgressIndicatorCustomizationUtils.getProgressValue(
+            customizationState!.value,
+          ),
+          track: customizationState!.hasTrack,
+          animated: customizationState!.hasAnimation,
+          gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
+            customizationState!.selectedGapSize,
+          ),
+          stopIndicator: customizationState!.hasStopIndicator,
+          percentage: customizationState!.hasHelperText
+              ? customizationState!.hasPercentage
+              : false,
+          spaceBeforePercentage: customizationState!.hasSpaceBefore,
+          helperTextAlignment:
+              ProgressIndicatorCustomizationUtils.getHelperTextAlignment(
+                customizationState!.selectedAlignment,
+              ),
+          helperText: customizationState!.hasHelperText
+              ? customizationState!.helperText
+              : null,
+          semanticLabel:
+              context.l10n.app_components_progressIndicator_progress_a11y,
         ),
-        progress: ProgressIndicatorCustomizationUtils.getProgressValue(
-          customizationState!.progress,
-        ),
-        track: customizationState!.hasTrack,
-        animated: customizationState!.hasAnimation,
-        gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
-          customizationState!.selectedGapSize,
-        ),
-        stopIndicator: customizationState!.hasStopIndicator,
-        percentage: customizationState!.hasHelperText
-            ? customizationState!.hasPercentage
-            : false,
-        spaceBeforePercentage: customizationState!.hasSpaceBefore,
-        helperTextAlignment:
-            ProgressIndicatorCustomizationUtils.getHelperTextAlignment(
-              customizationState!.selectedAlignment,
-            ),
-        helperText: customizationState!.hasHelperText
-            ? customizationState!.helperText
-            : null,
-        semanticLabel:
-            context.l10n.app_components_progressIndicator_progress_a11y,
-      ),
-    );
+      );
+    }
   }
 }
 
@@ -237,9 +277,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_onColoredBackground_label,
+          value: customizationState.hasOnColoredBox,
+          onChanged: (value) {
+            customizationState.hasOnColoredBox = value;
+          },
+        ),
         CustomizableTextField(
           title: context.l10n.app_components_progressIndicator_progress_tech,
-          text: customizationState.progress.toString(),
+          text: customizationState.value.toString(),
           focusNode: progressFocus,
           fieldType: FieldType.label,
           fieldEnable:

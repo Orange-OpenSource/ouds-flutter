@@ -390,7 +390,7 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_progressIndicator_tech,
       ComponentContainer(
         child: OudsCircularProgressIndicator(
-          progress: 0.75,
+          value: 0.75,
           status: Accent(),
           animated: false,
         ),
