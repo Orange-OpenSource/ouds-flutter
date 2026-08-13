@@ -114,8 +114,8 @@ Widget build(BuildContext context) {
     size: OudsListItemSize.smallSize,
     contentAlignment: contentAlignment,
     description: description,
-    leading: _adaptLeading(context, leading),
-    trailing: _adaptTrailing(context, trailing, contentAlignment),
+    leading: _adaptLeading(leading),
+    trailing: _adaptTrailing(trailing, contentAlignment),
     decoration: decoration,
     divider: divider,
     background: background,
@@ -125,6 +125,7 @@ Widget build(BuildContext context) {
     onTap: onTap,
     indicator: indicator,
     card: card,
+    edgeToEdge: edgeToEdge,
   );
 }</code></pre>
 </section>
