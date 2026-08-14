@@ -28,10 +28,12 @@ class ProgressIndicatorCodeGenerator {
         ? "OudsCircularProgressIndicator"
         : "OudsLinearProgressIndicator";
 
+    final customizationState = ProgressIndicatorCustomization.of(context);
+
     final params = <String>[
       progressType(context),
-      status(context),
-      progress(context),
+      if (customizationState?.hasOnColoredBox != true) status(context),
+      value(context),
       track(context),
       animated(context),
       gapSize(context),
@@ -45,9 +47,26 @@ class ProgressIndicatorCodeGenerator {
       ],
     ];
 
-    return """$widgetName(
+    return """${coloredSurfaceCodeModifier(context)}$widgetName(
   ${params.join(",\n  ")},
-)""";
+)${coloredSurfaceCodeModifierEnd(context)}""";
+  }
+
+  // Returns the `OudsColoredBox(` opening wrapper when the colored box is enabled.
+  static String coloredSurfaceCodeModifier(BuildContext context) {
+    final customizationState = ProgressIndicatorCustomization.of(context);
+
+    if (customizationState?.hasOnColoredBox == true) {
+      return "OudsColoredBox(\ncolor: OudsColoredBoxColor.brandPrimary,\nchild: ";
+    }
+
+    return "";
+  }
+
+  // Closes the `OudsColoredBox(` wrapper opened by [coloredSurfaceCodeModifier], if any.
+  static String coloredSurfaceCodeModifierEnd(BuildContext context) {
+    final customizationState = ProgressIndicatorCustomization.of(context);
+    return customizationState?.hasOnColoredBox == true ? ",\n)" : "";
   }
 
   static String progressType(BuildContext context) {
@@ -66,14 +85,14 @@ class ProgressIndicatorCodeGenerator {
     return "status: ${_getStatusCode(customizationState!)}";
   }
 
-  static String progress(BuildContext context) {
+  static String value(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
 
     if (customizationState?.selectedType ==
         ProgressIndicatorEnumType.indeterminate) {
-      return "progress: null";
+      return "value: null";
     } else {
-      return "progress: ${customizationState?.progress}";
+      return "value: ${customizationState?.value}";
     }
   }
 
@@ -96,11 +115,11 @@ class ProgressIndicatorCodeGenerator {
   static String semanticLabel(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
 
-    final hasProgress =
-        customizationState!.progress.isNotEmpty &&
-        (double.tryParse(customizationState.progress) ?? 0.0) > 0.0;
+    final hasValue =
+        customizationState!.value.isNotEmpty &&
+        (double.tryParse(customizationState.value) ?? 0.0) > 0.0;
 
-    return "semanticLabel: '${hasProgress ? "Uploading file" : "Connecting to server"}'";
+    return "semanticLabel: '${hasValue ? "Uploading file" : "Connecting to server"}'";
   }
 
   static String stopIndicator(BuildContext context) {

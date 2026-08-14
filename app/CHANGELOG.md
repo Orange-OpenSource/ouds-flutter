@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - [DemoApp][Library] For `button` component, update to version 3.3.0 ([#832](https://github.com/Orange-OpenSource/ouds-flutter/issues/832))
+- [DemoApp][Library] Update `progress-indicator`: add size parameter to OudsCircularProgressIndicator for button integration ([#876](https://github.com/Orange-OpenSource/ouds-flutter/issues/876))
 ### Fixed
+- [DemoApp][Dependency] bump gradle-wrapper from 8.11.1 to 8.14.2 in /app/android ([#894](https://github.com/Orange-OpenSource/ouds-flutter/issues/894))
 
 ## [2.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.0.0...2.1.0) - 2026-08-07
 ### Added
