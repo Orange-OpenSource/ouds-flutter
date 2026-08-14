@@ -58,7 +58,7 @@
 <li><span class="parameter" id="param-progressType"><span class="type-annotation"><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorType.html">OudsProgressIndicatorType</a>?</span> <span class="parameter-name">progressType</span> = <span class="default-value">OudsProgressIndicatorType.determinate</span>, </span></li>
 <li><span class="parameter" id="param-status"><span class="type-annotation"><a href="../../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></span> <span class="parameter-name">status</span> = <span class="default-value">const Neutral()</span>, </span></li>
 <li><span class="parameter" id="param-animated"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">animated</span> = <span class="default-value">true</span>, </span></li>
-<li><span class="parameter" id="param-progress"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">progress</span>, </span></li>
+<li><span class="parameter" id="param-value"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">value</span>, </span></li>
 <li><span class="parameter" id="param-gapSize"><span class="type-annotation"><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorGapSize.html">OudsProgressIndicatorGapSize</a></span> <span class="parameter-name">gapSize</span> = <span class="default-value">OudsProgressIndicatorGapSize.defaultSize</span>, </span></li>
 <li><span class="parameter" id="param-track"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">track</span> = <span class="default-value">true</span>, </span></li>
 <li><span class="parameter" id="param-semanticLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticLabel</span>, </span></li>
@@ -75,11 +75,11 @@
   super.progressType = OudsProgressIndicatorType.determinate,
   super.status = const Neutral(),
   super.animated = true,
-  super.progress,
+  super.value,
   super.gapSize = OudsProgressIndicatorGapSize.defaultSize,
   super.track = true,
   super.semanticLabel,
-});</code></pre>
+}) : _color = null;</code></pre>
 </section>
 
 
