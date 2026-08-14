@@ -150,6 +150,27 @@ class _OudsTabBarState extends State<OudsTabBar> with TickerProviderStateMixin {
     if (widget.currentIndex != oldWidget.currentIndex) {
       _animateToIndex(widget.currentIndex.clamp(0, widget.items.length - 1));
     }
+    // Recreate controllers if the number of items has changed
+    if (widget.items.length != oldWidget.items.length) {
+      _rebuildControllers();
+    }
+  }
+
+  /// Recreates all animation controllers when the number of items changes.
+  void _rebuildControllers() {
+    // Dispose old controllers
+    for (final controller in _indicatorControllers) {
+      controller.dispose();
+    }
+    // Create new controllers
+    _indicatorControllers = List.generate(
+      widget.items.length,
+      (index) => AnimationController(
+        duration: const Duration(milliseconds: 300),
+        vsync: this,
+        value: index == _selectedIndex ? 1.0 : 0.0,
+      ),
+    );
   }
 
   /// Animates the indicator from the old selected tab to the new one.
