@@ -23,12 +23,14 @@ import 'package:ouds_core/components/button/internal/ouds_button_loading_modifie
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 
+/// The [OudsButtonAppearance] enum defines the visual importance of the button within the UI.
 /// Defines the visual importance (appearance) of an [OudsButton] within the UI.
 ///
 /// Use this enum to control the emphasis level of a button:
@@ -486,21 +488,20 @@ class _OudsButtonState extends State<OudsButton> {
           enabled: false,
           button: true,
           child: ExcludeSemantics(
-            child: OutlinedButton(
-              onPressed: null,
-              style: OudsButtonStyleModifier.buildButtonStyle(
-                context,
-                appearance: widget.appearance,
-                layout: widget.layout,
-                buttonState: buttonState,
-                navigationLayout: widget._navigationLayout,
-                componentType: widget._component,
-                size: widget._size,
-              ),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Row(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                OutlinedButton(
+                  onPressed: null,
+                  style: OudsButtonStyleModifier.buildButtonStyle(
+                    context,
+                    appearance: widget.appearance,
+                    layout: widget.layout,
+                    buttonState: buttonState,
+                    navigationLayout: widget._navigationLayout,
+                    componentType: widget._component,
+                  ),
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(null, size: buttonToken.sizeIcon(widget._size)),
@@ -521,17 +522,20 @@ class _OudsButtonState extends State<OudsButton> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.only(
-                      start: buttonToken.spaceColumnGapIconDefault,
-                    ),
-                    child: _buildLoadingIndicator(
-                      context,
-                      widget.loader?.progress,
-                    ),
+                ),
+                OutlinedButton(
+                  style: OudsButtonStyleModifier.buildButtonStyle(
+                    context,
+                    appearance: OudsButtonAppearance.minimal,
+                    layout: OudsButtonLayout.iconOnly,
+                    buttonState: buttonState,
+                    navigationLayout: widget._navigationLayout,
+                    componentType: widget._component,
                   ),
-                ],
-              ),
+                  onPressed: null,
+                  child: _buildLoadingIndicator(context),
+                ),
+              ],
             ),
           ),
         );
@@ -661,10 +665,7 @@ class _OudsButtonState extends State<OudsButton> {
                     size: widget._size,
                   ),
                   onPressed: null,
-                  child: _buildLoadingIndicator(
-                    context,
-                    widget.loader?.progress,
-                  ),
+                  child: _buildLoadingIndicator(context),
                 ),
               ],
             ),
@@ -789,27 +790,17 @@ class _OudsButtonState extends State<OudsButton> {
             style: OudsButtonStyleModifier.buildButtonStyle(
               context,
               appearance: widget.appearance,
-              layout: widget.layout,
+              layout: OudsButtonLayout.iconOnly,
               buttonState: buttonState,
               navigationLayout: widget._navigationLayout,
               componentType: widget._component,
               size: widget._size,
             ),
-            icon: Stack(
-              alignment: Alignment.center,
-              children: [
-                Opacity(
-                  opacity: OudsTheme.of(context).opacityTokens.invisible,
-                  child: _buildIcon(
-                    context,
-                    widget.icon!,
-                    widget.appearance,
-                    widget.layout,
-                    buttonState,
-                  ),
-                ),
-                _buildLoadingIndicator(context, widget.loader?.progress),
-              ],
+            icon: Padding(
+              padding: EdgeInsets.all(
+                buttonToken.spaceInsetProgressIndicatorOnlyDefault,
+              ),
+              child: _buildLoadingIndicator(context),
             ),
           ),
         );
@@ -894,7 +885,7 @@ class _OudsButtonState extends State<OudsButton> {
                       style: _labelTypography(context),
                     ),
                   ),
-                  _buildLoadingIndicator(context, widget.loader?.progress),
+                  _buildLoadingIndicator(context),
                 ],
               ),
             ),
@@ -925,34 +916,23 @@ class _OudsButtonState extends State<OudsButton> {
     }
   }
 
-  /// Builds the circular loading indicator shown inside the button during a loading state.
-  ///
-  /// [progress] is clamped to `[0.0, 1.0]`. Pass `null` for an indeterminate spinner.
-  //todo will be replaced by OudsCircularProgressIndicator when it will be available in core
-  Widget _buildLoadingIndicator(BuildContext context, double? progress) {
+  /// Builds the [OudsCircularProgressIndicator] shown inside the button during a loading state.
+  Widget _buildLoadingIndicator(BuildContext context) {
     {
-      final clampedProgress = progress?.clamp(0.0, 1.0);
       final progressIndicatorSize = OudsTheme.of(
         context,
       ).componentsTokens(context).button.sizeProgressIndicator(widget._size);
-      return Padding(
-        padding: EdgeInsetsDirectional.all(
-          OudsTheme.of(context)
-              .componentsTokens(context)
-              .button
-              .spaceProgressIndicator(widget._size),
-        ),
-        child: SizedBox(
-          width: progressIndicatorSize,
-          height: progressIndicatorSize,
-          child: CircularProgressIndicator(
-            value: clampedProgress,
-            color: OudsButtonLoadingModifier.getColorToken(
-              context,
-              widget.appearance,
-            ),
-            strokeWidth: widget._size == OudsButtonSize.small ? 2 : 3,
+
+      return SizedBox(
+        width: progressIndicatorSize,
+        height: progressIndicatorSize,
+        child: OudsCircularProgressIndicator.internal(
+          progressType: OudsProgressIndicatorType.indeterminate,
+          color: OudsButtonLoadingModifier.getColorToken(
+            context,
+            widget.appearance,
           ),
+          track: false,
         ),
       );
     }
