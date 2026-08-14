@@ -153,26 +153,55 @@ class _CircularProgressIndicatorDemoState
     customizationState = ProgressIndicatorCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
-    return LightDarkBox(
-      child: OudsCircularProgressIndicator(
-        progressType: ProgressIndicatorCustomizationUtils.getProgressType(
-          customizationState!.selectedType,
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+    });
+
+    if (customizationState?.hasOnColoredBox == true) {
+      return ComponentDemoBox(
+        colored: customizationState?.hasOnColoredBox == true,
+        child: OudsCircularProgressIndicator(
+          progressType: ProgressIndicatorCustomizationUtils.getProgressType(
+            customizationState!.selectedType,
+          ),
+          status: ProgressIndicatorCustomizationUtils.getStatus(
+            customizationState!.selectedStatus,
+          ),
+          value: ProgressIndicatorCustomizationUtils.getProgressValue(
+            customizationState!.value,
+          ),
+          track: customizationState!.hasTrack,
+          animated: customizationState!.hasAnimation,
+          gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
+            customizationState!.selectedGapSize,
+          ),
+          semanticLabel:
+              context.l10n.app_components_progressIndicator_progress_a11y,
         ),
-        status: ProgressIndicatorCustomizationUtils.getStatus(
-          customizationState!.selectedStatus,
+      );
+    } else {
+      return LightDarkBox(
+        child: OudsCircularProgressIndicator(
+          progressType: ProgressIndicatorCustomizationUtils.getProgressType(
+            customizationState!.selectedType,
+          ),
+          status: ProgressIndicatorCustomizationUtils.getStatus(
+            customizationState!.selectedStatus,
+          ),
+          value: ProgressIndicatorCustomizationUtils.getProgressValue(
+            customizationState!.value,
+          ),
+          track: customizationState!.hasTrack,
+          animated: customizationState!.hasAnimation,
+          gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
+            customizationState!.selectedGapSize,
+          ),
+          semanticLabel:
+              context.l10n.app_components_progressIndicator_progress_a11y,
         ),
-        progress: ProgressIndicatorCustomizationUtils.getProgressValue(
-          customizationState!.progress,
-        ),
-        track: customizationState!.hasTrack,
-        animated: customizationState!.hasAnimation,
-        gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
-          customizationState!.selectedGapSize,
-        ),
-        semanticLabel:
-            context.l10n.app_components_progressIndicator_progress_a11y,
-      ),
-    );
+      );
+    }
   }
 }
 
@@ -219,9 +248,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_onColoredBackground_label,
+          value: customizationState.hasOnColoredBox,
+          onChanged: (value) {
+            customizationState.hasOnColoredBox = value;
+          },
+        ),
         CustomizableTextField(
           title: context.l10n.app_components_progressIndicator_progress_tech,
-          text: customizationState.progress.toString(),
+          text: customizationState.value.toString(),
           focusNode: progressFocus,
           fieldType: FieldType.label,
           fieldEnable:
@@ -232,6 +268,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizationDropdownMenu<StatusEnum>(
           label: StatusEnum.enumName(context),
           options: customizationState.statusState.list,
+          disabledOptions: customizationState.hasOnColoredBox
+              ? customizationState.statusState.list
+              : null,
           selectedItemIndex: customizationState.selectedIndex,
           selectedOption: customizationState.selectedStatus,
           getText: (option) => option.stringValue(context),

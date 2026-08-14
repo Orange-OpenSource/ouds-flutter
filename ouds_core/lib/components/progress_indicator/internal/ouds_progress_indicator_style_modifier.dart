@@ -71,11 +71,6 @@ class OudsProgressIndicatorStyleModifier {
     return gapSizeType == OudsProgressIndicatorGapSize.defaultSize ? 4.0 : 1.0;
   }
 
-  /// Calculates the stroke width: 12.5% of the diameter.
-  double computeStrokeWidth(double componentSize) {
-    return componentSize * 0.125;
-  }
-
   /// Determines the stroke cap style based on the border radius and gap size.
   StrokeCap getStrokeCap(OudsProgressIndicatorGapSize gapSizeType) {
     final radius = getDoubleBorderRadius();

@@ -24,7 +24,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
   final List<Widget Function()>? itemLeadingIcons;
   final T? selectedOption;
   final bool isSelected;
-  final T? disabledOption;
+  final List<T>? disabledOptions;
 
   const CustomizationDropdownMenu({
     super.key,
@@ -36,12 +36,15 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
     this.itemLeadingIcons,
     required this.getText,
     this.isSelected = false,
-    this.disabledOption,
+    this.disabledOptions,
   });
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     final currentTheme = themeController.currentTheme;
 
     return Column(
@@ -49,7 +52,9 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
       children: [
         ExcludeSemantics(
           child: Padding(
-            padding: EdgeInsetsDirectional.symmetric(horizontal: currentTheme.spaceScheme(context).fixedMedium),
+            padding: EdgeInsetsDirectional.symmetric(
+              horizontal: currentTheme.spaceScheme(context).fixedMedium,
+            ),
             child: Text(
               label,
               style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
@@ -67,35 +72,54 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
               initialSelection: options[selectedItemIndex],
               expandedInsets: EdgeInsets.zero,
               inputDecorationTheme: const InputDecorationTheme(isDense: true),
-              textStyle: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-              onSelected:  (value) {
+              textStyle: currentTheme.typographyTokens.typeBodyStrongLarge(
+                context,
+              ),
+              onSelected: (value) {
                 if (value != null) {
                   final newIndex = options.indexOf(value);
                   onSelectionChange(value, newIndex);
                 }
               },
-              leadingIcon: itemLeadingIcons != null ? buildDropdownLeadingIcon(context, itemLeadingIcons, selectedItemIndex) : null,
-              dropdownMenuEntries: List.generate(
-                options.length,
-                (index) {
-                  T currentElement = options[index];
-                  final isSelected = currentElement == options[selectedItemIndex];
-                  return DropdownMenuEntry<T>(
-                    enabled: currentElement == disabledOption ? false : true,
-                    labelWidget: Semantics(
-                      button: true,
-                      value: isSelected ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
-                      child: Text(
-                        getText(currentElement),
-                        style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+              leadingIcon: itemLeadingIcons != null
+                  ? buildDropdownLeadingIcon(
+                      context,
+                      itemLeadingIcons,
+                      selectedItemIndex,
+                    )
+                  : null,
+              dropdownMenuEntries: List.generate(options.length, (index) {
+                T currentElement = options[index];
+                final isSelected = currentElement == options[selectedItemIndex];
+                return DropdownMenuEntry<T>(
+                  enabled:
+                      disabledOptions != null &&
+                          disabledOptions!.contains(currentElement)
+                      ? false
+                      : true,
+                  labelWidget: Semantics(
+                    button: true,
+                    value: isSelected
+                        ? context.l10n.app_common_selected_a11y
+                        : context.l10n.app_common_unselected_a11y,
+                    child: Text(
+                      getText(currentElement),
+                      style: currentTheme.typographyTokens.typeBodyStrongLarge(
+                        context,
                       ),
                     ),
-                    value: currentElement,
-                    label: getText(currentElement),
-                    leadingIcon: itemLeadingIcons != null ? buildDropdownLeadingIcon(context, itemLeadingIcons, index) : null,
-                  );
-                },
-              ),
+                  ),
+                  value: currentElement,
+                  label: getText(currentElement),
+                  leadingIcon: itemLeadingIcons != null
+                      ? buildDropdownLeadingIcon(
+                          context,
+                          itemLeadingIcons,
+                          index,
+                        )
+                      : null,
+                );
+              }),
             ),
           ),
         ),
@@ -103,9 +127,18 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
     );
   }
 
-  Widget? buildDropdownLeadingIcon(BuildContext context, List<Widget Function()>? builders, int index) {
+  Widget? buildDropdownLeadingIcon(
+    BuildContext context,
+    List<Widget Function()>? builders,
+    int index,
+  ) {
     if (builders != null && index < builders.length) {
-      return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).paddingInlineSmall), child: builders[index]());
+      return Padding(
+        padding: EdgeInsetsDirectional.all(
+          OudsTheme.of(context).spaceScheme(context).paddingInlineSmall,
+        ),
+        child: builders[index](),
+      );
     }
     return null;
   }

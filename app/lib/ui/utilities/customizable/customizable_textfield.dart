@@ -139,7 +139,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         linkState?.labelText = value;
         alertMessageState?.label = value;
         listItemState?.label = value;
-        progressIndicatorState?.progress = value;
+        progressIndicatorState?.value = value;
         break;
       case FieldType.helper:
         textInputState?.helperText = value;
