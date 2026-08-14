@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [DemoApp][Library] Update `progress-indicator`: add size parameter to OudsCircularProgressIndicator for button integration ([#876](https://github.com/Orange-OpenSource/ouds-flutter/issues/876))
 ### Fixed
+- [Library] Invalid value: Not in inclusive range 0..2: 3 dans OudsTabBar` ([#896](https://github.com/Orange-OpenSource/ouds-flutter/issues/896))
 - [DemoApp][Dependency] bump gradle-wrapper from 8.11.1 to 8.14.2 in /app/android ([#894](https://github.com/Orange-OpenSource/ouds-flutter/issues/894))
 
 ## [2.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.0.0...2.1.0) - 2026-08-07
