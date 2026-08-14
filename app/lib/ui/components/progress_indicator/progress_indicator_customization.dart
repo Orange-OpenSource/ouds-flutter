@@ -40,7 +40,7 @@ class ProgressIndicatorCustomization extends StatefulWidget {
 /// tag customization state management
 class ProgressIndicatorCustomizationState
     extends CustomizationWidgetState<ProgressIndicatorCustomization> {
-  late final ProgressState progressState;
+  late final ValueState valueState;
   late final SizeState sizeState;
   late final StatusState statusState;
   late final TrackState trackState;
@@ -56,7 +56,7 @@ class ProgressIndicatorCustomizationState
   @override
   void initState() {
     super.initState();
-    progressState = ProgressState(setState);
+    valueState = ValueState(setState);
     sizeState = SizeState(setState);
     statusState = StatusState(setState);
     trackState = TrackState(setState);
@@ -70,8 +70,8 @@ class ProgressIndicatorCustomizationState
     spaceBeforeState = SpaceBeforeState(setState);
   }
 
-  String get progress => progressState.value;
-  set progress(String value) => progressState.value = value;
+  String get value => valueState.value;
+  set value(String value) => valueState.value = value;
 
   LinkEnumSize get selectedSize => sizeState.selected;
   set selectedSize(LinkEnumSize value) => sizeState.selected = value;
@@ -129,8 +129,8 @@ class ProgressIndicatorCustomizationState
 }
 
 /// progress value State Management
-class ProgressState {
-  ProgressState(this._setState);
+class ValueState {
+  ValueState(this._setState);
 
   final void Function(void Function()) _setState;
   String _progressValue = "0.75";
