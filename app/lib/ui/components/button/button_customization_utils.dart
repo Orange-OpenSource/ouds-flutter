@@ -43,9 +43,9 @@ class ButtonCustomizationUtils {
   }
 
   /// Displays the loader if it is selected .
-  static Loader? getLoader(ButtonCustomizationState? customizationState) {
+  static bool? getLoader(ButtonCustomizationState? customizationState) {
     if (customizationState?.hasLoader == true) {
-      return Loader(progress: null);
+      return true;
     }
     return null;
   }

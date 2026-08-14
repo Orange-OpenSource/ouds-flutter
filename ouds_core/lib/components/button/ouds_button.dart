@@ -54,6 +54,9 @@ enum OudsButtonAppearance {
 ///   Values outside of this range are coerced into the range.
 ///  Set this value to `null` to display a circular indeterminate progress indicator.
 ///
+@Deprecated(
+  "This class is deprecated and will be removed in a future version. Use the isLoading boolean parameter instead.",
+)
 class Loader {
   final double? progress;
   Loader({this.progress});
@@ -113,9 +116,9 @@ enum OudsButtonComponent {
 /// - [label]: Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
 /// - [icon]: Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the button is clicked.
-///   Controls the enabled state of the button when [loader] is equal to null.
-///   When `false`, this button will not be clickable. Has no effect when [loader] is not null.
-/// - [loader]: An optional loading progress indicator displayed in the button to indicate an ongoing operation.
+///   Controls the enabled state of the button when [isLoading] is equal to false.
+///   When `false`, this button will not be clickable. Has no effect when [isLoading] is true.
+/// - [isLoading]: An optional loading progress indicator displayed in the button to indicate an ongoing operation.
 /// - [appearance]: The button appearance based on its [OudsButtonAppearance].
 ///   A button with [OudsButtonAppearance.negative] appearance is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
 ///   To create the widget with an asset from a package, the [package] argument
@@ -147,7 +150,7 @@ enum OudsButtonComponent {
 /// OudsButton(
 ///       isFullWidth: false,
 ///       label: 'Button',
-///       loader: Loader(progress: null),
+///       isLoading: true,
 ///       appearance: OudsButtonAppearance.defaultAppearance
 ///       onPressed: () {
 ///         // Handle button tap.
@@ -171,7 +174,11 @@ class OudsButton extends StatefulWidget {
   final String? label;
   final String? icon;
   final VoidCallback? onPressed;
+  @Deprecated(
+    "This parameter is deprecated and will be removed in a future version. Use isLoading instead.",
+  )
   final Loader? loader;
+  final bool? isLoading;
   final OudsButtonAppearance appearance;
   final String? package;
   final bool? isFullWidth;
@@ -197,6 +204,7 @@ class OudsButton extends StatefulWidget {
     this.icon,
     this.onPressed,
     this.loader,
+    this.isLoading = false,
     required this.appearance,
     this.package,
     this.isFullWidth = false,
@@ -225,6 +233,7 @@ class OudsButton extends StatefulWidget {
     this.icon,
     this.onPressed,
     this.loader,
+    this.isLoading = false,
     required this.appearance,
     this.package,
     this.isFullWidth = false,
@@ -245,6 +254,7 @@ class OudsButton extends StatefulWidget {
     this.isFullWidth = false,
     OudsButtonSize size = OudsButtonSize.defaultSize,
     this.loader,
+    this.isLoading = false,
     required OudsNavigationButtonLayout navigationLayout,
     String? semanticsLabel,
   }) : _size = size,
@@ -372,7 +382,7 @@ class _OudsButtonState extends State<OudsButton> {
       isPressed: _isPressed,
       isHovered: _isHovered,
       isFocused: _isFocused,
-      isLoading: widget.loader != null,
+      isLoading: widget.loader != null || widget.isLoading == true,
     );
     final buttonState = buttonStateDeterminer.determineControlState();
     final borderTokens = OudsTheme.of(context).borderTokens;
@@ -1092,7 +1102,7 @@ enum OudsNavigationButtonLayout { next, previous }
 /// - [appearance]: Visual importance of the button. **Required.**
 /// - [label]: Optional text label describing the navigation action.
 /// - [onPressed]: Callback invoked on tap. Pass `null` to disable the button.
-/// - [loader]: Optional [Loader] displaying a loading indicator inside the button.
+/// - [isLoading]: An optional loading progress indicator displayed in the button to indicate an ongoing operation.
 /// - [isFullWidth]: When `true`, the button expands to fill the full width. Defaults to `false`.
 /// - [semanticsLabel]: Accessibility label used in icon-only mode when no [label] is provided.
 /// - [package]: Package name to resolve the chevron asset when it comes from a package.
@@ -1127,7 +1137,11 @@ class OudsNavigationButton extends StatelessWidget {
   final OudsNavigationButtonAppearance appearance;
   final String? label;
   final VoidCallback? onPressed;
+  @Deprecated(
+    "This parameter is deprecated and will be removed in a future version. Use isLoading instead.",
+  )
   final Loader? loader;
+  final bool? isLoading;
   final String? package;
   final bool? isFullWidth;
   final String? semanticsLabel;
@@ -1141,6 +1155,7 @@ class OudsNavigationButton extends StatelessWidget {
     required this.appearance,
     this.package,
     this.loader,
+    this.isLoading = false,
     this.isFullWidth,
     this.semanticsLabel,
     this.size = OudsButtonSize.defaultSize,
@@ -1168,6 +1183,7 @@ class OudsNavigationButton extends StatelessWidget {
       navigationLayout: layout,
       isFullWidth: isFullWidth,
       loader: loader,
+      isLoading: isLoading,
       semanticsLabel: semanticsLabel,
       size: size,
     );

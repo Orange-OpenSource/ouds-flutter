@@ -151,7 +151,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             label: label,
             icon: icon,
             appearance: appearance,
-            loader: loader,
+            isLoading: loader,
             onPressed: onPressed,
             isFullWidth: isFullWidth,
           )
@@ -159,7 +159,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             label: label,
             icon: icon,
             appearance: appearance,
-            loader: loader,
+            isLoading: loader,
             onPressed: onPressed,
             isFullWidth: isFullWidth,
           );

@@ -84,7 +84,7 @@ class ButtonCodeGenerator {
       context,
     );
     if (customizationState?.hasLoader == true) {
-      return "\nloader: Loader(progress: null),";
+      return "\nisLoading: true,";
     } else {
       return "";
     }
