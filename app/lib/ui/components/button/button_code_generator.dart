@@ -44,23 +44,23 @@ class ButtonCodeGenerator {
     String code = '';
 
     // Use the OudsButton.small constructor when the small size is selected, OudsButton otherwise
-    String constructorName = buttonConstructorName(context);
+    String buttonSizeConstructor = buttonVariant(context);
 
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsButtonLayout.textOnly:
         code =
-            """${coloredSurfaceCodeModifier(context)}$constructorName(\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconOnly:
         code =
-            """${coloredSurfaceCodeModifier(context)}$constructorName(\nicon: 'assets/ic_heart.svg',\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: 'assets/ic_heart.svg',\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconAndText:
         code =
-            """${coloredSurfaceCodeModifier(context)}$constructorName(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
     }
 
@@ -103,12 +103,11 @@ class ButtonCodeGenerator {
 
   // Method to generate the constructor name based on the selected size:
   // `OudsButton.small` when small size is selected, `OudsButton` otherwise
-  static String buttonConstructorName(BuildContext context) {
-    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
-      context,
-    );
+  static String buttonVariant(BuildContext context) {
+    final ButtonCustomizationState? customizationSizeState =
+        ButtonCustomization.of(context);
     OudsButtonSize size = ButtonCustomizationUtils.getSize(
-      customizationState?.selectedSize as Object,
+      customizationSizeState?.selectedSize as Object,
     );
     return size == OudsButtonSize.small ? "OudsButton.small" : "OudsButton";
   }

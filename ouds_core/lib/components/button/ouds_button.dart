@@ -92,13 +92,16 @@ enum OudsButtonComponent {
 
 /// [OUDS Button design guidelines](https://r.orange.fr/r/S-ouds-doc-button)
 ///
-/// **Reference design version : 3.2.0**
+/// **Reference design version : 3.3.0**
 ///
 /// Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
 /// Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
 ///
 /// This version of the button uses the *text only* layout which is the most used layout.
 /// Other layouts are available for this component: *text + icon* and *icon only*.
+///
+/// This is the default size of the component. This size is used for the vast majority of applications.
+/// A small size is also available via [OudsButton.small].
 ///
 /// Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
 /// Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
@@ -122,7 +125,7 @@ enum OudsButtonComponent {
 ///
 /// ### Text only button :
 ///
-/// This is the default layout of the component.
+/// **This is the default layout of the component:**
 ///
 /// ```dart
 /// OudsButton(
@@ -134,9 +137,10 @@ enum OudsButtonComponent {
 ///      },
 ///     );
 /// ```
-/// ```dart
 ///
-/// This is the Loading layout of the component.
+/// **This is the Loading layout of the component:**
+///
+/// ```dart
 ///
 /// OudsButton(
 ///       isFullWidth: false,
@@ -149,7 +153,7 @@ enum OudsButtonComponent {
 ///     );
 /// ```
 ///
-/// ### Small text only button :
+/// ### Small button with text only :
 ///
 /// ```dart
 /// OudsButton.small(
