@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- [DemoApp][Dependency] bump gradle-wrapper from 8.11.1 to 8.14.2 in /app/android ([#894](https://github.com/Orange-OpenSource/ouds-flutter/issues/894))
 
 ## [2.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.0.0...2.1.0) - 2026-08-07
 ### Added
