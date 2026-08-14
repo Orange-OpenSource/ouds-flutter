@@ -55,11 +55,13 @@
     
 <section class="desc markdown">
   <p><a href="https://r.orange.fr/r/S-ouds-doc-button">OUDS Button design guidelines</a></p>
-<p><strong>Reference design version : 3.2.0</strong></p>
+<p><strong>Reference design version : 3.3.0</strong></p>
 <p>Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
 Button appears in different layouts, styles and states to indicate hierarchy or emphasis.</p>
 <p>This version of the button uses the <em>text only</em> layout which is the most used layout.
 Other layouts are available for this component: <em>text + icon</em> and <em>icon only</em>.</p>
+<p>This is the default size of the component. This size is used for the vast majority of applications.
+A small size is also available via <a href="../components_button_ouds_button/OudsButton/OudsButton.small.html">OudsButton.small</a>.</p>
 <p>Note that in the case it is placed in an <code>OudsColoredBox</code>, its monochrome variant is automatically displayed.
 Some tokens associated with these specific colors can be customized and are identified with the <code>Mono</code> suffix (for instance <code>OudsButtonTokens.colorBgDefaultEnabledMono</code>).</p>
 <h2 id="parameters">Parameters</h2>
@@ -79,7 +81,7 @@ must be provided. For instance, suppose a package called <code>my_icons</code> h
 </ul>
 <h2 id="usage-example-">Usage example :</h2>
 <h3 id="text-only-button-">Text only button :</h3>
-<p>This is the default layout of the component.</p>
+<p><strong>This is the default layout of the component:</strong></p>
 <pre class="language-dart"><code class="language-dart">OudsButton(
       isFullWidth: false,
       label: 'Button',
@@ -89,9 +91,8 @@ must be provided. For instance, suppose a package called <code>my_icons</code> h
      },
     );
 </code></pre>
+<p><strong>This is the Loading layout of the component:</strong></p>
 <pre class="language-dart"><code class="language-dart">
-This is the Loading layout of the component.
-
 OudsButton(
       isFullWidth: false,
       label: 'Button',
@@ -102,7 +103,7 @@ OudsButton(
      },
     );
 </code></pre>
-<h3 id="small-text-only-button-">Small text only button :</h3>
+<h3 id="small-button-with-text-only-">Small button with text only :</h3>
 <pre class="language-dart"><code class="language-dart">OudsButton.small(
       label: 'Button',
       appearance: OudsButtonAppearance.defaultAppearance,
