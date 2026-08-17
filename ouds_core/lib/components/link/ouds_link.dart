@@ -33,9 +33,22 @@ enum OudsLinkLayout { textOnly, textAndIcon, back, next }
 /// The [OudsLinkSize] defines the link's visual size.
 enum OudsLinkSize { defaultSize, small }
 
+/// The [OudsLinkDensity] defines the link's density
+enum OudsLinkDensity {
+  /// This is the default density of the component, recommended for most interfaces and primary navigation contexts.
+  ///
+  /// This density which is used for the vast majority of applications, provides a comfortable touch target that meets accessibility recommendations.
+  defaultDensity,
+
+  /// Reduces the vertical footprint while preserving the same interaction and visual behavior.
+  ///
+  /// Use in dense layouts where space is limited and a smaller touch target is acceptable (desktop or pointer-based contexts).
+  compact,
+}
+
 /// [OUDS Link design guidelines](https://r.orange.fr/r/S-ouds-doc-link)
 ///
-/// **Reference design version : 2.2.0**
+/// **Reference design version : 2.4.0**
 ///
 /// Link is a UI element that allows to navigate from one location to another, either within the same page
 /// or across different pages in the same resource, or to an external resource. Link's primary function is navigation
@@ -44,6 +57,7 @@ enum OudsLinkSize { defaultSize, small }
 ///
 /// parameters :
 /// - [size] : The size of the link, [OudsLinkSize] such as small or default, to fit various visual needs.
+/// - [density] : The density of the link, [OudsLinkDensity] such as compact or default.
 /// - [label] : A text to display in link component.
 /// - [icon] : An optional SVG asset name to display an icon within the link.
 /// - [layout]: Defines the layout to be used for the link [OudsLinkLayout].
@@ -80,8 +94,17 @@ enum OudsLinkSize { defaultSize, small }
 /// ```dart
 /// OudsLink(
 ///       label: 'Label',
-///       layout : OudsLinkayout.textAndIcon
 ///       icon : 'assets/ic_heart.svg'
+///       onPressed: () {}
+///     );
+/// ```
+///
+/// ### Compact density link :
+/// Reduces the link's minimum height and block padding, useful in dense layouts.
+/// ```dart
+/// OudsLink(
+///       label: 'Label',
+///       density: OudsLinkDensity.compact,
 ///       onPressed: () {}
 ///     );
 /// ```
@@ -91,7 +114,8 @@ class OudsLink extends StatefulWidget {
   final String label;
   final String? icon;
   final OudsLinkLayout layout;
-  final OudsLinkSize? size;
+  final OudsLinkSize size;
+  final OudsLinkDensity density;
   final VoidCallback? onPressed;
 
   const OudsLink({
@@ -100,6 +124,7 @@ class OudsLink extends StatefulWidget {
     this.icon,
     this.layout = OudsLinkLayout.textOnly,
     this.size = OudsLinkSize.defaultSize,
+    this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
   }) : assert(
          layout != OudsLinkLayout.textAndIcon || icon != null,
@@ -116,8 +141,7 @@ class OudsLink extends StatefulWidget {
     final statusModifier = OudsLinkStatusModifier(context);
     final sizeModifier = OudsLinkSizeModifier(context);
     final iconSize = sizeModifier.getIconSize(size);
-    final isIcon = layout == OudsLinkLayout.textAndIcon;
-    final rtlMode = Directionality.of(context) == TextDirection.rtl;
+    final isIcon = assetName != null || layout == OudsLinkLayout.textAndIcon;
 
     return SvgPicture.asset(
       excludeFromSemantics: true,
@@ -132,6 +156,7 @@ class OudsLink extends StatefulWidget {
             : statusModifier.getTextAndIconColor(controlItemState),
         BlendMode.srcIn,
       ),
+      matchTextDirection: true,
     );
   }
 
@@ -235,7 +260,7 @@ class _OudsLinkState extends State<OudsLink> {
 
     switch (widget.layout) {
       case OudsLinkLayout.textOnly:
-        content = getTextOnlyContent(
+        content = _buildLabelText(
           linkControlState,
           linkStatusModifier,
           linkTextStyleModifier,
@@ -277,27 +302,28 @@ class _OudsLinkState extends State<OudsLink> {
     );
   }
 
-  /// Returns a Text widget for a link with `textOnly` layout,
-  /// applying the appropriate text style and color based on the link state.
-  Widget getTextOnlyContent(
+  /// Returns the [Text] widget shared by every layout, applying the
+  /// appropriate text style, color and decoration based on the link state.
+  Widget _buildLabelText(
     OudsLinkControlState linkControlState,
     OudsLinkStatusModifier linkStatusModifier,
     OudsLinkTextStyleModifier linkTextStyleModifier,
   ) {
+    final textAndIconColor = linkStatusModifier.getTextAndIconColor(
+      linkControlState,
+    );
     return Text(
       widget.label,
       textAlign: TextAlign.left,
       style: linkTextStyleModifier
-          .buildLinkTextStyle(context, size: widget.size!)
+          .buildLinkTextStyle(size: widget.size)
           .copyWith(
-            color: linkStatusModifier.getTextAndIconColor(linkControlState),
+            color: textAndIconColor,
             decoration: linkTextStyleModifier.getTextDecorationStatus(
               linkControlState,
               widget.layout,
             ),
-            decorationColor: linkStatusModifier.getTextAndIconColor(
-              linkControlState,
-            ),
+            decorationColor: textAndIconColor,
           ),
     );
   }
@@ -318,23 +344,10 @@ class _OudsLinkState extends State<OudsLink> {
       spacing: linkSizeModifier.getSizeColumnGap(widget.size, widget.layout)!,
       children: [
         Flexible(
-          child: Text(
-            widget.label,
-            textAlign: TextAlign.left,
-            style: linkTextStyleModifier
-                .buildLinkTextStyle(context, size: widget.size!)
-                .copyWith(
-                  color: linkStatusModifier.getTextAndIconColor(
-                    linkControlState,
-                  ),
-                  decoration: linkTextStyleModifier.getTextDecorationStatus(
-                    linkControlState,
-                    widget.layout,
-                  ),
-                  decorationColor: linkStatusModifier.getTextAndIconColor(
-                    linkControlState,
-                  ),
-                ),
+          child: _buildLabelText(
+            linkControlState,
+            linkStatusModifier,
+            linkTextStyleModifier,
           ),
         ),
         OudsLink.buildIcon(
@@ -371,23 +384,10 @@ class _OudsLinkState extends State<OudsLink> {
             widget.size!,
           ),
         Flexible(
-          child: Text(
-            widget.label,
-            textAlign: TextAlign.left,
-            style: linkTextStyleModifier
-                .buildLinkTextStyle(context, size: widget.size!)
-                .copyWith(
-                  color: linkStatusModifier.getTextAndIconColor(
-                    linkControlState,
-                  ),
-                  decoration: linkTextStyleModifier.getTextDecorationStatus(
-                    linkControlState,
-                    widget.layout,
-                  ),
-                  decorationColor: linkStatusModifier.getTextAndIconColor(
-                    linkControlState,
-                  ),
-                ),
+          child: _buildLabelText(
+            linkControlState,
+            linkStatusModifier,
+            linkTextStyleModifier,
           ),
         ),
       ],
@@ -402,20 +402,24 @@ class _OudsLinkState extends State<OudsLink> {
   }) {
     final minHeightAndWidth = linkSizeModifier.getMinWidthAndHeight(
       widget.size,
+      widget.density,
     );
+
+    final theme = OudsTheme.of(context);
+    final colorScheme = theme.colorScheme(context);
+    final borderTokens = theme.borderTokens;
 
     return Container(
       constraints: BoxConstraints(
         minHeight: minHeightAndWidth[OudsLinkDimensions.height.name]!,
         minWidth: minHeightAndWidth[OudsLinkDimensions.width.name]!,
       ),
+      padding: linkSizeModifier.getPadding(widget.size, widget.density),
       decoration: _isFocused
           ? BoxDecoration(
               border: OudsBorder().borderAll(
-                width: OudsTheme.of(context).borderTokens.widthFocusInset,
-                color: OudsTheme.of(
-                  context,
-                ).colorScheme(context).borderFocusInset,
+                width: borderTokens.widthFocusInset,
+                color: colorScheme.borderFocusInset,
               ),
             )
           : null,
@@ -438,29 +442,20 @@ class _OudsLinkState extends State<OudsLink> {
           children: [
             if (_isFocused)
               Positioned(
-                top: -OudsTheme.of(context).borderTokens.widthFocus,
-                bottom: -OudsTheme.of(context).borderTokens.widthFocus,
-                left: -OudsTheme.of(context).borderTokens.widthFocus,
-                right: -OudsTheme.of(context).borderTokens.widthFocus,
+                top: -borderTokens.widthFocus,
+                bottom: -borderTokens.widthFocus,
+                left: -borderTokens.widthFocus,
+                right: -borderTokens.widthFocus,
                 child: Container(
                   decoration: BoxDecoration(
                     border: OudsBorder().borderAll(
-                      color: OudsTheme.of(
-                        context,
-                      ).colorScheme(context).borderFocus,
-                      width: OudsTheme.of(context).borderTokens.widthFocus,
+                      color: colorScheme.borderFocus,
+                      width: borderTokens.widthFocus,
                     ),
                   ),
                 ),
               ),
-            Container(
-              padding: EdgeInsets.symmetric(
-                vertical: OudsTheme.of(
-                  context,
-                ).componentsTokens(context).link.spacePaddingBlockDefault,
-              ),
-              child: child,
-            ),
+            child,
           ],
         ),
       ),

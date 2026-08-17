@@ -310,7 +310,7 @@ List<Component> components(BuildContext context) {
       ],
     ),
     Component(
-      context.l10n.app_components_link_label,
+      context.l10n.app_components_link_tech,
       ComponentContainer(
         child: Column(
           children: [

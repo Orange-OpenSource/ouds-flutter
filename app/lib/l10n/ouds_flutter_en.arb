@@ -112,6 +112,7 @@
   "app_components_common_onColoredBackground_label": "On colored background",
   "app_components_common_status_label": "Status",
   "app_components_common_size_label": "Size",
+  "app_components_common_density_label": "Density",
   "app_components_common_textAndLoaderLayout_label": "Text + Loader",
   "app_components_common_roundedCorner_label": "Rounded Corner",
   "app_components_common_loader_label": "Loader",
@@ -271,10 +272,11 @@
   "app_components_phoneNumberInput_error_label": "The phone number can't be empty.",
 
   "@_components_link": {},
-  "app_components_link_label": "Link",
+  "app_components_link_tech": "Link",
   "app_components_link_description_text": "Link is a UI element that allows to navigate from one location to another, either within the same page or across different pages in the same resource, or to an external resource.",
-  "app_components_link_backLayout_label": "Back",
-  "app_components_link_nextLayout_label": "Next",
+  "app_components_link_previousLayout_tech": "Previous",
+  "app_components_link_nextLayout_tech": "Next",
+  "app_components_link_externalLayout_tech": "External",
 
   "@_components_password_input": {},
   "app_components_passwordInput_label": "Password input",

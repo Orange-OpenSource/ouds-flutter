@@ -78,7 +78,9 @@ class ComponentDemoBox extends StatelessWidget {
       return ColoredBox(
         color: ColoredBoxColor.backgroundPrimary,
         child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: OudsTheme.of(context).gridScheme(context).margin),
+          padding: EdgeInsetsDirectional.symmetric(
+            horizontal: OudsTheme.of(context).gridScheme(context).margin,
+          ),
           child: child,
         ),
       );
@@ -128,20 +130,12 @@ class LightDarkBox extends StatelessWidget {
     return Column(
       children: [
         ComponentDemoBox(
-          child: hasConstrainedMaxWidthOption
-              ? child
-              : Center(
-                  child: child,
-                ),
+          child: hasConstrainedMaxWidthOption ? child : Center(child: child),
         ),
         OudsThemeTweak(
           tweak: OudsThemeTweakType.invert,
           child: ComponentDemoBox(
-            child: hasConstrainedMaxWidthOption
-                ? child
-                : Center(
-                    child: child,
-                  ),
+            child: hasConstrainedMaxWidthOption ? child : Center(child: child),
           ),
         ),
       ],
@@ -191,18 +185,11 @@ class ColoredBox extends StatelessWidget {
   ///
   /// The [child] parameter must not be null.
   /// The [color] parameter is optional and defaults to `null`.
-  const ColoredBox({
-    required this.child,
-    this.color,
-    super.key,
-  });
+  const ColoredBox({required this.child, this.color, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        minHeight: 80,
-      ),
       width: double.infinity,
       color: color?.getValue(context),
       child: Padding(

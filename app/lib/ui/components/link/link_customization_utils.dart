@@ -31,7 +31,7 @@ class LinkCustomizationUtils {
         return OudsLinkLayout.textAndIcon;
       case LinkEnumLayout.next:
         return OudsLinkLayout.next;
-      case LinkEnumLayout.back:
+      case LinkEnumLayout.previous:
         return OudsLinkLayout.back;
       default:
         return OudsLinkLayout.textOnly;
@@ -44,9 +44,14 @@ class LinkCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(LinkCustomizationState? customizationState, ThemeController themeController) {
+  static String? getIcon(
+    LinkCustomizationState? customizationState,
+    ThemeController themeController,
+  ) {
     if (customizationState?.selectedLayout == LinkEnumLayout.textAndIcon) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController);
+      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+        themeController,
+      );
     }
     return null;
   }
@@ -58,6 +63,16 @@ class LinkCustomizationUtils {
         return OudsLinkSize.small;
       default:
         return OudsLinkSize.defaultSize;
+    }
+  }
+
+  /// Maps the enum to `OudsLinkDensity`.
+  static OudsLinkDensity getDensity(Object density) {
+    switch (density) {
+      case LinkEnumDensity.compact:
+        return OudsLinkDensity.compact;
+      default:
+        return OudsLinkDensity.defaultDensity;
     }
   }
 }

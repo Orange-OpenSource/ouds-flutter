@@ -36,7 +36,7 @@ import 'package:provider/provider.dart';
 
 class LinkDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-  const LinkDemoScreen({super.key,this.previousPageTitle});
+  const LinkDemoScreen({super.key, this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() => _LinkDemoScreenState();
@@ -57,7 +57,11 @@ class _LinkDemoScreenState extends State<LinkDemoScreen> {
     return DismissKeyboard(
       child: LinkCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(
+            bottom: defaultTargetPlatform == TargetPlatform.android
+                ? MediaQuery.of(context).viewPadding.bottom
+                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+          ),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -67,11 +71,14 @@ class _LinkDemoScreenState extends State<LinkDemoScreen> {
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-                showBackButton: true,
-                title: context.l10n.app_components_link_label,
-                previousPageTitle: widget.previousPageTitle,
+              showBackButton: true,
+              title: context.l10n.app_components_link_tech,
+              previousPageTitle: widget.previousPageTitle,
             ),
-            body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+            body: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(),
+            ),
           ),
         ),
       ),
@@ -90,19 +97,22 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
       description: context.l10n.app_components_link_description_text,
       widget: Column(
         children: [
           _LinkDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: LinkCodeGenerator.updateCode(context),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
           ),
-          ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.link,
-          )
+          Code(code: LinkCodeGenerator.updateCode(context)),
+          ReferenceDesignVersionComponent(version: OudsComponentVersion.link),
         ],
       ),
     );
@@ -138,21 +148,42 @@ class _LinkDemoState extends State<_LinkDemo> {
         colored: customizationState?.hasOnColoredBox == true,
         child: OudsLink(
           label: customizationState!.labelText,
-          icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
-          size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-          layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+          icon: LinkCustomizationUtils.getIcon(
+            customizationState,
+            themeController!,
+          ),
+          size: LinkCustomizationUtils.getSize(
+            customizationState?.selectedSize as Object,
+          ),
+          density: LinkCustomizationUtils.getDensity(
+            customizationState?.selectedDensity as Object,
+          ),
+          layout: LinkCustomizationUtils.getLayout(
+            customizationState?.selectedLayout as Object,
+          ),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
         ),
       );
     } else {
       return LightDarkBox(
-          child: OudsLink(
-        label: customizationState!.labelText,
-        icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
-        size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-        layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-        onPressed: customizationState?.hasEnabled == true ? () {} : null,
-      ));
+        child: OudsLink(
+          label: customizationState!.labelText,
+          icon: LinkCustomizationUtils.getIcon(
+            customizationState,
+            themeController!,
+          ),
+          size: LinkCustomizationUtils.getSize(
+            customizationState?.selectedSize as Object,
+          ),
+          density: LinkCustomizationUtils.getDensity(
+            customizationState?.selectedDensity as Object,
+          ),
+          layout: LinkCustomizationUtils.getLayout(
+            customizationState?.selectedLayout as Object,
+          ),
+          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+        ),
+      );
     }
   }
 }
@@ -183,7 +214,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final LinkCustomizationState? customizationState = LinkCustomization.of(context);
+    final LinkCustomizationState? customizationState = LinkCustomization.of(
+      context,
+    );
 
     return CustomizableSection(
       children: [
@@ -214,6 +247,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        CustomizableChips<LinkEnumDensity>(
+          title: LinkEnumDensity.enumName(context),
+          options: customizationState.densityState.list,
+          selectedOption: customizationState.selectedDensity,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedDensity = selectedOption;
+            });
+          },
+        ),
         CustomizableChips<LinkEnumLayout>(
           title: LinkEnumLayout.enumName(context),
           options: customizationState.layoutState.list,
@@ -230,7 +274,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
-        )
+        ),
       ],
     );
   }

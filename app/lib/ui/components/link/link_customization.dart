@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _LinkCustomization extends InheritedWidget {
-  const _LinkCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _LinkCustomization({required super.child, required this.data});
 
   final LinkCustomizationState data;
 
@@ -17,10 +14,7 @@ class _LinkCustomization extends InheritedWidget {
 
 /// Main Widget class for tag customization
 class LinkCustomization extends StatefulWidget {
-  const LinkCustomization({
-    super.key,
-    required this.child,
-  });
+  const LinkCustomization({super.key, required this.child});
 
   final Widget child;
 
@@ -28,15 +22,18 @@ class LinkCustomization extends StatefulWidget {
   LinkCustomizationState createState() => LinkCustomizationState();
 
   static LinkCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_LinkCustomization>())?.data;
+    return (context.dependOnInheritedWidgetOfExactType<_LinkCustomization>())
+        ?.data;
   }
 }
 
 /// tag customization state management
-class LinkCustomizationState extends CustomizationWidgetState<LinkCustomization> {
+class LinkCustomizationState
+    extends CustomizationWidgetState<LinkCustomization> {
   late final LayoutState layoutState;
   late final LabelTextState labelTextState;
   late final SizeState sizeState;
+  late final DensityState densityState;
 
   @override
   void initState() {
@@ -44,6 +41,7 @@ class LinkCustomizationState extends CustomizationWidgetState<LinkCustomization>
     layoutState = LayoutState(setState);
     labelTextState = LabelTextState(setState);
     sizeState = SizeState(setState);
+    densityState = DensityState(setState);
   }
 
   LinkEnumLayout get selectedLayout => layoutState.selected;
@@ -55,16 +53,14 @@ class LinkCustomizationState extends CustomizationWidgetState<LinkCustomization>
   LinkEnumSize get selectedSize => sizeState.selected;
   set selectedSize(LinkEnumSize value) => sizeState.selected = value;
 
+  LinkEnumDensity get selectedDensity => densityState.selected;
+  set selectedDensity(LinkEnumDensity value) => densityState.selected = value;
 
   @override
   Widget build(BuildContext context) {
-    return _LinkCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _LinkCustomization(data: this, child: widget.child);
   }
 }
-
 
 /// Layout State Management
 class LayoutState {
@@ -74,7 +70,7 @@ class LayoutState {
   final List<LinkEnumLayout> _layout = [
     LinkEnumLayout.textOnly,
     LinkEnumLayout.textAndIcon,
-    LinkEnumLayout.back,
+    LinkEnumLayout.previous,
     LinkEnumLayout.next,
   ];
 
@@ -110,10 +106,7 @@ class SizeState {
 
   final void Function(void Function()) _setState;
 
-  List<LinkEnumSize> _sizeList = [
-    LinkEnumSize.defaultSize,
-    LinkEnumSize.small
-  ];
+  List<LinkEnumSize> _sizeList = [LinkEnumSize.defaultSize, LinkEnumSize.small];
   LinkEnumSize _selectedSize = LinkEnumSize.defaultSize;
 
   List<LinkEnumSize> get list => _sizeList;
@@ -127,6 +120,33 @@ class SizeState {
   set selected(LinkEnumSize newValue) {
     _setState(() {
       _selectedSize = newValue;
+    });
+  }
+}
+
+/// Density State Management
+class DensityState {
+  DensityState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  List<LinkEnumDensity> _densityList = [
+    LinkEnumDensity.defaultDensity,
+    LinkEnumDensity.compact,
+  ];
+  LinkEnumDensity _selectedDensity = LinkEnumDensity.defaultDensity;
+
+  List<LinkEnumDensity> get list => _densityList;
+  set list(List<LinkEnumDensity> newList) {
+    _setState(() {
+      _densityList = newList;
+    });
+  }
+
+  LinkEnumDensity get selected => _selectedDensity;
+  set selected(LinkEnumDensity newValue) {
+    _setState(() {
+      _selectedDensity = newValue;
     });
   }
 }

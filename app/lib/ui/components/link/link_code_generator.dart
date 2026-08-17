@@ -26,27 +26,41 @@ class LinkCodeGenerator {
   // Static method to generate the code based on link customization state
   static String updateCode(BuildContext context) {
     // Fetch the current tag customization state from context
-    final LinkCustomizationState? customizationState = LinkCustomization.of(context);
+    final LinkCustomizationState? customizationState = LinkCustomization.of(
+      context,
+    );
 
     // Get the text value for the tag from customization state
     String label = customizationState?.labelText ?? "Label";
 
     // Get layout & size from customization state
-    OudsLinkLayout layout =
-    LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
-    OudsLinkSize size =
-    LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object);
+    OudsLinkLayout layout = LinkCustomizationUtils.getLayout(
+      customizationState?.selectedLayout as Object,
+    );
+    OudsLinkSize size = LinkCustomizationUtils.getSize(
+      customizationState?.selectedSize as Object,
+    );
+    OudsLinkDensity density = LinkCustomizationUtils.getDensity(
+      customizationState?.selectedDensity as Object,
+    );
 
-    String? sizeCode = size == OudsLinkSize.small ?  OudsLinkSize.small.toString() : OudsLinkSize.defaultSize.toString();
+    String? sizeCode = size == OudsLinkSize.small
+        ? OudsLinkSize.small.toString()
+        : OudsLinkSize.defaultSize.toString();
+    String? densityCode = density == OudsLinkDensity.compact
+        ? OudsLinkDensity.compact.toString()
+        : OudsLinkDensity.defaultDensity.toString();
     String? layoutCode = layout.toString();
-    String? iconCode =
-    layout == OudsLinkLayout.textAndIcon ? "assets/ic_heart.svg" : null;
+    String? iconCode = layout == OudsLinkLayout.textAndIcon
+        ? "assets/ic_heart.svg"
+        : null;
     String? pressedCode =
         " ${customizationState?.hasEnabled == true ? "() {}" : 'null'}";
 
     List<String> params = [
       '  label: "$label",',
       '  size: $sizeCode,',
+      '  density: $densityCode,',
       '  layout: $layoutCode,',
       if (iconCode != null) '  icon: "$iconCode",',
       '  onPressed:$pressedCode',
@@ -62,9 +76,13 @@ class LinkCodeGenerator {
   }
 
   // Method to wrap code with colored background or theme if needed
-  static String coloredSurfaceCodeModifier(BuildContext context, String childCode) {
-    final LinkCustomizationState? customizationState = LinkCustomization.of(context);
-
+  static String coloredSurfaceCodeModifier(
+    BuildContext context,
+    String childCode,
+  ) {
+    final LinkCustomizationState? customizationState = LinkCustomization.of(
+      context,
+    );
 
     if (customizationState?.hasOnColoredBox == true) {
       return '''

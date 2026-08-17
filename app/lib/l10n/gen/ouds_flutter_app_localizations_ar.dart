@@ -209,6 +209,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_size_label => 'Size';
 
   @override
+  String get app_components_common_density_label => 'Density';
+
+  @override
   String get app_components_common_textAndLoaderLayout_label => 'Text + Loader';
 
   @override
@@ -629,17 +632,17 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا يمكن أن يكون رقم الهاتف فارغًا.';
 
   @override
-  String get app_components_link_label => 'Link';
+  String get app_components_link_tech => 'Link';
 
   @override
   String get app_components_link_description_text =>
       'Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي';
 
   @override
-  String get app_components_link_backLayout_label => 'Back';
+  String get app_components_link_previousLayout_tech => 'Previous';
 
   @override
-  String get app_components_link_nextLayout_label => 'Next';
+  String get app_components_link_nextLayout_tech => 'Next';
 
   @override
   String get app_components_passwordInput_label => 'Password input';

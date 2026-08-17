@@ -7,12 +7,13 @@ enum LinkEnumLayout {
   textOnly,
   textAndIcon,
   next,
-  back;
+  previous;
 
   static String enumName(BuildContext context) {
     return context.l10n.app_components_common_layout_label;
   }
 }
+
 extension CustomElementLayout on LinkEnumLayout {
   String stringValue(BuildContext context) {
     final l10n = context.l10n;
@@ -23,9 +24,9 @@ extension CustomElementLayout on LinkEnumLayout {
       case LinkEnumLayout.textAndIcon:
         return l10n.app_components_common_iconAndTextLayout_label;
       case LinkEnumLayout.next:
-        return l10n.app_components_link_nextLayout_label;
-      case LinkEnumLayout.back:
-        return l10n.app_components_link_backLayout_label;
+        return l10n.app_components_link_nextLayout_tech;
+      case LinkEnumLayout.previous:
+        return l10n.app_components_link_previousLayout_tech;
     }
   }
 }
@@ -38,17 +39,36 @@ enum LinkEnumSize {
   static String enumName(BuildContext context) {
     return context.l10n.app_components_common_size_label;
   }
-
 }
+
 extension CustomElementSize on LinkEnumSize {
   String stringValue(BuildContext context) {
-
     switch (this) {
       case LinkEnumSize.defaultSize:
         return capitalizeEnumValue(LinkEnumSize.defaultSize);
       case LinkEnumSize.small:
         return capitalizeEnumValue(LinkEnumSize.small);
+    }
+  }
+}
 
+/// Represents the density of an OUDS Link.
+enum LinkEnumDensity {
+  defaultDensity,
+  compact;
+
+  static String enumName(BuildContext context) {
+    return context.l10n.app_components_common_density_label;
+  }
+}
+
+extension CustomElementDensity on LinkEnumDensity {
+  String stringValue(BuildContext context) {
+    switch (this) {
+      case LinkEnumDensity.defaultDensity:
+        return capitalizeEnumValue(LinkEnumDensity.defaultDensity);
+      case LinkEnumDensity.compact:
+        return capitalizeEnumValue(LinkEnumDensity.compact);
     }
   }
 }
