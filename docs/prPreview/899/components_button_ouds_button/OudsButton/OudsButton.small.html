@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the loader property from the OudsButton class, for the Dart programming language.">
-  <title>loader property - OudsButton class - ouds_button library - Dart API</title>
+  <meta name="description" content="API docs for the OudsButton.small constructor from Class OudsButton from the ouds_button library, for the Dart programming language.">
+  <title>OudsButton.small constructor - OudsButton - ouds_button library - Dart API</title>
 
 
   
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_button_ouds_button/">components&#47;button&#47;ouds_button.dart</a></li>
     <li><a href="../../components_button_ouds_button/OudsButton-class.html">OudsButton</a></li>
-    <li class="self-crumb"><span class="deprecated">loader</span> property</li>
+    <li class="self-crumb">OudsButton.small const constructor</li>
   </ol>
-  <div class="self-name">loader</div>
+  <div class="self-name">OudsButton.small</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -43,44 +43,67 @@
   </button>
 </header>
 <main>
-<div
-    id="dartdoc-main-content"
-    class="main-content"
-    data-above-sidebar="components_button_ouds_button&#47;OudsButton-class-sidebar.html"
-    data-below-sidebar="">
-    <div>
-<h1><span class="kind-property">loader</span> property 
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="components_button_ouds_button&#47;OudsButton-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">OudsButton.small</span> constructor 
 </h1></div>
 
+    <section class="multi-line-signature">
+      const
+      <span class="name ">OudsButton.small</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="small-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
+<li><span class="parameter" id="small-param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span></li>
+<li><span class="parameter" id="small-param-icon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span></li>
+<li><span class="parameter" id="small-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span></li>
+<li><span class="parameter" id="small-param-loader"><span class="type-annotation"><a class="deprecated" href="../../components_button_ouds_button/Loader-class.html">Loader</a>?</span> <span class="parameter-name">loader</span>, </span></li>
+<li><span class="parameter" id="small-param-isLoading"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">isLoading</span> = <span class="default-value">false</span>, </span></li>
+<li><span class="parameter" id="small-param-appearance"><span>required</span> <span class="type-annotation"><a href="../../components_button_ouds_button/OudsButtonAppearance.html">OudsButtonAppearance</a></span> <span class="parameter-name">appearance</span>, </span></li>
+<li><span class="parameter" id="small-param-package"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">package</span>, </span></li>
+<li><span class="parameter" id="small-param-isFullWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">isFullWidth</span> = <span class="default-value">false</span>, </span></li>
+</ol>})
+    </section>
     
-      <section class="multi-line-signature">
-        
-  <div>
-    <ol class="annotation-list">
-        <li>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&quot;This parameter is deprecated and will be removed in a future version. Use isLoading instead.&quot;)</li>
-    </ol>
-  </div>
-        <a class="deprecated" href="../../components_button_ouds_button/Loader-class.html">Loader</a>?
-        <span class="name deprecated">loader</span>
-        <div class="features"><span class="feature">final</span></div>
-
-      </section>
-      
-
-      
-<section class="summary source-code" id="source">
-  <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">@Deprecated(
-  &quot;This parameter is deprecated and will be removed in a future version. Use isLoading instead.&quot;,
-)
-final Loader? loader;</code></pre>
+<section class="desc markdown">
+  <p>Creates an <a href="../../components_button_ouds_button/OudsButton-class.html">OudsButton</a> with <code>OudsButtonSize.small</code>, for contexts where space is constrained.</p>
+<p>This size can be particularly useful in an information-dense interface or in the construction of a template or component requiring the use of small elements (in a "List item" component, for example).
+The default size is available via <a href="../../components_button_ouds_button/OudsButton-class.html">OudsButton</a>.</p>
+<pre class="language-dart"><code class="language-dart">OudsButton.small(
+      label: 'Button',
+      appearance: OudsButtonAppearance.defaultAppearance,
+      onPressed: () {
+        // Handle button tap.
+     },
+    );
+</code></pre>
 </section>
 
 
     
-</div> <!-- /.main-content -->
-<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">const OudsButton.small({
+  super.key,
+  this.label,
+  this.icon,
+  this.onPressed,
+  this.loader,
+  this.isLoading = false,
+  required this.appearance,
+  this.package,
+  this.isFullWidth = false,
+}) : _size = OudsButtonSize.small,
+     _component = OudsButtonComponent.defaultButton,
+     _navigationLayout = null,
+     _semanticsLabel = null;</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -90,14 +113,14 @@ final Loader? loader;</code></pre>
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_button_ouds_button/">ouds_button</a></li>
     <li><a href="../../components_button_ouds_button/OudsButton-class.html">OudsButton</a></li>
-    <li class="self-crumb"><span class="deprecated">loader</span> property</li>
+    <li class="self-crumb">OudsButton.small const constructor</li>
 </ol>
 
-  <h5>OudsButton class</h5>
-  <div id="dartdoc-sidebar-left-content"></div>
-</div><!--/.sidebar-offcanvas-->
-<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-</div><!--/.sidebar-offcanvas-->
+    <h5>OudsButton class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">
