@@ -28,29 +28,52 @@ class OudsButtonLoadingModifier {
     this.label,
   });
 
-  static Color getColorToken(BuildContext context, OudsButtonAppearance appearance) {
+  static Color getColorToken(
+    BuildContext context,
+    OudsButtonAppearance appearance,
+  ) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (appearance) {
       case OudsButtonAppearance.strong:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongLoading : theme.colorScheme(context).contentOnActionLoading;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentStrongLoading
+            : theme.colorScheme(context).contentOnActionLoading;
       case OudsButtonAppearance.brand:
         return theme.componentsTokens(context).button.colorContentBrandLoading;
       case OudsButtonAppearance.minimal:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalLoading : theme.componentsTokens(context).button.colorContentMinimalLoading;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentMinimalLoading
+            : theme.componentsTokens(context).button.colorContentMinimalLoading;
       case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultLoading : theme.colorScheme(context).actionLoading;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentDefaultLoading
+            : theme.colorScheme(context).actionLoading;
     }
   }
 
-  static Color? getBackgroundToken(BuildContext context, OudsButtonAppearance appearance) {
+  static Color? getBackgroundToken(
+    BuildContext context,
+    OudsButtonAppearance appearance,
+  ) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (appearance) {
       case OudsButtonAppearance.strong:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongLoading : theme.colorScheme(context).actionLoading;
+        return onColoredSurface
+            ? theme.componentsTokens(context).buttonMono.colorBgStrongLoading
+            : theme.colorScheme(context).actionLoading;
       case OudsButtonAppearance.brand:
         return theme.componentsTokens(context).button.colorBgBrandLoading;
       case OudsButtonAppearance.minimal:
@@ -58,17 +81,40 @@ class OudsButtonLoadingModifier {
       case OudsButtonAppearance.negative:
         return theme.colorScheme(context).actionNegativeLoading;
       default:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgDefaultLoading : theme.componentsTokens(context).button.colorBgDefaultLoading;
+        return onColoredSurface
+            ? theme.componentsTokens(context).buttonMono.colorBgDefaultLoading
+            : theme.componentsTokens(context).button.colorBgDefaultLoading;
     }
   }
 
-  static BorderSide getBorderColor(BuildContext context, OudsButtonAppearance appearance) {
+  static BorderSide getBorderColor(
+    BuildContext context,
+    OudsButtonAppearance appearance,
+  ) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     if (appearance == OudsButtonAppearance.defaultAppearance) {
       return onColoredSurface
-          ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderDefaultLoading, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction)
-          : BorderSide(color: theme.componentsTokens(context).button.colorBorderDefaultLoading, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction);
+          ? BorderSide(
+              color: theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorBorderDefaultLoading,
+              width: theme
+                  .componentsTokens(context)
+                  .button
+                  .borderWidthDefaultInteraction,
+            )
+          : BorderSide(
+              color: theme
+                  .componentsTokens(context)
+                  .button
+                  .colorBorderDefaultLoading,
+              width: theme
+                  .componentsTokens(context)
+                  .button
+                  .borderWidthDefaultInteraction,
+            );
     } else {
       return BorderSide.none;
     }

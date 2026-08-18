@@ -26,110 +26,202 @@ class OudsButtonForegroundModifier {
     OudsButtonAppearance appearance,
     OudsButtonControlState? buttonState,
   ) {
-    return WidgetStateProperty.resolveWith<Color?>(
-      (Set<WidgetState> states) {
-        if (buttonState == OudsButtonControlState.loading) {
-          return OudsButtonLoadingModifier.getColorToken(context, appearance);
-        }
+    return WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
+      if (buttonState == OudsButtonControlState.loading) {
+        return OudsButtonLoadingModifier.getColorToken(context, appearance);
+      }
 
-        // Handles both Flutter's native pressed state and custom OudsButton state.
-        // `states` is the standard WidgetState set, while `buttonState` is a custom control enum.
-        if (states.contains(WidgetState.pressed) || (buttonState != null && buttonState == OudsButtonControlState.pressed)) {
-          return _getPressedForegroundColor(context, appearance);
-        } else if (states.contains(WidgetState.hovered)) {
-          return _getHoverForegroundColor(context, appearance);
-        } else if (states.contains(WidgetState.disabled)) {
-          return _getDisabledForegroundColor(context, appearance);
-        } else if (states.contains(WidgetState.focused) || (buttonState != null && buttonState == OudsButtonControlState.focused)) {
-          return _getFocusedForegroundColor(context, appearance);
-        }
-        return _getEnabledForegroundColor(context, appearance);
-      },
-    );
+      // Handles both Flutter's native pressed state and custom OudsButton state.
+      // `states` is the standard WidgetState set, while `buttonState` is a custom control enum.
+      if (states.contains(WidgetState.pressed) ||
+          (buttonState != null &&
+              buttonState == OudsButtonControlState.pressed)) {
+        return _getPressedForegroundColor(context, appearance);
+      } else if (states.contains(WidgetState.hovered)) {
+        return _getHoverForegroundColor(context, appearance);
+      } else if (states.contains(WidgetState.disabled)) {
+        return _getDisabledForegroundColor(context, appearance);
+      } else if (states.contains(WidgetState.focused) ||
+          (buttonState != null &&
+              buttonState == OudsButtonControlState.focused)) {
+        return _getFocusedForegroundColor(context, appearance);
+      }
+      return _getEnabledForegroundColor(context, appearance);
+    });
   }
 
-  static Color _getFocusedForegroundColor(BuildContext context, OudsButtonAppearance appearance) {
+  static Color _getFocusedForegroundColor(
+    BuildContext context,
+    OudsButtonAppearance appearance,
+  ) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (appearance) {
       case OudsButtonAppearance.strong:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongFocus : theme.colorScheme(context).contentOnActionFocus;
+        return onColoredSurface
+            ? theme.componentsTokens(context).buttonMono.colorContentStrongFocus
+            : theme.colorScheme(context).contentOnActionFocus;
       case OudsButtonAppearance.brand:
         return theme.componentsTokens(context).button.colorContentBrandFocus;
       case OudsButtonAppearance.minimal:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalFocus : theme.componentsTokens(context).button.colorContentMinimalFocus;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentMinimalFocus
+            : theme.componentsTokens(context).button.colorContentMinimalFocus;
       case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultFocus : theme.componentsTokens(context).button.colorContentDefaultFocus;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentDefaultFocus
+            : theme.componentsTokens(context).button.colorContentDefaultFocus;
     }
   }
 
-  static Color _getEnabledForegroundColor(BuildContext context, OudsButtonAppearance appearance) {
+  static Color _getEnabledForegroundColor(
+    BuildContext context,
+    OudsButtonAppearance appearance,
+  ) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (appearance) {
       case OudsButtonAppearance.strong:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongEnabled : theme.colorScheme(context).contentOnActionEnabled;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentStrongEnabled
+            : theme.colorScheme(context).contentOnActionEnabled;
       case OudsButtonAppearance.brand:
         return theme.componentsTokens(context).button.colorContentBrandEnabled;
       case OudsButtonAppearance.minimal:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalEnabled : theme.componentsTokens(context).button.colorContentMinimalEnabled;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentMinimalEnabled
+            : theme.componentsTokens(context).button.colorContentMinimalEnabled;
       case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultEnabled : theme.componentsTokens(context).button.colorContentDefaultEnabled;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentDefaultEnabled
+            : theme.componentsTokens(context).button.colorContentDefaultEnabled;
     }
   }
 
-  static Color _getHoverForegroundColor(BuildContext context, OudsButtonAppearance appearance) {
+  static Color _getHoverForegroundColor(
+    BuildContext context,
+    OudsButtonAppearance appearance,
+  ) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (appearance) {
       case OudsButtonAppearance.strong:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongHover : theme.colorScheme(context).contentOnActionHover;
+        return onColoredSurface
+            ? theme.componentsTokens(context).buttonMono.colorContentStrongHover
+            : theme.colorScheme(context).contentOnActionHover;
       case OudsButtonAppearance.brand:
         return theme.componentsTokens(context).button.colorContentBrandHover;
       case OudsButtonAppearance.minimal:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalHover : theme.componentsTokens(context).button.colorContentMinimalHover;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentMinimalHover
+            : theme.componentsTokens(context).button.colorContentMinimalHover;
       case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultHover : theme.componentsTokens(context).button.colorContentDefaultHover;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentDefaultHover
+            : theme.componentsTokens(context).button.colorContentDefaultHover;
     }
   }
 
-  static Color _getPressedForegroundColor(BuildContext context, OudsButtonAppearance appearance) {
+  static Color _getPressedForegroundColor(
+    BuildContext context,
+    OudsButtonAppearance appearance,
+  ) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (appearance) {
       case OudsButtonAppearance.strong:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongPressed : theme.colorScheme(context).contentOnActionPressed;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentStrongPressed
+            : theme.colorScheme(context).contentOnActionPressed;
       case OudsButtonAppearance.brand:
         return theme.componentsTokens(context).button.colorContentBrandPressed;
       case OudsButtonAppearance.minimal:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalPressed : theme.componentsTokens(context).button.colorContentMinimalPressed;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentMinimalPressed
+            : theme.componentsTokens(context).button.colorContentMinimalPressed;
       case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultPressed : theme.componentsTokens(context).button.colorContentDefaultPressed;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentDefaultPressed
+            : theme.componentsTokens(context).button.colorContentDefaultPressed;
     }
   }
 
-  static Color _getDisabledForegroundColor(BuildContext context, OudsButtonAppearance appearance) {
+  static Color _getDisabledForegroundColor(
+    BuildContext context,
+    OudsButtonAppearance appearance,
+  ) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (appearance) {
       case OudsButtonAppearance.strong:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongDisabled : theme.colorScheme(context).contentOnActionDisabled;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentStrongDisabled
+            : theme.colorScheme(context).contentOnActionDisabled;
       case OudsButtonAppearance.brand:
         return theme.colorScheme(context).contentOnActionDisabled;
       case OudsButtonAppearance.minimal:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalDisabled : theme.componentsTokens(context).button.colorContentMinimalDisabled;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentMinimalDisabled
+            : theme
+                  .componentsTokens(context)
+                  .button
+                  .colorContentMinimalDisabled;
       case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnActionDisabled;
       default:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultDisabled : theme.componentsTokens(context).button.colorContentDefaultDisabled;
+        return onColoredSurface
+            ? theme
+                  .componentsTokens(context)
+                  .buttonMono
+                  .colorContentDefaultDisabled
+            : theme
+                  .componentsTokens(context)
+                  .button
+                  .colorContentDefaultDisabled;
     }
   }
 }
