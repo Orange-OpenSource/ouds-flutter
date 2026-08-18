@@ -74,10 +74,11 @@ Always supply a <a href="../components_button_ouds_button/OudsNavigationButton/s
 <li><a href="../components_button_ouds_button/OudsNavigationButton/appearance.html">appearance</a>: Visual importance of the button. <strong>Required.</strong></li>
 <li><a href="../components_button_ouds_button/OudsNavigationButton/label.html">label</a>: Optional text label describing the navigation action.</li>
 <li><a href="../components_button_ouds_button/OudsNavigationButton/onPressed.html">onPressed</a>: Callback invoked on tap. Pass <code>null</code> to disable the button.</li>
-<li><a href="../components_button_ouds_button/OudsNavigationButton/loader.html">loader</a>: Optional <a href="../components_button_ouds_button/Loader-class.html">Loader</a> displaying a loading indicator inside the button.</li>
+<li><a href="../components_button_ouds_button/OudsNavigationButton/isLoading.html">isLoading</a>: An optional loading progress indicator displayed in the button to indicate an ongoing operation.</li>
 <li><a href="../components_button_ouds_button/OudsNavigationButton/isFullWidth.html">isFullWidth</a>: When <code>true</code>, the button expands to fill the full width. Defaults to <code>false</code>.</li>
 <li><a href="../components_button_ouds_button/OudsNavigationButton/semanticsLabel.html">semanticsLabel</a>: Accessibility label used in icon-only mode when no <a href="../components_button_ouds_button/OudsNavigationButton/label.html">label</a> is provided.</li>
 <li><a href="../components_button_ouds_button/OudsNavigationButton/package.html">package</a>: Package name to resolve the chevron asset when it comes from a package.</li>
+<li><a href="../components_button_ouds_button/OudsNavigationButton/size.html">size</a>: The button size based on its <code>OudsButtonSize</code>, set to <code>OudsButtonSize.defaultSize</code> by default.</li>
 </ul>
 <h3 id="usage-examples">Usage examples:</h3>
 <p><strong>Next navigation button:</strong></p>
@@ -133,7 +134,7 @@ OudsNavigationButton(
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsNavigationButton.new" class="callable">
-          <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/OudsNavigationButton.html">OudsNavigationButton</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span><span class="parameter" id="param-layout"><span>required</span> <span class="type-annotation"><a href="../components_button_ouds_button/OudsNavigationButtonLayout.html">OudsNavigationButtonLayout</a></span> <span class="parameter-name">layout</span>, </span><span class="parameter" id="param-appearance"><span>required</span> <span class="type-annotation"><a href="../components_button_ouds_button/OudsNavigationButtonAppearance.html">OudsNavigationButtonAppearance</a></span> <span class="parameter-name">appearance</span>, </span><span class="parameter" id="param-package"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">package</span>, </span><span class="parameter" id="param-loader"><span class="type-annotation"><a href="../components_button_ouds_button/Loader-class.html">Loader</a>?</span> <span class="parameter-name">loader</span>, </span><span class="parameter" id="param-isFullWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">isFullWidth</span>, </span><span class="parameter" id="param-semanticsLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticsLabel</span></span>})</span>
+          <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/OudsNavigationButton.html">OudsNavigationButton</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span><span class="parameter" id="param-layout"><span>required</span> <span class="type-annotation"><a href="../components_button_ouds_button/OudsNavigationButtonLayout.html">OudsNavigationButtonLayout</a></span> <span class="parameter-name">layout</span>, </span><span class="parameter" id="param-appearance"><span>required</span> <span class="type-annotation"><a href="../components_button_ouds_button/OudsNavigationButtonAppearance.html">OudsNavigationButtonAppearance</a></span> <span class="parameter-name">appearance</span>, </span><span class="parameter" id="param-package"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">package</span>, </span><span class="parameter" id="param-loader"><span class="type-annotation"><a class="deprecated" href="../components_button_ouds_button/Loader-class.html">Loader</a>?</span> <span class="parameter-name">loader</span>, </span><span class="parameter" id="param-isLoading"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">isLoading</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-isFullWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">isFullWidth</span>, </span><span class="parameter" id="param-semanticsLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticsLabel</span>, </span><span class="parameter" id="param-size"><span class="type-annotation">OudsButtonSize</span> <span class="parameter-name">size</span> = <span class="default-value">OudsButtonSize.defaultSize</span></span>})</span>
         </dt>
         <dd>
           
@@ -183,6 +184,18 @@ OudsNavigationButton(
 
 </dd>
 
+        <dt id="isLoading" class="property">
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/isLoading.html">isLoading</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
         <dt id="key" class="property inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/key.html">key</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span>
@@ -220,8 +233,8 @@ OudsNavigationButton(
 </dd>
 
         <dt id="loader" class="property">
-  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/loader.html">loader</a></span>
-  <span class="signature">&#8594; <a href="../components_button_ouds_button/Loader-class.html">Loader</a>?</span>
+  <span class="name"><a class="deprecated" href="../components_button_ouds_button/OudsNavigationButton/loader.html">loader</a></span>
+  <span class="signature">&#8594; <a class="deprecated" href="../components_button_ouds_button/Loader-class.html">Loader</a>?</span>
   
 
 </dt>
@@ -270,6 +283,18 @@ OudsNavigationButton(
         <dt id="semanticsLabel" class="property">
   <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/semanticsLabel.html">semanticsLabel</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="size" class="property">
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/size.html">size</a></span>
+  <span class="signature">&#8594; OudsButtonSize</span>
   
 
 </dt>
