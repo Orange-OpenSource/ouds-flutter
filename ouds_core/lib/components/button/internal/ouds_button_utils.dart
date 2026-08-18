@@ -23,6 +23,7 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/utilities/badge_border_utils.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 
 /// Builds an icon button with optional badge, wrapped with semantics for accessibility.
 ///
@@ -123,4 +124,78 @@ String getDefaultChevronIcon(OudsNavigationButtonLayout layout) {
     case OudsNavigationButtonLayout.previous:
       return 'assets/component/button/previous.svg';
   }
+}
+
+/// Resolves the [OudsButtonTokens] size-dependent values (min size, paddings, icon size, …)
+/// based on the given [OudsButtonSize], since Tokenator generates a `Default` and a `Small`
+/// variant for each of these tokens.
+extension OudsButtonSizeTokens on OudsButtonTokens {
+  double sizeMinWidth(OudsButtonSize size) =>
+      size == OudsButtonSize.small ? sizeMinWidthSmall : sizeMinWidthDefault;
+
+  double sizeMinHeight(OudsButtonSize size) =>
+      size == OudsButtonSize.small ? sizeMinHeightSmall : sizeMinHeightDefault;
+
+  double sizeIcon(OudsButtonSize size) =>
+      size == OudsButtonSize.small ? sizeIconSmall : sizeIconDefault;
+
+  double sizeIconOnly(OudsButtonSize size) =>
+      size == OudsButtonSize.small ? sizeIconOnlySmall : sizeIconOnlyDefault;
+
+  double sizeProgressIndicator(OudsButtonSize size) =>
+      size == OudsButtonSize.small
+      ? sizeProgressIndicatorSmall
+      : sizeProgressIndicatorDefault;
+
+  double spaceProgressIndicator(OudsButtonSize size) =>
+      size == OudsButtonSize.small
+      ? spaceInsetProgressIndicatorOnlySmall
+      : spaceInsetProgressIndicatorOnlyDefault;
+
+  double spaceColumnGapIcon(OudsButtonSize size) => size == OudsButtonSize.small
+      ? spaceColumnGapIconSmall
+      : spaceColumnGapIconDefault;
+
+  double spaceColumnGapChevron(OudsButtonSize size) =>
+      size == OudsButtonSize.small
+      ? spaceColumnGapChevronSmall
+      : spaceColumnGapChevronDefault;
+
+  double spaceInsetIconOnly(OudsButtonSize size) => size == OudsButtonSize.small
+      ? spaceInsetIconOnlySmall
+      : spaceInsetIconOnlyDefault;
+
+  double spacePaddingBlock(OudsButtonSize size) => size == OudsButtonSize.small
+      ? spacePaddingBlockSmall
+      : spacePaddingBlockDefault;
+
+  double spacePaddingInlineChevronEnd(OudsButtonSize size) =>
+      size == OudsButtonSize.small
+      ? spacePaddingInlineChevronEndSmall
+      : spacePaddingInlineChevronEndDefault;
+
+  double spacePaddingInlineChevronStart(OudsButtonSize size) =>
+      size == OudsButtonSize.small
+      ? spacePaddingInlineChevronStartSmall
+      : spacePaddingInlineChevronStartDefault;
+
+  double spacePaddingInlineEndIconStart(OudsButtonSize size) =>
+      size == OudsButtonSize.small
+      ? spacePaddingInlineEndIconStartSmall
+      : spacePaddingInlineEndIconStartDefault;
+
+  double spacePaddingInlineIconNone(OudsButtonSize size) =>
+      size == OudsButtonSize.small
+      ? spacePaddingInlineIconNoneSmall
+      : spacePaddingInlineIconNoneDefault;
+
+  double spacePaddingInlineIconStart(OudsButtonSize size) =>
+      size == OudsButtonSize.small
+      ? spacePaddingInlineIconStartSmall
+      : spacePaddingInlineIconStartDefault;
+
+  double spacePaddingInlineStartIconEnd(OudsButtonSize size) =>
+      size == OudsButtonSize.small
+      ? spacePaddingInlineStartIconEndSmall
+      : spacePaddingInlineStartIconEndDefault;
 }
