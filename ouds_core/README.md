@@ -84,7 +84,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding-left:10px;">Button</td>
-      <td>3.2.0</td>
+      <td>3.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Checkbox</td>

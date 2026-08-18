@@ -14,6 +14,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -22,8 +23,9 @@ class OudsButtonPaddingModifier {
     BuildContext context,
     OudsButtonLayout layout,
     OudsNavigationButtonLayout? navigationLayout,
-    OudsButtonComponent componentType,
-  ) {
+    OudsButtonComponent componentType, {
+    OudsButtonSize size = OudsButtonSize.defaultSize,
+  }) {
     final buttonTokens = OudsTheme.of(context).componentsTokens(context).button;
     final isNavigationButton =
         componentType == OudsButtonComponent.navigationButton;
@@ -35,30 +37,28 @@ class OudsButtonPaddingModifier {
         navigationLayout == OudsNavigationButtonLayout.previous;
     switch (layout) {
       case OudsButtonLayout.iconOnly:
-        return EdgeInsetsDirectional.all(
-          buttonTokens.spaceInsetIconOnlyDefault,
-        );
+        return EdgeInsetsDirectional.all(buttonTokens.spaceInsetIconOnly(size));
       case OudsButtonLayout.iconAndText:
         return EdgeInsetsDirectional.only(
-          top: buttonTokens.spacePaddingBlockDefault,
+          top: buttonTokens.spacePaddingBlock(size),
           end:
               isNextLayout //case navigation button with next layout
-              ? buttonTokens.spacePaddingInlineChevronEndDefault
+              ? buttonTokens.spacePaddingInlineChevronEnd(size)
               : //case navigation button with previous layout or normal button
-                buttonTokens.spacePaddingInlineEndIconStartDefault,
-          bottom: buttonTokens.spacePaddingBlockDefault,
+                buttonTokens.spacePaddingInlineEndIconStart(size),
+          bottom: buttonTokens.spacePaddingBlock(size),
           start:
               isNextLayout // case navigation button with next layout
-              ? buttonTokens.spacePaddingInlineStartIconEndDefault
+              ? buttonTokens.spacePaddingInlineStartIconEnd(size)
               : isPreviousLayout // case navigation button with previous layout
-              ? buttonTokens.spacePaddingInlineChevronStartDefault
+              ? buttonTokens.spacePaddingInlineChevronStart(size)
               : //normal button
-                buttonTokens.spacePaddingInlineIconStartDefault,
+                buttonTokens.spacePaddingInlineIconStart(size),
         );
       case OudsButtonLayout.textOnly:
         return EdgeInsetsDirectional.symmetric(
-          vertical: buttonTokens.spacePaddingBlockDefault,
-          horizontal: buttonTokens.spacePaddingInlineIconNoneDefault,
+          vertical: buttonTokens.spacePaddingBlock(size),
+          horizontal: buttonTokens.spacePaddingInlineIconNone(size),
         );
     }
   }

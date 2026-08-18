@@ -566,7 +566,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           OudsButton(
             icon: 'assets/ic_password_lock.svg',
             appearance: OudsButtonAppearance.minimal,
-            loader: Loader(progress: null),
+            isLoading: true,
             onPressed: () {},
           ),
         ],

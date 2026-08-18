@@ -855,7 +855,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
             icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
             package: OudsTheme.of(context).packageName,
             appearance: OudsButtonAppearance.minimal,
-            loader: Loader(progress: null),
+            isLoading: true,
             onPressed: () {},
           ),
         ],

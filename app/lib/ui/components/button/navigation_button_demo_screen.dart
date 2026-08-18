@@ -155,7 +155,7 @@ class _NavigationButtonDemoState extends State<_NavigationButtonDemo> {
             customizationState!.selectedNavigationAppearance,
           ),
           package: OudsTheme.of(context).packageName,
-          loader: ButtonCustomizationUtils.getLoader(customizationState),
+          isLoading: ButtonCustomizationUtils.getLoader(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
           isFullWidth: customizationState?.hasFullWidth,
           semanticsLabel: ButtonCustomizationUtils.getSemanticsLabel(
@@ -177,7 +177,7 @@ class _NavigationButtonDemoState extends State<_NavigationButtonDemo> {
             customizationState!.selectedNavigationAppearance,
           ),
           package: OudsTheme.of(context).packageName,
-          loader: ButtonCustomizationUtils.getLoader(customizationState),
+          isLoading: ButtonCustomizationUtils.getLoader(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
           isFullWidth: customizationState?.hasFullWidth,
           semanticsLabel: ButtonCustomizationUtils.getSemanticsLabel(

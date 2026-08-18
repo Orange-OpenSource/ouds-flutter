@@ -36,6 +36,7 @@ class ButtonCustomizationState
   late final FullWidthState fullWidthState;
   late final ChevronState chevronState;
   late final NavigationAppearanceState navigationAppearanceState;
+  late final SizeState sizeState;
 
   @override
   void initState() {
@@ -49,6 +50,7 @@ class ButtonCustomizationState
       setState,
       onColoredBoxState,
     );
+    sizeState = SizeState(setState);
   }
 
   // Getter to determine if the 'OnColoredBox' should be disabled
@@ -86,6 +88,9 @@ class ButtonCustomizationState
       navigationAppearanceState.selected;
   set selectedNavigationAppearance(NavigationButtonEnumAppearance value) =>
       navigationAppearanceState.selected = value;
+
+  ButtonEnumSize get selectedSize => sizeState.selected;
+  set selectedSize(ButtonEnumSize value) => sizeState.selected = value;
 
   @override
   Widget build(BuildContext context) {
@@ -256,6 +261,33 @@ class NavigationAppearanceState {
       if (ButtonErrorCases.shouldDisableOnColoredBox(newValue)) {
         onColoredBoxState.value = false;
       }
+    });
+  }
+}
+
+/// Size State Management
+class SizeState {
+  SizeState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  List<ButtonEnumSize> _sizeList = [
+    ButtonEnumSize.defaultSize,
+    ButtonEnumSize.small,
+  ];
+  ButtonEnumSize _selectedSize = ButtonEnumSize.defaultSize;
+
+  List<ButtonEnumSize> get list => _sizeList;
+  set list(List<ButtonEnumSize> newList) {
+    _setState(() {
+      _sizeList = newList;
+    });
+  }
+
+  ButtonEnumSize get selected => _selectedSize;
+  set selected(ButtonEnumSize newValue) {
+    _setState(() {
+      _selectedSize = newValue;
     });
   }
 }
