@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the values constant from the OudsLinkLayout enum, for the Dart programming language.">
-  <title>values constant - OudsLinkLayout enum - ouds_link library - Dart API</title>
+  <meta name="description" content="API docs for the OudsLink.external constructor from Class OudsLink from the ouds_link library, for the Dart programming language.">
+  <title>OudsLink.external constructor - OudsLink - ouds_link library - Dart API</title>
 
 
   
@@ -26,10 +26,10 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_link_ouds_link/">components&#47;link&#47;ouds_link.dart</a></li>
-    <li><a href="../../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></li>
-    <li class="self-crumb">values constant</li>
+    <li><a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a></li>
+    <li class="self-crumb">OudsLink.external const constructor</li>
   </ol>
-  <div class="self-name">values</div>
+  <div class="self-name">OudsLink.external</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -43,35 +43,50 @@
   </button>
 </header>
 <main>
-<div
-    id="dartdoc-main-content"
-    class="main-content"
-    data-above-sidebar="components_link_ouds_link&#47;OudsLinkLayout-enum-sidebar.html"
-    data-below-sidebar="">
-    <div>
-<h1><span class="kind-property">values</span> constant 
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="components_link_ouds_link&#47;OudsLink-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">OudsLink.external</span> constructor 
 </h1></div>
 
+    <section class="multi-line-signature">
+      const
+      <span class="name ">OudsLink.external</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="external-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
+<li><span class="parameter" id="external-param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span></li>
+<li><span class="parameter" id="external-param-size"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span></li>
+<li><span class="parameter" id="external-param-density"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span> <span class="parameter-name">density</span> = <span class="default-value">OudsLinkDensity.defaultDensity</span>, </span></li>
+<li><span class="parameter" id="external-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span></li>
+</ol>})
+    </section>
     
-      <section class="multi-line-signature">
-        
-        <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a class="deprecated" href="../../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></span>&gt;</span>
-        const <span class="name ">values</span>
-        
-
-      </section>
-      
 <section class="desc markdown">
-  <p>A constant List of the values in this enum, in order of their declaration.</p>
+  <p>Creates an <a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a> navigating outside the current product, service or
+application, displaying a trailing external indicator after the <code>label</code>.</p>
 </section>
 
-      
-
 
     
-</div> <!-- /.main-content -->
-<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">const OudsLink.external({
+  super.key,
+  required this.label,
+  this.size = OudsLinkSize.defaultSize,
+  this.density = OudsLinkDensity.defaultDensity,
+  this.onPressed,
+}) : icon = null,
+     tinted = null,
+     _indicator = OudsLinkIndicator.external,
+     layout = OudsLinkLayout.next;</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -80,15 +95,15 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_link_ouds_link/">ouds_link</a></li>
-    <li><a href="../../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></li>
-    <li class="self-crumb">values constant</li>
+    <li><a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a></li>
+    <li class="self-crumb">OudsLink.external const constructor</li>
 </ol>
 
-  <h5>OudsLinkLayout enum</h5>
-  <div id="dartdoc-sidebar-left-content"></div>
-</div><!--/.sidebar-offcanvas-->
-<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-</div><!--/.sidebar-offcanvas-->
+    <h5>OudsLink class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">

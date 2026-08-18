@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the buildIcon method from the OudsLink class, for the Dart programming language.">
-  <title>buildIcon method - OudsLink class - ouds_link library - Dart API</title>
+  <meta name="description" content="API docs for the OudsLink.icon constructor from Class OudsLink from the ouds_link library, for the Dart programming language.">
+  <title>OudsLink.icon constructor - OudsLink - ouds_link library - Dart API</title>
 
 
   
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_link_ouds_link/">components&#47;link&#47;ouds_link.dart</a></li>
     <li><a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a></li>
-    <li class="self-crumb">buildIcon static method</li>
+    <li class="self-crumb">OudsLink.icon const constructor</li>
   </ol>
-  <div class="self-name">buildIcon</div>
+  <div class="self-name">OudsLink.icon</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -43,62 +43,45 @@
   </button>
 </header>
 <main>
-<div
-    id="dartdoc-main-content"
-    class="main-content"
-    data-above-sidebar="components_link_ouds_link&#47;OudsLink-class-sidebar.html"
-    data-below-sidebar="">
-    <div>
-<h1><span class="kind-method">buildIcon</span> static method 
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="components_link_ouds_link&#47;OudsLink-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">OudsLink.icon</span> constructor 
 </h1></div>
 
     <section class="multi-line-signature">
-      
-<span class="returntype"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
-<span class="name ">buildIcon</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="buildIcon-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
-<li><span class="parameter" id="buildIcon-param-assetName"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">assetName</span>, </span></li>
-<li><span class="parameter" id="buildIcon-param-controlItemState"><span class="type-annotation">OudsLinkControlState</span> <span class="parameter-name">controlItemState</span>, </span></li>
-<li><span class="parameter" id="buildIcon-param-layout"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></span> <span class="parameter-name">layout</span>, </span></li>
-<li><span class="parameter" id="buildIcon-param-size"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span>, </span></li>
-</ol>)
-
-      
-
+      const
+      <span class="name ">OudsLink.icon</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="icon-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
+<li><span class="parameter" id="icon-param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span></li>
+<li><span class="parameter" id="icon-param-icon"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span></li>
+<li><span class="parameter" id="icon-param-size"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span></li>
+<li><span class="parameter" id="icon-param-density"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span> <span class="parameter-name">density</span> = <span class="default-value">OudsLinkDensity.defaultDensity</span>, </span></li>
+<li><span class="parameter" id="icon-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span></li>
+<li><span class="parameter" id="icon-param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span>, </span></li>
+</ol>})
     </section>
     
+<section class="desc markdown">
+  <p>Creates an <a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a> displaying its <code>label</code> alongside a custom <code>linkIcon</code>.</p>
+</section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Widget buildIcon(
-  BuildContext context,
-  String? assetName,
-  OudsLinkControlState controlItemState,
-  OudsLinkLayout layout,
-  OudsLinkSize size,
-) {
-  final statusModifier = OudsLinkStatusModifier(context);
-  final sizeModifier = OudsLinkSizeModifier(context);
-  final iconSize = sizeModifier.getIconSize(size);
-  final isIcon = assetName != null || layout == OudsLinkLayout.textAndIcon;
-
-  return SvgPicture.asset(
-    excludeFromSemantics: true,
-    assetName ?? statusModifier.getStatusIcon(layout, rtlMode)!,
-    package: assetName == null ? OudsTheme.of(context).packageName : null,
-    width: iconSize[OudsLinkDimensions.width.name],
-    height: iconSize[OudsLinkDimensions.height.name],
-    fit: BoxFit.contain,
-    colorFilter: ColorFilter.mode(
-      !isIcon
-          ? statusModifier.getArrowColor(controlItemState)
-          : statusModifier.getTextAndIconColor(controlItemState),
-      BlendMode.srcIn,
-    ),
-    matchTextDirection: true,
-  );
-}</code></pre>
+  <pre class="language-dart"><code class="language-dart">const OudsLink.icon({
+  super.key,
+  required this.label,
+  required this.icon,
+  this.size = OudsLinkSize.defaultSize,
+  this.density = OudsLinkDensity.defaultDensity,
+  this.onPressed,
+  this.tinted = true,
+}) : _indicator = null,
+     layout = OudsLinkLayout.textAndIcon;</code></pre>
 </section>
 
 
@@ -114,14 +97,14 @@
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_link_ouds_link/">ouds_link</a></li>
     <li><a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a></li>
-    <li class="self-crumb">buildIcon static method</li>
+    <li class="self-crumb">OudsLink.icon const constructor</li>
 </ol>
 
     <h5>OudsLink class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
-  </div><!--/.sidebar-offcanvas-->
+  </div><!--/.sidebar-offcanvas-left-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-</div><!--/.sidebar-offcanvas-->
+  </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">

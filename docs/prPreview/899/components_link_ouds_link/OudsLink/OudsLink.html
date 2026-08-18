@@ -56,14 +56,17 @@
       const
       <span class="name ">OudsLink</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
 <li><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span></li>
-<li><span class="parameter" id="param-icon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span></li>
-<li><span class="parameter" id="param-layout"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></span> <span class="parameter-name">layout</span> = <span class="default-value">OudsLinkLayout.textOnly</span>, </span></li>
+<li><span class="parameter" id="param-layout"><span>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;OudsLinkLayout is deprecated and will be removed in a future version. &#39; &#39;Use the dedicated OudsLink.icon, OudsLink.previous, OudsLink.next or &#39; &#39;OudsLink.external constructors instead.&#39;)</span> <span class="type-annotation"><a class="deprecated" href="../../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></span> <span class="parameter-name">layout</span> = <span class="default-value">OudsLinkLayout.textOnly</span>, </span></li>
 <li><span class="parameter" id="param-size"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span></li>
 <li><span class="parameter" id="param-density"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span> <span class="parameter-name">density</span> = <span class="default-value">OudsLinkDensity.defaultDensity</span>, </span></li>
 <li><span class="parameter" id="param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span></li>
+<li><span class="parameter" id="param-icon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span></li>
 </ol>})
     </section>
     
+<section class="desc markdown">
+  <p>Creates a text-only <a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a>.</p>
+</section>
 
 
     
@@ -72,15 +75,18 @@
   <pre class="language-dart"><code class="language-dart">const OudsLink({
   super.key,
   required this.label,
-  this.icon,
+  @Deprecated(
+    &#39;OudsLinkLayout is deprecated and will be removed in a future version. &#39;
+    &#39;Use the dedicated OudsLink.icon, OudsLink.previous, OudsLink.next or &#39;
+    &#39;OudsLink.external constructors instead.&#39;,
+  )
   this.layout = OudsLinkLayout.textOnly,
   this.size = OudsLinkSize.defaultSize,
   this.density = OudsLinkDensity.defaultDensity,
   this.onPressed,
-}) : assert(
-       layout != OudsLinkLayout.textAndIcon || icon != null,
-       &#39;icon is required when layout is textAndIcon&#39;,
-     );</code></pre>
+  this.icon,
+}) : _indicator = null,
+     tinted = null;</code></pre>
 </section>
 
 
