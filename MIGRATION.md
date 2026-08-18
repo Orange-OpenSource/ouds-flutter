@@ -57,6 +57,55 @@ The OUDS icon library has been updated to version 1.6. Some icon names or asset 
 - Review any icon constants or asset paths you reference directly
 - Update to the new icon names from v1.6 if you receive compilation errors or missing asset warnings
 
+#### 4. `OudsLink` — Dedicated named constructors for icon and navigation variants
+
+`OudsLink` now provides dedicated named constructors for every non text-only variant. The generic `OudsLink()` constructor's `layout` parameter is now **deprecated** in favor of these constructors.
+
+**Impact**: Low (additive — the default constructor keeps working for text-only and legacy usages)
+
+**Before**:
+```dart
+
+OudsLink(
+  label: 'Label',
+  icon: 'assets/ic_heart.svg',
+)
+
+OudsLink(
+  label: 'Label',
+  layout: OudsLinkLayout.back,
+)
+
+OudsLink(
+  label: 'Label',
+  layout: OudsLinkLayout.next,
+)
+```
+
+**After**:
+```dart
+OudsLink.icon(
+  label: 'Label',
+  icon: 'assets/ic_heart.svg',
+  tinted: true,
+)
+
+OudsLink.previous(label: 'Label')
+
+OudsLink.next(label: 'Label')
+
+OudsLink.external(label: 'Label')
+```
+
+**Required Action**:
+- Replace `OudsLink(icon: ...)` with `OudsLink.icon(icon: ..., tinted: ...)`
+- Replace `OudsLink(layout: OudsLinkLayout.back)` with `OudsLink.previous(...)`
+- Replace `OudsLink(layout: OudsLinkLayout.next)` with `OudsLink.next(...)`
+- Use `OudsLink.external(...)` for links navigating outside the current product, service or application
+- Text-only links keep using the default `OudsLink(...)` constructor unchanged
+
+**Reason for Change**: Improve type safety and API clarity by making each link variant explicit through its own constructor, consistent with `OudsTag` and `OudsBadge`
+
 ### Component Design Version Updates
 
 Several components have been updated to align with new design specification versions. These changes are primarily visual and do not require code changes unless you override component tokens in a custom theme.

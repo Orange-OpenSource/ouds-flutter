@@ -1242,6 +1242,12 @@ abstract class AppLocalizations {
   /// **'Next'**
   String get app_components_link_nextLayout_tech;
 
+  /// No description provided for @app_components_link_externalLayout_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'External'**
+  String get app_components_link_externalLayout_tech;
+
   /// No description provided for @app_components_passwordInput_label.
   ///
   /// In en, this message translates to:

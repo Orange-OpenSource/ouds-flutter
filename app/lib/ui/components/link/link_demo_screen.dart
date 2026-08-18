@@ -12,7 +12,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_code_generator.dart';
@@ -146,42 +145,18 @@ class _LinkDemoState extends State<_LinkDemo> {
     if (customizationState?.hasOnColoredBox == true) {
       return ComponentDemoBox(
         colored: customizationState?.hasOnColoredBox == true,
-        child: OudsLink(
-          label: customizationState!.labelText,
-          icon: LinkCustomizationUtils.getIcon(
-            customizationState,
-            themeController!,
-          ),
-          size: LinkCustomizationUtils.getSize(
-            customizationState?.selectedSize as Object,
-          ),
-          density: LinkCustomizationUtils.getDensity(
-            customizationState?.selectedDensity as Object,
-          ),
-          layout: LinkCustomizationUtils.getLayout(
-            customizationState?.selectedLayout as Object,
-          ),
-          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+        child: LinkCustomizationUtils.buildLink(
+          customizationState: customizationState!,
+          themeController: themeController!,
+          onPressed: customizationState!.hasEnabled == true ? () {} : null,
         ),
       );
     } else {
       return LightDarkBox(
-        child: OudsLink(
-          label: customizationState!.labelText,
-          icon: LinkCustomizationUtils.getIcon(
-            customizationState,
-            themeController!,
-          ),
-          size: LinkCustomizationUtils.getSize(
-            customizationState?.selectedSize as Object,
-          ),
-          density: LinkCustomizationUtils.getDensity(
-            customizationState?.selectedDensity as Object,
-          ),
-          layout: LinkCustomizationUtils.getLayout(
-            customizationState?.selectedLayout as Object,
-          ),
-          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+        child: LinkCustomizationUtils.buildLink(
+          customizationState: customizationState!,
+          themeController: themeController!,
+          onPressed: customizationState!.hasEnabled == true ? () {} : null,
         ),
       );
     }

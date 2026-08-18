@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
 
 ///
 /// The TagCodeGenerator class is responsible for dynamically generating Flutter
@@ -34,9 +35,8 @@ class LinkCodeGenerator {
     String label = customizationState?.labelText ?? "Label";
 
     // Get layout & size from customization state
-    OudsLinkLayout layout = LinkCustomizationUtils.getLayout(
-      customizationState?.selectedLayout as Object,
-    );
+    LinkEnumLayout layout =
+        customizationState?.selectedLayout ?? LinkEnumLayout.textOnly;
     OudsLinkSize size = LinkCustomizationUtils.getSize(
       customizationState?.selectedSize as Object,
     );
@@ -50,24 +50,29 @@ class LinkCodeGenerator {
     String? densityCode = density == OudsLinkDensity.compact
         ? OudsLinkDensity.compact.toString()
         : OudsLinkDensity.defaultDensity.toString();
-    String? layoutCode = layout.toString();
-    String? iconCode = layout == OudsLinkLayout.textAndIcon
-        ? "assets/ic_heart.svg"
-        : null;
     String? pressedCode =
         " ${customizationState?.hasEnabled == true ? "() {}" : 'null'}";
 
+    // Determines the dedicated OudsLink constructor name matching the layout.
+    String constructorName = switch (layout) {
+      LinkEnumLayout.textAndIcon => "OudsLink.icon",
+      LinkEnumLayout.next => "OudsLink.next",
+      LinkEnumLayout.previous => "OudsLink.previous",
+      LinkEnumLayout.external => "OudsLink.external",
+      LinkEnumLayout.textOnly => "OudsLink",
+    };
+
     List<String> params = [
       '  label: "$label",',
+      if (layout == LinkEnumLayout.textAndIcon)
+        '  linkIcon: OudsLinkIcon(icon: "assets/ic_heart.svg"),',
       '  size: $sizeCode,',
       '  density: $densityCode,',
-      '  layout: $layoutCode,',
-      if (iconCode != null) '  icon: "$iconCode",',
       '  onPressed:$pressedCode',
     ];
 
     // Base widget
-    String code = "OudsLink(\n${params.join('\n')}\n)";
+    String code = "$constructorName(\n${params.join('\n')}\n)";
 
     // Apply colored surface wrapper if needed
     code = coloredSurfaceCodeModifier(context, code);

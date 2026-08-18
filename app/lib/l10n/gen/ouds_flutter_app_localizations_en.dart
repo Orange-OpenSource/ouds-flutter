@@ -645,6 +645,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_link_nextLayout_tech => 'Next';
 
   @override
+  String get app_components_link_externalLayout_tech => 'External';
+
+  @override
   String get app_components_passwordInput_label => 'Password input';
 
   @override

@@ -34,9 +34,9 @@ class OudsLinkTextStyleModifier {
   /// Returns the text color based on link state
   TextDecoration? getTextDecorationStatus(
     OudsLinkControlState state,
-    OudsLinkLayout layout,
+    bool isTextOnly,
   ) {
-    if (layout == OudsLinkLayout.textOnly) {
+    if (isTextOnly) {
       return TextDecoration.underline;
     } else {
       switch (state) {

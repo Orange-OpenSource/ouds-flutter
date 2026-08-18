@@ -72,9 +72,25 @@ class OudsLinkSizeModifier {
   }
 
   /// Retrieves the spaceColumnGap (double) for the Link based on the provided size enum.
-  double? getSizeColumnGap(OudsLinkSize size, OudsLinkLayout layout) {
+  // the param layout will be removed
+  double? getSizeColumnGap(
+    OudsLinkSize size,
+    OudsLinkLayout layout,
+    OudsLinkIndicator? indicator,
+    String? icon,
+  ) {
     final linkToken = OudsTheme.of(context).componentsTokens(context).link;
 
+    if (indicator == null && icon != null) {
+      //textAndIcon
+      return size == OudsLinkSize.small
+          ? linkToken.spaceColumnGapIconSmall
+          : linkToken.spaceColumnGapIconDefault;
+    } else if (indicator != null) {
+      return size == OudsLinkSize.small
+          ? linkToken.spaceColumnGapChevronSmall
+          : linkToken.spaceColumnGapChevronDefault;
+    }
     switch (layout) {
       case OudsLinkLayout.textAndIcon:
         return size == OudsLinkSize.small

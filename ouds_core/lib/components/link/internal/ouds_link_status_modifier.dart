@@ -16,8 +16,6 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart';
-import 'package:ouds_core/components/link/ouds_link.dart';
-import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Used to apply the right background color associated to the status
@@ -87,22 +85,6 @@ class OudsLinkStatusModifier {
         return onColoredSurface
             ? linkMonoTheme.colorContentDisabled
             : OudsTheme.of(context).colorScheme(context).actionDisabled;
-    }
-  }
-
-  /// Return the icon based on link layout
-  String? getStatusIcon(OudsLinkLayout layout, bool isRtlMode) {
-    switch (layout) {
-      case OudsLinkLayout.textOnly:
-        throw UnimplementedError("Error status for textOnly is not relevant");
-      case OudsLinkLayout.textAndIcon:
-        throw UnimplementedError(
-          "Error status for textAndIcon is not relevant",
-        ); // it will be implemented from user
-      case OudsLinkLayout.next:
-        return AppAssets.icons.componentLinkNext;
-      case OudsLinkLayout.back:
-        return AppAssets.icons.componentLinkPrevious;
     }
   }
 }

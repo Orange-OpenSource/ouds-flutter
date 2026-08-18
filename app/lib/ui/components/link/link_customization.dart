@@ -72,6 +72,7 @@ class LayoutState {
     LinkEnumLayout.textAndIcon,
     LinkEnumLayout.previous,
     LinkEnumLayout.next,
+    LinkEnumLayout.external,
   ];
 
   List<LinkEnumLayout> get list => _layout;

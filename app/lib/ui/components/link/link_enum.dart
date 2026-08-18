@@ -7,7 +7,8 @@ enum LinkEnumLayout {
   textOnly,
   textAndIcon,
   next,
-  previous;
+  previous,
+  external;
 
   static String enumName(BuildContext context) {
     return context.l10n.app_components_common_layout_label;
@@ -27,6 +28,8 @@ extension CustomElementLayout on LinkEnumLayout {
         return l10n.app_components_link_nextLayout_tech;
       case LinkEnumLayout.previous:
         return l10n.app_components_link_previousLayout_tech;
+      case LinkEnumLayout.external:
+        return l10n.app_components_link_externalLayout_tech;
     }
   }
 }

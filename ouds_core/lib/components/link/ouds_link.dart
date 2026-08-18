@@ -23,12 +23,33 @@ import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart'
 import 'package:ouds_core/components/link/internal/ouds_link_size_modifier.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_status_modifier.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_text_style_modifier.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-///The [OudsLinkLayout] defines the layout of the link’s content.
-/// This enum controls whether the link displays text, text and icon, back or next
+///The [OudsLinkLayout] defines the layout of the link's content.
+///
+/// This enum controls whether the link displays text, text and icon, previous or next.
+@Deprecated(
+  'OudsLinkLayout is deprecated and will be removed in a future version. '
+  'Use the dedicated OudsLink.icon, OudsLink.previous, OudsLink.next constructors instead. '
+  ' a new indicator added OudsLink.external.',
+)
 enum OudsLinkLayout { textOnly, textAndIcon, back, next }
+
+/// @nodoc
+/// this is an internal enum should not be exposed to the user
+/// Represents the type of chevron displayed in an [OudsLink].
+enum OudsLinkIndicator {
+  /// Used for "backward" navigation. Positioned before the label, it features a "chevron left" icon, which is not customizable.
+  previous,
+
+  /// Used in a standard navigation context. Positioned after the label, it features a "chevron right" icon, which is not customizable.
+  next,
+
+  /// Used to navigate outside the current product, service or application. The external navigation indicator informs users that the destination belongs to another context.
+  external,
+}
 
 /// The [OudsLinkSize] defines the link's visual size.
 enum OudsLinkSize { defaultSize, small }
@@ -59,17 +80,24 @@ enum OudsLinkDensity {
 /// - [size] : The size of the link, [OudsLinkSize] such as small or default, to fit various visual needs.
 /// - [density] : The density of the link, [OudsLinkDensity] such as compact or default.
 /// - [label] : A text to display in link component.
-/// - [icon] : An optional SVG asset name to display an icon within the link.
-/// - [layout]: Defines the layout to be used for the link [OudsLinkLayout].
+/// - [icon] : An optional SVG asset name to display an icon within the link (used with [OudsLink.icon]).
+/// - [tinted] : Whether the icon is tinted with the link's text/icon color, only used with [OudsLink.icon].
 /// - [onPressed]: Callback invoked when the link is clicked.
+///
+/// [OudsLink] provides a dedicated named constructor for every supported variant:
+/// - The default (unnamed) constructor renders a text-only link.
+/// - [OudsLink.icon] renders a label with a custom icon.
+/// - [OudsLink.previous] renders a "backward" navigation link with a leading chevron.
+/// - [OudsLink.next] renders a "forward" navigation link with a trailing chevron.
+/// - [OudsLink.external] renders a link navigating outside the current context, with a trailing indicator.
 ///
 ///
 /// ### You can use [OudsLink] component in your project, customizing parameters as needed :
 ///
-/// **Small Text only link :**
+/// ### Small Text only :
 ///
 /// This is the default layout of the component.
-
+///
 /// ```dart
 /// OudsLink(
 ///       label: 'Label',
@@ -78,29 +106,48 @@ enum OudsLinkDensity {
 ///     );
 /// ```
 ///
-/// ### Small Next link :
-/// This is the default layout of the component.
+/// ### Next :
+///
 /// ```dart
-/// OudsLink(
+/// OudsLink.next(
 ///       label: 'Label',
-///       size: OudsLinkSize.small,
-///       layout : OudsLinkayout.next
 ///       onPressed: () {}
 ///     );
 /// ```
 ///
-/// ### Default link with Icon :
-/// This is the default layout of the component.
+/// ### Previous :
+///
 /// ```dart
-/// OudsLink(
+/// OudsLink.previous(
 ///       label: 'Label',
-///       icon : 'assets/ic_heart.svg'
+///       onPressed: () {}
+///     );
+/// ```
+///
+/// ### External :
+///
+/// ```dart
+/// OudsLink.external(
+///       label: 'Label',
+///       onPressed: () {}
+///     );
+/// ```
+///
+/// ### Link with Icon :
+///
+/// ```dart
+/// OudsLink.icon(
+///       label: 'Label',
+///       icon: 'assets/ic_heart.svg',
+///       tinted: true,
 ///       onPressed: () {}
 ///     );
 /// ```
 ///
 /// ### Compact density link :
+///
 /// Reduces the link's minimum height and block padding, useful in dense layouts.
+///
 /// ```dart
 /// OudsLink(
 ///       label: 'Label',
@@ -113,52 +160,86 @@ enum OudsLinkDensity {
 class OudsLink extends StatefulWidget {
   final String label;
   final String? icon;
+  final bool? tinted;
+  @Deprecated(
+    'OudsLinkLayout is deprecated and will be removed in a future version. '
+    'Use the dedicated OudsLink.icon, OudsLink.previous, OudsLink.next or '
+    'OudsLink.external constructors instead.',
+  )
   final OudsLinkLayout layout;
   final OudsLinkSize size;
   final OudsLinkDensity density;
   final VoidCallback? onPressed;
 
+  final OudsLinkIndicator? _indicator;
+
+  /// Creates a text-only [OudsLink].
   const OudsLink({
     super.key,
     required this.label,
-    this.icon,
+    @Deprecated(
+      'OudsLinkLayout is deprecated and will be removed in a future version. '
+      'Use the dedicated OudsLink.icon, OudsLink.previous, OudsLink.next or '
+      'OudsLink.external constructors instead.',
+    )
     this.layout = OudsLinkLayout.textOnly,
     this.size = OudsLinkSize.defaultSize,
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
-  }) : assert(
-         layout != OudsLinkLayout.textAndIcon || icon != null,
-         'icon is required when layout is textAndIcon',
-       );
+    this.icon,
+  }) : _indicator = null,
+       tinted = null;
 
-  static Widget buildIcon(
-    BuildContext context,
-    String? assetName,
-    OudsLinkControlState controlItemState,
-    OudsLinkLayout layout,
-    OudsLinkSize size,
-  ) {
-    final statusModifier = OudsLinkStatusModifier(context);
-    final sizeModifier = OudsLinkSizeModifier(context);
-    final iconSize = sizeModifier.getIconSize(size);
-    final isIcon = assetName != null || layout == OudsLinkLayout.textAndIcon;
+  /// Creates an [OudsLink] displaying its [label] alongside a custom [linkIcon].
+  const OudsLink.icon({
+    super.key,
+    required this.label,
+    required this.icon,
+    this.size = OudsLinkSize.defaultSize,
+    this.density = OudsLinkDensity.defaultDensity,
+    this.onPressed,
+    this.tinted = true,
+  }) : _indicator = null,
+       layout = OudsLinkLayout.textAndIcon;
 
-    return SvgPicture.asset(
-      excludeFromSemantics: true,
-      assetName ?? statusModifier.getStatusIcon(layout, rtlMode)!,
-      package: assetName == null ? OudsTheme.of(context).packageName : null,
-      width: iconSize[OudsLinkDimensions.width.name],
-      height: iconSize[OudsLinkDimensions.height.name],
-      fit: BoxFit.contain,
-      colorFilter: ColorFilter.mode(
-        !isIcon
-            ? statusModifier.getArrowColor(controlItemState)
-            : statusModifier.getTextAndIconColor(controlItemState),
-        BlendMode.srcIn,
-      ),
-      matchTextDirection: true,
-    );
-  }
+  /// Creates an [OudsLink] used for "backward" navigation, displaying a
+  /// leading chevron before the [label].
+  const OudsLink.previous({
+    super.key,
+    required this.label,
+    this.size = OudsLinkSize.defaultSize,
+    this.density = OudsLinkDensity.defaultDensity,
+    this.onPressed,
+  }) : icon = null,
+       tinted = null,
+       _indicator = OudsLinkIndicator.previous,
+       layout = OudsLinkLayout.back;
+
+  /// Creates an [OudsLink] used for standard navigation, displaying a
+  /// trailing chevron after the [label].
+  const OudsLink.next({
+    super.key,
+    required this.label,
+    this.size = OudsLinkSize.defaultSize,
+    this.density = OudsLinkDensity.defaultDensity,
+    this.onPressed,
+  }) : icon = null,
+       tinted = null,
+       _indicator = OudsLinkIndicator.next,
+       layout = OudsLinkLayout.next;
+
+  /// Creates an [OudsLink] navigating outside the current product, service or
+  /// application, displaying a trailing external indicator after the [label].
+  const OudsLink.external({
+    super.key,
+    required this.label,
+    this.size = OudsLinkSize.defaultSize,
+    this.density = OudsLinkDensity.defaultDensity,
+    this.onPressed,
+  }) : icon = null,
+       tinted = null,
+       _indicator = OudsLinkIndicator.external,
+       layout = OudsLinkLayout.next;
 
   @override
   State<OudsLink> createState() => _OudsLinkState();
@@ -230,8 +311,7 @@ class _OudsLinkState extends State<OudsLink> {
     setState(() => _isFocused = focus);
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildLinkContent(BuildContext context) {
     final isDisabled = widget.onPressed == null;
     final interactionModelHover = OudsInheritedInteractionModel.of(
       context,
@@ -256,34 +336,65 @@ class _OudsLinkState extends State<OudsLink> {
     final linkSizeModifier = OudsLinkSizeModifier(context);
     final linkTextStyleModifier = OudsLinkTextStyleModifier(context);
 
-    Widget content;
-
-    switch (widget.layout) {
-      case OudsLinkLayout.textOnly:
-        content = _buildLabelText(
-          linkControlState,
-          linkStatusModifier,
-          linkTextStyleModifier,
-        );
-        break;
-      case OudsLinkLayout.next:
-        content = getNextContent(
-          linkControlState,
-          linkStatusModifier,
-          linkTextStyleModifier,
-          linkSizeModifier,
-        );
-        break;
-      case OudsLinkLayout.back:
-      case OudsLinkLayout.textAndIcon:
-        content = getTextIconOrBackContent(
-          linkControlState,
-          linkStatusModifier,
-          linkTextStyleModifier,
-          linkSizeModifier,
-        );
-        break;
+    //case link with text only
+    if (widget._indicator == null &&
+        widget.icon == null &&
+        widget.layout == OudsLinkLayout.textOnly) {
+      return _buildLabelText(
+        linkControlState,
+        linkStatusModifier,
+        linkTextStyleModifier,
+      );
+      //case link with text and icon
+    } else if ((widget._indicator == null && widget.icon != null) ||
+        (widget._indicator != null &&
+            widget._indicator == OudsLinkIndicator.previous)) {
+      return _getTextIconOrPreviousContent(
+        linkControlState,
+        linkStatusModifier,
+        linkTextStyleModifier,
+        linkSizeModifier,
+      );
+    } else if (widget._indicator != null &&
+        widget._indicator != OudsLinkIndicator.previous) {
+      return getNextOrExternalContent(
+        linkControlState,
+        linkStatusModifier,
+        linkTextStyleModifier,
+        linkSizeModifier,
+      );
+      //deprecated enum , will be removed
+    } else {
+      switch (widget.layout) {
+        case OudsLinkLayout.textOnly:
+          return _buildLabelText(
+            linkControlState,
+            linkStatusModifier,
+            linkTextStyleModifier,
+          );
+        case OudsLinkLayout.next:
+          return getNextOrExternalContent(
+            linkControlState,
+            linkStatusModifier,
+            linkTextStyleModifier,
+            linkSizeModifier,
+          );
+        case OudsLinkLayout.back:
+        case OudsLinkLayout.textAndIcon:
+          return _getTextIconOrPreviousContent(
+            linkControlState,
+            linkStatusModifier,
+            linkTextStyleModifier,
+            linkSizeModifier,
+          );
+      }
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isDisabled = widget.onPressed == null;
+    final linkSizeModifier = OudsLinkSizeModifier(context);
 
     /// Builds the main link container with proper constraints
     return Semantics(
@@ -295,7 +406,7 @@ class _OudsLinkState extends State<OudsLink> {
           : null,
       child: _buildLinkContainer(
         context,
-        child: content,
+        child: _buildLinkContent(context),
         linkSizeModifier: linkSizeModifier,
         isDisabled: isDisabled,
       ),
@@ -321,7 +432,8 @@ class _OudsLinkState extends State<OudsLink> {
             color: textAndIconColor,
             decoration: linkTextStyleModifier.getTextDecorationStatus(
               linkControlState,
-              widget.layout,
+              (widget._indicator == null && widget.icon == null) ||
+                  widget.layout == OudsLinkLayout.textOnly,
             ),
             decorationColor: textAndIconColor,
           ),
@@ -330,7 +442,7 @@ class _OudsLinkState extends State<OudsLink> {
 
   /// Returns a Row widget for a link with `next` layout, including the label
   /// and a next icon of a link component.
-  Widget getNextContent(
+  Widget getNextOrExternalContent(
     OudsLinkControlState linkControlState,
     OudsLinkStatusModifier linkStatusModifier,
     OudsLinkTextStyleModifier linkTextStyleModifier,
@@ -341,7 +453,12 @@ class _OudsLinkState extends State<OudsLink> {
       crossAxisAlignment: isSingleLine
           ? CrossAxisAlignment.center
           : CrossAxisAlignment.end,
-      spacing: linkSizeModifier.getSizeColumnGap(widget.size, widget.layout)!,
+      spacing: linkSizeModifier.getSizeColumnGap(
+        widget.size,
+        widget.layout,
+        widget._indicator,
+        widget.icon,
+      )!,
       children: [
         Flexible(
           child: _buildLabelText(
@@ -350,12 +467,13 @@ class _OudsLinkState extends State<OudsLink> {
             linkTextStyleModifier,
           ),
         ),
-        OudsLink.buildIcon(
+        _buildIcon(
           context,
           widget.icon,
           linkControlState,
           widget.layout,
-          widget.size!,
+          widget.size,
+          widget._indicator,
         ),
       ],
     );
@@ -363,7 +481,7 @@ class _OudsLinkState extends State<OudsLink> {
 
   /// Returns a Row widget for a link with `textAndIcon` or `back` layout,
   /// including the icon and label, properly aligned and spaced.
-  Widget getTextIconOrBackContent(
+  Widget _getTextIconOrPreviousContent(
     OudsLinkControlState linkControlState,
     OudsLinkStatusModifier linkStatusModifier,
     OudsLinkTextStyleModifier linkTextStyleModifier,
@@ -372,16 +490,25 @@ class _OudsLinkState extends State<OudsLink> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
-      spacing: linkSizeModifier.getSizeColumnGap(widget.size, widget.layout)!,
+      spacing: linkSizeModifier.getSizeColumnGap(
+        widget.size,
+        widget.layout,
+        widget._indicator,
+        widget.icon,
+      )!,
       children: [
+        //the deprecated param will be removed
         if (widget.layout == OudsLinkLayout.back ||
-            widget.layout == OudsLinkLayout.textAndIcon)
-          OudsLink.buildIcon(
+            widget.layout == OudsLinkLayout.textAndIcon ||
+            widget._indicator == OudsLinkIndicator.previous ||
+            widget.icon != null)
+          _buildIcon(
             context,
             widget.icon,
             linkControlState,
             widget.layout,
-            widget.size!,
+            widget.size,
+            widget._indicator,
           ),
         Flexible(
           child: _buildLabelText(
@@ -460,5 +587,66 @@ class _OudsLinkState extends State<OudsLink> {
         ),
       ),
     );
+  }
+
+  Widget _buildIcon(
+    BuildContext context,
+    String? assetName,
+    OudsLinkControlState controlItemState,
+    OudsLinkLayout layout,
+    OudsLinkSize size,
+    OudsLinkIndicator? indicator,
+  ) {
+    final statusModifier = OudsLinkStatusModifier(context);
+    final sizeModifier = OudsLinkSizeModifier(context);
+    final iconSize = sizeModifier.getIconSize(size);
+    final isIcon =
+        assetName != null ||
+        layout == OudsLinkLayout.textAndIcon ||
+        widget.icon != null;
+
+    return SvgPicture.asset(
+      excludeFromSemantics: true,
+      assetName ?? _getIcon(layout, indicator)!,
+      package: assetName == null ? OudsTheme.of(context).packageName : null,
+      width: iconSize[OudsLinkDimensions.width.name],
+      height: iconSize[OudsLinkDimensions.height.name],
+      fit: BoxFit.contain,
+      colorFilter: ColorFilter.mode(
+        !isIcon
+            ? statusModifier.getArrowColor(controlItemState)
+            : statusModifier.getTextAndIconColor(controlItemState),
+        BlendMode.srcIn,
+      ),
+      matchTextDirection: true,
+    );
+  }
+
+  /// Return the icon based on link layout
+  String? _getIcon(OudsLinkLayout layout, OudsLinkIndicator? indicator) {
+    //new API
+    if (indicator != null) {
+      switch (indicator) {
+        case OudsLinkIndicator.next:
+          return AppAssets.icons.componentLinkNext;
+        case OudsLinkIndicator.previous:
+          return AppAssets.icons.componentLinkPrevious;
+        case OudsLinkIndicator.external:
+          return AppAssets.icons.componentLinkExternal;
+      }
+    }
+    //old API
+    switch (layout) {
+      case OudsLinkLayout.textOnly:
+        throw UnimplementedError("Error status for textOnly is not relevant");
+      case OudsLinkLayout.textAndIcon:
+        throw UnimplementedError(
+          "Error status for textAndIcon is not relevant",
+        ); // it will be implemented from user
+      case OudsLinkLayout.next:
+        return AppAssets.icons.componentLinkNext;
+      case OudsLinkLayout.back:
+        return AppAssets.icons.componentLinkPrevious;
+    }
   }
 }
