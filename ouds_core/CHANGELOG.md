@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...develop)
 ### Added
+- [Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
 - [Library] For `button` component, update to version 3.3.0 ([#832](https://github.com/Orange-OpenSource/ouds-flutter/issues/832))
 - [Library] Update `progress-indicator`: add size parameter to OudsCircularProgressIndicator for button integration ([#876](https://github.com/Orange-OpenSource/ouds-flutter/issues/876))
@@ -19,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Library] update tokens 2.6.0 ([#842](https://github.com/Orange-OpenSource/ouds-flutter/issues/842))
 ### Fixed
+
 
 ## [2.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...2.0.0) - 2026-06-19
 ### Added

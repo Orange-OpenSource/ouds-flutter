@@ -40,7 +40,7 @@ class OudsWindowSizeClassUtil {
   ///
   /// - [extraCompact]: width < 390
   /// - [compact]: 390 <= width < 600
-  /// - [medium]: width >= 600
+  /// - [defaultSize]: width >= 600
   static OudsWindowWidthSizeClass of(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     if (width < 390) {
@@ -81,7 +81,7 @@ class OudsWindowSizeClassUtil {
 
   /// Selects a value for mobile/tablet breakpoints only.
   ///
-  /// [mobile] is used for [extraCompact] and [compact], [tablet] for [medium].
+  /// [mobile] is used for [extraCompact] and [compact], [tablet] for [defaultSize].
   ///
   /// Example:
   /// ```dart

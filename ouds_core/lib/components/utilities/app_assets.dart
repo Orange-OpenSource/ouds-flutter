@@ -61,6 +61,21 @@ class _Icons {
   final String componentButtonExpurge = 'assets/component/button/expurge.svg';
   final String componentBulletListBulletLevelZero =
       'assets/component/bullet-list/bullet-level-0.svg';
+  final String componentListItemExternalLink =
+      'assets/component/list-item/external-link.svg';
+  final String componentListItemSelect =
+      'assets/component/list-item/select.svg';
+  final String componentListItemNext = 'assets/component/list-item/next.svg';
+  final String componentListItemExpandedReverseTrue =
+      'assets/component/list-item/expanded-reverse-true.svg';
+  final String componentListItemPrevious =
+      'assets/component/list-item/previous.svg';
+  final String componentListItemExpandedFalse =
+      'assets/component/list-item/expanded-false.svg';
+  final String componentListItemExpandedTrue =
+      'assets/component/list-item/expanded-true.svg';
+  final String componentListItemExpandedReverseFalse =
+      'assets/component/list-item/expanded-reverse-false.svg';
 
   final String accessibilityAccessibilityVision =
       'assets/communication/accessibility/accessibility-vision.svg';

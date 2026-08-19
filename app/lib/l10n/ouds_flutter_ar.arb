@@ -35,6 +35,7 @@
   "app_themeSettingsDialog_roundedCornerButtons_label" :"زر بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerTextInputs_label" :"حقول إدخال نص بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerAlertMessage_label" :"رسالة تنبيه بزوايا مستديرة",
+  "app_themeSettingsDialog_roundedCornerCardItems_label" :"عناصر البطاقة بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerProgressIndicators_label" :"مؤشرات التقدم ذات الزوايا المستديرة",
 
   "@_tokens": {},
@@ -120,6 +121,18 @@
 
   "@_components_link": {},
   "app_components_link_description_text": "Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي",
+
+  "@_components_list_item": {},
+  "app_components_listItem_description_text": "List item هو عنصر واجهة مستخدم  يعرض وحدة من المعلومات في صف تفاعلي أو غير تفاعلي ضمن قائمة منظمة.\n Card item هو عنصر واجهة مستخدم يعرض وحدة من المعلومات في بطاقة تفاعلية أو غير تفاعلية، ضمن تخطيط بطاقات أو بشكل مستقل.",  "app_components_listItem_cardItem_description_text": "عنصر البطاقة الثابتة هو عنصر واجهة مستخدم يعرض وحدة من المعلومات في بطاقة مستقلة وغير تفاعلية، لا تتيح التنقل أو تشغيل الإجراءات أو امتلاك حالات تفاعلية.",
+  "app_components_listItem_smallCardItem_description_text": "نوع بطاقة مضغوط من عنصر القائمة للملخصات للقراءة فقط.",
+  "app_components_listItem_smallListItem_description_text": "عنصر قائمة مضغوط لعروض المحتوى الأصغر.",
+  "app_components_listItem_icon_a11y": "وصف الأيقونة",
+  "app_components_listItem_image_a11y": "وصف الصورة",
+  "app_components_listItem_avatarBadge_label": "شارة على الصورة الرمزية",
+  "app_components_listItem_iconBadge_label": "شارة على الأيقونة",
+  "app_components_listItem_contentConfiguration_label": "المحتوى",
+  "app_components_listItem_globalConfiguration_label": "عام",
+  "app_components_listItem_labelsConfiguration_label": "التسميات",
 
   "@_components_password_input": {},
   "app_components_passwordInput_description_text": "Password Input هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.",
