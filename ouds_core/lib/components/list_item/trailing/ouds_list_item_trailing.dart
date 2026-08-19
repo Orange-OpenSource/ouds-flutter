@@ -186,7 +186,7 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
 ///   asset: 'assets/images/photo.jpg',
 ///   contentDescription: 'Product photo',
 ///   size: OudsListItemImageSize.large,
-///   format: OudsListItemImageFormat.panoramic,
+///   format: OudsListItemImageFormat.widescreen,
 ///   rounded: true,
 /// )
 /// ```
@@ -213,7 +213,7 @@ class OudsListItemTrailingImage extends OudsListItemTrailing {
   ///
   /// - [OudsListItemImageFormat.square] (1:1): Use for square visual content
   ///   such as products, logos, album covers or profile-related imagery.
-  /// - [OudsListItemImageFormat.panoramic] (16:9): Use for landscape content
+  /// - [OudsListItemImageFormat.widescreen] (16:9): Use for landscape content
   ///   such as editorial images or wide media thumbnails.
   final OudsListItemImageFormat format;
 

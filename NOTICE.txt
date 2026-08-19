@@ -26,6 +26,8 @@ ouds-flutter/app/assets/illustration/token/il_tokens_typography_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border_dark.svg
 ouds-flutter/app/assets/illustration/component/il_top_app_bar_avatar.jpg
+ouds-flutter/app/assets/illustration/component/ic_untinted_square.jpg
+ouds-flutter/app/assets/illustration/component/ic_untinted_widescreen.jpg
 
 # Communication - Assistance
 ouds-flutter/app/assets/orange/communication/assistance/tips-and-tricks.svg

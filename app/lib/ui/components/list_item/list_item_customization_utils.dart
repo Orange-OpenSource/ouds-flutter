@@ -103,9 +103,9 @@ class ListItemCustomizationUtils {
   ) {
     final assetPath =
         _convertImageFormat(leadingImageFormat) ==
-            OudsListItemImageFormat.panoramic
-        ? AppAssets.images.ilImagePlaceHolder16x9
-        : AppAssets.images.ilImagePlaceHolder1x1;
+            OudsListItemImageFormat.widescreen
+        ? AppAssets.icons.icUntintedWidescreen
+        : AppAssets.icons.icUntintedSquare;
     return switch (leading) {
       ListItemLeadingEnum.none => null,
       ListItemLeadingEnum.icon => OudsListItemLeadingIcon(
@@ -148,9 +148,9 @@ class ListItemCustomizationUtils {
   ) {
     final assetPath =
         _convertImageFormat(trailingImageFormat) ==
-            OudsListItemImageFormat.panoramic
-        ? AppAssets.images.ilImagePlaceHolder16x9
-        : AppAssets.images.ilImagePlaceHolder1x1;
+            OudsListItemImageFormat.widescreen
+        ? AppAssets.icons.icUntintedWidescreen
+        : AppAssets.icons.icUntintedSquare;
     return switch (trailing) {
       ListItemTrailingEnum.none => null,
       ListItemTrailingEnum.text => OudsListItemTrailingText(
@@ -393,9 +393,9 @@ class ListItemCustomizationUtils {
   ) {
     final assetPath =
         _convertImageFormat(leadingImageFormat) ==
-            OudsListItemImageFormat.panoramic
-        ? AppAssets.images.ilImagePlaceHolder16x9
-        : AppAssets.images.ilImagePlaceHolder1x1;
+            OudsListItemImageFormat.widescreen
+        ? AppAssets.icons.icUntintedWidescreen
+        : AppAssets.icons.icUntintedSquare;
     return switch (leading) {
       ListItemLeadingEnum.none => null,
       ListItemLeadingEnum.icon => OudsSmallListItemLeadingIcon(
@@ -418,9 +418,9 @@ class ListItemCustomizationUtils {
   ) {
     final assetPath =
         _convertImageFormat(trailingImageFormat) ==
-            OudsListItemImageFormat.panoramic
-        ? AppAssets.images.ilImagePlaceHolder16x9
-        : AppAssets.images.ilImagePlaceHolder1x1;
+            OudsListItemImageFormat.widescreen
+        ? AppAssets.icons.icUntintedWidescreen
+        : AppAssets.icons.icUntintedSquare;
     return switch (trailing) {
       ListItemTrailingEnum.none => null,
       ListItemTrailingEnum.text => OudsSmallListItemTrailingText(
@@ -485,7 +485,7 @@ class ListItemCustomizationUtils {
     ListItemImageFormatEnum format,
   ) => switch (format) {
     ListItemImageFormatEnum.square => OudsListItemImageFormat.square,
-    ListItemImageFormatEnum.panoramic => OudsListItemImageFormat.panoramic,
+    ListItemImageFormatEnum.widescreen => OudsListItemImageFormat.widescreen,
   };
 
   /// Converts the demo icon size enum to [OudsListItemIconSize].

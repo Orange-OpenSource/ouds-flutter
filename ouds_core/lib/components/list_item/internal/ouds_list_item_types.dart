@@ -125,15 +125,15 @@ enum OudsListItemImageFormat {
   /// profile-related imagery.
   square,
 
-  /// Panoramic image (16:9 ratio).
+  /// Widescreen image (16:9 ratio).
   ///
   /// Use for landscape content such as editorial images or wide media thumbnails.
-  panoramic;
+  widescreen;
 
   /// Returns the width-to-height ratio for this format.
   double get ratio => switch (this) {
     OudsListItemImageFormat.square => 1.0,
-    OudsListItemImageFormat.panoramic => 16.0 / 9.0,
+    OudsListItemImageFormat.widescreen => 16.0 / 9.0,
   };
 }
 

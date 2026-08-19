@@ -17,7 +17,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
-import 'package:ouds_core/components/list_item/internal/ouds_list_item_foreground_modifier.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_icon_modifier.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_indicator_modifier.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';

@@ -493,7 +493,7 @@ class _OudsListItemState extends State<OudsListItem> {
                                   ),
                                 ),
 
-                                // Trailing slot — unconstrained to allow panoramic extra-large images
+                                // Trailing slot — unconstrained to allow widescreen extra-large images
                                 // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
                                 // the 96px sizeMaxSizeLeadingTrailingSlot token).
                                 if (widget.trailing != null) ...[
@@ -771,8 +771,7 @@ class _OudsListItemState extends State<OudsListItem> {
   ///
   /// The height always comes from the [size] token
   /// ([OudsListItemAssetSize.medium] / `.large` / `.extraLarge`); the width is
-  /// derived from that height using [format]'s ratio (1:1 for square, 16:9)
-  /// for panoramic).
+  /// derived from that height using [format]'s ratio (1:1 for square, 16:9 for widescreen).
   static Widget _buildImageContainer(
     BuildContext context,
     Widget image,
@@ -780,7 +779,7 @@ class _OudsListItemState extends State<OudsListItem> {
     OudsListItemImageFormat format,
   ) {
     final height = size.assetSize.value(context);
-    // For panoramic format, use ceilToDouble to get an exact float width
+    // For widescreen format, use ceilToDouble to get an exact float width
     // (e.g., 56 × 16/9 = 99.55px → 100px instead of 99.55px).
     final width = (format == OudsListItemImageFormat.square)
         ? height * format.ratio

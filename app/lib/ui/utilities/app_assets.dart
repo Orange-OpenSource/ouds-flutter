@@ -54,15 +54,15 @@ class _Images {
   // Components
   final String ilTopAppBarAvatar =
       'assets/illustration/component/il_top_app_bar_avatar.jpg';
-
-  final String ilImagePlaceHolder1x1 =
-      'assets/illustration/component/Image_Placeholder_1x1.svg';
-  final String ilImagePlaceHolder16x9 =
-      'assets/illustration/component/Image_Placeholder_16x9.svg';
 }
 
 class _Icons {
   const _Icons();
+  // List item icons
+  final String icUntintedSquare =
+      'assets/illustration/component/ic_untinted_square.svg';
+  final String icUntintedWidescreen =
+      'assets/illustration/component/ic_untinted_widescreen.svg';
 
   String deviceSmartphone(ThemeController themeController) =>
       '${themeController.getAssetsPath(themeController)}communication/device/device-smartphone.svg';

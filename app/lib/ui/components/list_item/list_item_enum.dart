@@ -139,7 +139,7 @@ extension ListItemImageSizeLabel on ListItemImageSizeEnum {
 /// Demo enum for [OudsListItemImageFormat] (when leading/trailing is image).
 enum ListItemImageFormatEnum {
   square,
-  panoramic;
+  widescreen;
 
   static String enumName(BuildContext context) =>
       context.l10n.app_components_listItem_imageFormat_tech;

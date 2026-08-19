@@ -73,7 +73,7 @@ class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
 /// OudsSmallListItemLeadingImage(asset: 'assets/photo.jpg')
 /// OudsSmallListItemLeadingImage(
 ///   asset: 'assets/wide.jpg',
-///   format: OudsListItemImageFormat.panoramic,
+///   format: OudsListItemImageFormat.widescreen,
 /// )
 /// ```
 class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
