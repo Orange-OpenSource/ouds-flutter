@@ -64,15 +64,15 @@ class _Icons {
 
   final String accessibilityAccessibilityVision =
       'assets/communication/accessibility/accessibility-vision.svg';
-  final String communicationSecurityAndSafetyLock =
-      'assets/communication/security-and-safety/lock.svg';
+  final String communicationSecurityAndSafetyLockClosed =
+      'assets/communication/security-and-safety/lock-closed.svg';
 
-  final String settingsAndToolsHide =
-      'assets/functional/settings-and-tools/hide.svg';
-  final String functionalSocialAndEngagementHeartEmpty =
-      'assets/functional/social-and-engagement/heart-empty.svg';
-  final String functionalNavigationMenu =
-      'assets/functional/navigation/menu.svg';
+  final String settingsAndToolsAccessibilityHide =
+      'assets/functional/settings-and-tools/accessibility-hide.svg';
+  final String functionalSocialAndEngagementHeartRecommend =
+      'assets/functional/social-and-engagement/heart-recommend.svg';
+  final String functionalNavigationMenuBar =
+      'assets/functional/navigation/menu-bar.svg';
   final String badgeIconWarningExternalShape =
       'assets/component/badge-icon/warning-external-shape.svg';
   final String badgeIconWarningInternalShape =

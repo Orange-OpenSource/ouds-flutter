@@ -68,7 +68,7 @@ class _Icons {
   String functionalSocialAndEngagementHeartEmpty(
     ThemeController themeController,
   ) =>
-      '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-empty.svg';
+      '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-recommend.svg';
   String functionalActionsDelete(ThemeController themeController) =>
       '${themeController.getAssetsPath(themeController)}functional/actions/delete.svg';
   String functionalActionsCopy(ThemeController themeController) =>

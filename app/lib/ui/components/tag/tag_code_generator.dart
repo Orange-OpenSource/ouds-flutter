@@ -79,9 +79,9 @@ class TagCodeGenerator {
         customizationState?.selectedLayout == TagEnumLayout.iconAndText;
     switch (customizationState?.selectedStatus) {
       case StatusEnum.neutral:
-        return """Neutral(${withIcon ? "icon: 'assets/heart-empty.svg'" : ""})""";
+        return """Neutral(${withIcon ? "icon: 'assets/heart-recommend.svg'" : ""})""";
       case StatusEnum.accent:
-        return """Accent(${withIcon ? "icon: 'assets/heart-empty.svg'" : ""})""";
+        return """Accent(${withIcon ? "icon: 'assets/heart-recommend.svg'" : ""})""";
       case StatusEnum.positive:
         return """Positive()""";
       case StatusEnum.info:
