@@ -175,7 +175,7 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
 }
 
 // ---------------------------------------------------------------------------
-// Image, flag & video
+// Image & flag
 // ---------------------------------------------------------------------------
 
 /// Trailing image slot.
@@ -253,14 +253,15 @@ class OudsListItemTrailingFlag extends OudsListItemTrailing {
   const OudsListItemTrailingFlag(this.flag);
 }
 
-/// Trailing video slot — renders a play-icon placeholder using token-defined size.
-class OudsListItemTrailingVideo extends OudsListItemTrailing {
-  /// The video URL associated with the placeholder.
-  final Uri url;
+// TODO[v0.4]: Uncomment when video support is implemented.
+// /// Trailing video slot — renders a play-icon placeholder using token-defined size.
+// class OudsListItemTrailingVideo extends OudsListItemTrailing {
+//   /// The video URL associated with the placeholder.
+//   final Uri url;
 
-  /// Creates a trailing video configuration.
-  const OudsListItemTrailingVideo(this.url);
-}
+//   /// Creates a trailing video configuration.
+//   const OudsListItemTrailingVideo(this.url);
+// }
 
 // ---------------------------------------------------------------------------
 // Avatar

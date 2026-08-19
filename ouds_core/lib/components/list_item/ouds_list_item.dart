@@ -683,7 +683,7 @@ class _OudsListItemState extends State<OudsListItem> {
   /// Converts an [OudsListItemLeading] data object into its rendered widget.
   ///
   /// Handles icons (with dynamic size), images (with format support), flags,
-  /// videos (placeholder), avatars and custom builders.
+  /// avatars and custom builders.
   /// Respects the [enable] state for color opacity adjustments.
   static Widget _buildLeading(
     BuildContext context,
@@ -740,9 +740,10 @@ class _OudsListItemState extends State<OudsListItem> {
         context,
         flag,
       ),
-      OudsListItemLeadingVideo() =>
-        // Video container: dimensions from sizeAssetSmall token.
-        _buildVideoContainer(context, enable: enable),
+      // TODO[v0.4]: Uncomment when video support is implemented.
+      // OudsListItemLeadingVideo() =>
+      //   // Video container: dimensions from sizeAssetSmall token.
+      //   _buildVideoContainer(context, enable: enable),
       // Avatar, text, custom: flexible container
       OudsListItemLeadingAvatar(:final avatar) => avatar,
       OudsListItemLeadingText(:final label, :final extraLabel, :final style) =>
@@ -810,24 +811,25 @@ class _OudsListItemState extends State<OudsListItem> {
     );
   }
 
-  /// Builds the video placeholder container.
-  ///
-  /// Uses [OudsListItemAssetSize.small] token to size the container — consistent
-  /// with how other small assets are sized inside list items.
-  static Widget _buildVideoContainer(
-    BuildContext context, {
-    required bool enable,
-  }) {
-    final dimension = OudsListItemAssetSize.small.value(context);
-    return SizedBox(
-      width: dimension,
-      height: dimension,
-      child: OudsListItemAssetBuilder.buildVideoPlaceholder(
-        context,
-        enable: enable,
-      ),
-    );
-  }
+  // TODO[v0.4]: Uncomment when video support is implemented.
+  // /// Builds the video placeholder container.
+  // ///
+  // /// Uses [OudsListItemAssetSize.small] token to size the container — consistent
+  // /// with how other small assets are sized inside list items.
+  // static Widget _buildVideoContainer(
+  //   BuildContext context, {
+  //   required bool enable,
+  // }) {
+  //   final dimension = OudsListItemAssetSize.small.value(context);
+  //   return SizedBox(
+  //     width: dimension,
+  //     height: dimension,
+  //     child: OudsListItemAssetBuilder.buildVideoPlaceholder(
+  //       context,
+  //       enable: enable,
+  //     ),
+  //   );
+  // }
 
   /// Renders the text-leading variant (label + optional extra-label).
   ///
@@ -900,7 +902,7 @@ class _OudsListItemState extends State<OudsListItem> {
   /// Converts an [OudsListItemTrailing] data object into its rendered widget.
   ///
   /// Handles text variants (label, muted, strong), badges, tags, icons,
-  /// images, flags, videos (placeholder), avatars and custom builders.
+  /// images, flags, avatars and custom builders.
   /// Respects the [enable] state for color opacity adjustments.
   static Widget _buildTrailing(
     BuildContext context,
@@ -960,10 +962,11 @@ class _OudsListItemState extends State<OudsListItem> {
         context,
         flag,
       ),
-      OudsListItemTrailingVideo() => _buildVideoContainer(
-        context,
-        enable: enable,
-      ),
+      // TODO[v0.4]: Uncomment when video support is implemented.
+      // OudsListItemTrailingVideo() => _buildVideoContainer(
+      //   context,
+      //   enable: enable,
+      // ),
       OudsListItemTrailingAvatar(:final avatar) => avatar,
       OudsListItemTrailingCustom(:final builder) => builder(
         context,

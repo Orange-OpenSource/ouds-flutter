@@ -78,13 +78,6 @@ class ThemeSettingsDialogContent extends StatelessWidget {
           onChanged: onTextInputRoundedChanged,
         ),
         OudsSwitchButtonItem(
-          title: context
-              .l10n
-              .app_themeSettingsDialog_roundedCornerAlertMessage_label,
-          value: alertMessageRoundedConfig,
-          onChanged: onAlertMessageRoundedChanged,
-        ),
-        OudsSwitchButtonItem(
           title:
               context.l10n.app_themeSettingsDialog_roundedCornerCardItems_label,
           value: cardItemRoundedConfig,

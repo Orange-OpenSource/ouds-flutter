@@ -140,19 +140,20 @@ class OudsListItemLeadingFlag extends OudsListItemLeading {
   const OudsListItemLeadingFlag(this.flag);
 }
 
-/// Leading video placeholder slot.
-///
-/// Example:
-/// ```dart
-/// OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))
-/// ```
-class OudsListItemLeadingVideo extends OudsListItemLeading {
-  /// The video URL associated with the placeholder.
-  final Uri url;
+// TODO[v0.4]: Uncomment when video support is implemented.
+// /// Leading video placeholder slot.
+// ///
+// /// Example:
+// /// ```dart
+// /// OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))
+// /// ```
+// class OudsListItemLeadingVideo extends OudsListItemLeading {
+//   /// The video URL associated with the placeholder.
+//   final Uri url;
 
-  /// Creates a leading video configuration.
-  const OudsListItemLeadingVideo(this.url);
-}
+//   /// Creates a leading video configuration.
+//   const OudsListItemLeadingVideo(this.url);
+// }
 
 /// Leading avatar slot.
 ///

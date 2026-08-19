@@ -27,7 +27,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Shared widget builders for [OudsListItem] visual assets.
 ///
-/// This utility avoids duplicating the same image/flag/video/icon rendering
+/// This utility avoids duplicating the same image/flag/icon rendering
 /// logic across standard and small list item implementations.
 class OudsListItemAssetBuilder {
   OudsListItemAssetBuilder._();
@@ -99,25 +99,26 @@ class OudsListItemAssetBuilder {
     );
   }
 
-  /// Builds a video placeholder icon using token-defined size.
-  ///
-  /// - [size] — defaults to [OudsListItemAssetSize.medium].
-  /// - [enable] — when `false`, the icon is rendered in its disabled appearance.
-  static Widget buildVideoPlaceholder(
-    BuildContext context, {
-    OudsListItemAssetSize size = OudsListItemAssetSize.medium,
-    bool enable = true,
-  }) {
-    final resolvedSize = size.value(context);
-    return SizedBox(
-      width: resolvedSize,
-      height: resolvedSize,
-      child: Icon(
-        Icons.play_circle_outline,
-        color: OudsListItemForegroundModifier(context).contentColor(enable),
-      ),
-    );
-  }
+  // TODO[v0.4]: Uncomment when video support is implemented.
+  // /// Builds a video placeholder icon using token-defined size.
+  // ///
+  // /// - [size] — defaults to [OudsListItemAssetSize.medium].
+  // /// - [enable] — when `false`, the icon is rendered in its disabled appearance.
+  // static Widget buildVideoPlaceholder(
+  //   BuildContext context, {
+  //   OudsListItemAssetSize size = OudsListItemAssetSize.medium,
+  //   bool enable = true,
+  // }) {
+  //   final resolvedSize = size.value(context);
+  //   return SizedBox(
+  //     width: resolvedSize,
+  //     height: resolvedSize,
+  //     child: Icon(
+  //       Icons.play_circle_outline,
+  //       color: OudsListItemForegroundModifier(context).contentColor(enable),
+  //     ),
+  //   );
+  // }
 
   /// Builds a tinted SVG icon asset used as a navigation indicator (chevron/external link).
   ///

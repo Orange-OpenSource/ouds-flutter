@@ -34,7 +34,7 @@ const _kSmallAssetSize = OudsListItemAssetSize.small;
 /// Base type for [OudsSmallListItem] leading content.
 ///
 /// Only [OudsSmallListItemLeadingIcon] and [OudsSmallListItemLeadingImage] are
-/// supported — avatar, flag, video and text slots are not available at this size.
+/// supported — avatar, flag and text slots are not available at this size.
 sealed class OudsSmallListItemLeading {
   /// Creates a compact leading-slot configuration.
   const OudsSmallListItemLeading();
@@ -273,7 +273,7 @@ class OudsSmallListItem extends StatelessWidget {
   /// Optional content at the start of the row.
   ///
   /// Accepts [OudsSmallListItemLeadingIcon] or [OudsSmallListItemLeadingImage].
-  /// Avatar, flag, video and text slots are not available at this compact size.
+  /// Avatar, flag and text slots are not available at this compact size.
   final OudsSmallListItemLeading? leading;
 
   /// Optional content at the end of the row.
