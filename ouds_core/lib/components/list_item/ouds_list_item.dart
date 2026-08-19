@@ -420,6 +420,10 @@ class _OudsListItemState extends State<OudsListItem> {
                           ),
                           foregroundDecoration: decoration.divider
                               ? BoxDecoration(
+                                  borderRadius: _resolveBorderRadius(
+                                    tokens: tokens,
+                                    decoration: decoration,
+                                  ),
                                   border: Border(
                                     bottom: BorderSide(
                                       color: colorScheme.borderMuted,
