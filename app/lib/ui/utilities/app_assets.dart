@@ -70,7 +70,7 @@ class _Icons {
     ThemeController themeController,
   ) =>
       '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/contact.svg';
-  String functionalSocialAndEngagementHeartEmpty(
+  String functionalSocialAndEngagementHeartRecommend(
     ThemeController themeController,
   ) =>
       '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-recommend.svg';

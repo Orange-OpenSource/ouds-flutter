@@ -39,16 +39,23 @@ class ChipCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(ChipCustomizationState? customizationState, ThemeController themeController) {
-    if (customizationState?.selectedLayout == ChipEnumLayout.iconOnly || customizationState?.selectedLayout == ChipEnumLayout.iconAndText) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController);
+  static String? getIcon(
+    ChipCustomizationState? customizationState,
+    ThemeController themeController,
+  ) {
+    if (customizationState?.selectedLayout == ChipEnumLayout.iconOnly ||
+        customizationState?.selectedLayout == ChipEnumLayout.iconAndText) {
+      return AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
+        themeController,
+      );
     }
     return null;
   }
 
   /// Determines the text to display based on the selected layout.
   static String? getText(ChipCustomizationState? customizationState) {
-    if (customizationState?.selectedLayout == ChipEnumLayout.textOnly || customizationState?.selectedLayout == ChipEnumLayout.iconAndText) {
+    if (customizationState?.selectedLayout == ChipEnumLayout.textOnly ||
+        customizationState?.selectedLayout == ChipEnumLayout.iconAndText) {
       return customizationState?.labelText;
     }
     return null;

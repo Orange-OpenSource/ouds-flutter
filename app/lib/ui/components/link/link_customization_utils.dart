@@ -44,9 +44,14 @@ class LinkCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(LinkCustomizationState? customizationState, ThemeController themeController) {
+  static String? getIcon(
+    LinkCustomizationState? customizationState,
+    ThemeController themeController,
+  ) {
     if (customizationState?.selectedLayout == LinkEnumLayout.textAndIcon) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController);
+      return AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
+        themeController,
+      );
     }
     return null;
   }
