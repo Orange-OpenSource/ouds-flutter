@@ -21,6 +21,7 @@ import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
@@ -45,6 +46,9 @@ enum FieldType {
   bulletOne, // The first bullet of alert message
   bulletTwo, // The second bullet of alert message
   bulletThree, // The third bullet of alert message
+  listItemOverline,
+  listItemTrailingText,
+  listItemTrailingExtraText,
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -115,6 +119,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final linkState = LinkCustomization.of(context);
     final bottomSheetState = StandardBottomSheetCustomization.of(context);
     final alertMessageState = AlertCustomization.of(context);
+    final listItemState = ListItemCustomization.of(context);
     final progressIndicatorState = ProgressIndicatorCustomization.of(context);
 
     final value = _textController.text;
@@ -133,15 +138,18 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         topBarState?.previousPageTitleText = value;
         linkState?.labelText = value;
         alertMessageState?.label = value;
+        listItemState?.label = value;
         progressIndicatorState?.value = value;
         break;
       case FieldType.helper:
         textInputState?.helperText = value;
         pinCodeInputState?.pinCodeHelperText = value;
+        listItemState?.helperText = value;
         progressIndicatorState?.helperText = value;
         break;
       case FieldType.extra:
         controlItemState?.extraLabelText = value;
+        listItemState?.extraLabel = value;
         break;
       case FieldType.prefix:
         textInputState?.prefixText = value;
@@ -156,6 +164,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       case FieldType.description:
         controlItemState?.descriptionLabel = value;
         alertMessageState?.description = value;
+        listItemState?.description = value;
         break;
       case FieldType.error:
         controlItemState?.errorMessageLabel = value;
@@ -180,6 +189,15 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.bulletThree:
         alertMessageState?.bulletTextThree = value;
+        break;
+      case FieldType.listItemOverline:
+        listItemState?.overline = value;
+        break;
+      case FieldType.listItemTrailingText:
+        listItemState?.trailingTextLabel = value;
+        break;
+      case FieldType.listItemTrailingExtraText:
+        listItemState?.trailingTextExtraLabel = value;
         break;
     }
   }
