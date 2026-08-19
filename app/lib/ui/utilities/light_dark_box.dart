@@ -57,6 +57,15 @@ class ComponentDemoBox extends StatelessWidget {
   /// Defaults to `false`.
   final bool colored;
 
+  /// When `true`, removes the horizontal padding from the container.
+  ///
+  /// This is useful for components that implement their own edge-to-edge behavior
+  /// and need full-width display in demo screens.
+  ///
+  /// TODO: When edge-to-edge is implemented for all components in app demos,
+  /// this parameter should be removed and the padding deleted from [ComponentDemoBox].
+  final bool isEdgeToEdge;
+
   /// Creates a [ComponentDemoBox].
   ///
   /// The [child] parameter must not be null.
@@ -65,6 +74,7 @@ class ComponentDemoBox extends StatelessWidget {
     super.key,
     required this.child,
     this.colored = false,
+    this.isEdgeToEdge = false,
   });
 
   @override
@@ -77,10 +87,14 @@ class ComponentDemoBox extends StatelessWidget {
     } else {
       return ColoredBox(
         color: ColoredBoxColor.backgroundPrimary,
-        child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: OudsTheme.of(context).gridScheme(context).margin),
-          child: child,
-        ),
+        child: isEdgeToEdge
+            ? child
+            : Padding(
+                padding: EdgeInsetsDirectional.symmetric(
+                  horizontal: OudsTheme.of(context).gridScheme(context).margin,
+                ),
+                child: child,
+              ),
       );
     }
   }
@@ -114,12 +128,18 @@ class LightDarkBox extends StatelessWidget {
   /// When `false`, the child is wrapped in a [Center] widget for centered alignment.
   final bool hasConstrainedMaxWidthOption;
 
+  /// When `true`, removes the horizontal padding from the container.
+  ///
+  /// This is useful for components that implement their own edge-to-edge behavior.
+  final bool isEdgeToEdge;
+
   /// Constructor for [LightDarkBox].
   ///
   /// Requires [child]. The [hasConstrainedMaxWidthOption] parameter defaults to `false`.
   const LightDarkBox({
     required this.child,
     this.hasConstrainedMaxWidthOption = false,
+    this.isEdgeToEdge = false,
     super.key,
   });
 
@@ -128,20 +148,14 @@ class LightDarkBox extends StatelessWidget {
     return Column(
       children: [
         ComponentDemoBox(
-          child: hasConstrainedMaxWidthOption
-              ? child
-              : Center(
-                  child: child,
-                ),
+          isEdgeToEdge: isEdgeToEdge,
+          child: hasConstrainedMaxWidthOption ? child : Center(child: child),
         ),
         OudsThemeTweak(
           tweak: OudsThemeTweakType.invert,
           child: ComponentDemoBox(
-            child: hasConstrainedMaxWidthOption
-                ? child
-                : Center(
-                    child: child,
-                  ),
+            isEdgeToEdge: isEdgeToEdge,
+            child: hasConstrainedMaxWidthOption ? child : Center(child: child),
           ),
         ),
       ],
@@ -191,18 +205,12 @@ class ColoredBox extends StatelessWidget {
   ///
   /// The [child] parameter must not be null.
   /// The [color] parameter is optional and defaults to `null`.
-  const ColoredBox({
-    required this.child,
-    this.color,
-    super.key,
-  });
+  const ColoredBox({required this.child, this.color, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        minHeight: 80,
-      ),
+      constraints: BoxConstraints(minHeight: 80),
       width: double.infinity,
       color: color?.getValue(context),
       child: Padding(

@@ -26,6 +26,8 @@ ouds-flutter/app/assets/illustration/token/il_tokens_typography_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border_dark.svg
 ouds-flutter/app/assets/illustration/component/il_top_app_bar_avatar.jpg
+ouds-flutter/app/assets/illustration/component/ic_untinted_square.jpg
+ouds-flutter/app/assets/illustration/component/ic_untinted_widescreen.jpg
 
 # Communication - Assistance
 ouds-flutter/app/assets/orange/communication/assistance/tips-and-tricks.svg
@@ -116,15 +118,26 @@ ouds_theme_orange/assets/component/link/previous.svg
 ouds_theme_orange/assets/component/radio-button/radio-button-selected.svg
 ouds_theme_orange/assets/component/switch/selected-switch.svg
 ouds_theme_orange/assets/component/tag/close.svg
+
 ouds_theme_orange/assets/functional/social-and-engagement/heart-recommend.svg
+ouds_theme_orange/assets/functional/actions/delete.svg
 ouds_theme_orange/assets/functional/settings-and-tools/accessibility-hide.svg
 ouds_theme_orange/assets/functional/navigation/menu-bar.svg
+ouds_theme_orange/assets/functional/navigation/form-chevron-left.svg
 ouds_theme_orange/assets/component/bullet-list/bullet-level-0.svg
 ouds_theme_orange/assets/component/badge-icon/warning-external-shape.svg
 ouds_theme_orange/assets/component/badge-icon/warning-internal-shape.svg
 ouds_theme_orange/assets/component/badge-icon/error-fill.svg
 ouds_theme_orange/assets/component/badge-icon/info-fill.svg
 ouds_theme_orange/assets/component/badge-icon/tick-confirmation-fill.svg
+ouds_theme_orange/assets/component/list-item/expanded-false.svg
+ouds_theme_orange/assets/component/list-item/expanded-reverse-false.svg
+ouds_theme_orange/assets/component/list-item/expanded-reverse-true.svg
+ouds_theme_orange/assets/component/list-item/expanded-true.svg
+ouds_theme_orange/assets/component/list-item/external-link.svg
+ouds_theme_orange/assets/component/list-item/next.svg
+ouds_theme_orange/assets/component/list-item/previous.svg
+ouds_theme_orange/assets/component/list-item/select.svg
 
 
 ouds_theme_orange/fonts/Roboto-Black.ttf
@@ -171,12 +184,21 @@ ouds_theme_orange_compact/assets/functional/actions/copy.svg
 ouds_theme_orange_compact/assets/functional/social-and-engagement/heart-recommend.svg
 ouds_theme_orange_compact/assets/functional/settings-and-tools/accessibility-hide.svg
 ouds_theme_orange_compact/assets/functional/navigation/menu-bar.svg
+ouds_theme_orange_compact/assets/functional/navigation/form-chevron-left.svg
 ouds_theme_orange_compact/assets/component/bullet-list/bullet-level-0.svg
 ouds_theme_orange_compact/assets/component/badge-icon/warning-external-shape.svg
 ouds_theme_orange_compact/assets/component/badge-icon/warning-internal-shape.svg
 ouds_theme_orange_compact/assets/component/badge-icon/error-fill.svg
 ouds_theme_orange_compact/assets/component/badge-icon/info-fill.svg
 ouds_theme_orange_compact/assets/component/badge-icon/tick-confirmation-fill.svg
+ouds_theme_orange_compact/assets/component/list-item/expanded-false.svg
+ouds_theme_orange_compact/assets/component/list-item/expanded-reverse-false.svg
+ouds_theme_orange_compact/assets/component/list-item/expanded-reverse-true.svg
+ouds_theme_orange_compact/assets/component/list-item/expanded-true.svg
+ouds_theme_orange_compact/assets/component/list-item/external-link.svg
+ouds_theme_orange_compact/assets/component/list-item/next.svg
+ouds_theme_orange_compact/assets/component/list-item/previous.svg
+ouds_theme_orange_compact/assets/component/list-item/select.svg
 
 
 ouds_theme_orange_compact/fonts/Roboto-Black.ttf
@@ -191,7 +213,7 @@ ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Regular.ttf
 ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Thin.ttf
 
 ## OUDS / Themes / Sosh
-ouds_theme_orange/assets/communication/accessibility/accessibility-vision.svg
+ouds_theme_sosh/assets/communication/accessibility/accessibility-vision.svg
 ouds_theme_sosh/assets/communication/security-and-safety/lock-closed.svg
 ouds_theme_sosh/assets/component/alert/error-fill.svg
 ouds_theme_sosh/assets/component/alert/important-fill.svg
@@ -220,14 +242,24 @@ ouds_theme_sosh/assets/component/radio-button/radio-button-selected.svg
 ouds_theme_sosh/assets/component/switch/selected-switch.svg
 ouds_theme_sosh/assets/component/tag/close.svg
 ouds_theme_sosh/assets/functional/social-and-engagement/heart-recommend.svg
+ouds_theme_sosh/assets/functional/actions/delete.svg
 ouds_theme_sosh/assets/functional/settings-and-tools/accessibility-hide.svg
 ouds_theme_sosh/assets/functional/navigation/menu-bar.svg
+ouds_theme_sosh/assets/functional/navigation/form-chevron-left.svg
 ouds_theme_sosh/assets/component/bullet-list/bullet-level-0.svg
 ouds_theme_sosh/assets/component/badge-icon/warning-external-shape.svg
 ouds_theme_sosh/assets/component/badge-icon/warning-internal-shape.svg
 ouds_theme_sosh/assets/component/badge-icon/error-fill.svg
 ouds_theme_sosh/assets/component/badge-icon/info-fill.svg
 ouds_theme_sosh/assets/component/badge-icon/tick-confirmation-fill.svg
+ouds_theme_sosh/assets/component/list-item/expanded-false.svg
+ouds_theme_sosh/assets/component/list-item/expanded-reverse-false.svg
+ouds_theme_sosh/assets/component/list-item/expanded-reverse-true.svg
+ouds_theme_sosh/assets/component/list-item/expanded-true.svg
+ouds_theme_sosh/assets/component/list-item/external-link.svg
+ouds_theme_sosh/assets/component/list-item/next.svg
+ouds_theme_sosh/assets/component/list-item/previous.svg
+ouds_theme_sosh/assets/component/list-item/select.svg
 
 
 ouds_theme_sosh/fonts/Sosh-Black.ttf
@@ -237,7 +269,7 @@ ouds_theme_sosh/fonts/Sosh-Regular.ttf
 ouds_theme_sosh/fonts/Sosh-Thin.ttf
 
 ## OUDS / Themes / Wireframe
-ouds_theme_orange/assets/communication/accessibility/accessibility-vision.svg
+ouds_theme_wireframe/assets/communication/accessibility/accessibility-vision.svg
 ouds_theme_wireframe/assets/communication/security-and-safety/lock-closed.svg
 ouds_theme_wireframe/assets/component/alert/error-fill.svg
 ouds_theme_wireframe/assets/component/alert/important-fill.svg
@@ -268,11 +300,25 @@ ouds_theme_wireframe/assets/component/tag/close.svg
 ouds_theme_wireframe/assets/functional/social-and-engagement/heart-recommend.svg
 ouds_theme_wireframe/assets/functional/settings-and-tools/accessibility-hide.svg
 ouds_theme_wireframe/assets/functional/navigation/menu-bar.svg
+ouds_theme_wireframe/assets/functional/social-and-engagement/heart-recommend.svg
+ouds_theme_wireframe/assets/functional/actions/delete.svg
+ouds_theme_wireframe/assets/functional/settings-and-tools/accessibility-hide.svg
+ouds_theme_wireframe/assets/functional/navigation/menu-bar.svg
+ouds_theme_wireframe/assets/functional/navigation/form-chevron-left.svg
+ouds_theme_wireframe/assets/component/bullet-list/bullet-level-0.svg
 ouds_theme_wireframe/assets/component/badge-icon/warning-external-shape.svg
 ouds_theme_wireframe/assets/component/badge-icon/warning-internal-shape.svg
 ouds_theme_wireframe/assets/component/badge-icon/error-fill.svg
 ouds_theme_wireframe/assets/component/badge-icon/info-fill.svg
 ouds_theme_wireframe/assets/component/badge-icon/tick-confirmation-fill.svg
+ouds_theme_wireframe/assets/component/list-item/expanded-false.svg
+ouds_theme_wireframe/assets/component/list-item/expanded-reverse-false.svg
+ouds_theme_wireframe/assets/component/list-item/expanded-reverse-true.svg
+ouds_theme_wireframe/assets/component/list-item/expanded-true.svg
+ouds_theme_wireframe/assets/component/list-item/external-link.svg
+ouds_theme_wireframe/assets/component/list-item/next.svg
+ouds_theme_wireframe/assets/component/list-item/previous.svg
+ouds_theme_wireframe/assets/component/list-item/select.svg
 
 
 ouds_theme_wireframe/fonts/ShantellSans-Bold.ttf
