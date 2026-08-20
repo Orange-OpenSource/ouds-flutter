@@ -69,13 +69,13 @@ class _Icons {
   String functionalSocialAndEngagementContact(
     ThemeController themeController,
   ) =>
-      '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/contact.svg';
+      '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/profil-avatar.svg';
   String functionalSocialAndEngagementHeartRecommend(
     ThemeController themeController,
   ) =>
       '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-recommend.svg';
   String functionalActionsDelete(ThemeController themeController) =>
-      '${themeController.getAssetsPath(themeController)}functional/actions/delete.svg';
+      '${themeController.getAssetsPath(themeController)}functional/actions/delete-cross-round.svg';
   String functionalActionsCopy(ThemeController themeController) =>
       '${themeController.getAssetsPath(themeController)}functional/actions/copy.svg';
   String functionalSettingsAndToolsUiLightMode(
@@ -101,7 +101,7 @@ class _Icons {
   String designComponentAtom(ThemeController themeController) =>
       '${themeController.getAssetsPath(themeController)}communication/design/component-atom.svg';
   String designToken(ThemeController themeController) =>
-      '${themeController.getAssetsPath(themeController)}communication/design/design-token.svg';
+      '${themeController.getAssetsPath(themeController)}communication/design/design-token-figma.svg';
 }
 
 class _Fonts {

@@ -13,6 +13,8 @@ ouds-flutter/app/assets/about_privacy_policy.md
 ouds-flutter/app/assets/about_legal_information.md
 
 # Illustration
+ouds-flutter/app/assets/illustration/token/il_union.svg
+ouds-flutter/app/assets/illustration/token/il_union_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_color.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_color_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_elevation.svg
@@ -26,38 +28,42 @@ ouds-flutter/app/assets/illustration/token/il_tokens_typography_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border_dark.svg
 ouds-flutter/app/assets/illustration/component/il_top_app_bar_avatar.jpg
-ouds-flutter/app/assets/illustration/component/ic_untinted_square.jpg
-ouds-flutter/app/assets/illustration/component/ic_untinted_widescreen.jpg
+ouds-flutter/app/assets/illustration/component/ic_untinted_square.svg
+ouds-flutter/app/assets/illustration/component/ic_untinted_widescreen.svg
 
 # Communication - Assistance
 ouds-flutter/app/assets/orange/communication/assistance/tips-and-tricks.svg
 ouds-flutter/app/assets/orange_compact/communication/assistance/tips-and-tricks.svg
 ouds-flutter/app/assets/sosh/communication/assistance/tips-and-tricks.svg
 ouds-flutter/app/assets/wireframe/communication/assistance/tips-and-tricks.svg
+ouds-flutter/app/assets/orange/communication/device/device-smartphone.svg
+ouds-flutter/app/assets/orange_compact/communication/device/device-smartphone.svg
+ouds-flutter/app/assets/sosh/communication/device/device-smartphone.svg
+ouds-flutter/app/assets/wireframe/communication/device/device-smartphone.svg
 
 # Design - Component
 ouds-flutter/app/assets/orange/communication/design/component-atom.svg
-ouds-flutter/app/assets/orange/communication/design/design-token.svg
+ouds-flutter/app/assets/orange/communication/design/design-token-figma.svg
 ouds-flutter/app/assets/orange/communication/design/theme.svg
 ouds-flutter/app/assets/orange_compact/communication/design/component-atom.svg
-ouds-flutter/app/assets/orange_compact/communication/design/design-token.svg
+ouds-flutter/app/assets/orange_compact/communication/design/design-token-figma.svg
 ouds-flutter/app/assets/orange_compact/communication/design/theme.svg
 ouds-flutter/app/assets/sosh/communication/design/component-atom.svg
-ouds-flutter/app/assets/sosh/communication/design/design-token.svg
+ouds-flutter/app/assets/sosh/communication/design/design-token-figma.svg
 ouds-flutter/app/assets/sosh/communication/design/theme.svg
 ouds-flutter/app/assets/wireframe/communication/design/component-atom.svg
-ouds-flutter/app/assets/wireframe/communication/design/design-token.svg
+ouds-flutter/app/assets/wireframe/communication/design/design-token-figma.svg
 ouds-flutter/app/assets/wireframe/communication/design/theme.svg
 
 # Functional - Action
-ouds-flutter/app/assets/orange/functional/actions/delete.svg
 ouds-flutter/app/assets/orange/functional/actions/copy.svg
-ouds-flutter/app/assets/orange_compact/functional/actions/delete.svg
 ouds-flutter/app/assets/orange_compact/functional/actions/copy.svg
-ouds-flutter/app/assets/sosh/functional/actions/delete.svg
 ouds-flutter/app/assets/sosh/functional/actions/copy.svg
-ouds-flutter/app/assets/wireframe/functional/actions/delete.svg
 ouds-flutter/app/assets/wireframe/functional/actions/copy.svg
+ouds-flutter/app/assets/orange/functional/actions/delete-cross-round.svg
+ouds-flutter/app/assets/orange_compact/functional/actions/delete-cross-round.svg
+ouds-flutter/app/assets/sosh/functional/actions/delete-cross-round.svg
+ouds-flutter/app/assets/wireframe/functional/actions/delete-cross-round.svg
 
 # Functional - Settings and tools
 ouds-flutter/app/assets/orange/functional/settings-and-tools/ui-dark-mode.svg
@@ -78,6 +84,10 @@ ouds-flutter/app/assets/orange/functional/social-and-engagement/heart-recommend.
 ouds-flutter/app/assets/orange_compact/functional/social-and-engagement/heart-recommend.svg
 ouds-flutter/app/assets/sosh/functional/social-and-engagement/heart-recommend.svg
 ouds-flutter/app/assets/wireframe/functional/social-and-engagement/heart-recommend.svg
+ouds-flutter/app/assets/orange/functional/social-and-engagement/profil-avatar.svg
+ouds-flutter/app/assets/orange_compact/functional/social-and-engagement/profil-avatar.svg
+ouds-flutter/app/assets/sosh/functional/social-and-engagement/profil-avatar.svg
+ouds-flutter/app/assets/wireframe/functional/social-and-engagement/profil-avatar.svg
 
 # Functional - Status and indicators
 ouds-flutter/app/assets/orange/functional/status-and-indicators/info-fill.svg
@@ -88,6 +98,8 @@ ouds-flutter/app/assets/wireframe/functional/status-and-indicators/info-fill.svg
 # Functional - Navigation
 ouds-flutter/app/assets/orange/functional/navigation/filters.svg
 ouds-flutter/app/assets/orange_compact/functional/navigation/filters.svg
+ouds-flutter/app/assets/sosh/functional/navigation/filters.svg
+ouds-flutter/app/assets/wireframe/functional/navigation/filters.svg
 
 ## OUDS / Themes / Orange
 ouds_theme_orange/assets/communication/accessibility/accessibility-vision.svg
@@ -120,7 +132,7 @@ ouds_theme_orange/assets/component/switch/selected-switch.svg
 ouds_theme_orange/assets/component/tag/close.svg
 
 ouds_theme_orange/assets/functional/social-and-engagement/heart-recommend.svg
-ouds_theme_orange/assets/functional/actions/delete.svg
+ouds_theme_orange/assets/functional/actions/delete-cross-round.svg
 ouds_theme_orange/assets/functional/settings-and-tools/accessibility-hide.svg
 ouds_theme_orange/assets/functional/navigation/menu-bar.svg
 ouds_theme_orange/assets/functional/navigation/form-chevron-left.svg
@@ -180,7 +192,7 @@ ouds_theme_orange_compact/assets/component/link/previous.svg
 ouds_theme_orange_compact/assets/component/radio-button/radio-button-selected.svg
 ouds_theme_orange_compact/assets/component/switch/selected-switch.svg
 ouds_theme_orange_compact/assets/component/tag/close.svg
-ouds_theme_orange_compact/assets/functional/actions/copy.svg
+ouds_theme_orange_compact/assets/functional/actions/delete-cross-round.svg
 ouds_theme_orange_compact/assets/functional/social-and-engagement/heart-recommend.svg
 ouds_theme_orange_compact/assets/functional/settings-and-tools/accessibility-hide.svg
 ouds_theme_orange_compact/assets/functional/navigation/menu-bar.svg
@@ -242,7 +254,7 @@ ouds_theme_sosh/assets/component/radio-button/radio-button-selected.svg
 ouds_theme_sosh/assets/component/switch/selected-switch.svg
 ouds_theme_sosh/assets/component/tag/close.svg
 ouds_theme_sosh/assets/functional/social-and-engagement/heart-recommend.svg
-ouds_theme_sosh/assets/functional/actions/delete.svg
+ouds_theme_sosh/assets/functional/actions/delete-cross-round.svg
 ouds_theme_sosh/assets/functional/settings-and-tools/accessibility-hide.svg
 ouds_theme_sosh/assets/functional/navigation/menu-bar.svg
 ouds_theme_sosh/assets/functional/navigation/form-chevron-left.svg
@@ -301,7 +313,7 @@ ouds_theme_wireframe/assets/functional/social-and-engagement/heart-recommend.svg
 ouds_theme_wireframe/assets/functional/settings-and-tools/accessibility-hide.svg
 ouds_theme_wireframe/assets/functional/navigation/menu-bar.svg
 ouds_theme_wireframe/assets/functional/social-and-engagement/heart-recommend.svg
-ouds_theme_wireframe/assets/functional/actions/delete.svg
+ouds_theme_wireframe/assets/functional/actions/delete-cross-round.svg
 ouds_theme_wireframe/assets/functional/settings-and-tools/accessibility-hide.svg
 ouds_theme_wireframe/assets/functional/navigation/menu-bar.svg
 ouds_theme_wireframe/assets/functional/navigation/form-chevron-left.svg
