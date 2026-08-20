@@ -24,13 +24,9 @@ class SoshProgressIndicatorMonoTokens extends OudsProgressIndicatorMonoTokens {
   SoshProgressIndicatorMonoTokens(this.providersTokens);
 
   @override
-  Color get colorContentIndicator => providersTokens.colorScheme.lightDark(
-    providersTokens.colorScheme.repositoryNeutralEmphasizedBlack,
-    providersTokens.colorScheme.repositoryNeutralMutedWhite,
-  );
+  Color get colorContentIndicator => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite);
   @override
-  Color get colorContentTrack => providersTokens.colorScheme.lightDark(
-    ColorRawTokens.colorFunctionalGrayLight400,
-    ColorRawTokens.colorFunctionalGrayDark480,
-  );
+  Color get colorContentTrackDark => ColorRawTokens.colorFunctionalGrayDark480;
+  @override
+  Color get colorContentTrackLight => ColorRawTokens.colorFunctionalGrayLight400;
 }
