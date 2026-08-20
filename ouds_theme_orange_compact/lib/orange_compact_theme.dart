@@ -54,6 +54,7 @@ import 'package:ouds_theme_orange_compact/components/orangeCompact_switch_tokens
 import 'package:ouds_theme_orange_compact/components/orangeCompact_tag_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_textArea_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_textInput_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_typography_tokens.dart';
 import 'package:ouds_theme_orange_compact/material/orangeCompact_material_color_tokens.dart';
 import 'package:ouds_theme_orange_compact/orange_compact_typography.dart';
 import 'package:ouds_theme_orange_compact/semantic/orangeCompact_border_semantic_tokens.dart';
@@ -349,6 +350,7 @@ class OrangeCompactTheme implements OudsThemeContract {
       tag: OrangeCompactTagTokens(providersTokens(context)),
       textArea: OrangeCompactTextAreaTokens(providersTokens(context)),
       textInput: OrangeCompactTextInputTokens(providersTokens(context)),
+      typography: OrangeCompactTypographyTokens(providersTokens(context)),
     );
   }
 

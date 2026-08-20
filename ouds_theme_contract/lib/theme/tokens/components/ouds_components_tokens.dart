@@ -35,6 +35,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tag_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textArea_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_typography_tokens.dart';
 
 class OudsComponentsTokens {
   final OudsAccordionTokens accordion;
@@ -65,6 +66,7 @@ class OudsComponentsTokens {
   final OudsTagTokens tag;
   final OudsTextAreaTokens textArea;
   final OudsTextInputTokens textInput;
+  final OudsTypographyTokens typography;
 
   const OudsComponentsTokens({
     required this.accordion,
@@ -92,5 +94,6 @@ class OudsComponentsTokens {
     required this.tag,
     required this.textArea,
     required this.textInput,
+    required this.typography,
   });
 }
