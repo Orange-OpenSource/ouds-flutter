@@ -60,12 +60,32 @@
 <li><span class="parameter" id="icon-param-size"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span></li>
 <li><span class="parameter" id="icon-param-density"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span> <span class="parameter-name">density</span> = <span class="default-value">OudsLinkDensity.defaultDensity</span>, </span></li>
 <li><span class="parameter" id="icon-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span></li>
-<li><span class="parameter" id="icon-param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span>, </span></li>
+<li><span class="parameter" id="icon-param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span>, </span></li>
 </ol>})
     </section>
     
 <section class="desc markdown">
-  <p>Creates an <a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a> displaying its <code>label</code> alongside a custom <code>linkIcon</code>.</p>
+  <p>Creates an <a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a> displaying its <code>label</code> alongside a custom <code>icon</code>.</p>
+<ul>
+<li><code>key</code> : Controls how one widget replaces another widget in the tree.</li>
+<li><code>label</code> : The text displayed by the link. Required, non-empty; wraps
+onto multiple lines automatically if it doesn't fit the available width.</li>
+<li><code>icon</code> : Required SVG asset path (or package asset) of the custom icon
+displayed alongside the <code>label</code>. Its size automatically adapts to <code>size</code>.</li>
+<li><code>size</code> : The size of the link, <a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.defaultSize</a> or
+<a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.small</a>, controlling text style, icon size and touch
+target dimensions. Defaults to <a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.defaultSize</a>.</li>
+<li><code>density</code> : The density of the link, <a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity.defaultDensity</a>
+or <a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity.compact</a>, controlling the minimum height and block
+padding. Defaults to <a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity.defaultDensity</a>.</li>
+<li><code>onPressed</code> : Callback invoked when the link is tapped or activated
+(keyboard/screen reader). When <code>null</code>, the link is rendered and
+announced as disabled and cannot receive focus.</li>
+<li><code>tinted</code> : Whether the icon should be tinted with the theme color.
+Defaults to <code>true</code>. Set to <code>false</code> to keep the icon's original colors
+(e.g. for multi-color or brand icons); in that case, ensure sufficient
+contrast with the background for accessibility reasons.</li>
+</ul>
 </section>
 
 

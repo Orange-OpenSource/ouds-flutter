@@ -66,6 +66,25 @@
     
 <section class="desc markdown">
   <p>Creates a text-only <a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a>.</p>
+<ul>
+<li><code>label</code> : The text displayed by the link. Required, non-empty; wraps
+onto multiple lines automatically if it doesn't fit the available width.</li>
+<li><code>layout</code> : Deprecated <code>OudsLinkLayout</code> (<code>textOnly</code>, <code>textAndIcon</code>,
+<code>back</code>, <code>next</code>). Use <a href="../../components_link_ouds_link/OudsLink/icon.html">OudsLink.icon</a>, <a href="../../components_link_ouds_link/OudsLink/OudsLink.previous.html">OudsLink.previous</a>, <a href="../../components_link_ouds_link/OudsLink/OudsLink.next.html">OudsLink.next</a>
+or <a href="../../components_link_ouds_link/OudsLink/OudsLink.external.html">OudsLink.external</a> instead. Defaults to <a href="../../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout.textOnly</a>.</li>
+<li><code>size</code> : The size of the link, <a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.defaultSize</a> or
+<a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.small</a>, controlling text style and touch target dimensions.
+Defaults to <a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.defaultSize</a>.</li>
+<li><code>density</code> : The density of the link, <a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity.defaultDensity</a>
+or <a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity.compact</a>, controlling the minimum height and block
+padding. Defaults to <a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity.defaultDensity</a>.</li>
+<li><code>onPressed</code> : Callback invoked when the link is tapped or activated
+(keyboard/screen reader). When <code>null</code>, the link is rendered and
+announced as disabled and cannot receive focus.</li>
+<li><code>icon</code> : Deprecated SVG asset path used to display a custom icon
+alongside the <code>label</code> when combined with <code>layout: OudsLinkLayout.textAndIcon</code>.
+Use <a href="../../components_link_ouds_link/OudsLink/icon.html">OudsLink.icon</a> instead.</li>
+</ul>
 </section>
 
 
@@ -86,7 +105,7 @@
   this.onPressed,
   this.icon,
 }) : _indicator = null,
-     tinted = null;</code></pre>
+     tinted = true;</code></pre>
 </section>
 
 

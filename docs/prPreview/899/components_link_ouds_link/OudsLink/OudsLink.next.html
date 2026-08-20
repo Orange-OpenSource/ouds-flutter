@@ -65,6 +65,22 @@
 <section class="desc markdown">
   <p>Creates an <a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a> used for standard navigation, displaying a
 trailing chevron after the <code>label</code>.</p>
+<ul>
+<li><code>key</code> : Controls how one widget replaces another widget in the tree.</li>
+<li><code>label</code> : The text displayed by the link. Required, non-empty; wraps
+onto multiple lines automatically if it doesn't fit the available width.</li>
+<li><code>size</code> : The size of the link, <a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.defaultSize</a> or
+<a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.small</a>, controlling text style, chevron size and touch
+target dimensions. Defaults to <a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.defaultSize</a>.</li>
+<li><code>density</code> : The density of the link, <a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity.defaultDensity</a>
+or <a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity.compact</a>, controlling the minimum height and block
+padding. Defaults to <a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity.defaultDensity</a>.</li>
+<li><code>onPressed</code> : Callback invoked when the link is tapped or activated
+(keyboard/screen reader), typically to navigate forward. When <code>null</code>,
+the link is rendered and announced as disabled and cannot receive focus.</li>
+</ul>
+<p>The trailing chevron icon is fixed and cannot be customized (unlike
+<a href="../../components_link_ouds_link/OudsLink/icon.html">OudsLink.icon</a>).</p>
 </section>
 
 
@@ -78,7 +94,7 @@ trailing chevron after the <code>label</code>.</p>
   this.density = OudsLinkDensity.defaultDensity,
   this.onPressed,
 }) : icon = null,
-     tinted = null,
+     tinted = true,
      _indicator = OudsLinkIndicator.next,
      layout = OudsLinkLayout.next;</code></pre>
 </section>
