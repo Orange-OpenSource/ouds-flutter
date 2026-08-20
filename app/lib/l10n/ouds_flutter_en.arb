@@ -138,6 +138,7 @@
   "app_components_common_description_tech": "Description",
   "app_components_common_edgeToEdge_tech": "Edge to edge",
   "app_components_common_type_tech" : "Type",
+  "app_components_common_tinted_tech": "Tinted icon",
 
   "@_components_alert": {},
   "app_components_alert_tech": "Alert",
@@ -279,7 +280,6 @@
   "app_components_link_previousLayout_tech": "Previous",
   "app_components_link_nextLayout_tech": "Next",
   "app_components_link_externalLayout_tech": "External",
-  "app_components_link_tinted_tech": "Tinted icon",
 
   "@_components_list_item": {},
   "app_components_listItem_tech" : "List item",

@@ -290,6 +290,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_type_tech => 'Type';
 
   @override
+  String get app_components_common_tinted_tech => 'Tinted icon';
+
+  @override
   String get app_components_alert_tech => 'Alert';
 
   @override
@@ -653,9 +656,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_link_externalLayout_tech => 'External';
-
-  @override
-  String get app_components_link_tinted_tech => 'Tinted icon';
 
   @override
   String get app_components_listItem_tech => 'List item';

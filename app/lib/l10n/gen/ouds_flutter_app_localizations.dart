@@ -631,6 +631,12 @@ abstract class AppLocalizations {
   /// **'Type'**
   String get app_components_common_type_tech;
 
+  /// No description provided for @app_components_common_tinted_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Tinted icon'**
+  String get app_components_common_tinted_tech;
+
   /// No description provided for @app_components_alert_tech.
   ///
   /// In en, this message translates to:
@@ -1259,12 +1265,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'External'**
   String get app_components_link_externalLayout_tech;
-
-  /// No description provided for @app_components_link_tinted_tech.
-  ///
-  /// In en, this message translates to:
-  /// **'Tinted icon'**
-  String get app_components_link_tinted_tech;
 
   /// No description provided for @app_components_listItem_tech.
   ///

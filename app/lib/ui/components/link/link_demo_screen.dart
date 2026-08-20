@@ -246,7 +246,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         if (customizationState.selectedLayout == LinkEnumLayout.textAndIcon)
           CustomizableSwitch(
-            title: context.l10n.app_components_link_tinted_tech,
+            title: context.l10n.app_components_common_tinted_tech,
             value: customizationState.isTinted,
             onChanged: (value) {
               setState(() {

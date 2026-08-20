@@ -109,6 +109,8 @@ enum OudsLinkDensity {
 ///
 /// ### Link with Icon :
 ///
+/// Creates an [OudsLink] displaying its [label] alongside a custom [icon].
+///
 /// ```dart
 /// OudsLink.icon(
 ///       label: 'Label',
