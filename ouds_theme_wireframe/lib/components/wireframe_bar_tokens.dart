@@ -33,9 +33,7 @@ class WireframeBarTokens extends OudsBarTokens {
   @override
   Color get colorBgOpaque => providersTokens.colorScheme.bgSecondary;
   @override
-  Color get colorBgTranslucentDark => WireframeColorRawTokens.colorOpacityGrayDark880800;
-  @override
-  Color get colorBgTranslucentLight => ColorRawTokens.colorOpacityWhite800;
+  Color get colorBgTranslucent => providersTokens.colorScheme.lightDark(ColorRawTokens.colorOpacityWhite800, WireframeColorRawTokens.colorOpacityGrayDark880800);
   @override
   Color get colorBorderBadge => providersTokens.colorScheme.bgSecondary;
   @override
