@@ -35,17 +35,19 @@ class LinkCustomizationUtils {
     final label = getText(customizationState);
     final size = getSize(customizationState.selectedSize);
     final density = getDensity(customizationState.selectedDensity);
+    final tinted = customizationState.isTinted;
 
     switch (customizationState.selectedLayout) {
       case LinkEnumLayout.textAndIcon:
         return OudsLink.icon(
           label: label,
-          icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
-            themeController,
-          ),
+          icon: tinted
+              ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+              : AppAssets.icons.icUntintedSquare,
           size: size,
           density: density,
           onPressed: onPressed,
+          tinted: tinted,
         );
       case LinkEnumLayout.next:
         return OudsLink.next(

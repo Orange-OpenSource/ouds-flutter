@@ -279,6 +279,7 @@
   "app_components_link_previousLayout_tech": "Previous",
   "app_components_link_nextLayout_tech": "Next",
   "app_components_link_externalLayout_tech": "External",
+  "app_components_link_tinted_tech": "Tinted icon",
 
   "@_components_list_item": {},
   "app_components_listItem_tech" : "List item",

@@ -34,6 +34,7 @@ class LinkCustomizationState
   late final LabelTextState labelTextState;
   late final SizeState sizeState;
   late final DensityState densityState;
+  late final TintedState tintedState;
 
   @override
   void initState() {
@@ -42,6 +43,7 @@ class LinkCustomizationState
     labelTextState = LabelTextState(setState);
     sizeState = SizeState(setState);
     densityState = DensityState(setState);
+    tintedState = TintedState(setState);
   }
 
   LinkEnumLayout get selectedLayout => layoutState.selected;
@@ -55,6 +57,9 @@ class LinkCustomizationState
 
   LinkEnumDensity get selectedDensity => densityState.selected;
   set selectedDensity(LinkEnumDensity value) => densityState.selected = value;
+
+  bool get isTinted => tintedState.value;
+  set isTinted(bool value) => tintedState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +126,24 @@ class SizeState {
   set selected(LinkEnumSize newValue) {
     _setState(() {
       _selectedSize = newValue;
+    });
+  }
+}
+
+/// Tinted State Management
+///
+/// Controls whether the icon displayed by [OudsLink.icon] should be tinted
+/// with the theme color, or shown with its original colors.
+class TintedState {
+  TintedState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _tinted = true;
+
+  bool get value => _tinted;
+  set value(bool newValue) {
+    _setState(() {
+      _tinted = newValue;
     });
   }
 }

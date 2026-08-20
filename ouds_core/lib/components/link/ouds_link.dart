@@ -81,7 +81,9 @@ enum OudsLinkDensity {
 /// - [density] : The density of the link, [OudsLinkDensity] such as compact or default.
 /// - [label] : A text to display in link component.
 /// - [icon] : An optional SVG asset name to display an icon within the link (used with [OudsLink.icon]).
-/// - [tinted] : Whether the icon is tinted with the link's text/icon color, only used with [OudsLink.icon].
+/// - [tinted] : tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+///  When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+///   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons, only used with [OudsLink.icon].
 /// - [onPressed]: Callback invoked when the link is clicked.
 ///
 /// [OudsLink] provides a dedicated named constructor for every supported variant:
@@ -90,7 +92,6 @@ enum OudsLinkDensity {
 /// - [OudsLink.previous] renders a "backward" navigation link with a leading chevron.
 /// - [OudsLink.next] renders a "forward" navigation link with a trailing chevron.
 /// - [OudsLink.external] renders a link navigating outside the current context, with a trailing indicator.
-///
 ///
 /// ### You can use [OudsLink] component in your project, customizing parameters as needed :
 ///
@@ -106,7 +107,21 @@ enum OudsLinkDensity {
 ///     );
 /// ```
 ///
+/// ### Link with Icon :
+///
+/// ```dart
+/// OudsLink.icon(
+///       label: 'Label',
+///       icon: 'assets/ic_heart.svg',
+///       tinted: true,
+///       onPressed: () {}
+///     );
+/// ```
+///
 /// ### Next :
+///
+/// Creates an [OudsLink] used for standard navigation, displaying a
+/// trailing chevron after the [label].
 ///
 /// ```dart
 /// OudsLink.next(
@@ -117,6 +132,8 @@ enum OudsLinkDensity {
 ///
 /// ### Previous :
 ///
+/// Creates an [OudsLink] used for "backward" navigation, displaying a
+/// leading chevron before the [label].
 /// ```dart
 /// OudsLink.previous(
 ///       label: 'Label',
@@ -126,20 +143,12 @@ enum OudsLinkDensity {
 ///
 /// ### External :
 ///
+/// Creates an [OudsLink] used to navigate outside the current product, service or application.
+/// The external navigation indicator informs users that the destination belongs to another context.
+///
 /// ```dart
 /// OudsLink.external(
 ///       label: 'Label',
-///       onPressed: () {}
-///     );
-/// ```
-///
-/// ### Link with Icon :
-///
-/// ```dart
-/// OudsLink.icon(
-///       label: 'Label',
-///       icon: 'assets/ic_heart.svg',
-///       tinted: true,
 ///       onPressed: () {}
 ///     );
 /// ```
@@ -160,7 +169,7 @@ enum OudsLinkDensity {
 class OudsLink extends StatefulWidget {
   final String label;
   final String? icon;
-  final bool? tinted;
+  final bool tinted;
   @Deprecated(
     'OudsLinkLayout is deprecated and will be removed in a future version. '
     'Use the dedicated OudsLink.icon, OudsLink.previous, OudsLink.next or '
@@ -174,6 +183,24 @@ class OudsLink extends StatefulWidget {
   final OudsLinkIndicator? _indicator;
 
   /// Creates a text-only [OudsLink].
+  ///
+  /// - [label] : The text displayed by the link. Required, non-empty; wraps
+  ///   onto multiple lines automatically if it doesn't fit the available width.
+  /// - [layout] : Deprecated `OudsLinkLayout` (`textOnly`, `textAndIcon`,
+  ///   `back`, `next`). Use [OudsLink.icon], [OudsLink.previous], [OudsLink.next]
+  ///   or [OudsLink.external] instead. Defaults to [OudsLinkLayout.textOnly].
+  /// - [size] : The size of the link, [OudsLinkSize.defaultSize] or
+  ///   [OudsLinkSize.small], controlling text style and touch target dimensions.
+  ///   Defaults to [OudsLinkSize.defaultSize].
+  /// - [density] : The density of the link, [OudsLinkDensity.defaultDensity]
+  ///   or [OudsLinkDensity.compact], controlling the minimum height and block
+  ///   padding. Defaults to [OudsLinkDensity.defaultDensity].
+  /// - [onPressed] : Callback invoked when the link is tapped or activated
+  ///   (keyboard/screen reader). When `null`, the link is rendered and
+  ///   announced as disabled and cannot receive focus.
+  /// - [icon] : Deprecated SVG asset path used to display a custom icon
+  ///   alongside the [label] when combined with `layout: OudsLinkLayout.textAndIcon`.
+  ///   Use [OudsLink.icon] instead.
   const OudsLink({
     super.key,
     required this.label,
@@ -188,9 +215,28 @@ class OudsLink extends StatefulWidget {
     this.onPressed,
     this.icon,
   }) : _indicator = null,
-       tinted = null;
+       tinted = true;
 
-  /// Creates an [OudsLink] displaying its [label] alongside a custom [linkIcon].
+  /// Creates an [OudsLink] displaying its [label] alongside a custom [icon].
+  ///
+  /// - [key] : Controls how one widget replaces another widget in the tree.
+  /// - [label] : The text displayed by the link. Required, non-empty; wraps
+  ///   onto multiple lines automatically if it doesn't fit the available width.
+  /// - [icon] : Required SVG asset path (or package asset) of the custom icon
+  ///   displayed alongside the [label]. Its size automatically adapts to [size].
+  /// - [size] : The size of the link, [OudsLinkSize.defaultSize] or
+  ///   [OudsLinkSize.small], controlling text style, icon size and touch
+  ///   target dimensions. Defaults to [OudsLinkSize.defaultSize].
+  /// - [density] : The density of the link, [OudsLinkDensity.defaultDensity]
+  ///   or [OudsLinkDensity.compact], controlling the minimum height and block
+  ///   padding. Defaults to [OudsLinkDensity.defaultDensity].
+  /// - [onPressed] : Callback invoked when the link is tapped or activated
+  ///   (keyboard/screen reader). When `null`, the link is rendered and
+  ///   announced as disabled and cannot receive focus.
+  /// - [tinted] : Whether the icon should be tinted with the theme color.
+  ///   Defaults to `true`. Set to `false` to keep the icon's original colors
+  ///   (e.g. for multi-color or brand icons); in that case, ensure sufficient
+  ///   contrast with the background for accessibility reasons.
   const OudsLink.icon({
     super.key,
     required this.label,
@@ -204,6 +250,22 @@ class OudsLink extends StatefulWidget {
 
   /// Creates an [OudsLink] used for "backward" navigation, displaying a
   /// leading chevron before the [label].
+  ///
+  /// - [key] : Controls how one widget replaces another widget in the tree.
+  /// - [label] : The text displayed by the link. Required, non-empty; wraps
+  ///   onto multiple lines automatically if it doesn't fit the available width.
+  /// - [size] : The size of the link, [OudsLinkSize.defaultSize] or
+  ///   [OudsLinkSize.small], controlling text style, chevron size and touch
+  ///   target dimensions. Defaults to [OudsLinkSize.defaultSize].
+  /// - [density] : The density of the link, [OudsLinkDensity.defaultDensity]
+  ///   or [OudsLinkDensity.compact], controlling the minimum height and block
+  ///   padding. Defaults to [OudsLinkDensity.defaultDensity].
+  /// - [onPressed] : Callback invoked when the link is tapped or activated
+  ///   (keyboard/screen reader), typically to navigate back. When `null`,
+  ///   the link is rendered and announced as disabled and cannot receive focus.
+  ///
+  /// The leading chevron icon is fixed and cannot be customized (unlike
+  /// [OudsLink.icon]).
   const OudsLink.previous({
     super.key,
     required this.label,
@@ -211,12 +273,28 @@ class OudsLink extends StatefulWidget {
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
   }) : icon = null,
-       tinted = null,
+       tinted = true,
        _indicator = OudsLinkIndicator.previous,
        layout = OudsLinkLayout.back;
 
   /// Creates an [OudsLink] used for standard navigation, displaying a
   /// trailing chevron after the [label].
+  ///
+  /// - [key] : Controls how one widget replaces another widget in the tree.
+  /// - [label] : The text displayed by the link. Required, non-empty; wraps
+  ///   onto multiple lines automatically if it doesn't fit the available width.
+  /// - [size] : The size of the link, [OudsLinkSize.defaultSize] or
+  ///   [OudsLinkSize.small], controlling text style, chevron size and touch
+  ///   target dimensions. Defaults to [OudsLinkSize.defaultSize].
+  /// - [density] : The density of the link, [OudsLinkDensity.defaultDensity]
+  ///   or [OudsLinkDensity.compact], controlling the minimum height and block
+  ///   padding. Defaults to [OudsLinkDensity.defaultDensity].
+  /// - [onPressed] : Callback invoked when the link is tapped or activated
+  ///   (keyboard/screen reader), typically to navigate forward. When `null`,
+  ///   the link is rendered and announced as disabled and cannot receive focus.
+  ///
+  /// The trailing chevron icon is fixed and cannot be customized (unlike
+  /// [OudsLink.icon]).
   const OudsLink.next({
     super.key,
     required this.label,
@@ -224,12 +302,30 @@ class OudsLink extends StatefulWidget {
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
   }) : icon = null,
-       tinted = null,
+       tinted = true,
        _indicator = OudsLinkIndicator.next,
        layout = OudsLinkLayout.next;
 
   /// Creates an [OudsLink] navigating outside the current product, service or
   /// application, displaying a trailing external indicator after the [label].
+  ///
+  /// - [key] : Controls how one widget replaces another widget in the tree.
+  /// - [label] : The text displayed by the link. Required, non-empty; wraps
+  ///   onto multiple lines automatically if it doesn't fit the available width.
+  /// - [size] : The size of the link, [OudsLinkSize.defaultSize] or
+  ///   [OudsLinkSize.small], controlling text style, indicator size and touch
+  ///   target dimensions. Defaults to [OudsLinkSize.defaultSize].
+  /// - [density] : The density of the link, [OudsLinkDensity.defaultDensity]
+  ///   or [OudsLinkDensity.compact], controlling the minimum height and block
+  ///   padding. Defaults to [OudsLinkDensity.defaultDensity].
+  /// - [onPressed] : Callback invoked when the link is tapped or activated
+  ///   (keyboard/screen reader), typically to open the external destination.
+  ///   When `null`, the link is rendered and announced as disabled and
+  ///   cannot receive focus.
+  ///
+  /// The trailing external icon informs users that the destination belongs
+  /// to another context; it is fixed and cannot be customized (unlike
+  /// [OudsLink.icon]).
   const OudsLink.external({
     super.key,
     required this.label,
@@ -237,7 +333,7 @@ class OudsLink extends StatefulWidget {
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
   }) : icon = null,
-       tinted = null,
+       tinted = true,
        _indicator = OudsLinkIndicator.external,
        layout = OudsLinkLayout.next;
 
@@ -252,6 +348,8 @@ class _OudsLinkState extends State<OudsLink> {
   bool _isFocused = false;
   bool _isPressed = false;
 
+  /// Initializes the focus node (listening for focus changes) and schedules
+  /// the first [_checkTextLines] measurement after the initial layout.
   @override
   void initState() {
     super.initState();
@@ -262,6 +360,8 @@ class _OudsLinkState extends State<OudsLink> {
     WidgetsBinding.instance.addPostFrameCallback((_) => _checkTextLines());
   }
 
+  /// Re-measures the label's line count whenever the [label] changes, so the
+  /// icon's vertical alignment stays accurate after an update.
   @override
   void didUpdateWidget(covariant OudsLink oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -306,11 +406,16 @@ class _OudsLinkState extends State<OudsLink> {
     super.dispose();
   }
 
+  /// Updates [_isFocused] based on the focus node state, and forces it back
+  /// to `false` when the link is disabled (no [OudsLink.onPressed] callback).
   void _handleFocusChange(bool focus) {
     if (widget.onPressed == null) _isFocused = false;
     setState(() => _isFocused = focus);
   }
 
+  /// Builds the link's inner content (label plus, depending on the variant,
+  /// a leading or trailing icon/chevron), dispatching to the right layout
+  /// helper based on the resolved indicator/layout for this [widget].
   Widget _buildLinkContent(BuildContext context) {
     final isDisabled = widget.onPressed == null;
     final interactionModelHover = OudsInheritedInteractionModel.of(
@@ -349,7 +454,7 @@ class _OudsLinkState extends State<OudsLink> {
     } else if ((widget._indicator == null && widget.icon != null) ||
         (widget._indicator != null &&
             widget._indicator == OudsLinkIndicator.previous)) {
-      return _getTextIconOrPreviousContent(
+      return _buildTextIconOrPreviousContent(
         linkControlState,
         linkStatusModifier,
         linkTextStyleModifier,
@@ -357,7 +462,7 @@ class _OudsLinkState extends State<OudsLink> {
       );
     } else if (widget._indicator != null &&
         widget._indicator != OudsLinkIndicator.previous) {
-      return getNextOrExternalContent(
+      return _getNextOrExternalContent(
         linkControlState,
         linkStatusModifier,
         linkTextStyleModifier,
@@ -373,7 +478,7 @@ class _OudsLinkState extends State<OudsLink> {
             linkTextStyleModifier,
           );
         case OudsLinkLayout.next:
-          return getNextOrExternalContent(
+          return _getNextOrExternalContent(
             linkControlState,
             linkStatusModifier,
             linkTextStyleModifier,
@@ -381,7 +486,7 @@ class _OudsLinkState extends State<OudsLink> {
           );
         case OudsLinkLayout.back:
         case OudsLinkLayout.textAndIcon:
-          return _getTextIconOrPreviousContent(
+          return _buildTextIconOrPreviousContent(
             linkControlState,
             linkStatusModifier,
             linkTextStyleModifier,
@@ -391,6 +496,9 @@ class _OudsLinkState extends State<OudsLink> {
     }
   }
 
+  /// Builds the [OudsLink] widget tree: wraps [_buildLinkContent] with
+  /// accessibility [Semantics] (link role/state) and the interactive
+  /// container (focus, hover, press handling and constraints).
   @override
   Widget build(BuildContext context) {
     final isDisabled = widget.onPressed == null;
@@ -442,7 +550,7 @@ class _OudsLinkState extends State<OudsLink> {
 
   /// Returns a Row widget for a link with `next` layout, including the label
   /// and a next icon of a link component.
-  Widget getNextOrExternalContent(
+  Widget _getNextOrExternalContent(
     OudsLinkControlState linkControlState,
     OudsLinkStatusModifier linkStatusModifier,
     OudsLinkTextStyleModifier linkTextStyleModifier,
@@ -481,7 +589,7 @@ class _OudsLinkState extends State<OudsLink> {
 
   /// Returns a Row widget for a link with `textAndIcon` or `back` layout,
   /// including the icon and label, properly aligned and spaced.
-  Widget _getTextIconOrPreviousContent(
+  Widget _buildTextIconOrPreviousContent(
     OudsLinkControlState linkControlState,
     OudsLinkStatusModifier linkStatusModifier,
     OudsLinkTextStyleModifier linkTextStyleModifier,
@@ -497,7 +605,6 @@ class _OudsLinkState extends State<OudsLink> {
         widget.icon,
       )!,
       children: [
-        //the deprecated param will be removed
         if (widget.layout == OudsLinkLayout.back ||
             widget.layout == OudsLinkLayout.textAndIcon ||
             widget._indicator == OudsLinkIndicator.previous ||
@@ -521,6 +628,9 @@ class _OudsLinkState extends State<OudsLink> {
     );
   }
 
+  /// Wraps [child] in a sized/padded [Container] with an [InkWell] handling
+  /// tap, hover and press interactions, and draws the focus border(s) when
+  /// the link is focused.
   Widget _buildLinkContainer(
     BuildContext context, {
     required Widget child,
@@ -536,59 +646,101 @@ class _OudsLinkState extends State<OudsLink> {
     final colorScheme = theme.colorScheme(context);
     final borderTokens = theme.borderTokens;
 
-    return Container(
-      constraints: BoxConstraints(
-        minHeight: minHeightAndWidth[OudsLinkDimensions.height.name]!,
-        minWidth: minHeightAndWidth[OudsLinkDimensions.width.name]!,
-      ),
-      padding: linkSizeModifier.getPadding(widget.size, widget.density),
-      decoration: _isFocused
-          ? BoxDecoration(
-              border: OudsBorder().borderAll(
-                width: borderTokens.widthFocusInset,
-                color: colorScheme.borderFocusInset,
+    return _isFocused
+        ? Stack(
+            clipBehavior: Clip
+                .none, // Allows the border to overflow slightly if necessary.
+            alignment: Alignment.center,
+            children: [
+              Container(
+                constraints: BoxConstraints(
+                  minHeight: minHeightAndWidth[OudsLinkDimensions.height.name]!,
+                  minWidth: minHeightAndWidth[OudsLinkDimensions.width.name]!,
+                ),
+                padding: linkSizeModifier.getPadding(
+                  widget.size,
+                  widget.density,
+                ),
+                decoration: BoxDecoration(
+                  border: OudsBorder().borderAll(
+                    width: borderTokens.widthFocusInset,
+                    color: colorScheme.borderFocusInset,
+                  ),
+                ),
+                child: InkWell(
+                  onTap: widget.onPressed,
+                  focusNode: _focusNode,
+                  canRequestFocus: !isDisabled,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  onHover: (hovering) {
+                    if (!isDisabled) setState(() => _isHovered = hovering);
+                  },
+                  onHighlightChanged: (highlighted) {
+                    if (!isDisabled) setState(() => _isPressed = highlighted);
+                  },
+                  child: Stack(clipBehavior: Clip.none, children: [child]),
+                ),
               ),
-            )
-          : null,
-      child: InkWell(
-        onTap: widget.onPressed,
-        focusNode: _focusNode,
-        canRequestFocus: !isDisabled,
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        focusColor: Colors.transparent,
-        hoverColor: Colors.transparent,
-        onHover: (hovering) {
-          if (!isDisabled) setState(() => _isHovered = hovering);
-        },
-        onHighlightChanged: (highlighted) {
-          if (!isDisabled) setState(() => _isPressed = highlighted);
-        },
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            if (_isFocused)
-              Positioned(
-                top: -borderTokens.widthFocus,
-                bottom: -borderTokens.widthFocus,
-                left: -borderTokens.widthFocus,
-                right: -borderTokens.widthFocus,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: OudsBorder().borderAll(
-                      color: colorScheme.borderFocus,
-                      width: borderTokens.widthFocus,
+              // The focus border, drawn on top.
+              // IgnorePointer prevents this border from intercepting clicks.
+              Positioned.fill(
+                //the focus border should be outside
+                left: -borderTokens.widthFocus / 2,
+                right: -borderTokens.widthFocus / 2,
+                bottom: -borderTokens.widthFocus / 2,
+                top: -borderTokens.widthFocus / 2,
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: OudsBorder().borderAll(
+                        color: colorScheme.borderFocus,
+                        width: borderTokens.widthFocus / 2,
+                      ),
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: OudsBorder().borderAll(
+                          color: colorScheme.borderFocusInset,
+                          width: borderTokens.widthFocusInset,
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            child,
-          ],
-        ),
-      ),
-    );
+            ],
+          )
+        : Container(
+            constraints: BoxConstraints(
+              minHeight: minHeightAndWidth[OudsLinkDimensions.height.name]!,
+              minWidth: minHeightAndWidth[OudsLinkDimensions.width.name]!,
+            ),
+            padding: linkSizeModifier.getPadding(widget.size, widget.density),
+            child: InkWell(
+              onTap: widget.onPressed,
+              focusNode: _focusNode,
+              canRequestFocus: !isDisabled,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              onHover: (hovering) {
+                if (!isDisabled) setState(() => _isHovered = hovering);
+              },
+              onHighlightChanged: (highlighted) {
+                if (!isDisabled) setState(() => _isPressed = highlighted);
+              },
+              child: Stack(clipBehavior: Clip.none, children: [child]),
+            ),
+          );
   }
 
+  /// Renders the icon/chevron as an [SvgPicture], resolving its asset via
+  /// [_getIcon] when no custom [assetName] is provided, and applying a
+  /// tint color unless [tinted] is `false` for a custom icon.
   Widget _buildIcon(
     BuildContext context,
     String? assetName,
@@ -600,25 +752,32 @@ class _OudsLinkState extends State<OudsLink> {
     final statusModifier = OudsLinkStatusModifier(context);
     final sizeModifier = OudsLinkSizeModifier(context);
     final iconSize = sizeModifier.getIconSize(size);
-    final isIcon =
-        assetName != null ||
-        layout == OudsLinkLayout.textAndIcon ||
-        widget.icon != null;
+    final isIcon = assetName != null || layout == OudsLinkLayout.textAndIcon;
 
-    return SvgPicture.asset(
+    final svgIcon = SvgPicture.asset(
       excludeFromSemantics: true,
       assetName ?? _getIcon(layout, indicator)!,
       package: assetName == null ? OudsTheme.of(context).packageName : null,
       width: iconSize[OudsLinkDimensions.width.name],
       height: iconSize[OudsLinkDimensions.height.name],
       fit: BoxFit.contain,
-      colorFilter: ColorFilter.mode(
-        !isIcon
-            ? statusModifier.getArrowColor(controlItemState)
-            : statusModifier.getTextAndIconColor(controlItemState),
-        BlendMode.srcIn,
-      ),
+      colorFilter: assetName != null && !widget.tinted
+          ? null
+          : ColorFilter.mode(
+              !isIcon
+                  ? statusModifier.getArrowColor(controlItemState)
+                  : statusModifier.getTextAndIconColor(controlItemState),
+              BlendMode.srcIn,
+            ),
       matchTextDirection: true,
+    );
+
+    return Container(
+      color: !isIcon && widget.tinted && widget._indicator != null
+          ? null
+          : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
+
+      child: svgIcon,
     );
   }
 

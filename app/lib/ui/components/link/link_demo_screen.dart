@@ -244,6 +244,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        if (customizationState.selectedLayout == LinkEnumLayout.textAndIcon)
+          CustomizableSwitch(
+            title: context.l10n.app_components_link_tinted_tech,
+            value: customizationState.isTinted,
+            onChanged: (value) {
+              setState(() {
+                customizationState.isTinted = value;
+              });
+            },
+          ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
           text: customizationState.labelText,

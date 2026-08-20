@@ -46,10 +46,10 @@ class LinkCodeGenerator {
 
     String? sizeCode = size == OudsLinkSize.small
         ? OudsLinkSize.small.toString()
-        : OudsLinkSize.defaultSize.toString();
+        : 'OudsLinkSize.default';
     String? densityCode = density == OudsLinkDensity.compact
         ? OudsLinkDensity.compact.toString()
-        : OudsLinkDensity.defaultDensity.toString();
+        : 'OudsLinkDensity.default';
     String? pressedCode =
         " ${customizationState?.hasEnabled == true ? "() {}" : 'null'}";
 
@@ -64,8 +64,10 @@ class LinkCodeGenerator {
 
     List<String> params = [
       '  label: "$label",',
-      if (layout == LinkEnumLayout.textAndIcon)
-        '  linkIcon: OudsLinkIcon(icon: "assets/ic_heart.svg"),',
+      if (layout == LinkEnumLayout.textAndIcon) ...[
+        '  icon: "assets/ic_heart.svg",',
+        '  tinted: ${customizationState?.isTinted ?? true},',
+      ],
       '  size: $sizeCode,',
       '  density: $densityCode,',
       '  onPressed:$pressedCode',

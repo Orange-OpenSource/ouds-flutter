@@ -1260,6 +1260,12 @@ abstract class AppLocalizations {
   /// **'External'**
   String get app_components_link_externalLayout_tech;
 
+  /// No description provided for @app_components_link_tinted_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Tinted icon'**
+  String get app_components_link_tinted_tech;
+
   /// No description provided for @app_components_listItem_tech.
   ///
   /// In en, this message translates to:

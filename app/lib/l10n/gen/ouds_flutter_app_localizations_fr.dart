@@ -659,6 +659,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_link_externalLayout_tech => 'External';
 
   @override
+  String get app_components_link_tinted_tech => 'Tinted icon';
+
+  @override
   String get app_components_listItem_tech => 'List item';
 
   @override
