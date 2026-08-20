@@ -37,6 +37,7 @@
   "app_themeSettingsDialog_roundedCornerButtons_label" :"Buttons avec coins arrondis",
   "app_themeSettingsDialog_roundedCornerTextInputs_label" :"Text Inputs avec coins arrondis",
   "app_themeSettingsDialog_roundedCornerAlertMessage_label" :"Message d’alerte à coins arrondis",
+  "app_themeSettingsDialog_roundedCornerCardItems_label" :"Éléments de card à coins arrondis",
   "app_themeSettingsDialog_roundedCornerProgressIndicators_label" :"Progress indicators avec coins arrondis",
 
   "@_tokens": {},
@@ -117,6 +118,20 @@
 
   "@_components_link": {},
   "app_components_link_description_text": "Un Link (ou lien) est un élément d'interface utilisateur qui permet de naviguer d'un emplacement à un autre, que ce soit au sein de la même page, entre différentes pages de la même ressource ou vers une ressource externe.",
+
+  "@_components_list_item": {},
+  "app_components_listItem_description_text": "L'élément de liste est un composant d'interface utilisateur qui affiche une unité d'information dans une ligne interactive ou non interactive, au sein d'une liste structurée.\n L'élément de carte est un composant d'interface utilisateur qui affiche une unité d'information dans une carte interactive ou non interactive, au sein d'une disposition en cartes ou de manière indépendante.",
+  "app_components_listItem_static_description_text": "L'élément de liste statique est un composant d'interface utilisateur qui affiche une unité d'information dans une ligne horizontale non interactive au sein d'une liste structurée, et ne permet pas de naviguer, de déclencher des actions ou d'avoir des états interactifs.",
+  "app_components_listItem_cardItem_description_text": "L'élément de carte statique est un composant d'interface utilisateur qui affiche une unité d'information dans une carte autonome et non interactive, qui ne permet pas de naviguer, de déclencher des actions ou d'avoir des états interactifs.",
+  "app_components_listItem_smallCardItem_description_text": "Une variante carte compacte de l'élément de liste pour les résumés en lecture seule.",
+  "app_components_listItem_smallListItem_description_text": "Un élément de liste compact pour les présentations de contenu réduites.",
+  "app_components_listItem_icon_a11y": "Description de l'icône",
+  "app_components_listItem_image_a11y": "Description de l'image",
+  "app_components_listItem_avatarBadge_label": "Badge sur l'avatar",
+  "app_components_listItem_iconBadge_label": "Badge sur l'icône",
+  "app_components_listItem_contentConfiguration_label": "Contenu",
+  "app_components_listItem_globalConfiguration_label": "Global",
+  "app_components_listItem_labelsConfiguration_label": "Étiquettes",
 
   "@_components_password_input": {},
   "app_components_passwordInput_description_text": "Un Password input (ou champ de saisie de mot de passe) est un élément d'interface utilisateur qui permet de capturer de manière sécurisée et confidentielle le mot de passe d'un utilisateur.",

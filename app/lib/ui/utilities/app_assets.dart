@@ -58,6 +58,11 @@ class _Images {
 
 class _Icons {
   const _Icons();
+  // List item icons
+  final String icUntintedSquare =
+      'assets/illustration/component/ic_untinted_square.svg';
+  final String icUntintedWidescreen =
+      'assets/illustration/component/ic_untinted_widescreen.svg';
 
   String deviceSmartphone(ThemeController themeController) =>
       '${themeController.getAssetsPath(themeController)}communication/device/device-smartphone.svg';

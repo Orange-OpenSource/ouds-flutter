@@ -28,6 +28,8 @@ import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
+import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
+import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/navigation/ouds_bottom_bar.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
@@ -56,6 +58,10 @@ import 'package:ouds_flutter_demo/ui/components/form_input/password_input/passwo
 import 'package:ouds_flutter_demo/ui/components/form_input/phone_number/phone_number_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/text_input/text_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/card_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/list_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/small_card_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/small_list_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
@@ -320,6 +326,56 @@ List<Component> components(BuildContext context) {
       LinkDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
+    ),
+    Component.withVariant(
+      context.l10n.app_components_listItem_tech,
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsListItem(
+              label: 'Label',
+              description: 'Description',
+              leading: OudsListItemLeadingIcon(
+                Neutral(
+                  icon: AppAssets.icons.assistanceTipsAndTricks(
+                    themeController,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      context.l10n.app_components_listItem_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_listItem_tech,
+          ListItemDemoScreen(
+            previousPageTitle: context.l10n.app_components_listItem_tech,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_listItem_smallListItem_tech,
+          SmallListItemDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_listItem_smallListItem_tech,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_listItem_cardItem_tech,
+          CardItemDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_listItem_cardItem_tech,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_listItem_smallCardItem_tech,
+          SmallCardItemDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_listItem_smallCardItem_tech,
+          ),
+        ),
+      ],
     ),
     Component(
       context.l10n.app_components_passwordInput_label,
