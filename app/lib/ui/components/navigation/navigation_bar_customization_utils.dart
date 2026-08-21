@@ -65,7 +65,7 @@ class NavigationBarCustomizationUtils {
       final isLastItem = index == safeItemCount - 1;
 
       return OudsNavigationBarItem(
-        icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+        icon: AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
           themeController,
         ),
         label: 'Label', //'item ${index + 1}',
