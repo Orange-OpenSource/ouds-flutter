@@ -481,6 +481,12 @@ abstract class AppLocalizations {
   /// **'Size'**
   String get app_components_common_size_label;
 
+  /// No description provided for @app_components_common_density_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Density'**
+  String get app_components_common_density_label;
+
   /// No description provided for @app_components_common_textAndLoaderLayout_label.
   ///
   /// In en, this message translates to:
@@ -624,6 +630,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Type'**
   String get app_components_common_type_tech;
+
+  /// No description provided for @app_components_common_tinted_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Tinted icon'**
+  String get app_components_common_tinted_tech;
 
   /// No description provided for @app_components_alert_tech.
   ///
@@ -1224,11 +1236,11 @@ abstract class AppLocalizations {
   /// **'The phone number can\'t be empty.'**
   String get app_components_phoneNumberInput_error_label;
 
-  /// No description provided for @app_components_link_label.
+  /// No description provided for @app_components_link_tech.
   ///
   /// In en, this message translates to:
   /// **'Link'**
-  String get app_components_link_label;
+  String get app_components_link_tech;
 
   /// No description provided for @app_components_link_description_text.
   ///
@@ -1236,17 +1248,23 @@ abstract class AppLocalizations {
   /// **'Link is a UI element that allows to navigate from one location to another, either within the same page or across different pages in the same resource, or to an external resource.'**
   String get app_components_link_description_text;
 
-  /// No description provided for @app_components_link_backLayout_label.
+  /// No description provided for @app_components_link_previousLayout_tech.
   ///
   /// In en, this message translates to:
-  /// **'Back'**
-  String get app_components_link_backLayout_label;
+  /// **'Previous'**
+  String get app_components_link_previousLayout_tech;
 
-  /// No description provided for @app_components_link_nextLayout_label.
+  /// No description provided for @app_components_link_nextLayout_tech.
   ///
   /// In en, this message translates to:
   /// **'Next'**
-  String get app_components_link_nextLayout_label;
+  String get app_components_link_nextLayout_tech;
+
+  /// No description provided for @app_components_link_externalLayout_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'External'**
+  String get app_components_link_externalLayout_tech;
 
   /// No description provided for @app_components_listItem_tech.
   ///

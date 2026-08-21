@@ -210,7 +210,6 @@ class ColoredBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(minHeight: 80),
       width: double.infinity,
       color: color?.getValue(context),
       child: Padding(

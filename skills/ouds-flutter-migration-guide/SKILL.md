@@ -681,6 +681,7 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
+| `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
 | `v1.3.0 → v1.3.1` | Full | No | Maintenance release, bug fixes, accessibility improvements |
 | `v1.2.0 → v1.3.0` | Partial | Yes for deprecated APIs | `OudsTag` named constructors, `OudsBadge` named constructors, `OudsPinCodeInput.keyboardType`, new alert/bottom-sheet components |
 | `v1.1.x → v1.2.0` | No | Yes | `OudsTagConfig` removal from theme config, status icon updates, top bar components, French support |
@@ -689,6 +690,48 @@ Before proposing changes:
 ---
 
 ### 3.3 High-impact migrations
+
+#### 3.3.0 `OudsLink` → dedicated named constructors (`v1.3.1 → v2.0.0`)
+
+**Before:**
+
+```dart
+OudsLink(
+  label: 'Label',
+  icon: 'assets/ic_heart.svg',
+)
+
+OudsLink(label: 'Label', layout: OudsLinkLayout.back)
+
+OudsLink(label: 'Label', layout: OudsLinkLayout.next)
+```
+
+**After:**
+
+```dart
+OudsLink.icon(
+  label: 'Label',
+  icon: 'assets/ic_heart.svg',
+  tinted: true,
+)
+
+OudsLink.previous(label: 'Label')
+
+OudsLink.next(label: 'Label')
+
+OudsLink.external(label: 'Label')
+```
+
+**Required actions:**
+
+- Replace `OudsLink(icon: ...)` with `OudsLink.icon(icon: ..., tinted: ...)`.
+- Replace `OudsLink(layout: OudsLinkLayout.back)` with `OudsLink.previous(...)`.
+- Replace `OudsLink(layout: OudsLinkLayout.next)` with `OudsLink.next(...)`.
+- Use `OudsLink.external(...)` for links navigating outside the current product, service or application.
+- Text-only links keep using the default `OudsLink(...)` constructor unchanged.
+- The deprecated `layout` (`OudsLinkLayout`) parameter on the default constructor still works but should be migrated.
+
+---
 
 #### 3.3.1 `OudsTag` → named constructors (`v1.2.x` → `v1.3.0`)
 

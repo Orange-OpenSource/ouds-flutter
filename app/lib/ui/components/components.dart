@@ -316,16 +316,10 @@ List<Component> components(BuildContext context) {
       ],
     ),
     Component(
-      context.l10n.app_components_link_label,
+      context.l10n.app_components_link_tech,
       ComponentContainer(
         child: Column(
-          children: [
-            OudsLink(
-              label: "Link",
-              layout: OudsLinkLayout.next,
-              onPressed: () {},
-            ),
-          ],
+          children: [OudsLink.next(label: "Link", onPressed: () {})],
         ),
       ),
       context.l10n.app_components_link_description_text,
