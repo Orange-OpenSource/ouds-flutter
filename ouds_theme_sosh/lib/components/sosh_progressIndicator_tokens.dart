@@ -29,9 +29,7 @@ class SoshProgressIndicatorTokens extends OudsProgressIndicatorTokens {
   @override
   double get borderRadiusRounded => providersTokens.borderTokens.radiusPill;
   @override
-  Color get colorContentTrackDark => ColorRawTokens.colorFunctionalGrayDark480;
-  @override
-  Color get colorContentTrackLight => ColorRawTokens.colorFunctionalGrayLight400;
+  Color get colorContentTrack => providersTokens.colorScheme.lightDark(ColorRawTokens.colorFunctionalGrayLight400, ColorRawTokens.colorFunctionalGrayDark480);
   @override
   double get sizeLinearIndicatorHeight => DimensionRawTokens.dimension50;
   @override

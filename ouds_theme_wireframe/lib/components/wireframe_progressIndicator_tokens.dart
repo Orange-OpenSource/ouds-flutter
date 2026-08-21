@@ -29,9 +29,7 @@ class WireframeProgressIndicatorTokens extends OudsProgressIndicatorTokens {
   @override
   double get borderRadiusRounded => providersTokens.borderTokens.radiusPill;
   @override
-  Color get colorContentTrackDark => WireframeColorRawTokens.colorFunctionalGrayDark480;
-  @override
-  Color get colorContentTrackLight => WireframeColorRawTokens.colorFunctionalGrayLight320;
+  Color get colorContentTrack => providersTokens.colorScheme.lightDark(WireframeColorRawTokens.colorFunctionalGrayLight320, WireframeColorRawTokens.colorFunctionalGrayDark480);
   @override
   double get sizeLinearIndicatorHeight => DimensionRawTokens.dimension50;
   @override

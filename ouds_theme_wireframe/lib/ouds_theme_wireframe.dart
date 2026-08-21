@@ -53,6 +53,7 @@ import 'package:ouds_theme_wireframe/components/wireframe_switch_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_tag_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_textArea_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_textInput_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_typography_tokens.dart';
 import 'package:ouds_theme_wireframe/material/wireframe_material_color_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_border_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_color_semantic_tokens.dart';
@@ -264,6 +265,7 @@ class WireframeTheme implements OudsThemeContract {
       tag: WireframeTagTokens(providersTokens(context)),
       textArea: WireframeTextAreaTokens(providersTokens(context)),
       textInput: WireframeTextInputTokens(providersTokens(context)),
+      typography: WireframeTypographyTokens(providersTokens(context)),
     );
   }
 

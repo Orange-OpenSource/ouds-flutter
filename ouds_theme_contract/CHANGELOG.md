@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...develop)
 ### Added
 ### Changed
+- [Library] Add typography Tokens component ([#905](https://github.com/Orange-OpenSource/ouds-flutter/issues/905))
 - [Library] In library, update `link` component to v2.4.0 ([#861](https://github.com/Orange-OpenSource/ouds-flutter/issues/861))
 ### Fixed
 

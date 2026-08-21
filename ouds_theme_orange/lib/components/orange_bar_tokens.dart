@@ -32,9 +32,7 @@ class OrangeBarTokens extends OudsBarTokens {
   @override
   Color get colorBgOpaque => providersTokens.colorScheme.bgSecondary;
   @override
-  Color get colorBgTranslucentDark => ColorRawTokens.colorOpacityGrayDark880800;
-  @override
-  Color get colorBgTranslucentLight => ColorRawTokens.colorOpacityWhite800;
+  Color get colorBgTranslucent => providersTokens.colorScheme.lightDark(ColorRawTokens.colorOpacityWhite800, ColorRawTokens.colorOpacityGrayDark880800);
   @override
   Color get colorBorderBadge => providersTokens.colorScheme.bgSecondary;
   @override

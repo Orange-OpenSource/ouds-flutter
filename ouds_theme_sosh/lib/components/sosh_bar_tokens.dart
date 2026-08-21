@@ -33,9 +33,7 @@ class SoshBarTokens extends OudsBarTokens {
   @override
   Color get colorBgOpaque => providersTokens.colorScheme.bgSecondary;
   @override
-  Color get colorBgTranslucentDark => SoshColorRawTokens.colorOpacityLochmaraDark960800;
-  @override
-  Color get colorBgTranslucentLight => ColorRawTokens.colorOpacityWhite800;
+  Color get colorBgTranslucent => providersTokens.colorScheme.lightDark(ColorRawTokens.colorOpacityWhite800, SoshColorRawTokens.colorOpacityLochmaraDark960800);
   @override
   Color get colorBorderBadge => providersTokens.colorScheme.bgSecondary;
   @override
