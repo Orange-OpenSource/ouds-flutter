@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
@@ -41,7 +40,6 @@ class ProgressIndicatorCustomization extends StatefulWidget {
 class ProgressIndicatorCustomizationState
     extends CustomizationWidgetState<ProgressIndicatorCustomization> {
   late final ValueState valueState;
-  late final SizeState sizeState;
   late final StatusState statusState;
   late final TrackState trackState;
   late final AnimatedState animatedState;
@@ -57,7 +55,6 @@ class ProgressIndicatorCustomizationState
   void initState() {
     super.initState();
     valueState = ValueState(setState);
-    sizeState = SizeState(setState);
     statusState = StatusState(setState);
     trackState = TrackState(setState);
     animatedState = AnimatedState(setState);
@@ -72,9 +69,6 @@ class ProgressIndicatorCustomizationState
 
   String get value => valueState.value;
   set value(String value) => valueState.value = value;
-
-  LinkEnumSize get selectedSize => sizeState.selected;
-  set selectedSize(LinkEnumSize value) => sizeState.selected = value;
 
   // Proxy getters and setters to expose state values directly
   StatusEnum get selectedStatus => statusState.selectedStatus;
@@ -209,30 +203,6 @@ class AnimatedState {
   set value(bool newValue) {
     _setState(() {
       _hasAnimatedState = newValue;
-    });
-  }
-}
-
-/// Size State Management
-class SizeState {
-  SizeState(this._setState);
-
-  final void Function(void Function()) _setState;
-
-  List<LinkEnumSize> _sizeList = [LinkEnumSize.defaultSize, LinkEnumSize.small];
-  LinkEnumSize _selectedSize = LinkEnumSize.defaultSize;
-
-  List<LinkEnumSize> get list => _sizeList;
-  set list(List<LinkEnumSize> newList) {
-    _setState(() {
-      _sizeList = newList;
-    });
-  }
-
-  LinkEnumSize get selected => _selectedSize;
-  set selected(LinkEnumSize newValue) {
-    _setState(() {
-      _selectedSize = newValue;
     });
   }
 }

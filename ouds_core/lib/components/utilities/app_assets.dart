@@ -55,6 +55,9 @@ class _Icons {
       'assets/component/link/expanded-true.svg';
   final String componentLinkExpandedFalse =
       'assets/component/link/expanded-false.svg';
+  final String componentLinkExternal =
+      'assets/component/link/external-link.svg';
+
   final String componentTagClose = 'assets/component/tag/close.svg';
   final String componentButtonNext = 'assets/component/button/next.svg';
   final String componentButtonPrevious = 'assets/component/button/previous.svg';

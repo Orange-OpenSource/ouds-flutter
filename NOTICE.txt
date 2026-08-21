@@ -120,6 +120,7 @@ ouds_theme_orange/assets/component/link/expanded-false.svg
 ouds_theme_orange/assets/component/link/expanded-true.svg
 ouds_theme_orange/assets/component/link/next.svg
 ouds_theme_orange/assets/component/link/previous.svg
+ouds_theme_orange/assets/component/link/external-link.svg
 ouds_theme_orange/assets/component/radio-button/radio-button-selected.svg
 ouds_theme_orange/assets/component/switch/selected-switch.svg
 ouds_theme_orange/assets/component/tag/close.svg
@@ -173,6 +174,7 @@ ouds_theme_orange_compact/assets/component/link/expanded-false.svg
 ouds_theme_orange_compact/assets/component/link/expanded-true.svg
 ouds_theme_orange_compact/assets/component/link/next.svg
 ouds_theme_orange_compact/assets/component/link/previous.svg
+ouds_theme_orange_compact/assets/component/link/external-link.svg
 ouds_theme_orange_compact/assets/component/radio-button/radio-button-selected.svg
 ouds_theme_orange_compact/assets/component/switch/selected-switch.svg
 ouds_theme_orange_compact/assets/component/tag/close.svg
@@ -225,6 +227,7 @@ ouds_theme_sosh/assets/component/link/expanded-false.svg
 ouds_theme_sosh/assets/component/link/expanded-true.svg
 ouds_theme_sosh/assets/component/link/next.svg
 ouds_theme_sosh/assets/component/link/previous.svg
+ouds_theme_sosh/assets/component/link/external-link.svg
 ouds_theme_sosh/assets/component/radio-button/radio-button-selected.svg
 ouds_theme_sosh/assets/component/switch/selected-switch.svg
 ouds_theme_sosh/assets/component/tag/close.svg
@@ -272,6 +275,7 @@ ouds_theme_wireframe/assets/component/link/expanded-false.svg
 ouds_theme_wireframe/assets/component/link/expanded-true.svg
 ouds_theme_wireframe/assets/component/link/next.svg
 ouds_theme_wireframe/assets/component/link/previous.svg
+ouds_theme_wireframe/assets/component/link/external-link.svg
 ouds_theme_wireframe/assets/component/radio-button/radio-button-selected.svg
 ouds_theme_wireframe/assets/component/switch/selected-switch.svg
 ouds_theme_wireframe/assets/component/tag/close.svg
