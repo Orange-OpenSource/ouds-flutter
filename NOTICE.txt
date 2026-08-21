@@ -14,19 +14,11 @@ ouds-flutter/app/assets/about_legal_information.md
 
 # Illustration
 ouds-flutter/app/assets/illustration/token/il_union.svg
-ouds-flutter/app/assets/illustration/token/il_union_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_color.svg
-ouds-flutter/app/assets/illustration/token/il_tokens_color_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_elevation.svg
-ouds-flutter/app/assets/illustration/token/il_tokens_elevation_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_opacity.svg
-ouds-flutter/app/assets/illustration/token/il_tokens_opacity_dark.svg
-ouds-flutter/app/assets/illustration/token/il_tokens_opacity.svg
-ouds-flutter/app/assets/illustration/token/il_tokens_opacity_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_typography.svg
-ouds-flutter/app/assets/illustration/token/il_tokens_typography_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border.svg
-ouds-flutter/app/assets/illustration/token/il_tokens_border_dark.svg
 ouds-flutter/app/assets/illustration/component/il_top_app_bar_avatar.jpg
 ouds-flutter/app/assets/illustration/component/ic_untinted_square.svg
 ouds-flutter/app/assets/illustration/component/ic_untinted_widescreen.svg
@@ -36,6 +28,8 @@ ouds-flutter/app/assets/orange/communication/assistance/tips-and-tricks.svg
 ouds-flutter/app/assets/orange_compact/communication/assistance/tips-and-tricks.svg
 ouds-flutter/app/assets/sosh/communication/assistance/tips-and-tricks.svg
 ouds-flutter/app/assets/wireframe/communication/assistance/tips-and-tricks.svg
+
+# Communication - Device
 ouds-flutter/app/assets/orange/communication/device/device-smartphone.svg
 ouds-flutter/app/assets/orange_compact/communication/device/device-smartphone.svg
 ouds-flutter/app/assets/sosh/communication/device/device-smartphone.svg
@@ -107,7 +101,6 @@ ouds_theme_orange/assets/communication/security-and-safety/lock-closed.svg
 ouds_theme_orange/assets/component/alert/important-fill.svg
 ouds_theme_orange/assets/component/alert/info-fill.svg
 ouds_theme_orange/assets/component/alert/tick-confirmation-fill.svg
-ouds_theme_orange/assets/component/alert/warning.svg
 ouds_theme_orange/assets/component/alert/warning-external-shape.svg
 ouds_theme_orange/assets/component/alert/warning-internal-shape.svg
 ouds_theme_orange/assets/component/button/expurge.svg
@@ -116,8 +109,6 @@ ouds_theme_orange/assets/component/button/previous.svg
 ouds_theme_orange/assets/component/checkbox/checkbox-selected.svg
 ouds_theme_orange/assets/component/checkbox/checkbox-undetermined.svg
 ouds_theme_orange/assets/component/chip/tick.svg
-ouds_theme_orange/assets/component/link/expanded-false.svg
-ouds_theme_orange/assets/component/link/expanded-true.svg
 ouds_theme_orange/assets/component/link/next.svg
 ouds_theme_orange/assets/component/link/previous.svg
 ouds_theme_orange/assets/component/link/external-link.svg
@@ -161,7 +152,6 @@ ouds_theme_orange_compact/assets/communication/security-and-safety/lock-closed.s
 ouds_theme_orange_compact/assets/component/alert/important-fill.svg
 ouds_theme_orange_compact/assets/component/alert/info-fill.svg
 ouds_theme_orange_compact/assets/component/alert/tick-confirmation-fill.svg
-ouds_theme_orange_compact/assets/component/alert/warning.svg
 ouds_theme_orange_compact/assets/component/alert/warning-external-shape.svg
 ouds_theme_orange_compact/assets/component/alert/warning-internal-shape.svg
 ouds_theme_orange_compact/assets/component/button/expurge.svg
@@ -170,8 +160,6 @@ ouds_theme_orange_compact/assets/component/button/previous.svg
 ouds_theme_orange_compact/assets/component/checkbox/checkbox-selected.svg
 ouds_theme_orange_compact/assets/component/checkbox/checkbox-undetermined.svg
 ouds_theme_orange_compact/assets/component/chip/tick.svg
-ouds_theme_orange_compact/assets/component/link/expanded-false.svg
-ouds_theme_orange_compact/assets/component/link/expanded-true.svg
 ouds_theme_orange_compact/assets/component/link/next.svg
 ouds_theme_orange_compact/assets/component/link/previous.svg
 ouds_theme_orange_compact/assets/component/link/external-link.svg
@@ -214,7 +202,6 @@ ouds_theme_sosh/assets/communication/security-and-safety/lock-closed.svg
 ouds_theme_sosh/assets/component/alert/important-fill.svg
 ouds_theme_sosh/assets/component/alert/info-fill.svg
 ouds_theme_sosh/assets/component/alert/tick-confirmation-fill.svg
-ouds_theme_sosh/assets/component/alert/warning.svg
 ouds_theme_sosh/assets/component/alert/warning-external-shape.svg
 ouds_theme_sosh/assets/component/alert/warning-internal-shape.svg
 ouds_theme_sosh/assets/component/button/expurge.svg
@@ -223,8 +210,6 @@ ouds_theme_sosh/assets/component/button/previous.svg
 ouds_theme_sosh/assets/component/checkbox/checkbox-selected.svg
 ouds_theme_sosh/assets/component/checkbox/checkbox-undetermined.svg
 ouds_theme_sosh/assets/component/chip/tick.svg
-ouds_theme_sosh/assets/component/link/expanded-false.svg
-ouds_theme_sosh/assets/component/link/expanded-true.svg
 ouds_theme_sosh/assets/component/link/next.svg
 ouds_theme_sosh/assets/component/link/previous.svg
 ouds_theme_sosh/assets/component/link/external-link.svg
@@ -262,7 +247,6 @@ ouds_theme_wireframe/assets/communication/security-and-safety/lock-closed.svg
 ouds_theme_wireframe/assets/component/alert/important-fill.svg
 ouds_theme_wireframe/assets/component/alert/info-fill.svg
 ouds_theme_wireframe/assets/component/alert/tick-confirmation-fill.svg
-ouds_theme_wireframe/assets/component/alert/warning.svg
 ouds_theme_wireframe/assets/component/alert/warning-external-shape.svg
 ouds_theme_wireframe/assets/component/alert/warning-internal-shape.svg
 ouds_theme_wireframe/assets/component/button/expurge.svg
@@ -271,8 +255,6 @@ ouds_theme_wireframe/assets/component/button/previous.svg
 ouds_theme_wireframe/assets/component/checkbox/checkbox-selected.svg
 ouds_theme_wireframe/assets/component/checkbox/checkbox-undetermined.svg
 ouds_theme_wireframe/assets/component/chip/tick.svg
-ouds_theme_wireframe/assets/component/link/expanded-false.svg
-ouds_theme_wireframe/assets/component/link/expanded-true.svg
 ouds_theme_wireframe/assets/component/link/next.svg
 ouds_theme_wireframe/assets/component/link/previous.svg
 ouds_theme_wireframe/assets/component/link/external-link.svg

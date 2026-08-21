@@ -35,7 +35,6 @@ class _Icons {
       'assets/component/alert/important-fill.svg';
   final String componentAlertInformationFill =
       'assets/component/alert/info-fill.svg';
-  final String componentAlertWarning = 'assets/component/alert/warning.svg';
   final String componentAlertWarningExternalShape =
       'assets/component/alert/warning-external-shape.svg';
   final String componentAlertWarningInternalShape =
@@ -51,10 +50,6 @@ class _Icons {
   final String componentChipTick = 'assets/component/chip/tick.svg';
   final String componentLinkNext = 'assets/component/link/next.svg';
   final String componentLinkPrevious = 'assets/component/link/previous.svg';
-  final String componentLinkExpandedTrue =
-      'assets/component/link/expanded-true.svg';
-  final String componentLinkExpandedFalse =
-      'assets/component/link/expanded-false.svg';
   final String componentLinkExternal =
       'assets/component/link/external-link.svg';
 
