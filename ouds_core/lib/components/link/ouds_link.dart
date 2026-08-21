@@ -743,6 +743,10 @@ class _OudsLinkState extends State<OudsLink> {
   /// Renders the icon/chevron as an [SvgPicture], resolving its asset via
   /// [_getIcon] when no custom [assetName] is provided, and applying a
   /// tint color unless [tinted] is `false` for a custom icon.
+  ///
+  /// The next/previous/external chevron is scaled with the system text
+  /// scale factor, clamped between `1.0×` and `2.0×`, so it stays legible
+  /// when the user increases the system font size.
   Widget _buildIcon(
     BuildContext context,
     String? assetName,
@@ -756,12 +760,26 @@ class _OudsLinkState extends State<OudsLink> {
     final iconSize = sizeModifier.getIconSize(size);
     final isIcon = assetName != null || layout == OudsLinkLayout.textAndIcon;
 
+    final baseWidth = iconSize[OudsLinkDimensions.width.name];
+    final baseHeight = iconSize[OudsLinkDimensions.height.name];
+    // Only the chevron (next/previous/external) grows with the text scale,
+    // the custom "textAndIcon" icon keeps its fixed token size.
+    final textScaleFactor = MediaQuery.textScalerOf(
+      context,
+    ).scale(1.0).clamp(1.0, 2.0);
+    final scaledWidth = !isIcon && baseWidth != null
+        ? baseWidth * textScaleFactor
+        : baseWidth;
+    final scaledHeight = !isIcon && baseHeight != null
+        ? baseHeight * textScaleFactor
+        : baseHeight;
+
     final svgIcon = SvgPicture.asset(
       excludeFromSemantics: true,
       assetName ?? _getIcon(layout, indicator)!,
       package: assetName == null ? OudsTheme.of(context).packageName : null,
-      width: iconSize[OudsLinkDimensions.width.name],
-      height: iconSize[OudsLinkDimensions.height.name],
+      width: scaledWidth,
+      height: scaledHeight,
       fit: BoxFit.contain,
       colorFilter: assetName != null && !widget.tinted
           ? null
@@ -776,6 +794,8 @@ class _OudsLinkState extends State<OudsLink> {
 
     return Container(
       color: !isIcon && widget.tinted && widget._indicator != null
+          ? null
+          : widget.tinted
           ? null
           : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
 
