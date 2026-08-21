@@ -26,30 +26,14 @@ class _Images {
 
   /// Tokens
   final String ilTokensColor = 'assets/illustration/token/il_tokens_color.svg';
-  final String ilTokensColorDark =
-      'assets/illustration/token/il_tokens_color_dark.svg';
-
   final String ilTokensElevation =
       'assets/illustration/token/il_tokens_elevation.svg';
-  final String ilTokensElevationDark =
-      'assets/illustration/token/il_tokens_elevation_dark.svg';
-
   final String ilTokensOpacity =
       'assets/illustration/token/il_tokens_opacity.svg';
-  final String ilTokensOpacityDark =
-      'assets/illustration/token/il_tokens_opacity_dark.svg';
-
   final String ilUnion = 'assets/illustration/token/il_union.svg';
-  final String ilUnionDark = 'assets/illustration/token/il_union_dark.svg';
-
   final String ilTypography =
       'assets/illustration/token/il_tokens_typography.svg';
-  final String ilTypographyDark =
-      'assets/illustration/token/il_tokens_typography_dark.svg';
-
   final String ilTokenBorder = 'assets/illustration/token/il_tokens_border.svg';
-  final String ilTokenBorderDark =
-      'assets/illustration/token/il_tokens_border_dark.svg';
 
   // Components
   final String ilTopAppBarAvatar =

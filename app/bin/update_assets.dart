@@ -2,20 +2,50 @@
 
 /// Icon Updater Script
 ///
-/// Updates existing icons from a Figma ZIP export.
-/// Only updates icons that already exist - does NOT add new icons.
+/// Updates existing icons from a Figma ZIP export. Only updates icons that
+/// already exist in the project - does NOT add new icons or create new files.
 ///
-/// Theme mapping (ZIP source -> target themes):
-///   - orange -> orange, orange_compact
-///   - orange_compact -> orange_compact (if exists in ZIP)
-///   - sosh -> sosh
-///   - wireframe -> wireframe
+/// ## How it works
 ///
-/// Usage: dart run app/bin/update_assets.dart <path-to-zip>
-/// Exit codes: 0 = success, 1 = error
+/// 1. Extracts the ZIP file and locates the "OUDS Icons V*" root directory
+/// 2. Scans all existing SVG icons in the project:
+///    - `app/assets/{theme}/` (orange, sosh, wireframe, orange_compact)
+///    - `{package}/assets/` (ouds_theme_orange, ouds_theme_sosh, ouds_theme_wireframe, ouds_theme_orange_compact)
+/// 3. For each icon in the ZIP, updates matching existing icons in target themes
+/// 4. Compares project icons vs ZIP and reports missing icons
 ///
-/// Example:
-///   dart run app/bin/update_assets.dart ~/Downloads/OUDS\ Icons\ V2.3.zip
+/// ## Theme mapping (ZIP source -> target themes)
+///
+/// | ZIP Theme    | Target Themes                              |
+/// |--------------|--------------------------------------------|
+/// | orange       | orange, orange_compact                    |
+/// | orange_compact | orange_compact (if exists in ZIP)       |
+/// | sosh         | sosh                                      |
+/// | wireframe    | wireframe                                 |
+///
+/// Note: orange_compact icons are sourced from the orange folder in the ZIP
+/// (orange_compact folder doesn't exist in Figma exports).
+///
+/// ## Exit codes
+///
+/// - 0: Success
+/// - 1: Error (missing ZIP file, invalid format, or no OUDS Icons directory found)
+///
+/// ## Usage
+///
+/// ```bash
+/// dart run app/bin/update_assets.dart <path-to-zip>
+/// ```
+///
+/// ## Examples
+///
+/// ```bash
+/// # Update icons from a ZIP file in Downloads
+/// dart run app/bin/update_assets.dart ~/Downloads/OUDS\ Icons\ V2.3.zip
+///
+/// # Update icons using absolute path
+/// dart run app/bin/update_assets.dart /path/to/OUDS-Icons-V2.3.zip
+/// ```
 
 import 'dart:io';
 
@@ -201,7 +231,7 @@ Future<void> updateExistingIcons(File zipFile, String projectRoot) async {
         iconRegex.allMatches(content).map((m) => m.group(2)!),
       );
       print(
-        '📄 Found ${definedIconPaths.length} icon definitions in app_assets.dart',
+        '📄 Found ${definedIconPaths.length} icon definitions in ouds_core/app_assets.dart',
       );
     }
 
