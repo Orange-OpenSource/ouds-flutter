@@ -39,7 +39,7 @@ import 'package:provider/provider.dart';
 
 class TextInputDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-  const TextInputDemoScreen({super.key,this.previousPageTitle});
+  const TextInputDemoScreen({super.key, this.previousPageTitle});
 
   @override
   State<TextInputDemoScreen> createState() => _TextInputDemoScreenState();
@@ -80,7 +80,9 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
         inputType: FormFieldsTypeEnum.textInput,
         child: Padding(
           padding: EdgeInsets.only(
-            bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+            bottom: defaultTargetPlatform == TargetPlatform.android
+                ? MediaQuery.of(context).viewPadding.bottom
+                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
           ),
           child: Scaffold(
             extendBodyBehindAppBar: true,
@@ -116,20 +118,29 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
       description: context.l10n.app_components_textInput_description_text,
       widget: Column(
         children: [
           const _TextInputDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
+          ),
           Code(
             code: FormFieldsCodeGenerator.updateCode(
               context,
               FormFieldsTypeEnum.textInput,
             ),
           ),
-          ReferenceDesignVersionComponent(version: OudsComponentVersion.textInput),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.textInput,
+          ),
         ],
       ),
     );
@@ -186,7 +197,9 @@ class _TextInputDemoState extends State<_TextInputDemo> {
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = FormFieldsCustomization.of(context)!; // safe to use !
+    final customizationState = FormFieldsCustomization.of(
+      context,
+    )!; // safe to use !
     final themeController = Provider.of<ThemeController>(context, listen: true);
 
     return LightDarkBox(
@@ -209,19 +222,44 @@ class _TextInputDemoState extends State<_TextInputDemo> {
             ///
           },
         ),
-        trailingIconContentDescription: context.l10n.app_components_textInput_trailingAction_a11y,
+        trailingIconContentDescription:
+            context.l10n.app_components_textInput_trailingAction_a11y,
         decoration: OudsInputDecoration(
-          labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-          helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-          hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-          suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
-          suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
-          prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
-          prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-          errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
+          labelText: customizationState.labelText.isNotEmpty
+              ? FormFieldsCustomizationUtils.getLabelText(customizationState)
+              : null,
+          helperText: customizationState.helperText.isNotEmpty
+              ? FormFieldsCustomizationUtils.getHelperText(customizationState)
+              : null,
+          hintText: customizationState.placeholderText.isNotEmpty
+              ? FormFieldsCustomizationUtils.getPlaceholderText(
+                  customizationState,
+                )
+              : null,
+          suffixIcon: customizationState.hasTrailingIcon
+              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
+                  themeController,
+                )
+              : null,
+          suffix: customizationState.suffixText.isNotEmpty
+              ? FormFieldsCustomizationUtils.getSuffixText(customizationState)
+              : null,
+          prefixIcon: customizationState.hasLeadingIcon
+              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
+                  themeController,
+                )
+              : null,
+          prefix: customizationState.prefixText.isNotEmpty
+              ? FormFieldsCustomizationUtils.getPrefixText(customizationState)
+              : null,
+          errorText: customizationState.hasError
+              ? context.l10n.app_components_textInput_error_label
+              : null,
           loader: customizationState.hasLoader,
           outlined: customizationState.hasOutlined,
-          constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
+          constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
+              ? true
+              : false,
           onSuffixPressed: () {
             ///
             /// To Be implemented if needed
@@ -289,13 +327,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
           onChanged:
-
               /// Specific case: The switch is disabled if there is an error (hasError is true).
               customizationState.isEnabledWhenError == true
-                  ? null // Disable the switch if there is an error
-                  : (value) {
-                      customizationState.hasEnabled = value;
-                    },
+              ? null // Disable the switch if there is an error
+              : (value) {
+                  customizationState.hasEnabled = value;
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_readOnly_label,
@@ -309,7 +346,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged: customizationState.isErrorWhenEnabled || customizationState.isErrorWhenLoader || customizationState.isErrorWhenReadOnly
+          onChanged:
+              customizationState.isErrorWhenEnabled ||
+                  customizationState.isErrorWhenLoader ||
+                  customizationState.isErrorWhenReadOnly
               ? null
               : (value) {
                   customizationState.hasError = value;
@@ -333,7 +373,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
           // The switch is disabled when the user is not typing
-          onChanged: (!customizationState.isTyping || customizationState.isLoaderWhenError)
+          onChanged:
+              (!customizationState.isTyping ||
+                  customizationState.isLoaderWhenError)
               ? null
               : (value) {
                   customizationState.hasLoader = value;

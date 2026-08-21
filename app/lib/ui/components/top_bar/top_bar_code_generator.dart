@@ -109,7 +109,7 @@ class TopBarCodeGenerator {
           final isBadgeEligible =
               (actionCount == 1) || (index == actionCount - 1);
           return '''OudsTopBarActionConfig.icon(
-              icon: "assets/functional-social-and-engagement-heart-empty.svg",
+              icon: "assets/functional-social-and-engagement-heart-recommend.svg",
               badge: ${isBadgeEligible ? getActionBadgeCode(customizationState) : null},
               onActionPressed: (){}
             )''';
@@ -255,7 +255,7 @@ class TopBarCodeGenerator {
           final isBadgeEligible =
               (safeActionCount == 1) || (index == safeActionCount - 1);
           return '''OudsTopBarActionConfig.icon(
-        icon: "assets/functional-social-and-engagement-heart-empty.svg",
+        icon: "assets/functional-social-and-engagement-heart-recommend.svg",
         badge: ${!isLeadingActions && isBadgeEligible ? getActionBadgeCode(customizationState) : null},
          onActionPressed: (){})''';
         case ToolbarTopActionTypeEnum.back:

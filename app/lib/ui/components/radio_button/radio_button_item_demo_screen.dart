@@ -216,7 +216,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
               reversed: customizationState!.hasReversed ? true : false,
               readOnly: customizationState!.hasReadOnly ? true : false,
               icon: customizationState!.hasIcon
-                  ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+                  ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
                       themeController!,
                     )
                   : null,
@@ -250,7 +250,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
               reversed: customizationState!.hasReversed ? true : false,
               readOnly: customizationState!.hasReadOnly ? true : false,
               icon: customizationState!.hasIcon
-                  ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+                  ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
                       themeController!,
                     )
                   : null,

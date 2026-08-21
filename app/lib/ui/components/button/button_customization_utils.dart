@@ -81,7 +81,7 @@ class ButtonCustomizationUtils {
   ) {
     if (customizationState?.selectedLayout == ButtonEnumLayout.iconOnly ||
         customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+      return AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
         themeController,
       );
     }

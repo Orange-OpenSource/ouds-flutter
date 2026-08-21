@@ -108,7 +108,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Link</td>
-      <td>2.2.0</td>
+      <td>2.4.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Navigation Bar</td>

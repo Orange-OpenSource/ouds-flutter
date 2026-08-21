@@ -539,18 +539,24 @@ Available colors: `defaultColor`, `muted`, `emphasized`, `brandPrimary`, `onBran
 
 ### Link
 
+Prefer dedicated named constructors for icon/navigation variants. `OudsLink()` (default constructor) is for text-only links.
+
 ```dart
-OudsLink(
-  label: 'Learn more',
+OudsLink(label: 'Learn more', onPressed: () {})
+
+OudsLink.icon(
+  label: 'Favorite',
+  icon: 'assets/ic_heart.svg',
+  tinted: true,
   onPressed: () {},
 )
 
-OudsLink(
-  label: 'Back',
-  layout: OudsLinkLayout.back,
-  onPressed: () {},
-)
+OudsLink.previous(label: 'Back', onPressed: () {})
+OudsLink.next(label: 'Next', onPressed: () {})
+OudsLink.external(label: 'Visit website', onPressed: () {})
 ```
+
+> ⚠️ Deprecated: `OudsLink(layout: OudsLinkLayout.back/textAndIcon/next)` → use `OudsLink.previous`, `OudsLink.icon` or `OudsLink.next`/`OudsLink.external` instead.
 
 ---
 

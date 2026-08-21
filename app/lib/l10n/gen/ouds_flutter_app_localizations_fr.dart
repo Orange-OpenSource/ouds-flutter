@@ -215,6 +215,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_common_size_label => 'Size';
 
   @override
+  String get app_components_common_density_label => 'Density';
+
+  @override
   String get app_components_common_textAndLoaderLayout_label => 'Text + Loader';
 
   @override
@@ -287,6 +290,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_common_type_tech => 'Type';
+
+  @override
+  String get app_components_common_tinted_tech => 'Tinted icon';
 
   @override
   String get app_components_alert_tech => 'Alert';
@@ -640,17 +646,20 @@ class AppLocalizationsFr extends AppLocalizations {
       'The phone number can\'t be empty.';
 
   @override
-  String get app_components_link_label => 'Link';
+  String get app_components_link_tech => 'Link';
 
   @override
   String get app_components_link_description_text =>
       'Un Link (ou lien) est un élément d\'interface utilisateur qui permet de naviguer d\'un emplacement à un autre, que ce soit au sein de la même page, entre différentes pages de la même ressource ou vers une ressource externe.';
 
   @override
-  String get app_components_link_backLayout_label => 'Back';
+  String get app_components_link_previousLayout_tech => 'Previous';
 
   @override
-  String get app_components_link_nextLayout_label => 'Next';
+  String get app_components_link_nextLayout_tech => 'Next';
+
+  @override
+  String get app_components_link_externalLayout_tech => 'External';
 
   @override
   String get app_components_listItem_tech => 'List item';
