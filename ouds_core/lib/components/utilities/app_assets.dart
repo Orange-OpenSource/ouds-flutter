@@ -35,7 +35,6 @@ class _Icons {
       'assets/component/alert/important-fill.svg';
   final String componentAlertInformationFill =
       'assets/component/alert/info-fill.svg';
-  final String componentAlertWarning = 'assets/component/alert/warning.svg';
   final String componentAlertWarningExternalShape =
       'assets/component/alert/warning-external-shape.svg';
   final String componentAlertWarningInternalShape =
@@ -51,10 +50,6 @@ class _Icons {
   final String componentChipTick = 'assets/component/chip/tick.svg';
   final String componentLinkNext = 'assets/component/link/next.svg';
   final String componentLinkPrevious = 'assets/component/link/previous.svg';
-  final String componentLinkExpandedTrue =
-      'assets/component/link/expanded-true.svg';
-  final String componentLinkExpandedFalse =
-      'assets/component/link/expanded-false.svg';
   final String componentLinkExternal =
       'assets/component/link/external-link.svg';
 
@@ -82,15 +77,15 @@ class _Icons {
 
   final String accessibilityAccessibilityVision =
       'assets/communication/accessibility/accessibility-vision.svg';
-  final String communicationSecurityAndSafetyLock =
-      'assets/communication/security-and-safety/lock.svg';
+  final String communicationSecurityAndSafetyLockClosed =
+      'assets/communication/security-and-safety/lock-closed.svg';
 
-  final String settingsAndToolsHide =
-      'assets/functional/settings-and-tools/hide.svg';
-  final String functionalSocialAndEngagementHeartEmpty =
-      'assets/functional/social-and-engagement/heart-empty.svg';
-  final String functionalNavigationMenu =
-      'assets/functional/navigation/menu.svg';
+  final String settingsAndToolsAccessibilityHide =
+      'assets/functional/settings-and-tools/accessibility-hide.svg';
+  final String functionalSocialAndEngagementHeartRecommend =
+      'assets/functional/social-and-engagement/heart-recommend.svg';
+  final String functionalNavigationMenuBar =
+      'assets/functional/navigation/menu-bar.svg';
   final String badgeIconWarningExternalShape =
       'assets/component/badge-icon/warning-external-shape.svg';
   final String badgeIconWarningInternalShape =

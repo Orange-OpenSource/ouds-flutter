@@ -135,7 +135,7 @@ enum OudsBadgeSize { xsmall, small, medium, large }
 /// ### Icon badge with custom icon (Neutral/Accent)
 /// ```dart
 /// OudsBadge.icon(
-///   status: Accent(icon: 'assets/heart-empty.svg'),
+///   status: Accent(icon: 'assets/heart-recommend.svg'),
 ///   size: OudsBadgeSize.large,
 ///   semanticsLabel: 'Favorite',
 ///   child: const Icon(Icons.person),

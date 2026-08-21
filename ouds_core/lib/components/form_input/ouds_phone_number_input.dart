@@ -852,7 +852,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
-            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+            icon: AppAssets.icons.functionalSocialAndEngagementHeartRecommend,
             package: OudsTheme.of(context).packageName,
             appearance: OudsButtonAppearance.minimal,
             isLoading: true,

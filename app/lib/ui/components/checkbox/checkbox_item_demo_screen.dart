@@ -206,7 +206,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
         reversed: customizationState!.hasReversed ? true : false,
         readOnly: customizationState!.hasReadOnly ? true : false,
         icon: customizationState!.hasIcon
-            ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+            ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
                 themeController!,
               )
             : null,

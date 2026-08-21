@@ -57,7 +57,7 @@ class TagCustomizationUtils {
     if (customizationState?.selectedLayout == TagEnumLayout.iconAndText &&
         (customizationState?.selectedStatus == StatusEnum.accent ||
             customizationState?.selectedStatus == StatusEnum.neutral)) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+      return AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
         themeController,
       );
     }
@@ -208,13 +208,13 @@ class TagCustomizationUtils {
     switch (customizationState.selectedStatus) {
       case StatusEnum.neutral:
         return Neutral(
-          icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+          icon: AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
             themeController!,
           ),
         );
       case StatusEnum.accent:
         return Accent(
-          icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+          icon: AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
             themeController!,
           ),
         );
