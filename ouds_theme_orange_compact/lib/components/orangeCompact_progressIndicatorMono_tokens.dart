@@ -18,20 +18,13 @@ import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_progressIndicatorMono_tokens.dart';
 
-class OrangeCompactProgressIndicatorMonoTokens
-    extends OudsProgressIndicatorMonoTokens {
+class OrangeCompactProgressIndicatorMonoTokens extends OudsProgressIndicatorMonoTokens {
   final OudsProvidersTokens providersTokens;
 
   OrangeCompactProgressIndicatorMonoTokens(this.providersTokens);
 
   @override
-  Color get colorContentIndicator => providersTokens.colorScheme.lightDark(
-    providersTokens.colorScheme.repositoryNeutralEmphasizedBlack,
-    providersTokens.colorScheme.repositoryNeutralMutedWhite,
-  );
+  Color get colorContentIndicator => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite);
   @override
-  Color get colorContentTrack => providersTokens.colorScheme.lightDark(
-    ColorRawTokens.colorFunctionalGrayLight400,
-    ColorRawTokens.colorFunctionalGrayDark480,
-  );
+  Color get colorContentTrack => providersTokens.colorScheme.lightDark(ColorRawTokens.colorFunctionalGrayLight400, ColorRawTokens.colorFunctionalGrayDark480);
 }
