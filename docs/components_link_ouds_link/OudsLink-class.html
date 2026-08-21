@@ -55,20 +55,31 @@
     
 <section class="desc markdown">
   <p><a href="https://r.orange.fr/r/S-ouds-doc-link">OUDS Link design guidelines</a></p>
-<p><strong>Reference design version : 2.2.0</strong></p>
+<p><strong>Reference design version : 2.4.0</strong></p>
 <p>Link is a UI element that allows to navigate from one location to another, either within the same page
 or across different pages in the same resource, or to an external resource. Link's primary function is navigation
 and it communicates its interactive nature visually and semantically.</p>
 <p>parameters :</p>
 <ul>
 <li><a href="../components_link_ouds_link/OudsLink/size.html">size</a> : The size of the link, <a href="../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a> such as small or default, to fit various visual needs.</li>
+<li><a href="../components_link_ouds_link/OudsLink/density.html">density</a> : The density of the link, <a href="../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a> such as compact or default.</li>
 <li><a href="../components_link_ouds_link/OudsLink/label.html">label</a> : A text to display in link component.</li>
-<li><a href="../components_link_ouds_link/OudsLink/icon.html">icon</a> : An optional SVG asset name to display an icon within the link.</li>
-<li><a href="../components_link_ouds_link/OudsLink/layout.html">layout</a>: Defines the layout to be used for the link <a href="../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a>.</li>
+<li><a href="../components_link_ouds_link/OudsLink/icon.html">icon</a> : An optional SVG asset name to display an icon within the link (used with <a href="../components_link_ouds_link/OudsLink/icon.html">OudsLink.icon</a>).</li>
+<li><a href="../components_link_ouds_link/OudsLink/tinted.html">tinted</a> : tinted Controls whether the icon should be tinted with the theme color. Defaults to <code>true</code>.
+ When set to <code>false</code>, the icon is displayed with its original colors (e.g., for multi-color icons).
+Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons, only used with <a href="../components_link_ouds_link/OudsLink/icon.html">OudsLink.icon</a>.</li>
 <li><a href="../components_link_ouds_link/OudsLink/onPressed.html">onPressed</a>: Callback invoked when the link is clicked.</li>
 </ul>
+<p><a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> provides a dedicated named constructor for every supported variant:</p>
+<ul>
+<li>The default (unnamed) constructor renders a text-only link.</li>
+<li><a href="../components_link_ouds_link/OudsLink/icon.html">OudsLink.icon</a> renders a label with a custom icon.</li>
+<li><a href="../components_link_ouds_link/OudsLink/OudsLink.previous.html">OudsLink.previous</a> renders a "backward" navigation link with a leading chevron.</li>
+<li><a href="../components_link_ouds_link/OudsLink/OudsLink.next.html">OudsLink.next</a> renders a "forward" navigation link with a trailing chevron.</li>
+<li><a href="../components_link_ouds_link/OudsLink/OudsLink.external.html">OudsLink.external</a> renders a link navigating outside the current context, with a trailing indicator.</li>
+</ul>
 <h3 id="you-can-use-oudslink-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> component in your project, customizing parameters as needed :</h3>
-<p><strong>Small Text only link :</strong></p>
+<h3 id="small-text-only-">Small Text only :</h3>
 <p>This is the default layout of the component.</p>
 <pre class="language-dart"><code class="language-dart">OudsLink(
       label: 'Label',
@@ -76,21 +87,44 @@ and it communicates its interactive nature visually and semantically.</p>
       onPressed: () {}
     );
 </code></pre>
-<h3 id="small-next-link-">Small Next link :</h3>
-<p>This is the default layout of the component.</p>
-<pre class="language-dart"><code class="language-dart">OudsLink(
+<h3 id="link-with-icon-">Link with Icon :</h3>
+<p>Creates an <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> displaying its <a href="../components_link_ouds_link/OudsLink/label.html">label</a> alongside a custom <a href="../components_link_ouds_link/OudsLink/icon.html">icon</a>.</p>
+<pre class="language-dart"><code class="language-dart">OudsLink.icon(
       label: 'Label',
-      size: OudsLinkSize.small,
-      layout : OudsLinkayout.next
+      icon: 'assets/ic_heart.svg',
+      tinted: true,
       onPressed: () {}
     );
 </code></pre>
-<h3 id="default-link-with-icon-">Default link with Icon :</h3>
-<p>This is the default layout of the component.</p>
+<h3 id="next-">Next :</h3>
+<p>Creates an <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> used for standard navigation, displaying a
+trailing chevron after the <a href="../components_link_ouds_link/OudsLink/label.html">label</a>.</p>
+<pre class="language-dart"><code class="language-dart">OudsLink.next(
+      label: 'Label',
+      onPressed: () {}
+    );
+</code></pre>
+<h3 id="previous-">Previous :</h3>
+<p>Creates an <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> used for "backward" navigation, displaying a
+leading chevron before the <a href="../components_link_ouds_link/OudsLink/label.html">label</a>.</p>
+<pre class="language-dart"><code class="language-dart">OudsLink.previous(
+      label: 'Label',
+      onPressed: () {}
+    );
+</code></pre>
+<h3 id="external-">External :</h3>
+<p>Creates an <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> used to navigate outside the current product, service or application.
+The external navigation indicator informs users that the destination belongs to another context.</p>
+<pre class="language-dart"><code class="language-dart">OudsLink.external(
+      label: 'Label',
+      onPressed: () {}
+    );
+</code></pre>
+<h3 id="compact-density-link-">Compact density link :</h3>
+<p>Reduces the link's minimum height and block padding, useful in dense layouts.</p>
 <pre class="language-dart"><code class="language-dart">OudsLink(
       label: 'Label',
-      layout : OudsLinkayout.textAndIcon
-      icon : 'assets/ic_heart.svg'
+      density: OudsLinkDensity.compact,
       onPressed: () {}
     );
 </code></pre>
@@ -127,10 +161,41 @@ and it communicates its interactive nature visually and semantically.</p>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsLink.new" class="callable">
-          <span class="name"><a href="../components_link_ouds_link/OudsLink/OudsLink.html">OudsLink</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-icon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="param-layout"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></span> <span class="parameter-name">layout</span> = <span class="default-value">OudsLinkLayout.textOnly</span>, </span><span class="parameter" id="param-size"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a>?</span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span><span class="parameter" id="param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span></span>})</span>
+          <span class="name"><a href="../components_link_ouds_link/OudsLink/OudsLink.html">OudsLink</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-layout"><span>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;OudsLinkLayout is deprecated and will be removed in a future version. &#39; &#39;Use the dedicated OudsLink.icon, OudsLink.previous, OudsLink.next or &#39; &#39;OudsLink.external constructors instead.&#39;)</span> <span class="type-annotation"><a class="deprecated" href="../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></span> <span class="parameter-name">layout</span> = <span class="default-value">OudsLinkLayout.textOnly</span>, </span><span class="parameter" id="param-size"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span><span class="parameter" id="param-density"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span> <span class="parameter-name">density</span> = <span class="default-value">OudsLinkDensity.defaultDensity</span>, </span><span class="parameter" id="param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span><span class="parameter" id="param-icon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span></span>})</span>
         </dt>
         <dd>
-          
+          Creates a text-only <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a>.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="OudsLink.external" class="callable">
+          <span class="name"><a href="../components_link_ouds_link/OudsLink/OudsLink.external.html">OudsLink.external</a></span><span class="signature">({<span class="parameter" id="external-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="external-param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="external-param-size"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span><span class="parameter" id="external-param-density"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span> <span class="parameter-name">density</span> = <span class="default-value">OudsLinkDensity.defaultDensity</span>, </span><span class="parameter" id="external-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span></span>})</span>
+        </dt>
+        <dd>
+          Creates an <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> navigating outside the current product, service or
+application, displaying a trailing external indicator after the <code>label</code>.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="OudsLink.icon" class="callable">
+          <span class="name"><a href="../components_link_ouds_link/OudsLink/OudsLink.icon.html">OudsLink.icon</a></span><span class="signature">({<span class="parameter" id="icon-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="icon-param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="icon-param-icon"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="icon-param-size"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span><span class="parameter" id="icon-param-density"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span> <span class="parameter-name">density</span> = <span class="default-value">OudsLinkDensity.defaultDensity</span>, </span><span class="parameter" id="icon-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span><span class="parameter" id="icon-param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span></span>})</span>
+        </dt>
+        <dd>
+          Creates an <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> displaying its <code>label</code> alongside a custom <code>icon</code>.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="OudsLink.next" class="callable">
+          <span class="name"><a href="../components_link_ouds_link/OudsLink/OudsLink.next.html">OudsLink.next</a></span><span class="signature">({<span class="parameter" id="next-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="next-param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="next-param-size"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span><span class="parameter" id="next-param-density"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span> <span class="parameter-name">density</span> = <span class="default-value">OudsLinkDensity.defaultDensity</span>, </span><span class="parameter" id="next-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span></span>})</span>
+        </dt>
+        <dd>
+          Creates an <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> used for standard navigation, displaying a
+trailing chevron after the <code>label</code>.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="OudsLink.previous" class="callable">
+          <span class="name"><a href="../components_link_ouds_link/OudsLink/OudsLink.previous.html">OudsLink.previous</a></span><span class="signature">({<span class="parameter" id="previous-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="previous-param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="previous-param-size"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span><span class="parameter" id="previous-param-density"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span> <span class="parameter-name">density</span> = <span class="default-value">OudsLinkDensity.defaultDensity</span>, </span><span class="parameter" id="previous-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span></span>})</span>
+        </dt>
+        <dd>
+          Creates an <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> used for "backward" navigation, displaying a
+leading chevron before the <code>label</code>.
             <div class="constructor-modifier features">const</div>
         </dd>
     </dl>
@@ -141,6 +206,18 @@ and it communicates its interactive nature visually and semantically.</p>
       id="instance-properties">
     <h2>Properties</h2>
     <dl class="properties">
+        <dt id="density" class="property">
+  <span class="name"><a href="../components_link_ouds_link/OudsLink/density.html">density</a></span>
+  <span class="signature">&#8594; <a href="../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
         <dt id="hashCode" class="property inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/hashCode.html">hashCode</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
@@ -190,8 +267,8 @@ and it communicates its interactive nature visually and semantically.</p>
 </dd>
 
         <dt id="layout" class="property">
-  <span class="name"><a href="../components_link_ouds_link/OudsLink/layout.html">layout</a></span>
-  <span class="signature">&#8594; <a href="../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></span>
+  <span class="name"><a class="deprecated" href="../components_link_ouds_link/OudsLink/layout.html">layout</a></span>
+  <span class="signature">&#8594; <a class="deprecated" href="../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></span>
   
 
 </dt>
@@ -227,7 +304,19 @@ and it communicates its interactive nature visually and semantically.</p>
 
         <dt id="size" class="property">
   <span class="name"><a href="../components_link_ouds_link/OudsLink/size.html">size</a></span>
-  <span class="signature">&#8594; <a href="../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a>?</span>
+  <span class="signature">&#8594; <a href="../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="tinted" class="property">
+  <span class="name"><a href="../components_link_ouds_link/OudsLink/tinted.html">tinted</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   
 
 </dt>
@@ -403,24 +492,6 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
   </section>
     
     
-  <section class="summary offset-anchor" id="static-methods">
-    <h2>Static Methods</h2>
-    <dl class="callables">
-        <dt id="buildIcon" class="callable">
-  <span class="name"><a href="../components_link_ouds_link/OudsLink/buildIcon.html">buildIcon</a></span><span class="signature">(<wbr><span class="parameter" id="buildIcon-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="buildIcon-param-assetName"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">assetName</span>, </span><span class="parameter" id="buildIcon-param-controlItemState"><span class="type-annotation">OudsLinkControlState</span> <span class="parameter-name">controlItemState</span>, </span><span class="parameter" id="buildIcon-param-layout"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkLayout.html">OudsLinkLayout</a></span> <span class="parameter-name">layout</span>, </span><span class="parameter" id="buildIcon-param-size"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
-  </span>
-  
-
-</dt>
-<dd>
-  
-  
-
-</dd>
-
-    </dl>
-  </section>
     
 
   </div> <!-- /.main-content -->
