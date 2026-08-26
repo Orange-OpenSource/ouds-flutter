@@ -79,6 +79,8 @@ class _Icons {
       'assets/communication/accessibility/accessibility-vision.svg';
   final String communicationSecurityAndSafetyLockClosed =
       'assets/communication/security-and-safety/lock-closed.svg';
+  final String communicationAssistanceTipsAndTricks =
+      'assets/communication/assistance/tips-and-tricks.svg';
 
   final String settingsAndToolsAccessibilityHide =
       'assets/functional/settings-and-tools/accessibility-hide.svg';
