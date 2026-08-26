@@ -33,9 +33,9 @@ extension CustomElementTinted on TintedEnum {
 
     switch (this) {
       case TintedEnum.tinted:
-        return l10n.app_components_common_tinted_label;
+        return l10n.app_components_common_tinted_tech;
       case TintedEnum.untinted:
-        return l10n.app_components_common_untinted_label;
+        return l10n.app_components_common_untinted_tech;
     }
   }
 }

@@ -75,15 +75,19 @@ class ButtonCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
+  ///
+  /// Uses a single-color, theme-tintable asset when [ButtonCustomizationState.isTinted]
+  /// is true, or a multi-color asset kept as-is (untinted) otherwise. This mirrors
+  /// the behavior used in the Link component demo.
   static String? getIcon(
     ButtonCustomizationState? customizationState,
     ThemeController themeController,
   ) {
     if (customizationState?.selectedLayout == ButtonEnumLayout.iconOnly ||
         customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-        themeController,
-      );
+      return customizationState?.isTinted == true
+          ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+          : AppAssets.icons.icUntintedSquare;
     }
     return null;
   }

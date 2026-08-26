@@ -138,7 +138,8 @@
   "app_components_common_description_tech": "Description",
   "app_components_common_edgeToEdge_tech": "Edge to edge",
   "app_components_common_type_tech" : "Type",
-  "app_components_common_tinted_tech": "Tinted icon",
+  "app_components_common_tinted_tech": "Tinted",
+  "app_components_common_untinted_tech": "Untinted",
 
   "@_components_alert": {},
   "app_components_alert_tech": "Alert",

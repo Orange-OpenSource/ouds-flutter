@@ -634,8 +634,14 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_common_tinted_tech.
   ///
   /// In en, this message translates to:
-  /// **'Tinted icon'**
+  /// **'Tinted'**
   String get app_components_common_tinted_tech;
+
+  /// No description provided for @app_components_common_untinted_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Untinted'**
+  String get app_components_common_untinted_tech;
 
   /// No description provided for @app_components_alert_tech.
   ///
