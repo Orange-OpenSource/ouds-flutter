@@ -106,6 +106,43 @@ OudsLink.external(label: 'Label')
 
 **Reason for Change**: Improve type safety and API clarity by making each link variant explicit through its own constructor, consistent with `OudsTag` and `OudsBadge`
 
+#### 5. `OudsTextInput` / `OudsPhoneNumberInput` — Typed prefix/suffix icon configuration with tinting support
+
+`OudsFormInputDecoration.prefixIcon` and `suffixIcon` are no longer plain `String`/asset paths. They now take `OudsTextInputPrefixIcon` and `OudsTextInputSuffixIconButton` objects, which let you control whether the icon is tinted with the theme color or displayed with its original (multi-color) asset colors via a new `tinted` parameter (defaults to `true`). The `onSuffixPressed` parameter on the decoration has been removed; the press callback now lives on `OudsTextInputSuffixIconButton.onPressed`.
+
+**Impact**: Medium (breaking — any code setting `prefixIcon`, `suffixIcon`, or `onSuffixPressed` on `OudsInputDecoration`/`OudsFormInputDecoration` must be updated)
+
+**Before**:
+```dart
+OudsInputDecoration(
+  prefixIcon: 'assets/ic_heart.svg',
+  suffixIcon: 'assets/ic_heart.svg',
+  onSuffixPressed: () {},
+)
+```
+
+**After**:
+```dart
+OudsInputDecoration(
+  prefixIcon: OudsTextInputPrefixIcon(
+    icon: 'assets/ic_heart.svg',
+    tinted: true, // optional, defaults to true
+  ),
+  suffixIcon: OudsTextInputSuffixIconButton(
+    icon: 'assets/ic_heart.svg',
+    tinted: true, // optional, defaults to true
+    onPressed: () {},
+  ),
+)
+```
+
+**Required Action**:
+- Wrap existing `prefixIcon` asset paths in `OudsTextInputPrefixIcon(icon: ...)`
+- Wrap existing `suffixIcon` asset paths in `OudsTextInputSuffixIconButton(icon: ..., onPressed: ...)`, moving the `onSuffixPressed` callback into `onPressed`
+- Set `tinted: false` if the icon asset is multi-color and should keep its original colors instead of being tinted with the theme color
+
+**Reason for Change**: Support untinted (multi-color) leading and trailing icons in text and phone number inputs, consistent with the `tinted` behavior available in `OudsButton` and `OudsLink`
+
 ### Component Design Version Updates
 
 Several components have been updated to align with new design specification versions. These changes are primarily visual and do not require code changes unless you override component tokens in a custom theme.
@@ -137,6 +174,7 @@ Several components have been updated to align with new design specification vers
 | Filter Chip | Fixed keyboard/Switch Access focus issue |
 | Phone Number Input | Added interaction hint for accessibility |
 | Input Tag | Fixed button role for accessibility |
+| Button | Added `tinted` parameter (defaults to `true`) to control whether the icon follows the theme color or keeps its original (multi-color) asset colors |
 
 ### Compatibility
 
