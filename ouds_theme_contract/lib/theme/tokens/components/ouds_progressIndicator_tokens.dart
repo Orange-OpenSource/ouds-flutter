@@ -18,8 +18,7 @@ import 'package:flutter/material.dart';
 abstract class OudsProgressIndicatorTokens {
   late double borderRadiusDefault;
   late double borderRadiusRounded;
-  late Color colorContentTrackDark;
-  late Color colorContentTrackLight;
+  late Color colorContentTrack;
   late double sizeLinearIndicatorHeight;
   late double spaceColumnGap;
   late double spacePaddingBlock;

@@ -72,6 +72,27 @@ extension CustomElementLayout on ButtonEnumLayout {
   }
 }
 
+/// Represents the size of an OUDS button.
+enum ButtonEnumSize {
+  defaultSize,
+  small;
+
+  static String enumName(BuildContext context) {
+    return context.l10n.app_components_common_size_label;
+  }
+}
+
+extension CustomElementButtonSize on ButtonEnumSize {
+  String stringValue(BuildContext context) {
+    switch (this) {
+      case ButtonEnumSize.defaultSize:
+        return capitalizeEnumValue(ButtonEnumSize.defaultSize);
+      case ButtonEnumSize.small:
+        return capitalizeEnumValue(ButtonEnumSize.small);
+    }
+  }
+}
+
 /// Represents the size of an OUDS Navigation Button.
 enum NavigationButtonLayoutEnum {
   next,

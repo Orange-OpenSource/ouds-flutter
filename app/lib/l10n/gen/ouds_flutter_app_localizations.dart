@@ -271,6 +271,12 @@ abstract class AppLocalizations {
   /// **'Rounded corner alert message'**
   String get app_themeSettingsDialog_roundedCornerAlertMessage_label;
 
+  /// No description provided for @app_themeSettingsDialog_roundedCornerCardItems_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner card items'**
+  String get app_themeSettingsDialog_roundedCornerCardItems_label;
+
   /// No description provided for @app_themeSettingsDialog_roundedCornerProgressIndicators_label.
   ///
   /// In en, this message translates to:
@@ -475,6 +481,12 @@ abstract class AppLocalizations {
   /// **'Size'**
   String get app_components_common_size_label;
 
+  /// No description provided for @app_components_common_density_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Density'**
+  String get app_components_common_density_label;
+
   /// No description provided for @app_components_common_textAndLoaderLayout_label.
   ///
   /// In en, this message translates to:
@@ -607,11 +619,23 @@ abstract class AppLocalizations {
   /// **'Description'**
   String get app_components_common_description_tech;
 
+  /// No description provided for @app_components_common_edgeToEdge_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Edge to edge'**
+  String get app_components_common_edgeToEdge_tech;
+
   /// No description provided for @app_components_common_type_tech.
   ///
   /// In en, this message translates to:
   /// **'Type'**
   String get app_components_common_type_tech;
+
+  /// No description provided for @app_components_common_tinted_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Tinted icon'**
+  String get app_components_common_tinted_tech;
 
   /// No description provided for @app_components_alert_tech.
   ///
@@ -1212,11 +1236,11 @@ abstract class AppLocalizations {
   /// **'The phone number can\'t be empty.'**
   String get app_components_phoneNumberInput_error_label;
 
-  /// No description provided for @app_components_link_label.
+  /// No description provided for @app_components_link_tech.
   ///
   /// In en, this message translates to:
   /// **'Link'**
-  String get app_components_link_label;
+  String get app_components_link_tech;
 
   /// No description provided for @app_components_link_description_text.
   ///
@@ -1224,17 +1248,335 @@ abstract class AppLocalizations {
   /// **'Link is a UI element that allows to navigate from one location to another, either within the same page or across different pages in the same resource, or to an external resource.'**
   String get app_components_link_description_text;
 
-  /// No description provided for @app_components_link_backLayout_label.
+  /// No description provided for @app_components_link_previousLayout_tech.
   ///
   /// In en, this message translates to:
-  /// **'Back'**
-  String get app_components_link_backLayout_label;
+  /// **'Previous'**
+  String get app_components_link_previousLayout_tech;
 
-  /// No description provided for @app_components_link_nextLayout_label.
+  /// No description provided for @app_components_link_nextLayout_tech.
   ///
   /// In en, this message translates to:
   /// **'Next'**
-  String get app_components_link_nextLayout_label;
+  String get app_components_link_nextLayout_tech;
+
+  /// No description provided for @app_components_link_externalLayout_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'External'**
+  String get app_components_link_externalLayout_tech;
+
+  /// No description provided for @app_components_listItem_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'List item'**
+  String get app_components_listItem_tech;
+
+  /// No description provided for @app_components_listItem_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'List item is a UI element that displays a unit of information either in an interactive or non-interactive row, within a structured list.\n Card item is a UI element that displays a unit of information either in an interactive or non-interactive card, within a card layout or independently.'**
+  String get app_components_listItem_description_text;
+
+  /// No description provided for @app_components_listItem_listItem_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'List item'**
+  String get app_components_listItem_listItem_tech;
+
+  /// No description provided for @app_components_listItem_smallListItem_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Small list item'**
+  String get app_components_listItem_smallListItem_tech;
+
+  /// No description provided for @app_components_listItem_cardItem_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Card item'**
+  String get app_components_listItem_cardItem_tech;
+
+  /// No description provided for @app_components_listItem_cardItem_decoration_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Decoration'**
+  String get app_components_listItem_cardItem_decoration_tech;
+
+  /// No description provided for @app_components_listItem_smallCardItem_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Small card item'**
+  String get app_components_listItem_smallCardItem_tech;
+
+  /// No description provided for @app_components_listItem_clickable_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Clickable'**
+  String get app_components_listItem_clickable_tech;
+
+  /// No description provided for @app_components_listItem_indicator_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Indicator'**
+  String get app_components_listItem_indicator_tech;
+
+  /// No description provided for @app_components_listItem_verticalAlignment_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Vertical alignment'**
+  String get app_components_listItem_verticalAlignment_tech;
+
+  /// No description provided for @app_components_listItem_static_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Static list item is a UI element that displays a unit of information in a non-interactive horizontal row within a structured list, and does not navigate, trigger actions, or have interactive states.'**
+  String get app_components_listItem_static_description_text;
+
+  /// No description provided for @app_components_listItem_navigation_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigation'**
+  String get app_components_listItem_navigation_tech;
+
+  /// No description provided for @app_components_listItem_overline_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Overline'**
+  String get app_components_listItem_overline_tech;
+
+  /// No description provided for @app_components_listItem_extraLabel_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra label'**
+  String get app_components_listItem_extraLabel_tech;
+
+  /// No description provided for @app_components_listItem_affordance_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Affordance'**
+  String get app_components_listItem_affordance_tech;
+
+  /// No description provided for @app_components_listItem_alignment_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Alignment'**
+  String get app_components_listItem_alignment_tech;
+
+  /// No description provided for @app_components_listItem_imageSize_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Image size'**
+  String get app_components_listItem_imageSize_tech;
+
+  /// No description provided for @app_components_listItem_imageRatio_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Image ratio'**
+  String get app_components_listItem_imageRatio_tech;
+
+  /// No description provided for @app_components_listItem_imageFormat_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Image format'**
+  String get app_components_listItem_imageFormat_tech;
+
+  /// No description provided for @app_components_listItem_statusIcon_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Status icon'**
+  String get app_components_listItem_statusIcon_tech;
+
+  /// No description provided for @app_components_listItem_avatarBadge_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Badge on avatar'**
+  String get app_components_listItem_avatarBadge_label;
+
+  /// No description provided for @app_components_listItem_avatarSize_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar size'**
+  String get app_components_listItem_avatarSize_tech;
+
+  /// No description provided for @app_components_listItem_avatarType_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar type'**
+  String get app_components_listItem_avatarType_tech;
+
+  /// No description provided for @app_components_listItem_background_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Background'**
+  String get app_components_listItem_background_tech;
+
+  /// No description provided for @app_components_listItem_boldLabel_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Bold label'**
+  String get app_components_listItem_boldLabel_tech;
+
+  /// No description provided for @app_components_listItem_cardType_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Item'**
+  String get app_components_listItem_cardType_tech;
+
+  /// No description provided for @app_components_listItem_itemType_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'List item'**
+  String get app_components_listItem_itemType_tech;
+
+  /// No description provided for @app_components_listItem_iconType_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon type'**
+  String get app_components_listItem_iconType_tech;
+
+  /// No description provided for @app_components_listItem_iconSize_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon size'**
+  String get app_components_listItem_iconSize_tech;
+
+  /// No description provided for @app_components_listItem_indicatorType_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Indicator Type'**
+  String get app_components_listItem_indicatorType_tech;
+
+  /// No description provided for @app_components_listItem_icon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon content description'**
+  String get app_components_listItem_icon_a11y;
+
+  /// No description provided for @app_components_listItem_image_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Image content description'**
+  String get app_components_listItem_image_a11y;
+
+  /// No description provided for @app_components_listItem_iconBadge_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Badge on icon'**
+  String get app_components_listItem_iconBadge_label;
+
+  /// No description provided for @app_components_listItem_leading_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Leading'**
+  String get app_components_listItem_leading_tech;
+
+  /// No description provided for @app_components_listItem_roundedCornerImage_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner image'**
+  String get app_components_listItem_roundedCornerImage_tech;
+
+  /// No description provided for @app_components_listItem_roundedMedia_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded media'**
+  String get app_components_listItem_roundedMedia_tech;
+
+  /// No description provided for @app_components_listItem_size_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get app_components_listItem_size_tech;
+
+  /// No description provided for @app_components_listItem_slot_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Slot'**
+  String get app_components_listItem_slot_tech;
+
+  /// No description provided for @app_components_listItem_trailing_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailing'**
+  String get app_components_listItem_trailing_tech;
+
+  /// No description provided for @app_components_listItem_trailingText_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get app_components_listItem_trailingText_tech;
+
+  /// No description provided for @app_components_listItem_trailingTextLabel_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Text label'**
+  String get app_components_listItem_trailingTextLabel_tech;
+
+  /// No description provided for @app_components_listItem_trailingTextStyle_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Text style'**
+  String get app_components_listItem_trailingTextStyle_tech;
+
+  /// No description provided for @app_components_listItem_trailingTextExtraLabel_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Text extra label'**
+  String get app_components_listItem_trailingTextExtraLabel_tech;
+
+  /// No description provided for @app_components_listItem_trailing_textType_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailing text type'**
+  String get app_components_listItem_trailing_textType_tech;
+
+  /// No description provided for @app_components_listItem_contentConfiguration_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get app_components_listItem_contentConfiguration_label;
+
+  /// No description provided for @app_components_listItem_globalConfiguration_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Global'**
+  String get app_components_listItem_globalConfiguration_label;
+
+  /// No description provided for @app_components_listItem_labelsConfiguration_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Labels'**
+  String get app_components_listItem_labelsConfiguration_label;
+
+  /// No description provided for @app_components_listItem_section_general_label.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get app_components_listItem_section_general_label;
+
+  /// No description provided for @app_components_listItem_section_texts_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Texts'**
+  String get app_components_listItem_section_texts_label;
+
+  /// No description provided for @app_components_listItem_cardItem_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Static card item is a UI element that displays a unit of information in an non-interactive, self-contained card, that does not navigate, trigger actions or have interactive states.'**
+  String get app_components_listItem_cardItem_description_text;
+
+  /// No description provided for @app_components_listItem_smallCardItem_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A compact card-formatted variant of list item for read-only summaries.'**
+  String get app_components_listItem_smallCardItem_description_text;
+
+  /// No description provided for @app_components_listItem_smallListItem_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A compact list item for smaller content presentations.'**
+  String get app_components_listItem_smallListItem_description_text;
 
   /// No description provided for @app_components_passwordInput_label.
   ///

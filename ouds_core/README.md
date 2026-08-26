@@ -84,7 +84,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding-left:10px;">Button</td>
-      <td>3.2.0</td>
+      <td>3.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Checkbox</td>
@@ -108,7 +108,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Link</td>
-      <td>2.2.0</td>
+      <td>2.4.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Navigation Bar</td>
@@ -117,6 +117,14 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     <tr>
         <td>Navigation button</td>
         <td>3.3.0</td>
+    </tr>
+    <tr>
+      <td>Navigation card item</td>
+      <td>0.1.0</td>
+    </tr>
+    <tr>
+      <td>Navigation list item</td>
+      <td>0.1.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Password Input</td>
@@ -139,8 +147,12 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.4.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Suggestion Chip</td>
-      <td>1.4.0</td>
+      <td>Static card item</td>
+      <td>0.1.0</td>
+    </tr>
+    <tr>
+      <td>Static list item</td>
+      <td>0.1.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Switch</td>

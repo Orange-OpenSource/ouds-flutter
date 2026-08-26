@@ -98,7 +98,7 @@ class OudsPasswordInput extends StatefulWidget {
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
       excludeFromSemantics: true,
-      AppAssets.icons.communicationSecurityAndSafetyLock,
+      AppAssets.icons.communicationSecurityAndSafetyLockClosed,
       package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
@@ -566,7 +566,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           OudsButton(
             icon: 'assets/ic_password_lock.svg',
             appearance: OudsButtonAppearance.minimal,
-            loader: Loader(progress: null),
+            isLoading: true,
             onPressed: () {},
           ),
         ],
@@ -602,7 +602,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
               appearance: OudsButtonAppearance.minimal,
               icon: _isPasswordHidden
                   ? AppAssets.icons.accessibilityAccessibilityVision
-                  : AppAssets.icons.settingsAndToolsHide,
+                  : AppAssets.icons.settingsAndToolsAccessibilityHide,
               onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false))
                   ? _toggleIcon
                   : null,

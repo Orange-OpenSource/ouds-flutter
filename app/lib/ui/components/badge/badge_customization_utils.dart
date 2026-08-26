@@ -110,7 +110,7 @@ class BadgeCustomizationUtils {
       case StatusEnum.neutral:
         return Neutral(
           icon: customizationState.selectedType == BadgeEnumType.icon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
                   themeController!,
                 )
               : null,
@@ -118,7 +118,7 @@ class BadgeCustomizationUtils {
       case StatusEnum.accent:
         return Accent(
           icon: customizationState.selectedType == BadgeEnumType.icon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
                   themeController!,
                 )
               : null,
@@ -169,7 +169,7 @@ class BadgeCustomizationUtils {
     ThemeController? themeController,
   ) {
     if (customizationState?.selectedType == BadgeEnumType.icon) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+      return AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
         themeController!,
       );
     }

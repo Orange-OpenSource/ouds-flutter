@@ -43,11 +43,21 @@ class ButtonCustomizationUtils {
   }
 
   /// Displays the loader if it is selected .
-  static Loader? getLoader(ButtonCustomizationState? customizationState) {
+  static bool? getLoader(ButtonCustomizationState? customizationState) {
     if (customizationState?.hasLoader == true) {
-      return Loader(progress: null);
+      return true;
     }
     return null;
+  }
+
+  /// Maps the size enum to `OudsButtonSize`.
+  static OudsButtonSize getSize(Object size) {
+    switch (size) {
+      case ButtonEnumSize.small:
+        return OudsButtonSize.small;
+      default:
+        return OudsButtonSize.defaultSize;
+    }
   }
 
   /// Maps the layout enum to `OudsButtonLayout`.
@@ -71,7 +81,7 @@ class ButtonCustomizationUtils {
   ) {
     if (customizationState?.selectedLayout == ButtonEnumLayout.iconOnly ||
         customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+      return AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
         themeController,
       );
     }

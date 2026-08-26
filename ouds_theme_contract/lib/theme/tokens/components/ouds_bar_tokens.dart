@@ -19,8 +19,7 @@ abstract class OudsBarTokens {
   late double borderRadiusCurrentIndicatorCustomBottom;
   late double borderRadiusCurrentIndicatorCustomTop;
   late Color colorBgOpaque;
-  late Color colorBgTranslucentDark;
-  late Color colorBgTranslucentLight;
+  late Color colorBgTranslucent;
   late Color colorBorderBadge;
   late Color colorContentOnIosAccent;
   late Color colorContentSelectedEnabled;
