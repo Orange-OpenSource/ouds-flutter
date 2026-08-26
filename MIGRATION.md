@@ -1,11 +1,133 @@
 # Migration Guide
 
+- [v2.1.0 → v3.0.0](#v210--v300)
+- [v2.0.0 → v2.1.0](#v200--v210)
 - [v1.3.1 → v2.0.0](#v131--v200)
 - [v1.3.0 → v1.3.1](#v130--v131)
 - [v1.2.0 → v1.3.0](#v120--v130)
 - [v1.1.x → v1.2.0](#v11x--v120)
 - [v1.0.0 → v1.1.1](#v100--v111)
 - [Support](#support)
+
+## v2.1.0 → v3.0.0
+
+### Overview
+
+This release adds the `List item` component and a typography tokens component, updates the icon library to v2.3.0, updates the `Button` component to v3.3.0 with tinted/untinted icon support, updates the `Link` component to v2.4.0, adds a `size` parameter to `OudsCircularProgressIndicator` for button integration, and fixes a crash in `OudsTabBar`. It also introduces a typed prefix/suffix icon configuration with tinting support for `OudsTextInput` and `OudsPhoneNumberInput`.
+
+### Before You Begin
+
+#### Prerequisites
+
+- Use version 2.1.0 or older
+
+### Breaking Changes
+
+#### 1. `OudsTextInput` / `OudsPhoneNumberInput` — Typed prefix/suffix icon configuration with tinting support
+
+`OudsFormInputDecoration.prefixIcon` and `suffixIcon` are no longer plain `String`/asset paths. They now take `OudsTextInputPrefixIcon` and `OudsTextInputSuffixIconButton` objects, which let you control whether the icon is tinted with the theme color or displayed with its original (multi-color) asset colors via a new `tinted` parameter (defaults to `true`). The `onSuffixPressed` parameter on the decoration has been removed; the press callback now lives on `OudsTextInputSuffixIconButton.onPressed`.
+
+**Impact**: Medium (breaking — any code setting `prefixIcon`, `suffixIcon`, or `onSuffixPressed` on `OudsInputDecoration`/`OudsFormInputDecoration` must be updated)
+
+**Before**:
+```dart
+OudsInputDecoration(
+  prefixIcon: 'assets/ic_heart.svg',
+  suffixIcon: 'assets/ic_heart.svg',
+  onSuffixPressed: () {},
+)
+```
+
+**After**:
+```dart
+OudsInputDecoration(
+  prefixIcon: OudsTextInputPrefixIcon(
+    icon: 'assets/ic_heart.svg',
+    tinted: true, // optional, defaults to true
+  ),
+  suffixIcon: OudsTextInputSuffixIconButton(
+    icon: 'assets/ic_heart.svg',
+    tinted: true, // optional, defaults to true
+    onPressed: () {},
+  ),
+)
+```
+
+**Required Action**:
+- Wrap existing `prefixIcon` asset paths in `OudsTextInputPrefixIcon(icon: ...)`
+- Wrap existing `suffixIcon` asset paths in `OudsTextInputSuffixIconButton(icon: ..., onPressed: ...)`, moving the `onSuffixPressed` callback into `onPressed`
+- Set `tinted: false` if the icon asset is multi-color and should keep its original colors instead of being tinted with the theme color
+
+**Reason for Change**: Support untinted (multi-color) leading and trailing icons in text and phone number inputs, consistent with the `tinted` behavior available in `OudsButton` and `OudsLink`
+
+### Icon Library Update — v2.3.0
+
+The OUDS icon library has been updated to version 2.3.0. Some icon names or asset paths may have changed.
+
+**Impact**: Medium (if using icon constants from the library)
+
+**Required Action**:
+- Review any icon constants or asset paths you reference directly
+- Update to the new icon names from v2.3.0 if you receive compilation errors or missing asset warnings
+
+### New Components Added
+
+| Component | Description |
+|-----------|-------------|
+| `OudsListItem` | Standard list item component with leading/trailing content support |
+
+### Component Updates (Non-breaking)
+
+| Component | Change |
+|-----------|--------|
+| Button | Updated to v3.3.0 — added `tinted` parameter (defaults to `true`) to control whether the icon follows the theme color or keeps its original (multi-color) asset colors |
+| Link | Updated to v2.4.0 |
+| Progress Indicator | Added `size` parameter to `OudsCircularProgressIndicator` for button integration |
+| Tab Bar | Fixed `Invalid value: Not in inclusive range 0..2: 3` crash |
+| Typography | Added typography tokens component |
+
+### Compatibility
+
+- **Backward Compatibility**: No (breaking change in form input decoration API)
+- **v2.1.0 Support**: Ended with this release
+
+## v2.0.0 → v2.1.0
+
+### Overview
+
+This release adds the `Navigation Button`, `Circular Progress Indicator`, and `Linear Progress Indicator` components, and updates design tokens to v2.6.0.
+
+### Before You Begin
+
+#### Prerequisites
+
+- Use version 2.0.0 or older
+
+### Breaking Changes
+
+None.
+
+### New Components Added
+
+| Component | Description |
+|-----------|-------------|
+| `OudsNavigationButton` | Navigation button component |
+| `OudsCircularProgressIndicator` | Circular (indeterminate/determinate) progress indicator |
+| `OudsLinearProgressIndicator` | Linear (indeterminate/determinate) progress indicator |
+
+### Token Updates — v2.6.0
+
+Design tokens have been updated to version 2.6.0.
+
+**Impact**: Low (only if overriding tokens directly in a custom theme)
+
+**Required Action**:
+- If you override tokens in a custom theme, audit your overrides against the new token names
+
+### Compatibility
+
+- **Backward Compatibility**: Yes
+- **v2.0.0 Support**: Ended with this release
 
 ## v1.3.1 → v2.0.0
 
@@ -106,43 +228,6 @@ OudsLink.external(label: 'Label')
 
 **Reason for Change**: Improve type safety and API clarity by making each link variant explicit through its own constructor, consistent with `OudsTag` and `OudsBadge`
 
-#### 5. `OudsTextInput` / `OudsPhoneNumberInput` — Typed prefix/suffix icon configuration with tinting support
-
-`OudsFormInputDecoration.prefixIcon` and `suffixIcon` are no longer plain `String`/asset paths. They now take `OudsTextInputPrefixIcon` and `OudsTextInputSuffixIconButton` objects, which let you control whether the icon is tinted with the theme color or displayed with its original (multi-color) asset colors via a new `tinted` parameter (defaults to `true`). The `onSuffixPressed` parameter on the decoration has been removed; the press callback now lives on `OudsTextInputSuffixIconButton.onPressed`.
-
-**Impact**: Medium (breaking — any code setting `prefixIcon`, `suffixIcon`, or `onSuffixPressed` on `OudsInputDecoration`/`OudsFormInputDecoration` must be updated)
-
-**Before**:
-```dart
-OudsInputDecoration(
-  prefixIcon: 'assets/ic_heart.svg',
-  suffixIcon: 'assets/ic_heart.svg',
-  onSuffixPressed: () {},
-)
-```
-
-**After**:
-```dart
-OudsInputDecoration(
-  prefixIcon: OudsTextInputPrefixIcon(
-    icon: 'assets/ic_heart.svg',
-    tinted: true, // optional, defaults to true
-  ),
-  suffixIcon: OudsTextInputSuffixIconButton(
-    icon: 'assets/ic_heart.svg',
-    tinted: true, // optional, defaults to true
-    onPressed: () {},
-  ),
-)
-```
-
-**Required Action**:
-- Wrap existing `prefixIcon` asset paths in `OudsTextInputPrefixIcon(icon: ...)`
-- Wrap existing `suffixIcon` asset paths in `OudsTextInputSuffixIconButton(icon: ..., onPressed: ...)`, moving the `onSuffixPressed` callback into `onPressed`
-- Set `tinted: false` if the icon asset is multi-color and should keep its original colors instead of being tinted with the theme color
-
-**Reason for Change**: Support untinted (multi-color) leading and trailing icons in text and phone number inputs, consistent with the `tinted` behavior available in `OudsButton` and `OudsLink`
-
 ### Component Design Version Updates
 
 Several components have been updated to align with new design specification versions. These changes are primarily visual and do not require code changes unless you override component tokens in a custom theme.
@@ -174,7 +259,6 @@ Several components have been updated to align with new design specification vers
 | Filter Chip | Fixed keyboard/Switch Access focus issue |
 | Phone Number Input | Added interaction hint for accessibility |
 | Input Tag | Fixed button role for accessibility |
-| Button | Added `tinted` parameter (defaults to `true`) to control whether the icon follows the theme color or keeps its original (multi-color) asset colors |
 
 ### Compatibility
 

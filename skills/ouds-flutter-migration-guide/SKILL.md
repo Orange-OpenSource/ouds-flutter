@@ -681,7 +681,9 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
-| `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons with `tinted` support, `OudsButton.tinted`, Markdown support, token/icon updates |
+| `v2.1.0 → v3.0.0` | No | Yes | Typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons with `tinted` support (breaking), `OudsButton.tinted`, `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
+| `v2.0.0 → v2.1.0` | Full | No | `OudsNavigationButton`, `OudsCircularProgressIndicator`, `OudsLinearProgressIndicator`, tokens v2.6.0 |
+| `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
 | `v1.3.0 → v1.3.1` | Full | No | Maintenance release, bug fixes, accessibility improvements |
 | `v1.2.0 → v1.3.0` | Partial | Yes for deprecated APIs | `OudsTag` named constructors, `OudsBadge` named constructors, `OudsPinCodeInput.keyboardType`, new alert/bottom-sheet components |
 | `v1.1.x → v1.2.0` | No | Yes | `OudsTagConfig` removal from theme config, status icon updates, top bar components, French support |
@@ -733,7 +735,7 @@ OudsLink.external(label: 'Label')
 
 ---
 
-#### 3.3.0bis Typed prefix/suffix icons with `tinted` support (`v1.3.1 → v2.0.0`)
+#### 3.3.0bis Typed prefix/suffix icons with `tinted` support (`v2.1.0 → v3.0.0`)
 
 `OudsInputDecoration`/`OudsFormInputDecoration.prefixIcon` and `suffixIcon` are no longer `String`/`VoidCallback` values. They now take `OudsTextInputPrefixIcon` and `OudsTextInputSuffixIconButton` objects with a `tinted` flag (defaults to `true`) controlling whether the icon follows the theme color or keeps its original (multi-color) asset colors. `onSuffixPressed` has been removed; use `OudsTextInputSuffixIconButton.onPressed` instead.
 
