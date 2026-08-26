@@ -96,7 +96,7 @@ class OudsTextField extends StatefulWidget {
     this.helperLink,
     this.trailingIconContentDescription,
   }) : assert(
-         !(decoration.loader == true && decoration.errorText != null),
+         !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
        );
 
@@ -214,7 +214,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
-      isLoading: (widget.decoration.loader == true && _isTyping) ? true : false,
+      isLoading: (widget.decoration.loader != null && _isTyping) ? true : false,
       isReadOnly: widget.readOnly ?? false,
     );
 
@@ -260,7 +260,7 @@ class _OudsTextInputState extends State<OudsTextField> {
     final hintLabel = contentText.isEmpty
         ? widget.decoration.hintText ?? ""
         : "";
-    final loadingLabel = widget.decoration.loader == true
+    final loadingLabel = widget.decoration.loader != null
         ? l10n?.core_common_loading_a11y
         : '';
 
@@ -279,7 +279,7 @@ class _OudsTextInputState extends State<OudsTextField> {
 
     return Semantics(
       label: semanticsValue,
-      hint: widget.decoration.loader == true ? '' : l10n?.core_common_hint_a11y,
+      hint: widget.decoration.loader != null ? '' : l10n?.core_common_hint_a11y,
       value: isError ? l10n?.core_common_error_a11y : null,
       focused: effectiveFocusNode != null,
       focusable: true,
@@ -351,7 +351,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                             child: Text(
                               widget.decoration.prefix!,
                               style: theme.typographyTokens
-                                  .typeLabelDefaultLarge(context)
+                                  .typeLabelModerateLarge(context)
                                   .copyWith(
                                     color: inputTextTextModifier
                                         .getSuffixPrefixTextColor(state),
@@ -368,7 +368,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                         child: ExcludeSemantics(
                           child:
                               widget.readOnly == true ||
-                                  (widget.decoration.loader == true &&
+                                  (widget.decoration.loader != null &&
                                       _isTyping)
                               ? IgnorePointer(
                                   child: _buildTextField(
@@ -411,7 +411,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                             child: Text(
                               widget.decoration.suffix!,
                               style: theme.typographyTokens
-                                  .typeLabelDefaultLarge(context)
+                                  .typeLabelModerateLarge(context)
                                   .copyWith(
                                     color: inputTextTextModifier
                                         .getSuffixPrefixTextColor(state),
@@ -425,7 +425,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                       Semantics(
                         label:
                             widget.decoration.suffixIcon != null &&
-                                widget.decoration.loader == false
+                                widget.decoration.loader == null
                             ? widget.trailingIconContentDescription
                             : null,
                         container: true,
@@ -543,7 +543,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                   overflow: TextOverflow.ellipsis,
                   widget.decoration.labelText ?? "",
                   style: theme.typographyTokens
-                      .typeLabelDefaultLarge(context)
+                      .typeLabelModerateLarge(context)
                       .copyWith(
                         color: inputTextTextModifier.getTextColor(
                           state,
@@ -568,7 +568,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                 overflow: TextOverflow.ellipsis,
                 widget.decoration.hintText!,
                 style: theme.typographyTokens
-                    .typeLabelDefaultLarge(context)
+                    .typeLabelModerateLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
                     ),
@@ -587,7 +587,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                     child: Text(
                       widget.decoration.prefix!,
                       style: theme.typographyTokens
-                          .typeLabelDefaultLarge(context)
+                          .typeLabelModerateLarge(context)
                           .copyWith(
                             color: inputTextTextModifier
                                 .getSuffixPrefixTextColor(state),
@@ -615,7 +615,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                     child: Text(
                       widget.decoration.suffix!,
                       style: theme.typographyTokens
-                          .typeLabelDefaultLarge(context)
+                          .typeLabelModerateLarge(context)
                           .copyWith(
                             color: inputTextTextModifier
                                 .getSuffixPrefixTextColor(state),
@@ -671,7 +671,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         MarkdownSpanBuilder.buildBoldOnly(
           text,
           baseStyle: theme.typographyTokens
-              .typeLabelDefaultMedium(context)
+              .typeLabelModerateMedium(context)
               .copyWith(
                 color: inputTextTextModifier.getHelperTextColor(state, isError),
               ),
@@ -688,8 +688,8 @@ class _OudsTextInputState extends State<OudsTextField> {
   ///
   /// Cases handled:
   ///
-  /// 1. **Loader active** (`loader == true`):
-  ///    - Displays a circular loading indicator.
+  /// 1. **Loader active** (`loader != null`):
+  ///    - Displays a circular loading indicator using [OudsCircularProgressIndicator].
   ///
   /// 2. **Suffix icon provided** (`suffixIcon != null`):
   ///    - Displays the suffix icon inside a minimal hierarchy [OudsButton].
@@ -717,29 +717,13 @@ class _OudsTextInputState extends State<OudsTextField> {
     );
 
     // Case 1: loader active
-    if (widget.decoration.loader == true && _isTyping) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(width: textInput.spaceColumnGapDefault),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              minWidth: buttonTokens.sizeMinWidthDefault,
-              minHeight: buttonTokens.sizeMinHeightDefault,
-              maxHeight: buttonTokens.sizeMaxSizeIconOnlyDefault,
-            ),
-            child: Padding(
-              padding: EdgeInsetsGeometry.all(
-                buttonTokens.spaceInsetIconOnlyDefault, // to see
-              ),
-              child: Center(
-                child: OudsCircularProgressIndicator(
-                  color: theme.colorScheme(context).contentDefault,
-                ),
-              ),
-            ),
-          ),
-        ],
+    if (widget.decoration.loader != null && _isTyping) {
+      return OudsButton(
+        icon: AppAssets.icons.communicationAssistanceTipsAndTricks,
+        package: OudsTheme.of(context).packageName,
+        appearance: OudsButtonAppearance.minimal,
+        isLoading: true,
+        onPressed: () {},
       );
     }
 

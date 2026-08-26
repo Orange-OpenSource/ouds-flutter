@@ -16,6 +16,22 @@ library;
 
 import 'dart:ui';
 
+/// A circular loading indicator displayed in the text input.
+///
+/// @param progress The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
+///   Values outside of this range are coerced into the range.
+///   Set this value to `null` to display a circular indeterminate progress indicator.
+class OudsTextInputLoader {
+  /// The progress value for determinate loading (0.0 to 1.0).
+  /// If null, shows an indeterminate progress indicator.
+  final double? progress;
+
+  const OudsTextInputLoader({this.progress});
+
+  /// Returns true if loading is active.
+  bool get isLoading => progress != null;
+}
+
 /// Alias class for [OudsFormInputDecoration].
 ///
 /// This class provides a shorter and more convenient name, [OudsInputDecoration],
@@ -76,7 +92,9 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 /// - [errorText]: Text shown below the input indicating an error state or invalid input.
 ///   Supports strong text formatting using `**bold**`.
 ///
-/// - [loader]: When true, displays a loading indicator inside the input.
+/// - [loader]: An [OudsTextInputLoader] instance to display a loading indicator inside the input.
+///   Use [OudsTextInputLoader] with optional [progress] value (0.0 to 1.0) for determinate loading,
+///   or without progress for indeterminate loading. Use `null` to disable the loader.
 ///
 /// - [outlined]: A boolean that determines if the input uses an outlined style or not.
 ///
@@ -95,7 +113,7 @@ class OudsFormInputDecoration {
   final bool hasPrefix;
   final String? suffix;
   final String? errorText;
-  final bool? loader;
+  final OudsTextInputLoader? loader;
   final bool? outlined;
   final VoidCallback? onSuffixPressed;
   final bool constrainedMaxWidth;

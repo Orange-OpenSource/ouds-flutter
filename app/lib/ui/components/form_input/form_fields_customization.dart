@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
@@ -103,6 +104,9 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Proxy getters and setters to expose state values directly
   bool get hasLoader => loaderState.value;
   set hasLoader(bool value) => loaderState.value = value;
+
+  /// Returns the loader as OudsTextInputLoader for use in decoration.
+  OudsTextInputLoader? get loader => hasLoader ? const OudsTextInputLoader() : null;
 
   // Proxy getters and setters to expose state values directly
   bool get hasOutlined => outlinedState.value;

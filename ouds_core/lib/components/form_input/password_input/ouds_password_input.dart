@@ -83,7 +83,7 @@ class OudsPasswordInput extends StatefulWidget {
     this.onEditingComplete,
     required this.decoration,
   }) : assert(
-         !(decoration.loader == true && decoration.errorText != null),
+         !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
        );
 
@@ -207,7 +207,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
-      isLoading: (widget.decoration.loader == true && _isTyping) ? true : false,
+      isLoading: (widget.decoration.loader != null && _isTyping) ? true : false,
       isReadOnly: widget.readOnly ?? false,
     );
 
@@ -284,7 +284,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                       hint: helperText,
                       child:
                           widget.readOnly == true ||
-                              (widget.decoration.loader == true && _isTyping)
+                              (widget.decoration.loader != null && _isTyping)
                           ? IgnorePointer(
                               child: _buildTextField(
                                 inputTextTextModifier,
@@ -413,7 +413,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                 widget.decoration.labelText ?? "",
                 overflow: TextOverflow.ellipsis,
                 style: theme.typographyTokens
-                    .typeLabelDefaultLarge(context)
+                    .typeLabelModerateLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getTextColor(state, isError),
                     ),
@@ -433,7 +433,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                 widget.decoration.hintText!,
                 overflow: TextOverflow.ellipsis,
                 style: theme.typographyTokens
-                    .typeLabelDefaultLarge(context)
+                    .typeLabelModerateLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
                     ),
@@ -452,7 +452,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                     child: Text(
                       widget.decoration.prefix!,
                       style: theme.typographyTokens
-                          .typeLabelDefaultLarge(context)
+                          .typeLabelModerateLarge(context)
                           .copyWith(
                             color: inputTextTextModifier
                                 .getSuffixPrefixTextColor(state),
@@ -511,7 +511,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         MarkdownSpanBuilder.buildBoldOnly(
           text,
           baseStyle: theme.typographyTokens
-              .typeLabelDefaultMedium(context)
+              .typeLabelModerateMedium(context)
               .copyWith(
                 color: inputTextTextModifier.getHelperTextColor(state, isError),
               ),
@@ -559,17 +559,13 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     final l10n = OudsLocalizations.of(context);
 
     // Case 1: loader active
-    if (widget.decoration.loader == true && _isTyping) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          OudsButton(
-            icon: 'assets/ic_password_lock.svg',
-            appearance: OudsButtonAppearance.minimal,
-            isLoading: true,
-            onPressed: () {},
-          ),
-        ],
+    if (widget.decoration.loader != null && _isTyping) {
+      return OudsButton(
+        icon: AppAssets.icons.communicationAssistanceTipsAndTricks,
+        package: OudsTheme.of(context).packageName,
+        appearance: OudsButtonAppearance.minimal,
+        isLoading: true,
+        onPressed: () {},
       );
     }
 

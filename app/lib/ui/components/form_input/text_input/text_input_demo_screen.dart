@@ -237,17 +237,13 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 )
               : null,
           suffixIcon: customizationState.hasTrailingIcon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                  themeController,
-                )
+              ? AppAssets.icons.assistanceTipsAndTricks(themeController)
               : null,
           suffix: customizationState.suffixText.isNotEmpty
               ? FormFieldsCustomizationUtils.getSuffixText(customizationState)
               : null,
           prefixIcon: customizationState.hasLeadingIcon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                  themeController,
-                )
+              ? AppAssets.icons.assistanceTipsAndTricks(themeController)
               : null,
           prefix: customizationState.prefixText.isNotEmpty
               ? FormFieldsCustomizationUtils.getPrefixText(customizationState)
@@ -255,7 +251,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           errorText: customizationState.hasError
               ? context.l10n.app_components_textInput_error_label
               : null,
-          loader: customizationState.hasLoader,
+          loader: customizationState.loader,
           outlined: customizationState.hasOutlined,
           constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
               ? true

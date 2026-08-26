@@ -221,7 +221,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               errorText: customizationState.hasError
                   ? context.l10n.app_components_passwordInput_error_label
                   : null,
-              loader: customizationState.hasLoader,
+              loader: customizationState.loader,
               outlined: customizationState.hasOutlined,
               constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                   ? true

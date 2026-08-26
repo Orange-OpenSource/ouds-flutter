@@ -249,7 +249,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
           errorText: customizationState.hasError
               ? context.l10n.app_components_phoneNumberInput_error_label
               : null,
-          loader: customizationState.hasLoader,
+          loader: customizationState.loader,
           outlined: customizationState.hasOutlined,
           constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
               ? true
