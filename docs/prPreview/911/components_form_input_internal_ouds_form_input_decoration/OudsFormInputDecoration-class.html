@@ -72,16 +72,17 @@ Hyperlinks are not supported in helper text. Use the dedicated helper link compo
 describing the expected input.</p>
 </li>
 <li>
-<p><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/suffixIcon.html">suffixIcon</a>: A widget displayed at the end of the input field,
-commonly used for actions like clearing or toggling visibility.</p>
+<p><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/suffixIcon.html">suffixIcon</a>: An <a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputSuffixIconButton-class.html">OudsTextInputSuffixIconButton</a> displayed at the end of the input field,
+commonly used for actions like clearing or toggling visibility.
+Use <a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputSuffixIconButton-class.html">OudsTextInputSuffixIconButton</a> with <a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputSuffixIconButton/icon.html">OudsTextInputSuffixIconButton.icon</a> to specify the icon,
+<a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputSuffixIconButton/tinted.html">OudsTextInputSuffixIconButton.tinted</a> to control tinting (default: true),
+and <a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputSuffixIconButton/onPressed.html">OudsTextInputSuffixIconButton.onPressed</a> to handle press events.</p>
 </li>
 <li>
-<p><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/onSuffixPressed.html">onSuffixPressed</a>: - Assign a function to handle specific actions, that is invoked when the <a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/suffixIcon.html">suffixIcon</a> is pressed.
-                   - If <code>null</code>, tapping the suffix icon will have no effect.</p>
-</li>
-<li>
-<p><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/prefixIcon.html">prefixIcon</a>: The name or path of an icon displayed at the start of the input field,
-typically to indicate the type or purpose of input.</p>
+<p><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/prefixIcon.html">prefixIcon</a>: An <a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputPrefixIcon-class.html">OudsTextInputPrefixIcon</a> displayed at the start of the input field,
+typically to indicate the type or purpose of input.
+Use <a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputPrefixIcon/icon.html">OudsTextInputPrefixIcon.icon</a> to specify the icon and
+<a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputPrefixIcon/tinted.html">OudsTextInputPrefixIcon.tinted</a> to control tinting (default: true).</p>
 </li>
 <li>
 <p><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/prefix.html">prefix</a>: A string displayed before the user's input, usually static text or units.</p>
@@ -134,7 +135,7 @@ Defaults to <code>false</code>.</p>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsFormInputDecoration.new" class="callable">
-          <span class="name"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/OudsFormInputDecoration.html">OudsFormInputDecoration</a></span><span class="signature">({<span class="parameter" id="param-labelText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">labelText</span>, </span><span class="parameter" id="param-helperText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">helperText</span>, </span><span class="parameter" id="param-hintText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">hintText</span>, </span><span class="parameter" id="param-suffixIcon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">suffixIcon</span>, </span><span class="parameter" id="param-prefixIcon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">prefixIcon</span>, </span><span class="parameter" id="param-prefix"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">prefix</span>, </span><span class="parameter" id="param-hasPrefix"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hasPrefix</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-suffix"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">suffix</span>, </span><span class="parameter" id="param-errorText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">errorText</span>, </span><span class="parameter" id="param-loader"><span class="type-annotation"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputLoader-class.html">OudsTextInputLoader</a>?</span> <span class="parameter-name">loader</span>, </span><span class="parameter" id="param-outlined"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">outlined</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-onSuffixPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onSuffixPressed</span>, </span><span class="parameter" id="param-constrainedMaxWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">constrainedMaxWidth</span> = <span class="default-value">false</span></span>})</span>
+          <span class="name"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/OudsFormInputDecoration.html">OudsFormInputDecoration</a></span><span class="signature">({<span class="parameter" id="param-labelText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">labelText</span>, </span><span class="parameter" id="param-helperText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">helperText</span>, </span><span class="parameter" id="param-hintText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">hintText</span>, </span><span class="parameter" id="param-suffixIcon"><span class="type-annotation"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputSuffixIconButton-class.html">OudsTextInputSuffixIconButton</a>?</span> <span class="parameter-name">suffixIcon</span>, </span><span class="parameter" id="param-prefixIcon"><span class="type-annotation"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputPrefixIcon-class.html">OudsTextInputPrefixIcon</a>?</span> <span class="parameter-name">prefixIcon</span>, </span><span class="parameter" id="param-prefix"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">prefix</span>, </span><span class="parameter" id="param-hasPrefix"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hasPrefix</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-suffix"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">suffix</span>, </span><span class="parameter" id="param-errorText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">errorText</span>, </span><span class="parameter" id="param-loader"><span class="type-annotation"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputLoader-class.html">OudsTextInputLoader</a>?</span> <span class="parameter-name">loader</span>, </span><span class="parameter" id="param-outlined"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">outlined</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-constrainedMaxWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">constrainedMaxWidth</span> = <span class="default-value">false</span></span>})</span>
         </dt>
         <dd>
           
@@ -244,18 +245,6 @@ Defaults to <code>false</code>.</p>
 
 </dd>
 
-        <dt id="onSuffixPressed" class="property">
-  <span class="name"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/onSuffixPressed.html">onSuffixPressed</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span>
-  
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">final</span></div>
-
-</dd>
-
         <dt id="outlined" class="property">
   <span class="name"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/outlined.html">outlined</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span>
@@ -282,7 +271,7 @@ Defaults to <code>false</code>.</p>
 
         <dt id="prefixIcon" class="property">
   <span class="name"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/prefixIcon.html">prefixIcon</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  <span class="signature">&#8594; <a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputPrefixIcon-class.html">OudsTextInputPrefixIcon</a>?</span>
   
 
 </dt>
@@ -318,7 +307,7 @@ Defaults to <code>false</code>.</p>
 
         <dt id="suffixIcon" class="property">
   <span class="name"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsFormInputDecoration/suffixIcon.html">suffixIcon</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  <span class="signature">&#8594; <a href="../components_form_input_internal_ouds_form_input_decoration/OudsTextInputSuffixIconButton-class.html">OudsTextInputSuffixIconButton</a>?</span>
   
 
 </dt>

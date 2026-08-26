@@ -63,6 +63,7 @@
 <li><span class="parameter" id="param-appearance"><span>required</span> <span class="type-annotation"><a href="../../components_button_ouds_button/OudsButtonAppearance.html">OudsButtonAppearance</a></span> <span class="parameter-name">appearance</span>, </span></li>
 <li><span class="parameter" id="param-package"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">package</span>, </span></li>
 <li><span class="parameter" id="param-isFullWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">isFullWidth</span> = <span class="default-value">false</span>, </span></li>
+<li><span class="parameter" id="param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span>, </span></li>
 </ol>})
     </section>
     
@@ -81,6 +82,7 @@
   required this.appearance,
   this.package,
   this.isFullWidth = false,
+  this.tinted = true,
 }) : _size = OudsButtonSize.defaultSize,
      _component = OudsButtonComponent.defaultButton,
      _navigationLayout = null,

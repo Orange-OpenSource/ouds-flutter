@@ -58,8 +58,9 @@
 <span class="name ">buildIcon</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="buildIcon-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
 <li><span class="parameter" id="buildIcon-param-assetName"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">assetName</span>, </span></li>
 <li><span class="parameter" id="buildIcon-param-controlTextInputState"><span class="type-annotation">OudsFormFieldsControlState</span> <span class="parameter-name">controlTextInputState</span>, </span></li>
-<li><span class="parameter" id="buildIcon-param-isError"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isError</span>, </span></li>
-</ol>)
+<li><span class="parameter" id="buildIcon-param-isError"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isError</span>, {</span></li>
+<li><span class="parameter" id="buildIcon-param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span>, </span></li>
+</ol>})
 
       
 
@@ -74,22 +75,34 @@
   BuildContext context,
   String assetName,
   OudsFormFieldsControlState controlTextInputState,
-  bool isError,
-) {
+  bool isError, {
+  bool tinted = true,
+}) {
   final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
     context,
   );
   final theme = OudsTheme.of(context);
-  return SvgPicture.asset(
+  final Widget iconWidget = SvgPicture.asset(
     excludeFromSemantics: true,
     assetName,
     fit: BoxFit.contain,
     height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
     width: theme.componentsTokens(context).textInput.sizeLeadingIcon,
-    colorFilter: ColorFilter.mode(
-      inputTextForegroundModifier.getIconColor(controlTextInputState),
-      BlendMode.srcIn,
-    ),
+    colorFilter: tinted
+        ? ColorFilter.mode(
+            inputTextForegroundModifier.getIconColor(controlTextInputState),
+            BlendMode.srcIn,
+          )
+        : null,
+  );
+
+  &#47;&#47; When untinted, the icon asset is expected to be a plain white shape
+  &#47;&#47; (no embedded background), so it needs a brand-colored background to
+  &#47;&#47; remain visible — matching the behavior of OudsButton and OudsLink.
+  if (tinted) return iconWidget;
+  return Container(
+    color: theme.colorScheme(context).surfaceBrandPrimary,
+    child: iconWidget,
   );
 }</code></pre>
 </section>
