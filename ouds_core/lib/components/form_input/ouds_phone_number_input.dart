@@ -27,6 +27,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_text_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_circular_progress_indicator.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -114,7 +115,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
     required this.decoration,
     this.onEditingComplete,
   }) : assert(
-         !(decoration.loader == true && decoration.errorText != null),
+         !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
        );
 
@@ -239,7 +240,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
-      isLoading: widget.decoration.loader ?? false,
+      isLoading: widget.decoration.loader != null,
       isReadOnly: widget.readOnly ?? false,
     );
 
@@ -513,7 +514,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
             ? Text(
                 widget.decoration.labelText ?? "",
                 style: theme.typographyTokens
-                    .typeLabelDefaultLarge(context)
+                    .typeLabelModerateLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getTextColor(state, isError),
                     ),
@@ -536,7 +537,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: theme.typographyTokens
-                    .typeLabelDefaultLarge(context)
+                    .typeLabelModerateLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
                     ),
@@ -705,7 +706,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
           Text(
             prefixToDisplay,
             style: theme.typographyTokens
-                .typeLabelDefaultLarge(context)
+                .typeLabelModerateLarge(context)
                 .copyWith(
                   color: inputTextTextModifier.getSuffixPrefixTextColor(state),
                 ),
@@ -755,7 +756,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         MarkdownSpanBuilder.buildBoldOnly(
           text,
           baseStyle: theme.typographyTokens
-              .typeLabelDefaultMedium(context)
+              .typeLabelModerateMedium(context)
               .copyWith(
                 color: inputTextTextModifier.getHelperTextColor(state, isError),
               ),
@@ -800,7 +801,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         if (widget.decoration.prefixIcon != null) ...[
           OudsPhoneNumberInput.buildIcon(
             context,
-            widget.decoration.prefixIcon!,
+            widget.decoration.prefixIcon!.icon,
             state,
             false,
           ),
@@ -821,8 +822,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   ///
   /// Cases handled:
   ///
-  /// 1. **Loader active** (`loader == true`):
-  ///    - Displays a minimal hierarchy [OudsButton] in loading style.
+  /// 1. **Loader active** (`loader != null`):
+  ///    - Displays a circular loading indicator using [OudsCircularProgressIndicator].
   ///    - Adds horizontal spacing before the loader for visual alignment.
   ///
   /// 2. **Only error state** (`errorText != null`):
@@ -846,19 +847,13 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     );
 
     // Case 1: loader active
-    if (widget.decoration.loader == true) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(width: textInput.spaceColumnGapDefault),
-          OudsButton(
-            icon: AppAssets.icons.functionalSocialAndEngagementHeartRecommend,
-            package: OudsTheme.of(context).packageName,
-            appearance: OudsButtonAppearance.minimal,
-            isLoading: true,
-            onPressed: () {},
-          ),
-        ],
+    if (widget.decoration.loader != null) {
+      return OudsButton(
+        icon: AppAssets.icons.communicationAssistanceTipsAndTricks,
+        package: OudsTheme.of(context).packageName,
+        appearance: OudsButtonAppearance.minimal,
+        isLoading: true,
+        onPressed: () {},
       );
     }
 

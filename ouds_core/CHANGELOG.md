@@ -8,12 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
+- [Library] For `Button` component, add with `tinted parameter ([#912](https://github.com/Orange-OpenSource/ouds-flutter/issues/912))
+- [Library] For `passwordInput` component, update to v1.3.1 ([#785](https://github.com/Orange-OpenSource/ouds-flutter/issues/785))
+- [Library] For `textInput` component, update to v1.4.1 ([#784](https://github.com/Orange-OpenSource/ouds-flutter/issues/784))
+- [Library] For `phoneNumberInput` component, update to v1.3.1 ([#839](https://github.com/Orange-OpenSource/ouds-flutter/issues/839))
 - [Library] Add typography Tokens component ([#905](https://github.com/Orange-OpenSource/ouds-flutter/issues/905))
 - [Library] update icons to use the icons pack 2.3.0 ([#863](https://github.com/Orange-OpenSource/ouds-flutter/issues/863))
 - [Library] In library, update `link` component to v2.4.0 ([#861](https://github.com/Orange-OpenSource/ouds-flutter/issues/861))
 - [Library] In library, update `link` component to v2.3.0 ([#838](https://github.com/Orange-OpenSource/ouds-flutter/issues/838))
 - [Library] For `button` component, update to version 3.3.0 ([#832](https://github.com/Orange-OpenSource/ouds-flutter/issues/832))
 - [Library] Update `progress-indicator`: add size parameter to OudsCircularProgressIndicator for button integration ([#876](https://github.com/Orange-OpenSource/ouds-flutter/issues/876))
+- [Library] deps update dependency `dlibphonenumber` to 1.1.70
 ### Fixed
 - [Library] Invalid value: Not in inclusive range 0..2: 3 dans OudsTabBar` ([#896](https://github.com/Orange-OpenSource/ouds-flutter/issues/896))
 

@@ -23,8 +23,8 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customiza
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
@@ -236,35 +236,22 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   customizationState,
                 )
               : null,
-          suffixIcon: customizationState.hasTrailingIcon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                  themeController,
-                )
-              : null,
+          suffixIcon: customizationState.getSuffixIcon(themeController),
           suffix: customizationState.suffixText.isNotEmpty
               ? FormFieldsCustomizationUtils.getSuffixText(customizationState)
               : null,
-          prefixIcon: customizationState.hasLeadingIcon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                  themeController,
-                )
-              : null,
+          prefixIcon: customizationState.getPrefixIcon(themeController),
           prefix: customizationState.prefixText.isNotEmpty
               ? FormFieldsCustomizationUtils.getPrefixText(customizationState)
               : null,
           errorText: customizationState.hasError
               ? context.l10n.app_components_textInput_error_label
               : null,
-          loader: customizationState.hasLoader,
+          loader: customizationState.loader,
           outlined: customizationState.hasOutlined,
           constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
               ? true
               : false,
-          onSuffixPressed: () {
-            ///
-            /// To Be implemented if needed
-            ///
-          },
         ),
       ),
     );
@@ -355,18 +342,22 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   customizationState.hasError = value;
                 },
         ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_textInput_leadingIcon_label,
-          value: customizationState.hasLeadingIcon,
-          onChanged: (value) {
-            customizationState.hasLeadingIcon = value;
+        CustomizableChips<LeadingIconOptionEnum>(
+          title: LeadingIconOptionEnum.enumName(context),
+          options: customizationState.leadingIconState.list,
+          selectedOption: customizationState.selectedLeadingIcon,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            customizationState.selectedLeadingIcon = selectedOption;
           },
         ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_textInput_trailingAction_label,
-          value: customizationState.hasTrailingIcon,
-          onChanged: (value) {
-            customizationState.hasTrailingIcon = value;
+        CustomizableChips<TrailingIconOptionEnum>(
+          title: TrailingIconOptionEnum.enumName(context),
+          options: customizationState.trailingIconState.list,
+          selectedOption: customizationState.selectedTrailingIcon,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            customizationState.selectedTrailingIcon = selectedOption;
           },
         ),
         CustomizableSwitch(

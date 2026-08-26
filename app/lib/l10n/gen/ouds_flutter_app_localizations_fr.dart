@@ -292,7 +292,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_common_type_tech => 'Type';
 
   @override
-  String get app_components_common_tinted_tech => 'Tinted icon';
+  String get app_components_common_tinted_tech => 'Tinted';
+
+  @override
+  String get app_components_common_untinted_tech => 'Untinted';
 
   @override
   String get app_components_alert_tech => 'Alert';
