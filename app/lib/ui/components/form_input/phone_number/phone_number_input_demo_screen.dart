@@ -244,7 +244,9 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               : null,
           hasPrefix: customizationState.hasPrefix,
           prefixIcon: customizationState.hasLeadingIcon
-              ? AppAssets.icons.deviceSmartphone(themeController)
+              ? OudsTextInputPrefixIcon(
+                  icon: AppAssets.icons.deviceSmartphone(themeController),
+                )
               : null,
           errorText: customizationState.hasError
               ? context.l10n.app_components_phoneNumberInput_error_label

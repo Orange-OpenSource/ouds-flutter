@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _FormFieldsCustomization extends InheritedWidget {
-  const _FormFieldsCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _FormFieldsCustomization({required super.child, required this.data});
 
   final FormFieldsCustomizationState data;
 
@@ -31,12 +30,15 @@ class FormFieldsCustomization extends StatefulWidget {
   FormFieldsCustomizationState createState() => FormFieldsCustomizationState();
 
   static FormFieldsCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_FormFieldsCustomization>())?.data;
+    return (context
+            .dependOnInheritedWidgetOfExactType<_FormFieldsCustomization>())
+        ?.data;
   }
 }
 
 /// TextInput customization state management
-class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCustomization> {
+class FormFieldsCustomizationState
+    extends CustomizationWidgetState<FormFieldsCustomization> {
   late final ErrorState errorState;
   late final LeadingIconState leadingIconState;
   late final TrailingIconState trailingIconState;
@@ -90,23 +92,74 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
 
   // Getter to determine if the widget should be enabled when the placeholder text is not empty.
   bool get isEnabledWhenPlaceHolderIsNotEmpty {
-    return FormFieldsErrorCases.isEnabledWhenPlaceHolderIsNotEmpty(placeholderTextState);
+    return FormFieldsErrorCases.isEnabledWhenPlaceHolderIsNotEmpty(
+      placeholderTextState,
+    );
   }
 
   // Proxy getters and setters to expose state values directly
-  bool get hasLeadingIcon => leadingIconState.value;
-  set hasLeadingIcon(bool value) => leadingIconState.value = value;
+  bool get hasLeadingIcon =>
+      leadingIconState.selected != LeadingIconOptionEnum.none;
+  set hasLeadingIcon(bool value) => leadingIconState.selected = value
+      ? LeadingIconOptionEnum.tinted
+      : LeadingIconOptionEnum.none;
 
   // Proxy getters and setters to expose state values directly
-  bool get hasTrailingIcon => trailingIconState.value;
-  set hasTrailingIcon(bool value) => trailingIconState.value = value;
+  bool get hasTrailingIcon =>
+      trailingIconState.selected != TrailingIconOptionEnum.none;
+
+  // Proxy getters and setters to expose the combined leading icon option directly
+  LeadingIconOptionEnum get selectedLeadingIcon => leadingIconState.selected;
+  set selectedLeadingIcon(LeadingIconOptionEnum value) =>
+      leadingIconState.selected = value;
+
+  // Proxy getters and setters to expose the combined trailing action option directly
+  TrailingIconOptionEnum get selectedTrailingIcon => trailingIconState.selected;
+  set selectedTrailingIcon(TrailingIconOptionEnum value) =>
+      trailingIconState.selected = value;
+
+  // Proxy getters and setters to expose tinted state values directly
+  bool get leadingIconTinted =>
+      leadingIconState.selected == LeadingIconOptionEnum.tinted;
+
+  bool get trailingIconTinted =>
+      trailingIconState.selected == TrailingIconOptionEnum.tinted;
+
+  /// Returns the prefixIcon as OudsTextInputPrefixIcon for use in decoration.
+  /// This must be called within a build context where the theme controller is available.
+  ///
+  /// Uses a single-color, theme-tintable asset when tinted, or the shared
+  /// multi-color `icUntintedSquare` asset (kept as-is) when untinted — mirroring
+  /// the behavior used in the Button and Link component demos.
+  OudsTextInputPrefixIcon? getPrefixIcon(ThemeController themeController) =>
+      hasLeadingIcon
+      ? OudsTextInputPrefixIcon(
+          icon: leadingIconTinted
+              ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+              : AppAssets.icons.icUntintedSquare,
+          tinted: leadingIconTinted,
+        )
+      : null;
+
+  /// Returns the suffixIcon as OudsTextInputSuffixIconButton for use in decoration.
+  /// This must be called within a build context where the theme controller is available.
+  OudsTextInputSuffixIconButton? getSuffixIcon(
+    ThemeController themeController,
+  ) => hasTrailingIcon
+      ? OudsTextInputSuffixIconButton(
+          icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+          tinted: trailingIconTinted,
+          onPressed: () {},
+        )
+      : null;
 
   // Proxy getters and setters to expose state values directly
   bool get hasLoader => loaderState.value;
   set hasLoader(bool value) => loaderState.value = value;
 
   /// Returns the loader as OudsTextInputLoader for use in decoration.
-  OudsTextInputLoader? get loader => hasLoader ? const OudsTextInputLoader() : null;
+  OudsTextInputLoader? get loader =>
+      hasLoader ? const OudsTextInputLoader() : null;
 
   // Proxy getters and setters to expose state values directly
   bool get hasOutlined => outlinedState.value;
@@ -114,7 +167,8 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
 
   // Proxy getters and setters to expose the 'constrainedMaxWidthState' value directly.
   bool get hasConstrainedMaxWidth => constrainedMaxWidthState.value;
-  set hasConstrainedMaxWidth(bool value) => constrainedMaxWidthState.value = value;
+  set hasConstrainedMaxWidth(bool value) =>
+      constrainedMaxWidthState.value = value;
 
   // Proxy getters and setters to expose the 'labelTextState' value directly.
   String get labelText => labelTextState.value;
@@ -179,7 +233,10 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   }
 
   bool get isCountrySelectorWhenReadOnlyAndEnable {
-    return FormFieldsErrorCases.isCountrySelectorWhenReadOnlyAndEnable(hasReadOnly, hasEnabled);
+    return FormFieldsErrorCases.isCountrySelectorWhenReadOnlyAndEnable(
+      hasReadOnly,
+      hasEnabled,
+    );
   }
 
   bool get isLoaderWhenEnabled {
@@ -188,16 +245,18 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
 
   @override
   Widget build(BuildContext context) {
-    return _FormFieldsCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _FormFieldsCustomization(data: this, child: widget.child);
   }
 }
 
 /// Error State Management
 class ErrorState {
-  ErrorState(this._setState, this.enabledState, this.loaderState, this.readOnlyState);
+  ErrorState(
+    this._setState,
+    this.enabledState,
+    this.loaderState,
+    this.readOnlyState,
+  );
 
   final void Function(void Function()) _setState;
   final EnabledState enabledState;
@@ -214,31 +273,55 @@ class ErrorState {
 }
 
 /// LeadingIcon State Management
+///
+/// Combines presence and tinting into a single [LeadingIconOptionEnum]
+/// selection: [LeadingIconOptionEnum.none] hides the leading icon,
+/// [LeadingIconOptionEnum.tinted] and [LeadingIconOptionEnum.untinted]
+/// display it with or without the theme tint respectively.
 class LeadingIconState {
   LeadingIconState(this._setState);
 
   final void Function(void Function()) _setState;
-  bool _hasLeadingIcon = false;
 
-  bool get value => _hasLeadingIcon;
-  set value(bool newValue) {
+  final List<LeadingIconOptionEnum> _optionList = const [
+    LeadingIconOptionEnum.none,
+    LeadingIconOptionEnum.tinted,
+    LeadingIconOptionEnum.untinted,
+  ];
+  LeadingIconOptionEnum _selected = LeadingIconOptionEnum.none;
+
+  List<LeadingIconOptionEnum> get list => _optionList;
+
+  LeadingIconOptionEnum get selected => _selected;
+  set selected(LeadingIconOptionEnum newValue) {
     _setState(() {
-      _hasLeadingIcon = newValue;
+      _selected = newValue;
     });
   }
 }
 
 /// TrailingIcon State Management
+///
+/// Combines presence and tinting into a single [TrailingIconOptionEnum]
+/// selection: [TrailingIconOptionEnum.none] hides the trailing action,
+/// [TrailingIconOptionEnum.tinted] displays it tinted with the theme color.
 class TrailingIconState {
   TrailingIconState(this._setState);
 
   final void Function(void Function()) _setState;
-  bool _hasTrailingIcon = false;
 
-  bool get value => _hasTrailingIcon;
-  set value(bool newValue) {
+  final List<TrailingIconOptionEnum> _optionList = [
+    TrailingIconOptionEnum.none,
+    TrailingIconOptionEnum.tinted,
+  ];
+  TrailingIconOptionEnum _selected = TrailingIconOptionEnum.none;
+
+  List<TrailingIconOptionEnum> get list => _optionList;
+
+  TrailingIconOptionEnum get selected => _selected;
+  set selected(TrailingIconOptionEnum newValue) {
     _setState(() {
-      _hasTrailingIcon = newValue;
+      _selected = newValue;
     });
   }
 }
@@ -291,7 +374,8 @@ class ConstrainedMaxWidthState {
 
 /// LabelText State Management
 class LabelTextState {
-  LabelTextState(this._setState, this.inputType) : _labelTextValue = inputType.labelValue;
+  LabelTextState(this._setState, this.inputType)
+    : _labelTextValue = inputType.labelValue;
 
   final void Function(void Function()) _setState;
   final FormFieldsTypeEnum inputType;
@@ -359,7 +443,8 @@ class PlaceholderTextState {
 
 /// HelperText State Management
 class HelperTextState {
-  HelperTextState(this._setState, this.inputType) : _helperTextValue = inputType.helperValue;
+  HelperTextState(this._setState, this.inputType)
+    : _helperTextValue = inputType.helperValue;
 
   final void Function(void Function()) _setState;
   final FormFieldsTypeEnum inputType;
@@ -519,7 +604,10 @@ class FormFieldsErrorCases {
   ///
   /// @param hasReadOnly Whether the input is currently read-only.
   /// @return `true` if the error should be shown, `false` otherwise.
-  static bool isCountrySelectorWhenReadOnlyAndEnable(bool hasReadOnly, bool hasEnabled) {
+  static bool isCountrySelectorWhenReadOnlyAndEnable(
+    bool hasReadOnly,
+    bool hasEnabled,
+  ) {
     return hasReadOnly || !hasEnabled;
   }
 
@@ -530,7 +618,9 @@ class FormFieldsErrorCases {
   ///
   /// @param placeholderTextState The current state of the placeholder text.
   /// @return `true` if the placeholder is not empty, indicating the widget should be enabled, `false` otherwise.
-  static bool isEnabledWhenPlaceHolderIsNotEmpty(PlaceholderTextState placeholderTextState) {
+  static bool isEnabledWhenPlaceHolderIsNotEmpty(
+    PlaceholderTextState placeholderTextState,
+  ) {
     return placeholderTextState.value.isNotEmpty;
   }
 

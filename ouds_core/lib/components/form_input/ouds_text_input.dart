@@ -104,22 +104,34 @@ class OudsTextField extends StatefulWidget {
     BuildContext context,
     String assetName,
     OudsFormFieldsControlState controlTextInputState,
-    bool isError,
-  ) {
+    bool isError, {
+    bool tinted = true,
+  }) {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
       context,
     );
     final theme = OudsTheme.of(context);
-    return SvgPicture.asset(
+    final Widget iconWidget = SvgPicture.asset(
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
       width: theme.componentsTokens(context).textInput.sizeLeadingIcon,
-      colorFilter: ColorFilter.mode(
-        inputTextForegroundModifier.getIconColor(controlTextInputState),
-        BlendMode.srcIn,
-      ),
+      colorFilter: tinted
+          ? ColorFilter.mode(
+              inputTextForegroundModifier.getIconColor(controlTextInputState),
+              BlendMode.srcIn,
+            )
+          : null,
+    );
+
+    // When untinted, the icon asset is expected to be a plain white shape
+    // (no embedded background), so it needs a brand-colored background to
+    // remain visible — matching the behavior of OudsButton and OudsLink.
+    if (tinted) return iconWidget;
+    return Container(
+      color: theme.colorScheme(context).surfaceBrandPrimary,
+      child: iconWidget,
     );
   }
 
@@ -729,6 +741,7 @@ class _OudsTextInputState extends State<OudsTextField> {
 
     // Case 2: display suffixIcon + optional error icon
     if (widget.decoration.suffixIcon != null) {
+      final suffixIcon = widget.decoration.suffixIcon!;
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -761,10 +774,11 @@ class _OudsTextInputState extends State<OudsTextField> {
               ),
               child: OudsButton(
                 appearance: OudsButtonAppearance.minimal,
-                icon: widget.decoration.suffixIcon,
+                icon: suffixIcon.icon,
+                tinted: suffixIcon.tinted,
                 onPressed:
                     ((widget.enabled ?? true) && !(widget.readOnly ?? false))
-                    ? widget.decoration.onSuffixPressed
+                    ? suffixIcon.onPressed
                     : null,
               ),
             ),
@@ -821,9 +835,10 @@ class _OudsTextInputState extends State<OudsTextField> {
         if (widget.decoration.prefixIcon != null) ...[
           OudsTextField.buildIcon(
             context,
-            widget.decoration.prefixIcon!,
+            widget.decoration.prefixIcon!.icon,
             state,
             false,
+            tinted: widget.decoration.prefixIcon!.tinted,
           ),
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],

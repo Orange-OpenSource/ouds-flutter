@@ -801,7 +801,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         if (widget.decoration.prefixIcon != null) ...[
           OudsPhoneNumberInput.buildIcon(
             context,
-            widget.decoration.prefixIcon!,
+            widget.decoration.prefixIcon!.icon,
             state,
             false,
           ),
