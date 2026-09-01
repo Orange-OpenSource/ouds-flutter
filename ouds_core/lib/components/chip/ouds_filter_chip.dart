@@ -39,7 +39,7 @@ enum OudsChipStyle { defaultStyle, selected }
 ///
 /// [OUDS Chip design guidelines](https://r.orange.fr/r/S-ouds-doc-filter-chip)
 ///
-/// **Reference design version : 1.4.0**
+/// **Reference design version : 1.5.0**
 ///
 /// Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.
 /// Filter chip allows to filter content by being selected or deselected. It can be toggled "On" or "Off" to refine displayed results,
@@ -162,8 +162,9 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onSelected == null)
+    if (widget.onSelected == null) {
       _isFocused = false; // Ignore focus changes if disabled
+    }
     setState(() => _isFocused = focus);
   }
 
@@ -553,7 +554,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   child: ExcludeSemantics(
                     child: Text(
                       widget.label ?? "",
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
                       style: OudsTheme.of(context).typographyTokens
                           .typeLabelModerateMedium(context)
                           .copyWith(
@@ -668,7 +669,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   child: ExcludeSemantics(
                     child: Text(
                       widget.label ?? "",
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
                       style: OudsTheme.of(context).typographyTokens
                           .typeLabelModerateMedium(context)
                           .copyWith(
