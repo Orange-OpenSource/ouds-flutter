@@ -36,7 +36,7 @@ enum OudsChipStyle { defaultStyle, selected }
 ///
 /// [OUDS Chip design guidelines](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
 ///
-/// **Reference design version : 1.4.0**
+/// **Reference design version : 1.5.0**
 ///
 /// Suggestion chip is a UI element that allows to present recommended or predictive options
 /// based on user’s input or context, and is commonly used to capture filtering decisions.
@@ -452,7 +452,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                   Flexible(
                     child: Text(
                       widget.label ?? "",
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
                       style: OudsTheme.of(context).typographyTokens
                           .typeLabelModerateMedium(context)
                           .copyWith(
@@ -525,7 +525,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                   Flexible(
                     child: Text(
                       widget.label ?? "",
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
                       style: OudsTheme.of(context).typographyTokens
                           .typeLabelModerateMedium(context)
                           .copyWith(
