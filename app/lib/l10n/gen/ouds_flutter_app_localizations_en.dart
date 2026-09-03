@@ -1053,6 +1053,58 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';
 
   @override
+  String get app_components_typography_tech => 'Typography';
+
+  @override
+  String get app_components_typography_description_text =>
+      'Typography components provide a comprehensive system of text styles for creating clear hierarchies and readable interfaces.';
+
+  @override
+  String get app_components_typography_display_tech => 'Display';
+
+  @override
+  String get app_components_typography_display_description_text =>
+      'Display is a UI element that styles typography for impactful content like landing pages, marketing campaigns, and key messages.';
+
+  @override
+  String get app_components_typography_heading_tech => 'Heading';
+
+  @override
+  String get app_components_typography_heading_description_text =>
+      'Heading is a UI element that styles typography to structure content and define the hierarchy of information within an interface.';
+
+  @override
+  String get app_components_typography_body_tech => 'Body';
+
+  @override
+  String get app_components_typography_body_description_text =>
+      'Body is a UI element that styles typography for common text content like paragraphs, descriptions, and informational messages.';
+
+  @override
+  String get app_components_typography_label_tech => 'Label';
+
+  @override
+  String get app_components_typography_label_description_text =>
+      'Label is a UI element that styles typography for compact interface components such as buttons, form fields, badges, and other small elements.';
+
+  @override
+  String get app_components_typography_code_tech => 'Code';
+
+  @override
+  String get app_components_typography_code_description_text =>
+      'Code element is a UI element that styles typography for technical content like code snippets, commands, system values, and identifiers.';
+
+  @override
+  String get app_components_typography_heading_marker_tech => 'Marker';
+
+  @override
+  String get app_components_typography_weight_tech => 'Weight';
+
+  @override
+  String get app_components_typography_annotatedTextExample_tech =>
+      'Annotated text example';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override

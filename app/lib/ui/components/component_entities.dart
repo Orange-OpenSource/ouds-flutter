@@ -23,7 +23,12 @@ class Component {
 
   Component(this.title, this.customComponent, this.description, this.screen);
 
-  Component.withVariant(this.title, this.customComponent, this.description, this.variants);
+  Component.withVariant(
+    this.title,
+    this.customComponent,
+    this.description,
+    this.variants,
+  );
 }
 
 class VariantComponent {
