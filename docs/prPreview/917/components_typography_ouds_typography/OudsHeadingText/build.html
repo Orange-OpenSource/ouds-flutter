@@ -109,35 +109,14 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  final style = textStyle(context);
-  final resolvedColor =
-      color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
+  final textWidget = super.build(context);
 
   final typographyTokens = OudsTheme.of(
     context,
   ).componentsTokens(context).typography;
 
-  &#47;&#47; The rich&#47;annotated text is only honored for themes that don&#39;t support the heading large
-  &#47;&#47; marker, and only for the large size: otherwise it&#39;s ignored and rendered as plain text.
-  final annotatedText = _annotatedText;
-  final useAnnotatedText =
-      annotatedText != null &amp;&amp;
-      !typographyTokens.headingLargeMarker &amp;&amp;
-      size == OudsHeadingTextSize.large;
-
-  final Widget textWidget;
-  if (useAnnotatedText) {
-    textWidget = Text.rich(
-      TextSpan(
-        style: style.copyWith(color: resolvedColor),
-        children: annotatedText.spans,
-      ),
-    );
-  } else {
-    final plainText = annotatedText?.plainText ?? text;
-    textWidget = Text(plainText, style: style.copyWith(color: resolvedColor));
-  }
-
+  &#47;&#47; The marker follows its own rules, independent of the text content (plain, colored, bold or
+  &#47;&#47; linked): it only depends on `marker`, `size` and the theme&#39;s support for it.
   if (!marker ||
       size != OudsHeadingTextSize.large ||
       !typographyTokens.headingLargeMarker) {

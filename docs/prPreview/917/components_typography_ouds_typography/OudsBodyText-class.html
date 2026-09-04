@@ -102,6 +102,15 @@ Their typography automatically scales across breakpoints to support responsive l
           Creates an <a href="../components_typography_ouds_typography/OudsBodyText-class.html">OudsBodyText</a>.
             <div class="constructor-modifier features">const</div>
         </dd>
+        <dt id="OudsBodyText.rich" class="callable">
+          <span class="name"><a href="../components_typography_ouds_typography/OudsBodyText/OudsBodyText.rich.html">OudsBodyText.rich</a></span><span class="signature">({<span class="parameter" id="rich-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="rich-param-color"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">color</span>, </span><span class="parameter" id="rich-param-size"><span class="type-annotation"><a href="../components_typography_ouds_typography/OudsBodyTextSize.html">OudsBodyTextSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsBodyTextSize.medium</span>, </span><span class="parameter" id="rich-param-weight"><span class="type-annotation"><a href="../components_typography_ouds_typography/OudsTextWeight.html">OudsTextWeight</a></span> <span class="parameter-name">weight</span> = <span class="default-value">OudsTextWeight.defaultWeight</span>, </span><span class="parameter" id="rich-param-text"><span>required</span> <span class="type-annotation"><a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a></span> <span class="parameter-name">text</span></span>})</span>
+        </dt>
+        <dd>
+          Creates an <a href="../components_typography_ouds_typography/OudsBodyText-class.html">OudsBodyText</a> whose content is composed of multiple spans, some of which can be
+colored independently of the others. Build <code>text</code> with <a href="../components_typography_ouds_annotated_text/buildOudsAnnotatedText.html">buildOudsAnnotatedText</a> to color part
+of the text, e.g. to highlight a word or phrase.
+            <div class="constructor-modifier features">const</div>
+        </dd>
     </dl>
   </section>
     
@@ -177,7 +186,7 @@ Their typography automatically scales across breakpoints to support responsive l
 
 </dt>
 <dd class="inherited">
-  The text to display.
+  The text to display. Empty when built via a <code>.rich</code> constructor, see <a href="../components_typography_ouds_typography/OudsTypography/OudsTypography.rich.html">OudsTypography.rich</a>.
   <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
 
 </dd>

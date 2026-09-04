@@ -58,26 +58,15 @@
 Available in multiple sizes, they help users quickly understand the organization of a page or section.
 Their size automatically adjusts across breakpoints to ensure optimal readability on all devices.
 Headings serve as the primary entry point for visual navigation.</p>
-<p>When <a href="../components_typography_ouds_typography/OudsHeadingText/size.html">size</a> is <a href="../components_typography_ouds_typography/OudsHeadingTextSize.html">OudsHeadingTextSize.large</a> and <a href="../components_typography_ouds_typography/OudsHeadingText/marker.html">marker</a> is <code>true</code>, a small rectangular marker is
-displayed under the text, using the theme's <code>contentBrandPrimary</code> color.</p>
+<p>When <a href="../components_typography_ouds_typography/OudsHeadingText/size.html">size</a> is <a href="../components_typography_ouds_typography/OudsHeadingTextSize.html">OudsHeadingTextSize.large</a> and <a href="../components_typography_ouds_typography/OudsHeadingText/marker.html">marker</a> is <code>true</code> (and the active theme supports
+it, see <code>OudsTypographyTokens.headingLargeMarker</code>), a small rectangular marker is displayed under
+the text, using the theme's <code>contentBrandPrimary</code> color. The marker follows these rules
+independently of the text content: it is shown the same way whether the text is plain, colored,
+bold or contains a link.</p>
 <pre class="language-dart"><code class="language-dart">OudsHeadingText(
   text: 'Section title',
   size: OudsHeadingTextSize.large
   )
-</code></pre>
-<p>Use the <a href="../components_typography_ouds_typography/OudsHeadingText/OudsHeadingText.rich.html">OudsHeadingText.rich</a> constructor with <a href="../components_typography_ouds_annotated_text/buildOudsAnnotatedHeadingText.html">buildOudsAnnotatedHeadingText</a> to color only
-part of the heading text.</p>
-<p>Note: This rich text version is only honored for themes that do not support the marker on the
-heading large text (e.g. <code>SoshTheme</code>, see <code>OudsTypographyTokens.headingLargeMarker</code>) and only
-when <a href="../components_typography_ouds_typography/OudsHeadingText/size.html">size</a> is <a href="../components_typography_ouds_typography/OudsHeadingTextSize.html">OudsHeadingTextSize.large</a>. For any other theme or size, <a href="../components_typography_ouds_typography/OudsHeadingText/OudsHeadingText.rich.html">OudsHeadingText.rich</a>
-is ignored and the text is rendered as plain, uncolored text: please use the overload accepting
-plain text instead.</p>
-<pre class="language-dart"><code class="language-dart">OudsHeadingText.rich(
-  text: buildOudsAnnotatedHeadingText((builder) {
-    builder.append('Heading with ');
-    builder.withColor(color, () =&gt; builder.append('colored text'));
-  }),
-)
 </code></pre>
 </section>
 
@@ -124,8 +113,8 @@ plain text instead.</p>
         </dt>
         <dd>
           Creates an <a href="../components_typography_ouds_typography/OudsHeadingText-class.html">OudsHeadingText</a> whose content is composed of multiple spans, some of which can
-be colored independently of the others. Build <code>text</code> with <a href="../components_typography_ouds_annotated_text/buildOudsAnnotatedHeadingText.html">buildOudsAnnotatedHeadingText</a> to
-color part of the heading text, e.g. to highlight a word or phrase.
+be colored independently of the others. Build <code>text</code> with <a href="../components_typography_ouds_annotated_text/buildOudsAnnotatedText.html">buildOudsAnnotatedText</a> to color
+part of the heading text, e.g. to highlight a word or phrase.
             <div class="constructor-modifier features">const</div>
         </dd>
     </dl>
@@ -219,7 +208,7 @@ Note: If the current theme doesn't allow marker for heading large texts, this pa
 
 </dt>
 <dd class="inherited">
-  The text to display.
+  The text to display. Empty when built via a <code>.rich</code> constructor, see <a href="../components_typography_ouds_typography/OudsTypography/OudsTypography.rich.html">OudsTypography.rich</a>.
   <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
 
 </dd>

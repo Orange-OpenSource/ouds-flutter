@@ -54,13 +54,14 @@
 
     
 <section class="desc markdown">
-  <p>A builder used to compose an <a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a> for <a href="../components_typography_ouds_typography/OudsHeadingText/OudsHeadingText.rich.html">OudsHeadingText.rich</a>, letting you color
-only part of a heading's text.</p>
+  <p>A builder used to compose an <a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a> for any typography <code>.rich</code> constructor
+(<a href="../components_typography_ouds_typography/OudsDisplayText/OudsDisplayText.rich.html">OudsDisplayText.rich</a>, <a href="../components_typography_ouds_typography/OudsHeadingText/OudsHeadingText.rich.html">OudsHeadingText.rich</a>, <a href="../components_typography_ouds_typography/OudsBodyText/OudsBodyText.rich.html">OudsBodyText.rich</a>, <a href="../components_typography_ouds_typography/OudsLabelText/OudsLabelText.rich.html">OudsLabelText.rich</a>),
+letting you color only part of the text.</p>
 <p>This is the recommended way to color part of a block of text, as it automatically manages the
 color scoping through a stack: <a href="../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder/withColor.html">withColor</a> pushes a color before running its callback and pops
 it once the callback returns, so nested colored blocks are restored correctly.</p>
-<p>Use <a href="../components_typography_ouds_annotated_text/buildOudsAnnotatedHeadingText.html">buildOudsAnnotatedHeadingText</a> to create an <a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a> from a builder block; see
-its documentation for a usage example.</p>
+<p>Use <a href="../components_typography_ouds_annotated_text/buildOudsAnnotatedText.html">buildOudsAnnotatedText</a> to create an <a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a> from a builder block; see its
+documentation for a usage example.</p>
 </section>
 
 

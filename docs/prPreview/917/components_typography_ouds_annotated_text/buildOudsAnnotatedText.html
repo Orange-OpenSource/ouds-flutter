@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the buildOudsAnnotatedHeadingText function from the ouds_annotated_text library, for the Dart programming language.">
-  <title>buildOudsAnnotatedHeadingText function - ouds_annotated_text library - Dart API</title>
+  <meta name="description" content="API docs for the buildOudsAnnotatedText function from the ouds_annotated_text library, for the Dart programming language.">
+  <title>buildOudsAnnotatedText function - ouds_annotated_text library - Dart API</title>
 
 
   
@@ -26,9 +26,9 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">ouds_core</a></li>
     <li><a href="../components_typography_ouds_annotated_text/">components&#47;typography&#47;ouds_annotated_text.dart</a></li>
-    <li class="self-crumb">buildOudsAnnotatedHeadingText function</li>
+    <li class="self-crumb">buildOudsAnnotatedText function</li>
   </ol>
-  <div class="self-name">buildOudsAnnotatedHeadingText</div>
+  <div class="self-name">buildOudsAnnotatedText</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,14 +48,14 @@
       data-above-sidebar="components_typography_ouds_annotated_text&#47;components_typography_ouds_annotated_text-library-sidebar.html"
       data-below-sidebar="">
       <div>
-<h1><span class="kind-function">buildOudsAnnotatedHeadingText</span> function 
+<h1><span class="kind-function">buildOudsAnnotatedText</span> function 
  
 </h1></div>
 
     <section class="multi-line-signature">
         
 <span class="returntype"><a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a></span>
-<span class="name ">buildOudsAnnotatedHeadingText</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="buildOudsAnnotatedHeadingText-param-block"><span class="type-annotation">void</span> <span class="parameter-name">block</span>(<ol class="parameter-list single-line"> <li><span class="parameter" id="param-builder"><span class="type-annotation"><a href="../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder-class.html">OudsAnnotatedTextBuilder</a></span> <span class="parameter-name">builder</span></span></li>
+<span class="name ">buildOudsAnnotatedText</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="buildOudsAnnotatedText-param-block"><span class="type-annotation">void</span> <span class="parameter-name">block</span>(<ol class="parameter-list single-line"> <li><span class="parameter" id="param-builder"><span class="type-annotation"><a href="../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder-class.html">OudsAnnotatedTextBuilder</a></span> <span class="parameter-name">builder</span></span></li>
 </ol>)</span></li>
 </ol>)
 
@@ -64,11 +64,11 @@
     </section>
     
 <section class="desc markdown">
-  <p>Builds an <a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a> value that can be passed as the <code>text</code> parameter of
-<a href="../components_typography_ouds_typography/OudsHeadingText/OudsHeadingText.rich.html">OudsHeadingText.rich</a> to color part of the heading text.</p>
+  <p>Builds an <a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a> value that can be passed as the <code>text</code> parameter of any
+typography <code>.rich</code> constructor (e.g. <a href="../components_typography_ouds_typography/OudsHeadingText/OudsHeadingText.rich.html">OudsHeadingText.rich</a>) to color part of the text.</p>
 <p>Example:</p>
 <pre class="language-dart"><code class="language-dart">OudsHeadingText.rich(
-  text: buildOudsAnnotatedHeadingText((builder) {
+  text: buildOudsAnnotatedText((builder) {
     builder.append('Heading with ');
     builder.withColor(color, () =&gt; builder.append('colored text'));
   }),
@@ -80,7 +80,7 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">OudsAnnotatedText buildOudsAnnotatedHeadingText(
+  <pre class="language-dart"><code class="language-dart">OudsAnnotatedText buildOudsAnnotatedText(
   void Function(OudsAnnotatedTextBuilder builder) block,
 ) {
   final builder = OudsAnnotatedTextBuilder();
@@ -101,7 +101,7 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">ouds_core</a></li>
     <li><a href="../components_typography_ouds_annotated_text/">ouds_annotated_text</a></li>
-    <li class="self-crumb">buildOudsAnnotatedHeadingText function</li>
+    <li class="self-crumb">buildOudsAnnotatedText function</li>
 </ol>
 
     <h5>ouds_annotated_text library</h5>

@@ -112,8 +112,36 @@ Widget build(BuildContext context) {
   final style = textStyle(context);
   final resolvedColor =
       color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
+  final annotatedText = _annotatedText;
 
-  return Text(text, style: style.copyWith(color: resolvedColor));
+  &#47;&#47; Every span (or the plain text) is run through the markdown span builder so bold, underline
+  &#47;&#47; bold and links are always supported, whether the text is plain or annotated with colors.
+  final List&lt;InlineSpan&gt; children;
+  if (annotatedText != null) {
+    children = annotatedText.spans.map((span) {
+      final segmentColor = span.style?.color ?? resolvedColor;
+      return MarkdownSpanBuilder.buildRichText(
+        context,
+        span.toPlainText(),
+        baseStyle: style.copyWith(color: segmentColor),
+      );
+    }).toList();
+  } else {
+    children = [
+      MarkdownSpanBuilder.buildRichText(
+        context,
+        text,
+        baseStyle: style.copyWith(color: resolvedColor),
+      ),
+    ];
+  }
+
+  return Text.rich(
+    TextSpan(
+      style: style.copyWith(color: resolvedColor),
+      children: children,
+    ),
+  );
 }</code></pre>
 </section>
 

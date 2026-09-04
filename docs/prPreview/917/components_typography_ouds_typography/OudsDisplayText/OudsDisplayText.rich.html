@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the append method from the OudsAnnotatedTextBuilder class, for the Dart programming language.">
-  <title>append method - OudsAnnotatedTextBuilder class - ouds_annotated_text library - Dart API</title>
+  <meta name="description" content="API docs for the OudsDisplayText.rich constructor from Class OudsDisplayText from the ouds_typography library, for the Dart programming language.">
+  <title>OudsDisplayText.rich constructor - OudsDisplayText - ouds_typography library - Dart API</title>
 
 
   
@@ -25,11 +25,11 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_typography_ouds_annotated_text/">components&#47;typography&#47;ouds_annotated_text.dart</a></li>
-    <li><a href="../../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder-class.html">OudsAnnotatedTextBuilder</a></li>
-    <li class="self-crumb">append method</li>
+    <li><a href="../../components_typography_ouds_typography/">components&#47;typography&#47;ouds_typography.dart</a></li>
+    <li><a href="../../components_typography_ouds_typography/OudsDisplayText-class.html">OudsDisplayText</a></li>
+    <li class="self-crumb">OudsDisplayText.rich const constructor</li>
   </ol>
-  <div class="self-name">append</div>
+  <div class="self-name">OudsDisplayText.rich</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -43,44 +43,40 @@
   </button>
 </header>
 <main>
-<div
-    id="dartdoc-main-content"
-    class="main-content"
-    data-above-sidebar="components_typography_ouds_annotated_text&#47;OudsAnnotatedTextBuilder-class-sidebar.html"
-    data-below-sidebar="">
-    <div>
-<h1><span class="kind-method">append</span> method 
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="components_typography_ouds_typography&#47;OudsDisplayText-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">OudsDisplayText.rich</span> constructor 
 </h1></div>
 
     <section class="multi-line-signature">
-      
-<span class="returntype">void</span>
-<span class="name ">append</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="append-param-text"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">text</span></span></li>
-</ol>)
-
-      
-
+      const
+      <span class="name ">OudsDisplayText.rich</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="rich-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
+<li><span class="parameter" id="rich-param-color"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">color</span>, </span></li>
+<li><span class="parameter" id="rich-param-size"><span class="type-annotation"><a href="../../components_typography_ouds_typography/OudsDisplayTextSize.html">OudsDisplayTextSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsDisplayTextSize.large</span>, </span></li>
+<li><span class="parameter" id="rich-param-text"><span>required</span> <span class="type-annotation"><a href="../../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a></span> <span class="parameter-name">text</span>, </span></li>
+</ol>})
     </section>
     
 <section class="desc markdown">
-  <p>Appends <code>text</code>, using the color currently on top of the color stack (if any).</p>
-<p><code>text</code> also supports the lightweight markdown syntax handled by every typography widget:
-<code>**bold**</code>, <code>__**underline bold**__</code> and <code>[link](https://example.com)</code>.</p>
+  <p>Creates an <a href="../../components_typography_ouds_typography/OudsDisplayText-class.html">OudsDisplayText</a> whose content is composed of multiple spans, some of which can
+be colored independently of the others. Build <code>text</code> with <a href="../../components_typography_ouds_annotated_text/buildOudsAnnotatedText.html">buildOudsAnnotatedText</a> to color
+part of the text, e.g. to highlight a word or phrase.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">void append(String text) {
-  final color = _colorStack.isEmpty ? null : _colorStack.last;
-  _spans.add(
-    TextSpan(
-      text: text,
-      style: color == null ? null : TextStyle(color: color),
-    ),
-  );
-}</code></pre>
+  <pre class="language-dart"><code class="language-dart">const OudsDisplayText.rich({
+  super.key,
+  super.color,
+  this.size = OudsDisplayTextSize.large,
+  required super.text,
+}) : super.rich();</code></pre>
 </section>
 
 
@@ -94,16 +90,16 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_typography_ouds_annotated_text/">ouds_annotated_text</a></li>
-    <li><a href="../../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder-class.html">OudsAnnotatedTextBuilder</a></li>
-    <li class="self-crumb">append method</li>
+    <li><a href="../../components_typography_ouds_typography/">ouds_typography</a></li>
+    <li><a href="../../components_typography_ouds_typography/OudsDisplayText-class.html">OudsDisplayText</a></li>
+    <li class="self-crumb">OudsDisplayText.rich const constructor</li>
 </ol>
 
-    <h5>OudsAnnotatedTextBuilder class</h5>
+    <h5>OudsDisplayText class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
-  </div><!--/.sidebar-offcanvas-->
+  </div><!--/.sidebar-offcanvas-left-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-</div><!--/.sidebar-offcanvas-->
+  </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">

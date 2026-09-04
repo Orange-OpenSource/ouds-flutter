@@ -85,6 +85,17 @@ the text is displayed on a colored surface:</p>
   color: OudsTheme.of(context).colorScheme(context).contentDefault,
 )
 </code></pre>
+<p>Every variant also accepts lightweight rich text: <code>**bold**</code>, <code>__**underline bold**__</code> and
+<code>[link](https://example.com)</code> are supported directly in <a href="../components_typography_ouds_typography/OudsTypography/text.html">text</a>, and each variant exposes a
+<code>.rich</code> constructor (e.g. <a href="../components_typography_ouds_typography/OudsHeadingText/OudsHeadingText.rich.html">OudsHeadingText.rich</a>) to color only part of the text. Build the
+<code>.rich</code> constructor's <code>text</code> argument with <a href="../components_typography_ouds_annotated_text/buildOudsAnnotatedText.html">buildOudsAnnotatedText</a>. This is available regardless of the size, theme or the heading marker.</p>
+<pre class="language-dart"><code class="language-dart">OudsHeadingText.rich(
+  text: buildOudsAnnotatedText((builder) {
+    builder.append('Heading with ');
+    builder.withColor(color, () =&gt; builder.append('colored text'));
+  }),
+)
+</code></pre>
 </section>
 
 
@@ -129,6 +140,15 @@ the text is displayed on a colored surface:</p>
         </dt>
         <dd>
           Creates an <a href="../components_typography_ouds_typography/OudsTypography-class.html">OudsTypography</a>.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="OudsTypography.rich" class="callable">
+          <span class="name"><a href="../components_typography_ouds_typography/OudsTypography/OudsTypography.rich.html">OudsTypography.rich</a></span><span class="signature">({<span class="parameter" id="rich-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="rich-param-color"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">color</span>, </span><span class="parameter" id="rich-param-text"><span>required</span> <span class="type-annotation"><a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a></span> <span class="parameter-name">text</span></span>})</span>
+        </dt>
+        <dd>
+          Creates an <a href="../components_typography_ouds_typography/OudsTypography-class.html">OudsTypography</a> whose content is composed of multiple spans, some of which can be
+colored independently of the others. Build <code>text</code> with <a href="../components_typography_ouds_annotated_text/buildOudsAnnotatedText.html">buildOudsAnnotatedText</a> to color part
+of the text, e.g. to highlight a word or phrase.
             <div class="constructor-modifier features">const</div>
         </dd>
     </dl>
@@ -194,7 +214,7 @@ the text is displayed on a colored surface:</p>
 
 </dt>
 <dd>
-  The text to display.
+  The text to display. Empty when built via a <code>.rich</code> constructor, see <a href="../components_typography_ouds_typography/OudsTypography/OudsTypography.rich.html">OudsTypography.rich</a>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>

@@ -64,11 +64,8 @@
     
 <section class="desc markdown">
   <p>Creates an <a href="../../components_typography_ouds_typography/OudsHeadingText-class.html">OudsHeadingText</a> whose content is composed of multiple spans, some of which can
-be colored independently of the others. Build <code>text</code> with <a href="../../components_typography_ouds_annotated_text/buildOudsAnnotatedHeadingText.html">buildOudsAnnotatedHeadingText</a> to
-color part of the heading text, e.g. to highlight a word or phrase.</p>
-<p>This is only honored for themes that do not support the marker on the heading large text
-(e.g. <code>SoshTheme</code>) and only when <code>size</code> is <a href="../../components_typography_ouds_typography/OudsHeadingTextSize.html">OudsHeadingTextSize.large</a>. Otherwise, <code>text</code> is
-rendered as plain, uncolored text.</p>
+be colored independently of the others. Build <code>text</code> with <a href="../../components_typography_ouds_annotated_text/buildOudsAnnotatedText.html">buildOudsAnnotatedText</a> to color
+part of the heading text, e.g. to highlight a word or phrase.</p>
 </section>
 
 
@@ -80,9 +77,8 @@ rendered as plain, uncolored text.</p>
   super.color,
   this.size = OudsHeadingTextSize.large,
   this.marker = true,
-  required OudsAnnotatedText text,
-}) : _annotatedText = text,
-     super(text: &#39;&#39;);</code></pre>
+  required super.text,
+}) : super.rich();</code></pre>
 </section>
 
 
