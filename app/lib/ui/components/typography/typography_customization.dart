@@ -88,8 +88,8 @@ class TypographyCustomizationState
   OudsTextWeight get selectedWeight => weightState.selected;
   set selectedWeight(OudsTextWeight value) => weightState.selected = value;
 
-  /// Whether the Heading demo should showcase [OudsHeadingText.rich] with
-  /// [buildOudsAnnotatedHeadingText] to color part of the sample text. Heading only.
+  /// Whether the demo should showcase the `.rich` constructor with
+  /// [buildOudsAnnotatedText] to color part of the sample text. Available for every variant.
   bool get hasAnnotatedText => annotatedTextState.value;
   set hasAnnotatedText(bool value) => annotatedTextState.value = value;
 
@@ -179,8 +179,8 @@ class WeightState {
   }
 }
 
-/// Annotated text example State Management, used by [TypographyVariant.heading] to toggle a
-/// preview built with [OudsHeadingText.rich] and [buildOudsAnnotatedHeadingText].
+/// Annotated text example State Management, used to toggle a preview built with a variant's
+/// `.rich` constructor and [buildOudsAnnotatedText].
 class AnnotatedTextState {
   AnnotatedTextState(this._setState);
 

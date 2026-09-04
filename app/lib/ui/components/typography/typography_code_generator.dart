@@ -38,11 +38,11 @@ class TypographyCodeGenerator {
         : '';
     final hasAnnotatedText = customizationState?.hasAnnotatedText ?? false;
 
-    if (variant == TypographyVariant.heading && hasAnnotatedText) {
-      return """OudsHeadingText.rich(
-  size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},$markerLine
-  text: buildOudsAnnotatedHeadingText((builder) {
-    builder.append('Heading with ');
+    if (hasAnnotatedText) {
+      return """${classNameFor(variant)}.rich(
+  size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},$weightLine$markerLine
+  text: buildOudsAnnotatedText((builder) {
+    builder.append('${variant.formattedName} with __**underline**__ and  ');
     builder.withColor(color, () => builder.append('colored text'));
   }),
 )""";

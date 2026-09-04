@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 // TODO Add design guideline link when available
@@ -58,15 +59,44 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///   color: OudsTheme.of(context).colorScheme(context).contentDefault,
 /// )
 /// ```
+///
+/// Every variant also accepts lightweight rich text: `**bold**`, `__**underline bold**__` and
+/// `[link](https://example.com)` are supported directly in [text], and each variant exposes a
+/// `.rich` constructor (e.g. [OudsHeadingText.rich]) to color only part of the text. Build the
+/// `.rich` constructor's `text` argument with [buildOudsAnnotatedText]. This is available regardless of the size, theme or the heading marker.
+///
+/// ```dart
+/// OudsHeadingText.rich(
+///   text: buildOudsAnnotatedText((builder) {
+///     builder.append('Heading with ');
+///     builder.withColor(color, () => builder.append('colored text'));
+///   }),
+/// )
+/// ```
 abstract class OudsTypography extends StatelessWidget {
-  /// The text to display.
+  /// The text to display. Empty when built via a `.rich` constructor, see [OudsTypography.rich].
   final String text;
 
   /// An optional color override. When null, the theme's `contentDefault` color is used.
   final Color? color;
 
+  /// When set (via a `.rich` constructor), builds the content from these annotated spans instead
+  /// of the plain [text].
+  final OudsAnnotatedText? _annotatedText;
+
   /// Creates an [OudsTypography].
-  const OudsTypography({super.key, required this.text, this.color});
+  const OudsTypography({super.key, required this.text, this.color})
+    : _annotatedText = null;
+
+  /// Creates an [OudsTypography] whose content is composed of multiple spans, some of which can be
+  /// colored independently of the others. Build [text] with [buildOudsAnnotatedText] to color part
+  /// of the text, e.g. to highlight a word or phrase.
+  const OudsTypography.rich({
+    super.key,
+    this.color,
+    required OudsAnnotatedText text,
+  }) : text = '',
+       _annotatedText = text;
 
   /// Returns the [TextStyle] associated with this variant's `size` in the active theme.
   @protected
@@ -77,8 +107,36 @@ abstract class OudsTypography extends StatelessWidget {
     final style = textStyle(context);
     final resolvedColor =
         color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
+    final annotatedText = _annotatedText;
 
-    return Text(text, style: style.copyWith(color: resolvedColor));
+    // Every span (or the plain text) is run through the markdown span builder so bold, underline
+    // bold and links are always supported, whether the text is plain or annotated with colors.
+    final List<InlineSpan> children;
+    if (annotatedText != null) {
+      children = annotatedText.spans.map((span) {
+        final segmentColor = span.style?.color ?? resolvedColor;
+        return MarkdownSpanBuilder.buildRichText(
+          context,
+          span.toPlainText(),
+          baseStyle: style.copyWith(color: segmentColor),
+        );
+      }).toList();
+    } else {
+      children = [
+        MarkdownSpanBuilder.buildRichText(
+          context,
+          text,
+          baseStyle: style.copyWith(color: resolvedColor),
+        ),
+      ];
+    }
+
+    return Text.rich(
+      TextSpan(
+        style: style.copyWith(color: resolvedColor),
+        children: children,
+      ),
+    );
   }
 }
 
@@ -110,6 +168,16 @@ class OudsDisplayText extends OudsTypography {
     this.size = OudsDisplayTextSize.large,
   });
 
+  /// Creates an [OudsDisplayText] whose content is composed of multiple spans, some of which can
+  /// be colored independently of the others. Build [text] with [buildOudsAnnotatedText] to color
+  /// part of the text, e.g. to highlight a word or phrase.
+  const OudsDisplayText.rich({
+    super.key,
+    super.color,
+    this.size = OudsDisplayTextSize.large,
+    required super.text,
+  }) : super.rich();
+
   @override
   TextStyle textStyle(BuildContext context) {
     final typography = OudsTheme.of(context).typographyTokens;
@@ -132,8 +200,11 @@ enum OudsHeadingTextSize { xLarge, large, medium, small }
 /// Their size automatically adjusts across breakpoints to ensure optimal readability on all devices.
 /// Headings serve as the primary entry point for visual navigation.
 ///
-/// When [size] is [OudsHeadingTextSize.large] and [marker] is `true`, a small rectangular marker is
-/// displayed under the text, using the theme's `contentBrandPrimary` color.
+/// When [size] is [OudsHeadingTextSize.large] and [marker] is `true` (and the active theme supports
+/// it, see [OudsTypographyTokens.headingLargeMarker]), a small rectangular marker is displayed under
+/// the text, using the theme's `contentBrandPrimary` color. The marker follows these rules
+/// independently of the text content: it is shown the same way whether the text is plain, colored,
+/// bold or contains a link.
 ///
 /// ```dart
 /// OudsHeadingText(
@@ -142,23 +213,6 @@ enum OudsHeadingTextSize { xLarge, large, medium, small }
 ///   )
 /// ```
 ///
-/// Use the [OudsHeadingText.rich] constructor with [buildOudsAnnotatedHeadingText] to color only
-/// part of the heading text.
-///
-/// Note: This rich text version is only honored for themes that do not support the marker on the
-/// heading large text (e.g. `SoshTheme`, see [OudsTypographyTokens.headingLargeMarker]) and only
-/// when [size] is [OudsHeadingTextSize.large]. For any other theme or size, [OudsHeadingText.rich]
-/// is ignored and the text is rendered as plain, uncolored text: please use the overload accepting
-/// plain text instead.
-///
-/// ```dart
-/// OudsHeadingText.rich(
-///   text: buildOudsAnnotatedHeadingText((builder) {
-///     builder.append('Heading with ');
-///     builder.withColor(color, () => builder.append('colored text'));
-///   }),
-/// )
-/// ```
 class OudsHeadingText extends OudsTypography {
   /// The size of the heading text, see [OudsHeadingTextSize]. Defaults to [OudsHeadingTextSize.large].
   final OudsHeadingTextSize size;
@@ -170,10 +224,6 @@ class OudsHeadingText extends OudsTypography {
   /// Note: If the current theme doesn't allow marker for heading large texts, this parameter is ignored.
   final bool marker;
 
-  /// When set (via [OudsHeadingText.rich]), builds the heading's content from these spans instead
-  /// of the plain [text].
-  final OudsAnnotatedText? _annotatedText;
-
   /// Creates an [OudsHeadingText].
   const OudsHeadingText({
     super.key,
@@ -181,23 +231,18 @@ class OudsHeadingText extends OudsTypography {
     super.color,
     this.size = OudsHeadingTextSize.large,
     this.marker = true,
-  }) : _annotatedText = null;
+  });
 
   /// Creates an [OudsHeadingText] whose content is composed of multiple spans, some of which can
-  /// be colored independently of the others. Build [text] with [buildOudsAnnotatedHeadingText] to
-  /// color part of the heading text, e.g. to highlight a word or phrase.
-  ///
-  /// This is only honored for themes that do not support the marker on the heading large text
-  /// (e.g. `SoshTheme`) and only when [size] is [OudsHeadingTextSize.large]. Otherwise, [text] is
-  /// rendered as plain, uncolored text.
+  /// be colored independently of the others. Build [text] with [buildOudsAnnotatedText] to color
+  /// part of the heading text, e.g. to highlight a word or phrase.
   const OudsHeadingText.rich({
     super.key,
     super.color,
     this.size = OudsHeadingTextSize.large,
     this.marker = true,
-    required OudsAnnotatedText text,
-  }) : _annotatedText = text,
-       super(text: '');
+    required super.text,
+  }) : super.rich();
 
   @override
   TextStyle textStyle(BuildContext context) {
@@ -216,35 +261,14 @@ class OudsHeadingText extends OudsTypography {
 
   @override
   Widget build(BuildContext context) {
-    final style = textStyle(context);
-    final resolvedColor =
-        color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
+    final textWidget = super.build(context);
 
     final typographyTokens = OudsTheme.of(
       context,
     ).componentsTokens(context).typography;
 
-    // The rich/annotated text is only honored for themes that don't support the heading large
-    // marker, and only for the large size: otherwise it's ignored and rendered as plain text.
-    final annotatedText = _annotatedText;
-    final useAnnotatedText =
-        annotatedText != null &&
-        !typographyTokens.headingLargeMarker &&
-        size == OudsHeadingTextSize.large;
-
-    final Widget textWidget;
-    if (useAnnotatedText) {
-      textWidget = Text.rich(
-        TextSpan(
-          style: style.copyWith(color: resolvedColor),
-          children: annotatedText.spans,
-        ),
-      );
-    } else {
-      final plainText = annotatedText?.plainText ?? text;
-      textWidget = Text(plainText, style: style.copyWith(color: resolvedColor));
-    }
-
+    // The marker follows its own rules, independent of the text content (plain, colored, bold or
+    // linked): it only depends on `marker`, `size` and the theme's support for it.
     if (!marker ||
         size != OudsHeadingTextSize.large ||
         !typographyTokens.headingLargeMarker) {
@@ -311,6 +335,17 @@ class OudsBodyText extends OudsTypography {
     this.weight = OudsTextWeight.defaultWeight,
   });
 
+  /// Creates an [OudsBodyText] whose content is composed of multiple spans, some of which can be
+  /// colored independently of the others. Build [text] with [buildOudsAnnotatedText] to color part
+  /// of the text, e.g. to highlight a word or phrase.
+  const OudsBodyText.rich({
+    super.key,
+    super.color,
+    this.size = OudsBodyTextSize.medium,
+    this.weight = OudsTextWeight.defaultWeight,
+    required super.text,
+  }) : super.rich();
+
   @override
   TextStyle textStyle(BuildContext context) {
     final typography = OudsTheme.of(context).typographyTokens;
@@ -376,6 +411,17 @@ class OudsLabelText extends OudsTypography {
     this.size = OudsLabelTextSize.medium,
     this.weight = OudsTextWeight.defaultWeight,
   });
+
+  /// Creates an [OudsLabelText] whose content is composed of multiple spans, some of which can be
+  /// colored independently of the others. Build [text] with [buildOudsAnnotatedText] to color part
+  /// of the text, e.g. to highlight a word or phrase.
+  const OudsLabelText.rich({
+    super.key,
+    super.color,
+    this.size = OudsLabelTextSize.medium,
+    this.weight = OudsTextWeight.defaultWeight,
+    required super.text,
+  }) : super.rich();
 
   @override
   TextStyle textStyle(BuildContext context) {

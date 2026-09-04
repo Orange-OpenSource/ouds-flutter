@@ -156,12 +156,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         widget.variant == TypographyVariant.heading &&
         customizationState.selectedSize == OudsHeadingTextSize.large;
     // The marker is only supported by themes exposing `headingLargeMarker` (Orange, Orange
-    // Compact, Wireframe); the rich/annotated text example is only relevant for themes that
-    // don't support it (e.g. Sosh), see [OudsHeadingText.rich].
+    // Compact, Wireframe);
     final supportsHeadingMarker = OudsTheme.of(
       context,
     ).componentsTokens(context).typography.headingLargeMarker;
-    final canUseAnnotatedText = isHeadingLarge && !supportsHeadingMarker;
 
     return CustomizableSection(
       children: [
@@ -201,21 +199,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   }
                 : null,
           ),
-        if (widget.variant == TypographyVariant.heading &&
-            !supportsHeadingMarker)
-          CustomizableSwitch(
-            title: context
-                .l10n
-                .app_components_typography_annotatedTextExample_tech,
-            value: customizationState.hasAnnotatedText,
-            onChanged: canUseAnnotatedText
-                ? (value) {
-                    setState(() {
-                      customizationState.hasAnnotatedText = value;
-                    });
-                  }
-                : null,
-          ),
+        CustomizableSwitch(
+          title:
+              context.l10n.app_components_typography_annotatedTextExample_tech,
+          value: customizationState.hasAnnotatedText,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasAnnotatedText = value;
+            });
+          },
+        ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
           text: customizationState.labelText,
@@ -292,28 +285,18 @@ class _TypographyDemoState extends State<_TypographyDemo> {
       themeController.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
 
-    // The rich/annotated text example is only relevant for themes that don't support the heading
-    // large marker (e.g. Sosh), and only for the large size, see [OudsHeadingText.rich].
-    final supportsHeadingMarker = OudsTheme.of(
-      context,
-    ).componentsTokens(context).typography.headingLargeMarker;
-    final canUseAnnotatedText =
-        widget.variant == TypographyVariant.heading &&
-        customizationState.selectedSize == OudsHeadingTextSize.large &&
-        !supportsHeadingMarker;
-
-    if (canUseAnnotatedText && customizationState.hasAnnotatedText) {
+    if (customizationState.hasAnnotatedText) {
       final color = OudsTheme.of(
         context,
       ).colorScheme(context).contentBrandPrimary;
+
       return LightDarkBox(
-        child: OudsHeadingText.rich(
-          size: customizationState.selectedSize as OudsHeadingTextSize,
+        child: buildOudsAnnotatedTypography(
+          widget.variant,
+          customizationState.selectedSize,
+          color,
           marker: customizationState.hasMarker,
-          text: buildOudsAnnotatedHeadingText((builder) {
-            builder.append('Heading with ');
-            builder.withColor(color, () => builder.append('colored text'));
-          }),
+          weight: customizationState.selectedWeight,
         ),
       );
     }
@@ -327,6 +310,49 @@ class _TypographyDemoState extends State<_TypographyDemo> {
         weight: customizationState.selectedWeight,
       ),
     );
+  }
+
+  /// Builds the `.rich` [OudsTypography] widget matching [variant], with a sample text partly
+  /// colored with [color] via [buildOudsAnnotatedText], casting [size] to the enum type expected
+  /// by that variant's widget.
+  Widget buildOudsAnnotatedTypography(
+    TypographyVariant variant,
+    Object size,
+    Color color, {
+    bool marker = true,
+    OudsTextWeight weight = OudsTextWeight.defaultWeight,
+  }) {
+    final text = buildOudsAnnotatedText((builder) {
+      builder.append('${variant.formattedName} with __**underline**__ and ');
+      builder.withColor(color, () => builder.append('colored text'));
+    });
+
+    switch (variant) {
+      case TypographyVariant.display:
+        return OudsDisplayText.rich(
+          text: text,
+          size: size as OudsDisplayTextSize,
+        );
+      case TypographyVariant.heading:
+        return OudsHeadingText.rich(
+          text: text,
+          size: size as OudsHeadingTextSize,
+          marker: marker,
+        );
+      case TypographyVariant.body:
+        return OudsBodyText.rich(
+          text: text,
+          size: size as OudsBodyTextSize,
+          weight: weight,
+        );
+      case TypographyVariant.label:
+        return OudsLabelText.rich(
+          text: text,
+          size: size as OudsLabelTextSize,
+          weight: weight,
+        );
+      //  case TypographyVariant.code:return OudsCodeText.rich(text: text, size: size as OudsCodeTextSize);
+    }
   }
 
   /// Builds the [OudsTypography] widget matching [variant], casting [size] to the enum type expected

@@ -15,7 +15,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/typography/ouds_typography.dart';
-import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 
 import '../../helpers/testable_widget_helper.dart';
 
@@ -37,7 +36,23 @@ void main() {
       );
 
       final textWidget = tester.widget<Text>(find.text('Colored text'));
-      expect(textWidget.style?.color, Colors.red);
+      expect(textWidget.textSpan?.style?.color, Colors.red);
+    });
+
+    testWidgets('renders bold markdown syntax', (tester) async {
+      await tester.pumpWidget(
+        testableWidget(const OudsBodyText(text: 'This is **bold** text')),
+      );
+
+      final textWidget = tester.widget<Text>(find.byType(Text));
+      final wrapper =
+          (textWidget.textSpan! as TextSpan).children!.single as TextSpan;
+      final boldSpan =
+          wrapper.children!.firstWhere(
+                (span) => (span as TextSpan).text == 'bold',
+              )
+              as TextSpan;
+      expect(boldSpan.style?.fontWeight, FontWeight.bold);
     });
   });
 
@@ -57,6 +72,28 @@ void main() {
         );
         expect(find.text('Display $size'), findsOneWidget);
       }
+    });
+
+    testWidgets('.rich colors only the span wrapped in withColor', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsDisplayText.rich(
+            text: buildOudsAnnotatedText((builder) {
+              builder.append('Plain ');
+              builder.withColor(Colors.red, () => builder.append('Colored'));
+            }),
+          ),
+        ),
+      );
+
+      final textWidget = tester.widget<Text>(find.byType(Text));
+      final spans = (textWidget.textSpan! as TextSpan).children!;
+      expect((spans[0] as TextSpan).toPlainText(), 'Plain ');
+      expect((spans[0] as TextSpan).style?.color, isNot(Colors.red));
+      expect((spans[1] as TextSpan).toPlainText(), 'Colored');
+      expect((spans[1] as TextSpan).style?.color, Colors.red);
     });
   });
 
@@ -105,16 +142,32 @@ void main() {
 
       expect(find.byType(SvgPicture), findsNothing);
     });
-  });
 
-  group('OudsHeadingText.rich', () {
-    testWidgets('renders every appended span for a theme without marker', (
+    testWidgets('is still shown together with .rich colored text', (
       tester,
     ) async {
       await tester.pumpWidget(
         testableWidget(
           OudsHeadingText.rich(
-            text: buildOudsAnnotatedHeadingText((builder) {
+            text: buildOudsAnnotatedText((builder) {
+              builder.append('Plain ');
+              builder.withColor(Colors.red, () => builder.append('Colored'));
+            }),
+          ),
+        ),
+      );
+
+      // The marker follows its own rules, independent of the text content.
+      expect(find.byType(SvgPicture), findsOneWidget);
+    });
+  });
+
+  group('OudsHeadingText.rich', () {
+    testWidgets('renders every appended span', (tester) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsHeadingText.rich(
+            text: buildOudsAnnotatedText((builder) {
               builder.append('This is ');
               builder.withColor(
                 Colors.red,
@@ -122,33 +175,31 @@ void main() {
               );
             }),
           ),
-          theme: SoshTheme(),
         ),
       );
 
       final textWidget = tester.widget<Text>(find.byType(Text));
       final spans = (textWidget.textSpan! as TextSpan).children!;
       expect(spans, hasLength(2));
-      expect((spans[0] as TextSpan).text, 'This is ');
-      expect((spans[1] as TextSpan).text, 'brand primary text');
+      expect((spans[0] as TextSpan).toPlainText(), 'This is ');
+      expect((spans[1] as TextSpan).toPlainText(), 'brand primary text');
     });
 
     testWidgets('colors only the span wrapped in withColor', (tester) async {
       await tester.pumpWidget(
         testableWidget(
           OudsHeadingText.rich(
-            text: buildOudsAnnotatedHeadingText((builder) {
+            text: buildOudsAnnotatedText((builder) {
               builder.append('Plain ');
               builder.withColor(Colors.red, () => builder.append('Colored'));
             }),
           ),
-          theme: SoshTheme(),
         ),
       );
 
       final textWidget = tester.widget<Text>(find.byType(Text));
       final spans = (textWidget.textSpan! as TextSpan).children!;
-      expect((spans[0] as TextSpan).style?.color, isNull);
+      expect((spans[0] as TextSpan).style?.color, isNot(Colors.red));
       expect((spans[1] as TextSpan).style?.color, Colors.red);
     });
 
@@ -158,56 +209,43 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsHeadingText.rich(
-            text: buildOudsAnnotatedHeadingText((builder) {
+            text: buildOudsAnnotatedText((builder) {
               builder.withColor(Colors.red, () => builder.append('Red'));
               builder.append('Default again');
             }),
           ),
-          theme: SoshTheme(),
         ),
       );
 
       final textWidget = tester.widget<Text>(find.byType(Text));
       final spans = (textWidget.textSpan! as TextSpan).children!;
       expect((spans[0] as TextSpan).style?.color, Colors.red);
-      expect((spans[1] as TextSpan).style?.color, isNull);
+      expect((spans[1] as TextSpan).style?.color, isNot(Colors.red));
     });
 
-    testWidgets(
-      'is ignored and rendered as plain text for a theme that supports the marker',
-      (tester) async {
-        await tester.pumpWidget(
-          testableWidget(
-            OudsHeadingText.rich(
-              text: buildOudsAnnotatedHeadingText((builder) {
-                builder.append('Plain ');
-                builder.withColor(Colors.red, () => builder.append('Colored'));
-              }),
-            ),
-          ),
-        );
-
-        expect(find.text('Plain Colored'), findsOneWidget);
-      },
-    );
-
-    testWidgets('is ignored and rendered as plain text for a non-large size', (
+    testWidgets('also supports bold markdown syntax within a colored span', (
       tester,
     ) async {
       await tester.pumpWidget(
         testableWidget(
           OudsHeadingText.rich(
-            size: OudsHeadingTextSize.medium,
-            text: buildOudsAnnotatedHeadingText((builder) {
-              builder.append('Plain ');
-              builder.withColor(Colors.red, () => builder.append('Colored'));
+            text: buildOudsAnnotatedText((builder) {
+              builder.withColor(
+                Colors.red,
+                () => builder.append('**Bold and red**'),
+              );
             }),
           ),
-          theme: SoshTheme(),
         ),
       );
 
-      expect(find.text('Plain Colored'), findsOneWidget);
+      final textWidget = tester.widget<Text>(find.byType(Text));
+      final outerSpans = (textWidget.textSpan! as TextSpan).children!;
+      final innerSpans = (outerSpans[0] as TextSpan).children!;
+      final boldSpan = innerSpans.first as TextSpan;
+      expect(boldSpan.text, 'Bold and red');
+      expect(boldSpan.style?.fontWeight, FontWeight.bold);
+      expect(boldSpan.style?.color, Colors.red);
     });
   });
 
@@ -236,6 +274,26 @@ void main() {
         }
       }
     });
+
+    testWidgets('.rich colors only the span wrapped in withColor', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsBodyText.rich(
+            text: buildOudsAnnotatedText((builder) {
+              builder.append('Plain ');
+              builder.withColor(Colors.red, () => builder.append('Colored'));
+            }),
+          ),
+        ),
+      );
+
+      final textWidget = tester.widget<Text>(find.byType(Text));
+      final spans = (textWidget.textSpan! as TextSpan).children!;
+      expect((spans[0] as TextSpan).style?.color, isNot(Colors.red));
+      expect((spans[1] as TextSpan).style?.color, Colors.red);
+    });
   });
 
   group('OudsLabelText', () {
@@ -262,6 +320,26 @@ void main() {
           expect(find.text('Label $weight $size'), findsOneWidget);
         }
       }
+    });
+
+    testWidgets('.rich colors only the span wrapped in withColor', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsLabelText.rich(
+            text: buildOudsAnnotatedText((builder) {
+              builder.append('Plain ');
+              builder.withColor(Colors.red, () => builder.append('Colored'));
+            }),
+          ),
+        ),
+      );
+
+      final textWidget = tester.widget<Text>(find.byType(Text));
+      final spans = (textWidget.textSpan! as TextSpan).children!;
+      expect((spans[0] as TextSpan).style?.color, isNot(Colors.red));
+      expect((spans[1] as TextSpan).style?.color, Colors.red);
     });
   });
 }
