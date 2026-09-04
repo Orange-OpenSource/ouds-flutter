@@ -22,7 +22,11 @@ class OudsFormFieldsBackgroundColorModifier {
 
   OudsFormFieldsBackgroundColorModifier(this.context);
 
-  Color? getBackgroundColor(OudsFormFieldsControlState state, [bool isError = false, bool? outlined]) {
+  Color? getBackgroundColor(
+    OudsFormFieldsControlState state, [
+    bool isError = false,
+    bool? outlined,
+  ]) {
     final theme = OudsTheme.of(context);
     final error = isError == true;
     final defaultStyle = outlined == false;
@@ -31,25 +35,37 @@ class OudsFormFieldsBackgroundColorModifier {
       // Error
       switch (state) {
         case OudsFormFieldsControlState.enabled:
-          return defaultStyle ? theme.colorScheme(context).surfaceStatusNegativeMuted : null;
+          return defaultStyle
+              ? theme.colorScheme(context).surfaceStatusNegativeMuted
+              : null;
         case OudsFormFieldsControlState.disabled:
-          throw UnimplementedError("Error status for Disabled state is not relevant");
+          throw UnimplementedError(
+            "Error status for Disabled state is not relevant",
+          );
         case OudsFormFieldsControlState.hovered:
           return theme.colorScheme(context).surfaceStatusNegativeMuted;
         case OudsFormFieldsControlState.pressed:
           // TODO: Handle this case.
           throw UnimplementedError();
         case OudsFormFieldsControlState.focused:
-          return defaultStyle ? theme.colorScheme(context).surfaceStatusNegativeMuted : null;
+          return defaultStyle
+              ? theme.colorScheme(context).surfaceStatusNegativeMuted
+              : null;
         case OudsFormFieldsControlState.readOnly:
-          throw UnimplementedError("Error status for Read only state is not relevant");
+          throw UnimplementedError(
+            "Error status for Read only state is not relevant",
+          );
         case OudsFormFieldsControlState.loading:
-          throw UnimplementedError("Error status for Loading state is not relevant");
+          throw UnimplementedError(
+            "Error status for Loading state is not relevant",
+          );
       }
     } else {
       switch (state) {
         case OudsFormFieldsControlState.enabled:
-          return defaultStyle ? theme.colorScheme(context).actionSupportEnabled : null;
+          return defaultStyle
+              ? theme.colorScheme(context).actionSupportEnabled
+              : null;
         case OudsFormFieldsControlState.disabled:
           return theme.colorScheme(context).actionSupportDisabled;
         case OudsFormFieldsControlState.hovered:
@@ -58,9 +74,13 @@ class OudsFormFieldsBackgroundColorModifier {
           // TODO: Handle this case.
           throw UnimplementedError();
         case OudsFormFieldsControlState.focused:
-          return defaultStyle ? theme.colorScheme(context).actionSupportPressed : null;
+          return defaultStyle
+              ? theme.colorScheme(context).actionSupportPressed
+              : null;
         case OudsFormFieldsControlState.readOnly:
-          return defaultStyle ? null : theme.colorScheme(context).actionSupportDisabled;
+          return defaultStyle
+              ? null
+              : theme.colorScheme(context).actionSupportDisabled;
         case OudsFormFieldsControlState.loading:
           return theme.colorScheme(context).actionSupportLoading;
       }

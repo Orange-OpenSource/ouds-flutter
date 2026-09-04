@@ -1058,6 +1058,58 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';
 
   @override
+  String get app_components_typography_tech => 'Typography';
+
+  @override
+  String get app_components_typography_description_text =>
+      'Les composants de typographie offrent un système complet de styles de texte pour créer des hiérarchies claires et des interfaces lisibles.';
+
+  @override
+  String get app_components_typography_display_tech => 'Display';
+
+  @override
+  String get app_components_typography_display_description_text =>
+      'Display (ou l\'affichage) est un élément d\'interface utilisateur qui stylise la typographie pour un contenu percutant comme les pages de destination, les campagnes marketing et les messages clés.';
+
+  @override
+  String get app_components_typography_heading_tech => 'Heading';
+
+  @override
+  String get app_components_typography_heading_description_text =>
+      'Heading (ou le titre) est un élément d\'interface utilisateur qui stylise la typographie pour structurer le contenu et définir la hiérarchie de l\'information au sein d\'une interface.';
+
+  @override
+  String get app_components_typography_body_tech => 'Body';
+
+  @override
+  String get app_components_typography_body_description_text =>
+      'Body (ou le corps) du texte est un élément d\'interface utilisateur qui stylise la typographie pour le contenu textuel courant comme les paragraphes, descriptions et messages informatifs.';
+
+  @override
+  String get app_components_typography_label_tech => 'Label';
+
+  @override
+  String get app_components_typography_label_description_text =>
+      'Label (ou l\'étiquette) est un élément d\'interface utilisateur qui stylise la typographie pour des composants d\'interface compacts tels que les boutons, les champs de formulaire, les badges et autres petits éléments.';
+
+  @override
+  String get app_components_typography_code_tech => 'Code';
+
+  @override
+  String get app_components_typography_code_description_text =>
+      'Code (ou l\'élément de code) est un élément d\'interface utilisateur qui stylise la typographie pour le contenu technique comme les extraits de code, commandes, valeurs système et identifiants.';
+
+  @override
+  String get app_components_typography_heading_marker_tech => 'Repère';
+
+  @override
+  String get app_components_typography_weight_tech => 'Poids';
+
+  @override
+  String get app_components_typography_annotatedTextExample_tech =>
+      'Exemple de texte annoté';
+
+  @override
   String get app_about_name_label => 'Boîte à outils du système de conception';
 
   @override

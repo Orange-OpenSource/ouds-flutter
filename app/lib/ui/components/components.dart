@@ -39,6 +39,7 @@ import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
+import 'package:ouds_core/components/typography/ouds_typography.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_message_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/inline_alert_demo_screen.dart';
@@ -74,6 +75,8 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.d
 import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/typography/typography_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/typography/typography_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -598,6 +601,56 @@ List<Component> components(BuildContext context) {
       TopBarDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
+    ),
+    Component.withVariant(
+      context.l10n.app_components_typography_tech,
+      ComponentContainer(
+        child: OudsHeadingText(
+          text: context.l10n.app_components_common_label_label,
+          size: OudsHeadingTextSize.large,
+        ),
+      ),
+      context.l10n.app_components_typography_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_typography_body_tech,
+          TypographyDemoScreen(
+            variant: TypographyVariant.body,
+            previousPageTitle: context.l10n.app_components_typography_tech,
+          ),
+        ),
+        /*  VariantComponent(
+          context.l10n.app_components_typography_code_tech,
+          TypographyDemoScreen(
+            variant: TypographyVariant.code,
+            previousPageTitle: context.l10n.app_components_typography_tech,
+          ),
+        ),
+
+       */
+        VariantComponent(
+          context.l10n.app_components_typography_display_tech,
+          TypographyDemoScreen(
+            variant: TypographyVariant.display,
+            previousPageTitle: context.l10n.app_components_typography_tech,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_typography_heading_tech,
+          TypographyDemoScreen(
+            variant: TypographyVariant.heading,
+            previousPageTitle: context.l10n.app_components_typography_tech,
+          ),
+        ),
+
+        VariantComponent(
+          context.l10n.app_components_typography_label_tech,
+          TypographyDemoScreen(
+            variant: TypographyVariant.label,
+            previousPageTitle: context.l10n.app_components_typography_tech,
+          ),
+        ),
+      ],
     ),
   ];
 }

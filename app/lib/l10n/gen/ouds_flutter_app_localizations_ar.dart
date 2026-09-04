@@ -1058,6 +1058,58 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';
 
   @override
+  String get app_components_typography_tech => 'Typography';
+
+  @override
+  String get app_components_typography_description_text =>
+      'توفر Typography نظاماً شاملاً لأنماط النصوص، مما يتيح إنشاء تسلسلات هرمية واضحة وواجهات سهلة القراءة.';
+
+  @override
+  String get app_components_typography_display_tech => 'Display';
+
+  @override
+  String get app_components_typography_display_description_text =>
+      'أنماط Display هو عنصر واجهة المستخدم الذي ينسق الطباعة لتقديم محتوى مؤثر مثل صفحات الهبوط، الحملات التسويقية، والرسائل الرئيسية.';
+
+  @override
+  String get app_components_typography_heading_tech => 'Heading';
+
+  @override
+  String get app_components_typography_heading_description_text =>
+      'أنماط Heading هو عنصر واجهة المستخدم الذي ينسق الطباعة لتنظيم المحتوى وتحديد تسلسل المعلومات داخل الواجهة.';
+
+  @override
+  String get app_components_typography_body_tech => 'Body';
+
+  @override
+  String get app_components_typography_body_description_text =>
+      'أنماط Body هو عنصر واجهة المستخدم الذي ينسق الطباعة للمحتوى النصي الشائع مثل الفقرات، الوصف، والرسائل المعلوماتية.';
+
+  @override
+  String get app_components_typography_label_tech => 'Label';
+
+  @override
+  String get app_components_typography_label_description_text =>
+      'أنماط Label ههو عنصر واجهة المستخدم الذي ينسق الطباعة لمكونات الواجهة المدمجة مثل الأزرار، حقول النموذج، الشارات، وغيرها من العناصر الصغيرة';
+
+  @override
+  String get app_components_typography_code_tech => 'Code';
+
+  @override
+  String get app_components_typography_code_description_text =>
+      'أنماط Code هو عنصر واجهة المستخدم الذي ينسق الطباعة للمحتوى الفني مثل مقتطفات الكود، الأوامر، القيم النظامية، والمعرفات.';
+
+  @override
+  String get app_components_typography_heading_marker_tech => 'علامة';
+
+  @override
+  String get app_components_typography_weight_tech => 'الوزن';
+
+  @override
+  String get app_components_typography_annotatedTextExample_tech =>
+      'مثال على النص المشروح';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override

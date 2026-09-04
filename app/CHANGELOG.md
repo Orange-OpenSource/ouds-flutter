@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...develop)
 ### Added
+- [DemoApp][Library] Create component - `typography` ([#829](https://github.com/Orange-OpenSource/ouds-flutter/issues/829))
 - [DemoApp][Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
 - [DemoApp] deps update dependency: bump archive from 3.6.1 to 4.2.0 ([#909](https://github.com/Orange-OpenSource/ouds-flutter/issues/909))
