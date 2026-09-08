@@ -245,6 +245,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_common_helperText_label => 'Helper text';
 
   @override
+  String get app_components_common_annotatedText_tech =>
+      'Annotated example text';
+
+  @override
   String get app_components_common_appearance_label => 'Appearance';
 
   @override
@@ -838,7 +842,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_passwordInput_error_label =>
-      'Please enter your password.';
+      'Your password can\'t be empty';
 
   @override
   String get app_components_pinCodeInput_label => 'Pin code input';

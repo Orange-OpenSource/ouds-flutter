@@ -231,9 +231,13 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
           labelText: customizationState.labelText.isNotEmpty
               ? FormFieldsCustomizationUtils.getLabelText(customizationState)
               : null,
-          helperText: customizationState.helperText.isNotEmpty
-              ? FormFieldsCustomizationUtils.getHelperText(customizationState)
-              : null,
+          helperText: customizationState.hasAnnotatedHelper
+              ? customizationState.annotatedHelperText
+              : (customizationState.helperText.isNotEmpty
+                    ? FormFieldsCustomizationUtils.getHelperText(
+                        customizationState,
+                      )
+                    : null),
           hintText: customizationState.placeholderText.isNotEmpty
               ? FormFieldsCustomizationUtils.getPlaceholderText(
                   customizationState,
@@ -249,7 +253,9 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 )
               : null,
           errorText: customizationState.hasError
-              ? context.l10n.app_components_phoneNumberInput_error_label
+              ? (customizationState.hasAnnotatedHelper
+                    ? customizationState.annotatedErrorText
+                    : context.l10n.app_components_phoneNumberInput_error_label)
               : null,
           loader: customizationState.loader,
           outlined: customizationState.hasOutlined,
@@ -405,6 +411,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,
+          fieldEnable: customizationState.isHelperTextEnabled,
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_constrainedMaxWidth_label,
@@ -412,6 +419,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: (value) {
             setState(() {
               customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_annotatedText_tech,
+          value: customizationState.hasAnnotatedHelper,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasAnnotatedHelper = value;
             });
           },
         ),

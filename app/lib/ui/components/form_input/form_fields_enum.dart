@@ -18,14 +18,29 @@ extension CustomLabelLayout on FormFieldsTypeEnum {
 }
 
 extension CustomHelperLayout on FormFieldsTypeEnum {
-  String get helperValue {
+  /// Returns the helper text with markdown-style bold markers (**text**)
+  /// for annotated helper text feature.
+  String get annotatedHelperValue {
     switch (this) {
       case FormFieldsTypeEnum.textInput:
-        return "Helper text";
+        return "You can find your **customer ID** on your lastest invoice";
       case FormFieldsTypeEnum.phoneNumberInput:
-        return "Include your full number without spaces.";
+        return "Include your **full number** without spaces.";
       case FormFieldsTypeEnum.passwordInput:
-        return "Your password must be between 8 and 20 characters long.";
+        return "Your password must be between **8** and **20** characters long.";
+    }
+  }
+
+  /// Returns the annotated error text with markdown-style bold markers (**text**)
+  /// for annotated error message feature.
+  String get annotatedErrorValue {
+    switch (this) {
+      case FormFieldsTypeEnum.textInput:
+        return "This field can't be **empty**.";
+      case FormFieldsTypeEnum.phoneNumberInput:
+        return "The phone number can't be **empty**.";
+      case FormFieldsTypeEnum.passwordInput:
+        return "Your password can't be **empty**";
     }
   }
 }

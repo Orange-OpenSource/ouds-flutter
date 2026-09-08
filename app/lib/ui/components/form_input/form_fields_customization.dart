@@ -52,7 +52,7 @@ class FormFieldsCustomizationState
   late final TypingState typingState;
   late final HelperLinkTextState helperLinkTextState;
   late final ConstrainedMaxWidthState constrainedMaxWidthState;
-
+  late final AnnotatedHelperTextState annotatedHelperTextState;
   late final CountrySelectorState countrySelectorState;
   late final PrefixState prefixState;
 
@@ -74,6 +74,10 @@ class FormFieldsCustomizationState
     typingState = TypingState(setState);
     helperLinkTextState = HelperLinkTextState(setState);
     constrainedMaxWidthState = ConstrainedMaxWidthState(setState);
+    annotatedHelperTextState = AnnotatedHelperTextState(
+      setState,
+      widget.inputType,
+    );
   }
 
   // Proxy getters and setters to expose state values directly
@@ -189,6 +193,20 @@ class FormFieldsCustomizationState
   // Proxy getters and setters to expose the 'helperText' value directly.
   String get helperText => helperTextState.value;
   set helperText(String value) => helperTextState.value = value;
+
+  // Proxy getters and setters to expose the 'annotatedHelperText' value directly.
+  bool get hasAnnotatedHelper => annotatedHelperTextState.value;
+  set hasAnnotatedHelper(bool value) => annotatedHelperTextState.value = value;
+
+  /// Returns the annotated helper text based on input type.
+  String get annotatedHelperText => annotatedHelperTextState.annotatedText;
+
+  /// Returns the annotated error text based on input type.
+  String get annotatedErrorText => annotatedHelperTextState.annotatedErrorText;
+
+  /// Returns whether the helper text field should be enabled.
+  /// When annotated helper is enabled, the helper text field is disabled.
+  bool get isHelperTextEnabled => !annotatedHelperTextState.value;
 
   // Proxy getters and setters to expose the 'helperText' value directly.
   String get helperLinkText => helperLinkTextState.value;
@@ -443,13 +461,12 @@ class PlaceholderTextState {
 
 /// HelperText State Management
 class HelperTextState {
-  HelperTextState(this._setState, this.inputType)
-    : _helperTextValue = inputType.helperValue;
+  HelperTextState(this._setState, this.inputType);
 
   final void Function(void Function()) _setState;
   final FormFieldsTypeEnum inputType;
 
-  String _helperTextValue;
+  String _helperTextValue = "";
 
   String get value => _helperTextValue;
   set value(String newValue) {
@@ -457,6 +474,26 @@ class HelperTextState {
       _helperTextValue = newValue;
     });
   }
+}
+
+/// AnnotatedHelperText State Management
+class AnnotatedHelperTextState {
+  AnnotatedHelperTextState(this._setState, this.inputType);
+
+  final void Function(void Function()) _setState;
+  final FormFieldsTypeEnum inputType;
+  bool _hasAnnotation = false;
+
+  bool get value => _hasAnnotation;
+  set value(bool newValue) {
+    _setState(() {
+      _hasAnnotation = newValue;
+    });
+  }
+
+  String get annotatedText => inputType.annotatedHelperValue;
+
+  String get annotatedErrorText => inputType.annotatedErrorValue;
 }
 
 /// HelperLinkText State Management
