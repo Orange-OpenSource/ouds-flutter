@@ -30,7 +30,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 
 /// [OUDS Password Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-password-input)
 ///
-/// **Reference design version : 1.3.0**
+/// **Reference design version : 1.3.1**
 ///
 /// Password input is a UI element that allows to securely and confidentially capture a user's password.
 /// Password Input enhances privacy by replacing characters with dots, while they are being typed;
@@ -107,6 +107,7 @@ class OudsPasswordInput extends StatefulWidget {
         inputTextForegroundModifier.getIconColor(controlTextInputState),
         BlendMode.srcIn,
       ),
+      matchTextDirection: true,
     );
   }
 
@@ -374,7 +375,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelModerateLarge(context)
+          .typeLabelDefaultLarge(context)
           .copyWith(
             color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
@@ -413,7 +414,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                 widget.decoration.labelText ?? "",
                 overflow: TextOverflow.ellipsis,
                 style: theme.typographyTokens
-                    .typeLabelModerateLarge(context)
+                    .typeLabelDefaultLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getTextColor(state, isError),
                     ),
@@ -452,7 +453,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                     child: Text(
                       widget.decoration.prefix!,
                       style: theme.typographyTokens
-                          .typeLabelModerateLarge(context)
+                          .typeLabelDefaultLarge(context)
                           .copyWith(
                             color: inputTextTextModifier
                                 .getSuffixPrefixTextColor(state),
@@ -511,7 +512,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         MarkdownSpanBuilder.buildBoldOnly(
           text,
           baseStyle: theme.typographyTokens
-              .typeLabelModerateMedium(context)
+              .typeLabelDefaultMedium(context)
               .copyWith(
                 color: inputTextTextModifier.getHelperTextColor(state, isError),
               ),

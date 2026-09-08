@@ -33,7 +33,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 
 /// [OUDS Text Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-text-input)
 ///
-/// **Reference design version : 1.4.0**
+/// **Reference design version : 1.4.1**
 ///
 /// Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
 /// to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
@@ -123,6 +123,7 @@ class OudsTextField extends StatefulWidget {
               BlendMode.srcIn,
             )
           : null,
+      matchTextDirection: true,
     );
 
     // When untinted, the icon asset is expected to be a plain white shape
@@ -363,7 +364,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                             child: Text(
                               widget.decoration.prefix!,
                               style: theme.typographyTokens
-                                  .typeLabelModerateLarge(context)
+                                  .typeLabelDefaultLarge(context)
                                   .copyWith(
                                     color: inputTextTextModifier
                                         .getSuffixPrefixTextColor(state),
@@ -423,7 +424,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                             child: Text(
                               widget.decoration.suffix!,
                               style: theme.typographyTokens
-                                  .typeLabelModerateLarge(context)
+                                  .typeLabelDefaultLarge(context)
                                   .copyWith(
                                     color: inputTextTextModifier
                                         .getSuffixPrefixTextColor(state),
@@ -511,7 +512,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelModerateLarge(context)
+          .typeLabelDefaultLarge(context)
           .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
@@ -555,7 +556,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                   overflow: TextOverflow.ellipsis,
                   widget.decoration.labelText ?? "",
                   style: theme.typographyTokens
-                      .typeLabelModerateLarge(context)
+                      .typeLabelDefaultLarge(context)
                       .copyWith(
                         color: inputTextTextModifier.getTextColor(
                           state,
@@ -599,7 +600,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                     child: Text(
                       widget.decoration.prefix!,
                       style: theme.typographyTokens
-                          .typeLabelModerateLarge(context)
+                          .typeLabelDefaultLarge(context)
                           .copyWith(
                             color: inputTextTextModifier
                                 .getSuffixPrefixTextColor(state),
@@ -627,7 +628,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                     child: Text(
                       widget.decoration.suffix!,
                       style: theme.typographyTokens
-                          .typeLabelModerateLarge(context)
+                          .typeLabelDefaultLarge(context)
                           .copyWith(
                             color: inputTextTextModifier
                                 .getSuffixPrefixTextColor(state),
@@ -683,7 +684,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         MarkdownSpanBuilder.buildBoldOnly(
           text,
           baseStyle: theme.typographyTokens
-              .typeLabelModerateMedium(context)
+              .typeLabelDefaultMedium(context)
               .copyWith(
                 color: inputTextTextModifier.getHelperTextColor(state, isError),
               ),
@@ -729,7 +730,7 @@ class _OudsTextInputState extends State<OudsTextField> {
     );
 
     // Case 1: loader active
-    if (widget.decoration.loader != null && _isTyping) {
+    if (widget.decoration.loader == true && _isTyping) {
       return OudsButton(
         icon: AppAssets.icons.communicationAssistanceTipsAndTricks,
         package: OudsTheme.of(context).packageName,
@@ -763,6 +764,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                 inputTextForegroundModifier.getForegroundColor(state),
                 BlendMode.srcIn,
               ),
+              matchTextDirection: true,
             ),
             SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
           ],

@@ -139,6 +139,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
         inputTextForegroundModifier.getIconColor(controlTextInputState),
         BlendMode.srcIn,
       ),
+      matchTextDirection: true,
     );
   }
 
@@ -453,7 +454,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       focusNode: effectiveFocusNode,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelModerateLarge(context)
+          .typeLabelDefaultMedium(context)
           .copyWith(
             color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
@@ -514,7 +515,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
             ? Text(
                 widget.decoration.labelText ?? "",
                 style: theme.typographyTokens
-                    .typeLabelModerateLarge(context)
+                    .typeLabelDefaultLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getTextColor(state, isError),
                     ),
@@ -706,7 +707,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
           Text(
             prefixToDisplay,
             style: theme.typographyTokens
-                .typeLabelModerateLarge(context)
+                .typeLabelDefaultLarge(context)
                 .copyWith(
                   color: inputTextTextModifier.getSuffixPrefixTextColor(state),
                 ),
@@ -756,7 +757,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         MarkdownSpanBuilder.buildBoldOnly(
           text,
           baseStyle: theme.typographyTokens
-              .typeLabelModerateMedium(context)
+              .typeLabelDefaultMedium(context)
               .copyWith(
                 color: inputTextTextModifier.getHelperTextColor(state, isError),
               ),

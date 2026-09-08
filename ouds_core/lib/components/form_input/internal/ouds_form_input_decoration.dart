@@ -76,9 +76,6 @@ class OudsTextInputLoader {
   final double? progress;
 
   const OudsTextInputLoader({this.progress});
-
-  /// Returns true if loading is active.
-  bool get isLoading => progress != null;
 }
 
 /// Alias class for [OudsFormInputDecoration].
