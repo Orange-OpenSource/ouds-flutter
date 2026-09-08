@@ -80,13 +80,36 @@ abstract class OudsTypography extends StatelessWidget {
   /// An optional color override. When null, the theme's `contentDefault` color is used.
   final Color? color;
 
+  /// An optional maximum number of lines for the text to span, wrapping if necessary.
+  /// If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+  /// [softWrap].
+  final int? maxLines;
+
+  /// Alignment of the text within the lines of the paragraph. See [TextAlign].
+  final TextAlign? textAlign;
+
+  /// How visual overflow should be handled.
+  final TextOverflow? overflow;
+
+  /// Whether the text should break at soft line breaks. If false, the glyphs in the
+  /// text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+  /// [overflow] and [TextAlign] may have unexpected effects.
+  final bool? softWrap;
+
   /// When set (via a `.rich` constructor), builds the content from these annotated spans instead
   /// of the plain [text].
   final OudsAnnotatedText? _annotatedText;
 
   /// Creates an [OudsTypography].
-  const OudsTypography({super.key, required this.text, this.color})
-    : _annotatedText = null;
+  const OudsTypography({
+    super.key,
+    required this.text,
+    this.color,
+    this.maxLines,
+    this.textAlign,
+    this.overflow,
+    this.softWrap,
+  }) : _annotatedText = null;
 
   /// Creates an [OudsTypography] whose content is composed of multiple spans, some of which can be
   /// colored independently of the others. Build [text] with [buildOudsAnnotatedText] to color part
@@ -95,6 +118,10 @@ abstract class OudsTypography extends StatelessWidget {
     super.key,
     this.color,
     required OudsAnnotatedText text,
+    this.maxLines,
+    this.textAlign,
+    this.overflow,
+    this.softWrap,
   }) : text = '',
        _annotatedText = text;
 
@@ -136,6 +163,10 @@ abstract class OudsTypography extends StatelessWidget {
         style: style.copyWith(color: resolvedColor),
         children: children,
       ),
+      textAlign: textAlign,
+      maxLines: maxLines,
+      overflow: overflow,
+      softWrap: softWrap,
     );
   }
 }
@@ -166,6 +197,10 @@ class OudsDisplayText extends OudsTypography {
     required super.text,
     super.color,
     this.size = OudsDisplayTextSize.large,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+    super.softWrap,
   });
 
   /// Creates an [OudsDisplayText] whose content is composed of multiple spans, some of which can
@@ -176,6 +211,10 @@ class OudsDisplayText extends OudsTypography {
     super.color,
     this.size = OudsDisplayTextSize.large,
     required super.text,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+    super.softWrap,
   }) : super.rich();
 
   @override
@@ -231,6 +270,10 @@ class OudsHeadingText extends OudsTypography {
     super.color,
     this.size = OudsHeadingTextSize.large,
     this.marker = true,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+    super.softWrap,
   });
 
   /// Creates an [OudsHeadingText] whose content is composed of multiple spans, some of which can
@@ -242,6 +285,10 @@ class OudsHeadingText extends OudsTypography {
     this.size = OudsHeadingTextSize.large,
     this.marker = true,
     required super.text,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+    super.softWrap,
   }) : super.rich();
 
   @override
@@ -333,6 +380,10 @@ class OudsBodyText extends OudsTypography {
     super.color,
     this.size = OudsBodyTextSize.medium,
     this.weight = OudsTextWeight.defaultWeight,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+    super.softWrap,
   });
 
   /// Creates an [OudsBodyText] whose content is composed of multiple spans, some of which can be
@@ -344,6 +395,10 @@ class OudsBodyText extends OudsTypography {
     this.size = OudsBodyTextSize.medium,
     this.weight = OudsTextWeight.defaultWeight,
     required super.text,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+    super.softWrap,
   }) : super.rich();
 
   @override
@@ -410,6 +465,10 @@ class OudsLabelText extends OudsTypography {
     super.color,
     this.size = OudsLabelTextSize.medium,
     this.weight = OudsTextWeight.defaultWeight,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+    super.softWrap,
   });
 
   /// Creates an [OudsLabelText] whose content is composed of multiple spans, some of which can be
@@ -421,6 +480,10 @@ class OudsLabelText extends OudsTypography {
     this.size = OudsLabelTextSize.medium,
     this.weight = OudsTextWeight.defaultWeight,
     required super.text,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+    super.softWrap,
   }) : super.rich();
 
   @override

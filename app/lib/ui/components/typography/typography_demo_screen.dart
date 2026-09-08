@@ -21,6 +21,7 @@ import 'package:ouds_flutter_demo/ui/components/typography/typography_customizat
 import 'package:ouds_flutter_demo/ui/components/typography/typography_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/colors_utils.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
@@ -212,6 +213,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
           text: customizationState.labelText,
+          fieldEnable: !customizationState.hasAnnotatedText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
         ),
@@ -286,9 +288,16 @@ class _TypographyDemoState extends State<_TypographyDemo> {
     });
 
     if (customizationState.hasAnnotatedText) {
-      final color = OudsTheme.of(
-        context,
-      ).colorScheme(context).contentBrandPrimary;
+      final colorTokens = OudsTheme.of(context).colorScheme(context);
+      final brandSecondaryColor = ColorTokenItem(
+        name: 'contentBrandSecondary',
+        value: colorTokens.contentBrandSecondary,
+      );
+      final color =
+          brandSecondaryColor.colorToHex(brandSecondaryColor.value) !=
+              colorUnspecified
+          ? colorTokens.borderBrandSecondary
+          : colorTokens.contentBrandPrimary;
 
       return LightDarkBox(
         child: buildOudsAnnotatedTypography(
