@@ -75,7 +75,7 @@ dev_dependencies:
     sdk: flutter
 
   # For icon update script
-  archive: ^3.6.0
+  archive: ^4.2.0
   path: ^1.9.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
