@@ -57,6 +57,10 @@
       <span class="name ">OudsTypography</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
 <li><span class="parameter" id="param-text"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">text</span>, </span></li>
 <li><span class="parameter" id="param-color"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">color</span>, </span></li>
+<li><span class="parameter" id="param-maxLines"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">maxLines</span>, </span></li>
+<li><span class="parameter" id="param-textAlign"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/TextAlign.html">TextAlign</a>?</span> <span class="parameter-name">textAlign</span>, </span></li>
+<li><span class="parameter" id="param-overflow"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/TextOverflow.html">TextOverflow</a>?</span> <span class="parameter-name">overflow</span>, </span></li>
+<li><span class="parameter" id="param-softWrap"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">softWrap</span>, </span></li>
 </ol>})
     </section>
     
@@ -68,8 +72,15 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">const OudsTypography({super.key, required this.text, this.color})
-  : _annotatedText = null;</code></pre>
+  <pre class="language-dart"><code class="language-dart">const OudsTypography({
+  super.key,
+  required this.text,
+  this.color,
+  this.maxLines,
+  this.textAlign,
+  this.overflow,
+  this.softWrap,
+}) : _annotatedText = null;</code></pre>
 </section>
 
 

@@ -59,6 +59,10 @@
 <li><span class="parameter" id="rich-param-size"><span class="type-annotation"><a href="../../components_typography_ouds_typography/OudsBodyTextSize.html">OudsBodyTextSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsBodyTextSize.medium</span>, </span></li>
 <li><span class="parameter" id="rich-param-weight"><span class="type-annotation"><a href="../../components_typography_ouds_typography/OudsTextWeight.html">OudsTextWeight</a></span> <span class="parameter-name">weight</span> = <span class="default-value">OudsTextWeight.defaultWeight</span>, </span></li>
 <li><span class="parameter" id="rich-param-text"><span>required</span> <span class="type-annotation"><a href="../../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a></span> <span class="parameter-name">text</span>, </span></li>
+<li><span class="parameter" id="rich-param-maxLines"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">maxLines</span>, </span></li>
+<li><span class="parameter" id="rich-param-textAlign"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/TextAlign.html">TextAlign</a>?</span> <span class="parameter-name">textAlign</span>, </span></li>
+<li><span class="parameter" id="rich-param-overflow"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/TextOverflow.html">TextOverflow</a>?</span> <span class="parameter-name">overflow</span>, </span></li>
+<li><span class="parameter" id="rich-param-softWrap"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">softWrap</span>, </span></li>
 </ol>})
     </section>
     
@@ -78,6 +82,10 @@ of the text, e.g. to highlight a word or phrase.</p>
   this.size = OudsBodyTextSize.medium,
   this.weight = OudsTextWeight.defaultWeight,
   required super.text,
+  super.maxLines,
+  super.textAlign,
+  super.overflow,
+  super.softWrap,
 }) : super.rich();</code></pre>
 </section>
 
