@@ -619,15 +619,13 @@ List<Component> components(BuildContext context) {
             previousPageTitle: context.l10n.app_components_typography_tech,
           ),
         ),
-        /*  VariantComponent(
+        VariantComponent(
           context.l10n.app_components_typography_code_tech,
           TypographyDemoScreen(
             variant: TypographyVariant.code,
             previousPageTitle: context.l10n.app_components_typography_tech,
           ),
         ),
-
-       */
         VariantComponent(
           context.l10n.app_components_typography_display_tech,
           TypographyDemoScreen(

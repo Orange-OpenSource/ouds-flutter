@@ -22,6 +22,7 @@ abstract class OudsFontSemanticTokens {
   late double letterSpacingBodyMediumTablet;
   late double letterSpacingBodySmallMobile;
   late double letterSpacingBodySmallTablet;
+  late double letterSpacingCodeMedium;
   late double letterSpacingDisplayLargeMobile;
   late double letterSpacingDisplayLargeTablet;
   late double letterSpacingDisplayMediumMobile;
@@ -46,6 +47,7 @@ abstract class OudsFontSemanticTokens {
   late double lineHeightBodyMediumTablet;
   late double lineHeightBodySmallMobile;
   late double lineHeightBodySmallTablet;
+  late double lineHeightCodeMedium;
   late double lineHeightDisplayLargeMobile;
   late double lineHeightDisplayLargeTablet;
   late double lineHeightDisplayMediumMobile;
@@ -70,6 +72,7 @@ abstract class OudsFontSemanticTokens {
   late double sizeBodyMediumTablet;
   late double sizeBodySmallMobile;
   late double sizeBodySmallTablet;
+  late double sizeCodeMedium;
   late double sizeDisplayLargeMobile;
   late double sizeDisplayLargeTablet;
   late double sizeDisplayMediumMobile;
@@ -91,6 +94,7 @@ abstract class OudsFontSemanticTokens {
   late FontWeight weightBodyDefault;
   late FontWeight weightBodyModerate;
   late FontWeight weightBodyStrong;
+  late FontWeight weightCode;
   late FontWeight weightDisplay;
   late FontWeight weightHeading;
   late FontWeight weightLabelDefault;

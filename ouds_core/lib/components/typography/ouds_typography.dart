@@ -527,10 +527,6 @@ class OudsLabelText extends OudsTypography {
   }
 }
 
-/*
-/// The available sizes for [OudsCodeText].
-enum OudsCodeTextSize { large, medium, small }
-
 ///  The Code style is dedicated to technical content such as code snippets, commands, system values, and identifiers. It uses a monospace typeface to preserve character alignment and improve readability of structured content.
 ///  Available in a single size, it provides a consistent presentation of technical information throughout the product.
 ///  Its use should be limited to content that requires an accurate code-like representation.
@@ -539,45 +535,30 @@ enum OudsCodeTextSize { large, medium, small }
 /// OudsCodeText(text: 'const x = 1;', size: OudsCodeSize.medium)
 /// ```
 class OudsCodeText extends OudsTypography {
-  /// The size of the code text, see [OudsCodeTextSize]. Defaults to [OudsCodeTextSize.medium].
-  final OudsCodeTextSize size;
-
   /// Creates an [OudsCodeText].
-  const OudsCodeText({
-    super.key,
-    required super.text,
-    super.color,
-    this.size = OudsCodeTextSize.medium,
-  });
+  const OudsCodeText({super.key, required super.text, super.color});
 
+  /// Creates an [OudsCodeText] whose content is composed of multiple spans, some of which can be
+  /// colored independently of the others. Build [text] with [buildOudsAnnotatedText] to color part
+  /// of the text, e.g. to highlight a word or phrase.
+  const OudsCodeText.rich({
+    super.key,
+    super.color,
+    required super.text,
+    super.maxLines,
+    super.textAlign,
+    super.overflow,
+    super.softWrap,
+  }) : super.rich();
   @override
   TextStyle textStyle(BuildContext context) {
     final typography = OudsTheme.of(context).typographyTokens;
     const fontFamilyFallback = ['Courier', 'monospace'];
-    switch (size) {
-      case OudsCodeTextSize.large:
-        return typography
-            .typeBodyDefaultLarge(context)
-            .copyWith(
-              fontFamily: 'monospace',
-              fontFamilyFallback: fontFamilyFallback,
-            );
-      case OudsCodeTextSize.medium:
-        return typography
-            .typeBodyDefaultMedium(context)
-            .copyWith(
-              fontFamily: 'monospace',
-              fontFamilyFallback: fontFamilyFallback,
-            );
-      case OudsCodeTextSize.small:
-        return typography
-            .typeBodyDefaultSmall(context)
-            .copyWith(
-              fontFamily: 'monospace',
-              fontFamilyFallback: fontFamilyFallback,
-            );
-    }
+    return typography
+        .typeBodyDefaultSmall(context)
+        .copyWith(
+          fontFamily: 'monospace',
+          fontFamilyFallback: fontFamilyFallback,
+        );
   }
 }
-
- */

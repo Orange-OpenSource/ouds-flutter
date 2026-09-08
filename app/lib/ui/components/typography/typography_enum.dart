@@ -15,7 +15,7 @@ import 'package:ouds_core/components/typography/ouds_typography.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// The typography family showcased by the typography demo/customization screens.
-enum TypographyVariant { display, heading, body, label /*code*/ }
+enum TypographyVariant { display, heading, body, label, code }
 
 /// The color options exposed by the typography customization screen. [defaultColor] lets the
 /// component fall back to the theme's default content color (no override).
@@ -67,7 +67,8 @@ List<Object> sizesFor(TypographyVariant variant) {
       return OudsBodyTextSize.values;
     case TypographyVariant.label:
       return OudsLabelTextSize.values;
-    //case TypographyVariant.code:return OudsCodeTextSize.values;
+    case TypographyVariant.code:
+      throw UnimplementedError('no size param for TypographyVariant.code.');
   }
 }
 
@@ -82,7 +83,8 @@ Object defaultSizeFor(TypographyVariant variant) {
       return OudsBodyTextSize.large;
     case TypographyVariant.label:
       return OudsLabelTextSize.xLarge;
-    // case TypographyVariant.code:return OudsCodeTextSize.medium;
+    case TypographyVariant.code:
+      throw UnimplementedError('no size param for TypographyVariant.code.');
   }
 }
 
@@ -101,7 +103,8 @@ String classNameFor(TypographyVariant variant) {
       return 'OudsBodyText';
     case TypographyVariant.label:
       return 'OudsLabelText';
-    // case TypographyVariant.code:return 'OudsCodeText';
+    case TypographyVariant.code:
+      return 'OudsCodeText';
   }
 }
 
@@ -116,6 +119,7 @@ String sizeEnumNameFor(TypographyVariant variant) {
       return 'OudsBodyTextSize';
     case TypographyVariant.label:
       return 'OudsLabelTextSize';
-    //case TypographyVariant.code:return 'OudsCodeTextSize';
+    case TypographyVariant.code:
+      throw UnimplementedError('no size param for TypographyVariant.code.');
   }
 }

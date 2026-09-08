@@ -24,7 +24,9 @@ class TypographyCodeGenerator {
   // Static method to generate the code based on the typography customization state
   static String updateCode(BuildContext context, TypographyVariant variant) {
     final customizationState = TypographyCustomization.of(context);
-    final size = customizationState?.selectedSize ?? defaultSizeFor(variant);
+    final size = variant != TypographyVariant.code
+        ? customizationState?.selectedSize ?? defaultSizeFor(variant)
+        : null;
     final text = customizationState?.labelText ?? '';
     final marker = customizationState?.hasMarker ?? true;
     final markerLine =
@@ -37,10 +39,12 @@ class TypographyCodeGenerator {
         ? '\n  weight: OudsTextWeight.${weight.name},'
         : '';
     final hasAnnotatedText = customizationState?.hasAnnotatedText ?? false;
-
+    final sizeLine = variant != TypographyVariant.code
+        ? "  size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},\n"
+        : "";
     if (hasAnnotatedText) {
       return """${classNameFor(variant)}.rich(
-  size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},$weightLine$markerLine
+$sizeLine$weightLine$markerLine
   text: buildOudsAnnotatedText((builder) {
     builder.append('${variant.formattedName} with __**underline**__ and  ');
     builder.withColor(color, () => builder.append('colored text'));
@@ -50,7 +54,7 @@ class TypographyCodeGenerator {
 
     return """${classNameFor(variant)}(
   text: '$text',
-  size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},$weightLine$markerLine
+$sizeLine$weightLine$markerLine
 )""";
   }
 }

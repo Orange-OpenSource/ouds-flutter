@@ -60,7 +60,8 @@ String _title(BuildContext context, TypographyVariant variant) {
       return context.l10n.app_components_typography_body_tech;
     case TypographyVariant.label:
       return context.l10n.app_components_typography_label_tech;
-    // case TypographyVariant.code:return context.l10n.app_components_typography_code_tech;
+    case TypographyVariant.code:
+      return context.l10n.app_components_typography_code_tech;
   }
 }
 
@@ -74,7 +75,8 @@ String _description(BuildContext context, TypographyVariant variant) {
       return context.l10n.app_components_typography_body_description_text;
     case TypographyVariant.label:
       return context.l10n.app_components_typography_label_description_text;
-    // case TypographyVariant.code:return context.l10n.app_components_typography_code_description_text;
+    case TypographyVariant.code:
+      return context.l10n.app_components_typography_code_description_text;
   }
 }
 
@@ -152,7 +154,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   Widget build(BuildContext context) {
     final customizationState = TypographyCustomization.of(context)!;
-    final sizes = customizationState.sizeState.list;
+    final sizes = widget.variant != TypographyVariant.code
+        ? customizationState.sizeState.list
+        : null;
     final isHeadingLarge =
         widget.variant == TypographyVariant.heading &&
         customizationState.selectedSize == OudsHeadingTextSize.large;
@@ -164,17 +168,18 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
-        CustomizableChips<Object>(
-          title: context.l10n.app_components_common_size_label,
-          options: sizes,
-          selectedOption: customizationState.selectedSize,
-          getText: (size) => (size as Enum).formattedName,
-          onSelected: (size) {
-            setState(() {
-              customizationState.selectedSize = size;
-            });
-          },
-        ),
+        if (widget.variant != TypographyVariant.code)
+          CustomizableChips<Object>(
+            title: context.l10n.app_components_common_size_label,
+            options: sizes!,
+            selectedOption: customizationState.selectedSize!,
+            getText: (size) => (size as Enum).formattedName,
+            onSelected: (size) {
+              setState(() {
+                customizationState.selectedSize = size;
+              });
+            },
+          ),
         if (hasWeightFor(widget.variant))
           CustomizableChips<OudsTextWeight>(
             title: context.l10n.app_components_typography_weight_tech,
@@ -326,7 +331,7 @@ class _TypographyDemoState extends State<_TypographyDemo> {
   /// by that variant's widget.
   Widget buildOudsAnnotatedTypography(
     TypographyVariant variant,
-    Object size,
+    Object? size,
     Color color, {
     bool marker = true,
     OudsTextWeight weight = OudsTextWeight.defaultWeight,
@@ -360,7 +365,8 @@ class _TypographyDemoState extends State<_TypographyDemo> {
           size: size as OudsLabelTextSize,
           weight: weight,
         );
-      //  case TypographyVariant.code:return OudsCodeText.rich(text: text, size: size as OudsCodeTextSize);
+      case TypographyVariant.code:
+        return OudsCodeText.rich(text: text);
     }
   }
 
@@ -368,7 +374,7 @@ class _TypographyDemoState extends State<_TypographyDemo> {
   /// by that variant's widget.
   Widget buildOudsTypography(
     TypographyVariant variant,
-    Object size,
+    Object? size,
     String text, {
     bool marker = true,
     OudsTextWeight weight = OudsTextWeight.defaultWeight,
@@ -394,7 +400,8 @@ class _TypographyDemoState extends State<_TypographyDemo> {
           size: size as OudsLabelTextSize,
           weight: weight,
         );
-      //  case TypographyVariant.code:return OudsCodeText(text: text, size: size as OudsCodeTextSize);
+      case TypographyVariant.code:
+        return OudsCodeText(text: text);
     }
   }
 }

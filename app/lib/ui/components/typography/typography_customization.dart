@@ -63,11 +63,13 @@ class TypographyCustomizationState
   @override
   void initState() {
     super.initState();
-    sizeState = SizeState(
-      setState,
-      sizesFor(widget.variant),
-      defaultSizeFor(widget.variant),
-    );
+    if (widget.variant != TypographyVariant.code) {
+      sizeState = SizeState(
+        setState,
+        sizesFor(widget.variant),
+        defaultSizeFor(widget.variant),
+      );
+    }
     labelTextState = LabelTextState(setState, widget.initialText);
     markerState = MarkerState(setState);
     colorState = ColorState(setState);
@@ -76,7 +78,8 @@ class TypographyCustomizationState
   }
 
   // Proxy getters and setters to expose state values directly
-  Object get selectedSize => sizeState.selected;
+  Object? get selectedSize =>
+      widget.variant != TypographyVariant.code ? sizeState.selected : null;
   set selectedSize(Object value) => sizeState.selected = value;
 
   String get labelText => labelTextState.value;
