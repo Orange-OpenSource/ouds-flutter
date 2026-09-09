@@ -63,8 +63,15 @@ and selected Filter Chips remain visually distinct to indicate active filters.</
 Other layouts are available for this component: <em>text + icon</em> and <em>icon only</em>.</p>
 <p>Parameters:</p>
 <ul>
-<li><a href="../components_chip_ouds_filter_chip/OudsFilterChip/label.html">label</a>: Label displayed in the suggestion chip which describes the chip option.</li>
-<li><a href="../components_chip_ouds_filter_chip/OudsFilterChip/avatar.html">avatar</a>: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.</li>
+<li><a href="../components_chip_ouds_filter_chip/OudsFilterChip/label.html">label</a>: Text label displayed in the chip.</li>
+<li><a class="deprecated" href="../components_chip_ouds_filter_chip/OudsFilterChip/avatar.html">avatar</a>: Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.</li>
+<li><a href="../components_chip_ouds_filter_chip/OudsFilterChip/icon.html">icon</a>: Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.</li>
+<li><a href="../components_chip_ouds_filter_chip/OudsFilterChip/selected.html">selected</a>: Whether this chip is selected or not. If this value is null so the component is in disabled state.</li>
+<li><a href="../components_chip_ouds_filter_chip/OudsFilterChip/onSelected.html">onSelected</a> : Called when this chip is clicked. A null value indicates that the component is disabled.</li>
+<li><a href="../components_chip_ouds_filter_chip/OudsFilterChip/contentDescription.html">contentDescription</a> : Description of the chip's content for accessibility purposes. This value is ignored if the chip also contains a label.</li>
+<li><a href="../components_chip_ouds_filter_chip/OudsFilterChip/tinted.html">tinted</a> : Controls whether the icon should be tinted with the theme color. Defaults to <code>true</code>.
+When set to <code>false</code>, the icon is displayed with its original colors (e.g., for multi-color icons).
+Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.</li>
 </ul>
 <h3 id="you-can-use-oudsfilterchip-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_chip_ouds_filter_chip/OudsFilterChip-class.html">OudsFilterChip</a> component in your project, customizing parameters as needed :</h3>
 <p><strong>Text only filter chip :</strong>
@@ -74,6 +81,14 @@ This is the default layout of the component.</p>
       selected: true,
       onSelected: () {},
     );
+</code></pre>
+<p><strong>Text with icon filter chip :</strong></p>
+<pre class="language-dart"><code class="language-dart">OudsFilterChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  selected: true,
+  onSelected: (bool selected) {},
+)
 </code></pre>
 </section>
 
@@ -108,10 +123,17 @@ This is the default layout of the component.</p>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsFilterChip.new" class="callable">
-          <span class="name"><a href="../components_chip_ouds_filter_chip/OudsFilterChip/OudsFilterChip.html">OudsFilterChip</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-avatar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">avatar</span>, </span><span class="parameter" id="param-selected"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">selected</span>, </span><span class="parameter" id="param-onSelected"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span>?</span> <span class="parameter-name">onSelected</span></span>})</span>
+          <span class="name"><a href="../components_chip_ouds_filter_chip/OudsFilterChip/OudsFilterChip.html">OudsFilterChip</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-avatar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">avatar</span>, </span><span class="parameter" id="param-selected"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">selected</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-onSelected"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span>?</span> <span class="parameter-name">onSelected</span></span>})</span>
         </dt>
         <dd>
-          
+          Creates a text-only <a href="../components_chip_ouds_filter_chip/OudsFilterChip-class.html">OudsFilterChip</a>.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="OudsFilterChip.icon" class="callable">
+          <span class="name"><a href="../components_chip_ouds_filter_chip/OudsFilterChip/OudsFilterChip.icon.html">OudsFilterChip.icon</a></span><span class="signature">({<span class="parameter" id="icon-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="icon-param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="icon-param-icon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="icon-param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span>, </span><span class="parameter" id="icon-param-selected"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">selected</span> = <span class="default-value">false</span>, </span><span class="parameter" id="icon-param-onSelected"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span>?</span> <span class="parameter-name">onSelected</span>, </span><span class="parameter" id="icon-param-contentDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">contentDescription</span></span>})</span>
+        </dt>
+        <dd>
+          Creates an <a href="../components_chip_ouds_filter_chip/OudsFilterChip-class.html">OudsFilterChip</a> with a text and an icon.
             <div class="constructor-modifier features">const</div>
         </dd>
     </dl>
@@ -123,7 +145,19 @@ This is the default layout of the component.</p>
     <h2>Properties</h2>
     <dl class="properties">
         <dt id="avatar" class="property">
-  <span class="name"><a href="../components_chip_ouds_filter_chip/OudsFilterChip/avatar.html">avatar</a></span>
+  <span class="name"><a class="deprecated" href="../components_chip_ouds_filter_chip/OudsFilterChip/avatar.html">avatar</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="contentDescription" class="property">
+  <span class="name"><a href="../components_chip_ouds_filter_chip/OudsFilterChip/contentDescription.html">contentDescription</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
   
 
@@ -143,6 +177,18 @@ This is the default layout of the component.</p>
 <dd class="inherited">
   The hash code for this object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="icon" class="property">
+  <span class="name"><a href="../components_chip_ouds_filter_chip/OudsFilterChip/icon.html">icon</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
@@ -208,7 +254,19 @@ This is the default layout of the component.</p>
 
         <dt id="selected" class="property">
   <span class="name"><a href="../components_chip_ouds_filter_chip/OudsFilterChip/selected.html">selected</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="tinted" class="property">
+  <span class="name"><a href="../components_chip_ouds_filter_chip/OudsFilterChip/tinted.html">tinted</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   
 
 </dt>
@@ -384,24 +442,6 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
   </section>
     
     
-  <section class="summary offset-anchor" id="static-methods">
-    <h2>Static Methods</h2>
-    <dl class="callables">
-        <dt id="buildIcon" class="callable">
-  <span class="name"><a href="../components_chip_ouds_filter_chip/OudsFilterChip/buildIcon.html">buildIcon</a></span><span class="signature">(<wbr><span class="parameter" id="buildIcon-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="buildIcon-param-assetName"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">assetName</span>, </span><span class="parameter" id="buildIcon-param-controlItemState"><span class="type-annotation">OudsChipControlState</span> <span class="parameter-name">controlItemState</span>, </span><span class="parameter" id="buildIcon-param-selected"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">selected</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
-  </span>
-  
-
-</dt>
-<dd>
-  
-  
-
-</dd>
-
-    </dl>
-  </section>
     
 
   </div> <!-- /.main-content -->

@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the layout property from the OudsFilterChip class, for the Dart programming language.">
-  <title>layout property - OudsFilterChip class - ouds_filter_chip library - Dart API</title>
+  <meta name="description" content="API docs for the OudsFilterChip.icon constructor from Class OudsFilterChip from the ouds_filter_chip library, for the Dart programming language.">
+  <title>OudsFilterChip.icon constructor - OudsFilterChip - ouds_filter_chip library - Dart API</title>
 
 
   
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_chip_ouds_filter_chip/">components&#47;chip&#47;ouds_filter_chip.dart</a></li>
     <li><a href="../../components_chip_ouds_filter_chip/OudsFilterChip-class.html">OudsFilterChip</a></li>
-    <li class="self-crumb">layout property</li>
+    <li class="self-crumb">OudsFilterChip.icon const constructor</li>
   </ol>
-  <div class="self-name">layout</div>
+  <div class="self-name">OudsFilterChip.icon</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -43,45 +43,52 @@
   </button>
 </header>
 <main>
-<div
-    id="dartdoc-main-content"
-    class="main-content"
-    data-above-sidebar="components_chip_ouds_filter_chip&#47;OudsFilterChip-class-sidebar.html"
-    data-below-sidebar="">
-    <div>
-<h1><span class="kind-property">layout</span> property 
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="components_chip_ouds_filter_chip&#47;OudsFilterChip-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">OudsFilterChip.icon</span> constructor 
 </h1></div>
 
-    
-
-    
-        
-  <section id="getter">
     <section class="multi-line-signature">
-      
-      <span class="returntype"><a href="../../components_chip_ouds_filter_chip/OudsChipLayout.html">OudsChipLayout</a></span>
-      get
-      <span class="name ">layout</span>
-      
-
+      const
+      <span class="name ">OudsFilterChip.icon</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="icon-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
+<li><span class="parameter" id="icon-param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span></li>
+<li><span class="parameter" id="icon-param-icon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span></li>
+<li><span class="parameter" id="icon-param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span>, </span></li>
+<li><span class="parameter" id="icon-param-selected"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">selected</span> = <span class="default-value">false</span>, </span></li>
+<li><span class="parameter" id="icon-param-onSelected"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span>?</span> <span class="parameter-name">onSelected</span>, </span></li>
+<li><span class="parameter" id="icon-param-contentDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">contentDescription</span>, </span></li>
+</ol>})
     </section>
     
 <section class="desc markdown">
-  <p>Property that detects and returns the chip layout based on the provided elements (text and/or icon)</p>
+  <p>Creates an <a href="../../components_chip_ouds_filter_chip/OudsFilterChip-class.html">OudsFilterChip</a> with a text and an icon.</p>
+<p>Use this constructor to display an <code>icon</code> alongside the <code>label</code>.
+If only an icon is provided (without a label), it acts as an icon-only chip.</p>
 </section>
+
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">OudsChipLayout get layout =&gt; _detectLayout(label, avatar, icon);</code></pre>
+  <pre class="language-dart"><code class="language-dart">const OudsFilterChip.icon({
+  super.key,
+  this.label,
+  this.icon,
+  this.tinted = true,
+  this.selected = false,
+  this.onSelected,
+  this.contentDescription,
+}) : avatar = null;</code></pre>
 </section>
 
-  </section>
 
-
-</div> <!-- /.main-content -->
-<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -91,14 +98,14 @@
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_chip_ouds_filter_chip/">ouds_filter_chip</a></li>
     <li><a href="../../components_chip_ouds_filter_chip/OudsFilterChip-class.html">OudsFilterChip</a></li>
-    <li class="self-crumb">layout property</li>
+    <li class="self-crumb">OudsFilterChip.icon const constructor</li>
 </ol>
 
-  <h5>OudsFilterChip class</h5>
-  <div id="dartdoc-sidebar-left-content"></div>
-</div><!--/.sidebar-offcanvas-->
-<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-</div><!--/.sidebar-offcanvas-->
+    <h5>OudsFilterChip class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">
