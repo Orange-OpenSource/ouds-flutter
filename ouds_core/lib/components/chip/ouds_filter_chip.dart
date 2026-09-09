@@ -49,8 +49,15 @@ enum OudsChipStyle { defaultStyle, selected }
 /// Other layouts are available for this component: *text + icon* and *icon only*.
 ///
 /// Parameters:
-/// - [label]: Label displayed in the suggestion chip which describes the chip option.
-/// - [avatar]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
+/// - [label]: Text label displayed in the chip.
+/// - [avatar]: Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+/// - [icon]: Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+/// - [selected]: Whether this chip is selected or not. If this value is null so the component is in disabled state.
+/// - [onSelected] : Called when this chip is clicked. A null value indicates that the component is disabled.
+/// - [contentDescription] : Description of the chip's content for accessibility purposes. This value is ignored if the chip also contains a label.
+/// - [tinted] : Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+///   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+///   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
 ///
 /// ### You can use [OudsFilterChip] component in your project, customizing parameters as needed :
 ///
@@ -66,58 +73,72 @@ enum OudsChipStyle { defaultStyle, selected }
 ///     );
 /// ```
 ///
+/// **Text with icon filter chip :**
+///
+/// ```dart
+/// OudsFilterChip.icon(
+///   label: 'Label',
+///   icon: 'assets/ic_chip_heart.svg',
+///   selected: true,
+///   onSelected: (bool selected) {},
+/// )
+/// ```
 ///
 class OudsFilterChip extends StatefulWidget {
   final String? label;
+  @Deprecated(
+    "This parameter is deprecated and will be removed in a future version. Use icon instead.",
+  )
   final String? avatar;
-  final bool? selected;
+  final String? icon;
+  final String? contentDescription;
+  final bool selected;
   final ValueChanged<bool>? onSelected;
+  final bool tinted;
 
+  /// Creates a text-only [OudsFilterChip].
+  ///
+  /// This is the default constructor. The [label] parameter must be provided to display the text.
   const OudsFilterChip({
     super.key,
     this.label,
     this.avatar,
-    this.selected,
+    this.selected = false,
     this.onSelected,
-  });
+  }) : tinted = true,
+       contentDescription = null,
+       icon = null;
 
-  static Widget buildIcon(
-    BuildContext context,
-    String assetName,
-    OudsChipControlState controlItemState,
-    bool selected,
-  ) {
-    final controlIconModifier = OudsChipControlIconColorModifier(context);
-    final sizeIcon = OudsTheme.of(
-      context,
-    ).componentsTokens(context).chip.sizeIcon;
-    return SvgPicture.asset(
-      assetName,
-      fit: BoxFit.contain,
-      width: sizeIcon,
-      height: sizeIcon,
-      colorFilter: ColorFilter.mode(
-        controlIconModifier.getIconColor(
-          controlItemState,
-          selected,
-        ), //selected always true when buildIcon
-        BlendMode.srcIn,
-      ),
-    );
-  }
+  /// Creates an [OudsFilterChip] with a text and an icon.
+  ///
+  /// Use this constructor to display an [icon] alongside the [label].
+  /// If only an icon is provided (without a label), it acts as an icon-only chip.
+  const OudsFilterChip.icon({
+    super.key,
+    this.label,
+    this.icon,
+    this.tinted = true,
+    this.selected = false,
+    this.onSelected,
+    this.contentDescription,
+  }) : avatar = null;
 
   @override
   State<OudsFilterChip> createState() => _OudsFilterChipState();
 
   /// Property that detects and returns the chip layout based on the provided elements (text and/or icon)
-  OudsChipLayout get layout => _detectLayout(label, avatar);
+  OudsChipLayout get layout => _detectLayout(label, avatar, icon);
 
-  static OudsChipLayout _detectLayout(String? label, String? icon) {
-    if (label != null && icon != null) {
+  static OudsChipLayout _detectLayout(
+    String? label,
+    String? avatar,
+    String? icon,
+  ) {
+    if (label != null && (icon != null || avatar != null)) {
       return OudsChipLayout.iconAndText;
     } else if (label != null) {
       return OudsChipLayout.textOnly;
-    } else if (icon != null) {
+    } else if (icon != null || avatar != null) {
       return OudsChipLayout.iconOnly;
     }
     return OudsChipLayout.textOnly;
@@ -222,6 +243,9 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final l10n = OudsLocalizations.of(context);
     final enabled = widget.onSelected != null;
 
+    String? accessibilityLabel = widget.label == null && widget.icon != null
+        ? widget.contentDescription
+        : widget.label;
     String? accessibilityHint;
 
     if (defaultTargetPlatform == TargetPlatform.iOS) {
@@ -235,7 +259,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     return Semantics(
       button: true,
       enabled: enabled,
-      label: widget.label,
+      label: accessibilityLabel,
       selected: widget.selected,
       hint: accessibilityHint,
       child: Material(
@@ -249,7 +273,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             onTap: isDisabled
                 ? null
                 : () {
-                    updateSelectedData();
+                    _updateSelectedData();
                   },
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
@@ -394,7 +418,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               border: chipBorderModifier.getBorder(
                 chipState,
                 _isHighContrast,
-                widget.selected!,
+                widget.selected,
               ),
               borderRadius: BorderRadius.circular(
                 OudsTheme.of(
@@ -411,10 +435,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
           child: Container(
-            width: !widget.selected! ? chipToken.sizeMinWidth : null,
+            width: !widget.selected ? chipToken.sizeMinWidth : null,
             color: chipBgColorModifier.getBackgroundColor(
               chipState,
-              widget.selected!,
+              widget.selected,
             ),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlockIconOnly,
@@ -426,12 +450,12 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: widget.selected!
+              spacing: widget.selected
                   ? chipToken.spaceColumnGapIcon
                   : theme.spaceScheme(context).fixedNone,
               children: [
                 Visibility(
-                  visible: widget.selected!,
+                  visible: widget.selected,
                   child: ExcludeSemantics(
                     child: SvgPicture.asset(
                       AppAssets.icons.componentChipTick,
@@ -454,11 +478,11 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   ),
                 ),
                 ExcludeSemantics(
-                  child: OudsFilterChip.buildIcon(
+                  child: _buildIcon(
                     context,
-                    widget.avatar!,
+                    widget.avatar ?? widget.icon ?? "",
                     chipState,
-                    widget.selected!,
+                    widget.selected,
                   ),
                 ),
               ],
@@ -492,7 +516,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               border: chipBorderModifier.getBorder(
                 chipState,
                 _isHighContrast,
-                widget.selected!,
+                widget.selected,
               ),
               borderRadius: BorderRadius.circular(
                 OudsTheme.of(
@@ -512,7 +536,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             //margin: EdgeInsets.all(1),
             color: chipBgColorModifier.getBackgroundColor(
               chipState,
-              widget.selected!,
+              widget.selected,
             ),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlock,
@@ -527,7 +551,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                if (widget.selected!) ...[
+                if (widget.selected) ...[
                   ExcludeSemantics(
                     child: SvgPicture.asset(
                       AppAssets.icons.componentChipTick,
@@ -561,7 +585,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                             color: chipTextColorModifier.getTextColor(
                               chipState,
                               _isHighContrast,
-                              widget.selected!,
+                              widget.selected,
                             ),
                           ),
                     ),
@@ -569,11 +593,11 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 ),
                 SizedBox(width: chipToken.spaceColumnGapIcon),
                 ExcludeSemantics(
-                  child: OudsFilterChip.buildIcon(
+                  child: _buildIcon(
                     context,
-                    widget.avatar!,
+                    widget.avatar ?? widget.icon ?? "",
                     chipState,
-                    widget.selected!,
+                    widget.selected,
                   ),
                 ),
               ],
@@ -608,7 +632,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               border: chipBorderModifier.getBorder(
                 chipState,
                 _isHighContrast,
-                widget.selected!,
+                widget.selected,
               ),
               borderRadius: BorderRadius.circular(
                 OudsTheme.of(
@@ -627,7 +651,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
           child: Container(
             color: chipBgColorModifier.getBackgroundColor(
               chipState,
-              widget.selected!,
+              widget.selected,
             ),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlock,
@@ -642,7 +666,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                if (widget.selected!) ...[
+                if (widget.selected) ...[
                   ExcludeSemantics(
                     child: SvgPicture.asset(
                       width: MediaQuery.textScalerOf(
@@ -676,7 +700,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                             color: chipTextColorModifier.getTextColor(
                               chipState,
                               _isHighContrast,
-                              widget.selected!,
+                              widget.selected,
                             ),
                           ),
                     ),
@@ -732,15 +756,48 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     }
   }
 
-  void updateSelectedData() {
+  void _updateSelectedData() {
     _isSelected = !_isSelected;
     // Added to improve visual rendering fluidity by allowing Flutter
     // to complete the current frame before executing the state change logic.
     SchedulerBinding.instance.addPostFrameCallback((_) {
       bool? newValue;
-      newValue = !widget.selected!;
+      newValue = !widget.selected;
       widget.onSelected!(newValue);
-      widget.selected! == newValue;
+      widget.selected == newValue;
     });
+  }
+
+  Widget _buildIcon(
+    BuildContext context,
+    String assetName,
+    OudsChipControlState controlItemState,
+    bool selected,
+  ) {
+    final controlIconModifier = OudsChipControlIconColorModifier(context);
+    final sizeIcon = OudsTheme.of(
+      context,
+    ).componentsTokens(context).chip.sizeIcon;
+    return Container(
+      color: widget.tinted
+          ? null
+          : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
+      child: SvgPicture.asset(
+        matchTextDirection: true,
+        assetName,
+        fit: BoxFit.contain,
+        width: sizeIcon,
+        height: sizeIcon,
+        colorFilter: widget.tinted
+            ? ColorFilter.mode(
+                controlIconModifier.getIconColor(
+                  controlItemState,
+                  selected,
+                ), //selected always true when buildIcon
+                BlendMode.srcIn,
+              )
+            : null,
+      ),
+    );
   }
 }

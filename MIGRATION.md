@@ -106,6 +106,38 @@ OudsLink.external(label: 'Label')
 
 **Reason for Change**: Improve type safety and API clarity by making each link variant explicit through its own constructor, consistent with `OudsTag` and `OudsBadge`
 
+#### 5. `OudsFilterChip` — `avatar` parameter deprecated in favor of `OudsFilterChip.icon`
+
+The `avatar` parameter of the default `OudsFilterChip()` constructor is now **deprecated**. Use the `OudsFilterChip.icon` named constructor with its `icon` parameter instead, for consistency with the rest of the API.
+
+**Impact**: Low (additive — `avatar` still works but should be migrated)
+
+**Before**:
+```dart
+OudsFilterChip(
+  label: 'Label',
+  avatar: 'assets/ic_chip_heart.svg',
+  selected: true,
+  onSelected: (bool selected) {},
+)
+```
+
+**After**:
+```dart
+OudsFilterChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  selected: true,
+  onSelected: (bool selected) {},
+)
+```
+
+**Required Action**:
+- Replace `OudsFilterChip(avatar: ...)` with `OudsFilterChip.icon(icon: ...)`
+- Text-only filter chips keep using the default `OudsFilterChip(...)` constructor unchanged
+
+**Reason for Change**: Align `OudsFilterChip`'s icon parameter naming with its own `.icon` named constructor, avoiding two different parameter names (`avatar` vs `icon`) for the same purpose
+
 ### Component Design Version Updates
 
 Several components have been updated to align with new design specification versions. These changes are primarily visual and do not require code changes unless you override component tokens in a custom theme.

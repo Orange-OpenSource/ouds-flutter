@@ -148,6 +148,7 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
         avatar: ChipCustomizationUtils.getIcon(
           customizationState,
           themeController!,
+          false,
         ),
         onPressed: customizationState?.hasEnabled == true ? () {} : null,
       ),
