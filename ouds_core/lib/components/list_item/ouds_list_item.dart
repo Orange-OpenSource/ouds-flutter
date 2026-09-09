@@ -369,7 +369,16 @@ class _OudsListItemState extends State<OudsListItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Semantics(
-                  button: widget.onTap != null,
+                  // list item has a button role by default.
+                  button:
+                      widget.onTap != null &&
+                      widget.indicator is! OudsListItemIndicatorExternal,
+                  // Link role only when external indicator is activated
+                  link:
+                      widget.onTap != null &&
+                      widget.indicator is OudsListItemIndicatorExternal,
+                  // Group all content (leading, labels, trailing) into single label
+                  label: _buildAccessibilityLabel(),
                   enabled: widget.enable,
                   child: Focus(
                     focusNode: _focusNode,
