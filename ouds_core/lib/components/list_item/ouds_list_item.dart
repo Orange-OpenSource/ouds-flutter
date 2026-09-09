@@ -14,6 +14,7 @@
 /// {@category List item}
 library;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
@@ -456,84 +457,90 @@ class _OudsListItemState extends State<OudsListItem> {
                           ),
                           child: Align(
                             alignment: _rowAlignment(),
-                            child: Row(
-                              crossAxisAlignment: _rowCrossAxisAlignment(),
-                              children: [
-                                // Previous indicator — chevron at the start of the row.
-                                if (showPreviousIndicator) ...[
-                                  _buildIndicator(
-                                    context,
-                                    state,
-                                    oudsTheme.packageName,
-                                    contentAlignment: widget.contentAlignment,
-                                    size: widget.size,
-                                  ),
-                                  SizedBox(width: tokens.spaceColumnGap),
-                                ],
-
-                                // Leading slot — constrained by sizeMaxSizeLeadingTrailingSlot.
-                                // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
-                                // the 96px sizeMaxSizeLeadingTrailingSlot token).
-                                if (widget.leading != null &&
-                                    !showPreviousIndicator) ...[
-                                  ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      // maxWidth:tokens.sizeMaxSizeLeadingTrailingSlot,
-                                      // maxHeight:tokens.sizeMaxSizeLeadingTrailingSlot,
-                                    ),
-                                    child: _buildLeading(
+                            child: ExcludeSemantics(
+                              // Exclude semantics from individual row elements so screen reader
+                              // reads the grouped content from the parent Semantics widget.
+                              child: Row(
+                                crossAxisAlignment: _rowCrossAxisAlignment(),
+                                children: [
+                                  // Previous indicator — chevron at the start of the row.
+                                  if (showPreviousIndicator) ...[
+                                    _buildIndicator(
                                       context,
-                                      widget.leading!,
-                                      enable: widget.enable,
+                                      state,
+                                      oudsTheme.packageName,
                                       contentAlignment: widget.contentAlignment,
                                       size: widget.size,
                                     ),
-                                  ),
-                                  SizedBox(width: tokens.spaceColumnGap),
-                                ],
+                                    SizedBox(width: tokens.spaceColumnGap),
+                                  ],
 
-                                // Content column — expands to fill remaining space.
-                                Expanded(
-                                  child: _buildContent(
-                                    context,
-                                    typography,
-                                    contentColor,
-                                    mutedColor,
-                                  ),
-                                ),
-
-                                // Trailing slot — unconstrained to allow widescreen extra-large images
-                                // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
-                                // the 96px sizeMaxSizeLeadingTrailingSlot token).
-                                if (widget.trailing != null) ...[
-                                  SizedBox(width: tokens.spaceColumnGap),
-                                  ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      //maxWidth: tokens.sizeMaxSizeLeadingTrailingSlot,
-                                      //maxHeight: tokens.sizeMaxSizeLeadingTrailingSlot,
+                                  // Leading slot — constrained by sizeMaxSizeLeadingTrailingSlot.
+                                  // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
+                                  // the 96px sizeMaxSizeLeadingTrailingSlot token).
+                                  if (widget.leading != null &&
+                                      !showPreviousIndicator) ...[
+                                    ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                        // maxWidth:tokens.sizeMaxSizeLeadingTrailingSlot,
+                                        // maxHeight:tokens.sizeMaxSizeLeadingTrailingSlot,
+                                      ),
+                                      child: _buildLeading(
+                                        context,
+                                        widget.leading!,
+                                        enable: widget.enable,
+                                        contentAlignment:
+                                            widget.contentAlignment,
+                                        size: widget.size,
+                                      ),
                                     ),
-                                    child: _buildTrailing(
+                                    SizedBox(width: tokens.spaceColumnGap),
+                                  ],
+
+                                  // Content column — expands to fill remaining space.
+                                  Expanded(
+                                    child: _buildContent(
                                       context,
-                                      widget.trailing!,
-                                      enable: widget.enable,
+                                      typography,
+                                      contentColor,
+                                      mutedColor,
+                                    ),
+                                  ),
+
+                                  // Trailing slot — unconstrained to allow widescreen extra-large images
+                                  // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
+                                  // the 96px sizeMaxSizeLeadingTrailingSlot token).
+                                  if (widget.trailing != null) ...[
+                                    SizedBox(width: tokens.spaceColumnGap),
+                                    ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                        //maxWidth: tokens.sizeMaxSizeLeadingTrailingSlot,
+                                        //maxHeight: tokens.sizeMaxSizeLeadingTrailingSlot,
+                                      ),
+                                      child: _buildTrailing(
+                                        context,
+                                        widget.trailing!,
+                                        enable: widget.enable,
+                                        contentAlignment:
+                                            widget.contentAlignment,
+                                        size: widget.size,
+                                      ),
+                                    ),
+                                  ],
+
+                                  // Next / External indicator — icon at the end of the row.
+                                  if (showNextIndicator) ...[
+                                    SizedBox(width: tokens.spaceColumnGap),
+                                    _buildIndicator(
+                                      context,
+                                      state,
+                                      oudsTheme.packageName,
                                       contentAlignment: widget.contentAlignment,
                                       size: widget.size,
                                     ),
-                                  ),
+                                  ],
                                 ],
-
-                                // Next / External indicator — icon at the end of the row.
-                                if (showNextIndicator) ...[
-                                  SizedBox(width: tokens.spaceColumnGap),
-                                  _buildIndicator(
-                                    context,
-                                    state,
-                                    oudsTheme.packageName,
-                                    contentAlignment: widget.contentAlignment,
-                                    size: widget.size,
-                                  ),
-                                ],
-                              ],
+                              ),
                             ),
                           ), // Row
                         ), // Container
@@ -1156,6 +1163,44 @@ class _OudsListItemState extends State<OudsListItem> {
   }
 
   // -------------------------------------------------------------------------
+  // Accessibility
+  // -------------------------------------------------------------------------
+
+  /// Builds a combined accessibility label from all text elements.
+  ///
+  /// Groups overline, label, extraLabel, and description into a single string
+  /// so screen readers announce everything at once when the item is focused.
+  String _buildAccessibilityLabel() {
+    final buffer = StringBuffer();
+
+    if (widget.overline != null && widget.overline!.isNotEmpty) {
+      buffer.write(widget.overline);
+      buffer.write(' ');
+    }
+
+    buffer.write(widget.label);
+
+    if (widget.extraLabel != null && widget.extraLabel!.isNotEmpty) {
+      buffer.write(' ');
+      buffer.write(widget.extraLabel);
+    }
+
+    if (widget.description != null && widget.description!.isNotEmpty) {
+      buffer.write('. ');
+      buffer.write(widget.description);
+    }
+
+    if (widget.onTap != null &&
+        widget.indicator is OudsListItemIndicatorExternal &&
+        defaultTargetPlatform == TargetPlatform.android) {
+      buffer.write(' ');
+      buffer.write(OudsLocalizations.of(context)?.core_link_trait_a11y);
+    }
+
+    return buffer.toString();
+  }
+
+  // -------------------------------------------------------------------------
   // Content column
   // -------------------------------------------------------------------------
 
@@ -1188,40 +1233,44 @@ class _OudsListItemState extends State<OudsListItem> {
 
     return Padding(
       padding: EdgeInsets.only(top: topPadding),
-      child: Column(
-        mainAxisAlignment: _contentMainAxisAlignment(),
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (widget.overline != null)
+      child: ExcludeSemantics(
+        // Exclude semantics from individual text elements so screen reader
+        // reads the grouped content from the parent Semantics widget.
+        child: Column(
+          mainAxisAlignment: _contentMainAxisAlignment(),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (widget.overline != null)
+              Text(
+                widget.overline!,
+                style: typography
+                    .typeLabelModerateSmall(context)
+                    .copyWith(color: mutedColor),
+              ),
             Text(
-              widget.overline!,
-              style: typography
-                  .typeLabelModerateSmall(context)
-                  .copyWith(color: mutedColor),
+              widget.label,
+              style:
+                  (widget.boldLabel
+                          ? typography.typeLabelStrongLarge(context)
+                          : typography.typeLabelDefaultLarge(context))
+                      .copyWith(color: contentColor),
             ),
-          Text(
-            widget.label,
-            style:
-                (widget.boldLabel
-                        ? typography.typeLabelStrongLarge(context)
-                        : typography.typeLabelDefaultLarge(context))
+            if (widget.extraLabel != null && widget.extraLabel!.isNotEmpty)
+              Text(
+                widget.extraLabel!,
+                style: typography
+                    .typeLabelStrongMedium(context)
                     .copyWith(color: contentColor),
-          ),
-          if (widget.extraLabel != null && widget.extraLabel!.isNotEmpty)
-            Text(
-              widget.extraLabel!,
-              style: typography
-                  .typeLabelStrongMedium(context)
-                  .copyWith(color: contentColor),
-            ),
-          if (widget.description != null && widget.description!.isNotEmpty)
-            Text(
-              widget.description!,
-              style: typography
-                  .typeLabelDefaultMedium(context)
-                  .copyWith(color: mutedColor),
-            ),
-        ],
+              ),
+            if (widget.description != null && widget.description!.isNotEmpty)
+              Text(
+                widget.description!,
+                style: typography
+                    .typeLabelDefaultMedium(context)
+                    .copyWith(color: mutedColor),
+              ),
+          ],
+        ),
       ),
     );
   }
