@@ -681,7 +681,7 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
-| `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), `OudsFilterChip.icon` (`avatar` deprecated), Markdown support, token/icon updates |
+| `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), `OudsFilterChip.icon` (`avatar` deprecated), `OudsSuggestionChip.icon` (`avatar` deprecated), Markdown support, token/icon updates |
 | `v1.3.0 → v1.3.1` | Full | No | Maintenance release, bug fixes, accessibility improvements |
 | `v1.2.0 → v1.3.0` | Partial | Yes for deprecated APIs | `OudsTag` named constructors, `OudsBadge` named constructors, `OudsPinCodeInput.keyboardType`, new alert/bottom-sheet components |
 | `v1.1.x → v1.2.0` | No | Yes | `OudsTagConfig` removal from theme config, status icon updates, top bar components, French support |
@@ -761,6 +761,37 @@ OudsFilterChip.icon(
 
 - Replace `OudsFilterChip(avatar: ...)` with `OudsFilterChip.icon(icon: ...)`.
 - Text-only filter chips keep using the default `OudsFilterChip(...)` constructor unchanged.
+- The deprecated `avatar` parameter on the default constructor still works but should be migrated.
+
+---
+
+#### 3.3.0ter `OudsSuggestionChip` → `avatar` deprecated in favor of `OudsSuggestionChip.icon` (`v1.3.1 → v2.0.0`)
+
+**Before:**
+
+```dart
+OudsSuggestionChip(
+  label: 'Label',
+  avatar: 'assets/ic_chip_heart.svg',
+  onPressed: () {},
+)
+```
+
+**After:**
+
+```dart
+OudsSuggestionChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  tinted: true,
+  onPressed: () {},
+)
+```
+
+**Required actions:**
+
+- Replace `OudsSuggestionChip(avatar: ...)` with `OudsSuggestionChip.icon(icon: ...)`.
+- Text-only suggestion chips keep using the default `OudsSuggestionChip(...)` constructor unchanged.
 - The deprecated `avatar` parameter on the default constructor still works but should be migrated.
 
 ---

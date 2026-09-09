@@ -47,6 +47,11 @@ enum OudsChipStyle { defaultStyle, selected }
 /// Parameters:
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
 /// - [avatar]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
+/// - [icon]: Icon displayed in the suggestion chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+/// - [contentDescription] : Description of the chip's content for accessibility purposes. This value is ignored if the chip also contains a label.
+/// - [tinted] : Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+///   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+///   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
 /// - [onPressed]: Callback invoked when the suggestion chip is clicked.
 ///
 /// ### You can use [OudsSuggestionChip] component in your project, customizing parameters as needed :
@@ -62,31 +67,64 @@ enum OudsChipStyle { defaultStyle, selected }
 ///     );
 /// ```
 ///
+/// **Text with icon suggestion chip :**
+///
+/// ```dart
+/// OudsSuggestionChip.icon(
+///   label: 'Label',
+///   icon: 'assets/ic_chip_heart.svg',
+///   onPressed: () {},
+/// )
+/// ```
 ///
 class OudsSuggestionChip extends StatefulWidget {
   final String? label;
+  @Deprecated(
+    "This parameter is deprecated and will be removed in a future version. Use icon instead.",
+  )
   final String? avatar;
+  final String? icon;
+  final String? contentDescription;
+  final bool tinted;
   final VoidCallback? onPressed;
 
-  const OudsSuggestionChip({
+  /// Creates a text-only [OudsSuggestionChip].
+  ///
+  /// This is the default constructor. The [label] parameter must be provided to display the text.
+  const OudsSuggestionChip({super.key, this.label, this.avatar, this.onPressed})
+    : tinted = true,
+      contentDescription = null,
+      icon = null;
+
+  /// Creates an [OudsSuggestionChip] with a text and an icon.
+  ///
+  /// Use this constructor to display an [icon] alongside the [label].
+  /// If only an icon is provided (without a label), it acts as an icon-only chip.
+  const OudsSuggestionChip.icon({
     super.key,
     this.label,
-    this.avatar,
+    this.icon,
+    this.tinted = true,
     this.onPressed,
-  });
+    this.contentDescription,
+  }) : avatar = null;
 
   @override
   State<OudsSuggestionChip> createState() => _OudsSuggestionChipState();
 
   /// Property that detects and returns the chip layout based on the provided elements (text and/or icon)
-  OudsChipLayout get layout => _detectLayout(label, avatar);
+  OudsChipLayout get layout => _detectLayout(label, avatar, icon);
 
-  static OudsChipLayout _detectLayout(String? label, String? icon) {
-    if (label != null && icon != null) {
+  static OudsChipLayout _detectLayout(
+    String? label,
+    String? avatar,
+    String? icon,
+  ) {
+    if (label != null && (icon != null || avatar != null)) {
       return OudsChipLayout.iconAndText;
     } else if (label != null) {
       return OudsChipLayout.textOnly;
-    } else if (icon != null) {
+    } else if (icon != null || avatar != null) {
       return OudsChipLayout.iconOnly;
     }
     return OudsChipLayout.textOnly;
@@ -339,7 +377,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_chip_chip_icon_a11y,
+      label: widget.contentDescription ?? l10n?.core_chip_chip_icon_a11y,
       button: true,
       enabled: widget.onPressed != null,
       child: Stack(
@@ -381,7 +419,11 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ExcludeSemantics(
-                    child: _buildIcon(context, widget.avatar!, chipState),
+                    child: _buildIcon(
+                      context,
+                      widget.avatar ?? widget.icon ?? "",
+                      chipState,
+                    ),
                   ),
                 ],
               ),
@@ -446,7 +488,11 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ExcludeSemantics(
-                    child: _buildIcon(context, widget.avatar!, chipState),
+                    child: _buildIcon(
+                      context,
+                      widget.avatar ?? widget.icon ?? "",
+                      chipState,
+                    ),
                   ),
                   SizedBox(width: chipToken.spaceColumnGapIcon),
                   Flexible(
@@ -553,15 +599,29 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
     OudsChipControlState controlItemState,
   ) {
     final controlIconModifier = OudsChipControlIconColorModifier(context);
+    final sizeIcon = OudsTheme.of(
+      context,
+    ).componentsTokens(context).chip.sizeIcon;
 
-    return SvgPicture.asset(
-      assetName,
-      fit: BoxFit.contain,
-      width: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
-      height: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
-      colorFilter: ColorFilter.mode(
-        controlIconModifier.getIconColor(controlItemState, _isHighContrast),
-        BlendMode.srcIn,
+    return Container(
+      color: widget.tinted
+          ? null
+          : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
+      child: SvgPicture.asset(
+        matchTextDirection: true,
+        assetName,
+        fit: BoxFit.contain,
+        width: sizeIcon,
+        height: sizeIcon,
+        colorFilter: widget.tinted
+            ? ColorFilter.mode(
+                controlIconModifier.getIconColor(
+                  controlItemState,
+                  _isHighContrast,
+                ),
+                BlendMode.srcIn,
+              )
+            : null,
       ),
     );
   }

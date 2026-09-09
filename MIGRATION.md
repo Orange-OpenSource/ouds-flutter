@@ -138,6 +138,37 @@ OudsFilterChip.icon(
 
 **Reason for Change**: Align `OudsFilterChip`'s icon parameter naming with its own `.icon` named constructor, avoiding two different parameter names (`avatar` vs `icon`) for the same purpose
 
+#### 6. `OudsSuggestionChip` — `avatar` parameter deprecated in favor of `OudsSuggestionChip.icon`
+
+The `avatar` parameter of the default `OudsSuggestionChip()` constructor is now **deprecated**. Use the new `OudsSuggestionChip.icon` named constructor with its `icon` parameter instead, for consistency with `OudsFilterChip`. This named constructor also introduces a `tinted` parameter to control whether the icon is tinted with the theme color, and a `contentDescription` parameter for accessibility on icon-only chips.
+
+**Impact**: Low (additive — `avatar` still works but should be migrated)
+
+**Before**:
+```dart
+OudsSuggestionChip(
+  label: 'Label',
+  avatar: 'assets/ic_chip_heart.svg',
+  onPressed: () {},
+)
+```
+
+**After**:
+```dart
+OudsSuggestionChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  tinted: true,
+  onPressed: () {},
+)
+```
+
+**Required Action**:
+- Replace `OudsSuggestionChip(avatar: ...)` with `OudsSuggestionChip.icon(icon: ...)`
+- Text-only suggestion chips keep using the default `OudsSuggestionChip(...)` constructor unchanged
+
+**Reason for Change**: Align `OudsSuggestionChip`'s icon parameter naming with `OudsFilterChip`'s `.icon` named constructor, avoiding two different parameter names (`avatar` vs `icon`) for the same purpose
+
 ### Component Design Version Updates
 
 Several components have been updated to align with new design specification versions. These changes are primarily visual and do not require code changes unless you override component tokens in a custom theme.
