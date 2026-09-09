@@ -541,6 +541,12 @@ abstract class AppLocalizations {
   /// **'Helper text'**
   String get app_components_common_helperText_label;
 
+  /// No description provided for @app_components_common_annotatedText_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Annotated example text'**
+  String get app_components_common_annotatedText_tech;
+
   /// No description provided for @app_components_common_appearance_label.
   ///
   /// In en, this message translates to:
@@ -634,8 +640,14 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_common_tinted_tech.
   ///
   /// In en, this message translates to:
-  /// **'Tinted icon'**
+  /// **'Tinted'**
   String get app_components_common_tinted_tech;
+
+  /// No description provided for @app_components_common_untinted_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Untinted'**
+  String get app_components_common_untinted_tech;
 
   /// No description provided for @app_components_alert_tech.
   ///
@@ -1593,7 +1605,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_passwordInput_error_label.
   ///
   /// In en, this message translates to:
-  /// **'Please enter your password.'**
+  /// **'Your password can\'t be empty'**
   String get app_components_passwordInput_error_label;
 
   /// No description provided for @app_components_pinCodeInput_label.

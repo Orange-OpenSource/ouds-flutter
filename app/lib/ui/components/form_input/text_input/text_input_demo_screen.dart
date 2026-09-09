@@ -23,8 +23,8 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customiza
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
@@ -228,43 +228,36 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           labelText: customizationState.labelText.isNotEmpty
               ? FormFieldsCustomizationUtils.getLabelText(customizationState)
               : null,
-          helperText: customizationState.helperText.isNotEmpty
-              ? FormFieldsCustomizationUtils.getHelperText(customizationState)
-              : null,
+          helperText: customizationState.hasAnnotatedHelper
+              ? customizationState.annotatedHelperText
+              : (customizationState.helperText.isNotEmpty
+                    ? FormFieldsCustomizationUtils.getHelperText(
+                        customizationState,
+                      )
+                    : null),
           hintText: customizationState.placeholderText.isNotEmpty
               ? FormFieldsCustomizationUtils.getPlaceholderText(
                   customizationState,
                 )
               : null,
-          suffixIcon: customizationState.hasTrailingIcon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                  themeController,
-                )
-              : null,
+          suffixIcon: customizationState.getSuffixIcon(themeController),
           suffix: customizationState.suffixText.isNotEmpty
               ? FormFieldsCustomizationUtils.getSuffixText(customizationState)
               : null,
-          prefixIcon: customizationState.hasLeadingIcon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                  themeController,
-                )
-              : null,
+          prefixIcon: customizationState.getPrefixIcon(themeController),
           prefix: customizationState.prefixText.isNotEmpty
               ? FormFieldsCustomizationUtils.getPrefixText(customizationState)
               : null,
           errorText: customizationState.hasError
-              ? context.l10n.app_components_textInput_error_label
+              ? (customizationState.hasAnnotatedHelper
+                    ? customizationState.annotatedErrorText
+                    : context.l10n.app_components_textInput_error_label)
               : null,
-          loader: customizationState.hasLoader,
+          loader: customizationState.loader,
           outlined: customizationState.hasOutlined,
           constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
               ? true
               : false,
-          onSuffixPressed: () {
-            ///
-            /// To Be implemented if needed
-            ///
-          },
         ),
       ),
     );
@@ -355,18 +348,22 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   customizationState.hasError = value;
                 },
         ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_textInput_leadingIcon_label,
-          value: customizationState.hasLeadingIcon,
-          onChanged: (value) {
-            customizationState.hasLeadingIcon = value;
+        CustomizableChips<LeadingIconOptionEnum>(
+          title: LeadingIconOptionEnum.enumName(context),
+          options: customizationState.leadingIconState.list,
+          selectedOption: customizationState.selectedLeadingIcon,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            customizationState.selectedLeadingIcon = selectedOption;
           },
         ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_textInput_trailingAction_label,
-          value: customizationState.hasTrailingIcon,
-          onChanged: (value) {
-            customizationState.hasTrailingIcon = value;
+        CustomizableChips<TrailingIconOptionEnum>(
+          title: TrailingIconOptionEnum.enumName(context),
+          options: customizationState.trailingIconState.list,
+          selectedOption: customizationState.selectedTrailingIcon,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            customizationState.selectedTrailingIcon = selectedOption;
           },
         ),
         CustomizableSwitch(
@@ -410,6 +407,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,
+          fieldEnable: customizationState.isHelperTextEnabled,
         ),
         CustomizableTextField(
           title: context.l10n.app_components_textInput_helperLink_label,
@@ -423,6 +421,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: (value) {
             setState(() {
               customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_annotatedText_tech,
+          value: customizationState.hasAnnotatedHelper,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasAnnotatedHelper = value;
             });
           },
         ),

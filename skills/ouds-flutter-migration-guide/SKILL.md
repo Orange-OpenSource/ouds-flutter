@@ -681,6 +681,8 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
+| `v2.1.0 → v3.0.0` | No | Yes | Typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons with `tinted` support (breaking), `OudsButton.tinted`, `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
+| `v2.0.0 → v2.1.0` | Full | No | `OudsNavigationButton`, `OudsCircularProgressIndicator`, `OudsLinearProgressIndicator`, tokens v2.6.0 |
 | `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
 | `v1.3.0 → v1.3.1` | Full | No | Maintenance release, bug fixes, accessibility improvements |
 | `v1.2.0 → v1.3.0` | Partial | Yes for deprecated APIs | `OudsTag` named constructors, `OudsBadge` named constructors, `OudsPinCodeInput.keyboardType`, new alert/bottom-sheet components |
@@ -730,6 +732,42 @@ OudsLink.external(label: 'Label')
 - Use `OudsLink.external(...)` for links navigating outside the current product, service or application.
 - Text-only links keep using the default `OudsLink(...)` constructor unchanged.
 - The deprecated `layout` (`OudsLinkLayout`) parameter on the default constructor still works but should be migrated.
+
+---
+
+#### 3.3.0bis Typed prefix/suffix icons with `tinted` support (`v2.1.0 → v3.0.0`)
+
+`OudsInputDecoration`/`OudsFormInputDecoration.prefixIcon` and `suffixIcon` are no longer `String`/`VoidCallback` values. They now take `OudsTextInputPrefixIcon` and `OudsTextInputSuffixIconButton` objects with a `tinted` flag (defaults to `true`) controlling whether the icon follows the theme color or keeps its original (multi-color) asset colors. `onSuffixPressed` has been removed; use `OudsTextInputSuffixIconButton.onPressed` instead.
+
+**Before:**
+
+```dart
+OudsInputDecoration(
+  prefixIcon: 'assets/ic_heart.svg',
+  suffixIcon: 'assets/ic_heart.svg',
+  onSuffixPressed: () {},
+)
+```
+
+**After:**
+
+```dart
+OudsInputDecoration(
+  prefixIcon: OudsTextInputPrefixIcon(icon: 'assets/ic_heart.svg', tinted: true),
+  suffixIcon: OudsTextInputSuffixIconButton(
+    icon: 'assets/ic_heart.svg',
+    tinted: true,
+    onPressed: () {},
+  ),
+)
+```
+
+**Required actions:**
+
+- Wrap `prefixIcon` asset paths in `OudsTextInputPrefixIcon(icon: ...)`.
+- Wrap `suffixIcon` asset paths in `OudsTextInputSuffixIconButton(icon: ..., onPressed: ...)`, moving `onSuffixPressed` into `onPressed`.
+- Set `tinted: false` to keep a multi-color icon's original asset colors instead of theme tinting.
+- `OudsButton` gained the same `tinted` parameter (defaults to `true`); no action required unless you want untinted icons.
 
 ---
 

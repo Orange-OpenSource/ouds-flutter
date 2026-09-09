@@ -15,11 +15,20 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customiza
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 
 class FormFieldsCodeGenerator {
-  static String updateCode(BuildContext context, FormFieldsTypeEnum inputTypeEnum) {
-    final FormFieldsCustomizationState? state = FormFieldsCustomization.of(context);
-    String boolPropertiesCode = generateBoolPropertiesCode(state, inputTypeEnum);
+  static String updateCode(
+    BuildContext context,
+    FormFieldsTypeEnum inputTypeEnum,
+  ) {
+    final FormFieldsCustomizationState? state = FormFieldsCustomization.of(
+      context,
+    );
+    String boolPropertiesCode = generateBoolPropertiesCode(
+      state,
+      inputTypeEnum,
+    );
     String linkCode = generateLinkCode(state);
-    String controllerAndFocusPropertiesCode = "controller: controller,\nfocusNode: textInputFocus,";
+    String controllerAndFocusPropertiesCode =
+        "controller: controller,\nfocusNode: textInputFocus,";
     List<String> codeParts;
 
     String decoration = decorationCode(
@@ -31,6 +40,8 @@ class FormFieldsCodeGenerator {
       state?.helperText ?? '',
       state?.hasTrailingIcon,
       state?.hasLeadingIcon,
+      state?.trailingIconTinted ?? true,
+      state?.leadingIconTinted ?? true,
       state?.hasLoader ?? false,
       state?.hasOutlined ?? false,
       state?.hasError == true,
@@ -40,13 +51,31 @@ class FormFieldsCodeGenerator {
 
     switch (inputTypeEnum) {
       case FormFieldsTypeEnum.textInput:
-        codeParts = ["OudsTextField(", controllerAndFocusPropertiesCode, if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, linkCode, decoration, "),"];
+        codeParts = [
+          "OudsTextField(",
+          controllerAndFocusPropertiesCode,
+          if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode,
+          linkCode,
+          decoration,
+          "),",
+        ];
         break;
       case FormFieldsTypeEnum.phoneNumberInput:
-        codeParts = ["OudsPhoneNumberInput(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+        codeParts = [
+          "OudsPhoneNumberInput(",
+          if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode,
+          decoration,
+          "),",
+        ];
         break;
       case FormFieldsTypeEnum.passwordInput:
-        codeParts = ["OudsPasswordInput(", controllerAndFocusPropertiesCode, if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+        codeParts = [
+          "OudsPasswordInput(",
+          controllerAndFocusPropertiesCode,
+          if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode,
+          decoration,
+          "),",
+        ];
         break;
     }
 
@@ -59,7 +88,10 @@ class FormFieldsCodeGenerator {
         " onPressed: () {},\n),";
   }
 
-  static String generateBoolPropertiesCode(FormFieldsCustomizationState? state, FormFieldsTypeEnum inputTypeEnum) {
+  static String generateBoolPropertiesCode(
+    FormFieldsCustomizationState? state,
+    FormFieldsTypeEnum inputTypeEnum,
+  ) {
     if (state == null) return "";
 
     List<String> lines = [];
@@ -72,8 +104,11 @@ class FormFieldsCodeGenerator {
       lines.add('readOnly: true,');
     }
 
-    if (state.hasCountrySelector == true && inputTypeEnum == FormFieldsTypeEnum.phoneNumberInput) {
-      lines.add('countrySelector: CountrySelector(countryFilter:\n CountryFilter.custom,\n codes: ["fr", "tn", "us"],\n onCountryChanged: (country) {},\n ),');
+    if (state.hasCountrySelector == true &&
+        inputTypeEnum == FormFieldsTypeEnum.phoneNumberInput) {
+      lines.add(
+        'countrySelector: CountrySelector(countryFilter:\n CountryFilter.custom,\n codes: ["fr", "tn", "us"],\n onCountryChanged: (country) {},\n ),',
+      );
     }
 
     return lines.join("\n");
@@ -88,6 +123,8 @@ class FormFieldsCodeGenerator {
     String helperText,
     bool? suffixIcon,
     bool? prefixIcon,
+    bool trailingIconTinted,
+    bool leadingIconTinted,
     bool hasLoader,
     bool? hasOutlined,
     bool hasError,
@@ -108,6 +145,11 @@ class FormFieldsCodeGenerator {
 
     switch (inputTypeEnum) {
       case FormFieldsTypeEnum.phoneNumberInput:
+        if (prefixIcon == true) {
+          lines.add(
+            "  prefixIcon: OudsTextInputPrefixIcon(\n    icon: 'assets/ic_heart.svg',\n  ),",
+          );
+        }
         break;
       case FormFieldsTypeEnum.passwordInput:
         decorationClass = "OudsPasswordInputDecoration";
@@ -115,10 +157,20 @@ class FormFieldsCodeGenerator {
         if (hasError) lines.add('  errorText: "Please enter your password.",');
         break;
       default:
-        if (suffixIcon == true) lines.add("  suffixIcon: 'assets/ic_heart.svg',\n onSuffixPressed: () {},");
-        if (prefixIcon == true) lines.add("  prefixIcon: 'assets/ic_heart.svg',");
+        if (suffixIcon == true) {
+          lines.add(
+            "  suffixIcon: OudsTextInputSuffixIconButton(\n    icon: 'assets/ic_heart.svg',\n    tinted: $trailingIconTinted,\n    onPressed: () {},\n  ),",
+          );
+        }
+        if (prefixIcon == true) {
+          lines.add(
+            "  prefixIcon: OudsTextInputPrefixIcon(\n    icon: 'assets/ic_heart.svg',\n    tinted: $leadingIconTinted,\n  ),",
+          );
+        }
         if (hasError) lines.add('  errorText: "This field can’t..",');
-        if (hasConstrainedMaxWidth == true) lines.add('  hasConstrainedMaxWidth: true,');
+        if (hasConstrainedMaxWidth == true) {
+          lines.add('  hasConstrainedMaxWidth: true,');
+        }
     }
 
     if (lines.isEmpty) return "decoration: $decorationClass(),";

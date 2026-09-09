@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _LinkCustomization extends InheritedWidget {
@@ -58,8 +59,10 @@ class LinkCustomizationState
   LinkEnumDensity get selectedDensity => densityState.selected;
   set selectedDensity(LinkEnumDensity value) => densityState.selected = value;
 
-  bool get isTinted => tintedState.value;
-  set isTinted(bool value) => tintedState.value = value;
+  bool get isTinted => tintedState.selected == TintedEnum.tinted;
+
+  TintedEnum get selectedTinted => tintedState.selected;
+  set selectedTinted(TintedEnum value) => tintedState.selected = value;
 
   @override
   Widget build(BuildContext context) {
@@ -138,12 +141,16 @@ class TintedState {
   TintedState(this._setState);
 
   final void Function(void Function()) _setState;
-  bool _tinted = true;
 
-  bool get value => _tinted;
-  set value(bool newValue) {
+  final List<TintedEnum> _tintedList = [TintedEnum.tinted, TintedEnum.untinted];
+  TintedEnum _selectedTinted = TintedEnum.tinted;
+
+  List<TintedEnum> get list => _tintedList;
+
+  TintedEnum get selected => _selectedTinted;
+  set selected(TintedEnum newValue) {
     _setState(() {
-      _tinted = newValue;
+      _selectedTinted = newValue;
     });
   }
 }

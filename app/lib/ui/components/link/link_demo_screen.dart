@@ -24,6 +24,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.d
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
@@ -245,12 +246,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         if (customizationState.selectedLayout == LinkEnumLayout.textAndIcon)
-          CustomizableSwitch(
-            title: context.l10n.app_components_common_tinted_tech,
-            value: customizationState.isTinted,
-            onChanged: (value) {
+          CustomizableChips<TintedEnum>(
+            title: TintedEnum.enumName(context),
+            options: customizationState.tintedState.list,
+            selectedOption: customizationState.selectedTinted,
+            getText: (option) => option.stringValue(context),
+            onSelected: (selectedOption) {
               setState(() {
-                customizationState.isTinted = value;
+                customizationState.selectedTinted = selectedOption;
               });
             },
           ),

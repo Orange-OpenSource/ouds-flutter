@@ -183,6 +183,11 @@ class OudsButton extends StatefulWidget {
   final String? package;
   final bool? isFullWidth;
 
+  /// Controls whether the icon should be tinted with the theme color.
+  /// Defaults to `true`.
+  /// When set to `false`, the icon displays with its original colors (useful for multi-color icons).
+  final bool tinted;
+
   /// The button size based on its [OudsButtonSize], set to [OudsButtonSize.defaultSize] by default.
   final OudsButtonSize _size;
 
@@ -208,6 +213,7 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
+    this.tinted = true,
   }) : _size = OudsButtonSize.defaultSize,
        _component = OudsButtonComponent.defaultButton,
        _navigationLayout = null,
@@ -237,6 +243,7 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
+    this.tinted = true,
   }) : _size = OudsButtonSize.small,
        _component = OudsButtonComponent.defaultButton,
        _navigationLayout = null,
@@ -260,7 +267,8 @@ class OudsButton extends StatefulWidget {
   }) : _size = size,
        _component = OudsButtonComponent.navigationButton,
        _navigationLayout = navigationLayout,
-       _semanticsLabel = semanticsLabel;
+       _semanticsLabel = semanticsLabel,
+       tinted = true;
 
   @override
   State<OudsButton> createState() => _OudsButtonState();
@@ -976,6 +984,11 @@ class _OudsButtonState extends State<OudsButton> {
     final OudsButtonLayout layout,
     final OudsButtonControlState buttonState,
   ) {
+    final bool isTinted = widget.tinted;
+    final Color? iconColor = isTinted
+        ? OudsButtonIconModifier.getIconColor(context, buttonState, appearance)
+        : null;
+
     // navigation button
     final textScaleFactor = MediaQuery.textScalerOf(context).scale(1.0);
     final baseIconSize = OudsButtonIconModifier.getIconSize(
@@ -995,14 +1008,9 @@ class _OudsButtonState extends State<OudsButton> {
             fit: BoxFit.contain,
             width: scaledIconSize,
             height: scaledIconSize,
-            colorFilter: ColorFilter.mode(
-              OudsButtonIconModifier.getIconColor(
-                context,
-                buttonState,
-                appearance,
-              ),
-              BlendMode.srcIn,
-            ),
+            colorFilter: iconColor != null
+                ? ColorFilter.mode(iconColor, BlendMode.srcIn)
+                : null,
           );
 
         case OudsNavigationButtonLayout.previous:
@@ -1021,20 +1029,15 @@ class _OudsButtonState extends State<OudsButton> {
               layout,
               size: widget._size,
             ),
-            colorFilter: ColorFilter.mode(
-              OudsButtonIconModifier.getIconColor(
-                context,
-                buttonState,
-                appearance,
-              ),
-              BlendMode.srcIn,
-            ),
+            colorFilter: iconColor != null
+                ? ColorFilter.mode(iconColor, BlendMode.srcIn)
+                : null,
           );
         case null:
           throw UnimplementedError();
       }
     }
-    return SvgPicture.asset(
+    final Widget iconWidget = SvgPicture.asset(
       excludeFromSemantics: true,
       package: widget.package,
       assetName,
@@ -1050,10 +1053,18 @@ class _OudsButtonState extends State<OudsButton> {
         layout,
         size: widget._size,
       ),
-      colorFilter: ColorFilter.mode(
-        OudsButtonIconModifier.getIconColor(context, buttonState, appearance),
-        BlendMode.srcIn,
-      ),
+      colorFilter: iconColor != null
+          ? ColorFilter.mode(iconColor, BlendMode.srcIn)
+          : null,
+    );
+
+    // When untinted, the icon asset is expected to be a plain white shape
+    // (no embedded background), so it needs a brand-colored background to
+    // remain visible — matching the behavior of OudsLink and OudsListItem.
+    if (isTinted) return iconWidget;
+    return Container(
+      color: OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
+      child: iconWidget,
     );
   }
 }
