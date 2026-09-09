@@ -22,7 +22,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
-import 'package:ouds_core/components/progress_indicator/ouds_circular_progress_indicator.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
@@ -731,12 +731,47 @@ class _OudsTextInputState extends State<OudsTextField> {
 
     // Case 1: loader active
     if (widget.decoration.loader != null && _isTyping) {
-      return OudsButton(
-        icon: AppAssets.icons.communicationAssistanceTipsAndTricks,
-        package: OudsTheme.of(context).packageName,
-        appearance: OudsButtonAppearance.minimal,
-        isLoading: true,
-        onPressed: () {},
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: buttonTokens.sizeMinWidthDefault,
+              minHeight: buttonTokens.sizeMinHeightDefault,
+              maxHeight: buttonTokens.sizeMaxSizeIconOnlyDefault,
+            ),
+            child: Padding(
+              padding: EdgeInsetsGeometry.all(
+                buttonTokens.spaceInsetIconOnlyDefault,
+              ),
+              child:
+                  /// Progress Indicator Container
+                  Container(
+                    padding: EdgeInsets.all(
+                      buttonTokens.spaceInsetProgressIndicatorOnlyDefault,
+                    ),
+                    child:
+                        /// Progress Indicator Size
+                        SizedBox(
+                          width: buttonTokens.sizeProgressIndicatorDefault,
+                          height: buttonTokens.sizeProgressIndicatorDefault,
+                          child: widget.decoration.loader?.progress != null
+                              ? OudsCircularProgressIndicator.internal(
+                                  progressType:
+                                      OudsProgressIndicatorType.determinate,
+                                  value: widget.decoration.loader?.progress,
+                                  track: false,
+                                )
+                              : OudsCircularProgressIndicator.internal(
+                                  progressType:
+                                      OudsProgressIndicatorType.indeterminate,
+                                  track: false,
+                                ),
+                        ),
+                  ),
+            ),
+          ),
+        ],
       );
     }
 
