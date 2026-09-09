@@ -95,6 +95,8 @@ class _Icons {
   final String badgeIconInfoFill = 'assets/component/badge-icon/info-fill.svg';
   final String badgeIconTickConfirmationFill =
       'assets/component/badge-icon/tick-confirmation-fill.svg';
+  final String componentTypographyHeadingMarker =
+      'assets/component/typography/ic_heading_text_marker.svg';
 }
 
 class _Fonts {
