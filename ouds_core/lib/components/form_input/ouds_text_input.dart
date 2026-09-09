@@ -730,7 +730,7 @@ class _OudsTextInputState extends State<OudsTextField> {
     );
 
     // Case 1: loader active
-    if (widget.decoration.loader == true && _isTyping) {
+    if (widget.decoration.loader != null && _isTyping) {
       return OudsButton(
         icon: AppAssets.icons.communicationAssistanceTipsAndTricks,
         package: OudsTheme.of(context).packageName,
