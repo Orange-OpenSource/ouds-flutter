@@ -61,17 +61,19 @@
 </ol>})
     </section>
     
+<section class="desc markdown">
+  <p>Creates a text-only <a href="../../components_chip_ouds_suggestion_chip/OudsSuggestionChip-class.html">OudsSuggestionChip</a>.</p>
+<p>This is the default constructor. The <code>label</code> parameter must be provided to display the text.</p>
+</section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">const OudsSuggestionChip({
-  super.key,
-  this.label,
-  this.avatar,
-  this.onPressed,
-});</code></pre>
+  <pre class="language-dart"><code class="language-dart">const OudsSuggestionChip({super.key, this.label, this.avatar, this.onPressed})
+  : tinted = true,
+    contentDescription = null,
+    icon = null;</code></pre>
 </section>
 
 
