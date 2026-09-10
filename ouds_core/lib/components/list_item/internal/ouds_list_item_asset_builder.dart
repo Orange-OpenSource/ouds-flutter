@@ -66,14 +66,16 @@ class OudsListItemAssetBuilder {
         : null;
 
     // Shared image/background rendering logic — reused by other components.
-    return OudsAssetImageUtils.buildImageWithBackground(
-      asset: asset,
-      width: width,
-      height: height,
-      backgroundColor: backgroundColor,
-      borderRadius: borderRadius,
-      contentDescription: contentDescription,
-      package: package,
+    return Semantics(
+      label: contentDescription,
+      child: OudsAssetImageUtils.buildImageWithBackground(
+        asset: asset,
+        width: width,
+        height: height,
+        backgroundColor: backgroundColor,
+        borderRadius: borderRadius,
+        package: package,
+      ),
     );
   }
 

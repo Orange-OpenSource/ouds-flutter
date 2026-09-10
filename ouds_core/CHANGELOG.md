@@ -16,7 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Update `progress-indicator`: add size parameter to OudsCircularProgressIndicator for button integration ([#876](https://github.com/Orange-OpenSource/ouds-flutter/issues/876))
 ### Fixed
 - [Library] `List item` with external indicator should have a role link ([#918](https://github.com/Orange-OpenSource/ouds-flutter/issues/918))
-- [Library] `List item` Trailing, labels and leading elements should be grouped([#919](https://github.com/Orange-OpenSource/ouds-flutter/issues/919))
+- [Library] `List item` Trailing, labels and leading elements should be grouped ([#919](https://github.com/Orange-OpenSource/ouds-flutter/issues/919))
+- [Library] `List item` Leading/Trailing elements have a wrong accessible name ([#927](https://github.com/Orange-OpenSource/ouds-flutter/issues/927))
+- [Library] `List item` With 235% zoom, trailing text is truncated if displayed on 2 lines (iOS) ([#928](https://github.com/Orange-OpenSource/ouds-flutter/issues/928))
 - [Library] Invalid value: Not in inclusive range 0..2: 3 dans OudsTabBar` ([#896](https://github.com/Orange-OpenSource/ouds-flutter/issues/896))
 
 ## [2.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.0.0...2.1.0) - 2026-08-07
