@@ -195,8 +195,18 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
                 }
               : null,
         );
-      case null:
-        throw UnimplementedError();
+      default:
+        return OudsFilterChip(
+          label: ChipCustomizationUtils.getText(customizationState),
+          selected: customizationState!.hasSelected,
+          onSelected: customizationState.hasEnabled == true
+              ? (newValue) {
+                  setState(() {
+                    customizationState.hasSelected = newValue;
+                  });
+                }
+              : null,
+        );
     }
   }
 }

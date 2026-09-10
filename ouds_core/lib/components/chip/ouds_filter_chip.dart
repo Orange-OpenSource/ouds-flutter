@@ -15,7 +15,7 @@ library;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_background_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dart';
@@ -50,7 +50,6 @@ enum OudsChipStyle { defaultStyle, selected }
 ///
 /// Parameters:
 /// - [label]: Text label displayed in the chip.
-/// - [avatar]: Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [icon]: Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [selected]: Whether this chip is selected or not. If this value is null so the component is in disabled state.
 /// - [onSelected] : Called when this chip is clicked. A null value indicates that the component is disabled.
@@ -87,7 +86,7 @@ enum OudsChipStyle { defaultStyle, selected }
 class OudsFilterChip extends StatefulWidget {
   final String? label;
   @Deprecated(
-    "This parameter is deprecated and will be removed in a future version. Use icon instead.",
+    "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsFilterChip.icon constructor .",
   )
   final String? avatar;
   final String? icon;
@@ -102,6 +101,9 @@ class OudsFilterChip extends StatefulWidget {
   const OudsFilterChip({
     super.key,
     this.label,
+    @Deprecated(
+      "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsFilterChip.icon constructor .",
+    )
     this.avatar,
     this.selected = false,
     this.onSelected,

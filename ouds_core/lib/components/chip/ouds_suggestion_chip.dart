@@ -46,7 +46,6 @@ enum OudsChipStyle { defaultStyle, selected }
 ///
 /// Parameters:
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
-/// - [avatar]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
 /// - [icon]: Icon displayed in the suggestion chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [contentDescription] : Description of the chip's content for accessibility purposes. This value is ignored if the chip also contains a label.
 /// - [tinted] : Controls whether the icon should be tinted with the theme color. Defaults to `true`.
@@ -80,7 +79,7 @@ enum OudsChipStyle { defaultStyle, selected }
 class OudsSuggestionChip extends StatefulWidget {
   final String? label;
   @Deprecated(
-    "This parameter is deprecated and will be removed in a future version. Use icon instead.",
+    "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsSuggestionChip.icon constructor .",
   )
   final String? avatar;
   final String? icon;
@@ -91,10 +90,17 @@ class OudsSuggestionChip extends StatefulWidget {
   /// Creates a text-only [OudsSuggestionChip].
   ///
   /// This is the default constructor. The [label] parameter must be provided to display the text.
-  const OudsSuggestionChip({super.key, this.label, this.avatar, this.onPressed})
-    : tinted = true,
-      contentDescription = null,
-      icon = null;
+  const OudsSuggestionChip({
+    super.key,
+    this.label,
+    @Deprecated(
+      "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsSuggestionChip.icon constructor .",
+    )
+    this.avatar,
+    this.onPressed,
+  }) : tinted = true,
+       contentDescription = null,
+       icon = null;
 
   /// Creates an [OudsSuggestionChip] with a text and an icon.
   ///

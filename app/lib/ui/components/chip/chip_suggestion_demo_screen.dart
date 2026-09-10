@@ -154,14 +154,14 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
         );
       case ChipEnumLayout.iconAndText:
-        return OudsSuggestionChip(
+        return OudsSuggestionChip.icon(
           label: ChipCustomizationUtils.getText(customizationState),
-          avatar: ChipCustomizationUtils.getIcon(
+          icon: ChipCustomizationUtils.getIcon(
             customizationState,
             themeController!,
             customizationState!.tintedIcon,
           ),
-          // tinted: customizationState!.tintedIcon,
+          tinted: customizationState!.tintedIcon,
           onPressed: customizationState!.hasEnabled == true ? () {} : null,
         );
       case ChipEnumLayout.iconOnly:
@@ -175,8 +175,12 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
           tinted: customizationState!.tintedIcon,
           onPressed: customizationState!.hasEnabled == true ? () {} : null,
         );
-      case null:
-        throw UnimplementedError();
+
+      default:
+        return OudsSuggestionChip(
+          label: ChipCustomizationUtils.getText(customizationState),
+          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+        );
     }
   }
 }
