@@ -141,6 +141,7 @@ class OudsListItemAssetBuilder {
 
     return SvgPicture.asset(
       assetName,
+      matchTextDirection: true,
       width: resolvedSize,
       height: resolvedSize,
       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
