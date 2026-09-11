@@ -13,7 +13,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_background_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dart';
