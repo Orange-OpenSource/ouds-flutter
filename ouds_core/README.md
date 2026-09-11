@@ -115,15 +115,15 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.0.0</td>
     </tr>
     <tr>
-        <td>Navigation button</td>
+        <td style="padding:10px;">Navigation button</td>
         <td>3.3.0</td>
     </tr>
     <tr>
-      <td>Navigation card item</td>
+      <td style="padding:10px;">Navigation card item</td>
       <td>0.1.0</td>
     </tr>
     <tr>
-      <td>Navigation list item</td>
+      <td style="padding:10px;">Navigation list item</td>
       <td>0.1.0</td>
     </tr>
     <tr>
@@ -147,11 +147,11 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.4.0</td>
     </tr>
     <tr>
-      <td>Static card item</td>
+      <td style="padding:10px;">Static card item</td>
       <td>0.1.0</td>
     </tr>
     <tr>
-      <td>Static list item</td>
+      <td style="padding:10px;">Static list item</td>
       <td>0.1.0</td>
     </tr>
     <tr>
