@@ -13,7 +13,7 @@
   "app_common_enabled_label": "Enabled",
   "app_common_customizeChipList_a11y": "Chip list",
   "app_common_customizeChipsHint_a11y": "Please select a chip by navigating through the options",
-  "app_common_selected_label": "Selected",
+  "app_common_selected_tech": "Selected",
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Change theme",
@@ -138,7 +138,9 @@
   "app_components_common_description_tech": "Description",
   "app_components_common_edgeToEdge_tech": "Edge to edge",
   "app_components_common_type_tech" : "Type",
-  "app_components_common_tinted_tech": "Tinted icon",
+  "app_components_common_icon_tech": "Icon",
+  "app_components_common_tinted_tech": "Tinted",
+  "app_components_common_untinted_tech": "Untinted",
 
   "@_components_alert": {},
   "app_components_alert_tech": "Alert",
