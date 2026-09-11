@@ -14,6 +14,7 @@
 /// {@category List item}
 library;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
@@ -369,7 +370,24 @@ class _OudsListItemState extends State<OudsListItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Semantics(
-                  button: widget.onTap != null,
+                  // list item has a button role by default.
+                  button:
+                      widget.onTap != null &&
+                      widget.indicator is! OudsListItemIndicatorExternal,
+                  // Link role only when external indicator is activated.
+                  link:
+                      widget.onTap != null &&
+                      widget.indicator is OudsListItemIndicatorExternal,
+                  // TalkBack does not map the `link` flag to a spoken role
+                  // for whole-node elements (unlike VoiceOver on iOS). The
+                  // engine concatenates contentDescription as
+                  hint:
+                      widget.onTap != null &&
+                          widget.indicator is OudsListItemIndicatorExternal &&
+                          defaultTargetPlatform == TargetPlatform.android
+                      ? OudsLocalizations.of(context)?.core_link_trait_a11y
+                      : null,
+                  // Group all content (leading, labels, trailing) into single label
                   enabled: widget.enable,
                   child: Focus(
                     focusNode: _focusNode,
@@ -717,7 +735,7 @@ class _OudsListItemState extends State<OudsListItem> {
         ),
       OudsListItemLeadingImage(
         :final asset,
-        :final contentDescription,
+        :final semanticsLabel,
         :final size,
         :final format,
         :final rounded,
@@ -731,7 +749,7 @@ class _OudsListItemState extends State<OudsListItem> {
             size.assetSize,
             format,
             rounded: rounded,
-            contentDescription: contentDescription,
+            semanticsLabel: semanticsLabel,
             backgroundColor: OudsTheme.of(
               context,
             ).colorScheme(context).surfaceBrandPrimary,
@@ -939,7 +957,7 @@ class _OudsListItemState extends State<OudsListItem> {
         ),
       OudsListItemTrailingImage(
         :final asset,
-        :final contentDescription,
+        :final semanticsLabel,
         :final size,
         :final format,
         :final rounded,
@@ -953,7 +971,7 @@ class _OudsListItemState extends State<OudsListItem> {
             size.assetSize,
             format,
             rounded: rounded,
-            contentDescription: contentDescription,
+            semanticsLabel: semanticsLabel,
             backgroundColor: OudsTheme.of(
               context,
             ).colorScheme(context).surfaceBrandPrimary,

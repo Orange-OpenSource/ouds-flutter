@@ -184,7 +184,7 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
 /// ```dart
 /// OudsListItemTrailingImage(
 ///   asset: 'assets/images/photo.jpg',
-///   contentDescription: 'Product photo',
+///   semanticsLabel: 'Product photo',
 ///   size: OudsListItemImageSize.large,
 ///   format: OudsListItemImageFormat.widescreen,
 ///   rounded: true,
@@ -197,7 +197,7 @@ class OudsListItemTrailingImage extends OudsListItemTrailing {
   /// Accessibility description of the image for screen readers.
   ///
   /// When `null`, the image is excluded from the accessibility tree.
-  final String? contentDescription;
+  final String? semanticsLabel;
 
   /// Size of the image. Defaults to [OudsListItemImageSize.medium].
   ///
@@ -229,7 +229,7 @@ class OudsListItemTrailingImage extends OudsListItemTrailing {
   /// Creates a trailing image configuration.
   const OudsListItemTrailingImage({
     required this.asset,
-    this.contentDescription,
+    this.semanticsLabel,
     this.size = OudsListItemImageSize.medium,
     this.format = OudsListItemImageFormat.square,
     this.rounded = false,
