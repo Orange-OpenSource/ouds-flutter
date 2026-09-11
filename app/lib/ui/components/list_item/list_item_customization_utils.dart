@@ -114,7 +114,7 @@ class ListItemCustomizationUtils {
       ),
       ListItemLeadingEnum.image => OudsListItemLeadingImage(
         asset: assetPath,
-        contentDescription: 'Information image',
+        semanticsLabel: 'Information image',
         size: _convertImageSize(leadingImageSize),
         format: _convertImageFormat(leadingImageFormat),
         rounded: leadingImageRounded,
@@ -179,7 +179,7 @@ class ListItemCustomizationUtils {
       ),
       ListItemTrailingEnum.image => OudsListItemTrailingImage(
         asset: assetPath,
-        contentDescription: 'Information image',
+        semanticsLabel: 'Information image',
         size: _convertImageSize(trailingImageSize),
         format: _convertImageFormat(trailingImageFormat),
         rounded: trailingImageRounded,

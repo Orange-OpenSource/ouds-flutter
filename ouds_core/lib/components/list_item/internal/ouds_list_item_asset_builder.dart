@@ -36,7 +36,7 @@ class OudsListItemAssetBuilder {
   /// Accepts a path string to a local asset (raster or SVG).
   ///
   /// - [rounded] — when `true`, applies rounded corners using token-defined radius.
-  /// - [contentDescription] — when provided, exposed to the accessibility tree;
+  /// - [semanticsLabel] — when provided, exposed to the accessibility tree;
   ///   when `null`, the image is excluded from semantics (decorative).
   /// - [backgroundColor] — optional background color shown behind the image (useful
   ///   for transparent or SVG placeholder assets).
@@ -50,7 +50,7 @@ class OudsListItemAssetBuilder {
     OudsListItemAssetSize size,
     OudsListItemImageFormat format, {
     bool rounded = false,
-    String? contentDescription,
+    String? semanticsLabel,
     Color? backgroundColor,
     String? package,
   }) {
@@ -67,7 +67,7 @@ class OudsListItemAssetBuilder {
 
     // Shared image/background rendering logic — reused by other components.
     return Semantics(
-      label: contentDescription,
+      label: semanticsLabel,
       child: OudsAssetImageUtils.buildImageWithBackground(
         asset: asset,
         width: width,

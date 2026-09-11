@@ -735,7 +735,7 @@ class _OudsListItemState extends State<OudsListItem> {
         ),
       OudsListItemLeadingImage(
         :final asset,
-        :final contentDescription,
+        :final semanticsLabel,
         :final size,
         :final format,
         :final rounded,
@@ -749,7 +749,7 @@ class _OudsListItemState extends State<OudsListItem> {
             size.assetSize,
             format,
             rounded: rounded,
-            contentDescription: contentDescription,
+            semanticsLabel: semanticsLabel,
             backgroundColor: OudsTheme.of(
               context,
             ).colorScheme(context).surfaceBrandPrimary,
@@ -957,7 +957,7 @@ class _OudsListItemState extends State<OudsListItem> {
         ),
       OudsListItemTrailingImage(
         :final asset,
-        :final contentDescription,
+        :final semanticsLabel,
         :final size,
         :final format,
         :final rounded,
@@ -971,7 +971,7 @@ class _OudsListItemState extends State<OudsListItem> {
             size.assetSize,
             format,
             rounded: rounded,
-            contentDescription: contentDescription,
+            semanticsLabel: semanticsLabel,
             backgroundColor: OudsTheme.of(
               context,
             ).colorScheme(context).surfaceBrandPrimary,
