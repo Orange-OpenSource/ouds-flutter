@@ -693,6 +693,7 @@ class _OudsButtonState extends State<OudsButton> {
             child: Semantics(
               label: widget.label ?? "${widget._semanticsLabel}",
               button: true,
+              enabled: widget.onPressed != null,
               child: ExcludeSemantics(
                 child: OutlinedButton(
                   focusNode: _focusNode,
