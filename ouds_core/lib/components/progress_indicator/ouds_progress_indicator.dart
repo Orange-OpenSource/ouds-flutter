@@ -179,7 +179,7 @@ class _OudsCircularProgressIndicatorState
     );
     final semanticsLabel = statusLabel != null
         ? '${widget.semanticLabel}, $statusLabel'
-        : widget.semanticLabel ?? '';
+        : '${widget.semanticLabel},';
 
     final semanticsValue = OudsProgressIndicatorUtils.buildSemanticValueLabel(
       widget.progressType,
@@ -511,8 +511,8 @@ class _OudsLinearProgressIndicatorState
       widget.status,
     );
     final semanticsLabel = statusLabel != null
-        ? '${widget.semanticLabel}, $statusLabel'
-        : widget.semanticLabel ?? '';
+        ? '${widget.semanticLabel}, $statusLabel,'
+        : '${widget.semanticLabel},';
 
     final semanticsValue = OudsProgressIndicatorUtils.buildSemanticValueLabel(
       widget.progressType,
@@ -553,6 +553,9 @@ class _OudsLinearProgressIndicatorState
     return reduceMotionActivated
         ? Semantics(
             label: semanticsLabel,
+            value: widget.progressType == OudsProgressIndicatorType.determinate
+                ? semanticsValue
+                : null,
             child: ExcludeSemantics(
               child: _buildIndicator(
                 minHeight: minHeight,
