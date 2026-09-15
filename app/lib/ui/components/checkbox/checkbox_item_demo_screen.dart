@@ -174,48 +174,47 @@ class _CheckboxItemDemo extends StatefulWidget {
 class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
   bool? isCheckedFirst = false;
   bool? isCheckedSecond = false;
-
-  ControlItemCustomizationState? customizationState;
   ThemeController? themeController;
 
   @override
   Widget build(BuildContext context) {
-    customizationState = ControlItemCustomization.of(context);
+    final customizationState = ControlItemCustomization.of(context)!;
     themeController = Provider.of<ThemeController>(context, listen: false);
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+      themeController?.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
 
     return LightDarkBox(
+      isEdgeToEdge: customizationState.edgeToEdge,
       hasConstrainedMaxWidthOption: true,
       child: OudsCheckboxItem(
         value: isCheckedFirst,
-        onChanged: customizationState!.hasEnabled
+        onChanged: customizationState.hasEnabled
             ? (bool? newValue) {
                 setState(() {
                   isCheckedFirst = newValue;
                 });
               }
             : null,
-        title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+        title: ControlItemCustomizationUtils.getLabelText(customizationState),
         helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
-          customizationState!,
+          customizationState,
         ),
-        reversed: customizationState!.hasReversed ? true : false,
-        readOnly: customizationState!.hasReadOnly ? true : false,
-        icon: customizationState!.hasIcon
+        reversed: customizationState.hasReversed ? true : false,
+        readOnly: customizationState.hasReadOnly ? true : false,
+        icon: customizationState.hasIcon
             ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
                 themeController!,
               )
             : null,
-        isError: customizationState!.hasError ? true : false,
+        isError: customizationState.hasError ? true : false,
         errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(
-          customizationState!,
+          customizationState,
         ),
-        divider: customizationState!.hasDivider ? true : false,
-        constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+        divider: customizationState.hasDivider ? true : false,
+        constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
             ? true
             : false,
         tristate: widget.indeterminate,
@@ -256,13 +255,20 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = ControlItemCustomization.of(context);
+    final customizationState = ControlItemCustomization.of(context)!;
 
     return CustomizableSection(
       children: [
         CustomizableSwitch(
+          title: context.l10n.app_components_common_edgeToEdge_tech,
+          value: customizationState.edgeToEdge,
+          onChanged: (value) {
+            customizationState.edgeToEdge = value;
+          },
+        ),
+        CustomizableSwitch(
           title: context.l10n.app_components_controlItem_icon_label,
-          value: customizationState!.hasIcon,
+          value: customizationState.hasIcon,
           onChanged:
               customizationState.isReadOnlyWhenError ||
                   customizationState.isReadOnlyWhenEnabled
