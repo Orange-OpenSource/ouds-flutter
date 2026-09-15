@@ -51,26 +51,23 @@ class _BadgeBorderWrapper extends StatelessWidget {
           context,
         ).scale(hasCount ? badgeTokens.sizeMedium : badgeTokens.sizeXsmall) /
         2;
-    //with MergeSemantics we grouped the widget with the badge
-    // to be ready together with Talkback/Voice Over
-    return MergeSemantics(
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          child,
-          Positioned.fill(
-            child: IgnorePointer(
-              child: CustomPaint(
-                painter: _BadgeBorderPainter(
-                  badgeRadius: badgeRadius,
-                  hasCount: hasCount,
-                  borderColor: bar.colorBorderBadge,
-                ),
+
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        child,
+        Positioned.fill(
+          child: IgnorePointer(
+            child: CustomPaint(
+              painter: _BadgeBorderPainter(
+                badgeRadius: badgeRadius,
+                hasCount: hasCount,
+                borderColor: bar.colorBorderBadge,
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
