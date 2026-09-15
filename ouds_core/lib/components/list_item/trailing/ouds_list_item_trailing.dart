@@ -152,7 +152,7 @@ class OudsListItemTrailingTag extends OudsListItemTrailing {
 /// ```
 class OudsListItemTrailingIcon extends OudsListItemTrailing {
   /// The icon status that drives both the asset and its color.
-  final OudsIconStatus icon;
+  final OudsIconStatus iconStatus;
 
   /// Size of the icon. Defaults to [OudsListItemIconSize.medium].
   ///
@@ -168,7 +168,7 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
 
   /// Creates a trailing icon configuration.
   const OudsListItemTrailingIcon(
-    this.icon, {
+    this.iconStatus, {
     this.size = OudsListItemIconSize.medium,
     this.tinted = true,
   });

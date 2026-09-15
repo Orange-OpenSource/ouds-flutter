@@ -942,19 +942,36 @@ class _OudsListItemState extends State<OudsListItem> {
       ),
       OudsListItemTrailingBadge(:final badge) => badge(enable),
       OudsListItemTrailingTag(:final tag) => tag(enable),
-      OudsListItemTrailingIcon(:final icon, :final size, :final tinted) =>
+      OudsListItemTrailingIcon(:final iconStatus, :final size, :final tinted) =>
         // Icon container: dynamic size based on icon size
+        // Icon container: dynamic size based on icon size.
+        // Wrap in Semantics to vocalize functional status (Warning, Negative, Info).
         _buildIconContainer(
+          context,
+          _wrapWithStatusSemantics(
+            context,
+            OudsListItemAssetBuilder.buildIcon(
+              context,
+              iconStatus,
+              enable: enable,
+              size: size.assetSize,
+              tinted: tinted,
+            ),
+            iconStatus,
+          ),
+          size.assetSize,
+        ),
+      /* _buildIconContainer(
           context,
           OudsListItemAssetBuilder.buildIcon(
             context,
-            icon,
+            iconStatus,
             enable: enable,
             size: size.assetSize,
             tinted: tinted,
           ),
           size.assetSize,
-        ),
+        ),*/
       OudsListItemTrailingImage(
         :final asset,
         :final semanticsLabel,
@@ -1153,6 +1170,8 @@ class _OudsListItemState extends State<OudsListItem> {
   ) {
     final l10n = OudsLocalizations.of(context);
     final String? label = switch (iconStatus) {
+      Neutral() => iconStatus.semanticsLabel,
+      Accent() => iconStatus.semanticsLabel,
       Warning() => l10n?.core_common_warning_a11y,
       Negative() => l10n?.core_common_error_a11y,
       Info() => l10n?.core_common_info_a11y,

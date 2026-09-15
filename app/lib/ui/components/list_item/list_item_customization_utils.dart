@@ -26,6 +26,7 @@ import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 // TODO[v0.3]: uncomment when tag is available
 // import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization.dart';
@@ -57,6 +58,7 @@ class ListItemCustomizationUtils {
   /// The chosen [status] determines whether the slot uses a fixed functional
   /// icon or a themed custom asset from the active [themeController].
   static OudsIconStatus getIconStatus(
+    BuildContext context,
     StatusEnum status,
     ThemeController themeController,
   ) {
@@ -67,9 +69,11 @@ class ListItemCustomizationUtils {
       StatusEnum.negative => Negative(),
       StatusEnum.neutral => Neutral(
         icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+        semanticsLabel: context.l10n.app_components_listItem_icon_a11y,
       ),
       StatusEnum.accent => Accent(
         icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+        semanticsLabel: context.l10n.app_components_listItem_icon_a11y,
       ),
     };
   }
@@ -94,6 +98,7 @@ class ListItemCustomizationUtils {
   ///
   /// The returned slot is shared by list and card item previews.
   static OudsListItemLeading? getLeading(
+    BuildContext context,
     ListItemLeadingEnum leading,
     OudsIconStatus leadingIconStatus,
     ListItemIconSizeEnum leadingIconSize,
@@ -106,6 +111,7 @@ class ListItemCustomizationUtils {
             OudsListItemImageFormat.widescreen
         ? AppAssets.icons.icUntintedWidescreen
         : AppAssets.icons.icUntintedSquare;
+    final imageLabel = context.l10n.app_components_listItem_image_a11y;
     return switch (leading) {
       ListItemLeadingEnum.none => null,
       ListItemLeadingEnum.icon => OudsListItemLeadingIcon(
@@ -114,7 +120,7 @@ class ListItemCustomizationUtils {
       ),
       ListItemLeadingEnum.image => OudsListItemLeadingImage(
         asset: assetPath,
-        semanticsLabel: 'Information image',
+        semanticsLabel: context.l10n.app_components_listItem_image_a11y,
         size: _convertImageSize(leadingImageSize),
         format: _convertImageFormat(leadingImageFormat),
         rounded: leadingImageRounded,
@@ -136,6 +142,7 @@ class ListItemCustomizationUtils {
   ///
   /// The returned slot is shared by list and card item previews.
   static OudsListItemTrailing? getTrailing(
+    BuildContext context,
     ListItemTrailingEnum trailing,
     OudsIconStatus trailingIconStatus,
     ListItemIconSizeEnum trailingIconSize,
@@ -179,7 +186,7 @@ class ListItemCustomizationUtils {
       ),
       ListItemTrailingEnum.image => OudsListItemTrailingImage(
         asset: assetPath,
-        semanticsLabel: 'Information image',
+        semanticsLabel: context.l10n.app_components_listItem_image_a11y,
         size: _convertImageSize(trailingImageSize),
         format: _convertImageFormat(trailingImageFormat),
         rounded: trailingImageRounded,
@@ -214,14 +221,17 @@ class ListItemCustomizationUtils {
 
   /// Builds the full-size navigation preview from the current demo state.
   static OudsListItem buildNavigationListItem(
+    BuildContext context,
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
     final leadingIconStatus = getIconStatus(
+      context,
       state.leadingIconStatus,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
+      context,
       state.trailingIconStatus,
       themeController,
     );
@@ -232,6 +242,7 @@ class ListItemCustomizationUtils {
       extraLabel: emptyToNull(state.extraLabel),
       description: emptyToNull(state.description),
       leading: getLeading(
+        context,
         state.leading,
         leadingIconStatus,
         state.leadingIconSize,
@@ -240,6 +251,7 @@ class ListItemCustomizationUtils {
         state.leadingImageRounded,
       ),
       trailing: getTrailing(
+        context,
         state.trailing,
         trailingIconStatus,
         state.trailingIconSize,
@@ -263,14 +275,17 @@ class ListItemCustomizationUtils {
 
   /// Builds the compact navigation preview from the current demo state.
   static OudsSmallListItem buildNavigationSmallListItem(
+    BuildContext context,
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
     final leadingIconStatus = getIconStatus(
+      context,
       state.leadingIconStatus,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
+      context,
       state.trailingIconStatus,
       themeController,
     );
@@ -302,14 +317,17 @@ class ListItemCustomizationUtils {
 
   /// Builds the full-size static preview from the current demo state.
   static OudsListItem buildListItem(
+    BuildContext context,
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
     final leadingIconStatus = getIconStatus(
+      context,
       state.leadingIconStatus,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
+      context,
       state.trailingIconStatus,
       themeController,
     );
@@ -320,6 +338,7 @@ class ListItemCustomizationUtils {
       extraLabel: emptyToNull(state.extraLabel),
       description: emptyToNull(state.description),
       leading: getLeading(
+        context,
         state.leading,
         leadingIconStatus,
         state.leadingIconSize,
@@ -328,6 +347,7 @@ class ListItemCustomizationUtils {
         state.leadingImageRounded,
       ),
       trailing: getTrailing(
+        context,
         state.trailing,
         trailingIconStatus,
         state.trailingIconSize,
@@ -349,14 +369,17 @@ class ListItemCustomizationUtils {
 
   /// Builds the compact static preview from the current demo state.
   static OudsSmallListItem buildSmallListItem(
+    BuildContext context,
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
     final leadingIconStatus = getIconStatus(
+      context,
       state.leadingIconStatus,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
+      context,
       state.trailingIconStatus,
       themeController,
     );
@@ -513,14 +536,17 @@ class ListItemCustomizationUtils {
 
   /// Builds the default-size [OudsCardItem] from the current demo state.
   static OudsCardItem buildCardItem(
+    BuildContext context,
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
     final leadingIconStatus = getIconStatus(
+      context,
       state.leadingIconStatus,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
+      context,
       state.trailingIconStatus,
       themeController,
     );
@@ -531,6 +557,7 @@ class ListItemCustomizationUtils {
       extraLabel: emptyToNull(state.extraLabel),
       description: emptyToNull(state.description),
       leading: getLeading(
+        context,
         state.leading,
         leadingIconStatus,
         state.leadingIconSize,
@@ -539,6 +566,7 @@ class ListItemCustomizationUtils {
         state.leadingImageRounded,
       ),
       trailing: getTrailing(
+        context,
         state.trailing,
         trailingIconStatus,
         state.trailingIconSize,
@@ -560,14 +588,17 @@ class ListItemCustomizationUtils {
 
   /// Builds the compact [OudsSmallCardItem] from the current demo state.
   static OudsSmallCardItem buildSmallCardItem(
+    BuildContext context,
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
     final leadingIconStatus = getIconStatus(
+      context,
       state.leadingIconStatus,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
+      context,
       state.trailingIconStatus,
       themeController,
     );
