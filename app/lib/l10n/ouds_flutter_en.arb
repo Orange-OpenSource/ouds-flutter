@@ -123,6 +123,7 @@
   "app_components_common_outlined_label": "Outlined",
   "app_components_common_placeholder_label": "Placeholder",
   "app_components_common_helperText_label": "Helper text",
+  "app_components_common_annotatedText_tech": "Annotated example text",
   "app_components_common_appearance_label": "Appearance",
   "app_components_common_version_label": "Component design version:",
   "app_components_common_textInputClearIcon_a11y": "Clear value",
@@ -138,7 +139,8 @@
   "app_components_common_description_tech": "Description",
   "app_components_common_edgeToEdge_tech": "Edge to edge",
   "app_components_common_type_tech" : "Type",
-  "app_components_common_tinted_tech": "Tinted icon",
+  "app_components_common_tinted_tech": "Tinted",
+  "app_components_common_untinted_tech": "Untinted",
 
   "@_components_alert": {},
   "app_components_alert_tech": "Alert",
@@ -338,7 +340,7 @@
   "@_components_password_input": {},
   "app_components_passwordInput_label": "Password input",
   "app_components_passwordInput_description_text": "Password input is a UI element that allows to securely and confidentially capture a user’s password.",
-  "app_components_passwordInput_error_label": "Please enter your password.",
+  "app_components_passwordInput_error_label": "Your password can't be empty",
 
   "@_components_pin_code_input": {},
   "app_components_pinCodeInput_label": "Pin code input",

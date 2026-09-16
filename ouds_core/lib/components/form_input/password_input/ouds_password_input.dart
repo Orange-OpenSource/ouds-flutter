@@ -21,6 +21,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_text_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -30,7 +31,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 
 /// [OUDS Password Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-password-input)
 ///
-/// **Reference design version : 1.3.0**
+/// **Reference design version : 1.3.1**
 ///
 /// Password input is a UI element that allows to securely and confidentially capture a user's password.
 /// Password Input enhances privacy by replacing characters with dots, while they are being typed;
@@ -83,7 +84,7 @@ class OudsPasswordInput extends StatefulWidget {
     this.onEditingComplete,
     required this.decoration,
   }) : assert(
-         !(decoration.loader == true && decoration.errorText != null),
+         !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
        );
 
@@ -107,6 +108,7 @@ class OudsPasswordInput extends StatefulWidget {
         inputTextForegroundModifier.getIconColor(controlTextInputState),
         BlendMode.srcIn,
       ),
+      matchTextDirection: true,
     );
   }
 
@@ -207,7 +209,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
-      isLoading: (widget.decoration.loader == true && _isTyping) ? true : false,
+      isLoading: (widget.decoration.loader != null && _isTyping) ? true : false,
       isReadOnly: widget.readOnly ?? false,
     );
 
@@ -284,7 +286,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                       hint: helperText,
                       child:
                           widget.readOnly == true ||
-                              (widget.decoration.loader == true && _isTyping)
+                              (widget.decoration.loader != null && _isTyping)
                           ? IgnorePointer(
                               child: _buildTextField(
                                 inputTextTextModifier,
@@ -374,7 +376,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelModerateLarge(context)
+          .typeLabelDefaultLarge(context)
           .copyWith(
             color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
@@ -433,7 +435,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                 widget.decoration.hintText!,
                 overflow: TextOverflow.ellipsis,
                 style: theme.typographyTokens
-                    .typeLabelDefaultLarge(context)
+                    .typeLabelModerateLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
                     ),
@@ -559,15 +561,46 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     final l10n = OudsLocalizations.of(context);
 
     // Case 1: loader active
-    if (widget.decoration.loader == true && _isTyping) {
+    if (widget.decoration.loader != null && _isTyping) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          OudsButton(
-            icon: 'assets/ic_password_lock.svg',
-            appearance: OudsButtonAppearance.minimal,
-            isLoading: true,
-            onPressed: () {},
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: buttonTokens.sizeMinWidthDefault,
+              minHeight: buttonTokens.sizeMinHeightDefault,
+              maxHeight: buttonTokens.sizeMaxSizeIconOnlyDefault,
+            ),
+            child: Padding(
+              padding: EdgeInsetsGeometry.all(
+                buttonTokens.spaceInsetIconOnlyDefault,
+              ),
+              child:
+                  /// Progress Indicator Container
+                  Container(
+                    padding: EdgeInsets.all(
+                      buttonTokens.spaceInsetProgressIndicatorOnlyDefault,
+                    ),
+                    child:
+                        /// Progress Indicator Size
+                        SizedBox(
+                          width: buttonTokens.sizeProgressIndicatorDefault,
+                          height: buttonTokens.sizeProgressIndicatorDefault,
+                          child: widget.decoration.loader?.progress != null
+                              ? OudsCircularProgressIndicator.internal(
+                                  progressType:
+                                      OudsProgressIndicatorType.determinate,
+                                  value: widget.decoration.loader?.progress,
+                                  track: false,
+                                )
+                              : OudsCircularProgressIndicator.internal(
+                                  progressType:
+                                      OudsProgressIndicatorType.indeterminate,
+                                  track: false,
+                                ),
+                        ),
+                  ),
+            ),
           ),
         ],
       );
