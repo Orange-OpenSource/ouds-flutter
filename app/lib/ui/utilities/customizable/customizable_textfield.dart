@@ -266,19 +266,21 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         decoration: OudsInputDecoration(
                           hintText: '',
                           labelText: widget.title,
-                          suffixIcon: AppAssets.icons.functionalActionsDelete(
-                            themeController,
+                          suffixIcon: OudsTextInputSuffixIconButton(
+                            icon: AppAssets.icons.functionalActionsDelete(
+                              themeController,
+                            ),
+                            onPressed: () {
+                              _textController.clear();
+                              if (!widget.focusNode.hasFocus) {
+                                widget.focusNode.unfocus();
+                              }
+                              setState(() {});
+                            },
                           ),
                           suffix: widget.suffixText,
                           helperText: widget.helperText,
                           errorText: widget.errorText,
-                          onSuffixPressed: () {
-                            _textController.clear();
-                            if (!widget.focusNode.hasFocus) {
-                              widget.focusNode.unfocus();
-                            }
-                            setState(() {});
-                          },
                         ),
                         keyboardType: widget.keyboardType,
                       );

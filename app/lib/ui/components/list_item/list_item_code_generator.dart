@@ -58,6 +58,7 @@ class ListItemCodeGenerator {
       if (!state.enable) '  enable: false,',
       if (state.clickable) '  onTap: () { /* navigate */ },',
       if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
+      if (!state.edgeToEdge) '  edgeToEdge: false,',
     ];
     return 'OudsListItem(\n${params.join('\n')}\n)';
   }
@@ -83,17 +84,24 @@ class ListItemCodeGenerator {
       if (!state.enable) '  enable: false,',
       if (state.clickable) '  onTap: () { /* navigate */ },',
       if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
+      if (!state.edgeToEdge) '  edgeToEdge: false,',
     ];
     return 'OudsSmallListItem(\n${params.join('\n')}\n)';
   }
 
-  /// Card item always renders with a background — no decoration parameter is
-  /// emitted since [OudsCardItemDecorationBackground] is already the default.
+  /// Card item renders with a persistent background by default
+  /// ([OudsCardItemDefaults.decoration]) — the `decoration` parameter is only
+  /// emitted when the customization state differs from that default.
   static String _defaultCardCode(ListItemCustomizationState state) {
+    final decorationCode = _cardDecorationCode(
+      state.cardDecoration,
+      state.divider,
+    );
     final params = <String>[
       "  label: '${state.label}',",
       if (state.contentAlignment != ListItemContentAlignmentEnum.center)
         '  contentAlignment: ${_alignmentCode(state.contentAlignment)},',
+      if (decorationCode != null) '  decoration: $decorationCode,',
       if (state.overline.trim().isNotEmpty)
         "  overline: '${state.overline.trim()}',",
       if (state.extraLabel.trim().isNotEmpty)
@@ -116,10 +124,15 @@ class ListItemCodeGenerator {
 
   /// Small card item — no overline / extraLabel, leading/trailing restricted to smallOptions.
   static String _smallCardCode(ListItemCustomizationState state) {
+    final decorationCode = _cardDecorationCode(
+      state.cardDecoration,
+      state.divider,
+    );
     final params = <String>[
       "  label: '${state.label}',",
       if (state.contentAlignment != ListItemContentAlignmentEnum.center)
         '  contentAlignment: ${_alignmentCode(state.contentAlignment)},',
+      if (decorationCode != null) '  decoration: $decorationCode,',
       if (state.description.trim().isNotEmpty)
         "  description: '${state.description.trim()}',",
       if (state.leading != ListItemLeadingEnum.none &&
@@ -228,4 +241,25 @@ class ListItemCodeGenerator {
         ListItemIndicatorEnum.previous => 'OudsListItemIndicatorPrevious()',
         ListItemIndicatorEnum.external => 'OudsListItemIndicatorExternal()',
       };
+
+  /// Builds the `decoration:` code for a card item, mirroring
+  /// [ListItemCustomizationUtils.buildCardItem]'s `_convertCardDecoration`.
+  ///
+  /// Returns `null` when the current state matches
+  /// [OudsCardItemDefaults.decoration] (persistent background with divider),
+  /// so the parameter is omitted from the generated snippet.
+  static String? _cardDecorationCode(
+    ListItemCardDecorationEnum decoration,
+    bool divider,
+  ) => switch (decoration) {
+    ListItemCardDecorationEnum.background => divider
+        ? null
+        : 'OudsListItemDecorationBackground(divider: false)',
+    ListItemCardDecorationEnum.backgroundOnInteraction =>
+      'OudsListItemDecorationBackgroundOnInteraction(divider: $divider)',
+    ListItemCardDecorationEnum.outlined =>
+      'OudsListItemDecorationOutlined()',
+    ListItemCardDecorationEnum.outlinedOnInteraction =>
+      'OudsListItemDecorationOutlinedOnInteraction()',
+  };
 }

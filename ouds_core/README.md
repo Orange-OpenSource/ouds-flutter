@@ -96,7 +96,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Filter Chip</td>
-      <td>1.4.0</td>
+      <td>1.5.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Inline Alert</td>
@@ -128,11 +128,11 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Password Input</td>
-      <td>1.3.0</td>
+      <td>1.3.1</td>
     </tr>
     <tr>
       <td style="padding:10px;">Phone Number Input</td>
-      <td>1.3.0</td>
+      <td>1.3.1</td>
     </tr>
     <tr>
       <td style="padding:10px;">Pin Code Input</td>
@@ -155,6 +155,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>0.1.0</td>
     </tr>
     <tr>
+      <td style="padding:10px;">Suggestion chip</td>
+      <td>1.5.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Switch</td>
       <td>1.5.0</td>
     </tr>
@@ -164,7 +168,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Text Input</td>
-      <td>1.4.0</td>
+      <td>1.4.1</td>
     </tr>
   </tbody>
 </table>
