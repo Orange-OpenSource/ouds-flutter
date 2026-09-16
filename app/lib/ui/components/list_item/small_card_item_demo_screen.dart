@@ -130,6 +130,7 @@ class _SmallCardItemDemo extends StatelessWidget {
       child: Column(
         children: [
           ListItemCustomizationUtils.buildSmallCardItem(
+            context,
             customizationState,
             themeController,
           ),

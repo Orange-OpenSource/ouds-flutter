@@ -88,7 +88,13 @@ class Neutral extends OudsIconStatus {
   /// The path to the custom SVG asset for the icon.
   final String? icon;
 
-  const Neutral({this.icon});
+  /// The label for accessibility when using a custom icon.
+  ///
+  /// This is required when [icon] is provided to ensure screen readers
+  /// can describe the status to users.
+  final String? semanticsLabel;
+
+  const Neutral({this.icon, this.semanticsLabel});
 }
 
 /// A status to highlight content related to discovery or special offers.
@@ -98,7 +104,13 @@ class Accent extends OudsIconStatus {
   /// The path to the custom SVG asset for the icon.
   final String? icon;
 
-  const Accent({this.icon});
+  /// The label for accessibility when using a custom icon.
+  ///
+  /// This is required when [icon] is provided to ensure screen readers
+  /// can describe the status to users.
+  final String? semanticsLabel;
+
+  const Accent({this.icon, this.semanticsLabel});
 }
 
 /// A status that indicates success, completion, or approval.

@@ -40,7 +40,6 @@ class OudsAssetImageUtils {
     required double height,
     Color? backgroundColor,
     BorderRadius? borderRadius,
-    String? contentDescription,
     String? package,
     BoxFit fit = BoxFit.cover,
   }) {
@@ -51,8 +50,7 @@ class OudsAssetImageUtils {
             height: height,
             fit: fit,
             package: package,
-            semanticsLabel: contentDescription,
-            excludeFromSemantics: contentDescription == null,
+            excludeFromSemantics: true,
           )
         : Image.asset(
             asset,
@@ -60,8 +58,7 @@ class OudsAssetImageUtils {
             height: height,
             fit: fit,
             package: package,
-            semanticLabel: contentDescription,
-            excludeFromSemantics: contentDescription == null,
+            excludeFromSemantics: true,
           );
 
     final Widget result = backgroundColor != null

@@ -131,10 +131,12 @@ class _ListItemDemo extends StatelessWidget {
         children: [
           customizationState.clickable
               ? ListItemCustomizationUtils.buildNavigationListItem(
+                  context,
                   customizationState,
                   themeController,
                 )
               : ListItemCustomizationUtils.buildListItem(
+                  context,
                   customizationState,
                   themeController,
                 ),
