@@ -574,6 +574,8 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
     // allowing for custom visual feedback without relying on CupertinoButton's
     // default opacity change.
     return GestureDetector(
+      excludeFromSemantics:
+          true, //exclude this wrapper from the semantics tree since the real accessible node is provided
       onTapDown: (_) => setState(() => _isPressed = true),
       onTapUp: (_) => setState(() => _isPressed = false),
       onTapCancel: () => setState(() => _isPressed = false),
