@@ -132,10 +132,12 @@ class _SmallListItemDemo extends StatelessWidget {
         children: [
           customizationState.clickable
               ? ListItemCustomizationUtils.buildNavigationSmallListItem(
+                  context,
                   customizationState,
                   themeController,
                 )
               : ListItemCustomizationUtils.buildSmallListItem(
+                  context,
                   customizationState,
                   themeController,
                 ),

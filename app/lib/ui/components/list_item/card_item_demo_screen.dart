@@ -129,6 +129,7 @@ class _CardItemDemo extends StatelessWidget {
       child: Column(
         children: [
           ListItemCustomizationUtils.buildCardItem(
+            context,
             customizationState,
             themeController,
           ),
