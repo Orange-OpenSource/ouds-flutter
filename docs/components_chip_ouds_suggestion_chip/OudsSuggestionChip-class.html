@@ -55,7 +55,7 @@
     
 <section class="desc markdown">
   <p><a href="https://r.orange.fr/r/S-ouds-doc-suggestion-chip">OUDS Chip design guidelines</a></p>
-<p><strong>Reference design version : 1.4.0</strong></p>
+<p><strong>Reference design version : 1.5.0</strong></p>
 <p>Suggestion chip is a UI element that allows to present recommended or predictive options
 based on user’s input or context, and is commonly used to capture filtering decisions.</p>
 <p>This version of the suggestion chip uses the <em>text only</em> layout which is the most used layout.
@@ -63,7 +63,11 @@ Other layouts are available for this component: <em>text + icon</em> and <em>ico
 <p>Parameters:</p>
 <ul>
 <li><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/label.html">label</a>: Label displayed in the suggestion chip which describes the chip option.</li>
-<li><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/avatar.html">avatar</a>: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.</li>
+<li><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/icon.html">icon</a>: Icon displayed in the suggestion chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.</li>
+<li><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/contentDescription.html">contentDescription</a> : Description of the chip's content for accessibility purposes. This value is ignored if the chip also contains a label.</li>
+<li><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/tinted.html">tinted</a> : Controls whether the icon should be tinted with the theme color. Defaults to <code>true</code>.
+When set to <code>false</code>, the icon is displayed with its original colors (e.g., for multi-color icons).
+Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.</li>
 <li><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/onPressed.html">onPressed</a>: Callback invoked when the suggestion chip is clicked.</li>
 </ul>
 <h3 id="you-can-use-oudssuggestionchip-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip-class.html">OudsSuggestionChip</a> component in your project, customizing parameters as needed :</h3>
@@ -73,6 +77,13 @@ This is the default layout of the component.</p>
       label: 'Label',
       onPressed: () {}
     );
+</code></pre>
+<p><strong>Text with icon suggestion chip :</strong></p>
+<pre class="language-dart"><code class="language-dart">OudsSuggestionChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  onPressed: () {},
+)
 </code></pre>
 </section>
 
@@ -107,10 +118,17 @@ This is the default layout of the component.</p>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsSuggestionChip.new" class="callable">
-          <span class="name"><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/OudsSuggestionChip.html">OudsSuggestionChip</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-avatar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">avatar</span>, </span><span class="parameter" id="param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span></span>})</span>
+          <span class="name"><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/OudsSuggestionChip.html">OudsSuggestionChip</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-avatar"><span>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&quot;This parameter is deprecated and will be removed in a future version. Use icon instead in OudsSuggestionChip.icon constructor .&quot;)</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">avatar</span>, </span><span class="parameter" id="param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span></span>})</span>
         </dt>
         <dd>
-          
+          Creates a text-only <a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip-class.html">OudsSuggestionChip</a>.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="OudsSuggestionChip.icon" class="callable">
+          <span class="name"><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/OudsSuggestionChip.icon.html">OudsSuggestionChip.icon</a></span><span class="signature">({<span class="parameter" id="icon-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="icon-param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="icon-param-icon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="icon-param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span>, </span><span class="parameter" id="icon-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span><span class="parameter" id="icon-param-contentDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">contentDescription</span></span>})</span>
+        </dt>
+        <dd>
+          Creates an <a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip-class.html">OudsSuggestionChip</a> with a text and an icon.
             <div class="constructor-modifier features">const</div>
         </dd>
     </dl>
@@ -122,7 +140,19 @@ This is the default layout of the component.</p>
     <h2>Properties</h2>
     <dl class="properties">
         <dt id="avatar" class="property">
-  <span class="name"><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/avatar.html">avatar</a></span>
+  <span class="name"><a class="deprecated" href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/avatar.html">avatar</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="contentDescription" class="property">
+  <span class="name"><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/contentDescription.html">contentDescription</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
   
 
@@ -142,6 +172,18 @@ This is the default layout of the component.</p>
 <dd class="inherited">
   The hash code for this object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="icon" class="property">
+  <span class="name"><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/icon.html">icon</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
@@ -202,6 +244,18 @@ This is the default layout of the component.</p>
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="tinted" class="property">
+  <span class="name"><a href="../components_chip_ouds_suggestion_chip/OudsSuggestionChip/tinted.html">tinted</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
