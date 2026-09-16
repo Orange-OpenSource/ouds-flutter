@@ -126,7 +126,7 @@ class _BodyState extends State<_Body> {
             ),
           ),
           ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.progressIndicator,
+            version: OudsComponentVersion.linearProgressIndicator,
           ),
         ],
       ),

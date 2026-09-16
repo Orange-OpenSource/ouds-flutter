@@ -311,7 +311,7 @@ class _OudsListItemState extends State<OudsListItem> {
   @override
   Widget build(BuildContext context) {
     final oudsTheme = OudsTheme.of(context);
-    final tokens = oudsTheme.componentsTokens(context).listItem;
+    final tokens = oudsTheme.componentsTokens(context).controlListItem;
     final typography = oudsTheme.typographyTokens;
     final colorScheme = oudsTheme.colorScheme(context);
 
@@ -809,7 +809,7 @@ class _OudsListItemState extends State<OudsListItem> {
       width: _kFlagWidth,
       height: OudsTheme.of(
         context,
-      ).componentsTokens(context).listItem.sizeFlagHeight,
+      ).componentsTokens(context).controlListItem.sizeFlagHeight,
       child: flag,
     );
   }
@@ -850,7 +850,9 @@ class _OudsListItemState extends State<OudsListItem> {
     required OudsListItemContentAlignment contentAlignment,
     required OudsListItemSize size,
   }) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
 
@@ -993,7 +995,9 @@ class _OudsListItemState extends State<OudsListItem> {
     required OudsListItemContentAlignment contentAlignment,
     required OudsListItemSize size,
   }) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
     final contentColor = foreground.contentColor(enable);
@@ -1082,11 +1086,11 @@ class _OudsListItemState extends State<OudsListItem> {
         ? (size == OudsListItemSize.defaultSize
               ? OudsTheme.of(context)
                     .componentsTokens(context)
-                    .listItem
+                    .controlListItem
                     .spacePaddingBlockTopAlignmentTopTextContainerDefault
               : OudsTheme.of(context)
                     .componentsTokens(context)
-                    .listItem
+                    .controlListItem
                     .spacePaddingBlockTopAlignmentTopTextContainerSmall)
         : 0.0;
 
@@ -1166,7 +1170,9 @@ class _OudsListItemState extends State<OudsListItem> {
     Color contentColor,
     Color mutedColor,
   ) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final topPadding =
         widget.contentAlignment == OudsListItemContentAlignment.top
         ? switch (widget.size) {

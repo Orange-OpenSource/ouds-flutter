@@ -481,7 +481,9 @@ class OudsSmallListItem extends StatelessWidget {
     bool enable, {
     required OudsListItemContentAlignment contentAlignment,
   }) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
 
