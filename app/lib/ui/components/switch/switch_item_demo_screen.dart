@@ -164,20 +164,19 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
   ThemeController? themeController;
   bool _isSwitchOn = true;
 
-  ControlItemCustomizationState? customizationState;
-
   @override
   Widget build(BuildContext context) {
-    customizationState = ControlItemCustomization.of(context);
+    final customizationState = ControlItemCustomization.of(context)!;
     themeController = Provider.of<ThemeController>(context, listen: true);
 
     return LightDarkBox(
+      isEdgeToEdge: customizationState.edgeToEdge,
       hasConstrainedMaxWidthOption: true,
       child: Column(
         children: [
           OudsSwitchButtonItem(
             value: _isSwitchOn,
-            onChanged: customizationState!.hasEnabled
+            onChanged: customizationState.hasEnabled
                 ? (bool? newValue) {
                     setState(() {
                       _isSwitchOn = newValue!;
@@ -185,24 +184,24 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
                   }
                 : null,
             title: ControlItemCustomizationUtils.getLabelText(
-              customizationState!,
+              customizationState,
             ),
             helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
-              customizationState!,
+              customizationState,
             ),
-            reversed: customizationState!.hasReversed ? true : false,
-            readOnly: customizationState!.hasReadOnly ? true : false,
-            icon: customizationState!.hasIcon
+            reversed: customizationState.hasReversed ? true : false,
+            readOnly: customizationState.hasReadOnly ? true : false,
+            icon: customizationState.hasIcon
                 ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
                     themeController!,
                   )
                 : null,
-            isError: customizationState!.hasError ? true : false,
+            isError: customizationState.hasError ? true : false,
             errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(
-              customizationState!,
+              customizationState,
             ),
-            divider: customizationState!.hasDivider ? true : false,
-            constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+            divider: customizationState.hasDivider ? true : false,
+            constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                 ? true
                 : false,
           ),
@@ -244,13 +243,20 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = ControlItemCustomization.of(context);
+    final customizationState = ControlItemCustomization.of(context)!;
 
     return CustomizableSection(
       children: [
         CustomizableSwitch(
+          title: context.l10n.app_components_common_edgeToEdge_tech,
+          value: customizationState.edgeToEdge,
+          onChanged: (value) {
+            customizationState.edgeToEdge = value;
+          },
+        ),
+        CustomizableSwitch(
           title: context.l10n.app_components_controlItem_icon_label,
-          value: customizationState!.hasIcon,
+          value: customizationState.hasIcon,
           onChanged: customizationState.isIconWhenError
               ? null
               : (value) {

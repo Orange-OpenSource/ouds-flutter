@@ -49,7 +49,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Please select a chip by navigating through the options';
 
   @override
-  String get app_common_selected_label => 'Selected';
+  String get app_common_selected_tech => 'Selected';
 
   @override
   String get app_topBar_theme_button_a11y => 'Change theme';
@@ -292,6 +292,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_common_type_tech => 'Type';
+
+  @override
+  String get app_components_common_icon_tech => 'Icon';
 
   @override
   String get app_components_common_tinted_tech => 'Tinted';
