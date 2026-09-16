@@ -58,6 +58,7 @@ class ListItemCodeGenerator {
       if (!state.enable) '  enable: false,',
       if (state.clickable) '  onTap: () { /* navigate */ },',
       if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
+      '  edgeToEdge: ${state.edgeToEdge},',
     ];
     return 'OudsListItem(\n${params.join('\n')}\n)';
   }
@@ -83,6 +84,7 @@ class ListItemCodeGenerator {
       if (!state.enable) '  enable: false,',
       if (state.clickable) '  onTap: () { /* navigate */ },',
       if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
+      '  edgeToEdge: ${state.edgeToEdge},',
     ];
     return 'OudsSmallListItem(\n${params.join('\n')}\n)';
   }
