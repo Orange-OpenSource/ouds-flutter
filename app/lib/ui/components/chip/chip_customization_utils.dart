@@ -42,12 +42,13 @@ class ChipCustomizationUtils {
   static String? getIcon(
     ChipCustomizationState? customizationState,
     ThemeController themeController,
+    bool isTinted,
   ) {
     if (customizationState?.selectedLayout == ChipEnumLayout.iconOnly ||
         customizationState?.selectedLayout == ChipEnumLayout.iconAndText) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-        themeController,
-      );
+      return isTinted
+          ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+          : AppAssets.icons.icUntintedSquare;
     }
     return null;
   }

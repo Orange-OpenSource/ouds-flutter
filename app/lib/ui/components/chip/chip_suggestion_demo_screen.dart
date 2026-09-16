@@ -25,6 +25,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.d
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
@@ -142,16 +143,45 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
     customizationState = ChipCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
-    return LightDarkBox(
-      child: OudsSuggestionChip(
-        label: ChipCustomizationUtils.getText(customizationState),
-        avatar: ChipCustomizationUtils.getIcon(
-          customizationState,
-          themeController!,
-        ),
-        onPressed: customizationState?.hasEnabled == true ? () {} : null,
-      ),
-    );
+    return LightDarkBox(child: _buildOudsSuggestionChip(context));
+  }
+
+  Widget _buildOudsSuggestionChip(BuildContext context) {
+    switch (customizationState?.selectedLayout) {
+      case ChipEnumLayout.textOnly:
+        return OudsSuggestionChip(
+          label: ChipCustomizationUtils.getText(customizationState),
+          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+        );
+      case ChipEnumLayout.iconAndText:
+        return OudsSuggestionChip.icon(
+          label: ChipCustomizationUtils.getText(customizationState),
+          icon: ChipCustomizationUtils.getIcon(
+            customizationState,
+            themeController!,
+            customizationState!.tintedIcon,
+          ),
+          tinted: customizationState!.tintedIcon,
+          onPressed: customizationState!.hasEnabled == true ? () {} : null,
+        );
+      case ChipEnumLayout.iconOnly:
+        return OudsSuggestionChip.icon(
+          icon: ChipCustomizationUtils.getIcon(
+            customizationState,
+            themeController!,
+            customizationState!.tintedIcon,
+          ),
+          contentDescription: context.l10n.app_components_common_icon_a11y,
+          tinted: customizationState!.tintedIcon,
+          onPressed: customizationState!.hasEnabled == true ? () {} : null,
+        );
+
+      default:
+        return OudsSuggestionChip(
+          label: ChipCustomizationUtils.getText(customizationState),
+          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+        );
+    }
   }
 }
 
@@ -204,6 +234,23 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.selectedLayout = selectedOption;
             });
           },
+        ),
+        Visibility(
+          visible:
+              customizationState.selectedLayout == ChipEnumLayout.iconAndText ||
+              customizationState.selectedLayout == ChipEnumLayout.iconOnly,
+          child: CustomizableChips<TintedEnum>(
+            title: context.l10n.app_components_common_icon_tech,
+            options: customizationState.tintedIconState.list,
+            selectedOption: customizationState.tintedIconState.selected,
+            getText: (option) => option.stringValue(context),
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.tintedIcon =
+                    selectedOption == TintedEnum.tinted;
+              });
+            },
+          ),
         ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,

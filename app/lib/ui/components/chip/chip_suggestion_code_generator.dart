@@ -26,28 +26,35 @@ class ChipSuggestionCodeGenerator {
   // Static method to generate the code based on chip customization state
   static String updateCode(BuildContext context) {
     // Fetch the current chip customization state from context
-    final ChipCustomizationState? customizationState = ChipCustomization.of(context);
+    final ChipCustomizationState? customizationState = ChipCustomization.of(
+      context,
+    );
 
     // Get the text value for the chip from customization state
     String label = customizationState?.labelText ?? "Label";
 
     // Get the chip's layout from customization state
-    OudsChipLayout layout = ChipCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
+    OudsChipLayout layout = ChipCustomizationUtils.getLayout(
+      customizationState?.selectedLayout as Object,
+    );
 
     String code = '';
 
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsChipLayout.textOnly:
-        code = """OudsSuggestionChip(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
+        code =
+            """OudsSuggestionChip(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
         break;
 
       case OudsChipLayout.iconOnly:
-        code = "OudsSuggestionChip(\navatar: 'assets/ic_heart.svg',\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
+        code =
+            "OudsSuggestionChip.icon(\nicon: 'assets/ic_heart.svg',\ntinted: ${customizationState?.tintedIcon == true ? "true" : 'false'},\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
         break;
 
       case OudsChipLayout.iconAndText:
-        code = """OudsSuggestionChip(\nlabel: "$label",\navatar: 'assets/ic_heart.svg',\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
+        code =
+            """OudsSuggestionChip.icon(\nlabel: "$label",\nicon: 'assets/ic_heart.svg',\ntinted: ${customizationState?.tintedIcon == true ? "true" : 'false'},\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
         break;
     }
 

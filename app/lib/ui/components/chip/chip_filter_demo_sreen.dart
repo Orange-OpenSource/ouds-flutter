@@ -25,6 +25,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.d
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
@@ -133,32 +134,80 @@ class _ChipFilterDemo extends StatefulWidget {
 }
 
 class _ChipFilterDemoState extends State<_ChipFilterDemo> {
-  ThemeController? themeController;
-  ChipCustomizationState? customizationState;
-  bool isSelected = false;
-
   @override
   Widget build(BuildContext context) {
-    customizationState = ChipCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: true);
+    return LightDarkBox(child: _buildOudsFilterChip(context));
+  }
 
-    return LightDarkBox(
-      child: OudsFilterChip(
-        label: ChipCustomizationUtils.getText(customizationState),
-        avatar: ChipCustomizationUtils.getIcon(
-          customizationState,
-          themeController!,
-        ),
-        selected: customizationState?.hasSelected,
-        onSelected: customizationState?.hasEnabled == true
-            ? (newValue) {
-                setState(() {
-                  customizationState?.hasSelected = newValue;
-                });
-              }
-            : null,
-      ),
+  Widget _buildOudsFilterChip(BuildContext context) {
+    ChipCustomizationState? customizationState = ChipCustomization.of(context);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: true,
     );
+
+    switch (customizationState?.selectedLayout) {
+      case ChipEnumLayout.textOnly:
+        return OudsFilterChip(
+          label: ChipCustomizationUtils.getText(customizationState),
+          selected: customizationState!.hasSelected,
+          onSelected: customizationState.hasEnabled == true
+              ? (newValue) {
+                  setState(() {
+                    customizationState.hasSelected = newValue;
+                  });
+                }
+              : null,
+        );
+      case ChipEnumLayout.iconAndText:
+        return OudsFilterChip.icon(
+          label: ChipCustomizationUtils.getText(customizationState),
+          icon: ChipCustomizationUtils.getIcon(
+            customizationState,
+            themeController,
+            customizationState!.tintedIcon,
+          ),
+          tinted: customizationState.tintedIcon,
+          selected: customizationState.hasSelected,
+          onSelected: customizationState.hasEnabled == true
+              ? (newValue) {
+                  setState(() {
+                    customizationState.hasSelected = newValue;
+                  });
+                }
+              : null,
+        );
+      case ChipEnumLayout.iconOnly:
+        return OudsFilterChip.icon(
+          icon: ChipCustomizationUtils.getIcon(
+            customizationState,
+            themeController,
+            customizationState!.tintedIcon,
+          ),
+          contentDescription: context.l10n.app_components_common_icon_a11y,
+          tinted: customizationState.tintedIcon,
+          selected: customizationState.hasSelected,
+          onSelected: customizationState.hasEnabled == true
+              ? (newValue) {
+                  setState(() {
+                    customizationState.hasSelected = newValue;
+                  });
+                }
+              : null,
+        );
+      default:
+        return OudsFilterChip(
+          label: ChipCustomizationUtils.getText(customizationState),
+          selected: customizationState!.hasSelected,
+          onSelected: customizationState.hasEnabled == true
+              ? (newValue) {
+                  setState(() {
+                    customizationState.hasSelected = newValue;
+                  });
+                }
+              : null,
+        );
+    }
   }
 }
 
@@ -202,7 +251,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_common_selected_label,
+          title: context.l10n.app_common_selected_tech,
           value: customizationState.hasSelected,
           onChanged: (value) {
             setState(() {
@@ -220,6 +269,23 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.selectedLayout = selectedOption;
             });
           },
+        ),
+        Visibility(
+          visible:
+              customizationState.selectedLayout == ChipEnumLayout.iconAndText ||
+              customizationState.selectedLayout == ChipEnumLayout.iconOnly,
+          child: CustomizableChips<TintedEnum>(
+            title: context.l10n.app_components_common_icon_tech,
+            options: customizationState.tintedIconState.list,
+            selectedOption: customizationState.tintedIconState.selected,
+            getText: (option) => option.stringValue(context),
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.tintedIcon =
+                    selectedOption == TintedEnum.tinted;
+              });
+            },
+          ),
         ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,

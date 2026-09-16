@@ -771,6 +771,69 @@ OudsInputDecoration(
 
 ---
 
+#### 3.3.0bis `OudsFilterChip` → `avatar` deprecated in favor of `OudsFilterChip.icon` (`v1.3.1 → v2.0.0`)
+
+**Before:**
+
+```dart
+OudsFilterChip(
+  label: 'Label',
+  avatar: 'assets/ic_chip_heart.svg',
+  selected: true,
+  onSelected: (bool selected) {},
+)
+```
+
+**After:**
+
+```dart
+OudsFilterChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  selected: true,
+  onSelected: (bool selected) {},
+)
+```
+
+**Required actions:**
+
+- Replace `OudsFilterChip(avatar: ...)` with `OudsFilterChip.icon(icon: ...)`.
+- Text-only filter chips keep using the default `OudsFilterChip(...)` constructor unchanged.
+- The deprecated `avatar` parameter on the default constructor still works but should be migrated.
+
+---
+
+#### 3.3.0ter `OudsSuggestionChip` → `avatar` deprecated in favor of `OudsSuggestionChip.icon` (`v1.3.1 → v2.0.0`)
+
+**Before:**
+
+```dart
+OudsSuggestionChip(
+  label: 'Label',
+  avatar: 'assets/ic_chip_heart.svg',
+  onPressed: () {},
+)
+```
+
+**After:**
+
+```dart
+OudsSuggestionChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  tinted: true,
+  onPressed: () {},
+)
+```
+
+**Required actions:**
+
+- Replace `OudsSuggestionChip(avatar: ...)` with `OudsSuggestionChip.icon(icon: ...)`.
+- Text-only suggestion chips keep using the default `OudsSuggestionChip(...)` constructor unchanged.
+- The deprecated `avatar` parameter on the default constructor still works but should be migrated.
+
+---
+
 #### 3.3.1 `OudsTag` → named constructors (`v1.2.x` → `v1.3.0`)
 
 **Before:**
