@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
+- [Library] For `Button` component, add with `tinted` parameter ([#912](https://github.com/Orange-OpenSource/ouds-flutter/issues/912))
+- [Library] For `passwordInput` component, update to v1.3.1 ([#785](https://github.com/Orange-OpenSource/ouds-flutter/issues/785))
+- [Library] For `textInput` component, update to v1.4.1 ([#784](https://github.com/Orange-OpenSource/ouds-flutter/issues/784))
+- [Library] For `phoneNumberInput` component, update to v1.3.1 ([#839](https://github.com/Orange-OpenSource/ouds-flutter/issues/839))
 - [Library] Add typography Tokens component ([#905](https://github.com/Orange-OpenSource/ouds-flutter/issues/905))
 - [Library] update icons to use the icons pack 2.3.0 ([#863](https://github.com/Orange-OpenSource/ouds-flutter/issues/863))
 - [Library] In library, update `link` component to v2.4.0 ([#861](https://github.com/Orange-OpenSource/ouds-flutter/issues/861))
@@ -17,6 +21,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - [Library] `Navigation Button` Disabled state is not vocalized ([#931](https://github.com/Orange-OpenSource/ouds-flutter/issues/931))
 - [Library] fix: fix Indicator Icon with text direction `list item` to resolve ar ([#925](https://github.com/Orange-OpenSource/ouds-flutter/issues/925))
+- [Library] `List item` with external indicator should have a role link ([#918](https://github.com/Orange-OpenSource/ouds-flutter/issues/918))
+- [Library] `List item` Trailing, labels and leading elements should be grouped ([#919](https://github.com/Orange-OpenSource/ouds-flutter/issues/919))
+- [Library] `List item` Leading/Trailing elements have a wrong accessible name ([#927](https://github.com/Orange-OpenSource/ouds-flutter/issues/927))
+- [Library] `list item` fix Indicator Icon with text direction  to resolve ar ([#925](https://github.com/Orange-OpenSource/ouds-flutter/issues/925))
 - [Library] Invalid value: Not in inclusive range 0..2: 3 dans OudsTabBar` ([#896](https://github.com/Orange-OpenSource/ouds-flutter/issues/896))
 
 ## [2.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.0.0...2.1.0) - 2026-08-07
