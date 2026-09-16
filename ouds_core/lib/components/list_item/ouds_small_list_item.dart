@@ -83,7 +83,7 @@ class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
   /// Accessibility description of the image for screen readers.
   ///
   /// When `null`, the image is excluded from the accessibility tree.
-  final String? contentDescription;
+  final String? semanticsLabel;
 
   /// Aspect-ratio format. Defaults to [OudsListItemImageFormat.square].
   final OudsListItemImageFormat format;
@@ -91,7 +91,7 @@ class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
   /// Creates a compact leading image configuration.
   const OudsSmallListItemLeadingImage({
     required this.asset,
-    this.contentDescription,
+    this.semanticsLabel,
     this.format = OudsListItemImageFormat.square,
   });
 }
@@ -148,7 +148,7 @@ class OudsSmallListItemTrailingImage extends OudsSmallListItemTrailing {
   /// Accessibility description of the image for screen readers.
   ///
   /// When `null`, the image is excluded from the accessibility tree.
-  final String? contentDescription;
+  final String? semanticsLabel;
 
   /// Aspect-ratio format. Defaults to [OudsListItemImageFormat.square].
   final OudsListItemImageFormat format;
@@ -156,7 +156,7 @@ class OudsSmallListItemTrailingImage extends OudsSmallListItemTrailing {
   /// Creates a compact trailing image configuration.
   const OudsSmallListItemTrailingImage({
     required this.asset,
-    this.contentDescription,
+    this.semanticsLabel,
     this.format = OudsListItemImageFormat.square,
   });
 }
@@ -400,10 +400,10 @@ class OudsSmallListItem extends StatelessWidget {
         ),
       OudsSmallListItemLeadingImage(
         :final asset,
-        :final contentDescription,
+        :final semanticsLabel,
         :final format,
       ) =>
-        _buildSmallImage(context, asset, format, contentDescription),
+        _buildSmallImage(context, asset, format, semanticsLabel),
     };
   }
 
@@ -451,10 +451,10 @@ class OudsSmallListItem extends StatelessWidget {
         ),
       OudsSmallListItemTrailingImage(
         :final asset,
-        :final contentDescription,
+        :final semanticsLabel,
         :final format,
       ) =>
-        _buildSmallImage(context, asset, format, contentDescription),
+        _buildSmallImage(context, asset, format, semanticsLabel),
       OudsSmallListItemTrailingText(:final label, :final style) =>
         _buildSmallTrailingText(
           context,
@@ -514,14 +514,14 @@ class OudsSmallListItem extends StatelessWidget {
     BuildContext context,
     String asset,
     OudsListItemImageFormat format,
-    String? contentDescription,
+    String? semanticsLabel,
   ) {
     return OudsListItemAssetBuilder.buildImage(
       context,
       asset,
       _kSmallAssetSize,
       format,
-      contentDescription: contentDescription,
+      semanticsLabel: semanticsLabel,
       backgroundColor: OudsTheme.of(
         context,
       ).colorScheme(context).surfaceBrandPrimary,
