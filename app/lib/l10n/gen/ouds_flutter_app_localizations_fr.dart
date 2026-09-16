@@ -245,6 +245,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_common_helperText_label => 'Helper text';
 
   @override
+  String get app_components_common_annotatedText_tech =>
+      'Annotated example text';
+
+  @override
   String get app_components_common_appearance_label => 'Appearance';
 
   @override
@@ -292,7 +296,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_common_type_tech => 'Type';
 
   @override
-  String get app_components_common_tinted_tech => 'Tinted icon';
+  String get app_components_common_tinted_tech => 'Tinted';
+
+  @override
+  String get app_components_common_untinted_tech => 'Untinted';
 
   @override
   String get app_components_alert_tech => 'Alert';
@@ -835,7 +842,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_passwordInput_error_label =>
-      'Please enter your password.';
+      'Your password can\'t be empty';
 
   @override
   String get app_components_pinCodeInput_label => 'Pin code input';
