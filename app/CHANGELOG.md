@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...develop)
 ### Added
+- [DemoApp][Library] For `control item` components, add edge to edge configuration ([#880](https://github.com/Orange-OpenSource/ouds-flutter/issues/880))
 - [DemoApp][Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
 - [DemoApp][Library] In library, update chips components to v1.5.0 ([#837](https://github.com/Orange-OpenSource/ouds-flutter/issues/837))
