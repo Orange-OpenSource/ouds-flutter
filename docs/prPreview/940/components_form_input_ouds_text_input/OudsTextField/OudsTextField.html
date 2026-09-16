@@ -85,7 +85,7 @@
   this.helperLink,
   this.trailingIconContentDescription,
 }) : assert(
-       !(decoration.loader == true &amp;&amp; decoration.errorText != null),
+       !(decoration.loader != null &amp;&amp; decoration.errorText != null),
        &quot;Error status for Loading state is not relevant&quot;,
      );</code></pre>
 </section>
