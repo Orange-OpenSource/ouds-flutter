@@ -26,6 +26,7 @@ import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_cu
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/typography/typography_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:provider/provider.dart';
@@ -121,6 +122,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final alertMessageState = AlertCustomization.of(context);
     final listItemState = ListItemCustomization.of(context);
     final progressIndicatorState = ProgressIndicatorCustomization.of(context);
+    final typographyState = TypographyCustomization.of(context);
 
     final value = _textController.text;
 
@@ -140,6 +142,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         alertMessageState?.label = value;
         listItemState?.label = value;
         progressIndicatorState?.value = value;
+        typographyState?.labelText = value;
         break;
       case FieldType.helper:
         textInputState?.helperText = value;

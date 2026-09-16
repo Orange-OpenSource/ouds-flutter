@@ -160,6 +160,17 @@
   "@_components_topAppBar": {},
   "app_components_topAppBar_description_text": "L'app bar (ou barre d'application) est un composant situé en haut de l'ecran qui affiche le titre et donne accès aux actions principales et aux éléments de navigation.",
 
+  "@_components_typography": {},
+  "app_components_typography_description_text": "Les composants de typographie offrent un système complet de styles de texte pour créer des hiérarchies claires et des interfaces lisibles.",
+  "app_components_typography_display_description_text": "Display (ou l'affichage) est un élément d'interface utilisateur qui stylise la typographie pour un contenu percutant comme les pages de destination, les campagnes marketing et les messages clés.",
+  "app_components_typography_heading_description_text": "Heading (ou le titre) est un élément d'interface utilisateur qui stylise la typographie pour structurer le contenu et définir la hiérarchie de l'information au sein d'une interface.",
+  "app_components_typography_body_description_text": "Body (ou le corps) du texte est un élément d'interface utilisateur qui stylise la typographie pour le contenu textuel courant comme les paragraphes, descriptions et messages informatifs.",
+  "app_components_typography_label_description_text": "Label (ou l'étiquette) est un élément d'interface utilisateur qui stylise la typographie pour des composants d'interface compacts tels que les boutons, les champs de formulaire, les badges et autres petits éléments.",
+  "app_components_typography_code_description_text": "Code (ou l'élément de code) est un élément d'interface utilisateur qui stylise la typographie pour le contenu technique comme les extraits de code, commandes, valeurs système et identifiants.",
+  "app_components_typography_heading_marker_tech": "Repère",
+  "app_components_typography_weight_tech": "Poids",
+  "app_components_typography_annotatedTextExample_tech": "Exemple de texte annoté",
+
   "@_about_screen": {},
   "app_about_name_label": "Boîte à outils du système de conception",
   "app_about_tokensVersion_label": "Version des tokens %s",
