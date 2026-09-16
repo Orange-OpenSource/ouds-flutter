@@ -175,11 +175,11 @@ abstract class AppLocalizations {
   /// **'Please select a chip by navigating through the options'**
   String get app_common_customizeChipsHint_a11y;
 
-  /// No description provided for @app_common_selected_label.
+  /// No description provided for @app_common_selected_tech.
   ///
   /// In en, this message translates to:
   /// **'Selected'**
-  String get app_common_selected_label;
+  String get app_common_selected_tech;
 
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
@@ -636,6 +636,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Type'**
   String get app_components_common_type_tech;
+
+  /// No description provided for @app_components_common_icon_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get app_components_common_icon_tech;
 
   /// No description provided for @app_components_common_tinted_tech.
   ///

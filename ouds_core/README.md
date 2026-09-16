@@ -96,7 +96,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Filter Chip</td>
-      <td>1.4.0</td>
+      <td>1.5.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Inline Alert</td>
@@ -153,6 +153,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     <tr>
       <td>Static list item</td>
       <td>0.1.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Suggestion chip</td>
+      <td>1.5.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Switch</td>
