@@ -110,18 +110,26 @@ class BadgeCustomizationUtils {
       case StatusEnum.neutral:
         return Neutral(
           icon: customizationState.selectedType == BadgeEnumType.icon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                  themeController!,
-                )
+              ? customizationState.isTinted
+                    ? AppAssets.icons.assistanceTipsAndTricks(themeController!)
+                    : AppAssets.icons.icUntintedSquare
               : null,
+          tinted: customizationState.isTinted,
+          backgroundColor: customizationState.isTinted
+              ? null
+              : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
         );
       case StatusEnum.accent:
         return Accent(
           icon: customizationState.selectedType == BadgeEnumType.icon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                  themeController!,
-                )
+              ? customizationState.isTinted
+                    ? AppAssets.icons.assistanceTipsAndTricks(themeController!)
+                    : AppAssets.icons.icUntintedSquare
               : null,
+          tinted: customizationState.isTinted,
+          backgroundColor: customizationState.isTinted
+              ? null
+              : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
         );
       case StatusEnum.positive:
         return Positive();
@@ -174,5 +182,10 @@ class BadgeCustomizationUtils {
       );
     }
     return null;
+  }
+
+  static bool isNonFunctionalStatus(BadgeCustomizationState status) {
+    return status.selectedStatus == StatusEnum.accent ||
+        status.selectedStatus == StatusEnum.neutral;
   }
 }

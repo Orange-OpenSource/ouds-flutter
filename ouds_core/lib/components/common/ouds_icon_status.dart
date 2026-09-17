@@ -15,6 +15,8 @@
 /// {@category Tag}
 library;
 
+import 'dart:ui';
+
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 
 /// Describes the configuration for an [OudsBadge] / [OudsTag] with an icon.
@@ -51,10 +53,10 @@ import 'package:ouds_core/components/badge/ouds_badge.dart';
 ///   iconStatus: Positive(),
 /// );
 ///
-/// // A tag with a custom user-provided icon.
+/// // A tag with a custom user-provided icon with untined icon
 /// OudsTag(
 ///   label: 'Custom',
-///   iconStatus: Neutral(icon: 'assets/my_custom_icon.svg'),
+///   iconStatus: Neutral(icon: 'assets/my_custom_icon.svg, tinted = false'),
 /// );
 /// ```
 ///
@@ -94,7 +96,27 @@ class Neutral extends OudsIconStatus {
   /// can describe the status to users.
   final String? semanticsLabel;
 
-  const Neutral({this.icon, this.semanticsLabel});
+  ///  Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+  ///  When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+  ///   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
+  final bool tinted;
+
+  /// The background color to apply behind the icon.
+  ///
+  /// Only applicable when [tinted] is `false`. When [tinted] is `true`,
+  /// this parameter is ignored and the theme's default background color is used instead.
+  final Color? backgroundColor;
+
+  const Neutral({
+    this.icon,
+    this.semanticsLabel,
+    this.tinted = true,
+    this.backgroundColor,
+  }) : assert(
+         backgroundColor == null || !tinted,
+         'backgroundColor is only applicable when tinted is false. '
+         'When tinted is true, the theme default background color is applied.',
+       );
 }
 
 /// A status to highlight content related to discovery or special offers.
@@ -110,7 +132,27 @@ class Accent extends OudsIconStatus {
   /// can describe the status to users.
   final String? semanticsLabel;
 
-  const Accent({this.icon, this.semanticsLabel});
+  ///  Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+  ///  When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+  ///   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
+  final bool tinted;
+
+  /// The background color to apply behind the icon.
+  ///
+  /// Only applicable when [tinted] is `false`. When [tinted] is `true`,
+  /// this parameter is ignored and the theme's default background color is used instead.
+  final Color? backgroundColor;
+
+  const Accent({
+    this.icon,
+    this.semanticsLabel,
+    this.tinted = true,
+    this.backgroundColor,
+  }) : assert(
+         backgroundColor == null || !tinted,
+         'backgroundColor is only applicable when tinted is false. '
+         'When tinted is true, the theme default background color is applied.',
+       );
 }
 
 /// A status that indicates success, completion, or approval.
@@ -132,3 +174,18 @@ class Warning extends OudsIconStatus {}
 ///
 /// This status uses a fixed, predefined icon from the design system.
 class Negative extends OudsIconStatus {}
+
+/// Shared helpers derived from an [OudsIconStatus], usable by any component
+/// (badge, alert, tag, …) that displays a custom [Neutral] or [Accent] icon.
+extension OudsBackgroundIconStatus on OudsIconStatus? {
+  /// Returns the background color to apply behind the icon.
+  ///
+  /// A custom background is only applied when the icon is not tinted
+  /// ([Neutral.tinted] or [Accent.tinted] is `false`). Otherwise, no
+  /// background is applied and the theme default is used.
+  Color? get backgroundColor => switch (this) {
+    Neutral(tinted: false, backgroundColor: final bg) => bg,
+    Accent(tinted: false, backgroundColor: final bg) => bg,
+    _ => null,
+  };
+}

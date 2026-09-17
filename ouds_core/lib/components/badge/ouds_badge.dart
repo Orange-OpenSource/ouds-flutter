@@ -135,7 +135,7 @@ enum OudsBadgeSize { xsmall, small, medium, large }
 /// ### Icon badge with custom icon (Neutral/Accent)
 /// ```dart
 /// OudsBadge.icon(
-///   status: Accent(icon: 'assets/heart-recommend.svg'),
+///   status: Accent(icon: 'assets/heart-recommend.svg', tinted: false),
 ///   size: OudsBadgeSize.large,
 ///   semanticsLabel: 'Favorite',
 ///   child: const Icon(Icons.person),
@@ -331,6 +331,8 @@ class _OudsBadgeState extends State<OudsBadge> {
     // The logic correctly prioritizes which icon to use.
     final iconPath = fixedIcon ?? userDefinedIcon ?? "";
 
+    final isTinted = badgeStatusModifier.isTintedIcon(widget.status);
+
     if (widget.status is Warning) {
       final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
 
@@ -382,15 +384,24 @@ class _OudsBadgeState extends State<OudsBadge> {
             );
     }
 
-    return SizedBox.expand(
-      child: SvgPicture.asset(
-        excludeFromSemantics: true,
-        iconPath,
-        fit: BoxFit.contain,
-        package: fixedIcon != null ? OudsTheme.of(context).packageName : null,
-        colorFilter: ColorFilter.mode(
-          badgeStatusModifier.getIconColor(widget.status, widget.enabled),
-          BlendMode.srcIn,
+    return Container(
+      color: widget.status.backgroundColor,
+      child: SizedBox.expand(
+        child: SvgPicture.asset(
+          matchTextDirection: true,
+          excludeFromSemantics: true,
+          iconPath,
+          fit: BoxFit.contain,
+          package: fixedIcon != null ? OudsTheme.of(context).packageName : null,
+          colorFilter: userDefinedIcon != null && !isTinted
+              ? null
+              : ColorFilter.mode(
+                  badgeStatusModifier.getIconColor(
+                    widget.status,
+                    widget.enabled,
+                  ),
+                  BlendMode.srcIn,
+                ),
         ),
       ),
     );

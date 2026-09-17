@@ -76,7 +76,14 @@ class _OudsInlineAlertState extends State<OudsInlineAlert> {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: alertTokens.spaceColumnGap,
         children: [
-          alertStatusModifier.buildStatusIcon(context, widget.status),
+          Container(
+            color: widget.status.backgroundColor,
+            child: alertStatusModifier.buildStatusIcon(
+              context,
+              widget.status,
+              null,
+            ),
+          ),
           Expanded(
             child: Container(
               constraints: BoxConstraints(

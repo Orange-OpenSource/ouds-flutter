@@ -152,7 +152,7 @@ class OudsAlertMessage extends StatefulWidget {
   /// Optional supplementary text providing more detail.
   final String? description;
 
-  /// The status of the alert, which determines its background color and icon.
+  /// The status of the alert, which determines its background color and icon is tinted or not.
   final OudsIconStatus? status;
 
   /// A callback invoked when the close button is clicked. If `null`, the close button is not shown.
@@ -241,11 +241,9 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
         : null;
 
     // Determine if a custom icon is provided for Neutral or Accent statuses.
-    final hasIcon = switch (widget.status) {
-      Neutral(icon: final assets) => assets,
-      Accent(icon: final assets) => assets,
-      _ => null,
-    };
+    final nonFunctionalIcon = alertMessageStatusModifier.getNonFunctionIcon(
+      widget.status,
+    );
 
     // Assemble the final alert content layout.
     Widget alertContent;
@@ -260,28 +258,34 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
               children: [
                 // Display custom icon for Neutral/Accent statuses if available.
                 if ((widget.status is Neutral || widget.status is Accent) &&
-                    hasIcon != null &&
-                    hasIcon.isNotEmpty) ...[
+                    nonFunctionalIcon != null &&
+                    nonFunctionalIcon.isNotEmpty) ...[
                   Padding(
                     padding: EdgeInsetsDirectional.only(
                       top: alertTokens.spacePaddingBlock,
                     ),
-                    child: SvgPicture.asset(
-                      matchTextDirection: true,
-                      excludeFromSemantics: true,
-                      hasIcon,
-                      width: MediaQuery.textScalerOf(
-                        context,
-                      ).scale(alertTokens.sizeIcon),
-                      height: MediaQuery.textScalerOf(
-                        context,
-                      ).scale(alertTokens.sizeIcon),
-                      fit: BoxFit.contain,
-                      colorFilter: ColorFilter.mode(
-                        alertMessageStatusModifier.getStatusIconColor(
-                          widget.status,
-                        ),
-                        BlendMode.srcIn,
+                    child: Container(
+                      color: widget.status.backgroundColor,
+                      child: SvgPicture.asset(
+                        matchTextDirection: true,
+                        excludeFromSemantics: true,
+                        nonFunctionalIcon,
+                        width: MediaQuery.textScalerOf(
+                          context,
+                        ).scale(alertTokens.sizeIcon),
+                        height: MediaQuery.textScalerOf(
+                          context,
+                        ).scale(alertTokens.sizeIcon),
+                        fit: BoxFit.contain,
+                        colorFilter:
+                            alertMessageStatusModifier.isTinted(widget.status)
+                            ? ColorFilter.mode(
+                                alertMessageStatusModifier.getStatusIconColor(
+                                  widget.status,
+                                ),
+                                BlendMode.srcIn,
+                              )
+                            : null,
                       ),
                     ),
                   ),
@@ -296,6 +300,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                     child: alertMessageStatusModifier.buildStatusIcon(
                       context,
                       widget.status,
+                      nonFunctionalIcon,
                     ),
                   ),
                   SizedBox(width: alertTokens.spaceColumnGap),

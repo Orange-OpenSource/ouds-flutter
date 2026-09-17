@@ -11,6 +11,8 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 
 /// Superclass for customization widget states
 abstract class CustomizationWidgetState<T extends StatefulWidget>
@@ -21,6 +23,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget>
   late final TextState textState;
   late final SelectState selectState;
   late final CenterAlignedState centerAlignedState;
+  late final TintedState tintedState;
 
   @override
   void initState() {
@@ -32,6 +35,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget>
     selectState = SelectState(setState);
     //needed for top bars
     centerAlignedState = CenterAlignedState(setState);
+    tintedState = TintedState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -53,6 +57,11 @@ abstract class CustomizationWidgetState<T extends StatefulWidget>
 
   bool get hasCentredAligned => centerAlignedState.value;
   set hasCentredAligned(bool value) => centerAlignedState.value = value;
+
+  bool get isTinted => tintedState.selected == TintedEnum.tinted;
+
+  TintedEnum get selectedTinted => tintedState.selected;
+  set selectedTinted(TintedEnum value) => tintedState.selected = value;
 }
 
 /// Enabled State Management
@@ -141,6 +150,26 @@ class CenterAlignedState {
   set value(bool newValue) {
     _setState(() {
       _hasCentredAligned = newValue;
+    });
+  }
+}
+
+/// Controls whether the icon displayed in the component such as [OudsLink.icon], [OudsButton] should be tinted
+/// with the theme color, or shown with its original colors.
+class TintedState {
+  TintedState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  final List<TintedEnum> _tintedList = [TintedEnum.tinted, TintedEnum.untinted];
+  TintedEnum _selectedTinted = TintedEnum.tinted;
+
+  List<TintedEnum> get list => _tintedList;
+
+  TintedEnum get selected => _selectedTinted;
+  set selected(TintedEnum newValue) {
+    _setState(() {
+      _selectedTinted = newValue;
     });
   }
 }

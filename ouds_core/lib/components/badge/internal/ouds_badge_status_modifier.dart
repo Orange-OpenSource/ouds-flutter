@@ -138,4 +138,12 @@ class OudsBadgeStatusModifier {
       _ => null,
     };
   }
+
+  bool isTintedIcon(OudsIconStatus? status) {
+    if (status == null) {
+      return true;
+    }
+    return ((status is Neutral && (status).tinted) ||
+        (status is Accent && (status).tinted));
+  }
 }

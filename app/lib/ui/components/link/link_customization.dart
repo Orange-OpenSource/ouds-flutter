@@ -35,7 +35,6 @@ class LinkCustomizationState
   late final LabelTextState labelTextState;
   late final SizeState sizeState;
   late final DensityState densityState;
-  late final TintedState tintedState;
 
   @override
   void initState() {
@@ -44,7 +43,6 @@ class LinkCustomizationState
     labelTextState = LabelTextState(setState);
     sizeState = SizeState(setState);
     densityState = DensityState(setState);
-    tintedState = TintedState(setState);
   }
 
   LinkEnumLayout get selectedLayout => layoutState.selected;
@@ -58,11 +56,6 @@ class LinkCustomizationState
 
   LinkEnumDensity get selectedDensity => densityState.selected;
   set selectedDensity(LinkEnumDensity value) => densityState.selected = value;
-
-  bool get isTinted => tintedState.selected == TintedEnum.tinted;
-
-  TintedEnum get selectedTinted => tintedState.selected;
-  set selectedTinted(TintedEnum value) => tintedState.selected = value;
 
   @override
   Widget build(BuildContext context) {
