@@ -23,13 +23,19 @@ class SoshTypographyTokens extends OudsTypographyTokens {
   SoshTypographyTokens(this.providersTokens);
 
   @override
-  Color get colorContentMarker => providersTokens.#ff000000Tokens;
+  Color get colorContentMarker => Color(0xff000000);
   @override
   bool get headingLargeMarker => false;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get spacePaddingBlockBottomHeadingLargeMarker => providersTokens.spaceTokens.paddingBlockNone;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  double get spacePaddingBlockBottomHeadingLargeMarker =>
+      providersTokens.spaceTokens.paddingBlockNone;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get spacePaddingBlockTopHeadingLargeMarker => providersTokens.spaceTokens.paddingBlockNone;
+  double get spacePaddingBlockTopHeadingLargeMarker =>
+      providersTokens.spaceTokens.paddingBlockNone;
 }
