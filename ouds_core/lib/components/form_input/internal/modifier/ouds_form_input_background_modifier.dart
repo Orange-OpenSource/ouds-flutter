@@ -71,8 +71,7 @@ class OudsFormFieldsBackgroundColorModifier {
         case OudsFormFieldsControlState.hovered:
           return theme.colorScheme(context).actionSupportHover;
         case OudsFormFieldsControlState.pressed:
-          // TODO: Handle this case.
-          throw UnimplementedError();
+          return theme.colorScheme(context).actionSupportPressed;
         case OudsFormFieldsControlState.focused:
           return defaultStyle
               ? theme.colorScheme(context).actionSupportPressed

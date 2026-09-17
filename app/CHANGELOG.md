@@ -7,8 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...develop)
 ### Added
 - [DemoApp][Library] Create component - `typography` ([#829](https://github.com/Orange-OpenSource/ouds-flutter/issues/829))
+- [DemoApp][Library] For `control item` components, add edge to edge configuration ([#880](https://github.com/Orange-OpenSource/ouds-flutter/issues/880))
 - [DemoApp][Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
+- [Library] update tokens 2.7.0 ([943](https://github.com/Orange-OpenSource/ouds-flutter/issues/943))
+- [DemoApp][Library] In library, update chips components to v1.5.0 ([#837](https://github.com/Orange-OpenSource/ouds-flutter/issues/837))
+- [DemoApp][Library] For `Button` component, add with `tinted` parameter ([#912](https://github.com/Orange-OpenSource/ouds-flutter/issues/912))
+- [DemoApp][Library] For `passwordInput` component, update to v1.3.1 ([#785](https://github.com/Orange-OpenSource/ouds-flutter/issues/785))
+- [DemoApp][Library] For `textInput` component, update to v1.4.1 ([#784](https://github.com/Orange-OpenSource/ouds-flutter/issues/784))
+- [DemoApp][Library] For `phoneNumberInput` component, update to v1.3.1 ([#839](https://github.com/Orange-OpenSource/ouds-flutter/issues/839))
 - [DemoApp] deps update dependency: bump archive from 3.6.1 to 4.2.0 ([#909](https://github.com/Orange-OpenSource/ouds-flutter/issues/909))
 - [Library] Add typography Tokens component ([#905](https://github.com/Orange-OpenSource/ouds-flutter/issues/905))
 - [DemoApp][Library] update icons to use the icons pack 2.3.0 ([#863](https://github.com/Orange-OpenSource/ouds-flutter/issues/863))
@@ -17,6 +24,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] For `button` component, update to version 3.3.0 ([#832](https://github.com/Orange-OpenSource/ouds-flutter/issues/832))
 - [DemoApp][Library] Update `progress-indicator`: add size parameter to OudsCircularProgressIndicator for button integration ([#876](https://github.com/Orange-OpenSource/ouds-flutter/issues/876))
 ### Fixed
+- [Library] Bug A11Y `Top bar` Action button and badge are not grouped in iOS ([#816](https://github.com/Orange-OpenSource/ouds-flutter/issues/816))
+- [Library] `Navigation Button` Disabled state is not vocalized ([#931](https://github.com/Orange-OpenSource/ouds-flutter/issues/931))
+- [Library] fix: fix Indicator Icon with text direction `list item` to resolve ar ([#925](https://github.com/Orange-OpenSource/ouds-flutter/issues/925))
+- [Library] `List item` with external indicator should have a role link ([#918](https://github.com/Orange-OpenSource/ouds-flutter/issues/918))
+- [Library] `List item` Trailing, labels and leading elements should be grouped ([#919](https://github.com/Orange-OpenSource/ouds-flutter/issues/919))
+- [Library] `List item` Leading/Trailing elements have a wrong accessible name ([#927](https://github.com/Orange-OpenSource/ouds-flutter/issues/927))
+- [Library] `list item` fix Indicator Icon with text direction  to resolve ar ([#925](https://github.com/Orange-OpenSource/ouds-flutter/issues/925))
 - [Library] Invalid value: Not in inclusive range 0..2: 3 dans OudsTabBar` ([#896](https://github.com/Orange-OpenSource/ouds-flutter/issues/896))
 - [DemoApp][Dependency] bump gradle-wrapper from 8.11.1 to 8.14.2 in /app/android ([#894](https://github.com/Orange-OpenSource/ouds-flutter/issues/894))
 

@@ -21,6 +21,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget>
   late final TextState textState;
   late final SelectState selectState;
   late final CenterAlignedState centerAlignedState;
+  late final EdgeState edgeToEdgeState;
 
   @override
   void initState() {
@@ -32,6 +33,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget>
     selectState = SelectState(setState);
     //needed for top bars
     centerAlignedState = CenterAlignedState(setState);
+    edgeToEdgeState = EdgeState(setState, initial: true);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -53,6 +55,9 @@ abstract class CustomizationWidgetState<T extends StatefulWidget>
 
   bool get hasCentredAligned => centerAlignedState.value;
   set hasCentredAligned(bool value) => centerAlignedState.value = value;
+
+  bool get edgeToEdge => edgeToEdgeState.value;
+  set edgeToEdge(bool value) => edgeToEdgeState.value = value;
 }
 
 /// Enabled State Management
@@ -141,6 +146,21 @@ class CenterAlignedState {
   set value(bool newValue) {
     _setState(() {
       _hasCentredAligned = newValue;
+    });
+  }
+}
+
+/// Edge to edge state management
+class EdgeState {
+  EdgeState(this._setState, {bool initial = false}) : _value = initial;
+
+  final void Function(void Function()) _setState;
+  bool _value;
+
+  bool get value => _value;
+  set value(bool newValue) {
+    _setState(() {
+      _value = newValue;
     });
   }
 }

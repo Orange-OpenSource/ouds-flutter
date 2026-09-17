@@ -36,7 +36,7 @@ class OudsListItemAssetBuilder {
   /// Accepts a path string to a local asset (raster or SVG).
   ///
   /// - [rounded] — when `true`, applies rounded corners using token-defined radius.
-  /// - [contentDescription] — when provided, exposed to the accessibility tree;
+  /// - [semanticsLabel] — when provided, exposed to the accessibility tree;
   ///   when `null`, the image is excluded from semantics (decorative).
   /// - [backgroundColor] — optional background color shown behind the image (useful
   ///   for transparent or SVG placeholder assets).
@@ -50,7 +50,7 @@ class OudsListItemAssetBuilder {
     OudsListItemAssetSize size,
     OudsListItemImageFormat format, {
     bool rounded = false,
-    String? contentDescription,
+    String? semanticsLabel,
     Color? backgroundColor,
     String? package,
   }) {
@@ -59,21 +59,24 @@ class OudsListItemAssetBuilder {
 
     final borderRadius = rounded
         ? BorderRadius.circular(
-            OudsTheme.of(
-              context,
-            ).componentsTokens(context).listItem.borderRadiusMediaRounded,
+            OudsTheme.of(context)
+                .componentsTokens(context)
+                .controlListItem
+                .borderRadiusMediaRounded,
           )
         : null;
 
     // Shared image/background rendering logic — reused by other components.
-    return OudsAssetImageUtils.buildImageWithBackground(
-      asset: asset,
-      width: width,
-      height: height,
-      backgroundColor: backgroundColor,
-      borderRadius: borderRadius,
-      contentDescription: contentDescription,
-      package: package,
+    return Semantics(
+      label: semanticsLabel,
+      child: OudsAssetImageUtils.buildImageWithBackground(
+        asset: asset,
+        width: width,
+        height: height,
+        backgroundColor: backgroundColor,
+        borderRadius: borderRadius,
+        package: package,
+      ),
     );
   }
 
@@ -86,7 +89,9 @@ class OudsListItemAssetBuilder {
     'This method will be removed together with countries.dart.',
   )
   static Widget buildFlag(BuildContext context, ImageProvider asset) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     return ClipRRect(
       borderRadius: BorderRadius.circular(2),
       child: Image(
@@ -139,6 +144,7 @@ class OudsListItemAssetBuilder {
 
     return SvgPicture.asset(
       assetName,
+      matchTextDirection: true,
       width: resolvedSize,
       height: resolvedSize,
       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),

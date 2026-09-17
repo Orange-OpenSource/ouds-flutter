@@ -176,18 +176,18 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
   RadioOption _selectedOption = RadioOption.first;
 
   ThemeController? themeController;
-  ControlItemCustomizationState? customizationState;
 
   @override
   Widget build(BuildContext context) {
-    customizationState = ControlItemCustomization.of(context);
+    final customizationState = ControlItemCustomization.of(context)!;
     themeController = Provider.of<ThemeController>(context, listen: false);
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+      themeController?.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
     return LightDarkBox(
+      isEdgeToEdge: customizationState.edgeToEdge,
       hasConstrainedMaxWidthOption: true,
       child: MergeSemantics(
         child: Column(
@@ -195,7 +195,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
             OudsRadioButtonItem<RadioOption>(
               value: RadioOption.first,
               groupValue: _selectedOption,
-              onChanged: customizationState!.hasEnabled
+              onChanged: customizationState.hasEnabled
                   ? (RadioOption? value) {
                       setState(() {
                         _selectedOption = value!;
@@ -203,33 +203,33 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                     }
                   : null,
               title: ControlItemCustomizationUtils.getLabelText(
-                customizationState!,
+                customizationState,
               ),
               extraLabelText:
                   ControlItemCustomizationUtils.getAdditionalLabelText(
-                    customizationState!,
+                    customizationState,
                   ),
               helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
-                customizationState!,
+                customizationState,
               ),
-              outlined: customizationState!.hasOutlined ? true : false,
-              reversed: customizationState!.hasReversed ? true : false,
-              readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon
+              outlined: customizationState.hasOutlined ? true : false,
+              reversed: customizationState.hasReversed ? true : false,
+              readOnly: customizationState.hasReadOnly ? true : false,
+              icon: customizationState.hasIcon
                   ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
                       themeController!,
                     )
                   : null,
-              isError: customizationState!.hasError ? true : false,
-              divider: customizationState!.hasDivider ? true : false,
-              constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+              isError: customizationState.hasError ? true : false,
+              divider: customizationState.hasDivider ? true : false,
+              constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                   ? true
                   : false,
             ),
             OudsRadioButtonItem<RadioOption>(
               value: RadioOption.second,
               groupValue: _selectedOption,
-              onChanged: customizationState!.hasEnabled
+              onChanged: customizationState.hasEnabled
                   ? (RadioOption? value) {
                       setState(() {
                         _selectedOption = value!;
@@ -237,29 +237,29 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                     }
                   : null,
               title: ControlItemCustomizationUtils.getLabelText(
-                customizationState!,
+                customizationState,
               ),
               extraLabelText:
                   ControlItemCustomizationUtils.getAdditionalLabelText(
-                    customizationState!,
+                    customizationState,
                   ),
               helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
-                customizationState!,
+                customizationState,
               ),
-              outlined: customizationState!.hasOutlined ? true : false,
-              reversed: customizationState!.hasReversed ? true : false,
-              readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon
+              outlined: customizationState.hasOutlined ? true : false,
+              reversed: customizationState.hasReversed ? true : false,
+              readOnly: customizationState.hasReadOnly ? true : false,
+              icon: customizationState.hasIcon
                   ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
                       themeController!,
                     )
                   : null,
-              isError: customizationState!.hasError ? true : false,
+              isError: customizationState.hasError ? true : false,
               errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(
-                customizationState!,
+                customizationState,
               ),
-              divider: customizationState!.hasDivider ? true : false,
-              constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+              divider: customizationState.hasDivider ? true : false,
+              constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                   ? true
                   : false,
             ),
@@ -305,13 +305,20 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = ControlItemCustomization.of(context);
+    final customizationState = ControlItemCustomization.of(context)!;
 
     return CustomizableSection(
       children: [
         CustomizableSwitch(
+          title: context.l10n.app_components_common_edgeToEdge_tech,
+          value: customizationState.edgeToEdge,
+          onChanged: (value) {
+            customizationState.edgeToEdge = value;
+          },
+        ),
+        CustomizableSwitch(
           title: context.l10n.app_components_controlItem_icon_label,
-          value: customizationState!.hasIcon,
+          value: customizationState.hasIcon,
           onChanged:
               customizationState.isReadOnlyWhenError ||
                   customizationState.isReadOnlyWhenEnabled

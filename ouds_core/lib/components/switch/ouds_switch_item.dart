@@ -47,6 +47,8 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 ///   Defaults to `false`.
 /// - [errorText]: Text shown below the switch item indicating an error state. Supports only strong text formatting using `**bold**`.
 ///   Rich text is supported only for error messages.
+/// - [edgeToEdge] Controls the horizontal layout of the checkbox item. When `true`, the checkbox item is designed to span the full width of the screen or container. When `false`,
+///   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
 ///
 ///
 /// ### You can use [OudsSwitchItem] component in your project, customizing parameters as needed :
@@ -69,6 +71,7 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 ///     icon: null,
 ///     isError: false,
 ///     divider: true,
+///     edgeToEdge: true
 ///     );
 /// ```
 ///
@@ -86,6 +89,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
   final bool enabled;
   final bool divider;
   final bool constrainedMaxWidth;
+  final bool edgeToEdge;
 
   const OudsSwitchButtonItem({
     super.key,
@@ -101,6 +105,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
     this.enabled = true,
     this.divider = false,
     this.constrainedMaxWidth = false,
+    this.edgeToEdge = true,
   });
 
   @override
@@ -122,6 +127,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
         errorComponentName: "OudsSwitchButtonItem",
         componentType: OudsControlItemType.switchButton,
         divider: divider,
+        edgeToEdge: edgeToEdge,
         constrainedMaxWidth: constrainedMaxWidth,
         reversed: reversed,
         onTap: onChanged != null
