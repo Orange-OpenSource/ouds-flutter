@@ -142,6 +142,10 @@ extension OudsButtonSizeTokens on OudsButtonTokens {
   double sizeIconOnly(OudsButtonSize size) =>
       size == OudsButtonSize.small ? sizeIconOnlySmall : sizeIconOnlyDefault;
 
+  double sizeMaxIconOnly(OudsButtonSize size) => size == OudsButtonSize.small
+      ? sizeMaxSizeIconOnlySmall
+      : sizeMaxSizeIconOnlyDefault;
+
   double sizeProgressIndicator(OudsButtonSize size) =>
       size == OudsButtonSize.small
       ? sizeProgressIndicatorSmall

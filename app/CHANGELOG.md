@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] For `control item` components, add edge to edge configuration ([#880](https://github.com/Orange-OpenSource/ouds-flutter/issues/880))
 - [DemoApp][Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
+- [Library] For `navigation button` component, update to v3.4.0 ([#870](https://github.com/Orange-OpenSource/ouds-flutter/issues/870))
+- [Library] For `button` component, update to version 3.4.0 ([#869](https://github.com/Orange-OpenSource/ouds-flutter/issues/869))
 - [Library] update tokens 2.7.0 ([943](https://github.com/Orange-OpenSource/ouds-flutter/issues/943))
 - [DemoApp][Library] In library, update chips components to v1.5.0 ([#837](https://github.com/Orange-OpenSource/ouds-flutter/issues/837))
 - [DemoApp][Library] For `Button` component, add with `tinted` parameter ([#912](https://github.com/Orange-OpenSource/ouds-flutter/issues/912))

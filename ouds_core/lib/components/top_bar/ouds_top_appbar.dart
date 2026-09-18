@@ -465,11 +465,13 @@ class _BadgeIconButtonState extends State<BadgeIconButton> {
         onTapUp: (_) => setState(() => _isPressed = false),
         onTapCancel: () => setState(() => _isPressed = false),
         child: Center(
-          child: OudsButton(
+          child: OudsButton.iconWithBadge(
             appearance: OudsButtonAppearance.minimal,
             icon: widget.icon,
             onPressed: widget.onPressed,
-          ).buildIconButtonWithBadge(context, widget.badge, buttonState),
+            badge: widget.badge,
+            buttonState: buttonState,
+          ),
         ),
       ),
     );
