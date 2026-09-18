@@ -188,6 +188,9 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     final theme = OudsTheme.of(context);
     final alertMessageStatusModifier = OudsAlertStatusModifier(context);
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
+    final alertMessageTokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).alertMessage;
     final l10n = OudsLocalizations.of(context);
     // Build the action link widget if provided.
     final actionLink = widget.actionLayout != null
@@ -272,10 +275,10 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                       hasIcon,
                       width: MediaQuery.textScalerOf(
                         context,
-                      ).scale(alertTokens.sizeIcon),
+                      ).scale(alertTokens.sizeAsset),
                       height: MediaQuery.textScalerOf(
                         context,
-                      ).scale(alertTokens.sizeIcon),
+                      ).scale(alertTokens.sizeAsset),
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
                         alertMessageStatusModifier.getStatusIconColor(
@@ -391,7 +394,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       ),
       decoration: BoxDecoration(
         border: OudsBorder().borderAll(
-          width: alertTokens.borderWidth,
+          width: alertMessageTokens.borderWidth,
           color: Colors.transparent,
         ),
         borderRadius: OudsAlertMessageBorderModifier.getBorderRadius(context),

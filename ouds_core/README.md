@@ -32,7 +32,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ## Tokens version
 
-- **OUDS core token version**: 1.10.0.
+- **OUDS core token version**: 1.11.0.
 
 ## Other OUDS Libraries
 
@@ -55,11 +55,11 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
   </thead>
   <tbody>
     <tr>
-      <td style="padding-left:10px;">Alert Message</td>
-      <td>1.1.1</td>
+      <td style="padding-left:10px;">Alert message</td>
+      <td>1.2.0</td>
     </tr>
     <tr>
-      <td style="padding-left:10px;">App Bar</td>
+      <td style="padding-left:10px;">App bar</td>
       <td>1.0.0</td>
     </tr>
     <tr>
@@ -67,44 +67,48 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.2.0</td>
     </tr>
     <tr>
-      <td style="padding-left:10px;">Badge Count</td>
+      <td style="padding-left:10px;">Badge count</td>
       <td>1.2.0</td>
     </tr>
     <tr>
-      <td style="padding-left:10px;">Badge Icon</td>
+      <td style="padding-left:10px;">Badge icon</td>
       <td>1.3.0</td>
     </tr>
     <tr>
-      <td style="padding-left:10px;">Bottom Sheet</td>
+      <td style="padding-left:10px;">Bottom sheet</td>
       <td>0.0.0</td>
     </tr>
     <tr>
-      <td style="padding-left:10px;">Bullet List</td>
-      <td>1.1.0</td>
-    </tr>
-    <tr>
       <td style="padding-left:10px;">Button</td>
-      <td>3.3.0</td>
+      <td>3.4.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Checkbox</td>
       <td>2.4.0</td>
     </tr>
     <tr>
+      <td style="padding:10px;">Circular progress indicator</td>
+      <td>1.2.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Divider</td>
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Filter Chip</td>
+      <td style="padding:10px;">Filter chip</td>
       <td>1.5.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Inline Alert</td>
+      <td style="padding:10px;">Inline alert</td>
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Input Tag</td>
+      <td style="padding:10px;">Input tag</td>
       <td>1.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Linear progress indicator</td>
+      <td>1.1.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Link</td>
@@ -115,8 +119,8 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.0.0</td>
     </tr>
     <tr>
-        <td>Navigation button</td>
-        <td>3.3.0</td>
+      <td>Navigation button</td>
+      <td>3.4.0</td>
     </tr>
     <tr>
       <td>Navigation card item</td>
@@ -137,10 +141,6 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     <tr>
       <td style="padding:10px;">Pin Code Input</td>
       <td>1.3.0</td>
-    </tr>
-    <tr>
-      <td style="padding:10px;">Progress Indicator</td>
-      <td>1.0.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Radio Button</td>
