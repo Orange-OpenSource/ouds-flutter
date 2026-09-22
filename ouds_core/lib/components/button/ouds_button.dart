@@ -97,7 +97,7 @@ enum OudsButtonComponent {
 
 /// [OUDS Button design guidelines](https://r.orange.fr/r/S-ouds-doc-button)
 ///
-/// **Reference design version : 3.3.0**
+/// **Reference design version : 3.4.0**
 ///
 /// Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
 /// Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
