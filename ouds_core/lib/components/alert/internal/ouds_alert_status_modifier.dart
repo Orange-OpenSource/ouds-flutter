@@ -129,7 +129,7 @@ class OudsAlertStatusModifier {
     //zoom in/out icon according to accessibility feature
     final textScaler = MediaQuery.textScalerOf(context);
     final double scaledSizeIcon = textScaler.scale(alertTokens.sizeIcon);
-    final tinted = isTinted(status);
+    final tinted = status?.isTinted ?? true;
 
     if (status is Warning) {
       return Stack(
@@ -218,22 +218,5 @@ class OudsAlertStatusModifier {
       case Neutral():
         return colorTheme.contentDefault;
     }
-  }
-
-  /// Determine if a custom icon is provided for Neutral or Accent statuses.
-  String? getNonFunctionIcon(OudsIconStatus? status) {
-    return switch (status) {
-      Neutral(icon: final assets) => assets,
-      Accent(icon: final assets) => assets,
-      _ => null,
-    };
-  }
-
-  bool isTinted(OudsIconStatus? status) {
-    return switch (status) {
-      Neutral(tinted: final tinted) => tinted,
-      Accent(tinted: final tinted) => tinted,
-      _ => true,
-    };
   }
 }

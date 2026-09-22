@@ -241,9 +241,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
         : null;
 
     // Determine if a custom icon is provided for Neutral or Accent statuses.
-    final nonFunctionalIcon = alertMessageStatusModifier.getNonFunctionIcon(
-      widget.status,
-    );
+    final nonFunctionalIcon = widget.status?.nonFunctionalIcon;
 
     // Assemble the final alert content layout.
     Widget alertContent;
@@ -265,7 +263,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                       top: alertTokens.spacePaddingBlock,
                     ),
                     child: Container(
-                      color: widget.status.backgroundColor,
+                      color: widget.status?.getBackgroundColor,
                       child: SvgPicture.asset(
                         matchTextDirection: true,
                         excludeFromSemantics: true,
@@ -277,8 +275,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                           context,
                         ).scale(alertTokens.sizeIcon),
                         fit: BoxFit.contain,
-                        colorFilter:
-                            alertMessageStatusModifier.isTinted(widget.status)
+                        colorFilter: widget.status?.isTinted ?? true
                             ? ColorFilter.mode(
                                 alertMessageStatusModifier.getStatusIconColor(
                                   widget.status,

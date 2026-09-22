@@ -13,6 +13,7 @@
 
 /// {@category Badge}
 /// {@category Tag}
+/// {@category Alert}
 library;
 
 import 'dart:ui';
@@ -80,6 +81,39 @@ sealed class OudsIconStatus {
     Warning,
     Negative,
   ];
+
+  /// Returns the background color to apply behind the icon.
+  ///
+  /// A custom background is only applied when the icon is not tinted
+  /// ([Neutral.tinted] or [Accent.tinted] is `false`). Otherwise, no
+  /// background is applied and the theme default is used.
+  Color? get getBackgroundColor => switch (this) {
+    Neutral(tinted: false, backgroundColor: final bg) => bg,
+    Accent(tinted: false, backgroundColor: final bg) => bg,
+    _ => null,
+  };
+
+  /// Returns the custom icon asset path for non-functional statuses.
+  ///
+  /// Only [Neutral] and [Accent] statuses allow a user-provided icon. For
+  /// functional statuses ([Positive], [Info], [Warning], [Negative]), this
+  /// returns `null` since their icon is fixed by the design system.
+  String? get nonFunctionalIcon => switch (this) {
+    Neutral(icon: final assets) => assets,
+    Accent(icon: final assets) => assets,
+    _ => null,
+  };
+
+  /// Returns whether the icon is tinted.
+  ///
+  /// Only [Neutral] and [Accent] statuses allow a user-provided icon. For
+  /// functional statuses ([Positive], [Info], [Warning], [Negative]), this
+  /// returns `true` since their icon is always tinted by the design system.
+  bool get isTinted => switch (this) {
+    Neutral(tinted: final tinted) => tinted,
+    Accent(tinted: final tinted) => tinted,
+    _ => true,
+  };
 }
 
 /// A status for general-purpose labels where the icon is customizable.
@@ -174,18 +208,3 @@ class Warning extends OudsIconStatus {}
 ///
 /// This status uses a fixed, predefined icon from the design system.
 class Negative extends OudsIconStatus {}
-
-/// Shared helpers derived from an [OudsIconStatus], usable by any component
-/// (badge, alert, tag, …) that displays a custom [Neutral] or [Accent] icon.
-extension OudsBackgroundIconStatus on OudsIconStatus? {
-  /// Returns the background color to apply behind the icon.
-  ///
-  /// A custom background is only applied when the icon is not tinted
-  /// ([Neutral.tinted] or [Accent.tinted] is `false`). Otherwise, no
-  /// background is applied and the theme default is used.
-  Color? get backgroundColor => switch (this) {
-    Neutral(tinted: false, backgroundColor: final bg) => bg,
-    Accent(tinted: false, backgroundColor: final bg) => bg,
-    _ => null,
-  };
-}

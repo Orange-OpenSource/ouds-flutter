@@ -326,12 +326,12 @@ class _OudsBadgeState extends State<OudsBadge> {
     final fixedIcon = badgeStatusModifier.getIcon(widget.status);
 
     // This correctly gets the user-defined icon for Neutral and Accent
-    final userDefinedIcon = badgeStatusModifier.getAssetsName(widget.status);
+    final userDefinedIcon = widget.status?.nonFunctionalIcon;
 
     // The logic correctly prioritizes which icon to use.
     final iconPath = fixedIcon ?? userDefinedIcon ?? "";
 
-    final isTinted = badgeStatusModifier.isTintedIcon(widget.status);
+    final isTinted = widget.status?.isTinted ?? true;
 
     if (widget.status is Warning) {
       final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
@@ -385,7 +385,7 @@ class _OudsBadgeState extends State<OudsBadge> {
     }
 
     return Container(
-      color: widget.status.backgroundColor,
+      color: widget.status?.getBackgroundColor ?? Colors.transparent,
       child: SizedBox.expand(
         child: SvgPicture.asset(
           matchTextDirection: true,

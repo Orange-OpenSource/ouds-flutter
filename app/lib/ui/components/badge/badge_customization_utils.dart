@@ -104,14 +104,14 @@ class BadgeCustomizationUtils {
   static OudsIconStatus getIconStatus(
     BuildContext context,
     BadgeCustomizationState customizationState,
-    ThemeController? themeController,
+    ThemeController themeController,
   ) {
     switch (customizationState.selectedStatus) {
       case StatusEnum.neutral:
         return Neutral(
           icon: customizationState.selectedType == BadgeEnumType.icon
               ? customizationState.isTinted
-                    ? AppAssets.icons.assistanceTipsAndTricks(themeController!)
+                    ? AppAssets.icons.assistanceTipsAndTricks(themeController)
                     : AppAssets.icons.icUntintedSquare
               : null,
           tinted: customizationState.isTinted,
@@ -123,7 +123,7 @@ class BadgeCustomizationUtils {
         return Accent(
           icon: customizationState.selectedType == BadgeEnumType.icon
               ? customizationState.isTinted
-                    ? AppAssets.icons.assistanceTipsAndTricks(themeController!)
+                    ? AppAssets.icons.assistanceTipsAndTricks(themeController)
                     : AppAssets.icons.icUntintedSquare
               : null,
           tinted: customizationState.isTinted,

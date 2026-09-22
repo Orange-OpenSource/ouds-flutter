@@ -77,7 +77,7 @@ class _OudsInlineAlertState extends State<OudsInlineAlert> {
         spacing: alertTokens.spaceColumnGap,
         children: [
           Container(
-            color: widget.status.backgroundColor,
+            color: widget.status.getBackgroundColor,
             child: alertStatusModifier.buildStatusIcon(
               context,
               widget.status,
