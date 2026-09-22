@@ -203,15 +203,14 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           )
         : null;
 
-    /// TODO: to changed with ouds/size/max-width/boxed-text
-    final maxTextWidth = theme.sizeScheme(context).maxWidthLabelMedium;
+    final maxWidthBoxedText = theme.sizeScheme(context).maxWidthBoxedText;
 
     // Build the main text content of the alert, including label, description,
     // and bullet list.
     final textContentChildren = <Widget>[
       // Main label text.
       ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: maxTextWidth),
+        constraints: BoxConstraints(maxWidth: maxWidthBoxedText),
         child: Text(
           widget.label,
           style: theme.typographyTokens
@@ -430,10 +429,9 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           color: alertMessageStatusModifier.getStatusTextColor(widget.status),
         );
 
-    /// TODO: to changed with ouds/size/max-width/boxed-text
-    final maxTextWidth = theme.sizeScheme(context).maxWidthLabelMedium;
+    final maxWidthBoxedText = theme.sizeScheme(context).maxWidthBoxedText;
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: maxTextWidth),
+      constraints: BoxConstraints(maxWidth: maxWidthBoxedText),
       child: Text.rich(
         MarkdownSpanBuilder.buildRichText(
           context,
@@ -472,8 +470,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       theme.sizeScheme(context).iconWithLabelMediumSizeSmall,
     );
 
-    /// TODO: to changed with ouds/size/max-width/boxed-text
-    final maxTextWidth = theme.sizeScheme(context).maxWidthLabelMedium;
+    final maxWidthBoxedText = theme.sizeScheme(context).maxWidthBoxedText;
 
     return IntrinsicHeight(
       child: Row(
@@ -506,7 +503,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           ),
           Flexible(
             child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: maxTextWidth),
+              constraints: BoxConstraints(maxWidth: maxWidthBoxedText),
               child: Text.rich(
                 MarkdownSpanBuilder.buildBoldOnly(label, baseStyle: textStyle),
               ),
