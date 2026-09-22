@@ -33,6 +33,7 @@ import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// This screen displays a typography demo for a given [TypographyVariant] and allows customizing
 /// its size and sample text.
@@ -154,6 +155,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   Widget build(BuildContext context) {
     final customizationState = TypographyCustomization.of(context)!;
+    // variant code do not have any size, only default size
     final sizes = widget.variant != TypographyVariant.code
         ? customizationState.sizeState.list
         : null;
@@ -358,6 +360,9 @@ class _TypographyDemoState extends State<_TypographyDemo> {
           text: text,
           size: size as OudsBodyTextSize,
           weight: weight,
+          onLinkTap: (url) async {
+            await launchUrl(Uri.parse(url));
+          },
         );
       case TypographyVariant.label:
         return OudsLabelText.rich(

@@ -40,7 +40,7 @@ class TypographyCodeGenerator {
         : '';
     final hasAnnotatedText = customizationState?.hasAnnotatedText ?? false;
     final sizeLine = variant != TypographyVariant.code
-        ? "  size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},\n"
+        ? "  size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},"
         : "";
     if (hasAnnotatedText) {
       return """${classNameFor(variant)}.rich(
@@ -54,7 +54,7 @@ $sizeLine$weightLine$markerLine
 
     return """${classNameFor(variant)}(
   text: '$text',
-$sizeLine$weightLine$markerLine
+  $sizeLine$weightLine$markerLine
 )""";
   }
 }

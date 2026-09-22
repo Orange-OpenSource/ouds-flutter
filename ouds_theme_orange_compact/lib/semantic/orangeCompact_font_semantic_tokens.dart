@@ -23,9 +23,11 @@ class OrangeCompactFontSemanticTokens extends OudsFontSemanticTokens {
   @override
   double get letterSpacingBodyLargeTablet => FontRawTokens.fontLetterSpacing200;
   @override
-  double get letterSpacingBodyMediumMobile => FontRawTokens.fontLetterSpacing175;
+  double get letterSpacingBodyMediumMobile =>
+      FontRawTokens.fontLetterSpacing175;
   @override
-  double get letterSpacingBodyMediumTablet => FontRawTokens.fontLetterSpacing175;
+  double get letterSpacingBodyMediumTablet =>
+      FontRawTokens.fontLetterSpacing175;
   @override
   double get letterSpacingBodySmallMobile => FontRawTokens.fontLetterSpacing150;
   @override
@@ -33,33 +35,47 @@ class OrangeCompactFontSemanticTokens extends OudsFontSemanticTokens {
   @override
   double get letterSpacingCodeMedium => FontRawTokens.fontLetterSpacing200;
   @override
-  double get letterSpacingDisplayLargeMobile => FontRawTokens.fontLetterSpacing750;
+  double get letterSpacingDisplayLargeMobile =>
+      FontRawTokens.fontLetterSpacing750;
   @override
-  double get letterSpacingDisplayLargeTablet => FontRawTokens.fontLetterSpacing750;
+  double get letterSpacingDisplayLargeTablet =>
+      FontRawTokens.fontLetterSpacing750;
   @override
-  double get letterSpacingDisplayMediumMobile => FontRawTokens.fontLetterSpacing650;
+  double get letterSpacingDisplayMediumMobile =>
+      FontRawTokens.fontLetterSpacing650;
   @override
-  double get letterSpacingDisplayMediumTablet => FontRawTokens.fontLetterSpacing650;
+  double get letterSpacingDisplayMediumTablet =>
+      FontRawTokens.fontLetterSpacing650;
   @override
-  double get letterSpacingDisplaySmallMobile => FontRawTokens.fontLetterSpacing550;
+  double get letterSpacingDisplaySmallMobile =>
+      FontRawTokens.fontLetterSpacing550;
   @override
-  double get letterSpacingDisplaySmallTablet => FontRawTokens.fontLetterSpacing550;
+  double get letterSpacingDisplaySmallTablet =>
+      FontRawTokens.fontLetterSpacing550;
   @override
-  double get letterSpacingHeadingLargeMobile => FontRawTokens.fontLetterSpacing350;
+  double get letterSpacingHeadingLargeMobile =>
+      FontRawTokens.fontLetterSpacing350;
   @override
-  double get letterSpacingHeadingLargeTablet => FontRawTokens.fontLetterSpacing350;
+  double get letterSpacingHeadingLargeTablet =>
+      FontRawTokens.fontLetterSpacing350;
   @override
-  double get letterSpacingHeadingMediumMobile => FontRawTokens.fontLetterSpacing300;
+  double get letterSpacingHeadingMediumMobile =>
+      FontRawTokens.fontLetterSpacing300;
   @override
-  double get letterSpacingHeadingMediumTablet => FontRawTokens.fontLetterSpacing300;
+  double get letterSpacingHeadingMediumTablet =>
+      FontRawTokens.fontLetterSpacing300;
   @override
-  double get letterSpacingHeadingSmallMobile => FontRawTokens.fontLetterSpacing250;
+  double get letterSpacingHeadingSmallMobile =>
+      FontRawTokens.fontLetterSpacing250;
   @override
-  double get letterSpacingHeadingSmallTablet => FontRawTokens.fontLetterSpacing250;
+  double get letterSpacingHeadingSmallTablet =>
+      FontRawTokens.fontLetterSpacing250;
   @override
-  double get letterSpacingHeadingXlargeMobile => FontRawTokens.fontLetterSpacing450;
+  double get letterSpacingHeadingXlargeMobile =>
+      FontRawTokens.fontLetterSpacing450;
   @override
-  double get letterSpacingHeadingXlargeTablet => FontRawTokens.fontLetterSpacing450;
+  double get letterSpacingHeadingXlargeTablet =>
+      FontRawTokens.fontLetterSpacing450;
   @override
   double get letterSpacingLabelLarge => FontRawTokens.fontLetterSpacing200;
   @override

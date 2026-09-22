@@ -34,7 +34,7 @@ class OrangeFontSemanticTokens extends OudsFontSemanticTokens {
   double get letterSpacingBodySmallTablet => FontRawTokens.fontLetterSpacing150;
   @override
   double get letterSpacingCodeMedium => FontRawTokens.fontLetterSpacing200;
- @override
+  @override
   double get letterSpacingDisplayLargeMobile =>
       FontRawTokens.fontLetterSpacing850;
   @override
@@ -148,7 +148,7 @@ class OrangeFontSemanticTokens extends OudsFontSemanticTokens {
   double get sizeBodySmallTablet => FontRawTokens.fontSize150;
   @override
   double get sizeCodeMedium => FontRawTokens.fontSize200;
- @override
+  @override
   double get sizeDisplayLargeMobile => FontRawTokens.fontSize850;
   @override
   double get sizeDisplayLargeTablet => FontRawTokens.fontSize1450;

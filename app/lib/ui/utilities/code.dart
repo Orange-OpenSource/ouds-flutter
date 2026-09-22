@@ -111,7 +111,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
           children: [
             Flexible(
               child: Text(
-                widget.titleText!,
+                widget.titleText ?? "",
                 style: theme.currentTheme.typographyTokens.typeBodyStrongLarge(
                   context,
                 ),

@@ -15,6 +15,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_core/components/typography/internal/ouds_typography_size_modifier.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
@@ -22,7 +23,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 // TODO Add design guideline link when available
 ///
-/// **Reference design version : 1.0.0**
+/// **Reference design version : 1.1.0**
 ///
 /// Typography establishes the type scale used to structure content and hierarchy across the app.
 /// [OudsTypography] is the common base of the five typographic families, each implemented as a
@@ -73,6 +74,20 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///   }),
 /// )
 /// ```
+///
+/// Note: `[link](https://example.com)` is rendered (underlined) in every variant, but the tap is
+/// only handled for [OudsBodyText] and [OudsLabelText], via their `onLinkTap` parameter. Other
+/// variants ([OudsDisplayText], [OudsHeadingText], [OudsCodeText]) display the link style but do
+/// not expose a tap callback.
+///
+/// ```dart
+/// OudsBodyText(
+///   text: 'Read our [privacy policy](https://example.com/privacy) for more details.',
+///   onLinkTap: (url) {
+///     // Open the URL, e.g. via url_launcher.
+///   },
+/// )
+/// ```
 abstract class OudsTypography extends StatelessWidget {
   /// The text to display. Empty when built via a `.rich` constructor, see [OudsTypography.rich].
   final String text;
@@ -100,6 +115,12 @@ abstract class OudsTypography extends StatelessWidget {
   /// of the plain [text].
   final OudsAnnotatedText? _annotatedText;
 
+  /// Callback invoked when a `[link](url)` inside [text] or [annotatedText] is tapped.
+  ///
+  /// Only forwarded from the public API for [OudsBodyText] and [OudsLabelText] (via their
+  /// `onLinkTap` parameter).
+  final void Function(String url)? _onLinkTap;
+
   /// Creates an [OudsTypography].
   const OudsTypography({
     super.key,
@@ -109,21 +130,24 @@ abstract class OudsTypography extends StatelessWidget {
     this.textAlign,
     this.overflow,
     this.softWrap,
-  }) : _annotatedText = null;
+  }) : _annotatedText = null,
+       _onLinkTap = null;
 
   /// Creates an [OudsTypography] whose content is composed of multiple spans, some of which can be
   /// colored independently of the others. Build [text] with [buildOudsAnnotatedText] to color part
   /// of the text, e.g. to highlight a word or phrase.
   const OudsTypography.rich({
     super.key,
-    this.color,
     required OudsAnnotatedText text,
+    this.color,
     this.maxLines,
     this.textAlign,
     this.overflow,
     this.softWrap,
+    void Function(String url)? onLinkTap,
   }) : text = '',
-       _annotatedText = text;
+       _annotatedText = text,
+       _onLinkTap = onLinkTap;
 
   /// Returns the [TextStyle] associated with this variant's `size` in the active theme.
   @protected
@@ -146,34 +170,38 @@ abstract class OudsTypography extends StatelessWidget {
           context,
           span.toPlainText(),
           baseStyle: style.copyWith(color: segmentColor),
+          onLinkTap: _onLinkTap,
         );
       }).toList();
-    } else {
-      children = [
-        MarkdownSpanBuilder.buildRichText(
-          context,
-          text,
-          baseStyle: style.copyWith(color: resolvedColor),
-        ),
-      ];
-    }
 
-    return Text.rich(
-      TextSpan(
+      return Text.rich(
+        TextSpan(
+          style: style.copyWith(color: resolvedColor),
+          children: children,
+        ),
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+        softWrap: softWrap,
+      );
+    } else {
+      return Text(
+        text,
         style: style.copyWith(color: resolvedColor),
-        children: children,
-      ),
-      textAlign: textAlign,
-      maxLines: maxLines,
-      overflow: overflow,
-      softWrap: softWrap,
-    );
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+        softWrap: softWrap,
+      );
+    }
   }
 }
 
 /// The available sizes for [OudsDisplayText].
 enum OudsDisplayTextSize { large, medium, small }
 
+/// **Reference design version : 1.0.0**
+///
 /// Display styles are intended for high-impact content such as landing pages, marketing campaigns, and key messages. Their large type sizes help capture
 /// attention and establish strong visual emphasis.
 /// Variants automatically adapt across breakpoints to maintain a consistent visual hierarchy on every screen size.
@@ -229,11 +257,25 @@ class OudsDisplayText extends OudsTypography {
         return typography.typeDisplaySmall(context);
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    final typographySizeModifier = OudsTypographySizeModifier(context);
+
+    return Container(
+      constraints: BoxConstraints(
+        maxWidth: typographySizeModifier.getDisplayWidthMaxSize(size),
+      ),
+      child: super.build(context),
+    );
+  }
 }
 
 /// The available sizes for [OudsHeadingText].
 enum OudsHeadingTextSize { xLarge, large, medium, small }
 
+/// **Reference design version : 1.1.0**
+///
 /// Heading styles are used to structure content and define the hierarchy of information within an interface.
 /// Available in multiple sizes, they help users quickly understand the organization of a page or section.
 /// Their size automatically adjusts across breakpoints to ensure optimal readability on all devices.
@@ -308,11 +350,18 @@ class OudsHeadingText extends OudsTypography {
 
   @override
   Widget build(BuildContext context) {
-    final textWidget = super.build(context);
+    final typographySizeModifier = OudsTypographySizeModifier(context);
 
     final typographyTokens = OudsTheme.of(
       context,
     ).componentsTokens(context).typography;
+
+    final textWidget = Container(
+      constraints: BoxConstraints(
+        maxWidth: typographySizeModifier.getHeadingWidthMaxSize(size),
+      ),
+      child: super.build(context),
+    );
 
     // The marker follows its own rules, independent of the text content (plain, colored, bold or
     // linked): it only depends on `marker`, `size` and the theme's support for it.
@@ -327,21 +376,15 @@ class OudsHeadingText extends OudsTypography {
       mainAxisSize: MainAxisSize.min,
       children: [
         textWidget,
-        Padding(
-          padding: EdgeInsets.only(
-            top: typographyTokens.spacePaddingBlockTopHeadingLargeMarker,
-            bottom: typographyTokens.spacePaddingBlockBottomHeadingLargeMarker,
-          ),
-          child: SvgPicture.asset(
-            excludeFromSemantics: true,
-            package: OudsTheme.of(context).packageName,
-            AppAssets.icons.componentTypographyHeadingMarker,
-            fit: BoxFit.contain,
-            matchTextDirection: true,
-            colorFilter: ColorFilter.mode(
-              OudsTheme.of(context).colorScheme(context).contentBrandPrimary,
-              BlendMode.srcIn,
-            ),
+        SvgPicture.asset(
+          excludeFromSemantics: true,
+          package: OudsTheme.of(context).packageName,
+          AppAssets.icons.componentTypographyHeadingMarker,
+          fit: BoxFit.contain,
+          matchTextDirection: true,
+          colorFilter: ColorFilter.mode(
+            typographyTokens.colorContentMarker,
+            BlendMode.srcIn,
           ),
         ),
       ],
@@ -355,6 +398,8 @@ enum OudsTextWeight { defaultWeight, moderate, strong }
 /// The available sizes for [OudsBodyText].
 enum OudsBodyTextSize { large, medium, small }
 
+/// **Reference design version : 1.0.0**
+///
 /// Body styles are designed for everyday text content such as paragraphs, descriptions, and informational messages. They prioritize readability and provide
 /// a comfortable reading experience across all screen sizes. Multiple size options allow content importance to be expressed while maintaining consistency.
 /// Their typography automatically scales across breakpoints to support responsive layouts.
@@ -364,6 +409,17 @@ enum OudsBodyTextSize { large, medium, small }
 ///   text: 'Body copy',
 ///   size: OudsBodyTextSize.medium
 ///   )
+/// ```
+/// Use [onLinkTap] to handle taps on markdown-style links (`[label](url)`) embedded in [text]:
+///
+/// ```dart
+/// OudsBodyText.rich(
+///   text: 'Read our [privacy policy](https://example.com/privacy) for more details.',
+///   size: OudsBodyTextSize.medium,
+///   onLinkTap: (url) {
+///     // Open the URL, e.g. via url_launcher.
+///   },
+/// )
 /// ```
 class OudsBodyText extends OudsTypography {
   /// The size of the body text, see [OudsBodyTextSize]. Defaults to [OudsBodyTextSize.medium].
@@ -395,6 +451,7 @@ class OudsBodyText extends OudsTypography {
     this.size = OudsBodyTextSize.medium,
     this.weight = OudsTextWeight.defaultWeight,
     required super.text,
+    super.onLinkTap,
     super.maxLines,
     super.textAlign,
     super.overflow,
@@ -434,11 +491,25 @@ class OudsBodyText extends OudsTypography {
         }
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    final typographySizeModifier = OudsTypographySizeModifier(context);
+
+    return Container(
+      constraints: BoxConstraints(
+        maxWidth: typographySizeModifier.getBodyWidthMaxSize(size),
+      ),
+      child: super.build(context),
+    );
+  }
 }
 
 /// The available sizes for [OudsLabelText].
 enum OudsLabelTextSize { xLarge, large, medium, small }
 
+/// **Reference design version : 1.0.0**
+///
 /// Label styles are intended for compact interface elements such as buttons, form fields, badges, and other small components.
 /// Unlike other typography categories, they are not responsive and maintain a fixed size across all breakpoints. This ensures visual consistency and
 /// predictable behavior within space-constrained UI elements. Labels should be preferred whenever content is displayed within small components.
@@ -448,6 +519,18 @@ enum OudsLabelTextSize { xLarge, large, medium, small }
 ///   text: 'Submit',
 ///   size: OudsLabelTextSize.medium,
 ///   weight: OudsTextWeight.strong,
+/// )
+/// ```
+///
+/// Use [onLinkTap] to handle taps on markdown-style links (`[label](url)`) embedded in [text]:
+///
+/// ```dart
+/// OudsLabelText(
+///   text: 'See [terms and conditions](https://example.com/terms)',
+///   size: OudsLabelTextSize.medium,
+///   onLinkTap: (url) {
+///     // Open the URL, e.g. via url_launcher.
+///   },
 /// )
 /// ```
 class OudsLabelText extends OudsTypography {
@@ -480,6 +563,7 @@ class OudsLabelText extends OudsTypography {
     this.size = OudsLabelTextSize.medium,
     this.weight = OudsTextWeight.defaultWeight,
     required super.text,
+    super.onLinkTap,
     super.maxLines,
     super.textAlign,
     super.overflow,
@@ -525,8 +609,22 @@ class OudsLabelText extends OudsTypography {
         }
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    final typographySizeModifier = OudsTypographySizeModifier(context);
+
+    return Container(
+      constraints: BoxConstraints(
+        maxWidth: typographySizeModifier.getLabelWidthMaxSize(size),
+      ),
+      child: super.build(context),
+    );
+  }
 }
 
+/// **Reference design version : 1.0.0**
+///
 ///  The Code style is dedicated to technical content such as code snippets, commands, system values, and identifiers. It uses a monospace typeface to preserve character alignment and improve readability of structured content.
 ///  Available in a single size, it provides a consistent presentation of technical information throughout the product.
 ///  Its use should be limited to content that requires an accurate code-like representation.
@@ -550,6 +648,7 @@ class OudsCodeText extends OudsTypography {
     super.overflow,
     super.softWrap,
   }) : super.rich();
+
   @override
   TextStyle textStyle(BuildContext context) {
     final typography = OudsTheme.of(context).typographyTokens;
