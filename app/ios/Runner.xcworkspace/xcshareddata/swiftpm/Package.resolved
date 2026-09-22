@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/grpc-binary.git",
       "state" : {
-        "revision" : "f56d8fc3162de9a498377c7b6cea43431f4f5083",
-        "version" : "1.65.1"
+        "revision" : "9d5e9f05670c9eab8d8c22731ddd5d4d9cf867a8",
+        "version" : "1.83.1"
       }
     },
     {
