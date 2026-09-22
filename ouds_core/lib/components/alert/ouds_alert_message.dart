@@ -388,6 +388,8 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
               sortKey: const OrdinalSortKey(3.0),
               button: true,
               container: true,
+              // it's used for iOS Keyboard , for Voice Over it can reached by Button/Label
+              focusable: true,
               label: l10n?.core_alert_alertMessage_close_label_a11y,
               child: closeButton,
             ),
