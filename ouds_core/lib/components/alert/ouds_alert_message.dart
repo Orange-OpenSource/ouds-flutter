@@ -188,10 +188,14 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     final theme = OudsTheme.of(context);
     final alertMessageStatusModifier = OudsAlertStatusModifier(context);
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
+    final alertMessageTokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).alertMessage;
     final l10n = OudsLocalizations.of(context);
     // Build the action link widget if provided.
     final actionLink = widget.actionLayout != null
         ? OudsLink(
+            density: OudsLinkDensity.compact,
             label: widget.actionLayout!.text,
             onPressed: () {
               widget.actionLayout!.onClick?.call();
@@ -199,33 +203,41 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           )
         : null;
 
+    final maxWidthBoxedText = theme.sizeScheme(context).maxWidthBoxedText;
+
     // Build the main text content of the alert, including label, description,
     // and bullet list.
     final textContentChildren = <Widget>[
       // Main label text.
-      Text(
-        widget.label,
-        style: theme.typographyTokens
-            .typeLabelModerateLarge(context)
-            .copyWith(
-              color: alertMessageStatusModifier.getStatusTextColor(
-                widget.status,
+      ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: maxWidthBoxedText),
+        child: Text(
+          widget.label,
+          style: theme.typographyTokens
+              .typeLabelModerateLarge(context)
+              .copyWith(
+                color: alertMessageStatusModifier.getStatusTextColor(
+                  widget.status,
+                ),
               ),
-            ),
+        ),
       ),
       // Optional description text.
       if (widget.description != null && widget.description!.isNotEmpty) ...[
         SizedBox(height: alertTokens.spaceRowGap),
         _buildDescription(context),
+        SizedBox(height: alertTokens.spacePaddingBlockBottomContent),
       ],
       // Optional bullet list. A gap is added only if the list is not empty.
       if (widget.bulletList != null &&
-          widget.bulletList!.any((bullet) => bullet.isNotEmpty))
+          widget.bulletList!.any((bullet) => bullet.isNotEmpty)) ...[
         SizedBox(height: alertTokens.spaceRowGap),
-      // Generate bullet list items, filtering out any empty strings.
-      ...?widget.bulletList
-          ?.where((bullet) => bullet.isNotEmpty)
-          .map((bullet) => buildBulletList(context, widget.status, bullet)),
+        // Generate bullet list items, filtering out any empty strings.
+        ...widget.bulletList!
+            .where((bullet) => bullet.isNotEmpty)
+            .map((bullet) => buildBulletList(context, widget.status, bullet)),
+        SizedBox(height: alertTokens.spacePaddingBlockBottomContent),
+      ],
     ];
 
     // Build the close button if a callback is provided.
@@ -265,6 +277,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                   Padding(
                     padding: EdgeInsetsDirectional.only(
                       top: alertTokens.spacePaddingBlock,
+                      bottom: alertTokens.spacePaddingBlock,
                     ),
                     child: SvgPicture.asset(
                       matchTextDirection: true,
@@ -272,10 +285,10 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                       hasIcon,
                       width: MediaQuery.textScalerOf(
                         context,
-                      ).scale(alertTokens.sizeIcon),
+                      ).scale(alertTokens.sizeAsset),
                       height: MediaQuery.textScalerOf(
                         context,
-                      ).scale(alertTokens.sizeIcon),
+                      ).scale(alertTokens.sizeAsset),
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
                         alertMessageStatusModifier.getStatusIconColor(
@@ -292,6 +305,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                   Padding(
                     padding: EdgeInsetsDirectional.only(
                       top: alertTokens.spacePaddingBlock,
+                      bottom: alertTokens.spacePaddingBlock,
                     ),
                     child: alertMessageStatusModifier.buildStatusIcon(
                       context,
@@ -305,7 +319,6 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.only(
                       top: alertTokens.spacePaddingBlock,
-                      end: alertTokens.spaceColumnGap,
                       bottom: alertTokens.spacePaddingBlock,
                     ),
                     child: Column(
@@ -323,6 +336,10 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                               ? OudsLocalizations.of(
                                   context,
                                 )?.core_common_error_a11y
+                              : widget.status is Info
+                              ? OudsLocalizations.of(
+                                  context,
+                                )?.core_common_info_a11y
                               : null,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -335,7 +352,6 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                             widget.actionLayout!.text.isNotEmpty &&
                             widget.actionLayout!.layout ==
                                 OudsAlertMessageActionLayoutEnum.bottom) ...[
-                          SizedBox(height: alertTokens.spaceRowGapAction),
                           Semantics(
                             sortKey: const OrdinalSortKey(2.0),
                             container: true,
@@ -371,6 +387,8 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
               sortKey: const OrdinalSortKey(3.0),
               button: true,
               container: true,
+              // it's used for iOS Keyboard , for Voice Over it can reached by Button/Label
+              focusable: true,
               label: l10n?.core_alert_alertMessage_close_label_a11y,
               child: closeButton,
             ),
@@ -391,7 +409,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       ),
       decoration: BoxDecoration(
         border: OudsBorder().borderAll(
-          width: alertTokens.borderWidth,
+          width: alertMessageTokens.borderWidth,
           color: Colors.transparent,
         ),
         borderRadius: OudsAlertMessageBorderModifier.getBorderRadius(context),
@@ -405,19 +423,22 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
   Widget _buildDescription(BuildContext context) {
     final theme = OudsTheme.of(context);
     final alertMessageStatusModifier = OudsAlertStatusModifier(context);
-
     final textStyle = theme.typographyTokens
         .typeLabelDefaultMedium(context)
         .copyWith(
           color: alertMessageStatusModifier.getStatusTextColor(widget.status),
         );
 
-    return Text.rich(
-      MarkdownSpanBuilder.buildRichText(
-        context,
-        widget.description ?? '',
-        baseStyle: textStyle,
-        onLinkTap: widget.onDescriptionLinkTapped,
+    final maxWidthBoxedText = theme.sizeScheme(context).maxWidthBoxedText;
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: maxWidthBoxedText),
+      child: Text.rich(
+        MarkdownSpanBuilder.buildRichText(
+          context,
+          widget.description ?? '',
+          baseStyle: textStyle,
+          onLinkTap: widget.onDescriptionLinkTapped,
+        ),
       ),
     );
   }
@@ -433,7 +454,6 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
   ) {
     final theme = OudsTheme.of(context);
     final alertMessageStatusModifier = OudsAlertStatusModifier(context);
-    final maxTextWidth = theme.sizeScheme(context).maxWidthLabelMedium;
     final textScaler = MediaQuery.textScalerOf(context);
     final double iconContainerWidth = textScaler.scale(
       theme.sizeScheme(context).iconWithLabelMediumSizeMedium,
@@ -449,6 +469,8 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     final double iconSize = textScaler.scale(
       theme.sizeScheme(context).iconWithLabelMediumSizeSmall,
     );
+
+    final maxWidthBoxedText = theme.sizeScheme(context).maxWidthBoxedText;
 
     return IntrinsicHeight(
       child: Row(
@@ -481,7 +503,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           ),
           Flexible(
             child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: maxTextWidth),
+              constraints: BoxConstraints(maxWidth: maxWidthBoxedText),
               child: Text.rich(
                 MarkdownSpanBuilder.buildBoldOnly(label, baseStyle: textStyle),
               ),
