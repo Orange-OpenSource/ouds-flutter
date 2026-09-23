@@ -715,7 +715,7 @@ class _OudsListItemState extends State<OudsListItem> {
     required OudsListItemSize size,
   }) {
     return switch (leading) {
-      OudsListItemLeadingIcon(:final iconStatus, :final size, :final tinted) =>
+      OudsListItemLeadingIcon(:final iconStatus, :final size) =>
         // Icon container: dynamic size based on icon size.
         // Wrap in Semantics to vocalize functional status (Warning, Negative, Info).
         _buildIconContainer(
@@ -727,7 +727,6 @@ class _OudsListItemState extends State<OudsListItem> {
               iconStatus,
               enable: enable,
               size: size.assetSize,
-              tinted: tinted,
             ),
             iconStatus,
           ),
@@ -942,7 +941,7 @@ class _OudsListItemState extends State<OudsListItem> {
       ),
       OudsListItemTrailingBadge(:final badge) => badge(enable),
       OudsListItemTrailingTag(:final tag) => tag(enable),
-      OudsListItemTrailingIcon(:final iconStatus, :final size, :final tinted) =>
+      OudsListItemTrailingIcon(:final iconStatus, :final size) =>
         // Icon container: dynamic size based on icon size
         // Icon container: dynamic size based on icon size.
         // Wrap in Semantics to vocalize functional status (Warning, Negative, Info).
@@ -955,7 +954,6 @@ class _OudsListItemState extends State<OudsListItem> {
               iconStatus,
               enable: enable,
               size: size.assetSize,
-              tinted: tinted,
             ),
             iconStatus,
           ),

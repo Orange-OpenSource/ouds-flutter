@@ -12,9 +12,11 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 
 class _ListItemCustomization extends InheritedWidget {
   const _ListItemCustomization({required super.child, required this.data});
@@ -70,6 +72,8 @@ class ListItemCustomizationState
   late final CardDecorationState cardDecorationState;
   late final BoolState clickableState;
   late final BoolState edgeToEdgeState;
+  late final TintedState leadingIconTintedState;
+  late final TintedState trailingIconTintedState;
 
   @override
   void initState() {
@@ -102,6 +106,8 @@ class ListItemCustomizationState
     cardDecorationState = CardDecorationState(setState);
     clickableState = BoolState(setState);
     edgeToEdgeState = BoolState(setState, initial: true);
+    leadingIconTintedState = TintedState(setState);
+    trailingIconTintedState = TintedState(setState);
   }
 
   String get label => labelTextState.value;
@@ -221,6 +227,20 @@ class ListItemCustomizationState
 
   bool get enable => hasEnabled;
   set enable(bool value) => hasEnabled = value;
+
+  bool get leadingIconTinted =>
+      leadingIconTintedState.selected == TintedEnum.tinted;
+
+  TintedEnum get selectedLeadingTinted => leadingIconTintedState.selected;
+  set selectedLeadingTinted(TintedEnum value) =>
+      leadingIconTintedState.selected = value;
+
+  bool get trailingIconTinted =>
+      trailingIconTintedState.selected == TintedEnum.tinted;
+
+  TintedEnum get selectedTrailingTinted => trailingIconTintedState.selected;
+  set selectedTrailingTinted(TintedEnum value) =>
+      trailingIconTintedState.selected = value;
 
   @override
   Widget build(BuildContext context) {
@@ -409,6 +429,26 @@ class CardDecorationState {
   set selected(ListItemCardDecorationEnum newValue) {
     _setState(() {
       _selected = newValue;
+    });
+  }
+}
+
+/// Controls whether the icon displayed in the [OudsListItem] should be tinted
+/// with the theme color, or shown with its original colors.
+class TintedState {
+  TintedState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  final List<TintedEnum> _tintedList = [TintedEnum.tinted, TintedEnum.untinted];
+  TintedEnum _selectedTinted = TintedEnum.tinted;
+
+  List<TintedEnum> get list => _tintedList;
+
+  TintedEnum get selected => _selectedTinted;
+  set selected(TintedEnum newValue) {
+    _setState(() {
+      _selectedTinted = newValue;
     });
   }
 }

@@ -28,6 +28,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_tabs.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
@@ -355,6 +356,20 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             customizationState.leadingIconStatus = value;
           },
         ),
+      if (customizationState.leading == ListItemLeadingEnum.icon &&
+          (customizationState.leadingIconStatus == StatusEnum.neutral ||
+              customizationState.leadingIconStatus == StatusEnum.accent))
+        CustomizableChips<TintedEnum>(
+          title: TintedEnum.enumName(context),
+          options: customizationState.tintedState.list,
+          selectedOption: customizationState.selectedLeadingTinted,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedLeadingTinted = selectedOption;
+            });
+          },
+        ),
       if (customizationState.leading == ListItemLeadingEnum.image) ...[
         CustomizableChips<ListItemImageSizeEnum>(
           title: ListItemImageSizeEnum.enumName(context),
@@ -472,6 +487,20 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           selectedOption: customizationState.trailingIconStatus,
           onChanged: (value) {
             customizationState.trailingIconStatus = value;
+          },
+        ),
+      if (customizationState.trailing == ListItemTrailingEnum.icon &&
+          (customizationState.trailingIconStatus == StatusEnum.neutral ||
+              customizationState.trailingIconStatus == StatusEnum.accent))
+        CustomizableChips<TintedEnum>(
+          title: TintedEnum.enumName(context),
+          options: customizationState.tintedState.list,
+          selectedOption: customizationState.selectedTrailingTinted,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedTrailingTinted = selectedOption;
+            });
           },
         ),
       if (customizationState.trailing == ListItemTrailingEnum.image) ...[
