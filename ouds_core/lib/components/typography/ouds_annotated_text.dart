@@ -15,6 +15,9 @@ library;
 
 import 'package:flutter/material.dart';
 
+/// The emphasis level shared by [OudsBodyText] and [OudsLabelText].
+enum OudsTextWeight { defaultWeight, moderate, strong }
+
 /// A builder used to compose an [OudsAnnotatedText] for any typography `.rich` constructor
 /// ([OudsDisplayText.rich], [OudsHeadingText.rich], [OudsBodyText.rich], [OudsLabelText.rich]),
 /// letting you color only part of the text.

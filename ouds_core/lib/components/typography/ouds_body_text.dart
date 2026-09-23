@@ -19,9 +19,6 @@ import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// The emphasis level shared by [OudsBodyText] and `OudsLabelText`.
-enum OudsTextWeight { defaultWeight, moderate, strong }
-
 /// The available sizes for [OudsBodyText].
 enum OudsBodyTextSize { large, medium, small }
 
@@ -44,7 +41,7 @@ enum OudsBodyTextSize { large, medium, small }
 ///
 /// ```dart
 /// OudsBodyText(
-///   text: 'Body copy',
+///   text: 'Body',
 ///   size: OudsBodyTextSize.medium,
 ///   color: OudsTheme.of(context).colorScheme(context).contentDefault,
 /// )

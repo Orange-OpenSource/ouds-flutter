@@ -166,9 +166,6 @@
   "app_components_typography_body_description_text": "Body (ou le corps) du texte est un élément d'interface utilisateur qui stylise la typographie pour le contenu textuel courant comme les paragraphes, descriptions et messages informatifs.",
   "app_components_typography_label_description_text": "Label (ou l'étiquette) est un élément d'interface utilisateur qui stylise la typographie pour des composants d'interface compacts tels que les boutons, les champs de formulaire, les badges et autres petits éléments.",
   "app_components_typography_code_description_text": "Code (ou l'élément de code) est un élément d'interface utilisateur qui stylise la typographie pour le contenu technique comme les extraits de code, commandes, valeurs système et identifiants.",
-  "app_components_typography_heading_marker_tech": "Repère",
-  "app_components_typography_weight_tech": "Poids",
-  "app_components_typography_annotatedTextExample_tech": "Exemple de texte annoté",
 
   "@_about_screen": {},
   "app_about_name_label": "Boîte à outils du système de conception",

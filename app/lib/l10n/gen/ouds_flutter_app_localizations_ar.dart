@@ -1110,14 +1110,14 @@ class AppLocalizationsAr extends AppLocalizations {
       'أنماط Code هو عنصر واجهة المستخدم الذي ينسق الطباعة للمحتوى الفني مثل مقتطفات الكود، الأوامر، القيم النظامية، والمعرفات.';
 
   @override
-  String get app_components_typography_heading_marker_tech => 'علامة';
+  String get app_components_typography_heading_marker_tech => 'Marker';
 
   @override
-  String get app_components_typography_weight_tech => 'الوزن';
+  String get app_components_typography_weight_tech => 'Weight';
 
   @override
   String get app_components_typography_annotatedTextExample_tech =>
-      'مثال على النص المشروح';
+      'Annotated text example';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

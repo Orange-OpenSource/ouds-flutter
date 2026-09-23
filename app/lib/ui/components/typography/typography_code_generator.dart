@@ -40,7 +40,7 @@ class TypographyCodeGenerator {
         : '';
     final hasAnnotatedText = customizationState?.hasAnnotatedText ?? false;
     final sizeLine = variant != TypographyVariant.code
-        ? "  size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},"
+        ? "size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},"
         : "";
     if (hasAnnotatedText) {
       return """${classNameFor(variant)}.rich(
@@ -50,6 +50,10 @@ $sizeLine$weightLine$markerLine
     builder.withColor(color, () => builder.append('colored text'));
   }),
 )""";
+    }
+
+    if (variant == TypographyVariant.code) {
+      return """${classNameFor(variant)}(text: '$text')""";
     }
 
     return """${classNameFor(variant)}(

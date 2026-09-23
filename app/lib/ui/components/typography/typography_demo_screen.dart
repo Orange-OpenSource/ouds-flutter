@@ -265,12 +265,25 @@ class _BodyState extends State<_Body> {
           Code(
             code: TypographyCodeGenerator.updateCode(context, widget.variant),
           ),
-          ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.typography,
-          ),
+          ReferenceDesignVersionComponent(version: _versionFor(widget.variant)),
         ],
       ),
     );
+  }
+
+  String _versionFor(TypographyVariant variant) {
+    switch (variant) {
+      case TypographyVariant.display:
+        return OudsComponentVersion.display;
+      case TypographyVariant.heading:
+        return OudsComponentVersion.heading;
+      case TypographyVariant.body:
+        return OudsComponentVersion.body;
+      case TypographyVariant.label:
+        return OudsComponentVersion.label;
+      case TypographyVariant.code:
+        return OudsComponentVersion.code;
+    }
   }
 }
 

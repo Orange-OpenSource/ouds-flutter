@@ -1110,14 +1110,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Code (ou l\'élément de code) est un élément d\'interface utilisateur qui stylise la typographie pour le contenu technique comme les extraits de code, commandes, valeurs système et identifiants.';
 
   @override
-  String get app_components_typography_heading_marker_tech => 'Repère';
+  String get app_components_typography_heading_marker_tech => 'Marker';
 
   @override
-  String get app_components_typography_weight_tech => 'Poids';
+  String get app_components_typography_weight_tech => 'Weight';
 
   @override
   String get app_components_typography_annotatedTextExample_tech =>
-      'Exemple de texte annoté';
+      'Annotated text example';
 
   @override
   String get app_about_name_label => 'Boîte à outils du système de conception';
