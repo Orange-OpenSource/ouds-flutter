@@ -14,12 +14,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
-import 'package:ouds_core/components/typography/ouds_typography.dart';
+import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 
 import '../../helpers/testable_widget_helper.dart';
 
 void main() {
-  group('OudsTypography common behavior', () {
+  group('OudsHeadingText common behavior', () {
     testWidgets('renders the provided text', (tester) async {
       await tester.pumpWidget(
         testableWidget(const OudsHeadingText(text: 'Hello world')),
@@ -31,7 +31,7 @@ void main() {
     testWidgets('applies the color override when provided', (tester) async {
       await tester.pumpWidget(
         testableWidget(
-          const OudsBodyText(text: 'Colored text', color: Colors.red),
+          const OudsHeadingText(text: 'Colored text', color: Colors.red),
         ),
       );
 
@@ -41,7 +41,7 @@ void main() {
 
     testWidgets('renders bold markdown syntax', (tester) async {
       await tester.pumpWidget(
-        testableWidget(const OudsBodyText(text: 'This is **bold** text')),
+        testableWidget(const OudsHeadingText(text: 'This is **bold** text')),
       );
 
       final textWidget = tester.widget<Text>(find.byType(Text));
@@ -53,47 +53,6 @@ void main() {
               )
               as TextSpan;
       expect(boldSpan.style?.fontWeight, FontWeight.bold);
-    });
-  });
-
-  group('OudsDisplayText', () {
-    testWidgets('defaults to OudsDisplaySize.large', (tester) async {
-      const widget = OudsDisplayText(text: 'Display');
-      expect(widget.size, OudsDisplayTextSize.large);
-
-      await tester.pumpWidget(testableWidget(widget));
-      expect(find.text('Display'), findsOneWidget);
-    });
-
-    testWidgets('renders every size without error', (tester) async {
-      for (final size in OudsDisplayTextSize.values) {
-        await tester.pumpWidget(
-          testableWidget(OudsDisplayText(text: 'Display $size', size: size)),
-        );
-        expect(find.text('Display $size'), findsOneWidget);
-      }
-    });
-
-    testWidgets('.rich colors only the span wrapped in withColor', (
-      tester,
-    ) async {
-      await tester.pumpWidget(
-        testableWidget(
-          OudsDisplayText.rich(
-            text: buildOudsAnnotatedText((builder) {
-              builder.append('Plain ');
-              builder.withColor(Colors.red, () => builder.append('Colored'));
-            }),
-          ),
-        ),
-      );
-
-      final textWidget = tester.widget<Text>(find.byType(Text));
-      final spans = (textWidget.textSpan! as TextSpan).children!;
-      expect((spans[0] as TextSpan).toPlainText(), 'Plain ');
-      expect((spans[0] as TextSpan).style?.color, isNot(Colors.red));
-      expect((spans[1] as TextSpan).toPlainText(), 'Colored');
-      expect((spans[1] as TextSpan).style?.color, Colors.red);
     });
   });
 
@@ -246,100 +205,6 @@ void main() {
       expect(boldSpan.text, 'Bold and red');
       expect(boldSpan.style?.fontWeight, FontWeight.bold);
       expect(boldSpan.style?.color, Colors.red);
-    });
-  });
-
-  group('OudsBodyText', () {
-    testWidgets('defaults to OudsBodySize.medium and defaultWeight', (
-      tester,
-    ) async {
-      const widget = OudsBodyText(text: 'Body');
-      expect(widget.size, OudsBodyTextSize.medium);
-      expect(widget.weight, OudsTextWeight.defaultWeight);
-    });
-
-    testWidgets('renders every size and weight without error', (tester) async {
-      for (final weight in OudsTextWeight.values) {
-        for (final size in OudsBodyTextSize.values) {
-          await tester.pumpWidget(
-            testableWidget(
-              OudsBodyText(
-                text: 'Body $weight $size',
-                size: size,
-                weight: weight,
-              ),
-            ),
-          );
-          expect(find.text('Body $weight $size'), findsOneWidget);
-        }
-      }
-    });
-
-    testWidgets('.rich colors only the span wrapped in withColor', (
-      tester,
-    ) async {
-      await tester.pumpWidget(
-        testableWidget(
-          OudsBodyText.rich(
-            text: buildOudsAnnotatedText((builder) {
-              builder.append('Plain ');
-              builder.withColor(Colors.red, () => builder.append('Colored'));
-            }),
-          ),
-        ),
-      );
-
-      final textWidget = tester.widget<Text>(find.byType(Text));
-      final spans = (textWidget.textSpan! as TextSpan).children!;
-      expect((spans[0] as TextSpan).style?.color, isNot(Colors.red));
-      expect((spans[1] as TextSpan).style?.color, Colors.red);
-    });
-  });
-
-  group('OudsLabelText', () {
-    testWidgets('defaults to OudsLabelSize.medium and defaultWeight', (
-      tester,
-    ) async {
-      const widget = OudsLabelText(text: 'Label');
-      expect(widget.size, OudsLabelTextSize.medium);
-      expect(widget.weight, OudsTextWeight.defaultWeight);
-    });
-
-    testWidgets('renders every size and weight without error', (tester) async {
-      for (final weight in OudsTextWeight.values) {
-        for (final size in OudsLabelTextSize.values) {
-          await tester.pumpWidget(
-            testableWidget(
-              OudsLabelText(
-                text: 'Label $weight $size',
-                size: size,
-                weight: weight,
-              ),
-            ),
-          );
-          expect(find.text('Label $weight $size'), findsOneWidget);
-        }
-      }
-    });
-
-    testWidgets('.rich colors only the span wrapped in withColor', (
-      tester,
-    ) async {
-      await tester.pumpWidget(
-        testableWidget(
-          OudsLabelText.rich(
-            text: buildOudsAnnotatedText((builder) {
-              builder.append('Plain ');
-              builder.withColor(Colors.red, () => builder.append('Colored'));
-            }),
-          ),
-        ),
-      );
-
-      final textWidget = tester.widget<Text>(find.byType(Text));
-      final spans = (textWidget.textSpan! as TextSpan).children!;
-      expect((spans[0] as TextSpan).style?.color, isNot(Colors.red));
-      expect((spans[1] as TextSpan).style?.color, Colors.red);
     });
   });
 }

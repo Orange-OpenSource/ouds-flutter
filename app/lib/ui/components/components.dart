@@ -39,7 +39,7 @@ import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
-import 'package:ouds_core/components/typography/ouds_typography.dart';
+import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_message_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/inline_alert_demo_screen.dart';

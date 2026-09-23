@@ -11,7 +11,10 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/typography/ouds_typography.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
+import 'package:ouds_core/components/typography/ouds_display_text.dart';
+import 'package:ouds_core/components/typography/ouds_heading_text.dart';
+import 'package:ouds_core/components/typography/ouds_label_text.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// The typography family showcased by the typography demo/customization screens.
@@ -92,7 +95,7 @@ Object defaultSizeFor(TypographyVariant variant) {
 bool hasWeightFor(TypographyVariant variant) =>
     variant == TypographyVariant.body || variant == TypographyVariant.label;
 
-/// Returns the [OudsTypography] subclass name matching the given [variant].
+/// Returns the typography widget class name matching the given [variant] (e.g. `OudsDisplayText`).
 String classNameFor(TypographyVariant variant) {
   switch (variant) {
     case TypographyVariant.display:

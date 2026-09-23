@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/typography/ouds_typography.dart';
+import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 import 'package:ouds_flutter_demo/ui/components/typography/typography_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/typography/typography_enum.dart';
 

@@ -13,7 +13,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
-import 'package:ouds_core/components/typography/ouds_typography.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
+import 'package:ouds_core/components/typography/ouds_code_text.dart';
+import 'package:ouds_core/components/typography/ouds_display_text.dart';
+import 'package:ouds_core/components/typography/ouds_heading_text.dart';
+import 'package:ouds_core/components/typography/ouds_label_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/typography/typography_code_generator.dart';
@@ -328,7 +332,7 @@ class _TypographyDemoState extends State<_TypographyDemo> {
     );
   }
 
-  /// Builds the `.rich` [OudsTypography] widget matching [variant], with a sample text partly
+  /// Builds the `.rich` typography widget matching [variant], with a sample text partly
   /// colored with [color] via [buildOudsAnnotatedText], casting [size] to the enum type expected
   /// by that variant's widget.
   Widget buildOudsAnnotatedTypography(
@@ -375,7 +379,7 @@ class _TypographyDemoState extends State<_TypographyDemo> {
     }
   }
 
-  /// Builds the [OudsTypography] widget matching [variant], casting [size] to the enum type expected
+  /// Builds the typography widget matching [variant], casting [size] to the enum type expected
   /// by that variant's widget.
   Widget buildOudsTypography(
     TypographyVariant variant,
