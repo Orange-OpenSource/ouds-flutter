@@ -37,7 +37,7 @@ class ControlItemCodeGenerator {
     'groupValueCode',
     'disableCode',
     'disableCodeRadio',
-    'constrainedMaxWidthCode'
+    'constrainedMaxWidthCode',
   ];
 
   // Method to set the inclusion list
@@ -46,7 +46,11 @@ class ControlItemCodeGenerator {
   }
 
   // Static method to generate the code based on control item customization state
-  static String updateCode(BuildContext context, bool indeterminate, ControlItemType control) {
+  static String updateCode(
+    BuildContext context,
+    bool indeterminate,
+    ControlItemType control,
+  ) {
     String value = 'isChecked';
     String itemCode;
 
@@ -66,7 +70,8 @@ class ControlItemCodeGenerator {
     }
 
     // Build the code string with conditional inclusion
-    String code = """$itemCode(
+    String code =
+        """$itemCode(
 value: $value,${control == ControlItemType.radioButton ? groupValueCode(context) : ''}
 ${control == ControlItemType.radioButton ? disableCodeRadio(context) : disableCode(context)}
 ${_includedElements.contains('titleCode') ? titleCode(context) : ''}
@@ -88,18 +93,18 @@ ${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_inclu
     final customizationState = ControlItemCustomization.of(context);
 
     return "onChanged: ${customizationState?.hasEnabled == true ? "(bool? value) { \n"
-        "setState(() {\n "
-        "isChecked = value;\n "
-        "});\n}" : 'null'},";
+              "setState(() {\n "
+              "isChecked = value;\n "
+              "});\n}" : 'null'},";
   }
 
   static String disableCodeRadio(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
 
     return "onChanged: ${customizationState?.hasEnabled == true ? "(RadioOption? value) { \n"
-        "setState(() {\n "
-        "selectedOption = value;\n "
-        "});\n}" : 'null'},";
+              "setState(() {\n "
+              "selectedOption = value;\n "
+              "});\n}" : 'null'},";
   }
 
   // Method to generate the group value code for radio buttons
@@ -128,13 +133,17 @@ ${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_inclu
   // Method to generate the extra label text code for the control item
   static String extraLabelTextCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return customizationState!.extraLabelText.isEmpty ? 'extraLabelText: null,' : """extraLabelText: '${customizationState.extraLabelText}',""";
+    return customizationState!.extraLabelText.isEmpty
+        ? 'extraLabelText: null,'
+        : """extraLabelText: '${customizationState.extraLabelText}',""";
   }
 
   // Method to generate the helperTitle code for the control item
   static String helperTitleCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return customizationState!.descriptionLabel.isEmpty ? 'helperTitle: null,' : """helperTitle: '${customizationState.descriptionLabel}',""";
+    return customizationState!.descriptionLabel.isEmpty
+        ? 'helperTitle: null,'
+        : """helperTitle: '${customizationState.descriptionLabel}',""";
   }
 
   // Method to generate the reversed code for the control item
@@ -160,7 +169,7 @@ ${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_inclu
       return "icon: null,";
     }
 
-    return "icon: ${customizationState.hasIcon == true ? "'assets/ic_heart.svg'" : 'null'},";
+    return "icon: ${customizationState.hasIcon == true ? "OudsControlItemIcon('assets/ic_heart.svg', tinted: ${customizationState.isTinted})" : 'null'},";
   }
 
   // Method to generate the divider code for the control item

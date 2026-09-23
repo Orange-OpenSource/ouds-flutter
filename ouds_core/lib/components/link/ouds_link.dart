@@ -67,6 +67,31 @@ enum OudsLinkDensity {
   compact,
 }
 
+///
+/// An icon in an [OudsLink.icon]. This icon is non-clickable
+///
+class OudsLinkIcon {
+  /// The path to the custom SVG asset for the icon.
+  final String icon;
+
+  ///  Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+  ///  When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+  ///   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
+  final bool tinted;
+
+  /// The background color to apply behind the icon.
+  ///
+  /// Only applicable when [tinted] is `false`. When [tinted] is `true`,
+  /// this parameter is ignored and the theme's default background color is used instead.
+  final Color backgroundColor;
+
+  const OudsLinkIcon(
+    this.icon, {
+    this.tinted = true,
+    this.backgroundColor = Colors.transparent,
+  });
+}
+
 /// [OUDS Link design guidelines](https://r.orange.fr/r/S-ouds-doc-link)
 ///
 /// **Reference design version : 2.4.0**
@@ -114,8 +139,7 @@ enum OudsLinkDensity {
 /// ```dart
 /// OudsLink.icon(
 ///       label: 'Label',
-///       icon: 'assets/ic_heart.svg',
-///       tinted: true,
+///       icon: OudsLinkIcon('assets/ic_heart.svg'),
 ///       onPressed: () {}
 ///     );
 /// ```
@@ -170,8 +194,7 @@ enum OudsLinkDensity {
 ///
 class OudsLink extends StatefulWidget {
   final String label;
-  final String? icon;
-  final bool tinted;
+  final OudsLinkIcon? icon;
   @Deprecated(
     'OudsLinkLayout is deprecated and will be removed in a future version. '
     'Use the dedicated OudsLink.icon, OudsLink.previous, OudsLink.next or '
@@ -216,15 +239,14 @@ class OudsLink extends StatefulWidget {
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
     this.icon,
-  }) : _indicator = null,
-       tinted = true;
+  }) : _indicator = null;
 
   /// Creates an [OudsLink] displaying its [label] alongside a custom [icon].
   ///
   /// - [key] : Controls how one widget replaces another widget in the tree.
   /// - [label] : The text displayed by the link. Required, non-empty; wraps
   ///   onto multiple lines automatically if it doesn't fit the available width.
-  /// - [icon] : Required SVG asset path (or package asset) of the custom icon
+  /// - [icon] : Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
   ///   displayed alongside the [label]. Its size automatically adapts to [size].
   /// - [size] : The size of the link, [OudsLinkSize.defaultSize] or
   ///   [OudsLinkSize.small], controlling text style, icon size and touch
@@ -246,7 +268,6 @@ class OudsLink extends StatefulWidget {
     this.size = OudsLinkSize.defaultSize,
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
-    this.tinted = true,
   }) : _indicator = null,
        layout = OudsLinkLayout.textAndIcon;
 
@@ -275,7 +296,6 @@ class OudsLink extends StatefulWidget {
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
   }) : icon = null,
-       tinted = true,
        _indicator = OudsLinkIndicator.previous,
        layout = OudsLinkLayout.back;
 
@@ -304,7 +324,6 @@ class OudsLink extends StatefulWidget {
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
   }) : icon = null,
-       tinted = true,
        _indicator = OudsLinkIndicator.next,
        layout = OudsLinkLayout.next;
 
@@ -335,7 +354,6 @@ class OudsLink extends StatefulWidget {
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
   }) : icon = null,
-       tinted = true,
        _indicator = OudsLinkIndicator.external,
        layout = OudsLinkLayout.next;
 
@@ -567,7 +585,7 @@ class _OudsLinkState extends State<OudsLink> {
         widget.size,
         widget.layout,
         widget._indicator,
-        widget.icon,
+        widget.icon?.icon,
       )!,
       children: [
         Flexible(
@@ -579,7 +597,7 @@ class _OudsLinkState extends State<OudsLink> {
         ),
         _buildIcon(
           context,
-          widget.icon,
+          widget.icon?.icon,
           linkControlState,
           widget.layout,
           widget.size,
@@ -604,7 +622,7 @@ class _OudsLinkState extends State<OudsLink> {
         widget.size,
         widget.layout,
         widget._indicator,
-        widget.icon,
+        widget.icon?.icon,
       )!,
       children: [
         if (widget.layout == OudsLinkLayout.back ||
@@ -613,7 +631,7 @@ class _OudsLinkState extends State<OudsLink> {
             widget.icon != null)
           _buildIcon(
             context,
-            widget.icon,
+            widget.icon?.icon,
             linkControlState,
             widget.layout,
             widget.size,
@@ -781,7 +799,8 @@ class _OudsLinkState extends State<OudsLink> {
       width: scaledWidth,
       height: scaledHeight,
       fit: BoxFit.contain,
-      colorFilter: assetName != null && !widget.tinted
+      colorFilter:
+          assetName != null && widget.icon != null && !widget.icon!.tinted
           ? null
           : ColorFilter.mode(
               !isIcon
@@ -793,11 +812,15 @@ class _OudsLinkState extends State<OudsLink> {
     );
 
     return Container(
-      color: !isIcon && widget.tinted && widget._indicator != null
+      color:
+          !isIcon &&
+              widget.icon != null &&
+              widget.icon!.tinted &&
+              widget._indicator != null
           ? null
-          : widget.tinted
+          : widget.icon != null && widget.icon!.tinted
           ? null
-          : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
+          : widget.icon?.backgroundColor,
 
       child: svgIcon,
     );

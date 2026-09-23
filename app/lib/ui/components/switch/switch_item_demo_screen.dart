@@ -14,6 +14,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ouds_core/components/control/ouds_control_item_icon.dart';
 import 'package:ouds_core/components/switch/ouds_switch_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -25,9 +26,11 @@ import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.d
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
@@ -164,11 +167,9 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
   ThemeController? themeController;
   bool _isSwitchOn = true;
 
-  ControlItemCustomizationState? customizationState;
-
   @override
   Widget build(BuildContext context) {
-    customizationState = ControlItemCustomization.of(context);
+    final customizationState = ControlItemCustomization.of(context)!;
     themeController = Provider.of<ThemeController>(context, listen: true);
 
     return LightDarkBox(
@@ -177,7 +178,7 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
         children: [
           OudsSwitchButtonItem(
             value: _isSwitchOn,
-            onChanged: customizationState!.hasEnabled
+            onChanged: customizationState.hasEnabled
                 ? (bool? newValue) {
                     setState(() {
                       _isSwitchOn = newValue!;
@@ -185,24 +186,32 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
                   }
                 : null,
             title: ControlItemCustomizationUtils.getLabelText(
-              customizationState!,
+              customizationState,
             ),
             helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
-              customizationState!,
+              customizationState,
             ),
-            reversed: customizationState!.hasReversed ? true : false,
-            readOnly: customizationState!.hasReadOnly ? true : false,
-            icon: customizationState!.hasIcon
-                ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                    themeController!,
+            reversed: customizationState.hasReversed ? true : false,
+            readOnly: customizationState.hasReadOnly ? true : false,
+            icon: customizationState.hasIcon
+                ? OudsControlItemIcon(
+                    customizationState.isTinted
+                        ? AppAssets.icons.assistanceTipsAndTricks(
+                            themeController!,
+                          )
+                        : AppAssets.icons.icUntintedSquare,
+                    tinted: customizationState.isTinted,
+                    backgroundColor: OudsTheme.of(
+                      context,
+                    ).colorScheme(context).surfaceBrandPrimary,
                   )
                 : null,
-            isError: customizationState!.hasError ? true : false,
+            isError: customizationState.hasError ? true : false,
             errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(
-              customizationState!,
+              customizationState,
             ),
-            divider: customizationState!.hasDivider ? true : false,
-            constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+            divider: customizationState.hasDivider ? true : false,
+            constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                 ? true
                 : false,
           ),
@@ -259,6 +268,18 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   });
                 },
         ),
+        if (customizationState.hasIcon)
+          CustomizableChips<TintedEnum>(
+            title: TintedEnum.enumName(context),
+            options: customizationState.tintedState.list,
+            selectedOption: customizationState.selectedTinted,
+            getText: (option) => option.stringValue(context),
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.selectedTinted = selectedOption;
+              });
+            },
+          ),
         CustomizableSwitch(
           title: context.l10n.app_components_controlItem_divider_label,
           value: customizationState.hasDivider,

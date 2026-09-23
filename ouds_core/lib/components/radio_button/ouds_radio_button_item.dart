@@ -16,6 +16,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
+import 'package:ouds_core/components/control/ouds_control_item_icon.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 
@@ -74,7 +75,7 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 ///     helperTitle: 'Helper text',
 ///     reversed: false,
 ///     readOnly: false,
-///     icon: 'assets/ic_heart.svg',
+///     icon: OudsControlItemIcon('assets/ic_heart.svg'),
 ///     isError: false,
 ///     divider: true,
 ///     outlined: false
@@ -89,7 +90,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
   final String title;
   final String? extraLabelText;
   final String? helperTitle;
-  final String? icon;
+  final OudsControlItemIcon? icon;
   final bool outlined;
   final bool reversed;
   final bool readOnly;

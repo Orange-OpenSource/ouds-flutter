@@ -14,6 +14,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ouds_core/components/control/ouds_control_item_icon.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -26,9 +27,11 @@ import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_s
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
@@ -176,11 +179,10 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
   RadioOption _selectedOption = RadioOption.first;
 
   ThemeController? themeController;
-  ControlItemCustomizationState? customizationState;
 
   @override
   Widget build(BuildContext context) {
-    customizationState = ControlItemCustomization.of(context);
+    final customizationState = ControlItemCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: false);
 
     // Adding post-frame callback to update theme based on customization state
@@ -203,33 +205,41 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                     }
                   : null,
               title: ControlItemCustomizationUtils.getLabelText(
-                customizationState!,
+                customizationState,
               ),
               extraLabelText:
                   ControlItemCustomizationUtils.getAdditionalLabelText(
-                    customizationState!,
+                    customizationState,
                   ),
               helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
-                customizationState!,
+                customizationState,
               ),
-              outlined: customizationState!.hasOutlined ? true : false,
-              reversed: customizationState!.hasReversed ? true : false,
-              readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon
-                  ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                      themeController!,
+              outlined: customizationState.hasOutlined ? true : false,
+              reversed: customizationState.hasReversed ? true : false,
+              readOnly: customizationState.hasReadOnly ? true : false,
+              icon: customizationState.hasIcon
+                  ? OudsControlItemIcon(
+                      customizationState.isTinted
+                          ? AppAssets.icons.assistanceTipsAndTricks(
+                              themeController!,
+                            )
+                          : AppAssets.icons.icUntintedSquare,
+                      tinted: customizationState.isTinted,
+                      backgroundColor: OudsTheme.of(
+                        context,
+                      ).colorScheme(context).surfaceBrandPrimary,
                     )
                   : null,
-              isError: customizationState!.hasError ? true : false,
-              divider: customizationState!.hasDivider ? true : false,
-              constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+              isError: customizationState.hasError ? true : false,
+              divider: customizationState.hasDivider ? true : false,
+              constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                   ? true
                   : false,
             ),
             OudsRadioButtonItem<RadioOption>(
               value: RadioOption.second,
               groupValue: _selectedOption,
-              onChanged: customizationState!.hasEnabled
+              onChanged: customizationState.hasEnabled
                   ? (RadioOption? value) {
                       setState(() {
                         _selectedOption = value!;
@@ -237,29 +247,37 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                     }
                   : null,
               title: ControlItemCustomizationUtils.getLabelText(
-                customizationState!,
+                customizationState,
               ),
               extraLabelText:
                   ControlItemCustomizationUtils.getAdditionalLabelText(
-                    customizationState!,
+                    customizationState,
                   ),
               helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
-                customizationState!,
+                customizationState,
               ),
-              outlined: customizationState!.hasOutlined ? true : false,
-              reversed: customizationState!.hasReversed ? true : false,
-              readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon
-                  ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                      themeController!,
+              outlined: customizationState.hasOutlined ? true : false,
+              reversed: customizationState.hasReversed ? true : false,
+              readOnly: customizationState.hasReadOnly ? true : false,
+              icon: customizationState.hasIcon
+                  ? OudsControlItemIcon(
+                      customizationState.isTinted
+                          ? AppAssets.icons.assistanceTipsAndTricks(
+                              themeController!,
+                            )
+                          : AppAssets.icons.icUntintedSquare,
+                      tinted: customizationState.isTinted,
+                      backgroundColor: OudsTheme.of(
+                        context,
+                      ).colorScheme(context).surfaceBrandPrimary,
                     )
                   : null,
-              isError: customizationState!.hasError ? true : false,
+              isError: customizationState.hasError ? true : false,
               errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(
-                customizationState!,
+                customizationState,
               ),
-              divider: customizationState!.hasDivider ? true : false,
-              constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+              divider: customizationState.hasDivider ? true : false,
+              constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                   ? true
                   : false,
             ),
@@ -322,6 +340,18 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   });
                 },
         ),
+        if (customizationState.hasIcon)
+          CustomizableChips<TintedEnum>(
+            title: TintedEnum.enumName(context),
+            options: customizationState.tintedState.list,
+            selectedOption: customizationState.selectedTinted,
+            getText: (option) => option.stringValue(context),
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.selectedTinted = selectedOption;
+              });
+            },
+          ),
         CustomizableSwitch(
           title: context.l10n.app_components_controlItem_divider_label,
           value: customizationState.hasDivider,

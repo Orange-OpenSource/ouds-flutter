@@ -137,6 +137,9 @@ class _LinkDemoState extends State<_LinkDemo> {
   Widget build(BuildContext context) {
     customizationState = LinkCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
+    final color = OudsTheme.of(
+      context,
+    ).colorScheme(context).surfaceBrandPrimary;
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -147,6 +150,7 @@ class _LinkDemoState extends State<_LinkDemo> {
       return ComponentDemoBox(
         colored: customizationState?.hasOnColoredBox == true,
         child: LinkCustomizationUtils.buildLink(
+          color: color,
           customizationState: customizationState!,
           themeController: themeController!,
           onPressed: customizationState!.hasEnabled == true ? () {} : null,
@@ -155,6 +159,7 @@ class _LinkDemoState extends State<_LinkDemo> {
     } else {
       return LightDarkBox(
         child: LinkCustomizationUtils.buildLink(
+          color: color,
           customizationState: customizationState!,
           themeController: themeController!,
           onPressed: customizationState!.hasEnabled == true ? () {} : null,

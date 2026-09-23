@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [DemoApp][Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
+- [DemoApp][Library] Update `alert message`, `inline alert`, `button`, `badge`, `checkbox item`, `radio button item`, `switch item`, `suggestion chip`, `filter chip`, `link`, `tag` and `text input` to allow the use of fixed images ([#779](https://github.com/Orange-OpenSource/ouds-flutter/issues/779))
 - [DemoApp][Library] In library, update chips components to v1.5.0 ([#837](https://github.com/Orange-OpenSource/ouds-flutter/issues/837))
 - [DemoApp][Library] For `Button` component, add with `tinted` parameter ([#912](https://github.com/Orange-OpenSource/ouds-flutter/issues/912))
 - [DemoApp][Library] For `passwordInput` component, update to v1.3.1 ([#785](https://github.com/Orange-OpenSource/ouds-flutter/issues/785))

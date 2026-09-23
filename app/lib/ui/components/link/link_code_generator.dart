@@ -65,7 +65,7 @@ class LinkCodeGenerator {
     List<String> params = [
       '  label: "$label",',
       if (layout == LinkEnumLayout.textAndIcon) ...[
-        '  icon: "assets/ic_heart.svg",',
+        '  icon: OudsLinkIcon("assets/ic_heart.svg, tinted: ${customizationState?.isTinted ?? true}"),',
         '  tinted: ${customizationState?.isTinted ?? true},',
       ],
       '  size: $sizeCode,',

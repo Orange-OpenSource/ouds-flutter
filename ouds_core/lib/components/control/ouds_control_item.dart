@@ -24,6 +24,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_indi
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
+import 'package:ouds_core/components/control/ouds_control_item_icon.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
@@ -37,7 +38,7 @@ enum OudsControlItemType { switchButton, checkbox, radio }
 class OudsControlItem extends StatefulWidget {
   final String text;
   final String? description;
-  final String? icon;
+  final OudsControlItemIcon? icon;
   final bool divider;
   final bool outlined;
   final bool selected;
@@ -72,25 +73,6 @@ class OudsControlItem extends StatefulWidget {
     this.constrainedMaxWidth = false,
     this.onTap,
   });
-
-  static Widget buildIcon(
-    BuildContext context,
-    String assetName,
-    OudsControlState controlItemState,
-    bool isError,
-  ) {
-    final controlItemTextModifier = OudsControlTextModifier(context);
-
-    return SvgPicture.asset(
-      excludeFromSemantics: true,
-      assetName,
-      fit: BoxFit.contain,
-      colorFilter: ColorFilter.mode(
-        controlItemTextModifier.getTextColor(controlItemState, isError),
-        BlendMode.srcIn,
-      ),
-    );
-  }
 
   @override
   OudsControlItemState createState() => OudsControlItemState();
@@ -360,9 +342,9 @@ class OudsControlItemState extends State<OudsControlItem> {
           width: OudsTheme.of(
             context,
           ).componentsTokens(context).controlItem.sizeIcon,
-          child: OudsControlItem.buildIcon(
+          child: _buildIcon(
             context,
-            widget.icon!,
+            widget.icon?.icon,
             controlItemState,
             false,
           ),
@@ -419,9 +401,9 @@ class OudsControlItemState extends State<OudsControlItem> {
           width: OudsTheme.of(
             context,
           ).componentsTokens(context).controlItem.sizeIcon,
-          child: OudsControlItem.buildIcon(
+          child: _buildIcon(
             context,
-            widget.icon!,
+            widget.icon?.icon,
             controlItemState,
             false,
           ),
@@ -565,6 +547,33 @@ class OudsControlItemState extends State<OudsControlItem> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min, // prevents taking full height
         children: columnChildren,
+      ),
+    );
+  }
+
+  Widget _buildIcon(
+    BuildContext context,
+    String? assetName,
+    OudsControlState controlItemState,
+    bool isError,
+  ) {
+    final controlItemTextModifier = OudsControlTextModifier(context);
+
+    return Container(
+      color: widget.icon != null && !widget.icon!.tinted
+          ? widget.icon?.backgroundColor
+          : null,
+      child: SvgPicture.asset(
+        excludeFromSemantics: true,
+        matchTextDirection: true,
+        assetName ?? "",
+        fit: BoxFit.contain,
+        colorFilter: widget.icon != null && widget.icon!.tinted
+            ? ColorFilter.mode(
+                controlItemTextModifier.getTextColor(controlItemState, isError),
+                BlendMode.srcIn,
+              )
+            : null,
       ),
     );
   }
