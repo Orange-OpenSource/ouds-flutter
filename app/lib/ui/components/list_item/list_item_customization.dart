@@ -71,7 +71,6 @@ class ListItemCustomizationState
   late final TrailingTextStyleState trailingTextStyleState;
   late final CardDecorationState cardDecorationState;
   late final BoolState clickableState;
-  late final BoolState edgeToEdgeState;
   late final TintedState leadingIconTintedState;
   late final TintedState trailingIconTintedState;
 
@@ -105,7 +104,6 @@ class ListItemCustomizationState
     trailingTextStyleState = TrailingTextStyleState(setState);
     cardDecorationState = CardDecorationState(setState);
     clickableState = BoolState(setState);
-    edgeToEdgeState = BoolState(setState, initial: true);
     leadingIconTintedState = TintedState(setState);
     trailingIconTintedState = TintedState(setState);
   }
@@ -217,9 +215,6 @@ class ListItemCustomizationState
 
   bool get clickable => clickableState.value;
   set clickable(bool value) => clickableState.value = value;
-
-  bool get edgeToEdge => edgeToEdgeState.value;
-  set edgeToEdge(bool value) => edgeToEdgeState.value = value;
 
   ListItemCardDecorationEnum get cardDecoration => cardDecorationState.selected;
   set cardDecoration(ListItemCardDecorationEnum value) =>

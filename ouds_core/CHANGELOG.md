@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...develop)
 ### Added
+- [Library] For `control item` components, add edge to edge configuration ([#880](https://github.com/Orange-OpenSource/ouds-flutter/issues/880))
 - [Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
 - [Library] Update `alert message`, `inline alert`, `button`, `badge`, `checkbox item`, `radio button item`, `switch item`, `suggestion chip`, `filter chip`, `link`, `tag` and `text input` to allow the use of fixed images ([#779](https://github.com/Orange-OpenSource/ouds-flutter/issues/779))

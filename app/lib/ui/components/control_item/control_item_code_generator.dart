@@ -51,6 +51,8 @@ class ControlItemCodeGenerator {
     bool indeterminate,
     ControlItemType control,
   ) {
+    final customizationState = ControlItemCustomization.of(context);
+
     String value = 'isChecked';
     String itemCode;
 
@@ -82,7 +84,7 @@ ${_includedElements.contains('readOnlyCode') ? readOnlyCode(context) : ''}
 ${_includedElements.contains('iconCode') ? iconCode(context) : ''}
 ${_includedElements.contains('errorCode') ? errorCode(context) : ''}
 ${_includedElements.contains('errorMessageCode') ? errorMessageCode(context) : ''}
-${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_includedElements.contains('outlinedCode') ? outlinedCode(context) : ''}${tristateCode(context, indeterminate)}${_includedElements.contains('constrainedMaxWidthCode') ? constrainedMaxWidthCode(context) : ''}
+${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_includedElements.contains('outlinedCode') ? outlinedCode(context) : ''}${tristateCode(context, indeterminate)}${_includedElements.contains('constrainedMaxWidthCode') ? constrainedMaxWidthCode(context) : ''}\nedgeToEdge: ${customizationState?.edgeToEdge},
 );""";
 
     return code;
@@ -193,5 +195,11 @@ ${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_inclu
   // Method to generate the tristate code for the control item
   static String tristateCode(BuildContext context, bool indeterminate) {
     return indeterminate ? "\ntristate: $indeterminate," : '';
+  }
+
+  // Method to generate the edgeToEdge code for the control item
+  static String edgeToEdgeCode(BuildContext context) {
+    final customizationState = ControlItemCustomization.of(context);
+    return "\nedgeToEdge: ${customizationState?.edgeToEdge},";
   }
 }
