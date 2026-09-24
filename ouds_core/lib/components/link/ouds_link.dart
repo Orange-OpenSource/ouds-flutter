@@ -72,7 +72,7 @@ enum OudsLinkDensity {
 ///
 class OudsLinkIcon {
   /// The path to the custom SVG asset for the icon.
-  final String icon;
+  final String assetsName;
 
   ///  Controls whether the icon should be tinted with the theme color. Defaults to `true`.
   ///  When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
@@ -85,7 +85,11 @@ class OudsLinkIcon {
   /// this parameter is ignored and the theme's default background color is used instead.
   final Color? backgroundColor;
 
-  const OudsLinkIcon(this.icon, {this.tinted = true, this.backgroundColor});
+  const OudsLinkIcon(
+    this.assetsName, {
+    this.tinted = true,
+    this.backgroundColor,
+  });
 }
 
 /// [OUDS Link design guidelines](https://r.orange.fr/r/S-ouds-doc-link)
@@ -581,7 +585,7 @@ class _OudsLinkState extends State<OudsLink> {
         widget.size,
         widget.layout,
         widget._indicator,
-        widget.icon?.icon,
+        widget.icon?.assetsName,
       )!,
       children: [
         Flexible(
@@ -593,7 +597,7 @@ class _OudsLinkState extends State<OudsLink> {
         ),
         _buildIcon(
           context,
-          widget.icon?.icon,
+          widget.icon?.assetsName,
           linkControlState,
           widget.layout,
           widget.size,
@@ -618,7 +622,7 @@ class _OudsLinkState extends State<OudsLink> {
         widget.size,
         widget.layout,
         widget._indicator,
-        widget.icon?.icon,
+        widget.icon?.assetsName,
       )!,
       children: [
         if (widget.layout == OudsLinkLayout.back ||
@@ -627,7 +631,7 @@ class _OudsLinkState extends State<OudsLink> {
             widget.icon != null)
           _buildIcon(
             context,
-            widget.icon?.icon,
+            widget.icon?.assetsName,
             linkControlState,
             widget.layout,
             widget.size,
