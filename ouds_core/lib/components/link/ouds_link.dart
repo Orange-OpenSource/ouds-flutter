@@ -83,13 +83,9 @@ class OudsLinkIcon {
   ///
   /// Only applicable when [tinted] is `false`. When [tinted] is `true`,
   /// this parameter is ignored and the theme's default background color is used instead.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
-  const OudsLinkIcon(
-    this.icon, {
-    this.tinted = true,
-    this.backgroundColor = Colors.transparent,
-  });
+  const OudsLinkIcon(this.icon, {this.tinted = true, this.backgroundColor});
 }
 
 /// [OUDS Link design guidelines](https://r.orange.fr/r/S-ouds-doc-link)
@@ -812,13 +808,7 @@ class _OudsLinkState extends State<OudsLink> {
     );
 
     return Container(
-      color:
-          !isIcon &&
-              widget.icon != null &&
-              widget.icon!.tinted &&
-              widget._indicator != null
-          ? null
-          : widget.icon != null && widget.icon!.tinted
+      color: widget.icon != null && widget.icon!.tinted
           ? null
           : widget.icon?.backgroundColor,
 

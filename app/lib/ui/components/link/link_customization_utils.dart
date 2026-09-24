@@ -10,7 +10,8 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/cupertino.dart';
+import 'dart:ui';
+
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
@@ -36,17 +37,17 @@ class LinkCustomizationUtils {
     final label = getText(customizationState);
     final size = getSize(customizationState.selectedSize);
     final density = getDensity(customizationState.selectedDensity);
-    final tinted = customizationState.isTinted;
+    final isTinted = customizationState.isTinted;
 
     switch (customizationState.selectedLayout) {
       case LinkEnumLayout.textAndIcon:
         return OudsLink.icon(
           label: label,
           icon: OudsLinkIcon(
-            tinted
+            isTinted
                 ? AppAssets.icons.assistanceTipsAndTricks(themeController)
                 : AppAssets.icons.icUntintedSquare,
-            tinted: tinted,
+            tinted: isTinted,
             backgroundColor: color,
           ),
           size: size,

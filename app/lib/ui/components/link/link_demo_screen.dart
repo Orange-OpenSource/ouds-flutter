@@ -137,7 +137,7 @@ class _LinkDemoState extends State<_LinkDemo> {
   Widget build(BuildContext context) {
     customizationState = LinkCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
-    final color = OudsTheme.of(
+    final colorSurfaceBrandPrimary = OudsTheme.of(
       context,
     ).colorScheme(context).surfaceBrandPrimary;
 
@@ -150,7 +150,7 @@ class _LinkDemoState extends State<_LinkDemo> {
       return ComponentDemoBox(
         colored: customizationState?.hasOnColoredBox == true,
         child: LinkCustomizationUtils.buildLink(
-          color: color,
+          color: colorSurfaceBrandPrimary,
           customizationState: customizationState!,
           themeController: themeController!,
           onPressed: customizationState!.hasEnabled == true ? () {} : null,
@@ -159,7 +159,7 @@ class _LinkDemoState extends State<_LinkDemo> {
     } else {
       return LightDarkBox(
         child: LinkCustomizationUtils.buildLink(
-          color: color,
+          color: colorSurfaceBrandPrimary,
           customizationState: customizationState!,
           themeController: themeController!,
           onPressed: customizationState!.hasEnabled == true ? () {} : null,
