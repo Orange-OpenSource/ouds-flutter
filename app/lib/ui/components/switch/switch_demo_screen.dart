@@ -11,7 +11,6 @@
  * //
  */
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -25,54 +24,37 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a checkbox demo and allows customization of switch properties
 class SwitchDemoScreen extends StatefulWidget {
   final bool indeterminate;
   final String? previousPageTitle;
-  const SwitchDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle}); // Default value set to false
+  const SwitchDemoScreen({
+    super.key,
+    this.indeterminate = false,
+    this.previousPageTitle,
+  }); // Default value set to false
 
   @override
   State<SwitchDemoScreen> createState() => _SwitchDemoScreenState();
 }
 
 class _SwitchDemoScreenState extends State<SwitchDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SwitchCustomization(
-      child: Padding(
-        padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
-          ),
-          key: _scaffoldKey,
-          extendBodyBehindAppBar: true,
-          appBar: MainAppBar(
-              showBackButton: true,
-              title: context.l10n.app_components_switch_label,
-              previousPageTitle: widget.previousPageTitle,
-          ),
-          body: ExcludeSemantics(
-            excluding: !_isBottomSheetExpanded,
-            child: _Body(),
-          ),
+      child: CustomizeBottomSheet(
+        topBar: MainAppBar(
+          showBackButton: true,
+          title: context.l10n.app_components_switch_label,
+          previousPageTitle: widget.previousPageTitle,
         ),
+        title: context.l10n.app_common_customize_label,
+        customizationContent: const _CustomizationContent(),
+        body: _Body(),
       ),
     );
   }
@@ -87,18 +69,23 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
       widget: Column(
         children: [
           _SwitchDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: SwitchCodeGenerator.updateCode(context),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
           ),
+          Code(code: SwitchCodeGenerator.updateCode(context)),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.switchButton,
-          )
+          ),
         ],
       ),
     );
@@ -163,7 +150,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final SwitchCustomizationState? customizationState = SwitchCustomization.of(context);
+    final SwitchCustomizationState? customizationState = SwitchCustomization.of(
+      context,
+    );
 
     return CustomizableSection(
       children: [
@@ -171,18 +160,19 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_common_enabled_label,
           value: customizationState!.hasEnabled,
           onChanged:
-
               /// Specific case: The switch is disabled if there is an error (hasError is true).
               customizationState.isEnabledWhenError == true
-                  ? null // Disable the switch if there is an error
-                  : (value) {
-                      customizationState.hasEnabled = value;
-                    },
+              ? null // Disable the switch if there is an error
+              : (value) {
+                  customizationState.hasEnabled = value;
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_readOnly_label,
           value: customizationState.hasReadOnly,
-          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+          onChanged:
+              customizationState.isReadOnlyWhenError ||
+                  customizationState.isReadOnlyWhenEnabled
               ? null
               : (value) {
                   setState(() {
