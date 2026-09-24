@@ -29,6 +29,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_accordion_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_alertMessage_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_alert_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_badge_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_bar_tokens.dart';
@@ -37,7 +38,6 @@ import 'package:ouds_theme_sosh/components/sosh_buttonMono_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_button_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_checkbox_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_chip_tokens.dart';
-import 'package:ouds_theme_sosh/components/sosh_controlItem_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_divider_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_icon_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_inputTag_tokens.dart';
@@ -232,6 +232,7 @@ class SoshTheme implements OudsThemeContract {
     return OudsComponentsTokens(
       accordion: SoshAccordionTokens(providersTokens(context)),
       alert: SoshAlertTokens(providersTokens(context)),
+      alertMessage: SoshAlertMessageTokens(providersTokens(context)),
       badge: SoshBadgeTokens(providersTokens(context)),
       bar: SoshBarTokens(providersTokens(context)),
       bulletList: SoshBulletListTokens(providersTokens(context)),
@@ -239,13 +240,12 @@ class SoshTheme implements OudsThemeContract {
       buttonMono: SoshButtonMonoTokens(providersTokens(context)),
       checkbox: SoshCheckboxTokens(providersTokens(context)),
       chip: SoshChipTokens(providersTokens(context)),
-      controlItem: SoshControlItemTokens(providersTokens(context)),
       divider: SoshDividerTokens(providersTokens(context)),
       icon: SoshIconTokens(providersTokens(context)),
       inputTag: SoshInputTagTokens(providersTokens(context)),
       link: SoshLinkTokens(providersTokens(context)),
       linkMono: SoshLinkMonoTokens(providersTokens(context)),
-      listItem: SoshListItemTokens(providersTokens(context)),
+      controlListItem: SoshListItemTokens(providersTokens(context)),
       pinCodeInput: SoshPinCodeInputTokens(providersTokens(context)),
       progressIndicator: SoshProgressIndicatorTokens(providersTokens(context)),
       progressIndicatorMono: SoshProgressIndicatorMonoTokens(

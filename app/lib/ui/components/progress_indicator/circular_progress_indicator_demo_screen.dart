@@ -99,7 +99,7 @@ class _BodyState extends State<_Body> {
           ),
           Code(code: ProgressIndicatorCodeGenerator.updateCode(context)),
           ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.progressIndicator,
+            version: OudsComponentVersion.circularProgressIndicator,
           ),
         ],
       ),
