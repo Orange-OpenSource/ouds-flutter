@@ -42,6 +42,7 @@ class _CustomizableTabsState extends State<CustomizableTabs> {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           color: colorScheme.bgPrimary,
@@ -85,11 +86,13 @@ class _CustomizableTabsState extends State<CustomizableTabs> {
             }),
           ),
         ),
-        Expanded(
-          child: SingleChildScrollView(
-            child: widget.children[_selectedIndex],
-          ),
-        ),
+        // No Expanded/Flexible here on purpose: this widget must stay valid
+        // even when given very little (or momentarily negative) height, e.g.
+        // while its ancestor bottom sheet is still animating its own size.
+        // The selected tab's content is sized to its natural height and any
+        // overflow is handled by the enclosing scrollable (see
+        // CustomizeBottomSheet), instead of forcing a hard fill here.
+        widget.children[_selectedIndex],
       ],
     );
   }

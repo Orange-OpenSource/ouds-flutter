@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -13,7 +12,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdow
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -21,47 +20,33 @@ import 'package:provider/provider.dart';
 class DividerDemoScreen extends StatefulWidget {
   final bool vertical;
   final String? previousPageTitle;
-  const DividerDemoScreen({super.key, required this.vertical,this.previousPageTitle});
+  const DividerDemoScreen({
+    super.key,
+    required this.vertical,
+    this.previousPageTitle,
+  });
 
   @override
   State<StatefulWidget> createState() => _DividerDemoScreenState();
 }
 
 class _DividerDemoScreenState extends State<DividerDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DividerCustomization(
-        child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
-          child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            key: _scaffoldKey,
-            extendBodyBehindAppBar: true,
-            appBar: MainAppBar(
-                title: widget.vertical
-                    ? context.l10n.app_components_divider_verticalDivider_label
-                    : context.l10n.app_components_divider_horizontalDivider_label,
-                showBackButton: true,
-            previousPageTitle: widget.previousPageTitle),
-            body: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(vertical: widget.vertical),
-            ),
-          ),
-        ));
+      child: CustomizeBottomSheet(
+        topBar: MainAppBar(
+          title: widget.vertical
+              ? context.l10n.app_components_divider_verticalDivider_label
+              : context.l10n.app_components_divider_horizontalDivider_label,
+          showBackButton: true,
+          previousPageTitle: widget.previousPageTitle,
+        ),
+        title: context.l10n.app_common_customize_label,
+        customizationContent: const _CustomizationContent(),
+        body: _Body(vertical: widget.vertical),
+      ),
+    );
   }
 }
 
@@ -78,7 +63,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final DividerCustomizationState? customizationState = DividerCustomization.of(context);
+    final DividerCustomizationState? customizationState =
+        DividerCustomization.of(context);
 
     var colors = customizationState!.colorState.list;
 
@@ -96,13 +82,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
       },
       itemLeadingIcons: customizationState.colorState.list.map((color) {
         return () => Container(
-              width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
-              height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
-              decoration: BoxDecoration(
-                color: DividerCustomizationUtils.getOudsDividerColor(color).getColor(context),
-                shape: BoxShape.rectangle,
-              ),
-            );
+          width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
+          height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
+          decoration: BoxDecoration(
+            color: DividerCustomizationUtils.getOudsDividerColor(
+              color,
+            ).getColor(context),
+            shape: BoxShape.rectangle,
+          ),
+        );
       }).toList(),
     );
   }
@@ -120,18 +108,23 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: true);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: true,
+    );
     return DetailScreenDescription(
       widget: Column(
         children: [
           _DividerDemo(vertical: widget.vertical),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: DividerCodeGenerator.updateCode(context, widget.vertical),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
           ),
+          Code(code: DividerCodeGenerator.updateCode(context, widget.vertical)),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.divider,
-          )
+          ),
         ],
       ),
     );
@@ -169,10 +162,18 @@ class _DividerDemoState extends State<_DividerDemo> {
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+                OudsDivider.vertical(
+                  color: DividerCustomizationUtils.getOudsDividerColor(
+                    customizationState?.selectedColor,
+                  ),
+                ),
               ],
             )
-          : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+          : OudsDivider.horizontal(
+              color: DividerCustomizationUtils.getOudsDividerColor(
+                customizationState?.selectedColor,
+              ),
+            ),
     );
   }
 }
