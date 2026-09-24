@@ -107,14 +107,7 @@ class OudsCodeText extends StatelessWidget {
   /// Returns the [TextStyle] used to render the code text in the active theme.
   @protected
   TextStyle textStyle(BuildContext context) {
-    final typography = OudsTheme.of(context).typographyTokens;
-    const fontFamilyFallback = ['Courier', 'monospace'];
-    return typography
-        .typeBodyDefaultSmall(context)
-        .copyWith(
-          fontFamily: 'monospace',
-          fontFamilyFallback: fontFamilyFallback,
-        );
+    return OudsTheme.of(context).typographyTokens.typeCodeMedium(context);
   }
 
   @override
