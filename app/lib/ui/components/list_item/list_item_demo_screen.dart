@@ -11,7 +11,6 @@
  *
  */
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -32,8 +31,7 @@ import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom_with_tabs.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 /// Screen for the [OudsListItem] component demo.
@@ -47,41 +45,19 @@ class ListItemDemoScreen extends StatefulWidget {
 }
 
 class _ListItemDemoScreenState extends State<ListItemDemoScreen> {
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: ListItemCustomization(
-        child: Padding(
-          padding: EdgeInsets.only(
-            bottom: defaultTargetPlatform == TargetPlatform.android
-                ? MediaQuery.of(context).viewPadding.bottom
-                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+        child: CustomizeBottomSheet(
+          topBar: MainAppBar(
+            title: context.l10n.app_components_listItem_tech,
+            previousPageTitle: widget.previousPageTitle,
+            showBackButton: true,
           ),
-          child: Scaffold(
-            bottomSheet: OudsSheetsBottomWithTabs(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            extendBodyBehindAppBar: true,
-            appBar: MainAppBar(
-              title: context.l10n.app_components_listItem_tech,
-              previousPageTitle: widget.previousPageTitle,
-              showBackButton: true,
-            ),
-            body: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
-          ),
+          title: context.l10n.app_common_customize_label,
+          customizationContent: const _CustomizationContent(),
+          body: _Body(),
         ),
       ),
     );
