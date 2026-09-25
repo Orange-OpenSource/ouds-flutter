@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_customization.dart';
@@ -26,6 +27,7 @@ import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_cu
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/typography/typography_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:provider/provider.dart';
@@ -121,6 +123,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final alertMessageState = AlertCustomization.of(context);
     final listItemState = ListItemCustomization.of(context);
     final progressIndicatorState = ProgressIndicatorCustomization.of(context);
+    final typographyState = TypographyCustomization.of(context);
 
     final value = _textController.text;
 
@@ -140,6 +143,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         alertMessageState?.label = value;
         listItemState?.label = value;
         progressIndicatorState?.value = value;
+        typographyState?.labelText = value;
         break;
       case FieldType.helper:
         textInputState?.helperText = value;
@@ -234,22 +238,9 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                      fontSize: themeController
-                          .currentTheme
-                          .fontTokens
-                          .sizeBodyLargeMobile,
-                      fontWeight: themeController
-                          .currentTheme
-                          .fontTokens
-                          .weightLabelStrong,
-                      letterSpacing: themeController
-                          .currentTheme
-                          .fontTokens
-                          .letterSpacingBodyLargeMobile,
-                    ),
+                  OudsBodyText(
+                    text: widget.title,
+                    size: OudsBodyTextSize.large,
                   ),
                   SizedBox(
                     height: themeController.currentTheme

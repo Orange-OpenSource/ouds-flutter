@@ -170,6 +170,26 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td style="padding:10px;">Text Input</td>
       <td>1.4.1</td>
     </tr>
+    <tr>
+      <td style="padding:10px;">Body</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Code</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Display</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Heading</td>
+      <td>1.1.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Label</td>
+      <td>1.0.0</td>
+    </tr>
   </tbody>
 </table>
 

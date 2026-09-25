@@ -31,6 +31,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  # Themes used for testing components against multiple brands
+  ouds_theme_orange: ^3.0.0
+  ouds_theme_sosh: ^3.0.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
