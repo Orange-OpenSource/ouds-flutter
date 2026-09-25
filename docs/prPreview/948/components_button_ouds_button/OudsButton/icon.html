@@ -27,7 +27,7 @@
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_button_ouds_button/">components&#47;button&#47;ouds_button.dart</a></li>
     <li><a href="../../components_button_ouds_button/OudsButton-class.html">OudsButton</a></li>
-    <li class="self-crumb">icon property</li>
+    <li class="self-crumb"><span class="deprecated">icon</span> property</li>
   </ol>
   <div class="self-name">icon</div>
   <form class="search navbar-right" role="search">
@@ -55,8 +55,13 @@
     
       <section class="multi-line-signature">
         
-        <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?
-        <span class="name ">icon</span>
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;The icon parameter of type String is deprecated , use the OudsIcon type instead.&#39;)</li>
+    </ol>
+  </div>
+        <a href="../../components_common_ouds_icon/OudsIcon-class.html">OudsIcon</a>?
+        <span class="name deprecated">icon</span>
         <div class="features"><span class="feature">final</span></div>
 
       </section>
@@ -65,7 +70,10 @@
       
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final String? icon;</code></pre>
+  <pre class="language-dart"><code class="language-dart">@Deprecated(
+  &#39;The icon parameter of type String is deprecated , use the OudsIcon type instead.&#39;,
+)
+final OudsIcon? icon;</code></pre>
 </section>
 
 
@@ -82,7 +90,7 @@
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_button_ouds_button/">ouds_button</a></li>
     <li><a href="../../components_button_ouds_button/OudsButton-class.html">OudsButton</a></li>
-    <li class="self-crumb">icon property</li>
+    <li class="self-crumb"><span class="deprecated">icon</span> property</li>
 </ol>
 
   <h5>OudsButton class</h5>
