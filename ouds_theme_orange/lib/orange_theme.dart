@@ -97,7 +97,16 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 ///
 /// **Option 2: Bundle fonts as assets (Recommended for production)**
 ///
-/// 1. Download Helvetica Neue fonts from [Orange Brand Portal](https://brand.orange.com/en/brand-basics/typography)
+/// 1. The Helvetica Neue font files for the Orange theme can be downloaded at the following links for their
+/// * Latin version can be downloaded at the following links:
+///  - [https://assets.orange.com/pm_12751_491_491559-ngke9h7d3m-HelveticaNeue-Roman.ttf](https://assets.orange.com/pm_12751_491_491559-ngke9h7d3m-HelveticaNeue-Roman.ttf)
+///  - [https://assets.orange.com/pm_12751_491_491556-bd333uw5x5-HelveticaNeue-Medium.ttf](https://assets.orange.com/pm_12751_491_491556-bd333uw5x5-HelveticaNeue-Medium.ttf)
+///  - [https://assets.orange.com/pm_12751_491_491553-29arstkwm3-HelveticaNeue-Bold.ttf](https://assets.orange.com/pm_12751_491_491553-29arstkwm3-HelveticaNeue-Bold.ttf)
+/// * Their Arabic version can be downloaded at the following links:
+///  - [https://assets.orange.com/pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf](https://assets.orange.com/pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf)
+///  - [https://assets.orange.com/pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf](https://assets.orange.com/pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf)
+///  - [https://assets.orange.com/pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf](https://assets.orange.com/pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf)
+///
 /// 2. Add font files to your `fonts/` directory:
 ///
 /// ```
