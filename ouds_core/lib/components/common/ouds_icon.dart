@@ -9,17 +9,25 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// {@category Button}
 /// {@category Chip}
+/// {@category Link}
+/// {@category Text input}
 library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
-import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
 
+/// Configuration for icon in a some component like [OudsLink], [OudsButton] and [OudsFilterChip].
 ///
-/// An icon used in an [OudsFilterChip.icon] and [OudsSuggestionChip]. This icon is non-clickable
+/// Provides properties to customize the icon and its tinting behavior.
 ///
-class OudsChipIcon {
+/// Parameters:
+/// - [assetsName]: The name or path of the SVG asset to display.
+/// - [tinted]: When `true` (default), the icon is colored with the theme's foreground color.
+///   When `false`, the icon displays with its original colors (useful for multi-color icons).
+///   Note: Untinted icons must ensure sufficient contrast with the background for accessibility.
+class OudsIcon {
   /// The path to the custom SVG asset for the icon.
   final String assetsName;
 
@@ -34,10 +42,10 @@ class OudsChipIcon {
   /// this parameter is ignored and the theme's default background color is used instead.
   final Color? backgroundColor;
 
-  /// Description of the chip's content for accessibility purposes. This value is ignored if the chip also contains a label.
+  /// Description of the chip's content for accessibility purposes. This value is ignored if the component also contains a label.
   final String? semanticsLabel;
 
-  const OudsChipIcon(
+  const OudsIcon(
     this.assetsName, {
     this.tinted = true,
     this.backgroundColor,

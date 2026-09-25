@@ -157,7 +157,7 @@ class ListItemCodeGenerator {
   ) => switch (leading) {
     ListItemLeadingEnum.none => '',
     ListItemLeadingEnum.icon =>
-      "OudsListItemLeadingIcon(Neutral(icon: 'assets/ic_heart.svg', tinted: $tinted))",
+      "OudsListItemLeadingIcon(Neutral(icon: ${tinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: $tinted))",
     ListItemLeadingEnum.image =>
       "OudsListItemLeadingImage(asset: 'assets/photo.jpg')",
     // TODO[v0.4]: uncomment avatar when available
@@ -176,7 +176,7 @@ class ListItemCodeGenerator {
     bool tinted,
   ) => switch (leading) {
     ListItemLeadingEnum.icon =>
-      "OudsSmallListItemLeadingIcon(Neutral(icon: 'assets/ic_heart.svg', tinted: $tinted))",
+      "OudsSmallListItemLeadingIcon(Neutral(icon: ${tinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: $tinted))",
     ListItemLeadingEnum.image =>
       "OudsSmallListItemLeadingImage(asset: 'assets/photo.jpg')",
     _ => '',
@@ -203,7 +203,7 @@ class ListItemCodeGenerator {
     // TODO[v0.3]: uncomment badge when available
     // TODO[v0.3]: uncomment tag when available
     ListItemTrailingEnum.icon =>
-      "OudsListItemTrailingIcon(Neutral(icon: 'assets/ic_heart.svg', tinted: $tinted))",
+      "OudsListItemTrailingIcon(Neutral(icon: ${tinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: $tinted))",
     ListItemTrailingEnum.image =>
       "OudsListItemTrailingImage(asset: 'assets/photo.jpg')",
     // TODO[v0.4]: uncomment avatar when available

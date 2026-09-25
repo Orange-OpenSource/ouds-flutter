@@ -139,6 +139,7 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
             customizationState,
             themeController!,
             colorSurfaceBrandPrimary,
+            null,
           ),
           onPressed: customizationState!.hasEnabled == true ? () {} : null,
         );
@@ -148,6 +149,7 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
             customizationState,
             themeController!,
             colorSurfaceBrandPrimary,
+            context.l10n.app_components_common_icon_a11y,
           ),
           onPressed: customizationState!.hasEnabled == true ? () {} : null,
         );

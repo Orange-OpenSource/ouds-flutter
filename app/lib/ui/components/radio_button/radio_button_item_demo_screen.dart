@@ -13,7 +13,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ouds_core/components/control/ouds_control_item_icon.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -145,6 +145,11 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
+
+    final surfaceBrandPrimaryColor = OudsTheme.of(
+      context,
+    ).colorScheme(context).surfaceBrandPrimary;
+
     return LightDarkBox(
       isEdgeToEdge: customizationState.edgeToEdge,
       hasConstrainedMaxWidthOption: true,
@@ -175,16 +180,14 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
               reversed: customizationState.hasReversed ? true : false,
               readOnly: customizationState.hasReadOnly ? true : false,
               icon: customizationState.hasIcon
-                  ? OudsControlItemIcon(
+                  ? OudsIcon(
                       customizationState.isTinted
                           ? AppAssets.icons.assistanceTipsAndTricks(
                               themeController!,
                             )
                           : AppAssets.icons.icUntintedSquare,
                       tinted: customizationState.isTinted,
-                      backgroundColor: OudsTheme.of(
-                        context,
-                      ).colorScheme(context).surfaceBrandPrimary,
+                      backgroundColor: surfaceBrandPrimaryColor,
                     )
                   : null,
               isError: customizationState.hasError ? true : false,
@@ -217,16 +220,14 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
               reversed: customizationState.hasReversed ? true : false,
               readOnly: customizationState.hasReadOnly ? true : false,
               icon: customizationState.hasIcon
-                  ? OudsControlItemIcon(
+                  ? OudsIcon(
                       customizationState.isTinted
                           ? AppAssets.icons.assistanceTipsAndTricks(
                               themeController!,
                             )
                           : AppAssets.icons.icUntintedSquare,
                       tinted: customizationState.isTinted,
-                      backgroundColor: OudsTheme.of(
-                        context,
-                      ).colorScheme(context).surfaceBrandPrimary,
+                      backgroundColor: surfaceBrandPrimaryColor,
                     )
                   : null,
               isError: customizationState.hasError ? true : false,

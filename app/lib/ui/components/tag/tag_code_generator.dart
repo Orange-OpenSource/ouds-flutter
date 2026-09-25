@@ -82,13 +82,13 @@ class TagCodeGenerator {
         return """Neutral(${withIcon
             ? customizationState.isTinted
                   ? "icon: 'AppAssets.icons.assistanceTipsAndTricks'"
-                  : "'AppAssets.icons.icUntintedSquare',"
+                  : "icon: 'AppAssets.icons.icUntintedSquare',"
             : ""}${withIcon ? "\ntinted: ${customizationState.isTinted}" : ""})""";
       case StatusEnum.accent:
         return """Accent(${withIcon
             ? customizationState.isTinted
                   ? "icon: 'AppAssets.icons.assistanceTipsAndTricks'"
-                  : "'AppAssets.icons.icUntintedSquare',"
+                  : "icon: 'AppAssets.icons.icUntintedSquare',"
             : ""}${withIcon ? "\ntinted: ${customizationState.isTinted}" : ""})""";
       case StatusEnum.positive:
         return """Positive()""";

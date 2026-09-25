@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
@@ -28,7 +29,7 @@ class LinkCustomizationUtils {
   /// Builds the [OudsLink] widget matching the selected layout, using the
   /// dedicated constructor for each variant (icon, previous, next, external).
   static OudsLink buildLink({
-    required Color color,
+    required Color backgroundColor,
     required LinkCustomizationState customizationState,
     required ThemeController themeController,
     required VoidCallback? onPressed,
@@ -42,12 +43,12 @@ class LinkCustomizationUtils {
       case LinkEnumLayout.textAndIcon:
         return OudsLink.icon(
           label: label,
-          icon: OudsLinkIcon(
+          icon: OudsIcon(
             isTinted
                 ? AppAssets.icons.assistanceTipsAndTricks(themeController)
                 : AppAssets.icons.icUntintedSquare,
             tinted: isTinted,
-            backgroundColor: color,
+            backgroundColor: backgroundColor,
           ),
           size: size,
           density: density,

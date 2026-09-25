@@ -473,7 +473,7 @@ OudsButton(
 )
 
 OudsButton(
-  icon: 'assets/ic_heart.svg',
+  icon: OudsIcon('assets/ic_heart.svg'),
   appearance: OudsButtonAppearance.strong,
   onPressed: () {},
 )
@@ -516,8 +516,7 @@ OudsFilterChip(
 
 OudsFilterChip.icon(
   label: 'Label',
-  icon: 'assets/ic_chip_heart.svg',
-  tinted: true,
+  icon: OudsIcon('assets/ic_chip_heart.svg', tinted: true),
   selected: true,
   onSelected: (selected) {},
 )
@@ -529,8 +528,7 @@ OudsSuggestionChip(
 
 OudsSuggestionChip.icon(
   label: 'Label',
-  icon: 'assets/ic_chip_heart.svg',
-  tinted: true,
+  icon: OudsIcon('assets/ic_chip_heart.svg', tinted: true),
   onPressed: () {},
 )
 ```
@@ -563,8 +561,7 @@ OudsLink(label: 'Learn more', onPressed: () {})
 
 OudsLink.icon(
   label: 'Favorite',
-  icon: 'assets/ic_heart.svg',
-  tinted: true,
+  icon: OudsIcon('assets/ic_heart.svg', tinted: true),
   onPressed: () {},
 )
 
@@ -633,7 +630,7 @@ OudsTextField(
   decoration: OudsInputDecoration(
     labelText: 'Email',
     hintText: 'you@example.com',
-    prefixIcon: 'assets/ic_mail.svg',
+    prefixIcon: OudsIcon('assets/ic_mail.svg'),
     helperText: 'We will never share your address.',
   ),
   helperLink: OudsLink(label: 'Privacy policy', onPressed: () {}),

@@ -20,8 +20,8 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dar
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
-import 'package:ouds_core/components/chip/ouds_chip_icon.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -68,7 +68,7 @@ enum OudsChipStyle { defaultStyle, selected }
 /// ```dart
 /// OudsSuggestionChip.icon(
 ///   label: 'Label',
-///   icon: OudsChipIcon('assets/ic_chip_heart.svg'),
+///   icon: OudsIcon('assets/ic_chip_heart.svg'),
 ///   onPressed: () {},
 /// )
 /// ```
@@ -79,7 +79,7 @@ class OudsSuggestionChip extends StatefulWidget {
     "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsSuggestionChip.icon constructor .",
   )
   final String? avatar;
-  final OudsChipIcon? icon;
+  final OudsIcon? icon;
   @Deprecated(
     "This parameter is deprecated and will be removed in a future version. Use icon.semanticsLabel instead in OudsSuggestionChip.icon constructor .",
   )

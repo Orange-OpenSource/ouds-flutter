@@ -49,12 +49,12 @@ class ChipSuggestionCodeGenerator {
 
       case OudsChipLayout.iconOnly:
         code =
-            "OudsSuggestionChip.icon(\nicon: OudsChipIcon('assets/ic_heart.svg', tinted: ${customizationState?.tintedIcon}),\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
+            "OudsSuggestionChip.icon(\nicon: OudsIcon(${customizationState?.isTinted == true ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: ${customizationState?.tintedIcon}),\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
         break;
 
       case OudsChipLayout.iconAndText:
         code =
-            """OudsSuggestionChip.icon(\nlabel: "$label",\nicon: OudsChipIcon('assets/ic_heart.svg', tinted: ${customizationState?.tintedIcon}),\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
+            """OudsSuggestionChip.icon(\nlabel: "$label",\nicon: OudsIcon(${customizationState?.isTinted == true ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: ${customizationState?.tintedIcon}),\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
         break;
     }
 

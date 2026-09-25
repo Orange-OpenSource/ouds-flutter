@@ -16,8 +16,7 @@
 /// {@category Alert}
 library;
 
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 
 /// Describes the configuration for an [OudsBadge] / [OudsTag] with an icon.

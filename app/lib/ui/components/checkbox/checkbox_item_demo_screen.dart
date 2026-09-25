@@ -13,7 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_item.dart';
-import 'package:ouds_core/components/control/ouds_control_item_icon.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
@@ -166,7 +166,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
         reversed: customizationState.hasReversed ? true : false,
         readOnly: customizationState.hasReadOnly ? true : false,
         icon: customizationState.hasIcon
-            ? OudsControlItemIcon(
+            ? OudsIcon(
                 customizationState.isTinted
                     ? AppAssets.icons.assistanceTipsAndTricks(themeController)
                     : AppAssets.icons.icUntintedSquare,

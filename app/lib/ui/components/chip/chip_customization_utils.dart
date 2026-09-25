@@ -11,8 +11,8 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/chip/ouds_chip_icon.dart';
 import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -41,14 +41,15 @@ class ChipCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static OudsChipIcon? getIcon(
+  static OudsIcon? getIcon(
     ChipCustomizationState? customizationState,
     ThemeController themeController,
     Color backgroundColor,
+    String? semanticsLabel,
   ) {
     if (customizationState?.selectedLayout == ChipEnumLayout.iconOnly ||
         customizationState?.selectedLayout == ChipEnumLayout.iconAndText) {
-      return OudsChipIcon(
+      return OudsIcon(
         customizationState?.tintedIcon == true
             ? AppAssets.icons.assistanceTipsAndTricks(themeController)
             : AppAssets.icons.icUntintedSquare,
@@ -56,6 +57,7 @@ class ChipCustomizationUtils {
         backgroundColor: customizationState?.tintedIcon == true
             ? null
             : backgroundColor,
+        semanticsLabel: semanticsLabel,
       );
     }
     return null;

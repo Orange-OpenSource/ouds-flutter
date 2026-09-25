@@ -21,6 +21,7 @@ import 'package:ouds_core/components/alert/internal/ouds_alert_message_border_mo
 import 'package:ouds_core/components/alert/internal/ouds_alert_status_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
@@ -232,7 +233,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     final closeButton = widget.onClose != null
         ? ExcludeSemantics(
             child: OudsButton(
-              icon: AppAssets.icons.componentButtonExpurge,
+              icon: OudsIcon(AppAssets.icons.componentButtonExpurge),
               onPressed: widget.onClose,
               appearance: OudsButtonAppearance.minimal,
               package: OudsTheme.of(context).packageName,

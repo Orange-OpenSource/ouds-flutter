@@ -12,7 +12,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
@@ -424,26 +423,6 @@ class CardDecorationState {
   set selected(ListItemCardDecorationEnum newValue) {
     _setState(() {
       _selected = newValue;
-    });
-  }
-}
-
-/// Controls whether the icon displayed in the [OudsListItem] should be tinted
-/// with the theme color, or shown with its original colors.
-class TintedState {
-  TintedState(this._setState);
-
-  final void Function(void Function()) _setState;
-
-  final List<TintedEnum> _tintedList = [TintedEnum.tinted, TintedEnum.untinted];
-  TintedEnum _selectedTinted = TintedEnum.tinted;
-
-  List<TintedEnum> get list => _tintedList;
-
-  TintedEnum get selected => _selectedTinted;
-  set selected(TintedEnum newValue) {
-    _setState(() {
-      _selectedTinted = newValue;
     });
   }
 }

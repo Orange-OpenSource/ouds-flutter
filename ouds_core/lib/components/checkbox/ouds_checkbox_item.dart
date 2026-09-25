@@ -14,8 +14,8 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
-import 'package:ouds_core/components/control/ouds_control_item_icon.dart';
 
 ///
 /// [OUDS Checkbox design guidelines](https://r.orange.fr/r/S-ouds-doc-checkbox)
@@ -75,7 +75,7 @@ import 'package:ouds_core/components/control/ouds_control_item_icon.dart';
 ///   helperTitle: 'Helper text',
 ///   reversed: false,
 ///   readOnly: false,
-///   icon: OudsControlItemIcon('assets/ic_heart/svg'),
+///   icon: OudsIcon('assets/ic_heart/svg'),
 ///   isError: false,
 ///   divider: true,
 ///   edgeToEdge: true,
@@ -94,7 +94,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final ValueChanged<bool?>? onChanged;
   final String title;
   final String? helperTitle;
-  final OudsControlItemIcon? icon;
+  final OudsIcon? icon;
   final bool reversed;
   final bool readOnly;
   final bool isError;

@@ -16,6 +16,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
@@ -24,7 +25,6 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_indi
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/components/control/ouds_control_item_icon.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
@@ -38,7 +38,7 @@ enum OudsControlItemType { switchButton, checkbox, radio }
 class OudsControlItem extends StatefulWidget {
   final String text;
   final String? description;
-  final OudsControlItemIcon? icon;
+  final OudsIcon? icon;
   final bool divider;
   final bool outlined;
   final bool selected;
@@ -363,7 +363,7 @@ class OudsControlItemState extends State<OudsControlItem> {
           ).componentsTokens(context).controlItem.sizeIcon,
           child: _buildIcon(
             context,
-            widget.icon?.icon,
+            widget.icon?.assetsName,
             controlItemState,
             false,
           ),
@@ -422,7 +422,7 @@ class OudsControlItemState extends State<OudsControlItem> {
           ).componentsTokens(context).controlItem.sizeIcon,
           child: _buildIcon(
             context,
-            widget.icon?.icon,
+            widget.icon?.assetsName,
             controlItemState,
             false,
           ),

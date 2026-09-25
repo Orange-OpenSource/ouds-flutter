@@ -22,8 +22,8 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dar
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
-import 'package:ouds_core/components/chip/ouds_chip_icon.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -74,7 +74,7 @@ enum OudsChipStyle { defaultStyle, selected }
 /// ```dart
 /// OudsFilterChip.icon(
 ///   label: 'Label',
-///   icon: OudsChipIcon('assets/ic_chip_heart.svg'),
+///   icon: OudsIcon('assets/ic_chip_heart.svg'),
 ///   selected: true,
 ///   onSelected: (bool selected) {},
 /// )
@@ -86,7 +86,7 @@ class OudsFilterChip extends StatefulWidget {
     "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsFilterChip.icon constructor .",
   )
   final String? avatar;
-  final OudsChipIcon? icon;
+  final OudsIcon? icon;
   final String? contentDescription;
   final bool selected;
   final ValueChanged<bool>? onSelected;
@@ -128,7 +128,7 @@ class OudsFilterChip extends StatefulWidget {
   static OudsChipLayout _detectLayout(
     String? label,
     String? avatar,
-    OudsChipIcon? icon,
+    OudsIcon? icon,
   ) {
     if (label != null && (icon != null || avatar != null)) {
       return OudsChipLayout.iconAndText;
@@ -623,7 +623,6 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         // Positioned.fill ensures the border exactly wraps the content's area
         Positioned.fill(
           child: Container(
-            //color: Colors.red,
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(
                 chipState,

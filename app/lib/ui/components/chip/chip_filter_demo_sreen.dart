@@ -145,6 +145,7 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
             customizationState,
             themeController,
             colorSurfaceBrandPrimary,
+            null,
           ),
           selected: customizationState.hasSelected,
           onSelected: customizationState.hasEnabled == true
@@ -161,8 +162,8 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
             customizationState,
             themeController,
             colorSurfaceBrandPrimary,
+            context.l10n.app_components_common_icon_a11y,
           ),
-          contentDescription: context.l10n.app_components_common_icon_a11y,
           selected: customizationState.hasSelected,
           onSelected: customizationState.hasEnabled == true
               ? (newValue) {
