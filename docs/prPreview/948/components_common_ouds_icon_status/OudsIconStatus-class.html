@@ -60,7 +60,10 @@
 turn determines the icon to display and its associated colors.</p>
 <p>Subclasses are provided for each specific status:</p>
 <ul>
-<li><a href="../components_common_ouds_icon_status/Neutral-class.html">Neutral</a> and <a href="../components_common_ouds_icon_status/Accent-class.html">Accent</a> allow for a user-defined custom icon.</li>
+<li><a href="../components_common_ouds_icon_status/Neutral-class.html">Neutral</a> and <a href="../components_common_ouds_icon_status/Accent-class.html">Accent</a> allow for a user-defined custom icon. They also
+expose <code>tinted</code>, <code>backgroundColor</code> and <code>semanticsLabel</code> properties to
+control whether the icon is tinted with the theme color, the background
+color to apply when untinted, and the accessibility label for the custom icon.</li>
 <li><a href="../components_common_ouds_icon_status/Positive-class.html">Positive</a>, <a href="../components_common_ouds_icon_status/Info-class.html">Info</a>, <a href="../components_common_ouds_icon_status/Warning-class.html">Warning</a>, and <a href="../components_common_ouds_icon_status/Negative-class.html">Negative</a> use fixed icons defined
 by the design system to convey a specific meaning.</li>
 </ul>
@@ -89,7 +92,7 @@ OudsTag(
 // A tag with a custom user-provided icon with untined icon
 OudsTag(
   label: 'Custom',
-  iconStatus: Neutral(icon: 'assets/my_custom_icon.svg, tinted = false'),
+  iconStatus: Neutral(icon: 'assets/my_custom_icon.svg', tinted = false),
 );
 </code></pre>
 </section>
