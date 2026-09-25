@@ -11,6 +11,8 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/constants_sheets_bottom.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -166,11 +168,10 @@ class OudsSheetsBottomWithTabsState extends State<OudsSheetsBottomWithTabs> {
                           ),
                         ),
                         Expanded(
-                          child: Text(
-                            widget.title,
-                            style: theme.typographyTokens.typeBodyStrongLarge(
-                              context,
-                            ),
+                          child: OudsBodyText(
+                            text: widget.title,
+                            size: OudsBodyTextSize.large,
+                            weight: OudsTextWeight.strong,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),

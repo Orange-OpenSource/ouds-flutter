@@ -10,6 +10,8 @@
 // Software description: Flutter library of reusable graphical components
 //
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -55,9 +57,10 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
             padding: EdgeInsetsDirectional.symmetric(
               horizontal: currentTheme.spaceScheme(context).fixedMedium,
             ),
-            child: Text(
-              label,
-              style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+            child: OudsBodyText(
+              text: label,
+              size: OudsBodyTextSize.large,
+              weight: OudsTextWeight.strong,
             ),
           ),
         ),
@@ -102,11 +105,10 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
                     value: isSelected
                         ? context.l10n.app_common_selected_a11y
                         : context.l10n.app_common_unselected_a11y,
-                    child: Text(
-                      getText(currentElement),
-                      style: currentTheme.typographyTokens.typeBodyStrongLarge(
-                        context,
-                      ),
+                    child: OudsBodyText(
+                      text: getText(currentElement),
+                      size: OudsBodyTextSize.large,
+                      weight: OudsTextWeight.strong,
                     ),
                   ),
                   value: currentElement,
