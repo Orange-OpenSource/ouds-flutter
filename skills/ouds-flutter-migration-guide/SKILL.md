@@ -681,7 +681,7 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
-| `v2.1.0 → v3.0.0` | No | Yes | Shared `OudsIcon` type replacing `OudsLinkIcon`/`OudsChipIcon`/`OudsTextInputPrefixIcon`/`OudsControlItemIcon` (breaking) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsCheckboxItem`, `OudsRadioButtonItem`, `OudsSwitchButtonItem`, typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons, `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
+| `v2.1.0 → v3.0.0` | No | Yes | Shared `OudsIcon` type replacing `OudsLinkIcon`/`OudsChipIcon`/`OudsTextInputPrefixIcon`/`OudsControlItemIcon` (breaking) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsCheckboxItem`, `OudsRadioButtonItem`, `OudsSwitchButtonItem`, typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons; `OudsIconStatus.Neutral`/`Accent` gained `tinted`/`backgroundColor`/`semanticsLabel` (non-breaking); `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
 | `v2.0.0 → v2.1.0` | Full | No | `OudsNavigationButton`, `OudsCircularProgressIndicator`, `OudsLinearProgressIndicator`, tokens v2.6.0 |
 | `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
 | `v1.3.0 → v1.3.1` | Full | No | Maintenance release, bug fixes, accessibility improvements |
@@ -845,6 +845,31 @@ OudsCheckboxItem(
 - Move `onSuffixPressed` into `OudsTextInputSuffixIconButton.onPressed`.
 - On `OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem`, replace `OudsControlItemIcon(...)` with `OudsIcon(...)`.
 - Optionally use the new `semanticsLabel` parameter on `OudsIcon` where relevant.
+
+---
+
+#### 3.3.0quater `OudsIconStatus.Neutral`/`Accent` — added `tinted`, `backgroundColor` and `semanticsLabel` (`v2.1.0 → v3.0.0`, non-breaking)
+
+`OudsIconStatus.Neutral` and `OudsIconStatus.Accent` (used by `OudsBadge`/`OudsTag` custom icon statuses) gained `tinted` (default `true`), `backgroundColor` (applied only when `tinted: false`) and `semanticsLabel` parameters, mirroring the same tinting model as `OudsIcon`. This is additive and non-breaking — existing `Neutral(icon: ...)`/`Accent(icon: ...)` calls keep working unchanged.
+
+```dart
+// Before — icon only
+OudsBadge.icon(status: Accent(icon: 'assets/heart.svg'));
+
+// After — optional tinting/background/accessibility control
+OudsBadge.icon(
+  status: Accent(
+    icon: 'assets/heart.svg',
+    tinted: false,
+    backgroundColor: Colors.white,
+    semanticsLabel: 'Favorite',
+  ),
+);
+```
+
+**Required actions:**
+
+- None — this is optional. Add `tinted`, `backgroundColor` and `semanticsLabel` on `Neutral`/`Accent` only if you need untinted multi-color icons or a custom accessibility label.
 
 ---
 

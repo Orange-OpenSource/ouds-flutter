@@ -25,7 +25,10 @@ import 'package:ouds_core/components/badge/ouds_badge.dart';
 /// turn determines the icon to display and its associated colors.
 ///
 /// Subclasses are provided for each specific status:
-/// *   [Neutral] and [Accent] allow for a user-defined custom icon.
+/// *   [Neutral] and [Accent] allow for a user-defined custom icon. They also
+///     expose `tinted`, `backgroundColor` and `semanticsLabel` properties to
+///     control whether the icon is tinted with the theme color, the background
+///     color to apply when untinted, and the accessibility label for the custom icon.
 /// *   [Positive], [Info], [Warning], and [Negative] use fixed icons defined
 ///     by the design system to convey a specific meaning.
 ///
@@ -56,7 +59,7 @@ import 'package:ouds_core/components/badge/ouds_badge.dart';
 /// // A tag with a custom user-provided icon with untined icon
 /// OudsTag(
 ///   label: 'Custom',
-///   iconStatus: Neutral(icon: 'assets/my_custom_icon.svg, tinted = false'),
+///   iconStatus: Neutral(icon: 'assets/my_custom_icon.svg', tinted = false),
 /// );
 /// ```
 ///

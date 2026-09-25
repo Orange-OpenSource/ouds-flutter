@@ -424,7 +424,21 @@ OudsBadge.icon(
   semanticsLabel: 'Favorite',
   child: Icon(Icons.person),
 )
+
+// Icon badge with untinted custom icon and background (Neutral/Accent only)
+OudsBadge.icon(
+  status: Neutral(
+    icon: 'assets/multicolor_icon.svg',
+    tinted: false,
+    backgroundColor: Colors.white,
+    semanticsLabel: 'Custom status',
+  ),
+  size: OudsBadgeSize.medium,
+  child: Icon(Icons.person),
+)
 ```
+
+> `Neutral` and `Accent` custom icons support `tinted` (default `true`), `backgroundColor` (only applied when `tinted: false`) and `semanticsLabel`.
 
 > ⚠️ Deprecated: `OudsBadge(status: OudsBadgeStatus.positive)` → use named constructors above.
 

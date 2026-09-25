@@ -244,13 +244,14 @@ The OUDS icon library has been updated to version 2.3.0. Some icon names or asse
 
 ### Component Updates (Non-breaking)
 
-| Component | Change |
-|-----------|--------|
-| Button | Updated to v3.3.0 — icon now configured via the shared `OudsIcon` type, with tinted/untinted support |
-| Link | Updated to v2.4.0 |
-| Progress Indicator | Added `size` parameter to `OudsCircularProgressIndicator` for button integration |
-| Tab Bar | Fixed `Invalid value: Not in inclusive range 0..2: 3` crash |
-| Typography | Added typography tokens component |
+| Component                        | Change |
+|----------------------------------|--------|
+| Button                           | Updated to v3.3.0 — icon now configured via the shared `OudsIcon` type, with tinted/untinted support |
+| Link                             | Updated to v2.4.0 |
+| Alert / Badge / Tag / List items | `OudsIconStatus.Neutral` and `OudsIconStatus.Accent` gained `tinted`, `backgroundColor` and `semanticsLabel` parameters to control custom icon tinting, background and accessibility label |
+| Progress Indicator               | Added `size` parameter to `OudsCircularProgressIndicator` for button integration |
+| Tab Bar                          | Fixed `Invalid value: Not in inclusive range 0..2: 3` crash |
+| Typography                       | Added typography tokens component |
 
 ### Compatibility
 
