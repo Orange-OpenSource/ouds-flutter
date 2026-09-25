@@ -56,10 +56,8 @@
       const
       <span class="name ">OudsSuggestionChip.icon</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="icon-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
 <li><span class="parameter" id="icon-param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span></li>
-<li><span class="parameter" id="icon-param-icon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span></li>
-<li><span class="parameter" id="icon-param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span>, </span></li>
+<li><span class="parameter" id="icon-param-icon"><span class="type-annotation"><a href="../../components_chip_ouds_chip_icon/OudsChipIcon-class.html">OudsChipIcon</a>?</span> <span class="parameter-name">icon</span>, </span></li>
 <li><span class="parameter" id="icon-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span></li>
-<li><span class="parameter" id="icon-param-contentDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">contentDescription</span>, </span></li>
 </ol>})
     </section>
     
@@ -77,10 +75,9 @@ If only an icon is provided (without a label), it acts as an icon-only chip.</p>
   super.key,
   this.label,
   this.icon,
-  this.tinted = true,
   this.onPressed,
-  this.contentDescription,
-}) : avatar = null;</code></pre>
+}) : avatar = null,
+     contentDescription = null;</code></pre>
 </section>
 
 
