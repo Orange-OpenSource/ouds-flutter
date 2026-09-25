@@ -56,7 +56,7 @@
       const
       <span class="name ">OudsLink.icon</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="icon-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
 <li><span class="parameter" id="icon-param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span></li>
-<li><span class="parameter" id="icon-param-icon"><span>required</span> <span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkIcon-class.html">OudsLinkIcon</a>?</span> <span class="parameter-name">icon</span>, </span></li>
+<li><span class="parameter" id="icon-param-icon"><span>required</span> <span class="type-annotation"><a href="../../components_common_ouds_icon/OudsIcon-class.html">OudsIcon</a>?</span> <span class="parameter-name">icon</span>, </span></li>
 <li><span class="parameter" id="icon-param-size"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsLinkSize.defaultSize</span>, </span></li>
 <li><span class="parameter" id="icon-param-density"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLinkDensity.html">OudsLinkDensity</a></span> <span class="parameter-name">density</span> = <span class="default-value">OudsLinkDensity.defaultDensity</span>, </span></li>
 <li><span class="parameter" id="icon-param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span></li>
@@ -70,7 +70,10 @@
 <li><code>label</code> : The text displayed by the link. Required, non-empty; wraps
 onto multiple lines automatically if it doesn't fit the available width.</li>
 <li><code>icon</code> : Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
-displayed alongside the <code>label</code>. Its size automatically adapts to <code>size</code>.</li>
+displayed alongside the <code>label</code>. Its size automatically adapts to <code>size</code>. Its <a href="../../components_common_ouds_icon/OudsIcon/tinted.html">OudsIcon.tinted</a>
+property controls whether the icon is tinted with the theme color (defaults to <code>true</code>);
+set it to <code>false</code> to keep the icon's original colors (e.g. for multi-color or brand icons), in
+that case ensure sufficient contrast with the background for accessibility reasons.</li>
 <li><code>size</code> : The size of the link, <a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.defaultSize</a> or
 <a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.small</a>, controlling text style, icon size and touch
 target dimensions. Defaults to <a href="../../components_link_ouds_link/OudsLinkSize.html">OudsLinkSize.defaultSize</a>.</li>
@@ -80,10 +83,6 @@ padding. Defaults to <a href="../../components_link_ouds_link/OudsLinkDensity.ht
 <li><code>onPressed</code> : Callback invoked when the link is tapped or activated
 (keyboard/screen reader). When <code>null</code>, the link is rendered and
 announced as disabled and cannot receive focus.</li>
-<li><code>tinted</code> : Whether the icon should be tinted with the theme color.
-Defaults to <code>true</code>. Set to <code>false</code> to keep the icon's original colors
-(e.g. for multi-color or brand icons); in that case, ensure sufficient
-contrast with the background for accessibility reasons.</li>
 </ul>
 </section>
 
