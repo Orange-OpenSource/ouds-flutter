@@ -10,7 +10,8 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
@@ -28,6 +29,7 @@ class LinkCustomizationUtils {
   /// Builds the [OudsLink] widget matching the selected layout, using the
   /// dedicated constructor for each variant (icon, previous, next, external).
   static OudsLink buildLink({
+    required Color backgroundColor,
     required LinkCustomizationState customizationState,
     required ThemeController themeController,
     required VoidCallback? onPressed,
@@ -35,19 +37,22 @@ class LinkCustomizationUtils {
     final label = getText(customizationState);
     final size = getSize(customizationState.selectedSize);
     final density = getDensity(customizationState.selectedDensity);
-    final tinted = customizationState.isTinted;
+    final isTinted = customizationState.isTinted;
 
     switch (customizationState.selectedLayout) {
       case LinkEnumLayout.textAndIcon:
         return OudsLink.icon(
           label: label,
-          icon: tinted
-              ? AppAssets.icons.assistanceTipsAndTricks(themeController)
-              : AppAssets.icons.icUntintedSquare,
+          icon: OudsIcon(
+            isTinted
+                ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+                : AppAssets.icons.icUntintedSquare,
+            tinted: isTinted,
+            backgroundColor: backgroundColor,
+          ),
           size: size,
           density: density,
           onPressed: onPressed,
-          tinted: tinted,
         );
       case LinkEnumLayout.next:
         return OudsLink.next(

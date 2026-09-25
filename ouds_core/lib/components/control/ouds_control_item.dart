@@ -16,6 +16,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
@@ -37,7 +38,7 @@ enum OudsControlItemType { switchButton, checkbox, radio }
 class OudsControlItem extends StatefulWidget {
   final String text;
   final String? description;
-  final String? icon;
+  final OudsIcon? icon;
   final bool divider;
   final bool outlined;
   final bool selected;
@@ -80,25 +81,6 @@ class OudsControlItem extends StatefulWidget {
     this.onTap,
     this.edgeToEdge = true,
   });
-
-  static Widget buildIcon(
-    BuildContext context,
-    String assetName,
-    OudsControlState controlItemState,
-    bool isError,
-  ) {
-    final controlItemTextModifier = OudsControlTextModifier(context);
-
-    return SvgPicture.asset(
-      excludeFromSemantics: true,
-      assetName,
-      fit: BoxFit.contain,
-      colorFilter: ColorFilter.mode(
-        controlItemTextModifier.getTextColor(controlItemState, isError),
-        BlendMode.srcIn,
-      ),
-    );
-  }
 
   @override
   OudsControlItemState createState() => OudsControlItemState();
@@ -379,9 +361,9 @@ class OudsControlItemState extends State<OudsControlItem> {
           width: OudsTheme.of(
             context,
           ).componentsTokens(context).controlItem.sizeIcon,
-          child: OudsControlItem.buildIcon(
+          child: _buildIcon(
             context,
-            widget.icon!,
+            widget.icon?.assetsName,
             controlItemState,
             false,
           ),
@@ -438,9 +420,9 @@ class OudsControlItemState extends State<OudsControlItem> {
           width: OudsTheme.of(
             context,
           ).componentsTokens(context).controlItem.sizeIcon,
-          child: OudsControlItem.buildIcon(
+          child: _buildIcon(
             context,
-            widget.icon!,
+            widget.icon?.assetsName,
             controlItemState,
             false,
           ),
@@ -584,6 +566,33 @@ class OudsControlItemState extends State<OudsControlItem> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min, // prevents taking full height
         children: columnChildren,
+      ),
+    );
+  }
+
+  Widget _buildIcon(
+    BuildContext context,
+    String? assetName,
+    OudsControlState controlItemState,
+    bool isError,
+  ) {
+    final controlItemTextModifier = OudsControlTextModifier(context);
+
+    return Container(
+      color: widget.icon != null && !widget.icon!.tinted
+          ? widget.icon?.backgroundColor
+          : null,
+      child: SvgPicture.asset(
+        excludeFromSemantics: true,
+        matchTextDirection: true,
+        assetName ?? "",
+        fit: BoxFit.contain,
+        colorFilter: widget.icon != null && widget.icon!.tinted
+            ? ColorFilter.mode(
+                controlItemTextModifier.getTextColor(controlItemState, isError),
+                BlendMode.srcIn,
+              )
+            : null,
       ),
     );
   }

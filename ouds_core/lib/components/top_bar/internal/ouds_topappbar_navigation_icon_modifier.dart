@@ -15,6 +15,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -23,19 +24,19 @@ class OudsTopAppBarNavigationIconModifier {
   OudsTopAppBarNavigationIconModifier();
 
   /// Retrieves the navigation icon for the top app bar based on the provided [OudsTopBarActionType] enum.
-  String? getNavigationIcon(
+  OudsIcon? getNavigationIcon(
     OudsTopBarActionType? type,
     String? customLeadingIcon,
   ) {
     switch (type) {
       case OudsTopBarActionType.back:
-        return AppAssets.icons.componentButtonPrevious;
+        return OudsIcon(AppAssets.icons.componentButtonPrevious);
       case OudsTopBarActionType.close:
-        return AppAssets.icons.componentButtonExpurge;
+        return OudsIcon(AppAssets.icons.componentButtonExpurge);
       case OudsTopBarActionType.menu:
-        return AppAssets.icons.functionalNavigationMenuBar;
+        return OudsIcon(AppAssets.icons.functionalNavigationMenuBar);
       case OudsTopBarActionType.custom:
-        return customLeadingIcon;
+        return OudsIcon(customLeadingIcon ?? "");
       default:
         return null;
     }

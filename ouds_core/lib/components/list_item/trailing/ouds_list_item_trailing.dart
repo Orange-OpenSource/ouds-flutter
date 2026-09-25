@@ -162,15 +162,10 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
   ///   or when the item has multiline content or additional information.
   final OudsListItemIconSize size;
 
-  /// Whether the icon is tinted with the theme color.
-  /// Set to `false` for multicolor icons.
-  final bool tinted;
-
   /// Creates a trailing icon configuration.
   const OudsListItemTrailingIcon(
     this.iconStatus, {
     this.size = OudsListItemIconSize.medium,
-    this.tinted = true,
   });
 }
 
