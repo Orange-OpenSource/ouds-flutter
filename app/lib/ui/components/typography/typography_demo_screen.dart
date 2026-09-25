@@ -33,7 +33,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfie
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -106,25 +106,17 @@ class _TypographyDemoScreenState extends State<TypographyDemoScreen> {
               ? MediaQuery.of(context).viewPadding.bottom
               : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
         ),
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: _CustomizationContent(variant: widget.variant),
-            title: context.l10n.app_common_customize_label,
-          ),
-          key: _scaffoldKey,
-          extendBodyBehindAppBar: true,
-          appBar: MainAppBar(
+        child: CustomizeBottomSheet(
+          topBar: MainAppBar(
             title: _title(context, widget.variant),
             previousPageTitle: widget.previousPageTitle,
             showBackButton: true,
           ),
           // SafeArea is intentionally not used to allow the TopAppBar blur effect
           // in body content added top padding so the content is not hidden behind the top app bar
-          body: ExcludeSemantics(
-            excluding: !_isBottomSheetExpanded,
-            child: _Body(variant: widget.variant),
-          ),
+          body: _Body(variant: widget.variant),
+          title: context.l10n.app_common_customize_label,
+          customizationContent: _CustomizationContent(variant: widget.variant),
         ),
       ),
     );
