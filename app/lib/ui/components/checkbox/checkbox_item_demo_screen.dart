@@ -35,6 +35,7 @@ import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a checkbox demo and allows customization of checkbox properties.
@@ -135,7 +136,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = ControlItemCustomization.of(context);
+    final customizationState = ControlItemCustomization.of(context)!;
     final themeController = Provider.of<ThemeController>(
       context,
       listen: false,
@@ -143,7 +144,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController.setOnColoredSurface(customizationState?.hasOnColoredBox);
+      themeController.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
 
     return LightDarkBox(

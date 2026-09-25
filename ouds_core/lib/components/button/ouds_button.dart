@@ -360,8 +360,9 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onPressed == null)
+    if (widget.onPressed == null) {
       _isFocused = false; // Ignore focus changes if disabled
+    }
     setState(() => _isFocused = focus);
   }
 

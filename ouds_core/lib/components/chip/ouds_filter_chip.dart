@@ -22,6 +22,7 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dar
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
+import 'package:ouds_core/components/chip/ouds_chip_icon.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
@@ -53,10 +54,6 @@ enum OudsChipStyle { defaultStyle, selected }
 /// - [icon]: Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [selected]: Whether this chip is selected or not. If this value is null so the component is in disabled state.
 /// - [onSelected] : Called when this chip is clicked. A null value indicates that the component is disabled.
-/// - [contentDescription] : Description of the chip's content for accessibility purposes. This value is ignored if the chip also contains a label.
-/// - [tinted] : Controls whether the icon should be tinted with the theme color. Defaults to `true`.
-///   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
-///   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
 ///
 /// ### You can use [OudsFilterChip] component in your project, customizing parameters as needed :
 ///
@@ -77,7 +74,7 @@ enum OudsChipStyle { defaultStyle, selected }
 /// ```dart
 /// OudsFilterChip.icon(
 ///   label: 'Label',
-///   icon: 'assets/ic_chip_heart.svg',
+///   icon: OudsChipIcon('assets/ic_chip_heart.svg'),
 ///   selected: true,
 ///   onSelected: (bool selected) {},
 /// )
@@ -89,11 +86,10 @@ class OudsFilterChip extends StatefulWidget {
     "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsFilterChip.icon constructor .",
   )
   final String? avatar;
-  final String? icon;
+  final OudsChipIcon? icon;
   final String? contentDescription;
   final bool selected;
   final ValueChanged<bool>? onSelected;
-  final bool tinted;
 
   /// Creates a text-only [OudsFilterChip].
   ///
@@ -107,8 +103,7 @@ class OudsFilterChip extends StatefulWidget {
     this.avatar,
     this.selected = false,
     this.onSelected,
-  }) : tinted = true,
-       contentDescription = null,
+  }) : contentDescription = null,
        icon = null;
 
   /// Creates an [OudsFilterChip] with a text and an icon.
@@ -119,7 +114,6 @@ class OudsFilterChip extends StatefulWidget {
     super.key,
     this.label,
     this.icon,
-    this.tinted = true,
     this.selected = false,
     this.onSelected,
     this.contentDescription,
@@ -134,7 +128,7 @@ class OudsFilterChip extends StatefulWidget {
   static OudsChipLayout _detectLayout(
     String? label,
     String? avatar,
-    String? icon,
+    OudsChipIcon? icon,
   ) {
     if (label != null && (icon != null || avatar != null)) {
       return OudsChipLayout.iconAndText;
@@ -482,7 +476,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 ExcludeSemantics(
                   child: _buildIcon(
                     context,
-                    widget.avatar ?? widget.icon ?? "",
+                    widget.avatar ?? widget.icon?.assetsName ?? "",
                     chipState,
                     widget.selected,
                   ),
@@ -597,7 +591,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 ExcludeSemantics(
                   child: _buildIcon(
                     context,
-                    widget.avatar ?? widget.icon ?? "",
+                    widget.avatar ?? widget.icon?.assetsName ?? "",
                     chipState,
                     widget.selected,
                   ),
@@ -780,25 +774,27 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final sizeIcon = OudsTheme.of(
       context,
     ).componentsTokens(context).chip.sizeIcon;
+    final notTinted = widget.icon != null && !widget.icon!.tinted;
+
     return Container(
-      color: widget.tinted
-          ? null
-          : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
+      color: notTinted && widget.icon?.backgroundColor != null
+          ? widget.icon?.backgroundColor
+          : null,
       child: SvgPicture.asset(
         matchTextDirection: true,
         assetName,
         fit: BoxFit.contain,
         width: sizeIcon,
         height: sizeIcon,
-        colorFilter: widget.tinted
-            ? ColorFilter.mode(
+        colorFilter: notTinted
+            ? null
+            : ColorFilter.mode(
                 controlIconModifier.getIconColor(
                   controlItemState,
                   selected,
                 ), //selected always true when buildIcon
                 BlendMode.srcIn,
-              )
-            : null,
+              ),
       ),
     );
   }

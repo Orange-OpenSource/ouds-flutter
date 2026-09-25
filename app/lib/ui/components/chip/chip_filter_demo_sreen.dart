@@ -31,6 +31,7 @@ import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class ChipFilterDemoScreen extends StatefulWidget {
@@ -114,17 +115,21 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
   }
 
   Widget _buildOudsFilterChip(BuildContext context) {
-    ChipCustomizationState? customizationState = ChipCustomization.of(context);
+    ChipCustomizationState? customizationState = ChipCustomization.of(context)!;
     ThemeController? themeController = Provider.of<ThemeController>(
       context,
       listen: true,
     );
 
-    switch (customizationState?.selectedLayout) {
+    final colorSurfaceBrandPrimary = OudsTheme.of(
+      context,
+    ).colorScheme(context).surfaceBrandPrimary;
+
+    switch (customizationState.selectedLayout) {
       case ChipEnumLayout.textOnly:
         return OudsFilterChip(
           label: ChipCustomizationUtils.getText(customizationState),
-          selected: customizationState!.hasSelected,
+          selected: customizationState.hasSelected,
           onSelected: customizationState.hasEnabled == true
               ? (newValue) {
                   setState(() {
@@ -139,9 +144,8 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
           icon: ChipCustomizationUtils.getIcon(
             customizationState,
             themeController,
-            customizationState!.tintedIcon,
+            colorSurfaceBrandPrimary,
           ),
-          tinted: customizationState.tintedIcon,
           selected: customizationState.hasSelected,
           onSelected: customizationState.hasEnabled == true
               ? (newValue) {
@@ -156,23 +160,10 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
           icon: ChipCustomizationUtils.getIcon(
             customizationState,
             themeController,
-            customizationState!.tintedIcon,
+            colorSurfaceBrandPrimary,
           ),
           contentDescription: context.l10n.app_components_common_icon_a11y,
-          tinted: customizationState.tintedIcon,
           selected: customizationState.hasSelected,
-          onSelected: customizationState.hasEnabled == true
-              ? (newValue) {
-                  setState(() {
-                    customizationState.hasSelected = newValue;
-                  });
-                }
-              : null,
-        );
-      default:
-        return OudsFilterChip(
-          label: ChipCustomizationUtils.getText(customizationState),
-          selected: customizationState!.hasSelected,
           onSelected: customizationState.hasEnabled == true
               ? (newValue) {
                   setState(() {

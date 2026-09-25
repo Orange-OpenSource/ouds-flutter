@@ -49,12 +49,12 @@ class ChipSuggestionCodeGenerator {
 
       case OudsChipLayout.iconOnly:
         code =
-            "OudsSuggestionChip.icon(\nicon: 'assets/ic_heart.svg',\ntinted: ${customizationState?.tintedIcon == true ? "true" : 'false'},\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
+            "OudsSuggestionChip.icon(\nicon: OudsChipIcon('assets/ic_heart.svg', tinted: ${customizationState?.tintedIcon}),\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
         break;
 
       case OudsChipLayout.iconAndText:
         code =
-            """OudsSuggestionChip.icon(\nlabel: "$label",\nicon: 'assets/ic_heart.svg',\ntinted: ${customizationState?.tintedIcon == true ? "true" : 'false'},\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
+            """OudsSuggestionChip.icon(\nlabel: "$label",\nicon: OudsChipIcon('assets/ic_heart.svg', tinted: ${customizationState?.tintedIcon}),\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
         break;
     }
 

@@ -49,12 +49,12 @@ class ChipFilterCodeGenerator {
 
       case OudsChipLayout.iconOnly:
         code =
-            "OudsFilterChip.icon(\nicon: 'assets/ic_chip_heart.svg',\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)}\n);";
+            "OudsFilterChip.icon(\nicon: OudsChipIcon('assets/ic_chip_heart.svg', tinted: ${customizationState?.tintedIcon}),\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)}\n);";
         break;
 
       case OudsChipLayout.iconAndText:
         code =
-            """OudsFilterChip.icon(\nlabel: "$label",\nicon: 'assets/ic_chip_heart.svg',\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)}\n);""";
+            """OudsFilterChip.icon(\nlabel: "$label",\nicon: OudsChipIcon('assets/ic_chip_heart.svg', tinted: ${customizationState?.tintedIcon}),\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)}\n);""";
         break;
     }
 

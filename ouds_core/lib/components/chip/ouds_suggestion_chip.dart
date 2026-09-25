@@ -20,6 +20,7 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dar
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
+import 'package:ouds_core/components/chip/ouds_chip_icon.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -47,10 +48,6 @@ enum OudsChipStyle { defaultStyle, selected }
 /// Parameters:
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
 /// - [icon]: Icon displayed in the suggestion chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
-/// - [contentDescription] : Description of the chip's content for accessibility purposes. This value is ignored if the chip also contains a label.
-/// - [tinted] : Controls whether the icon should be tinted with the theme color. Defaults to `true`.
-///   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
-///   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
 /// - [onPressed]: Callback invoked when the suggestion chip is clicked.
 ///
 /// ### You can use [OudsSuggestionChip] component in your project, customizing parameters as needed :
@@ -71,7 +68,7 @@ enum OudsChipStyle { defaultStyle, selected }
 /// ```dart
 /// OudsSuggestionChip.icon(
 ///   label: 'Label',
-///   icon: 'assets/ic_chip_heart.svg',
+///   icon: OudsChipIcon('assets/ic_chip_heart.svg'),
 ///   onPressed: () {},
 /// )
 /// ```
@@ -82,9 +79,11 @@ class OudsSuggestionChip extends StatefulWidget {
     "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsSuggestionChip.icon constructor .",
   )
   final String? avatar;
-  final String? icon;
+  final OudsChipIcon? icon;
+  @Deprecated(
+    "This parameter is deprecated and will be removed in a future version. Use icon.semanticsLabel instead in OudsSuggestionChip.icon constructor .",
+  )
   final String? contentDescription;
-  final bool tinted;
   final VoidCallback? onPressed;
 
   /// Creates a text-only [OudsSuggestionChip].
@@ -97,10 +96,12 @@ class OudsSuggestionChip extends StatefulWidget {
       "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsSuggestionChip.icon constructor .",
     )
     this.avatar,
+    @Deprecated(
+      "This parameter is deprecated and will be removed in a future version. Use icon.semanticsLabel instead in OudsSuggestionChip.icon constructor .",
+    )
+    this.contentDescription,
     this.onPressed,
-  }) : tinted = true,
-       contentDescription = null,
-       icon = null;
+  }) : icon = null;
 
   /// Creates an [OudsSuggestionChip] with a text and an icon.
   ///
@@ -110,16 +111,15 @@ class OudsSuggestionChip extends StatefulWidget {
     super.key,
     this.label,
     this.icon,
-    this.tinted = true,
     this.onPressed,
-    this.contentDescription,
-  }) : avatar = null;
+  }) : avatar = null,
+       contentDescription = null;
 
   @override
   State<OudsSuggestionChip> createState() => _OudsSuggestionChipState();
 
   /// Property that detects and returns the chip layout based on the provided elements (text and/or icon)
-  OudsChipLayout get layout => _detectLayout(label, avatar, icon);
+  OudsChipLayout get layout => _detectLayout(label, avatar, icon?.assetsName);
 
   static OudsChipLayout _detectLayout(
     String? label,
@@ -381,9 +381,13 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
   ) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final l10n = OudsLocalizations.of(context);
+    final resolvedSemanticsLabel =
+        widget.icon != null && widget.icon!.semanticsLabel != null
+        ? widget.icon!.semanticsLabel
+        : widget.contentDescription ?? l10n?.core_chip_chip_icon_a11y;
 
     return Semantics(
-      label: widget.contentDescription ?? l10n?.core_chip_chip_icon_a11y,
+      label: resolvedSemanticsLabel,
       button: true,
       enabled: widget.onPressed != null,
       child: Stack(
@@ -427,7 +431,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                   ExcludeSemantics(
                     child: _buildIcon(
                       context,
-                      widget.avatar ?? widget.icon ?? "",
+                      widget.avatar ?? widget.icon?.assetsName ?? "",
                       chipState,
                     ),
                   ),
@@ -496,7 +500,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                   ExcludeSemantics(
                     child: _buildIcon(
                       context,
-                      widget.avatar ?? widget.icon ?? "",
+                      widget.avatar ?? widget.icon?.assetsName ?? "",
                       chipState,
                     ),
                   ),
@@ -609,17 +613,17 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
       context,
     ).componentsTokens(context).chip.sizeIcon;
 
+    final isTinted = widget.icon != null && widget.icon!.tinted;
+
     return Container(
-      color: widget.tinted
-          ? null
-          : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
+      color: isTinted ? null : widget.icon?.backgroundColor,
       child: SvgPicture.asset(
         matchTextDirection: true,
         assetName,
         fit: BoxFit.contain,
         width: sizeIcon,
         height: sizeIcon,
-        colorFilter: widget.tinted
+        colorFilter: isTinted
             ? ColorFilter.mode(
                 controlIconModifier.getIconColor(
                   controlItemState,
