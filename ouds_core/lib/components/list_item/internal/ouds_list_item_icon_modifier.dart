@@ -51,14 +51,6 @@ class OudsListItemIconModifier {
     _ => null,
   };
 
-  /// Returns the user-defined asset name from [Neutral] or [Accent] status.
-  /// Returns `null` for all other status types whose icons are fixed.
-  String? getAssetsName(OudsIconStatus? status) => switch (status) {
-    Neutral(icon: final assets) => assets,
-    Accent(icon: final assets) => assets,
-    _ => null,
-  };
-
   /// Builds the status icon widget for the list item leading or trailing slot.
   ///
   /// - [size] controls the rendered dimensions using token values. Defaults to
@@ -71,23 +63,16 @@ class OudsListItemIconModifier {
     OudsIconStatus iconStatus, {
     bool enable = true,
     OudsListItemAssetSize size = OudsListItemAssetSize.medium,
-    bool tinted = true,
   }) {
-    return _buildIconStatus(
-      iconStatus,
-      enable: enable,
-      size: size,
-      tinted: tinted,
-    );
+    return _buildIconStatus(iconStatus, enable: enable, size: size);
   }
 
   Widget _buildIconStatus(
     OudsIconStatus status, {
     bool enable = true,
     OudsListItemAssetSize size = OudsListItemAssetSize.medium,
-    bool tinted = true,
   }) {
-    final nonFunctionalIcon = getAssetsName(status);
+    final nonFunctionalIcon = status.nonFunctionalIcon;
     final functionalIcon = getStatusIcon(status);
     final theme = OudsTheme.of(context);
     final iconTokens = theme.componentsTokens(context).icon;
@@ -134,15 +119,22 @@ class OudsListItemIconModifier {
       );
     }
 
-    return SvgPicture.asset(
-      functionalIcon ?? nonFunctionalIcon ?? '',
-      matchTextDirection: nonFunctionalIcon != null,
-      excludeFromSemantics: true,
-      package: functionalIcon != null ? packageName : null,
-      width: scaledSize,
-      height: scaledSize,
-      fit: BoxFit.contain,
-      colorFilter: tinted ? ColorFilter.mode(iconColor, BlendMode.srcIn) : null,
+    return Container(
+      color: nonFunctionalIcon != null && !status.isTinted
+          ? status.getBackgroundColor
+          : null,
+      child: SvgPicture.asset(
+        functionalIcon ?? nonFunctionalIcon ?? '',
+        matchTextDirection: nonFunctionalIcon != null,
+        excludeFromSemantics: true,
+        package: functionalIcon != null ? packageName : null,
+        width: scaledSize,
+        height: scaledSize,
+        fit: BoxFit.contain,
+        colorFilter: status.isTinted
+            ? ColorFilter.mode(iconColor, BlendMode.srcIn)
+            : null,
+      ),
     );
   }
 }

@@ -801,7 +801,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         if (widget.decoration.prefixIcon != null) ...[
           OudsPhoneNumberInput.buildIcon(
             context,
-            widget.decoration.prefixIcon!.icon,
+            widget.decoration.prefixIcon!.assetsName,
             state,
             false,
           ),
@@ -840,7 +840,6 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     OudsFormFieldsControlState state,
   ) {
     final theme = OudsTheme.of(context);
-    final textInput = theme.componentsTokens(context).textInput;
     final buttonTokens = theme.componentsTokens(context).button;
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
       context,

@@ -171,7 +171,7 @@ ${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_inclu
       return "icon: null,";
     }
 
-    return "icon: ${customizationState.hasIcon == true ? "'assets/ic_heart.svg'" : 'null'},";
+    return "icon: ${customizationState.hasIcon == true ? "OudsIcon(${customizationState.isTinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: ${customizationState.isTinted})" : 'null'},";
   }
 
   // Method to generate the divider code for the control item

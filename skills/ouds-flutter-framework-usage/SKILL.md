@@ -424,7 +424,21 @@ OudsBadge.icon(
   semanticsLabel: 'Favorite',
   child: Icon(Icons.person),
 )
+
+// Icon badge with untinted custom icon and background (Neutral/Accent only)
+OudsBadge.icon(
+  status: Neutral(
+    icon: 'assets/multicolor_icon.svg',
+    tinted: false,
+    backgroundColor: Colors.white,
+    semanticsLabel: 'Custom status',
+  ),
+  size: OudsBadgeSize.medium,
+  child: Icon(Icons.person),
+)
 ```
+
+> `Neutral` and `Accent` custom icons support `tinted` (default `true`), `backgroundColor` (only applied when `tinted: false`) and `semanticsLabel`.
 
 > ⚠️ Deprecated: `OudsBadge(status: OudsBadgeStatus.positive)` → use named constructors above.
 
@@ -473,7 +487,7 @@ OudsButton(
 )
 
 OudsButton(
-  icon: 'assets/ic_heart.svg',
+  icon: OudsIcon('assets/ic_heart.svg'),
   appearance: OudsButtonAppearance.strong,
   onPressed: () {},
 )
@@ -516,8 +530,7 @@ OudsFilterChip(
 
 OudsFilterChip.icon(
   label: 'Label',
-  icon: 'assets/ic_chip_heart.svg',
-  tinted: true,
+  icon: OudsIcon('assets/ic_chip_heart.svg', tinted: true),
   selected: true,
   onSelected: (selected) {},
 )
@@ -529,8 +542,7 @@ OudsSuggestionChip(
 
 OudsSuggestionChip.icon(
   label: 'Label',
-  icon: 'assets/ic_chip_heart.svg',
-  tinted: true,
+  icon: OudsIcon('assets/ic_chip_heart.svg', tinted: true),
   onPressed: () {},
 )
 ```
@@ -563,8 +575,7 @@ OudsLink(label: 'Learn more', onPressed: () {})
 
 OudsLink.icon(
   label: 'Favorite',
-  icon: 'assets/ic_heart.svg',
-  tinted: true,
+  icon: OudsIcon('assets/ic_heart.svg', tinted: true),
   onPressed: () {},
 )
 
@@ -633,7 +644,7 @@ OudsTextField(
   decoration: OudsInputDecoration(
     labelText: 'Email',
     hintText: 'you@example.com',
-    prefixIcon: 'assets/ic_mail.svg',
+    prefixIcon: OudsIcon('assets/ic_mail.svg'),
     helperText: 'We will never share your address.',
   ),
   helperLink: OudsLink(label: 'Privacy policy', onPressed: () {}),
