@@ -55,12 +55,12 @@ class ButtonCodeGenerator {
 
       case OudsButtonLayout.iconOnly:
         code =
-            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: 'assets/ic_heart.svg',\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${tintedCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: ${iconCode(context)},\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconAndText:
         code =
-            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${tintedCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: ${iconCode(context)},\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
     }
 
@@ -101,17 +101,16 @@ class ButtonCodeGenerator {
     }
   }
 
-  // Method to generate the tinted code modifier for icon-bearing buttons.
-  // Only emitted when untinted is selected, since tinted is the default.
-  static String tintedCodeModifier(BuildContext context) {
+  // Method to generate the OudsIcon code for icon-bearing buttons, embedding
+  // the tinted state and, when untinted, the brand-colored background.
+  static String iconCode(BuildContext context) {
     final ButtonCustomizationState? customizationState = ButtonCustomization.of(
       context,
     );
-    if (customizationState?.isTinted == false) {
-      return "\ntinted: false,";
-    } else {
-      return "";
-    }
+    final bool isTinted = customizationState?.isTinted ?? true;
+    return isTinted
+        ? "OudsIcon('AppAssets.icons.assistanceTipsAndTricks')"
+        : "OudsIcon('AppAssets.icons.icUntintedSquare', tinted: false)";
   }
 
   // Method to generate the constructor name based on the selected size:

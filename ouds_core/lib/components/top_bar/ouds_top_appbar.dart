@@ -18,6 +18,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/top_bar/internal/ouds_top_bar_style_modifier.dart';
 import 'package:ouds_core/components/top_bar/internal/ouds_topappbar_actions_modifier.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
@@ -467,7 +468,7 @@ class _BadgeIconButtonState extends State<BadgeIconButton> {
         child: Center(
           child: OudsButton(
             appearance: OudsButtonAppearance.minimal,
-            icon: widget.icon,
+            icon: OudsIcon(widget.icon ?? ""),
             onPressed: widget.onPressed,
           ).buildIconButtonWithBadge(context, widget.badge, buttonState),
         ),
