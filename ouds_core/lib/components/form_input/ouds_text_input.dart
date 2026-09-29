@@ -22,7 +22,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
-import 'package:ouds_core/components/progress_indicator/ouds_circular_progress_indicator.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
@@ -33,7 +33,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 
 /// [OUDS Text Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-text-input)
 ///
-/// **Reference design version : 1.4.0**
+/// **Reference design version : 1.4.1**
 ///
 /// Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
 /// to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
@@ -96,7 +96,7 @@ class OudsTextField extends StatefulWidget {
     this.helperLink,
     this.trailingIconContentDescription,
   }) : assert(
-         !(decoration.loader == true && decoration.errorText != null),
+         !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
        );
 
@@ -104,22 +104,35 @@ class OudsTextField extends StatefulWidget {
     BuildContext context,
     String assetName,
     OudsFormFieldsControlState controlTextInputState,
-    bool isError,
-  ) {
+    bool isError, {
+    bool tinted = true,
+  }) {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
       context,
     );
     final theme = OudsTheme.of(context);
-    return SvgPicture.asset(
+    final Widget iconWidget = SvgPicture.asset(
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
       width: theme.componentsTokens(context).textInput.sizeLeadingIcon,
-      colorFilter: ColorFilter.mode(
-        inputTextForegroundModifier.getIconColor(controlTextInputState),
-        BlendMode.srcIn,
-      ),
+      colorFilter: tinted
+          ? ColorFilter.mode(
+              inputTextForegroundModifier.getIconColor(controlTextInputState),
+              BlendMode.srcIn,
+            )
+          : null,
+      matchTextDirection: true,
+    );
+
+    // When untinted, the icon asset is expected to be a plain white shape
+    // (no embedded background), so it needs a brand-colored background to
+    // remain visible — matching the behavior of OudsButton and OudsLink.
+    if (tinted) return iconWidget;
+    return Container(
+      color: theme.colorScheme(context).surfaceBrandPrimary,
+      child: iconWidget,
     );
   }
 
@@ -214,7 +227,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
-      isLoading: (widget.decoration.loader == true && _isTyping) ? true : false,
+      isLoading: (widget.decoration.loader != null && _isTyping) ? true : false,
       isReadOnly: widget.readOnly ?? false,
     );
 
@@ -260,7 +273,7 @@ class _OudsTextInputState extends State<OudsTextField> {
     final hintLabel = contentText.isEmpty
         ? widget.decoration.hintText ?? ""
         : "";
-    final loadingLabel = widget.decoration.loader == true
+    final loadingLabel = widget.decoration.loader != null
         ? l10n?.core_common_loading_a11y
         : '';
 
@@ -279,7 +292,7 @@ class _OudsTextInputState extends State<OudsTextField> {
 
     return Semantics(
       label: semanticsValue,
-      hint: widget.decoration.loader == true ? '' : l10n?.core_common_hint_a11y,
+      hint: widget.decoration.loader != null ? '' : l10n?.core_common_hint_a11y,
       value: isError ? l10n?.core_common_error_a11y : null,
       focused: effectiveFocusNode != null,
       focusable: true,
@@ -368,7 +381,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                         child: ExcludeSemantics(
                           child:
                               widget.readOnly == true ||
-                                  (widget.decoration.loader == true &&
+                                  (widget.decoration.loader != null &&
                                       _isTyping)
                               ? IgnorePointer(
                                   child: _buildTextField(
@@ -425,7 +438,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                       Semantics(
                         label:
                             widget.decoration.suffixIcon != null &&
-                                widget.decoration.loader == false
+                                widget.decoration.loader == null
                             ? widget.trailingIconContentDescription
                             : null,
                         container: true,
@@ -499,7 +512,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelModerateLarge(context)
+          .typeLabelDefaultLarge(context)
           .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
@@ -568,7 +581,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                 overflow: TextOverflow.ellipsis,
                 widget.decoration.hintText!,
                 style: theme.typographyTokens
-                    .typeLabelDefaultLarge(context)
+                    .typeLabelModerateLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
                     ),
@@ -688,8 +701,8 @@ class _OudsTextInputState extends State<OudsTextField> {
   ///
   /// Cases handled:
   ///
-  /// 1. **Loader active** (`loader == true`):
-  ///    - Displays a circular loading indicator.
+  /// 1. **Loader active** (`loader != null`):
+  ///    - Displays a circular loading indicator using [OudsCircularProgressIndicator].
   ///
   /// 2. **Suffix icon provided** (`suffixIcon != null`):
   ///    - Displays the suffix icon inside a minimal hierarchy [OudsButton].
@@ -717,11 +730,10 @@ class _OudsTextInputState extends State<OudsTextField> {
     );
 
     // Case 1: loader active
-    if (widget.decoration.loader == true && _isTyping) {
+    if (widget.decoration.loader != null && _isTyping) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(width: textInput.spaceColumnGapDefault),
           ConstrainedBox(
             constraints: BoxConstraints(
               minWidth: buttonTokens.sizeMinWidthDefault,
@@ -730,13 +742,33 @@ class _OudsTextInputState extends State<OudsTextField> {
             ),
             child: Padding(
               padding: EdgeInsetsGeometry.all(
-                buttonTokens.spaceInsetIconOnlyDefault, // to see
+                buttonTokens.spaceInsetIconOnlyDefault,
               ),
-              child: Center(
-                child: OudsCircularProgressIndicator(
-                  color: theme.colorScheme(context).contentDefault,
-                ),
-              ),
+              child:
+                  /// Progress Indicator Container
+                  Container(
+                    padding: EdgeInsets.all(
+                      buttonTokens.spaceInsetProgressIndicatorOnlyDefault,
+                    ),
+                    child:
+                        /// Progress Indicator Size
+                        SizedBox(
+                          width: buttonTokens.sizeProgressIndicatorDefault,
+                          height: buttonTokens.sizeProgressIndicatorDefault,
+                          child: widget.decoration.loader?.progress != null
+                              ? OudsCircularProgressIndicator.internal(
+                                  progressType:
+                                      OudsProgressIndicatorType.determinate,
+                                  value: widget.decoration.loader?.progress,
+                                  track: false,
+                                )
+                              : OudsCircularProgressIndicator.internal(
+                                  progressType:
+                                      OudsProgressIndicatorType.indeterminate,
+                                  track: false,
+                                ),
+                        ),
+                  ),
             ),
           ),
         ],
@@ -745,6 +777,7 @@ class _OudsTextInputState extends State<OudsTextField> {
 
     // Case 2: display suffixIcon + optional error icon
     if (widget.decoration.suffixIcon != null) {
+      final suffixIcon = widget.decoration.suffixIcon!;
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -766,6 +799,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                 inputTextForegroundModifier.getForegroundColor(state),
                 BlendMode.srcIn,
               ),
+              matchTextDirection: true,
             ),
             SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
           ],
@@ -777,10 +811,11 @@ class _OudsTextInputState extends State<OudsTextField> {
               ),
               child: OudsButton(
                 appearance: OudsButtonAppearance.minimal,
-                icon: widget.decoration.suffixIcon,
+                icon: suffixIcon.icon,
+                tinted: suffixIcon.tinted,
                 onPressed:
                     ((widget.enabled ?? true) && !(widget.readOnly ?? false))
-                    ? widget.decoration.onSuffixPressed
+                    ? suffixIcon.onPressed
                     : null,
               ),
             ),
@@ -837,9 +872,10 @@ class _OudsTextInputState extends State<OudsTextField> {
         if (widget.decoration.prefixIcon != null) ...[
           OudsTextField.buildIcon(
             context,
-            widget.decoration.prefixIcon!,
+            widget.decoration.prefixIcon!.icon,
             state,
             false,
+            tinted: widget.decoration.prefixIcon!.tinted,
           ),
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],

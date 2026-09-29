@@ -11,7 +11,6 @@
  * //
  */
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
@@ -23,8 +22,8 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customiza
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
@@ -32,9 +31,8 @@ import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class TextInputDemoScreen extends StatefulWidget {
@@ -46,62 +44,21 @@ class TextInputDemoScreen extends StatefulWidget {
 }
 
 /// State for the demo screen showcasing a TextInput.
-///
-/// This screen integrates a customizable bottom sheet used for editing
-/// the control item. For accessibility reasons, the main body content is
-/// wrapped in an [ExcludeSemantics] widget:
-///
-/// - When the bottom sheet is **expanded**, the body is excluded from the
-///   semantics tree so screen readers don't announce “ghost” elements
-///   behind the sheet.
-/// - When the bottom sheet is **collapsed**, semantics are restored and
-///   the body becomes readable again.
-///
-/// The `_isBottomSheetExpanded` flag is updated via the callback from
-/// [OudsSheetsBottom], keeping semantic behavior aligned with the sheet’s
-/// state.
 class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  // True to avoid initial "ghost" elements being read before the sheet updates.
-  bool _isBottomSheetExpanded = true;
-
-  /// Triggered whenever the bottom sheet expands or collapses.
-  /// Updates the internal state so accessibility can react accordingly.
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: FormFieldsCustomization(
         inputType: FormFieldsTypeEnum.textInput,
-        child: Padding(
-          padding: EdgeInsets.only(
-            bottom: defaultTargetPlatform == TargetPlatform.android
-                ? MediaQuery.of(context).viewPadding.bottom
-                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+        child: CustomizeBottomSheet(
+          topBar: MainAppBar(
+            title: context.l10n.app_components_textInput_label,
+            showBackButton: true,
+            previousPageTitle: widget.previousPageTitle,
           ),
-          child: Scaffold(
-            extendBodyBehindAppBar: true,
-            key: _scaffoldKey,
-            appBar: MainAppBar(
-              title: context.l10n.app_components_textInput_label,
-              showBackButton: true,
-              previousPageTitle: widget.previousPageTitle,
-            ),
-            body: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-          ),
+          title: context.l10n.app_common_customize_label,
+          customizationContent: const _CustomizationContent(),
+          body: _Body(),
         ),
       ),
     );
@@ -228,43 +185,36 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           labelText: customizationState.labelText.isNotEmpty
               ? FormFieldsCustomizationUtils.getLabelText(customizationState)
               : null,
-          helperText: customizationState.helperText.isNotEmpty
-              ? FormFieldsCustomizationUtils.getHelperText(customizationState)
-              : null,
+          helperText: customizationState.hasAnnotatedHelper
+              ? customizationState.annotatedHelperText
+              : (customizationState.helperText.isNotEmpty
+                    ? FormFieldsCustomizationUtils.getHelperText(
+                        customizationState,
+                      )
+                    : null),
           hintText: customizationState.placeholderText.isNotEmpty
               ? FormFieldsCustomizationUtils.getPlaceholderText(
                   customizationState,
                 )
               : null,
-          suffixIcon: customizationState.hasTrailingIcon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                  themeController,
-                )
-              : null,
+          suffixIcon: customizationState.getSuffixIcon(themeController),
           suffix: customizationState.suffixText.isNotEmpty
               ? FormFieldsCustomizationUtils.getSuffixText(customizationState)
               : null,
-          prefixIcon: customizationState.hasLeadingIcon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-                  themeController,
-                )
-              : null,
+          prefixIcon: customizationState.getPrefixIcon(themeController),
           prefix: customizationState.prefixText.isNotEmpty
               ? FormFieldsCustomizationUtils.getPrefixText(customizationState)
               : null,
           errorText: customizationState.hasError
-              ? context.l10n.app_components_textInput_error_label
+              ? (customizationState.hasAnnotatedHelper
+                    ? customizationState.annotatedErrorText
+                    : context.l10n.app_components_textInput_error_label)
               : null,
-          loader: customizationState.hasLoader,
+          loader: customizationState.loader,
           outlined: customizationState.hasOutlined,
           constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
               ? true
               : false,
-          onSuffixPressed: () {
-            ///
-            /// To Be implemented if needed
-            ///
-          },
         ),
       ),
     );
@@ -355,18 +305,22 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   customizationState.hasError = value;
                 },
         ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_textInput_leadingIcon_label,
-          value: customizationState.hasLeadingIcon,
-          onChanged: (value) {
-            customizationState.hasLeadingIcon = value;
+        CustomizableChips<LeadingIconOptionEnum>(
+          title: LeadingIconOptionEnum.enumName(context),
+          options: customizationState.leadingIconState.list,
+          selectedOption: customizationState.selectedLeadingIcon,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            customizationState.selectedLeadingIcon = selectedOption;
           },
         ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_textInput_trailingAction_label,
-          value: customizationState.hasTrailingIcon,
-          onChanged: (value) {
-            customizationState.hasTrailingIcon = value;
+        CustomizableChips<TrailingIconOptionEnum>(
+          title: TrailingIconOptionEnum.enumName(context),
+          options: customizationState.trailingIconState.list,
+          selectedOption: customizationState.selectedTrailingIcon,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            customizationState.selectedTrailingIcon = selectedOption;
           },
         ),
         CustomizableSwitch(
@@ -410,6 +364,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,
+          fieldEnable: customizationState.isHelperTextEnabled,
         ),
         CustomizableTextField(
           title: context.l10n.app_components_textInput_helperLink_label,
@@ -423,6 +378,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: (value) {
             setState(() {
               customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_annotatedText_tech,
+          value: customizationState.hasAnnotatedHelper,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasAnnotatedHelper = value;
             });
           },
         ),

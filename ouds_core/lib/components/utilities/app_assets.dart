@@ -80,6 +80,9 @@ class _Icons {
   final String communicationSecurityAndSafetyLockClosed =
       'assets/communication/security-and-safety/lock-closed.svg';
 
+  ///TODO: This icon is not used for now, you can activate this line when it's needed
+  // final String communicationAssistanceTipsAndTricks = 'assets/communication/assistance/tips-and-tricks.svg';
+
   final String settingsAndToolsAccessibilityHide =
       'assets/functional/settings-and-tools/accessibility-hide.svg';
   final String functionalSocialAndEngagementHeartRecommend =

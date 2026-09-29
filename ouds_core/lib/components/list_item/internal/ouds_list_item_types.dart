@@ -37,7 +37,9 @@ enum OudsListItemAssetSize {
 
   /// Resolves the pixel size from the active theme tokens.
   double value(BuildContext context) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     return switch (this) {
       OudsListItemAssetSize.small => tokens.sizeAssetSmall,
       OudsListItemAssetSize.medium => tokens.sizeAssetMedium,

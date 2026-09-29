@@ -30,6 +30,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_accordion_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_alertMessage_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_alert_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_badge_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_bar_tokens.dart';
@@ -38,7 +39,6 @@ import 'package:ouds_theme_orange/components/orange_buttonMono_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_button_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_checkbox_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_chip_tokens.dart';
-import 'package:ouds_theme_orange/components/orange_controlItem_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_divider_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_icon_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_inputTag_tokens.dart';
@@ -386,6 +386,7 @@ class OrangeTheme implements OudsThemeContract {
     return OudsComponentsTokens(
       accordion: OrangeAccordionTokens(providersTokens(context)),
       alert: OrangeAlertTokens(providersTokens(context)),
+      alertMessage: OrangeAlertMessageTokens(providersTokens(context)),
       badge: OrangeBadgeTokens(providersTokens(context)),
       bar: OrangeBarTokens(providersTokens(context)),
       bulletList: OrangeBulletListTokens(providersTokens(context)),
@@ -393,13 +394,12 @@ class OrangeTheme implements OudsThemeContract {
       buttonMono: OrangeButtonMonoTokens(providersTokens(context)),
       checkbox: OrangeCheckboxTokens(providersTokens(context)),
       chip: OrangeChipTokens(providersTokens(context)),
-      controlItem: OrangeControlItemTokens(providersTokens(context)),
       divider: OrangeDividerTokens(providersTokens(context)),
       icon: OrangeIconTokens(providersTokens(context)),
       inputTag: OrangeInputTagTokens(providersTokens(context)),
       link: OrangeLinkTokens(providersTokens(context)),
       linkMono: OrangeLinkMonoTokens(providersTokens(context)),
-      listItem: OrangeListItemTokens(providersTokens(context)),
+      controlListItem: OrangeListItemTokens(providersTokens(context)),
       pinCodeInput: OrangePinCodeInputTokens(providersTokens(context)),
       progressIndicator: OrangeProgressIndicatorTokens(
         providersTokens(context),

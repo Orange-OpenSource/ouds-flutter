@@ -55,12 +55,12 @@ class ButtonCodeGenerator {
 
       case OudsButtonLayout.iconOnly:
         code =
-            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: 'assets/ic_heart.svg',\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: 'assets/ic_heart.svg',\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${tintedCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconAndText:
         code =
-            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${tintedCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
     }
 
@@ -96,6 +96,19 @@ class ButtonCodeGenerator {
     );
     if (customizationState?.hasFullWidth == true) {
       return "\nisFullWidth: ${customizationState?.hasFullWidth},";
+    } else {
+      return "";
+    }
+  }
+
+  // Method to generate the tinted code modifier for icon-bearing buttons.
+  // Only emitted when untinted is selected, since tinted is the default.
+  static String tintedCodeModifier(BuildContext context) {
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
+      context,
+    );
+    if (customizationState?.isTinted == false) {
+      return "\ntinted: false,";
     } else {
       return "";
     }

@@ -19,7 +19,7 @@ import 'package:flutter/foundation.dart';
 ///
 /// It also provides platform-specific values, such as different collapsed
 /// heights for Android and other platforms.
-class ConstantSheetBottom{
+class ConstantSheetBottom {
   /// Current rotation value for the chevron icon animation.
   static double chevronTurns = 0.5;
 
@@ -42,8 +42,36 @@ class ConstantSheetBottom{
   static const double _collapsedHeightDefault = 91;
 
   /// Platform-dependent collapsed height of the bottom sheet.
-  static double collapsedHeight = !kIsWeb && defaultTargetPlatform == TargetPlatform.android
+  ///
+  /// Also used as the peek height of the `OudsBottomSheetScaffold` in
+  /// [CustomizeBottomSheet], i.e. the height of the sheet while collapsed
+  /// (drag handle + title/chevron header only), since that header's natural
+  /// height itself varies slightly between Android and iOS.
+  static double collapsedHeight =
+      !kIsWeb && defaultTargetPlatform == TargetPlatform.android
       ? _collapsedHeightAndroid
       : _collapsedHeightDefault;
 
+  /// Fraction of the true screen height the customization sheet should
+  /// occupy once expanded (see [CustomizeBottomSheet]).
+  ///
+  /// `OudsBottomSheetScaffold.expand()` always targets 85 % of the height
+  /// available to it (`OudsBottomSheetConstants.maxExpandedFraction`, an
+  /// internal, non-configurable value in `ouds_core` — this mirrors
+  /// Android's `OudsBottomSheetScaffold`, whose public API has no such
+  /// parameter either). To make the expanded sheet only cover
+  /// [expandedHeightFraction] of the real screen instead — without
+  /// modifying `ouds_core` — [CustomizeBottomSheet] wraps the scaffold in a
+  /// [MediaQuery] reporting a reduced height, computed so that 85 % of that
+  /// reduced height equals [expandedHeightFraction] of the true screen
+  /// height.
+  static const double expandedHeightFraction = 0.6;
+
+  /// Mirrors `OudsBottomSheetConstants.maxExpandedFraction` (currently
+  /// `0.85`), the fraction of its available height
+  /// `OudsBottomSheetScaffold.expand()` always targets internally. Needed
+  /// here to compute the [MediaQuery] override producing
+  /// [expandedHeightFraction]. Keep in sync if the `ouds_core` value ever
+  /// changes.
+  static const double oudsBottomSheetMaxExpandedFraction = 0.85;
 }

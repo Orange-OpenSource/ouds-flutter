@@ -49,7 +49,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'يرجى اختيار Chip من خلال التنقل بين الخيارات';
 
   @override
-  String get app_common_selected_label => 'Selected';
+  String get app_common_selected_tech => 'Selected';
 
   @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
@@ -243,6 +243,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_helperText_label => 'Helper text';
 
   @override
+  String get app_components_common_annotatedText_tech =>
+      'Annotated example text';
+
+  @override
   String get app_components_common_appearance_label => 'Appearance';
 
   @override
@@ -290,7 +294,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_type_tech => 'Type';
 
   @override
-  String get app_components_common_tinted_tech => 'Tinted icon';
+  String get app_components_common_icon_tech => 'Icon';
+
+  @override
+  String get app_components_common_tinted_tech => 'Tinted';
+
+  @override
+  String get app_components_common_untinted_tech => 'Untinted';
 
   @override
   String get app_components_alert_tech => 'Alert';
@@ -832,7 +842,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_passwordInput_error_label =>
-      'Please enter your password.';
+      'Your password can\'t be empty';
 
   @override
   String get app_components_pinCodeInput_label => 'Pin code input';

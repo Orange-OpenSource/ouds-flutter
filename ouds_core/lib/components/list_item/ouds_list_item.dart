@@ -14,6 +14,7 @@
 /// {@category List item}
 library;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
@@ -311,7 +312,7 @@ class _OudsListItemState extends State<OudsListItem> {
   @override
   Widget build(BuildContext context) {
     final oudsTheme = OudsTheme.of(context);
-    final tokens = oudsTheme.componentsTokens(context).listItem;
+    final tokens = oudsTheme.componentsTokens(context).controlListItem;
     final typography = oudsTheme.typographyTokens;
     final colorScheme = oudsTheme.colorScheme(context);
 
@@ -369,7 +370,24 @@ class _OudsListItemState extends State<OudsListItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Semantics(
-                  button: widget.onTap != null,
+                  // list item has a button role by default.
+                  button:
+                      widget.onTap != null &&
+                      widget.indicator is! OudsListItemIndicatorExternal,
+                  // Link role only when external indicator is activated.
+                  link:
+                      widget.onTap != null &&
+                      widget.indicator is OudsListItemIndicatorExternal,
+                  // TalkBack does not map the `link` flag to a spoken role
+                  // for whole-node elements (unlike VoiceOver on iOS). The
+                  // engine concatenates contentDescription as
+                  hint:
+                      widget.onTap != null &&
+                          widget.indicator is OudsListItemIndicatorExternal &&
+                          defaultTargetPlatform == TargetPlatform.android
+                      ? OudsLocalizations.of(context)?.core_link_trait_a11y
+                      : null,
+                  // Group all content (leading, labels, trailing) into single label
                   enabled: widget.enable,
                   child: Focus(
                     focusNode: _focusNode,
@@ -717,7 +735,7 @@ class _OudsListItemState extends State<OudsListItem> {
         ),
       OudsListItemLeadingImage(
         :final asset,
-        :final contentDescription,
+        :final semanticsLabel,
         :final size,
         :final format,
         :final rounded,
@@ -731,7 +749,7 @@ class _OudsListItemState extends State<OudsListItem> {
             size.assetSize,
             format,
             rounded: rounded,
-            contentDescription: contentDescription,
+            semanticsLabel: semanticsLabel,
             backgroundColor: OudsTheme.of(
               context,
             ).colorScheme(context).surfaceBrandPrimary,
@@ -809,7 +827,7 @@ class _OudsListItemState extends State<OudsListItem> {
       width: _kFlagWidth,
       height: OudsTheme.of(
         context,
-      ).componentsTokens(context).listItem.sizeFlagHeight,
+      ).componentsTokens(context).controlListItem.sizeFlagHeight,
       child: flag,
     );
   }
@@ -850,7 +868,9 @@ class _OudsListItemState extends State<OudsListItem> {
     required OudsListItemContentAlignment contentAlignment,
     required OudsListItemSize size,
   }) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
 
@@ -924,22 +944,39 @@ class _OudsListItemState extends State<OudsListItem> {
       ),
       OudsListItemTrailingBadge(:final badge) => badge(enable),
       OudsListItemTrailingTag(:final tag) => tag(enable),
-      OudsListItemTrailingIcon(:final icon, :final size, :final tinted) =>
+      OudsListItemTrailingIcon(:final iconStatus, :final size, :final tinted) =>
         // Icon container: dynamic size based on icon size
+        // Icon container: dynamic size based on icon size.
+        // Wrap in Semantics to vocalize functional status (Warning, Negative, Info).
         _buildIconContainer(
+          context,
+          _wrapWithStatusSemantics(
+            context,
+            OudsListItemAssetBuilder.buildIcon(
+              context,
+              iconStatus,
+              enable: enable,
+              size: size.assetSize,
+              tinted: tinted,
+            ),
+            iconStatus,
+          ),
+          size.assetSize,
+        ),
+      /* _buildIconContainer(
           context,
           OudsListItemAssetBuilder.buildIcon(
             context,
-            icon,
+            iconStatus,
             enable: enable,
             size: size.assetSize,
             tinted: tinted,
           ),
           size.assetSize,
-        ),
+        ),*/
       OudsListItemTrailingImage(
         :final asset,
-        :final contentDescription,
+        :final semanticsLabel,
         :final size,
         :final format,
         :final rounded,
@@ -953,7 +990,7 @@ class _OudsListItemState extends State<OudsListItem> {
             size.assetSize,
             format,
             rounded: rounded,
-            contentDescription: contentDescription,
+            semanticsLabel: semanticsLabel,
             backgroundColor: OudsTheme.of(
               context,
             ).colorScheme(context).surfaceBrandPrimary,
@@ -993,7 +1030,9 @@ class _OudsListItemState extends State<OudsListItem> {
     required OudsListItemContentAlignment contentAlignment,
     required OudsListItemSize size,
   }) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
     final contentColor = foreground.contentColor(enable);
@@ -1082,11 +1121,11 @@ class _OudsListItemState extends State<OudsListItem> {
         ? (size == OudsListItemSize.defaultSize
               ? OudsTheme.of(context)
                     .componentsTokens(context)
-                    .listItem
+                    .controlListItem
                     .spacePaddingBlockTopAlignmentTopTextContainerDefault
               : OudsTheme.of(context)
                     .componentsTokens(context)
-                    .listItem
+                    .controlListItem
                     .spacePaddingBlockTopAlignmentTopTextContainerSmall)
         : 0.0;
 
@@ -1135,6 +1174,8 @@ class _OudsListItemState extends State<OudsListItem> {
   ) {
     final l10n = OudsLocalizations.of(context);
     final String? label = switch (iconStatus) {
+      Neutral() => iconStatus.semanticsLabel,
+      Accent() => iconStatus.semanticsLabel,
       Warning() => l10n?.core_common_warning_a11y,
       Negative() => l10n?.core_common_error_a11y,
       Info() => l10n?.core_common_info_a11y,
@@ -1166,7 +1207,9 @@ class _OudsListItemState extends State<OudsListItem> {
     Color contentColor,
     Color mutedColor,
   ) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final topPadding =
         widget.contentAlignment == OudsListItemContentAlignment.top
         ? switch (widget.size) {

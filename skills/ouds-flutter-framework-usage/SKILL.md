@@ -514,11 +514,28 @@ OudsFilterChip(
   onSelected: (selected) {},
 )
 
+OudsFilterChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  tinted: true,
+  selected: true,
+  onSelected: (selected) {},
+)
+
 OudsSuggestionChip(
   label: 'Label',
   onPressed: () {},
 )
+
+OudsSuggestionChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  tinted: true,
+  onPressed: () {},
+)
 ```
+
+> `avatar` is deprecated on both `OudsFilterChip` and `OudsSuggestionChip` default constructors — use the `.icon` named constructor with its `icon` parameter instead.
 
 ---
 

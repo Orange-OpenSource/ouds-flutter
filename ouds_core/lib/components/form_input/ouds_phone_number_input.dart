@@ -18,7 +18,6 @@ import 'package:dlibphonenumber/dlibphonenumber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_background_modifier.dart';
@@ -27,6 +26,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_text_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -114,7 +114,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
     required this.decoration,
     this.onEditingComplete,
   }) : assert(
-         !(decoration.loader == true && decoration.errorText != null),
+         !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
        );
 
@@ -138,6 +138,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
         inputTextForegroundModifier.getIconColor(controlTextInputState),
         BlendMode.srcIn,
       ),
+      matchTextDirection: true,
     );
   }
 
@@ -239,7 +240,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
-      isLoading: widget.decoration.loader ?? false,
+      isLoading: widget.decoration.loader != null,
       isReadOnly: widget.readOnly ?? false,
     );
 
@@ -452,7 +453,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       focusNode: effectiveFocusNode,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelModerateLarge(context)
+          .typeLabelDefaultMedium(context)
           .copyWith(
             color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
@@ -536,7 +537,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: theme.typographyTokens
-                    .typeLabelDefaultLarge(context)
+                    .typeLabelModerateLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
                     ),
@@ -800,7 +801,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         if (widget.decoration.prefixIcon != null) ...[
           OudsPhoneNumberInput.buildIcon(
             context,
-            widget.decoration.prefixIcon!,
+            widget.decoration.prefixIcon!.icon,
             state,
             false,
           ),
@@ -821,8 +822,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   ///
   /// Cases handled:
   ///
-  /// 1. **Loader active** (`loader == true`):
-  ///    - Displays a minimal hierarchy [OudsButton] in loading style.
+  /// 1. **Loader active** (`loader != null`):
+  ///    - Displays a circular loading indicator using [OudsCircularProgressIndicator].
   ///    - Adds horizontal spacing before the loader for visual alignment.
   ///
   /// 2. **Only error state** (`errorText != null`):
@@ -846,17 +847,46 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     );
 
     // Case 1: loader active
-    if (widget.decoration.loader == true) {
+    if (widget.decoration.loader != null) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(width: textInput.spaceColumnGapDefault),
-          OudsButton(
-            icon: AppAssets.icons.functionalSocialAndEngagementHeartRecommend,
-            package: OudsTheme.of(context).packageName,
-            appearance: OudsButtonAppearance.minimal,
-            isLoading: true,
-            onPressed: () {},
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: buttonTokens.sizeMinWidthDefault,
+              minHeight: buttonTokens.sizeMinHeightDefault,
+              maxHeight: buttonTokens.sizeMaxSizeIconOnlyDefault,
+            ),
+            child: Padding(
+              padding: EdgeInsetsGeometry.all(
+                buttonTokens.spaceInsetIconOnlyDefault,
+              ),
+              child:
+                  /// Progress Indicator Container
+                  Container(
+                    padding: EdgeInsets.all(
+                      buttonTokens.spaceInsetProgressIndicatorOnlyDefault,
+                    ),
+                    child:
+                        /// Progress Indicator Size
+                        SizedBox(
+                          width: buttonTokens.sizeProgressIndicatorDefault,
+                          height: buttonTokens.sizeProgressIndicatorDefault,
+                          child: widget.decoration.loader?.progress != null
+                              ? OudsCircularProgressIndicator.internal(
+                                  progressType:
+                                      OudsProgressIndicatorType.determinate,
+                                  value: widget.decoration.loader?.progress,
+                                  track: false,
+                                )
+                              : OudsCircularProgressIndicator.internal(
+                                  progressType:
+                                      OudsProgressIndicatorType.indeterminate,
+                                  track: false,
+                                ),
+                        ),
+                  ),
+            ),
           ),
         ],
       );

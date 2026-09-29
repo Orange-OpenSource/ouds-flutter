@@ -69,7 +69,7 @@ class OudsListItemLeadingIcon extends OudsListItemLeading {
 /// ```dart
 /// OudsListItemLeadingImage(
 ///   asset: 'assets/images/photo.jpg',
-///   contentDescription: 'Product photo',
+///   semanticsLabel: 'Product photo',
 ///   size: OudsListItemImageSize.large,
 ///   format: OudsListItemImageFormat.widescreen,
 ///   rounded: true,
@@ -82,7 +82,7 @@ class OudsListItemLeadingImage extends OudsListItemLeading {
   /// Accessibility description of the image for screen readers.
   ///
   /// When `null`, the image is excluded from the accessibility tree.
-  final String? contentDescription;
+  final String? semanticsLabel;
 
   /// Size of the image. Defaults to [OudsListItemImageSize.medium].
   ///
@@ -114,7 +114,7 @@ class OudsListItemLeadingImage extends OudsListItemLeading {
   /// Creates a leading image configuration.
   const OudsListItemLeadingImage({
     required this.asset,
-    this.contentDescription,
+    this.semanticsLabel,
     this.size = OudsListItemImageSize.medium,
     this.format = OudsListItemImageFormat.square,
     this.rounded = false,
