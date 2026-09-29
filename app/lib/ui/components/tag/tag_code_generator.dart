@@ -74,14 +74,22 @@ class TagCodeGenerator {
     }
   }
 
-  static String _getStatusCode(TagCustomizationState? customizationState) {
+  static String _getStatusCode(TagCustomizationState customizationState) {
     final withIcon =
-        customizationState?.selectedLayout == TagEnumLayout.iconAndText;
-    switch (customizationState?.selectedStatus) {
+        customizationState.selectedLayout == TagEnumLayout.iconAndText;
+    switch (customizationState.selectedStatus) {
       case StatusEnum.neutral:
-        return """Neutral(${withIcon ? "icon: 'assets/heart-recommend.svg'" : ""})""";
+        return """Neutral(${withIcon
+            ? customizationState.isTinted
+                  ? "icon: 'AppAssets.icons.assistanceTipsAndTricks'"
+                  : "icon: 'AppAssets.icons.icUntintedSquare',"
+            : ""}${withIcon ? "\ntinted: ${customizationState.isTinted}" : ""})""";
       case StatusEnum.accent:
-        return """Accent(${withIcon ? "icon: 'assets/heart-recommend.svg'" : ""})""";
+        return """Accent(${withIcon
+            ? customizationState.isTinted
+                  ? "icon: 'AppAssets.icons.assistanceTipsAndTricks'"
+                  : "icon: 'AppAssets.icons.icUntintedSquare',"
+            : ""}${withIcon ? "\ntinted: ${customizationState.isTinted}" : ""})""";
       case StatusEnum.positive:
         return """Positive()""";
       case StatusEnum.info:

@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_background_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_border_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
@@ -55,7 +56,6 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [onEditingComplete]: Callback invoked when editing is complete.
 /// - [decoration]: An [OudsInputDecoration] object to configure label,
 /// - [helperLink]: An [OudsLink] object to display a helper link.
-/// - [trailingIconContentDescription]: A semantic label for accessibility trailing icon.
 ///
 /// ### You can use [OudsTextField] component in your project, customizing parameters as needed :
 ///
@@ -82,7 +82,6 @@ class OudsTextField extends StatefulWidget {
   final void Function(String)? onEditingComplete;
   final OudsInputDecoration decoration;
   final OudsLink? helperLink;
-  final String? trailingIconContentDescription;
 
   OudsTextField({
     super.key,
@@ -94,7 +93,6 @@ class OudsTextField extends StatefulWidget {
     this.onEditingComplete,
     required this.decoration,
     this.helperLink,
-    this.trailingIconContentDescription,
   }) : assert(
          !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
@@ -102,22 +100,21 @@ class OudsTextField extends StatefulWidget {
 
   static Widget buildIcon(
     BuildContext context,
-    String assetName,
+    OudsIcon icon,
     OudsFormFieldsControlState controlTextInputState,
-    bool isError, {
-    bool tinted = true,
-  }) {
+    bool isError,
+  ) {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
       context,
     );
     final theme = OudsTheme.of(context);
     final Widget iconWidget = SvgPicture.asset(
       excludeFromSemantics: true,
-      assetName,
+      icon.assetsName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
       width: theme.componentsTokens(context).textInput.sizeLeadingIcon,
-      colorFilter: tinted
+      colorFilter: icon.tinted
           ? ColorFilter.mode(
               inputTextForegroundModifier.getIconColor(controlTextInputState),
               BlendMode.srcIn,
@@ -129,9 +126,9 @@ class OudsTextField extends StatefulWidget {
     // When untinted, the icon asset is expected to be a plain white shape
     // (no embedded background), so it needs a brand-colored background to
     // remain visible — matching the behavior of OudsButton and OudsLink.
-    if (tinted) return iconWidget;
+    if (icon.tinted) return iconWidget;
     return Container(
-      color: theme.colorScheme(context).surfaceBrandPrimary,
+      color: icon.tinted ? null : icon.backgroundColor,
       child: iconWidget,
     );
   }
@@ -439,7 +436,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                         label:
                             widget.decoration.suffixIcon != null &&
                                 widget.decoration.loader == null
-                            ? widget.trailingIconContentDescription
+                            ? widget.decoration.suffixIcon?.icon.semanticsLabel
                             : null,
                         container: true,
                         button: true,
@@ -812,7 +809,6 @@ class _OudsTextInputState extends State<OudsTextField> {
               child: OudsButton(
                 appearance: OudsButtonAppearance.minimal,
                 icon: suffixIcon.icon,
-                tinted: suffixIcon.tinted,
                 onPressed:
                     ((widget.enabled ?? true) && !(widget.readOnly ?? false))
                     ? suffixIcon.onPressed
@@ -872,10 +868,9 @@ class _OudsTextInputState extends State<OudsTextField> {
         if (widget.decoration.prefixIcon != null) ...[
           OudsTextField.buildIcon(
             context,
-            widget.decoration.prefixIcon!.icon,
+            widget.decoration.prefixIcon!,
             state,
             false,
-            tinted: widget.decoration.prefixIcon!.tinted,
           ),
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],

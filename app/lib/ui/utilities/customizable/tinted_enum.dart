@@ -23,7 +23,7 @@ enum TintedEnum {
   untinted;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_common_tinted_tech;
+    return context.l10n.app_components_common_icon_tech;
   }
 }
 

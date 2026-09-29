@@ -12,6 +12,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
@@ -222,9 +223,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               : null,
           hasPrefix: customizationState.hasPrefix,
           prefixIcon: customizationState.hasLeadingIcon
-              ? OudsTextInputPrefixIcon(
-                  icon: AppAssets.icons.deviceSmartphone(themeController),
-                )
+              ? OudsIcon(AppAssets.icons.deviceSmartphone(themeController))
               : null,
           errorText: customizationState.hasError
               ? (customizationState.hasAnnotatedHelper

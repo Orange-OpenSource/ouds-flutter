@@ -146,9 +146,7 @@ class FormFieldsCodeGenerator {
     switch (inputTypeEnum) {
       case FormFieldsTypeEnum.phoneNumberInput:
         if (prefixIcon == true) {
-          lines.add(
-            "  prefixIcon: OudsTextInputPrefixIcon(\n    icon: 'assets/ic_heart.svg',\n  ),",
-          );
+          lines.add("  prefixIcon: OudsIcon('assets/ic_heart.svg'),");
         }
         break;
       case FormFieldsTypeEnum.passwordInput:
@@ -159,12 +157,12 @@ class FormFieldsCodeGenerator {
       default:
         if (suffixIcon == true) {
           lines.add(
-            "  suffixIcon: OudsTextInputSuffixIconButton(\n    icon: 'assets/ic_heart.svg',\n    tinted: $trailingIconTinted,\n    onPressed: () {},\n  ),",
+            "  suffixIcon: OudsTextInputSuffixIconButton(\n    icon: OudsIcon('AppAssets.icons.assistanceTipsAndTricks', tinted: $trailingIconTinted),\n    onPressed: () {},\n  ),",
           );
         }
         if (prefixIcon == true) {
           lines.add(
-            "  prefixIcon: OudsTextInputPrefixIcon(\n    icon: 'assets/ic_heart.svg',\n    tinted: $leadingIconTinted,\n  ),",
+            "  prefixIcon: OudsIcon(${leadingIconTinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: $leadingIconTinted),",
           );
         }
         if (hasError) lines.add('  errorText: "This field can’t..",');

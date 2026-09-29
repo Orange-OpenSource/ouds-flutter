@@ -203,20 +203,32 @@ class TagCustomizationUtils {
   static OudsIconStatus getIconStatus(
     BuildContext context,
     TagCustomizationState customizationState,
-    ThemeController? themeController,
+    ThemeController themeController,
   ) {
     switch (customizationState.selectedStatus) {
       case StatusEnum.neutral:
         return Neutral(
-          icon: AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-            themeController!,
-          ),
+          icon: customizationState.selectedLayout == TagEnumLayout.iconAndText
+              ? customizationState.isTinted
+                    ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+                    : AppAssets.icons.icUntintedSquare
+              : null,
+          tinted: customizationState.isTinted,
+          backgroundColor: customizationState.isTinted
+              ? null
+              : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
         );
       case StatusEnum.accent:
         return Accent(
-          icon: AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
-            themeController!,
-          ),
+          icon: customizationState.selectedLayout == TagEnumLayout.iconAndText
+              ? customizationState.isTinted
+                    ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+                    : AppAssets.icons.icUntintedSquare
+              : null,
+          tinted: customizationState.isTinted,
+          backgroundColor: customizationState.isTinted
+              ? null
+              : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
         );
       case StatusEnum.positive:
         return Positive();
@@ -227,5 +239,10 @@ class TagCustomizationUtils {
       default:
         return Negative();
     }
+  }
+
+  static bool isNonFunctionalStatus(TagCustomizationState status) {
+    return status.selectedStatus == StatusEnum.accent ||
+        status.selectedStatus == StatusEnum.neutral;
   }
 }

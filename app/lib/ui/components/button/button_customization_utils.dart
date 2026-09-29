@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
@@ -79,15 +80,29 @@ class ButtonCustomizationUtils {
   /// Uses a single-color, theme-tintable asset when [ButtonCustomizationState.isTinted]
   /// is true, or a multi-color asset kept as-is (untinted) otherwise. This mirrors
   /// the behavior used in the Link component demo.
-  static String? getIcon(
+  static OudsIcon? getIcon(
     ButtonCustomizationState? customizationState,
     ThemeController themeController,
+    Color backgroundColor,
+    String semanticsLabel,
   ) {
-    if (customizationState?.selectedLayout == ButtonEnumLayout.iconOnly ||
-        customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
+    final iconOnly =
+        customizationState?.selectedLayout == ButtonEnumLayout.iconOnly;
+    final iconAndText =
+        customizationState?.selectedLayout == ButtonEnumLayout.iconAndText;
+
+    if (iconOnly || iconAndText) {
       return customizationState?.isTinted == true
-          ? AppAssets.icons.assistanceTipsAndTricks(themeController)
-          : AppAssets.icons.icUntintedSquare;
+          ? OudsIcon(
+              AppAssets.icons.assistanceTipsAndTricks(themeController),
+              semanticsLabel: iconOnly ? semanticsLabel : null,
+            )
+          : OudsIcon(
+              AppAssets.icons.icUntintedSquare,
+              tinted: false,
+              backgroundColor: backgroundColor,
+              semanticsLabel: iconOnly ? semanticsLabel : null,
+            );
     }
     return null;
   }
