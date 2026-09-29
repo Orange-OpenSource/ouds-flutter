@@ -174,7 +174,7 @@ enum OudsButtonComponent {
 class OudsButton extends StatefulWidget {
   final String? label;
   @Deprecated(
-    'This parameter is deprecated and will be removed in a future version, use the OudsIcon type instead.',
+    'The String type of `icon` is deprecated and will be removed in a future version, use the OudsIcon type instead.',
   )
   final OudsIcon? icon;
   final VoidCallback? onPressed;

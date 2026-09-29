@@ -14,6 +14,8 @@
 /// {@category Badge}
 /// {@category Tag}
 /// {@category Alert}
+/// {@category List item}
+/// {@category Progress indicator}
 library;
 
 import 'package:flutter/material.dart';
