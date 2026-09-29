@@ -1770,20 +1770,20 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_progressIndicator_helperTextAlignment_tech.
   ///
   /// In en, this message translates to:
-  /// **'Alignment'**
+  /// **'Label alignment'**
   String get app_components_progressIndicator_helperTextAlignment_tech;
-
-  /// No description provided for @app_components_progressIndicator_helperTextSpaceBefore_tech.
-  ///
-  /// In en, this message translates to:
-  /// **'Space before %'**
-  String get app_components_progressIndicator_helperTextSpaceBefore_tech;
 
   /// No description provided for @app_components_progressIndicator_helperTextPercentage_tech.
   ///
   /// In en, this message translates to:
-  /// **'Percentage'**
+  /// **'Helper text progress'**
   String get app_components_progressIndicator_helperTextPercentage_tech;
+
+  /// No description provided for @app_components_progressIndicator_helperTextLabel_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper text label'**
+  String get app_components_progressIndicator_helperTextLabel_tech;
 
   /// No description provided for @app_components_progressIndicator_progress_a11y.
   ///

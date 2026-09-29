@@ -939,15 +939,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_progressIndicator_helperTextAlignment_tech =>
-      'Alignment';
-
-  @override
-  String get app_components_progressIndicator_helperTextSpaceBefore_tech =>
-      'Space before %';
+      'Label alignment';
 
   @override
   String get app_components_progressIndicator_helperTextPercentage_tech =>
-      'Percentage';
+      'Helper text progress';
+
+  @override
+  String get app_components_progressIndicator_helperTextLabel_tech =>
+      'Helper text label';
 
   @override
   String get app_components_progressIndicator_progress_a11y => 'Uploading file';

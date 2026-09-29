@@ -153,19 +153,12 @@ class _LinearProgressIndicatorDemoState
             customizationState!.selectedGapSize,
           ),
           stopIndicator: customizationState!.hasStopIndicator,
-          percentage: customizationState!.hasHelperText
-              ? customizationState!.hasPercentage
-              : false,
-          spaceBeforePercentage: customizationState!.hasSpaceBefore,
-          helperTextAlignment:
-              ProgressIndicatorCustomizationUtils.getHelperTextAlignment(
-                customizationState!.selectedAlignment,
-              ),
-          helperText: customizationState!.hasHelperText
-              ? customizationState!.helperText
-              : null,
-          semanticLabel:
-              context.l10n.app_components_progressIndicator_progress_a11y,
+          helperText: ProgressIndicatorCustomizationUtils.getLinearHelperText(
+            customizationState!,
+          ),
+          semanticsLabel: customizationState!.hasHelperText
+              ? null
+              : context.l10n.app_components_progressIndicator_progress_a11y,
         ),
       );
     } else {
@@ -186,19 +179,12 @@ class _LinearProgressIndicatorDemoState
             customizationState!.selectedGapSize,
           ),
           stopIndicator: customizationState!.hasStopIndicator,
-          percentage: customizationState!.hasHelperText
-              ? customizationState!.hasPercentage
-              : false,
-          spaceBeforePercentage: customizationState!.hasSpaceBefore,
-          helperTextAlignment:
-              ProgressIndicatorCustomizationUtils.getHelperTextAlignment(
-                customizationState!.selectedAlignment,
-              ),
-          helperText: customizationState!.hasHelperText
-              ? customizationState!.helperText
-              : null,
-          semanticLabel:
-              context.l10n.app_components_progressIndicator_progress_a11y,
+          helperText: ProgressIndicatorCustomizationUtils.getLinearHelperText(
+            customizationState!,
+          ),
+          semanticsLabel: customizationState!.hasHelperText
+              ? null
+              : context.l10n.app_components_progressIndicator_progress_a11y,
         ),
       );
     }
@@ -341,7 +327,22 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               : null,
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_common_helperText_label,
+          title: context
+              .l10n
+              .app_components_progressIndicator_helperTextPercentage_tech,
+          value: customizationState.hasPercentage,
+          onChanged:
+              customizationState.selectedType ==
+                  ProgressIndicatorEnumType.determinate
+              ? (value) {
+                  customizationState.hasPercentage = value;
+                }
+              : null,
+        ),
+        CustomizableSwitch(
+          title: context
+              .l10n
+              .app_components_progressIndicator_helperTextLabel_tech,
           value: customizationState.hasHelperText,
           onChanged: (value) {
             customizationState.hasHelperText = value;
@@ -349,58 +350,29 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         Visibility(
           visible: customizationState.hasHelperText,
-          child: CustomizableSwitch(
+          child: CustomizableTextField(
             title: context
                 .l10n
-                .app_components_progressIndicator_helperTextPercentage_tech,
-            value: customizationState.hasPercentage,
-            onChanged:
-                customizationState.selectedType ==
-                    ProgressIndicatorEnumType.determinate
-                ? (value) {
-                    customizationState.hasPercentage = value;
-                  }
-                : null,
+                .app_components_progressIndicator_helperTextLabel_tech,
+            text: customizationState.helperText,
+            focusNode: helperFocus,
+            fieldType: FieldType.helper,
           ),
         ),
         Visibility(
-          visible: customizationState.hasHelperText,
+          visible:
+              customizationState.hasPercentage &&
+              customizationState.hasHelperText,
           child: CustomizableChips<ProgressIndicatorHelperTextAlignmentEnum>(
             title: ProgressIndicatorHelperTextAlignmentEnum.enumName(context),
             options: customizationState.alignmentState.list,
             selectedOption: customizationState.selectedAlignment,
             getText: (option) => option.stringValue(context),
-            onSelected: customizationState.hasPercentage
-                ? (selectedOption) {
-                    setState(() {
-                      customizationState.selectedAlignment = selectedOption;
-                    });
-                  }
-                : null,
-          ),
-        ),
-        Visibility(
-          visible: customizationState.hasHelperText,
-          child: CustomizableSwitch(
-            title: context
-                .l10n
-                .app_components_progressIndicator_helperTextSpaceBefore_tech,
-            value: customizationState.hasSpaceBefore,
-            onChanged: customizationState.hasPercentage
-                ? (value) {
-                    customizationState.hasSpaceBefore = value;
-                  }
-                : null,
-          ),
-        ),
-        Visibility(
-          visible: customizationState.hasHelperText,
-          child: CustomizableTextField(
-            title: context.l10n.app_components_common_helperText_label,
-            text: customizationState.helperText,
-            focusNode: helperFocus,
-            fieldType: FieldType.helper,
-            fieldEnable: !customizationState.hasPercentage,
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.selectedAlignment = selectedOption;
+              });
+            },
           ),
         ),
       ],

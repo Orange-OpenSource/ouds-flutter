@@ -23,23 +23,6 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 /// This class centralizes common formatting and mapping logic shared by
 /// circular and linear progress indicator implementations.
 class OudsProgressIndicatorUtils {
-  /// Returns the [Alignment] corresponding to the helper text alignment option.
-  ///
-  /// This is used by the linear progress indicator to position the helper text
-  /// below the component.
-  static Alignment getTextAlign(
-    OudsProgressIndicatorHelperTextAlignment alignment,
-  ) {
-    switch (alignment) {
-      case OudsProgressIndicatorHelperTextAlignment.left:
-        return Alignment.centerLeft;
-      case OudsProgressIndicatorHelperTextAlignment.center:
-        return Alignment.center;
-      case OudsProgressIndicatorHelperTextAlignment.right:
-        return Alignment.centerRight;
-    }
-  }
-
   /// Returns the raw progress value only when the indicator is determinate.
   ///
   /// For indeterminate indicators, returns `null` so that the underlying
@@ -56,29 +39,13 @@ class OudsProgressIndicatorUtils {
         : null;
   }
 
-  /// Builds the helper text displayed below a linear progress indicator.
+  /// Formats a progress value as a whole-number percentage string
+  /// (e.g. `75%`).
   ///
-  /// - When [percentage] is `true`, the text is derived from [progress] and
-  ///   formatted as a percentage (e.g. `75%` or `75 %` when
-  ///   [spaceBeforePercentage] is `true`).
-  /// - When [percentage] is `false`, [helperText] is returned as-is.
-  /// - Returns `null` when neither condition produces content.
-  static String? buildHelperText(
-    bool percentage,
-    bool spaceBeforePercentage,
-    double? progress,
-    String? helperText,
-  ) {
-    final progressValue = progress != null ? (progress * 100).round() : 0;
-    if (percentage) {
-      return spaceBeforePercentage ? '$progressValue %' : '$progressValue%';
-    }
-
-    if (helperText != null) {
-      return helperText;
-    }
-
-    return null;
+  /// Returns `0%` when [progressValue] is `null`.
+  static String buildPercentageText(double? progressValue) {
+    final value = progressValue != null ? (progressValue * 100).round() : 0;
+    return '$value%';
   }
 
   /// Builds the accessibility status text associated with an [OudsIconStatus].

@@ -40,11 +40,10 @@ class ProgressIndicatorCodeGenerator {
       semanticLabel(context),
       if (widgetType == ProgressIndicatorWidgetType.linear) ...[
         stopIndicator(context),
-        helperText(context),
-        helperTextAlignment(context),
-        percentage(context),
-        spaceBeforePercentage(context),
+        linearHelperText(context),
       ],
+      if (widgetType == ProgressIndicatorWidgetType.circular)
+        circularHelperText(context),
     ];
 
     return """${coloredSurfaceCodeModifier(context)}$widgetName(
@@ -127,38 +126,51 @@ class ProgressIndicatorCodeGenerator {
     return "stopIndicator: ${customizationState!.hasStopIndicator}";
   }
 
-  static String helperText(BuildContext context) {
+  static String linearHelperText(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
-    final text = customizationState!.helperText;
+    final hasPercentage = customizationState!.hasPercentage;
+    final hasLabel = customizationState.hasHelperText;
 
-    if (text.isEmpty) {
+    if (!hasPercentage && !hasLabel) {
       return "helperText: null";
     }
 
-    return "helperText: '$text'";
+    final params = <String>[
+      "progress: $hasPercentage",
+      if (hasLabel) "label: '${customizationState.helperText}'",
+      if (hasPercentage && hasLabel)
+        "labelAlignment: ${_labelAlignmentCode(customizationState.selectedAlignment)}",
+    ];
+
+    return "helperText: OudsLinearProgressIndicatorHelperText(\n    ${params.join(",\n    ")},\n  )";
   }
 
-  static String helperTextAlignment(BuildContext context) {
+  static String circularHelperText(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
+    final hasPercentage = customizationState!.hasPercentage;
+    final hasLabel = customizationState.hasHelperText;
 
-    switch (customizationState!.alignmentState.selected) {
-      case ProgressIndicatorHelperTextAlignmentEnum.left:
-        return "helperTextAlignment: OudsProgressIndicatorHelperTextAlignment.left";
-      case ProgressIndicatorHelperTextAlignmentEnum.center:
-        return "helperTextAlignment: OudsProgressIndicatorHelperTextAlignment.center";
-      case ProgressIndicatorHelperTextAlignmentEnum.right:
-        return "helperTextAlignment: OudsProgressIndicatorHelperTextAlignment.right";
+    if (!hasPercentage && !hasLabel) {
+      return "helperText: null";
     }
+
+    final params = <String>[
+      "progress: $hasPercentage",
+      if (hasLabel) "label: '${customizationState.helperText}'",
+    ];
+
+    return "helperText: OudsCircularProgressIndicatorHelperText(\n    ${params.join(",\n    ")},\n  )";
   }
 
-  static String percentage(BuildContext context) {
-    final customizationState = ProgressIndicatorCustomization.of(context);
-    return "percentage: ${customizationState!.hasPercentage}";
-  }
-
-  static String spaceBeforePercentage(BuildContext context) {
-    final customizationState = ProgressIndicatorCustomization.of(context);
-    return "spaceBeforePercentage: ${customizationState!.hasSpaceBefore}";
+  static String _labelAlignmentCode(
+    ProgressIndicatorHelperTextAlignmentEnum alignment,
+  ) {
+    switch (alignment) {
+      case ProgressIndicatorHelperTextAlignmentEnum.left:
+        return "OudsProgressIndicatorHelperTextAlignment.start";
+      case ProgressIndicatorHelperTextAlignmentEnum.right:
+        return "OudsProgressIndicatorHelperTextAlignment.end";
+    }
   }
 
   static String enumStatusValue(dynamic status) {

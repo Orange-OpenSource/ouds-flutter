@@ -82,7 +82,7 @@ The OUDS icon library has been updated to version 2.3.0. Some icon names or asse
 |-----------|--------|
 | Button | Updated to v3.3.0 — added `tinted` parameter (defaults to `true`) to control whether the icon follows the theme color or keeps its original (multi-color) asset colors |
 | Link | Updated to v2.4.0 |
-| Progress Indicator | Added `size` parameter to `OudsCircularProgressIndicator` for button integration |
+| Progress Indicator | Added `size` parameter to `OudsCircularProgressIndicator` for button integration; added `helperText` parameter to `OudsLinearProgressIndicator` and `OudsCircularProgressIndicator` to display a progress percentage and/or a label below the indicator (always centered for the circular variant, start/end alignable for the linear one) |
 | Tab Bar | Fixed `Invalid value: Not in inclusive range 0..2: 3` crash |
 | Typography | Added typography tokens component |
 

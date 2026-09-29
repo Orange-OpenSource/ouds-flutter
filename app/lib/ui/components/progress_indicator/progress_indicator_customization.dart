@@ -49,7 +49,6 @@ class ProgressIndicatorCustomizationState
   late final HelperTextState helperTextState;
   late final AlignmentState alignmentState;
   late final PercentageState percentageState;
-  late final SpaceBeforeState spaceBeforeState;
 
   @override
   void initState() {
@@ -64,7 +63,6 @@ class ProgressIndicatorCustomizationState
     helperTextState = HelperTextState(setState);
     alignmentState = AlignmentState(setState);
     percentageState = PercentageState(setState);
-    spaceBeforeState = SpaceBeforeState(setState);
   }
 
   String get value => valueState.value;
@@ -109,9 +107,6 @@ class ProgressIndicatorCustomizationState
 
   bool get hasPercentage => percentageState.value;
   set hasPercentage(bool value) => percentageState.value = value;
-
-  bool get hasSpaceBefore => spaceBeforeState.value;
-  set hasSpaceBefore(bool value) => spaceBeforeState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -293,21 +288,6 @@ class PercentageState {
   }
 }
 
-/// Percentage State Management
-class SpaceBeforeState {
-  SpaceBeforeState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _hasSpaceBeforeState = true;
-
-  bool get value => _hasSpaceBeforeState;
-  set value(bool newValue) {
-    _setState(() {
-      _hasSpaceBeforeState = newValue;
-    });
-  }
-}
-
 /// Helper text State Management
 class HelperTextState {
   HelperTextState(this._setState);
@@ -322,7 +302,7 @@ class HelperTextState {
     });
   }
 
-  bool _hasHelperTextState = true;
+  bool _hasHelperTextState = false;
 
   bool get hasValue => _hasHelperTextState;
   set hasValue(bool newValue) {
@@ -332,7 +312,7 @@ class HelperTextState {
   }
 }
 
-/// Type State Management
+/// Alignment State Management
 class AlignmentState {
   AlignmentState(this._setState);
 
@@ -340,11 +320,10 @@ class AlignmentState {
 
   List<ProgressIndicatorHelperTextAlignmentEnum> _alignmentList = [
     ProgressIndicatorHelperTextAlignmentEnum.left,
-    ProgressIndicatorHelperTextAlignmentEnum.center,
     ProgressIndicatorHelperTextAlignmentEnum.right,
   ];
   ProgressIndicatorHelperTextAlignmentEnum _selectedAlignment =
-      ProgressIndicatorHelperTextAlignmentEnum.center;
+      ProgressIndicatorHelperTextAlignmentEnum.right;
 
   List<ProgressIndicatorHelperTextAlignmentEnum> get list => _alignmentList;
   set list(List<ProgressIndicatorHelperTextAlignmentEnum> newList) {
