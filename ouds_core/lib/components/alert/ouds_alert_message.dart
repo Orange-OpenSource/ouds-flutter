@@ -195,8 +195,13 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     // Build the action link widget if provided.
     final actionLink = widget.actionLayout != null
         ? OudsLink(
-            density: OudsLinkDensity.compact,
             label: widget.actionLayout!.text,
+            size: OudsLinkSize.defaultSize,
+            density:
+                widget.actionLayout?.layout ==
+                    OudsAlertMessageActionLayoutEnum.trailing
+                ? OudsLinkDensity.defaultDensity
+                : OudsLinkDensity.compact,
             onPressed: () {
               widget.actionLayout!.onClick?.call();
             },
@@ -232,10 +237,18 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       if (widget.bulletList != null &&
           widget.bulletList!.any((bullet) => bullet.isNotEmpty)) ...[
         SizedBox(height: alertTokens.spaceRowGap),
-        // Generate bullet list items, filtering out any empty strings.
-        ...widget.bulletList!
-            .where((bullet) => bullet.isNotEmpty)
-            .map((bullet) => buildBulletList(context, widget.status, bullet)),
+        // Generate bullet list items, filtering out any empty strings, and
+        // insert a gap between items only (not after the last one).
+        for (final entry
+            in widget.bulletList!
+                .where((bullet) => bullet.isNotEmpty)
+                .toList()
+                .asMap()
+                .entries) ...[
+          if (entry.key > 0)
+            SizedBox(height: alertMessageTokens.spaceRowGapBullet),
+          buildBulletList(context, widget.status, entry.value),
+        ],
         SizedBox(height: alertTokens.spacePaddingBlockBottomContent),
       ],
     ];
@@ -258,6 +271,12 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       Accent(icon: final assets) => assets,
       _ => null,
     };
+
+    bool isTrailingActionLink =
+        widget.actionLayout != null &&
+        widget.actionLayout!.text.isNotEmpty &&
+        widget.actionLayout!.layout ==
+            OudsAlertMessageActionLayoutEnum.trailing;
 
     // Assemble the final alert content layout.
     Widget alertContent;
@@ -366,10 +385,8 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
             ),
           ),
           // Optional action link positioned at the top-end.
-          if (widget.actionLayout != null &&
-              widget.actionLayout!.text.isNotEmpty &&
-              widget.actionLayout!.layout ==
-                  OudsAlertMessageActionLayoutEnum.trailing) ...[
+          if (isTrailingActionLink) ...[
+            SizedBox(width: alertTokens.spaceColumnGap),
             Semantics(
               sortKey: const OrdinalSortKey(2.0),
               container: true,
@@ -383,6 +400,9 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           ],
           // Optional close button.
           if (closeButton != null) ...[
+            SizedBox(
+              width: isTrailingActionLink ? 0 : alertTokens.spaceColumnGap,
+            ),
             Semantics(
               sortKey: const OrdinalSortKey(3.0),
               button: true,
@@ -410,7 +430,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       decoration: BoxDecoration(
         border: OudsBorder().borderAll(
           width: alertMessageTokens.borderWidth,
-          color: Colors.transparent,
+          color: alertMessageStatusModifier.getBorderStatusColor(widget.status),
         ),
         borderRadius: OudsAlertMessageBorderModifier.getBorderRadius(context),
         color: alertMessageStatusModifier.getStatusColor(widget.status),
