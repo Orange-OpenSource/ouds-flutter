@@ -29,6 +29,7 @@ import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_listItem_tokens.dart';
 
 enum OudsControlItemType { switchButton, checkbox, radio }
 
@@ -147,7 +148,7 @@ class OudsControlItemState extends State<OudsControlItem> {
     final controlBorderModifier = OudsControlBorderModifier(context);
     final borderTokens = OudsTheme.of(context).borderTokens;
     final componentsTokens = OudsTheme.of(context).componentsTokens(context);
-    final controlItemTokens = componentsTokens.controlItem;
+    final controlListItemTokens = componentsTokens.controlListItem;
     final controlItemTextModifier = OudsControlTextModifier(context);
 
     return OudsInheritedInteractionModel(
@@ -176,10 +177,10 @@ class OudsControlItemState extends State<OudsControlItem> {
                     ),
                   ),
                   constraints: BoxConstraints(
-                    minHeight: controlItemTokens.sizeMinHeightDefault,
-                    minWidth: controlItemTokens.sizeMinWidth,
+                    minHeight: controlListItemTokens.sizeMinHeightDefault,
+                    minWidth: controlListItemTokens.sizeMinWidth,
                     maxWidth: widget.constrainedMaxWidth
-                        ? controlItemTokens.sizeMaxWidth
+                        ? controlListItemTokens.sizeMaxWidth
                         : double.infinity,
                   ),
                   child: InkWell(
@@ -199,12 +200,13 @@ class OudsControlItemState extends State<OudsControlItem> {
                         : null,
                     onHover: interactionState.setHovered,
                     highlightColor: Colors.transparent,
-                    hoverColor: controlItemTokens.colorBgHover,
+                    hoverColor: controlListItemTokens.colorBgHover,
                     splashColor: Colors.transparent,
                     child: Padding(
                       padding: EdgeInsetsDirectional.symmetric(
-                        horizontal: controlItemTokens.spacePaddingInline,
-                        vertical: controlItemTokens.spacePaddingBlockDefault,
+                        horizontal: controlListItemTokens.spacePaddingInline,
+                        vertical:
+                            controlListItemTokens.spacePaddingBlockDefault,
                       ),
                       child: IntrinsicHeight(
                         child: Row(
@@ -212,8 +214,14 @@ class OudsControlItemState extends State<OudsControlItem> {
                               ? CrossAxisAlignment.start
                               : CrossAxisAlignment.center,
                           children: widget.reversed
-                              ? _buildStandardLayout(controlItemState)
-                              : _buildInvertedLayout(controlItemState),
+                              ? _buildStandardLayout(
+                                  controlListItemTokens,
+                                  controlItemState,
+                                )
+                              : _buildInvertedLayout(
+                                  controlListItemTokens,
+                                  controlItemState,
+                                ),
                         ),
                       ),
                     ),
@@ -263,9 +271,9 @@ class OudsControlItemState extends State<OudsControlItem> {
                     widget.errorText!.trim().isNotEmpty))
               Padding(
                 padding: EdgeInsetsDirectional.only(
-                  start: controlItemTokens.spacePaddingInline,
-                  top: controlItemTokens.spacePaddingBlockTopHelperText,
-                  end: controlItemTokens.spacePaddingInline,
+                  start: controlListItemTokens.spacePaddingInline,
+                  top: controlListItemTokens.spacePaddingBlockTopHelperText,
+                  end: controlListItemTokens.spacePaddingInline,
                 ),
                 child: Text.rich(
                   MarkdownSpanBuilder.buildBoldOnly(
@@ -305,16 +313,15 @@ class OudsControlItemState extends State<OudsControlItem> {
     );
   }
 
-  List<Widget> _buildStandardLayout(OudsControlState controlItemState) => [
+  List<Widget> _buildStandardLayout(
+    OudsListItemTokens controlListItem,
+    OudsControlState controlItemState,
+  ) => [
     AbsorbPointer(
       child: Container(
         constraints: BoxConstraints(
-          maxHeight: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
-          minHeight: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeIcon,
+          maxHeight: controlListItem.sizeMaxHeightAssetsContainer,
+          minHeight: controlListItem.sizeIcon,
         ),
         alignment: Alignment.center,
         child: SizedBox(
@@ -334,33 +341,19 @@ class OudsControlItemState extends State<OudsControlItem> {
         ),
       ),
     ),
-    Container(
-      width: OudsTheme.of(
-        context,
-      ).componentsTokens(context).controlItem.spaceColumnGap,
-    ),
-    _buildTextWithAdditionalAndDescription(controlItemState),
+    Container(width: controlListItem.spaceColumnGap),
+    _buildTextWithAdditionalAndDescription(controlListItem, controlItemState),
     if (widget.icon != null || widget.error)
-      Container(
-        width: OudsTheme.of(
-          context,
-        ).componentsTokens(context).controlItem.spaceColumnGap,
-      ),
+      Container(width: controlListItem.spaceColumnGap),
     if (widget.icon != null && widget.error == false)
       Container(
         constraints: BoxConstraints(
-          maxHeight: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+          maxHeight: controlListItem.sizeMaxHeightAssetsContainer,
         ),
         alignment: Alignment.center,
         child: SizedBox(
-          height: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeIcon,
-          width: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeIcon,
+          height: controlListItem.sizeIcon,
+          width: controlListItem.sizeIcon,
           child: _buildIcon(
             context,
             widget.icon?.assetsName,
@@ -372,25 +365,17 @@ class OudsControlItemState extends State<OudsControlItem> {
     if (widget.error)
       Container(
         constraints: BoxConstraints(
-          maxHeight: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+          maxHeight: controlListItem.sizeMaxHeightAssetsContainer,
         ),
         alignment: Alignment.center,
         child: Container(
           padding: EdgeInsets.symmetric(
-            horizontal: OudsTheme.of(
-              context,
-            ).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon,
+            horizontal: controlListItem.spacePaddingInlineErrorIcon,
           ),
           child: SvgPicture.asset(
             excludeFromSemantics: true,
-            width: OudsTheme.of(
-              context,
-            ).componentsTokens(context).controlItem.sizeErrorIcon,
-            height: OudsTheme.of(
-              context,
-            ).componentsTokens(context).controlItem.sizeErrorIcon,
+            width: controlListItem.sizeErrorIcon,
+            height: controlListItem.sizeErrorIcon,
             AppAssets.icons.componentAlertImportantFill,
             package: OudsTheme.of(context).packageName,
             colorFilter: ColorFilter.mode(
@@ -404,22 +389,19 @@ class OudsControlItemState extends State<OudsControlItem> {
       ),
   ];
 
-  List<Widget> _buildInvertedLayout(OudsControlState controlItemState) => [
+  List<Widget> _buildInvertedLayout(
+    OudsListItemTokens controlListItem,
+    OudsControlState controlItemState,
+  ) => [
     if (widget.icon != null && widget.error == false)
       Container(
         constraints: BoxConstraints(
-          maxHeight: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+          maxHeight: controlListItem.sizeMaxHeightAssetsContainer,
         ),
         alignment: Alignment.center,
         child: SizedBox(
-          height: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeIcon,
-          width: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeIcon,
+          height: controlListItem.sizeIcon,
+          width: controlListItem.sizeIcon,
           child: _buildIcon(
             context,
             widget.icon?.assetsName,
@@ -431,16 +413,12 @@ class OudsControlItemState extends State<OudsControlItem> {
     if (widget.error)
       Container(
         constraints: BoxConstraints(
-          maxHeight: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+          maxHeight: controlListItem.sizeMaxHeightAssetsContainer,
         ),
         alignment: Alignment.center,
         child: Container(
           padding: EdgeInsets.symmetric(
-            horizontal: OudsTheme.of(
-              context,
-            ).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon,
+            horizontal: controlListItem.spacePaddingInlineErrorIcon,
           ),
           child: SvgPicture.asset(
             excludeFromSemantics: true,
@@ -456,40 +434,24 @@ class OudsControlItemState extends State<OudsControlItem> {
         ),
       ),
     if (widget.icon != null || widget.error)
-      SizedBox(
-        width: OudsTheme.of(
-          context,
-        ).componentsTokens(context).controlItem.spaceColumnGap,
-      ),
-    _buildTextWithAdditionalAndDescription(controlItemState),
-    SizedBox(
-      width: OudsTheme.of(
-        context,
-      ).componentsTokens(context).controlItem.spaceColumnGap,
-    ),
+      SizedBox(width: controlListItem.spaceColumnGap),
+    _buildTextWithAdditionalAndDescription(controlListItem, controlItemState),
+    SizedBox(width: controlListItem.spaceColumnGap),
     AbsorbPointer(
       child: Container(
         constraints: BoxConstraints(
-          maxHeight: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
-          minHeight: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.sizeIcon,
+          maxHeight: controlListItem.sizeMaxHeightAssetsContainer,
+          minHeight: controlListItem.sizeIcon,
         ),
         alignment: Alignment.center,
         child: SizedBox(
           height: widget.componentType != OudsControlItemType.switchButton
-              ? OudsTheme.of(
-                  context,
-                ).componentsTokens(context).controlItem.sizeLoader
+              ? controlListItem.sizeLoader
               : OudsTheme.of(
                   context,
                 ).componentsTokens(context).switchButton.sizeHeightTrack,
           width: widget.componentType != OudsControlItemType.switchButton
-              ? OudsTheme.of(
-                  context,
-                ).componentsTokens(context).controlItem.sizeLoader
+              ? controlListItem.sizeLoader
               : null,
           child: widget.indicator(),
         ),
@@ -498,6 +460,7 @@ class OudsControlItemState extends State<OudsControlItem> {
   ];
 
   Widget _buildTextWithAdditionalAndDescription(
+    OudsListItemTokens controlListItem,
     OudsControlState controlItemState,
   ) {
     final controlItemTextModifier = OudsControlTextModifier(context);
@@ -518,13 +481,7 @@ class OudsControlItemState extends State<OudsControlItem> {
       ),
     ];
     if (hasExtraLabelText) {
-      columnChildren.add(
-        SizedBox(
-          height: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.spaceRowGap,
-        ),
-      );
+      columnChildren.add(SizedBox(height: controlListItem.spaceRowGap));
       columnChildren.add(
         Text(
           widget.extraLabelText!,
@@ -540,13 +497,7 @@ class OudsControlItemState extends State<OudsControlItem> {
     }
 
     if (hasDescription) {
-      columnChildren.add(
-        SizedBox(
-          height: OudsTheme.of(
-            context,
-          ).componentsTokens(context).controlItem.spaceRowGap,
-        ),
-      );
+      columnChildren.add(SizedBox(height: controlListItem.spaceRowGap));
       columnChildren.add(
         Text(
           widget.description!,

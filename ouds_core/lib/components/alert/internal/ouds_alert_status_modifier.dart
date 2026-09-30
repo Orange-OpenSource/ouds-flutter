@@ -128,7 +128,7 @@ class OudsAlertStatusModifier {
 
     //zoom in/out icon according to accessibility feature
     final textScaler = MediaQuery.textScalerOf(context);
-    final double scaledSizeIcon = textScaler.scale(alertTokens.sizeIcon);
+    final double scaledSizeIcon = textScaler.scale(alertTokens.sizeAsset);
     final tinted = status?.isTinted ?? true;
 
     if (status is Warning) {

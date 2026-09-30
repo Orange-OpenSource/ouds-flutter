@@ -59,9 +59,10 @@ class OudsListItemAssetBuilder {
 
     final borderRadius = rounded
         ? BorderRadius.circular(
-            OudsTheme.of(
-              context,
-            ).componentsTokens(context).listItem.borderRadiusMediaRounded,
+            OudsTheme.of(context)
+                .componentsTokens(context)
+                .controlListItem
+                .borderRadiusMediaRounded,
           )
         : null;
 
@@ -88,7 +89,9 @@ class OudsListItemAssetBuilder {
     'This method will be removed together with countries.dart.',
   )
   static Widget buildFlag(BuildContext context, ImageProvider asset) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     return ClipRRect(
       borderRadius: BorderRadius.circular(2),
       child: Image(
