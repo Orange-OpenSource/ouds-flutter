@@ -426,11 +426,15 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       ),
       padding: EdgeInsetsDirectional.only(
         start: alertTokens.spacePaddingInline,
+        end: isTrailingActionLink && closeButton == null
+            ? alertTokens.spacePaddingInline
+            : 0,
       ),
       decoration: BoxDecoration(
         border: OudsBorder().borderAll(
           width: alertMessageTokens.borderWidth,
           color: alertMessageStatusModifier.getBorderStatusColor(widget.status),
+          strokeAlign: BorderSide.strokeAlignInside,
         ),
         borderRadius: OudsAlertMessageBorderModifier.getBorderRadius(context),
         color: alertMessageStatusModifier.getStatusColor(widget.status),
