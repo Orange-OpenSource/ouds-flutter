@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +37,10 @@ class CustomizableChips<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
 
     return Semantics(
       label: context.l10n.app_common_customizeChipList_a11y,
@@ -49,19 +53,24 @@ class CustomizableChips<T> extends StatelessWidget {
             alignment: AlignmentDirectional.centerStart,
             child: Padding(
               padding: EdgeInsetsDirectional.only(
-                  start: themeController.currentTheme.spaceScheme(context).scaledMedium,
-                  end: themeController.currentTheme.spaceScheme(context).scaledMedium,
-                  bottom: themeController.currentTheme.spaceScheme(context).scaledSmall,
-                  top: themeController.currentTheme.spaceScheme(context).scaledSmall),
+                start: themeController.currentTheme
+                    .spaceScheme(context)
+                    .scaledMedium,
+                end: themeController.currentTheme
+                    .spaceScheme(context)
+                    .scaledMedium,
+                bottom: themeController.currentTheme
+                    .spaceScheme(context)
+                    .scaledSmall,
+                top: themeController.currentTheme
+                    .spaceScheme(context)
+                    .scaledSmall,
+              ),
               child: ExcludeSemantics(
-                child: Text(
-                  title!,
+                child: OudsBodyText(
+                  text: title ?? "",
                   textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
-                    fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
-                    letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-                  ),
+                  size: OudsBodyTextSize.large,
                 ),
               ),
             ),
@@ -71,35 +80,45 @@ class CustomizableChips<T> extends StatelessWidget {
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: List<Widget>.generate(
-                  options.length,
-                      (int index) {
-                    T currentElement = options[index];
-                    bool isSelected = currentElement == selectedOption;
-                    // Apply a padding of fixedExtraSmall to the left only for the first chip
-                    double startPadding = index == 0 ? themeController.currentTheme.spaceScheme(context).fixedExtraSmall : themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall;
-                    return Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        start: startPadding,
-                        end: themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall,
-                      ),
-                      child: disabledOptions != null && disabledOptions!.contains(currentElement) ?  OudsFilterChip(
-                        label: getText(currentElement),
-                        selected: isSelected,
-                        onSelected: null,
-                      )
-                          : OudsFilterChip(
-                        label: getText(currentElement),
-                        selected: isSelected,
-                        onSelected: onSelected == null ? null : (bool selected) {
-                          if (selected) {
-                            onSelected!(currentElement);
-                          }
-                        },
-                      ) ,
-                    );
-                  },
-                ),
+                children: List<Widget>.generate(options.length, (int index) {
+                  T currentElement = options[index];
+                  bool isSelected = currentElement == selectedOption;
+                  // Apply a padding of fixedExtraSmall to the left only for the first chip
+                  double startPadding = index == 0
+                      ? themeController.currentTheme
+                            .spaceScheme(context)
+                            .fixedExtraSmall
+                      : themeController.currentTheme
+                            .spaceScheme(context)
+                            .fixedThreeExtraSmall;
+                  return Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      start: startPadding,
+                      end: themeController.currentTheme
+                          .spaceScheme(context)
+                          .fixedThreeExtraSmall,
+                    ),
+                    child:
+                        disabledOptions != null &&
+                            disabledOptions!.contains(currentElement)
+                        ? OudsFilterChip(
+                            label: getText(currentElement),
+                            selected: isSelected,
+                            onSelected: null,
+                          )
+                        : OudsFilterChip(
+                            label: getText(currentElement),
+                            selected: isSelected,
+                            onSelected: onSelected == null
+                                ? null
+                                : (bool selected) {
+                                    if (selected) {
+                                      onSelected!(currentElement);
+                                    }
+                                  },
+                          ),
+                  );
+                }),
               ),
             ),
           ),

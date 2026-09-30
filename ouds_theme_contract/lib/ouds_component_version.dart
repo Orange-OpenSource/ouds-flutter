@@ -45,5 +45,9 @@ class OudsComponentVersion {
   static const tag = '1.5.0';
   static const textArea = '1.2.1';
   static const textInput = '1.4.1';
-  static const typography = '1.1.0';
+  static const body = '1.0.0';
+  static const code = '1.0.0';
+  static const display = '1.0.0';
+  static const heading = '1.1.0';
+  static const label = '1.0.0';
 }

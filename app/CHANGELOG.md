@@ -6,9 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...develop)
 ### Added
+- [DemoApp][Library] Create components - `typography` ([#829](https://github.com/Orange-OpenSource/ouds-flutter/issues/829))
 - [DemoApp][Library] For `control item` components, add edge to edge configuration ([#880](https://github.com/Orange-OpenSource/ouds-flutter/issues/880))
 - [DemoApp][Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
+- [Library] For typography heading component, update to v1.1.0 ([#921](https://github.com/Orange-OpenSource/ouds-flutter/issues/921))
 - [Library] update tokens 2.7.0 ([943](https://github.com/Orange-OpenSource/ouds-flutter/issues/943))
 - [DemoApp][Library] Update `alert message`, `inline alert`, `button`, `badge`, `checkbox item`, `radio button item`, `switch item`, `suggestion chip`, `filter chip`, `link`, `tag` and `text input` to allow the use of fixed images ([#779](https://github.com/Orange-OpenSource/ouds-flutter/issues/779))
 - [Library] In `docs` Update links to download Orange fonts ([#961](https://github.com/Orange-OpenSource/ouds-flutter/issues/961))

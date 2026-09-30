@@ -145,6 +145,7 @@ class MarkdownSpanBuilder {
             style: baseStyle.copyWith(
               fontWeight: FontWeight.bold,
               decoration: TextDecoration.underline,
+              decorationColor: baseStyle.color,
             ),
           ),
         );
