@@ -30,6 +30,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_accordion_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_alertMessage_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_alert_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_badge_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_bar_tokens.dart';
@@ -38,7 +39,6 @@ import 'package:ouds_theme_orange_compact/components/orangeCompact_buttonMono_to
 import 'package:ouds_theme_orange_compact/components/orangeCompact_button_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_checkbox_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_chip_tokens.dart';
-import 'package:ouds_theme_orange_compact/components/orangeCompact_controlItem_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_divider_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_icon_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_inputTag_tokens.dart';
@@ -323,6 +323,7 @@ class OrangeCompactTheme implements OudsThemeContract {
     return OudsComponentsTokens(
       accordion: OrangeCompactAccordionTokens(providersTokens(context)),
       alert: OrangeCompactAlertTokens(providersTokens(context)),
+      alertMessage: OrangeCompactAlertMessageTokens(providersTokens(context)),
       badge: OrangeCompactBadgeTokens(providersTokens(context)),
       bar: OrangeCompactBarTokens(providersTokens(context)),
       bulletList: OrangeCompactBulletListTokens(providersTokens(context)),
@@ -330,13 +331,12 @@ class OrangeCompactTheme implements OudsThemeContract {
       buttonMono: OrangeCompactButtonMonoTokens(providersTokens(context)),
       checkbox: OrangeCompactCheckboxTokens(providersTokens(context)),
       chip: OrangeCompactChipTokens(providersTokens(context)),
-      controlItem: OrangeCompactControlItemTokens(providersTokens(context)),
       divider: OrangeCompactDividerTokens(providersTokens(context)),
       icon: OrangeCompactIconTokens(providersTokens(context)),
       inputTag: OrangeCompactInputTagTokens(providersTokens(context)),
       link: OrangeCompactLinkTokens(providersTokens(context)),
       linkMono: OrangeCompactLinkMonoTokens(providersTokens(context)),
-      listItem: OrangeCompactListItemTokens(providersTokens(context)),
+      controlListItem: OrangeCompactListItemTokens(providersTokens(context)),
       pinCodeInput: OrangeCompactPinCodeInputTokens(providersTokens(context)),
       progressIndicator: OrangeCompactProgressIndicatorTokens(
         providersTokens(context),
