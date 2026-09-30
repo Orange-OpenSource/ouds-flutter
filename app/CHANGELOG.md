@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [DemoApp][Library] For `progress indicator` component, update to v1.2.0 ([#892](https://github.com/Orange-OpenSource/ouds-flutter/issues/892))
 - [Library] update tokens 2.7.0 ([943](https://github.com/Orange-OpenSource/ouds-flutter/issues/943))
+- [Library] For `navigation button` component, update to v3.4.0 ([#870](https://github.com/Orange-OpenSource/ouds-flutter/issues/870))
+- [Library] For `button` component, update to version 3.4.0 ([#869](https://github.com/Orange-OpenSource/ouds-flutter/issues/869))
+- [Library] update tokens 2.7.0 ([943](https://github.com/Orange-OpenSource/ouds-flutter/issues/943))
+- [DemoApp][Library] Update `alert message`, `inline alert`, `button`, `badge`, `checkbox item`, `radio button item`, `switch item`, `suggestion chip`, `filter chip`, `link`, `tag` and `text input` to allow the use of fixed images ([#779](https://github.com/Orange-OpenSource/ouds-flutter/issues/779))
+- [Library] In `docs` Update links to download Orange fonts ([#961](https://github.com/Orange-OpenSource/ouds-flutter/issues/961))
 - [DemoApp] In `Demo App`, I want to update demo screen with `OudsBottomSheet`([#959](https://github.com/Orange-OpenSource/ouds-flutter/issues/959))
 - [DemoApp][Library] In library, update chips components to v1.5.0 ([#837](https://github.com/Orange-OpenSource/ouds-flutter/issues/837))
 - [DemoApp][Library] For `Button` component, add with `tinted` parameter ([#912](https://github.com/Orange-OpenSource/ouds-flutter/issues/912))

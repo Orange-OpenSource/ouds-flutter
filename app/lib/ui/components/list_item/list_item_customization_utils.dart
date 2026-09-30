@@ -60,6 +60,7 @@ class ListItemCustomizationUtils {
   static OudsIconStatus getIconStatus(
     BuildContext context,
     StatusEnum status,
+    bool tinted,
     ThemeController themeController,
   ) {
     return switch (status) {
@@ -68,12 +69,24 @@ class ListItemCustomizationUtils {
       StatusEnum.warning => Warning(),
       StatusEnum.negative => Negative(),
       StatusEnum.neutral => Neutral(
-        icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+        icon: tinted
+            ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+            : AppAssets.icons.icUntintedSquare,
         semanticsLabel: context.l10n.app_components_listItem_icon_a11y,
+        tinted: tinted,
+        backgroundColor: tinted
+            ? null
+            : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
       ),
       StatusEnum.accent => Accent(
-        icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+        icon: tinted
+            ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+            : AppAssets.icons.icUntintedSquare,
         semanticsLabel: context.l10n.app_components_listItem_icon_a11y,
+        tinted: tinted,
+        backgroundColor: tinted
+            ? null
+            : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
       ),
     };
   }
@@ -228,11 +241,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return OudsListItem(
@@ -282,11 +297,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return OudsSmallListItem(
@@ -324,11 +341,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return OudsListItem(
@@ -376,11 +395,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return OudsSmallListItem(
@@ -543,11 +564,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return OudsCardItem(
@@ -595,11 +618,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return OudsSmallCardItem(

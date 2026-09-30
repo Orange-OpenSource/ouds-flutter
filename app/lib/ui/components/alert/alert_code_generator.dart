@@ -113,7 +113,7 @@ class AlertCodeGenerator {
 
     switch (customization.selectedStatus) {
       case StatusEnum.accent:
-        return "Accent(${customization.hasIconStatus ? 'icon: "AppAssets.icons.assistanceTipsAndTricks"' : ''})";
+        return "Accent(${customization.hasIconStatus ? 'icon: ${customization.isTinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: ${customization.isTinted}' : ''})";
       case StatusEnum.negative:
         return 'Negative()';
       case StatusEnum.warning:
@@ -123,7 +123,7 @@ class AlertCodeGenerator {
       case StatusEnum.positive:
         return 'Positive()';
       case StatusEnum.neutral:
-        return "Neutral(${customization.hasIconStatus ? 'icon: "AppAssets.icons.assistanceTipsAndTricks"' : ''})";
+        return "Neutral(${customization.hasIconStatus ? 'icon: ${customization.isTinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'} , tinted: ${customization.isTinted}' : ''})";
     }
   }
 }

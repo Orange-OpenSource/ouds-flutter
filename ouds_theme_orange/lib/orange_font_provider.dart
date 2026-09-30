@@ -67,7 +67,7 @@ import 'package:path_provider/path_provider.dart';
 /// ```
 class OrangeFontProvider {
   /// CDN base URL for font downloads
-  static const _cdnBaseUrl = "https://mastermedia.dam-broadcast.com";
+  static const _cdnBaseUrl = "https://assets.orange.com";
 
   /// Loads Orange fonts from CDN based on device locale.
   ///
@@ -83,7 +83,7 @@ class OrangeFontProvider {
     String arabicFont = await _loadFromCdn(_OrangeFontVariant.arabicVariants);
     String latinFont = await _loadFromCdn(_OrangeFontVariant.latinVariants);
 
-    return [arabicFont,latinFont];
+    return [arabicFont, latinFont];
   }
 
   /// Loads Orange fonts from user-specified assets.
@@ -230,7 +230,9 @@ class OrangeFontProvider {
     // Download from CDN
     final response = await http.get(Uri.parse("$_cdnBaseUrl/$cdnFileName"));
     if (response.statusCode != 200) {
-      throw Exception("CDN font download failed for $cdnFileName with status ${response.statusCode}");
+      throw Exception(
+        "CDN font download failed for $cdnFileName with status ${response.statusCode}",
+      );
     }
 
     final bytes = response.bodyBytes;
@@ -249,7 +251,9 @@ class OrangeFontProvider {
 
   /// Returns platform-specific fallback font.
   static String _getFallbackFont() {
-    return defaultTargetPlatform == TargetPlatform.android ? "Roboto" : "SFProDisplay";
+    return defaultTargetPlatform == TargetPlatform.android
+        ? "Roboto"
+        : "SFProDisplay";
   }
 }
 
@@ -259,17 +263,20 @@ enum _OrangeFontVariant {
   arabicLight(
     familyName: "HelveticaNeue-Arabic-Light",
     fontWeight: FontWeight.w300,
-    fileName: "pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf",
+    fileName:
+        "pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf",
   ),
   arabicRoman(
     familyName: "HelveticaNeue-Arabic",
     fontWeight: FontWeight.w400,
-    fileName: "pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf",
+    fileName:
+        "pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf",
   ),
   arabicBold(
     familyName: "HelveticaNeue-Arabic-Bold",
     fontWeight: FontWeight.w700,
-    fileName: "pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf",
+    fileName:
+        "pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf",
   ),
   latinRoman(
     familyName: "HelveticaNeue",
@@ -298,14 +305,14 @@ enum _OrangeFontVariant {
   });
 
   static List<_OrangeFontVariant> get arabicVariants => [
-        arabicLight,
-        arabicRoman,
-        arabicBold,
-      ];
+    arabicLight,
+    arabicRoman,
+    arabicBold,
+  ];
 
   static List<_OrangeFontVariant> get latinVariants => [
-        latinRoman,
-        latinMedium,
-        latinBold,
-      ];
+    latinRoman,
+    latinMedium,
+    latinBold,
+  ];
 }
