@@ -42,6 +42,9 @@ class OudsBorder  {
   /// - [width]: The width of the border. If this value is considered "Hairline," no border is created.
   /// - [color]: The color of the border.
   /// - [style]: The style of the border (default: BorderStyle.solid).
+  /// - [strokeAlign]: Where the border is painted relative to the box's edge.
+  ///   Defaults to [BorderSide.strokeAlignInside] to match Figma's "Inside" stroke
+  ///   position, which is the alignment used across OUDS components.
   ///
   /// Returns an instance of [Border] if the width is not "Hairline"; otherwise, returns null.
   ///
@@ -49,8 +52,8 @@ class OudsBorder  {
     required double width,
     required Color color,
     BorderStyle? style,
+    double strokeAlign = BorderSide.strokeAlignInside,
   }) {
-
     final widthNone = width.takeUnlessHairline();
     if (widthNone == null) return null;
 
@@ -58,6 +61,7 @@ class OudsBorder  {
       color: color,
       width: width,
       style: style ?? BorderStyle.solid,
+      strokeAlign: strokeAlign,
     );
   }
 }

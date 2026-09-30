@@ -43,6 +43,23 @@ class OudsAlertStatusModifier {
     return null;
   }
 
+  /// Returns the Border color based on the alert message status.
+  Color getBorderStatusColor(OudsIconStatus? status) {
+    final colorTheme = OudsTheme.of(context).colorScheme(context);
+
+    if (status != null) {
+      return switch (status) {
+        Neutral() => colorTheme.borderDefault,
+        Accent() => colorTheme.borderStatusAccent,
+        Positive() => colorTheme.borderStatusPositive,
+        Info() => colorTheme.borderStatusInfo,
+        Warning() => colorTheme.borderStatusWarning,
+        Negative() => colorTheme.borderStatusNegative,
+      };
+    }
+    return colorTheme.borderDefault;
+  }
+
   /// Returns the text color based on the alert message status.
   Color getStatusTextColor(OudsIconStatus? status) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);

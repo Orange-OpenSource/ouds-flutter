@@ -63,6 +63,7 @@ import 'package:ouds_theme_wireframe/semantic/wireframe_grid_semantic_tokens.dar
 import 'package:ouds_theme_wireframe/semantic/wireframe_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_size_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_space_semantic_tokens.dart';
+import 'package:ouds_theme_wireframe/wireframe_typography.dart';
 
 /// [WireframeTheme] implements the [OudsThemeContract] and defines the theme for the "White label" version of the application.
 /// This theme provides configurations for both light and dark modes, with customizable color schemes, typography,
@@ -218,7 +219,7 @@ class WireframeTheme implements OudsThemeContract {
   }
 
   @override
-  OudsTypography get typographyTokens => OudsTypography();
+  OudsTypography get typographyTokens => WireframeTypography();
   @override
   OudsProvidersTokens providersTokens(BuildContext context) {
     return OudsProvidersTokens(
