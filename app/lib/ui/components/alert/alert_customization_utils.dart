@@ -28,7 +28,7 @@ class AlertCustomizationUtils {
     StatusEnum enumStatus,
   ) {
     final theme = OudsTheme.of(context).colorScheme(context);
-    final status = getStatus(enumStatus);
+    final status = _getStatus(enumStatus);
 
     switch (status) {
       case Neutral():
@@ -52,7 +52,7 @@ class AlertCustomizationUtils {
     StatusEnum enumStatus,
   ) {
     final theme = OudsTheme.of(context).colorScheme(context);
-    final status = getStatus(enumStatus);
+    final status = _getStatus(enumStatus);
 
     switch (status) {
       case Neutral():
@@ -80,14 +80,26 @@ class AlertCustomizationUtils {
       case StatusEnum.neutral:
         return Neutral(
           icon: customizationState.hasIconStatus
-              ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+              ? customizationState.isTinted
+                    ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+                    : AppAssets.icons.icUntintedSquare
               : null,
+          tinted: customizationState.isTinted,
+          backgroundColor: customizationState.isTinted
+              ? null
+              : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
         );
       case StatusEnum.accent:
         return Accent(
           icon: customizationState.hasIconStatus
-              ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+              ? customizationState.isTinted
+                    ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+                    : AppAssets.icons.icUntintedSquare
               : null,
+          tinted: customizationState.isTinted,
+          backgroundColor: customizationState.isTinted
+              ? null
+              : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
         );
       case StatusEnum.negative:
         return Negative();
@@ -101,7 +113,7 @@ class AlertCustomizationUtils {
   }
 
   /// Maps the hierarchy enum to `OudsIconStatus`.
-  static OudsIconStatus getStatus(StatusEnum status) {
+  static OudsIconStatus _getStatus(StatusEnum status) {
     switch (status) {
       case StatusEnum.neutral:
         return Neutral();
@@ -129,5 +141,10 @@ class AlertCustomizationUtils {
     } else {
       return OudsAlertMessageActionLayoutEnum.none;
     }
+  }
+
+  static bool isNonFunctionalStatus(AlertCustomizationState status) {
+    return status.selectedStatus == StatusEnum.accent ||
+        status.selectedStatus == StatusEnum.neutral;
   }
 }

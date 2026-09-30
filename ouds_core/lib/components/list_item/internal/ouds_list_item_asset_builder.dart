@@ -171,7 +171,6 @@ class OudsListItemAssetBuilder {
   ///   Neutral(icon: 'assets/icons/star.svg'),
   ///   enable: true,
   ///   size: OudsListItemAssetSize.medium,
-  ///   tinted: true,
   /// )
   /// ```
   static Widget buildIcon(
@@ -179,10 +178,9 @@ class OudsListItemAssetBuilder {
     OudsIconStatus iconStatus, {
     bool enable = true,
     OudsListItemAssetSize size = OudsListItemAssetSize.medium,
-    bool tinted = true,
   }) {
     return OudsListItemIconModifier(
       context,
-    ).buildIcon(iconStatus, enable: enable, size: size, tinted: tinted);
+    ).buildIcon(iconStatus, enable: enable, size: size);
   }
 }

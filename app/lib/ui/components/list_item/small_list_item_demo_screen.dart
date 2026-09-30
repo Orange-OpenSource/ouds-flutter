@@ -11,7 +11,6 @@
  *
  */
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -28,12 +27,12 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_tabs.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom_with_tabs.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 /// Screen for the [OudsSmallListItem] component demo.
@@ -48,41 +47,19 @@ class SmallListItemDemoScreen extends StatefulWidget {
 }
 
 class _SmallListItemDemoScreenState extends State<SmallListItemDemoScreen> {
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: ListItemCustomization(
-        child: Padding(
-          padding: EdgeInsets.only(
-            bottom: defaultTargetPlatform == TargetPlatform.android
-                ? MediaQuery.of(context).viewPadding.bottom
-                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+        child: CustomizeBottomSheet(
+          topBar: MainAppBar(
+            title: context.l10n.app_components_listItem_smallListItem_tech,
+            previousPageTitle: widget.previousPageTitle,
+            showBackButton: true,
           ),
-          child: Scaffold(
-            bottomSheet: OudsSheetsBottomWithTabs(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            extendBodyBehindAppBar: true,
-            appBar: MainAppBar(
-              title: context.l10n.app_components_listItem_smallListItem_tech,
-              previousPageTitle: widget.previousPageTitle,
-              showBackButton: true,
-            ),
-            body: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
-          ),
+          title: context.l10n.app_common_customize_label,
+          customizationContent: const _CustomizationContent(),
+          body: _Body(),
         ),
       ),
     );
@@ -337,6 +314,20 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             customizationState.leadingIconStatus = value;
           },
         ),
+      if (customizationState.leading == ListItemLeadingEnum.icon &&
+          (customizationState.leadingIconStatus == StatusEnum.neutral ||
+              customizationState.leadingIconStatus == StatusEnum.accent))
+        CustomizableChips<TintedEnum>(
+          title: TintedEnum.enumName(context),
+          options: customizationState.tintedState.list,
+          selectedOption: customizationState.selectedLeadingTinted,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedLeadingTinted = selectedOption;
+            });
+          },
+        ),
       if (customizationState.leading == ListItemLeadingEnum.image)
         CustomizableChips<ListItemImageFormatEnum>(
           title: ListItemImageFormatEnum.enumName(context),
@@ -409,6 +400,20 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           selectedOption: customizationState.trailingIconStatus,
           onChanged: (value) {
             customizationState.trailingIconStatus = value;
+          },
+        ),
+      if (customizationState.trailing == ListItemTrailingEnum.icon &&
+          (customizationState.trailingIconStatus == StatusEnum.neutral ||
+              customizationState.trailingIconStatus == StatusEnum.accent))
+        CustomizableChips<TintedEnum>(
+          title: TintedEnum.enumName(context),
+          options: customizationState.tintedState.list,
+          selectedOption: customizationState.selectedTrailingTinted,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedTrailingTinted = selectedOption;
+            });
           },
         ),
       if (customizationState.trailing == ListItemTrailingEnum.image)

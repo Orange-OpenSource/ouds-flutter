@@ -681,7 +681,7 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
-| `v2.1.0 → v3.0.0` | No | Yes | Typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons with `tinted` support (breaking), `OudsButton.tinted`, `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
+| `v2.1.0 → v3.0.0` | No | Yes | Shared `OudsIcon` type replacing `OudsLinkIcon`/`OudsChipIcon`/`OudsTextInputPrefixIcon`/`OudsControlItemIcon` (breaking) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsCheckboxItem`, `OudsRadioButtonItem`, `OudsSwitchButtonItem`, typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons; `OudsIconStatus.Neutral`/`Accent` gained `tinted`/`backgroundColor`/`semanticsLabel` (non-breaking); `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
 | `v2.0.0 → v2.1.0` | Full | No | `OudsNavigationButton`, `OudsCircularProgressIndicator`, `OudsLinearProgressIndicator`, tokens v2.6.0 |
 | `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
 | `v1.3.0 → v1.3.1` | Full | No | Maintenance release, bug fixes, accessibility improvements |
@@ -735,39 +735,141 @@ OudsLink.external(label: 'Label')
 
 ---
 
-#### 3.3.0bis Typed prefix/suffix icons with `tinted` support (`v2.1.0 → v3.0.0`)
+#### 3.3.0bis Shared `OudsIcon` type replacing `OudsLinkIcon`, `OudsChipIcon`, `OudsTextInputPrefixIcon`, `OudsControlItemIcon` (`v2.1.0 → v3.0.0`)
 
-`OudsInputDecoration`/`OudsFormInputDecoration.prefixIcon` and `suffixIcon` are no longer `String`/`VoidCallback` values. They now take `OudsTextInputPrefixIcon` and `OudsTextInputSuffixIconButton` objects with a `tinted` flag (defaults to `true`) controlling whether the icon follows the theme color or keeps its original (multi-color) asset colors. `onSuffixPressed` has been removed; use `OudsTextInputSuffixIconButton.onPressed` instead.
+Icon configuration (asset path, `tinted`, `backgroundColor`, `semanticsLabel`) is now expressed with a single shared `OudsIcon` class (`package:ouds_core/components/common/ouds_icon.dart`) used by `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsTextInput`, `OudsPhoneNumberInput`, `OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem`. The component-specific `OudsLinkIcon`, `OudsChipIcon`, `OudsTextInputPrefixIcon` and `OudsControlItemIcon` classes are removed, and `OudsButton`'s standalone `tinted` parameter is removed (moved into `OudsIcon.tinted`). All these classes/components support tinting the icon: set `OudsIcon(tinted: false)` to keep the icon's original (multi-color) colors instead of the theme color.
 
-**Before:**
+**`OudsButton` — before/after:**
 
 ```dart
+// Before
+OudsButton(
+  icon: 'assets/ic_heart.svg',
+  tinted: false,
+  onPressed: () {},
+)
+
+// After
+OudsButton(
+  icon: OudsIcon('assets/ic_heart.svg', tinted: false, backgroundColor: myBrandColor),
+  onPressed: () {},
+)
+```
+
+**`OudsLink` — before/after:**
+
+```dart
+// Before
+OudsLink.icon(
+  label: 'Label',
+  icon: OudsLinkIcon('assets/ic_heart.svg', tinted: true),
+  onPressed: () {},
+)
+
+// After
+OudsLink.icon(
+  label: 'Label',
+  icon: OudsIcon('assets/ic_heart.svg', tinted: true),
+  onPressed: () {},
+)
+```
+
+**`OudsFilterChip` / `OudsSuggestionChip` — before/after:**
+
+```dart
+// Before
+OudsFilterChip.icon(
+  label: 'Label',
+  icon: OudsChipIcon('assets/ic_chip_heart.svg', tinted: true),
+  selected: true,
+  onSelected: (bool selected) {},
+)
+
+// After
+OudsFilterChip.icon(
+  label: 'Label',
+  icon: OudsIcon('assets/ic_chip_heart.svg', tinted: true),
+  selected: true,
+  onSelected: (bool selected) {},
+)
+```
+
+**`OudsTextInput` / `OudsPhoneNumberInput` — before/after:**
+
+`OudsInputDecoration`/`OudsFormInputDecoration.prefixIcon` and `suffixIcon` are no longer `String`/`VoidCallback` values. `prefixIcon` now takes an `OudsIcon` directly, and `suffixIcon` takes an `OudsTextInputSuffixIconButton` whose `icon` field is also an `OudsIcon` (its own `tinted` flag is removed — use `OudsIcon.tinted`, defaults to `true`). `onSuffixPressed` has been removed; use `OudsTextInputSuffixIconButton.onPressed` instead.
+
+```dart
+// Before
 OudsInputDecoration(
   prefixIcon: 'assets/ic_heart.svg',
   suffixIcon: 'assets/ic_heart.svg',
   onSuffixPressed: () {},
 )
-```
 
-**After:**
-
-```dart
+// After
 OudsInputDecoration(
-  prefixIcon: OudsTextInputPrefixIcon(icon: 'assets/ic_heart.svg', tinted: true),
+  prefixIcon: OudsIcon('assets/ic_heart.svg', tinted: true),
   suffixIcon: OudsTextInputSuffixIconButton(
-    icon: 'assets/ic_heart.svg',
-    tinted: true,
+    icon: OudsIcon('assets/ic_heart.svg', tinted: true),
     onPressed: () {},
   ),
 )
 ```
 
+**`OudsCheckboxItem` / `OudsRadioButtonItem` / `OudsSwitchButtonItem` — before/after:**
+
+```dart
+// Before
+OudsCheckboxItem(
+  title: 'Label',
+  icon: OudsControlItemIcon('assets/ic_heart.svg', tinted: true),
+  value: true,
+  onChanged: (value) {},
+)
+
+// After
+OudsCheckboxItem(
+  title: 'Label',
+  icon: OudsIcon('assets/ic_heart.svg', tinted: true),
+  value: true,
+  onChanged: (value) {},
+)
+```
+
 **Required actions:**
 
-- Wrap `prefixIcon` asset paths in `OudsTextInputPrefixIcon(icon: ...)`.
-- Wrap `suffixIcon` asset paths in `OudsTextInputSuffixIconButton(icon: ..., onPressed: ...)`, moving `onSuffixPressed` into `onPressed`.
-- Set `tinted: false` to keep a multi-color icon's original asset colors instead of theme tinting.
-- `OudsButton` gained the same `tinted` parameter (defaults to `true`); no action required unless you want untinted icons.
+- Import `package:ouds_core/components/common/ouds_icon.dart`.
+- Replace `OudsLinkIcon(...)`, `OudsChipIcon(...)`, `OudsTextInputPrefixIcon(icon: ...)` and `OudsControlItemIcon(...)` with `OudsIcon(...)` — the constructor signature (asset path as first positional argument, `tinted`, `backgroundColor`) is unchanged.
+- On `OudsButton`/`OudsButton.small`, move the `tinted` value inside `OudsIcon(tinted: ...)`; provide `backgroundColor` on `OudsIcon` when `tinted: false` so the icon remains visible.
+- On `OudsTextInputSuffixIconButton`, move the `tinted` value inside the nested `OudsIcon`.
+- Move `onSuffixPressed` into `OudsTextInputSuffixIconButton.onPressed`.
+- On `OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem`, replace `OudsControlItemIcon(...)` with `OudsIcon(...)`.
+- Optionally use the new `semanticsLabel` parameter on `OudsIcon` where relevant.
+
+---
+
+#### 3.3.0quater `OudsIconStatus.Neutral`/`Accent` — added `tinted`, `backgroundColor` and `semanticsLabel` (`v2.1.0 → v3.0.0`, non-breaking)
+
+`OudsIconStatus.Neutral` and `OudsIconStatus.Accent` (used by `OudsBadge`/`OudsTag` custom icon statuses) gained `tinted` (default `true`), `backgroundColor` (applied only when `tinted: false`) and `semanticsLabel` parameters, mirroring the same tinting model as `OudsIcon`. This is additive and non-breaking — existing `Neutral(icon: ...)`/`Accent(icon: ...)` calls keep working unchanged.
+
+```dart
+// Before — icon only
+OudsBadge.icon(status: Accent(icon: 'assets/heart.svg'));
+
+// After — optional tinting/background/accessibility control
+OudsBadge.icon(
+  status: Accent(
+    icon: 'assets/heart.svg',
+    tinted: false,
+    backgroundColor: Colors.white,
+    semanticsLabel: 'Favorite',
+  ),
+);
+```
+
+**Required actions:**
+
+- None — this is optional. Add `tinted`, `backgroundColor` and `semanticsLabel` on `Neutral`/`Accent` only if you need untinted multi-color icons or a custom accessibility label.
 
 ---
 
