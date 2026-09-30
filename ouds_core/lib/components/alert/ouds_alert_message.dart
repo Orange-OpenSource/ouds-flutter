@@ -275,6 +275,12 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
         widget.actionLayout!.layout ==
             OudsAlertMessageActionLayoutEnum.trailing;
 
+    bool isBottomActionLink =
+        actionLink != null &&
+        widget.actionLayout != null &&
+        widget.actionLayout!.text.isNotEmpty &&
+        widget.actionLayout!.layout == OudsAlertMessageActionLayoutEnum.bottom;
+
     // Assemble the final alert content layout.
     Widget alertContent;
     alertContent = Semantics(
@@ -369,11 +375,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                           ),
                         ),
                         // Optional action link positioned at the bottom.
-                        if (actionLink != null &&
-                            widget.actionLayout != null &&
-                            widget.actionLayout!.text.isNotEmpty &&
-                            widget.actionLayout!.layout ==
-                                OudsAlertMessageActionLayoutEnum.bottom) ...[
+                        if (isBottomActionLink) ...[
                           Semantics(
                             sortKey: const OrdinalSortKey(2.0),
                             container: true,
@@ -429,7 +431,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       ),
       padding: EdgeInsetsDirectional.only(
         start: alertTokens.spacePaddingInline,
-        end: isTrailingActionLink && closeButton == null
+        end: isTrailingActionLink == false && closeButton == null
             ? alertTokens.spacePaddingInline
             : 0,
       ),
