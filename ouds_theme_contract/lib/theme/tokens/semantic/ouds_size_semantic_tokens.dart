@@ -88,6 +88,8 @@ abstract class OudsSizeSemanticTokens {
   late double maxWidthBodyMediumTablet;
   late double maxWidthBodySmallMobile;
   late double maxWidthBodySmallTablet;
+  late double maxWidthBoxedTextMobile;
+  late double maxWidthBoxedTextTablet;
   late double maxWidthDisplayLargeMobile;
   late double maxWidthDisplayLargeTablet;
   late double maxWidthDisplayMediumMobile;
