@@ -11,7 +11,6 @@
  * //
  */
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -25,9 +24,8 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 enum RadioOption { first, second }
@@ -36,42 +34,29 @@ enum RadioOption { first, second }
 class RadioButtonDemoScreen extends StatefulWidget {
   final bool indeterminate;
   final String? previousPageTitle;
-  const RadioButtonDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle}); // Default value set to false
+  const RadioButtonDemoScreen({
+    super.key,
+    this.indeterminate = false,
+    this.previousPageTitle,
+  }); // Default value set to false
 
   @override
   State<RadioButtonDemoScreen> createState() => _RadioButtonDemoScreenState();
 }
 
 class _RadioButtonDemoScreenState extends State<RadioButtonDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return RadioButtonCustomization(
-      child: Padding(
-        padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
-          ),
-          key: _scaffoldKey,
-          extendBodyBehindAppBar: true,
-          appBar: MainAppBar(
-              showBackButton: true,
-              title: context.l10n.app_components_radioButton_label,
-              previousPageTitle: widget.previousPageTitle,
-          ),
-          body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body(indeterminate: widget.indeterminate)),
+      child: CustomizeBottomSheet(
+        topBar: MainAppBar(
+          showBackButton: true,
+          title: context.l10n.app_components_radioButton_label,
+          previousPageTitle: widget.previousPageTitle,
         ),
+        title: context.l10n.app_common_customize_label,
+        customizationContent: const _CustomizationContent(),
+        body: _Body(indeterminate: widget.indeterminate),
       ),
     );
   }
@@ -88,7 +73,8 @@ class _Body extends StatefulWidget {
 
 class _BodyState extends State<_Body> {
   RadioOption _selectedOption = RadioOption.first;
-  final String codeString = '''Radio<bool>(\nvalue: true,\ngroupValue: isCheckedFirst,\nonChanged: (bool? newValue) => setState(() => isCheckedFirst = newValue!),\n)''';
+  final String codeString =
+      '''Radio<bool>(\nvalue: true,\ngroupValue: isCheckedFirst,\nonChanged: (bool? newValue) => setState(() => isCheckedFirst = newValue!),\n)''';
 
   void _handleRadioChanged(RadioOption newValue) {
     setState(() {
@@ -98,19 +84,33 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: true);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: true,
+    );
     return DetailScreenDescription(
       description: context.l10n.app_components_radioButton_description_text,
       widget: Column(
         children: [
-          _RadioButtonDemo(selectedOption: _selectedOption, updateGlobalValue: _handleRadioChanged),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
+          _RadioButtonDemo(
+            selectedOption: _selectedOption,
+            updateGlobalValue: _handleRadioChanged,
+          ),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
+          ),
           Code(
-            code: RadioButtonCodeGenerator.updateCode(context, widget.indeterminate, _selectedOption),
+            code: RadioButtonCodeGenerator.updateCode(
+              context,
+              widget.indeterminate,
+              _selectedOption,
+            ),
           ),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.radioButton,
-          )
+          ),
         ],
       ),
     );
@@ -196,7 +196,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final RadioButtonCustomizationState? customizationState = RadioButtonCustomization.of(context);
+    final RadioButtonCustomizationState? customizationState =
+        RadioButtonCustomization.of(context);
 
     return CustomizableSection(
       children: [
@@ -204,30 +205,31 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_common_enabled_label,
           value: customizationState!.hasEnabled,
           onChanged:
-
               /// Specific case: The switch is disabled if there is an error (hasError is true).
               customizationState.isEnabledWhenError == true
-                  ? null // Disable the switch if there is an error
-                  : (value) {
-                      customizationState.hasEnabled = value;
-                    },
+              ? null // Disable the switch if there is an error
+              : (value) {
+                  customizationState.hasEnabled = value;
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
           onChanged:
-
               /// Specific case: The switch is disabled if it is not enabled (hasEnabled is false).
-              customizationState.isErrorWhenEnabled == true || customizationState.isErrorWhenReadOnly
-                  ? null // Disable the switch if not enabled
-                  : (value) {
-                      customizationState.hasError = value;
-                    },
+              customizationState.isErrorWhenEnabled == true ||
+                  customizationState.isErrorWhenReadOnly
+              ? null // Disable the switch if not enabled
+              : (value) {
+                  customizationState.hasError = value;
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_readOnly_label,
           value: customizationState.hasReadOnly,
-          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+          onChanged:
+              customizationState.isReadOnlyWhenError ||
+                  customizationState.isReadOnlyWhenEnabled
               ? null
               : (value) {
                   setState(() {

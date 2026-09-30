@@ -23,6 +23,7 @@ import 'package:ouds_core/components/button/internal/ouds_button_loading_modifie
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
@@ -172,7 +173,10 @@ enum OudsButtonComponent {
 ///
 class OudsButton extends StatefulWidget {
   final String? label;
-  final String? icon;
+  @Deprecated(
+    'The String type of `icon` is deprecated and will be removed in a future version, use the OudsIcon type instead.',
+  )
+  final OudsIcon? icon;
   final VoidCallback? onPressed;
   @Deprecated(
     "This parameter is deprecated and will be removed in a future version. Use isLoading instead.",
@@ -280,7 +284,8 @@ class OudsButton extends StatefulWidget {
   State<OudsButton> createState() => _OudsButtonState();
 
   /// Property that detects and returns the button layout based on the provided elements (text and/or icon)
-  OudsButtonLayout get layout => _detectLayout(label, icon, _navigationLayout);
+  OudsButtonLayout get layout =>
+      _detectLayout(label, icon?.assetsName, _navigationLayout);
 
   /// Derives the [OudsButtonLayout] from the supplied parameters.
   ///
@@ -495,7 +500,7 @@ class _OudsButtonState extends State<OudsButton> {
             widget.appearance,
             buttonState,
             widget.onPressed,
-            widget.icon!,
+            widget.icon?.assetsName,
             widget._badge,
             widget.package,
           );
@@ -632,7 +637,7 @@ class _OudsButtonState extends State<OudsButton> {
                         children: [
                           _buildIcon(
                             context,
-                            widget.icon!,
+                            widget.icon?.assetsName ?? "",
                             widget.appearance,
                             widget.layout,
                             buttonState,
@@ -791,7 +796,7 @@ class _OudsButtonState extends State<OudsButton> {
         SizedBox(width: buttonToken.spaceColumnGapChevron(widget._size)),
         _buildIcon(
           context,
-          widget.icon!,
+          widget.icon?.assetsName ?? "",
           widget.appearance,
           widget.layout,
           buttonState,
@@ -810,7 +815,7 @@ class _OudsButtonState extends State<OudsButton> {
       children: [
         _buildIcon(
           context,
-          widget.icon!,
+          widget.icon?.assetsName ?? "",
           widget.appearance,
           widget.layout,
           buttonState,
@@ -875,7 +880,7 @@ class _OudsButtonState extends State<OudsButton> {
             child: Semantics(
               label: widget._navigationLayout != null
                   ? widget._semanticsLabel
-                  : OudsLocalizations.of(context)?.core_button_icon_only_a11y,
+                  : widget.icon?.semanticsLabel,
               button: true,
               enabled: widget.onPressed != null,
               child: ExcludeSemantics(
@@ -897,7 +902,7 @@ class _OudsButtonState extends State<OudsButton> {
                         : () => _handlePressed(widget.onPressed),
                     icon: _buildIcon(
                       context,
-                      widget.icon!,
+                      widget.icon?.assetsName ?? "",
                       widget.appearance,
                       widget.layout,
                       buttonState,
@@ -1025,7 +1030,7 @@ class _OudsButtonState extends State<OudsButton> {
     final OudsButtonLayout layout,
     final OudsButtonControlState buttonState,
   ) {
-    final bool isTinted = widget.tinted;
+    final bool isTinted = widget.icon?.tinted ?? true;
     final Color? iconColor = isTinted
         ? OudsButtonIconModifier.getIconColor(context, buttonState, appearance)
         : null;
@@ -1104,7 +1109,7 @@ class _OudsButtonState extends State<OudsButton> {
     // remain visible — matching the behavior of OudsLink and OudsListItem.
     if (isTinted) return iconWidget;
     return Container(
-      color: OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
+      color: isTinted ? null : widget.icon?.backgroundColor,
       child: iconWidget,
     );
   }
@@ -1228,7 +1233,7 @@ class OudsNavigationButton extends StatelessWidget {
 
     return OudsButton._internal(
       label: label,
-      icon: icon,
+      icon: OudsIcon(icon),
       onPressed: onPressed,
       appearance: buttonAppearance,
       package: package,

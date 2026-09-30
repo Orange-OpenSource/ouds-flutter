@@ -11,7 +11,6 @@
  * //
  */
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
@@ -34,9 +33,8 @@ import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays an appBar demo and allows customization of appBar properties
@@ -52,47 +50,23 @@ class TopBarDemoScreen extends StatefulWidget {
 }
 
 class _TopBarDemoScreenState extends State<TopBarDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(child: TopBarCustomization(child: child(context)));
   }
 
   Widget child(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: defaultTargetPlatform == TargetPlatform.android
-            ? MediaQuery.of(context).viewPadding.bottom
-            : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+    return CustomizeBottomSheet(
+      topBar: MainAppBar(
+        title: context.l10n.app_components_topAppBar_label,
+        showBackButton: true,
+        previousPageTitle: widget.previousPageTitle,
       ),
-      child: Scaffold(
-        bottomSheet: OudsSheetsBottom(
-          onExpansionChanged: _onExpansionChanged,
-          sheetContent: Theme.of(context).platform == TargetPlatform.iOS
-              ? const _ToolBarTopCustomizationContent()
-              : const _TopAppBarCustomizationContent(),
-          title: context.l10n.app_common_customize_label,
-        ),
-        //extendBodyBehindAppBar: true,
-        key: _scaffoldKey,
-        appBar: MainAppBar(
-          title: context.l10n.app_components_topAppBar_label,
-          showBackButton: true,
-          previousPageTitle: widget.previousPageTitle,
-        ),
-        body: ExcludeSemantics(
-          excluding: !_isBottomSheetExpanded,
-          child: _Body(),
-        ),
-      ),
+      title: context.l10n.app_common_customize_label,
+      customizationContent: Theme.of(context).platform == TargetPlatform.iOS
+          ? const _ToolBarTopCustomizationContent()
+          : const _TopAppBarCustomizationContent(),
+      body: _Body(),
     );
   }
 }

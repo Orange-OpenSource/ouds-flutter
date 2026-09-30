@@ -10,7 +10,6 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -30,7 +29,7 @@ import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -45,43 +44,19 @@ class ChipFilterDemoScreen extends StatefulWidget {
 }
 
 class _ChipFilterDemoScreenState extends State<ChipFilterDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: ChipCustomization(
-        key: _scaffoldKey,
-        child: Padding(
-          padding: EdgeInsets.only(
-            bottom: defaultTargetPlatform == TargetPlatform.android
-                ? MediaQuery.of(context).viewPadding.bottom
-                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+        child: CustomizeBottomSheet(
+          topBar: MainAppBar(
+            title: context.l10n.app_components_filterChip_label,
+            showBackButton: true,
+            previousPageTitle: widget.previousPageTitle,
           ),
-          child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            extendBodyBehindAppBar: true,
-            appBar: MainAppBar(
-              title: context.l10n.app_components_filterChip_label,
-              showBackButton: true,
-              previousPageTitle: widget.previousPageTitle,
-            ),
-            body: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
-          ),
+          title: context.l10n.app_common_customize_label,
+          customizationContent: const _CustomizationContent(),
+          body: _Body(),
         ),
       ),
     );
@@ -140,17 +115,21 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
   }
 
   Widget _buildOudsFilterChip(BuildContext context) {
-    ChipCustomizationState? customizationState = ChipCustomization.of(context);
+    ChipCustomizationState? customizationState = ChipCustomization.of(context)!;
     ThemeController? themeController = Provider.of<ThemeController>(
       context,
       listen: true,
     );
 
-    switch (customizationState?.selectedLayout) {
+    final colorSurfaceBrandPrimary = OudsTheme.of(
+      context,
+    ).colorScheme(context).surfaceBrandPrimary;
+
+    switch (customizationState.selectedLayout) {
       case ChipEnumLayout.textOnly:
         return OudsFilterChip(
           label: ChipCustomizationUtils.getText(customizationState),
-          selected: customizationState!.hasSelected,
+          selected: customizationState.hasSelected,
           onSelected: customizationState.hasEnabled == true
               ? (newValue) {
                   setState(() {
@@ -165,9 +144,9 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
           icon: ChipCustomizationUtils.getIcon(
             customizationState,
             themeController,
-            customizationState!.tintedIcon,
+            colorSurfaceBrandPrimary,
+            null,
           ),
-          tinted: customizationState.tintedIcon,
           selected: customizationState.hasSelected,
           onSelected: customizationState.hasEnabled == true
               ? (newValue) {
@@ -182,23 +161,10 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
           icon: ChipCustomizationUtils.getIcon(
             customizationState,
             themeController,
-            customizationState!.tintedIcon,
+            colorSurfaceBrandPrimary,
+            context.l10n.app_components_common_icon_a11y,
           ),
-          contentDescription: context.l10n.app_components_common_icon_a11y,
-          tinted: customizationState.tintedIcon,
           selected: customizationState.hasSelected,
-          onSelected: customizationState.hasEnabled == true
-              ? (newValue) {
-                  setState(() {
-                    customizationState.hasSelected = newValue;
-                  });
-                }
-              : null,
-        );
-      default:
-        return OudsFilterChip(
-          label: ChipCustomizationUtils.getText(customizationState),
-          selected: customizationState!.hasSelected,
           onSelected: customizationState.hasEnabled == true
               ? (newValue) {
                   setState(() {

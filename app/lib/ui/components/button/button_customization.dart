@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _ButtonCustomization extends InheritedWidget {
@@ -38,7 +37,6 @@ class ButtonCustomizationState
   late final ChevronState chevronState;
   late final NavigationAppearanceState navigationAppearanceState;
   late final SizeState sizeState;
-  late final TintedState tintedState;
 
   @override
   void initState() {
@@ -53,7 +51,6 @@ class ButtonCustomizationState
       onColoredBoxState,
     );
     sizeState = SizeState(setState);
-    tintedState = TintedState(setState);
   }
 
   // Getter to determine if the 'OnColoredBox' should be disabled
@@ -94,11 +91,6 @@ class ButtonCustomizationState
 
   ButtonEnumSize get selectedSize => sizeState.selected;
   set selectedSize(ButtonEnumSize value) => sizeState.selected = value;
-
-  bool get isTinted => tintedState.selected == TintedEnum.tinted;
-
-  TintedEnum get selectedTinted => tintedState.selected;
-  set selectedTinted(TintedEnum value) => tintedState.selected = value;
 
   // Getter to determine if the icon should be shown in the demo (used to gate the tinted chip)
   bool get hasIcon =>
@@ -196,25 +188,6 @@ class FullWidthState {
   set value(bool newValue) {
     _setState(() {
       _hasFullWidth = newValue;
-    });
-  }
-}
-
-/// Tinted icon state management (relevant when the button displays an icon)
-class TintedState {
-  TintedState(this._setState);
-
-  final void Function(void Function()) _setState;
-
-  final List<TintedEnum> _tintedList = [TintedEnum.tinted, TintedEnum.untinted];
-  TintedEnum _selectedTinted = TintedEnum.tinted;
-
-  List<TintedEnum> get list => _tintedList;
-
-  TintedEnum get selected => _selectedTinted;
-  set selected(TintedEnum newValue) {
-    _setState(() {
-      _selectedTinted = newValue;
     });
   }
 }
