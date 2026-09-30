@@ -31,7 +31,7 @@ enum OudsProgressIndicatorGapSize { defaultSize, small }
 
 /// Defines the horizontal alignment of helper text displayed below
 /// a linear progress indicator.
-enum OudsProgressIndicatorHelperTextAlignment { start, center, end }
+enum OudsProgressIndicatorHelperTextAlignment { start, end }
 
 /// Default size of the indicator (in pixels).
 const double _oudsCircularProgressIndicatorSize = 48.0;
@@ -192,9 +192,10 @@ class _OudsCircularProgressIndicatorState
       localizations,
       widget.status,
     );
-    final semanticsLabel = statusLabel != null
-        ? '${widget.semanticsLabel ?? ""}, $statusLabel'
-        : '${widget.semanticsLabel ?? ""},';
+    final semanticsLabel = OudsProgressIndicatorUtils.buildSemanticsLabel(
+      widget.semanticsLabel,
+      statusLabel,
+    );
 
     final semanticsValue = OudsProgressIndicatorUtils.buildSemanticValueLabel(
       widget.progressType,
@@ -314,7 +315,7 @@ class _OudsCircularProgressIndicatorState
         context,
       ).componentsTokens(context).progressIndicator.spaceColumnGap,
       children: [
-        if (progressWidget != null) progressWidget,
+        ?progressWidget,
         if (labelWidget != null) Flexible(child: labelWidget),
       ],
     );
@@ -384,7 +385,7 @@ class _OudsCircularProgressIndicatorState
                   return CircularProgressIndicator(
                     padding: EdgeInsets.zero,
                     semanticsLabel: semanticsLabel,
-                    semanticsValue: semanticsValue,
+                    semanticsValue: reduceMotion ? "" : semanticsValue,
                     year2023: false,
                     constraints: BoxConstraints(
                       minWidth: defaultSize,
@@ -615,11 +616,7 @@ class _OudsLinearProgressIndicatorState
     }
 
     final flexibleLabel = Flexible(child: labelWidget);
-    Widget spacing = SizedBox(
-      width: OudsTheme.of(
-        context,
-      ).componentsTokens(context).progressIndicator.spaceColumnGap,
-    );
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -674,9 +671,10 @@ class _OudsLinearProgressIndicatorState
       localizations,
       widget.status,
     );
-    final semanticsLabel = statusLabel != null
-        ? '${widget.semanticsLabel ?? ""}, $statusLabel,'
-        : '${widget.semanticsLabel ?? ""},';
+    final semanticsLabel = OudsProgressIndicatorUtils.buildSemanticsLabel(
+      widget.semanticsLabel,
+      statusLabel,
+    );
 
     final semanticsValue = OudsProgressIndicatorUtils.buildSemanticValueLabel(
       widget.progressType,
@@ -717,9 +715,6 @@ class _OudsLinearProgressIndicatorState
     return reduceMotionActivated
         ? Semantics(
             label: semanticsLabel,
-            value: widget.progressType == OudsProgressIndicatorType.determinate
-                ? semanticsValue
-                : null,
             child: ExcludeSemantics(
               child: _buildIndicator(
                 minHeight: minHeight,

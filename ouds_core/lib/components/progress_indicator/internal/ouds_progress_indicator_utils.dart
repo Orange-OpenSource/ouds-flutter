@@ -65,6 +65,25 @@ class OudsProgressIndicatorUtils {
         : null;
   }
 
+  /// Combines the caller-provided [semanticsLabel] and the localized
+  /// [statusLabel] (from [buildStatusSemanticsLabel]) into a single
+  /// accessibility label, joined with a comma when both are present.
+  ///
+  /// Returns `null` when neither is present, instead of a stray `","` or a
+  /// trailing comma, so that assistive technologies don't announce an empty
+  /// or parasitic separator on the common case where no [semanticsLabel] and
+  /// no status are set.
+  static String? buildSemanticsLabel(
+    String? semanticsLabel,
+    String? statusLabel,
+  ) {
+    final parts = [
+      if (semanticsLabel != null && semanticsLabel.isNotEmpty) semanticsLabel,
+      if (statusLabel != null && statusLabel.isNotEmpty) statusLabel,
+    ];
+    return parts.isEmpty ? null : parts.join(', ');
+  }
+
   /// Returns `true` when the progress indicator should animate its value change.
   ///
   /// Animation is only active when **all three** conditions hold:
