@@ -98,7 +98,7 @@ enum OudsButtonComponent {
 
 /// [OUDS Button design guidelines](https://r.orange.fr/r/S-ouds-doc-button)
 ///
-/// **Reference design version : 3.3.0**
+/// **Reference design version : 3.4.0**
 ///
 /// Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
 /// Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
@@ -187,6 +187,11 @@ class OudsButton extends StatefulWidget {
   final String? package;
   final bool? isFullWidth;
 
+  /// Controls whether the icon should be tinted with the theme color.
+  /// Defaults to `true`.
+  /// When set to `false`, the icon displays with its original colors (useful for multi-color icons).
+  final bool tinted;
+
   /// The button size based on its [OudsButtonSize], set to [OudsButtonSize.defaultSize] by default.
   final OudsButtonSize _size;
 
@@ -202,6 +207,9 @@ class OudsButton extends StatefulWidget {
   /// Custom accessibility label used in icon-only navigation buttons.
   final String? _semanticsLabel;
 
+  /// Optional badge to display on the button.
+  final OudsTopBarActionBadge? _badge;
+
   const OudsButton({
     super.key,
     this.label,
@@ -212,10 +220,12 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
+    this.tinted = true,
   }) : _size = OudsButtonSize.defaultSize,
        _component = OudsButtonComponent.defaultButton,
        _navigationLayout = null,
-       _semanticsLabel = null;
+       _semanticsLabel = null,
+       _badge = null;
 
   /// Creates an [OudsButton] with [OudsButtonSize.small], for contexts where space is constrained.
   ///
@@ -241,10 +251,12 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
+    this.tinted = true,
   }) : _size = OudsButtonSize.small,
        _component = OudsButtonComponent.defaultButton,
        _navigationLayout = null,
-       _semanticsLabel = null;
+       _semanticsLabel = null,
+       _badge = null;
 
   /// Internal constructor used exclusively by [OudsNavigationButton].
   ///
@@ -264,7 +276,9 @@ class OudsButton extends StatefulWidget {
   }) : _size = size,
        _component = OudsButtonComponent.navigationButton,
        _navigationLayout = navigationLayout,
-       _semanticsLabel = semanticsLabel;
+       _semanticsLabel = semanticsLabel,
+       tinted = true,
+       _badge = null;
 
   @override
   State<OudsButton> createState() => _OudsButtonState();
@@ -301,25 +315,28 @@ class OudsButton extends StatefulWidget {
   ///
   /// This method is **package-internal** and intended solely for use by
   /// [OudsTopBar] to render trailing action buttons with a badge.
-  ///
   /// Do not call this method directly from application code.
   @internal
-  Widget buildIconButtonWithBadge(
-    BuildContext context,
+  const OudsButton.iconWithBadge({
+    super.key,
+    required this.icon,
+    this.onPressed,
+    required this.appearance,
+    this.package,
+    this.isFullWidth = false,
+    OudsButtonSize size = OudsButtonSize.defaultSize,
+    String? semanticsLabel,
     OudsTopBarActionBadge? badge,
-    OudsButtonControlState buttonState,
-  ) {
-    return buildIconBadgeButton(
-      context,
-      layout,
-      appearance,
-      buttonState,
-      onPressed,
-      icon?.assetsName,
-      badge,
-      package,
-    );
-  }
+    required OudsButtonControlState buttonState,
+  }) : label = null,
+       _size = size,
+       _component = OudsButtonComponent.defaultButton,
+       _navigationLayout = null,
+       _semanticsLabel = semanticsLabel,
+       _badge = badge,
+       tinted = true,
+       isLoading = false,
+       loader = null;
 }
 
 class _OudsButtonState extends State<OudsButton> {
@@ -358,8 +375,8 @@ class _OudsButtonState extends State<OudsButton> {
 
   void _handleFocusChange(bool focus) {
     if (widget.onPressed == null) {
-      _isFocused = false; // Ignore focus changes if disabled
-    }
+      _isFocused = false;
+    } // Ignore focus changes if disabled
     setState(() => _isFocused = focus);
   }
 
@@ -472,14 +489,37 @@ class _OudsButtonState extends State<OudsButton> {
     OudsButtonControlState buttonState,
   ) {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
+    // this if statement is added here to resolve build badge with OudsButton
 
     switch (widget.layout) {
       case OudsButtonLayout.iconOnly:
-        return _buildButtonIconOnly(context, buttonState);
+        if (widget._badge != null) {
+          return buildIconBadgeButton(
+            context,
+            widget.layout,
+            widget.appearance,
+            buttonState,
+            widget.onPressed,
+            widget.icon?.assetsName,
+            widget._badge,
+            widget.package,
+          );
+        } else {
+          return Container(
+            constraints: BoxConstraints(
+              minWidth: buttonToken.sizeMinWidth(widget._size),
+              minHeight: buttonToken.sizeMinHeight(widget._size),
+              maxWidth: buttonToken.sizeMaxWidth,
+              maxHeight: buttonToken.sizeMaxIconOnly(widget._size),
+            ),
+            child: _buildButtonIconOnly(context, buttonState),
+          );
+        }
       case OudsButtonLayout.iconAndText:
         return Container(
           constraints: BoxConstraints(
             minWidth: buttonToken.sizeMinWidth(widget._size),
+            maxWidth: buttonToken.sizeMaxWidth,
             minHeight: buttonToken.sizeMinHeight(widget._size),
           ),
           child: widget._component == OudsButtonComponent.navigationButton
@@ -487,7 +527,14 @@ class _OudsButtonState extends State<OudsButton> {
               : _buildButtonIconAndText(context, buttonState),
         );
       case OudsButtonLayout.textOnly:
-        return _buildButtonTextOnly(context, buttonState);
+        return Container(
+          constraints: BoxConstraints(
+            minWidth: buttonToken.sizeMinWidth(widget._size),
+            maxWidth: buttonToken.sizeMaxWidth,
+            minHeight: buttonToken.sizeMinHeight(widget._size),
+          ),
+          child: _buildButtonTextOnly(context, buttonState),
+        );
     }
   }
 
