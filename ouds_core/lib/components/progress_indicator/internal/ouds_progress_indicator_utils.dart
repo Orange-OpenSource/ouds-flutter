@@ -43,9 +43,17 @@ class OudsProgressIndicatorUtils {
   /// (e.g. `75%`).
   ///
   /// Returns `0%` when [progressValue] is `null`.
-  static String buildPercentageText(double? progressValue) {
+  ///
+  /// In [TextDirection.rtl] contexts, the `%` symbol is placed before the
+  /// number (e.g. `%75`) to match the reading convention used in RTL
+  /// languages, instead of relying on the Unicode bidi algorithm to reorder
+  /// the neutral `%` character.
+  static String buildPercentageText(
+    double? progressValue, {
+    TextDirection textDirection = TextDirection.ltr,
+  }) {
     final value = progressValue != null ? (progressValue * 100).round() : 0;
-    return '$value%';
+    return textDirection == TextDirection.rtl ? '%$value' : '$value%';
   }
 
   /// Builds the accessibility status text associated with an [OudsIconStatus].

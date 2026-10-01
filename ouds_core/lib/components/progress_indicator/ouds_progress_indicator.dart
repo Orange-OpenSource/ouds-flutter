@@ -292,7 +292,10 @@ class _OudsCircularProgressIndicatorState
     final progressWidget = showProgress
         ? ExcludeSemantics(
             child: Text(
-              OudsProgressIndicatorUtils.buildPercentageText(widget.value),
+              OudsProgressIndicatorUtils.buildPercentageText(
+                widget.value,
+                textDirection: Directionality.of(context),
+              ),
               style: textStyle,
             ),
           )
@@ -385,7 +388,7 @@ class _OudsCircularProgressIndicatorState
                   return CircularProgressIndicator(
                     padding: EdgeInsets.zero,
                     semanticsLabel: semanticsLabel,
-                    semanticsValue: reduceMotion ? "" : semanticsValue,
+                    semanticsValue: semanticsValue,
                     year2023: false,
                     constraints: BoxConstraints(
                       minWidth: defaultSize,
@@ -590,7 +593,10 @@ class _OudsLinearProgressIndicatorState
     final progressWidget = showProgress
         ? ExcludeSemantics(
             child: Text(
-              OudsProgressIndicatorUtils.buildPercentageText(widget.value),
+              OudsProgressIndicatorUtils.buildPercentageText(
+                widget.value,
+                textDirection: Directionality.of(context),
+              ),
               style: textStyle,
             ),
           )
@@ -618,11 +624,13 @@ class _OudsLinearProgressIndicatorState
     // both explicitly request a side, since the label is the primary driver
     // of the layout.
     if (progressWidget != null && labelWidget != null) {
-      final progressPreference = helperText.progressAlignment ==
+      final progressPreference =
+          helperText.progressAlignment ==
               OudsProgressIndicatorHelperTextAlignment.center
           ? null
           : helperText.progressAlignment;
-      final labelPreference = helperText.labelAlignment ==
+      final labelPreference =
+          helperText.labelAlignment ==
               OudsProgressIndicatorHelperTextAlignment.center
           ? null
           : helperText.labelAlignment;
@@ -794,7 +802,16 @@ class _OudsLinearProgressIndicatorState
 
     bool reduceMotionActivated =
         OudsProgressIndicatorUtils.shouldDisableAnimations(context);
-    return reduceMotionActivated
+    final isIndeterminate =
+        widget.progressType == OudsProgressIndicatorType.indeterminate;
+
+    // The animation freeze (static value, semantics value excluded) only
+    // makes sense for indeterminate indicators, which otherwise spin
+    // endlessly and have no meaningful value to announce. Determinate
+    // indicators must keep announcing their actual percentage to screen
+    // readers even when reduce motion is active — only their animation is
+    // suppressed (already handled by `shouldAnimate` returning false above).
+    return reduceMotionActivated && isIndeterminate
         ? Semantics(
             label: semanticsLabel,
             child: ExcludeSemantics(
