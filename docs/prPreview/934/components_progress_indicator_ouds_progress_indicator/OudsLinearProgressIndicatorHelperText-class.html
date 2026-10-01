@@ -59,15 +59,20 @@
 (<a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/progress.html">progress</a>), a custom <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/label.html">label</a>, or both at once.</p>
 <h2 id="alignment-rules">Alignment rules</h2>
 <ul>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/progressAlignment.html">progressAlignment</a> and <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/labelAlignment.html">labelAlignment</a> each control where their own
+item is positioned (<code>start</code>, <code>center</code> or <code>end</code>) <strong>when that item is the
+only one displayed</strong>.</li>
 <li>By default, only the progress percentage is shown, centered below the
-indicator.</li>
-<li>When only the progress percentage or only <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/label.html">label</a> is displayed, it is
-always centered.</li>
-<li>When both are displayed, <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/label.html">label</a> is positioned according to
-<a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/labelAlignment.html">labelAlignment</a> — <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment.start</a> or
-<a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment.end</a> — and the progress
-percentage automatically takes the opposite side. Helper text cannot be
-centered when both <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/progress.html">progress</a> and <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/label.html">label</a> are shown.</li>
+indicator (<a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/progressAlignment.html">progressAlignment</a> defaults to
+<a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment.center</a>).</li>
+<li>When both <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/progress.html">progress</a> and <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/label.html">label</a> would be displayed and one of them
+requests <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment.center</a>, that one is
+shown alone (centered) and the other is silently ignored — a centered
+item cannot share the line with another item.</li>
+<li>When both are displayed and neither requests <code>center</code>, <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/label.html">label</a> is
+positioned according to <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/labelAlignment.html">labelAlignment</a> — <code>start</code> or <code>end</code> — and the
+progress percentage automatically takes the opposite side
+(<a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/progressAlignment.html">progressAlignment</a> is ignored in that case).</li>
 </ul>
 <p>The progress percentage is never shown when the indicator is
 indeterminate (<code>progressType: OudsProgressIndicatorType.indeterminate</code>),
@@ -91,7 +96,7 @@ in that case.</p>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsLinearProgressIndicatorHelperText.new" class="callable">
-          <span class="name"><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/OudsLinearProgressIndicatorHelperText.html">OudsLinearProgressIndicatorHelperText</a></span><span class="signature">({<span class="parameter" id="param-progress"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">progress</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-labelAlignment"><span class="type-annotation"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a></span> <span class="parameter-name">labelAlignment</span> = <span class="default-value">OudsProgressIndicatorHelperTextAlignment.end</span></span>})</span>
+          <span class="name"><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/OudsLinearProgressIndicatorHelperText.html">OudsLinearProgressIndicatorHelperText</a></span><span class="signature">({<span class="parameter" id="param-progress"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">progress</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-labelAlignment"><span class="type-annotation"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a></span> <span class="parameter-name">labelAlignment</span> = <span class="default-value">OudsProgressIndicatorHelperTextAlignment.end</span>, </span><span class="parameter" id="param-progressAlignment"><span class="type-annotation"><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a></span> <span class="parameter-name">progressAlignment</span> = <span class="default-value">OudsProgressIndicatorHelperTextAlignment.start</span></span>})</span>
         </dt>
         <dd>
           
@@ -137,11 +142,9 @@ percentage.
 
 </dt>
 <dd>
-  Horizontal position of <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/label.html">label</a> when both <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/label.html">label</a> and <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/progress.html">progress</a> are
-displayed; the progress percentage automatically takes the opposite
-side. Ignored when only one of them is displayed, in which case it is
-always centered. Must be <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment.start</a>
-or <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment.end</a>.
+  Horizontal alignment for the custom label when it is the only item
+displayed, or the side it takes (<code>start</code>/<code>end</code>) when both the label and
+the progress percentage are displayed together.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -155,6 +158,21 @@ or <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgres
 <dd>
   Whether the progress value, formatted as a percentage, is displayed.
 Ignored (never shown) when the indicator is indeterminate.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="progressAlignment" class="property">
+  <span class="name"><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/progressAlignment.html">progressAlignment</a></span>
+  <span class="signature">&#8594; <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a></span>
+  
+
+</dt>
+<dd>
+  Horizontal alignment for the progress percentage when it is the only
+item displayed. Ignored when <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/label.html">label</a> is also displayed and
+non-centered, in which case the progress percentage automatically takes
+the side opposite <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText/labelAlignment.html">labelAlignment</a>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
