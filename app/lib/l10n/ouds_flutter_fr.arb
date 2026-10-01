@@ -81,6 +81,9 @@
   "@_components_radio_button": {},
   "app_components_radioButton_description_text": "Un Radio button (ou bouton radio) est un élément d'interface utilisateur qui permet de sélectionner une seule option parmi un ensemble de choix mutuellement exclusifs.",
 
+  "@_components_skeleton": {},
+  "app_components_skeleton_description_text": "Un Skeleton (ou squelette) est un élément d'interface utilisateur qui affiche une forme animée servant de repère visuel pendant le chargement du contenu.",
+
   "@_components_switch": {},
   "app_components_switch_description_text": "Un Switch (ou interrupteur) est un élément d'interface utilisateur qui permet de basculer entre deux états, généralement « Marche » et « Arrêt », et qui sert à activer ou désactiver des fonctionnalités, des options ou des paramètres.",
   "app_components_switch_switch_a11y": "Description du contenu de l'interrupteur",

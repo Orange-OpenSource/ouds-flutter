@@ -507,6 +507,19 @@ class AppLocalizationsAr extends AppLocalizations {
       'Extra label';
 
   @override
+  String get app_components_skeleton_label => 'Skeleton';
+
+  @override
+  String get app_components_skeleton_description_text =>
+      'Skeleton هو عنصر واجهة مستخدم يعرض شكلاً متحركًا مؤقتًا أثناء تحميل المحتوى.';
+
+  @override
+  String get app_components_skeleton_animated_tech => 'Animated';
+
+  @override
+  String get app_components_skeleton_securityMargin_tech => 'Security Margin';
+
+  @override
   String get app_components_switch_label => 'Switch';
 
   @override

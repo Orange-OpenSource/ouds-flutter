@@ -510,6 +510,19 @@ class AppLocalizationsFr extends AppLocalizations {
       'Extra label';
 
   @override
+  String get app_components_skeleton_label => 'Skeleton';
+
+  @override
+  String get app_components_skeleton_description_text =>
+      'Un Skeleton (ou squelette) est un élément d\'interface utilisateur qui affiche une forme animée servant de repère visuel pendant le chargement du contenu.';
+
+  @override
+  String get app_components_skeleton_animated_tech => 'Animated';
+
+  @override
+  String get app_components_skeleton_securityMargin_tech => 'Security Margin';
+
+  @override
   String get app_components_switch_label => 'Switch';
 
   @override

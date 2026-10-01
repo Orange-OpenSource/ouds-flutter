@@ -220,6 +220,12 @@
   "app_components_radioButton_radioButtonItem_label": "Radio Button Item",
   "app_components_radioButton_radioButtonItem_extraLabel_label": "Extra label",
 
+  "@_components_skeleton": {},
+  "app_components_skeleton_label": "Skeleton",
+  "app_components_skeleton_description_text": "Skeleton is a UI element that displays an animated placeholder shape while content is loading.",
+  "app_components_skeleton_animated_tech": "Animated",
+  "app_components_skeleton_securityMargin_tech": "Security Margin",
+
   "@_components_switch": {},
   "app_components_switch_label": "Switch",
   "app_components_switch_switch_label": "Switch",
