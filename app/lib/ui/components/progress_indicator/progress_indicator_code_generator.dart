@@ -37,7 +37,7 @@ class ProgressIndicatorCodeGenerator {
       track(context),
       animated(context),
       gapSize(context),
-      semanticLabel(context),
+      semanticsLabel(context),
       if (widgetType == ProgressIndicatorWidgetType.linear) ...[
         stopIndicator(context),
         linearHelperText(context),
@@ -111,14 +111,14 @@ class ProgressIndicatorCodeGenerator {
     return "gapSize: ${ProgressIndicatorCustomizationUtils.getGapSize(customizationState!.selectedGapSize)}";
   }
 
-  static String semanticLabel(BuildContext context) {
+  static String semanticsLabel(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
 
     final hasValue =
         customizationState!.value.isNotEmpty &&
         (double.tryParse(customizationState.value) ?? 0.0) > 0.0;
 
-    return "semanticLabel: '${hasValue ? "Uploading file" : "Connecting to server"}'";
+    return "semanticsLabel: '${hasValue ? "Uploading file" : "Connecting to server"}'";
   }
 
   static String stopIndicator(BuildContext context) {
@@ -138,8 +138,10 @@ class ProgressIndicatorCodeGenerator {
     final params = <String>[
       "progress: $hasPercentage",
       if (hasLabel) "label: '${customizationState.helperText}'",
-      if (hasPercentage && hasLabel)
-        "labelAlignment: ${_labelAlignmentCode(customizationState.selectedAlignment)}",
+      if (hasLabel)
+        "labelAlignment: ${_alignmentCode(customizationState.selectedAlignment)}",
+      if (hasPercentage)
+        "progressAlignment: ${_alignmentCode(customizationState.selectedProgressAlignment)}",
     ];
 
     return "helperText: OudsLinearProgressIndicatorHelperText(\n    ${params.join(",\n    ")},\n  )";
@@ -162,7 +164,7 @@ class ProgressIndicatorCodeGenerator {
     return "helperText: OudsCircularProgressIndicatorHelperText(\n    ${params.join(",\n    ")},\n  )";
   }
 
-  static String _labelAlignmentCode(
+  static String _alignmentCode(
     ProgressIndicatorHelperTextAlignmentEnum alignment,
   ) {
     switch (alignment) {
@@ -170,6 +172,8 @@ class ProgressIndicatorCodeGenerator {
         return "OudsProgressIndicatorHelperTextAlignment.start";
       case ProgressIndicatorHelperTextAlignmentEnum.right:
         return "OudsProgressIndicatorHelperTextAlignment.end";
+      case ProgressIndicatorHelperTextAlignmentEnum.center:
+        return "OudsProgressIndicatorHelperTextAlignment.center";
     }
   }
 

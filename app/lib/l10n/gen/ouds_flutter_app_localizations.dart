@@ -1773,6 +1773,12 @@ abstract class AppLocalizations {
   /// **'Label alignment'**
   String get app_components_progressIndicator_helperTextAlignment_tech;
 
+  /// No description provided for @app_components_progressIndicator_helperTextProgressAlignment_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress alignment'**
+  String get app_components_progressIndicator_helperTextProgressAlignment_tech;
+
   /// No description provided for @app_components_progressIndicator_helperTextPercentage_tech.
   ///
   /// In en, this message translates to:

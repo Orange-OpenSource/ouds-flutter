@@ -335,9 +335,48 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.selectedType ==
                   ProgressIndicatorEnumType.determinate
               ? (value) {
-                  customizationState.hasPercentage = value;
+                  setState(() {
+                    customizationState.hasPercentage = value;
+                    if (value && customizationState.hasHelperText) {
+                      customizationState.selectedProgressAlignment =
+                          ProgressIndicatorHelperTextAlignmentEnum.left;
+                      customizationState.selectedAlignment =
+                          ProgressIndicatorHelperTextAlignmentEnum.right;
+                    }
+                  });
                 }
               : null,
+        ),
+        Visibility(
+          visible: customizationState.hasPercentage,
+          child: CustomizableChips<ProgressIndicatorHelperTextAlignmentEnum>(
+            title: context
+                .l10n
+                .app_components_progressIndicator_helperTextProgressAlignment_tech,
+            options: customizationState.progressAlignmentState.list,
+            selectedOption: customizationState.selectedProgressAlignment,
+            getText: (option) => option.stringValue(context),
+            disabledOptions: customizationState.hasHelperText
+                ? [ProgressIndicatorHelperTextAlignmentEnum.center]
+                : null,
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.selectedProgressAlignment = selectedOption;
+                // When both progress and label are shown, they always sit on
+                // opposite sides: syncing the label here ensures selecting a
+                // side for the progress percentage has a visible effect.
+                if (customizationState.hasHelperText &&
+                    selectedOption !=
+                        ProgressIndicatorHelperTextAlignmentEnum.center) {
+                  customizationState.selectedAlignment =
+                      selectedOption ==
+                          ProgressIndicatorHelperTextAlignmentEnum.left
+                      ? ProgressIndicatorHelperTextAlignmentEnum.right
+                      : ProgressIndicatorHelperTextAlignmentEnum.left;
+                }
+              });
+            },
+          ),
         ),
         CustomizableSwitch(
           title: context
@@ -345,7 +384,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               .app_components_progressIndicator_helperTextLabel_tech,
           value: customizationState.hasHelperText,
           onChanged: (value) {
-            customizationState.hasHelperText = value;
+            setState(() {
+              customizationState.hasHelperText = value;
+              if (value && customizationState.hasPercentage) {
+                customizationState.selectedProgressAlignment =
+                    ProgressIndicatorHelperTextAlignmentEnum.left;
+                customizationState.selectedAlignment =
+                    ProgressIndicatorHelperTextAlignmentEnum.right;
+              }
+            });
           },
         ),
         Visibility(
@@ -360,17 +407,28 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           ),
         ),
         Visibility(
-          visible:
-              customizationState.hasPercentage &&
-              customizationState.hasHelperText,
+          visible: customizationState.hasHelperText,
           child: CustomizableChips<ProgressIndicatorHelperTextAlignmentEnum>(
             title: ProgressIndicatorHelperTextAlignmentEnum.enumName(context),
             options: customizationState.alignmentState.list,
             selectedOption: customizationState.selectedAlignment,
             getText: (option) => option.stringValue(context),
+            disabledOptions: customizationState.hasPercentage
+                ? [ProgressIndicatorHelperTextAlignmentEnum.center]
+                : null,
             onSelected: (selectedOption) {
               setState(() {
                 customizationState.selectedAlignment = selectedOption;
+                // Same opposite-side sync as above, from the label's side.
+                if (customizationState.hasPercentage &&
+                    selectedOption !=
+                        ProgressIndicatorHelperTextAlignmentEnum.center) {
+                  customizationState.selectedProgressAlignment =
+                      selectedOption ==
+                          ProgressIndicatorHelperTextAlignmentEnum.left
+                      ? ProgressIndicatorHelperTextAlignmentEnum.right
+                      : ProgressIndicatorHelperTextAlignmentEnum.left;
+                }
               });
             },
           ),

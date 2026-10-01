@@ -47,7 +47,8 @@ class ProgressIndicatorCustomizationState
   late final GapSizeState gapSizeState;
   late final StopIndicatorState stopIndicatorState;
   late final HelperTextState helperTextState;
-  late final AlignmentState alignmentState;
+  late final LabelAlignmentState alignmentState;
+  late final ProgressAlignmentState progressAlignmentState;
   late final PercentageState percentageState;
 
   @override
@@ -61,7 +62,8 @@ class ProgressIndicatorCustomizationState
     gapSizeState = GapSizeState(setState);
     stopIndicatorState = StopIndicatorState(setState);
     helperTextState = HelperTextState(setState);
-    alignmentState = AlignmentState(setState);
+    alignmentState = LabelAlignmentState(setState);
+    progressAlignmentState = ProgressAlignmentState(setState);
     percentageState = PercentageState(setState);
   }
 
@@ -104,6 +106,12 @@ class ProgressIndicatorCustomizationState
       alignmentState.selected;
   set selectedAlignment(ProgressIndicatorHelperTextAlignmentEnum value) =>
       alignmentState.selected = value;
+
+  ProgressIndicatorHelperTextAlignmentEnum get selectedProgressAlignment =>
+      progressAlignmentState.selected;
+  set selectedProgressAlignment(
+    ProgressIndicatorHelperTextAlignmentEnum value,
+  ) => progressAlignmentState.selected = value;
 
   bool get hasPercentage => percentageState.value;
   set hasPercentage(bool value) => percentageState.value = value;
@@ -312,18 +320,48 @@ class HelperTextState {
   }
 }
 
-/// Alignment State Management
-class AlignmentState {
-  AlignmentState(this._setState);
+/// Label Alignment State Management
+class LabelAlignmentState {
+  LabelAlignmentState(this._setState);
 
   final void Function(void Function()) _setState;
 
   List<ProgressIndicatorHelperTextAlignmentEnum> _alignmentList = [
     ProgressIndicatorHelperTextAlignmentEnum.left,
+    ProgressIndicatorHelperTextAlignmentEnum.center,
     ProgressIndicatorHelperTextAlignmentEnum.right,
   ];
   ProgressIndicatorHelperTextAlignmentEnum _selectedAlignment =
-      ProgressIndicatorHelperTextAlignmentEnum.right;
+      ProgressIndicatorHelperTextAlignmentEnum.center;
+
+  List<ProgressIndicatorHelperTextAlignmentEnum> get list => _alignmentList;
+  set list(List<ProgressIndicatorHelperTextAlignmentEnum> newList) {
+    _setState(() {
+      _alignmentList = newList;
+    });
+  }
+
+  ProgressIndicatorHelperTextAlignmentEnum get selected => _selectedAlignment;
+  set selected(ProgressIndicatorHelperTextAlignmentEnum newValue) {
+    _setState(() {
+      _selectedAlignment = newValue;
+    });
+  }
+}
+
+/// Progress Alignment State Management
+class ProgressAlignmentState {
+  ProgressAlignmentState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  List<ProgressIndicatorHelperTextAlignmentEnum> _alignmentList = [
+    ProgressIndicatorHelperTextAlignmentEnum.left,
+    ProgressIndicatorHelperTextAlignmentEnum.center,
+    ProgressIndicatorHelperTextAlignmentEnum.right,
+  ];
+  ProgressIndicatorHelperTextAlignmentEnum _selectedAlignment =
+      ProgressIndicatorHelperTextAlignmentEnum.center;
 
   List<ProgressIndicatorHelperTextAlignmentEnum> get list => _alignmentList;
   set list(List<ProgressIndicatorHelperTextAlignmentEnum> newList) {

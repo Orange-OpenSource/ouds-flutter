@@ -942,6 +942,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Label alignment';
 
   @override
+  String
+  get app_components_progressIndicator_helperTextProgressAlignment_tech =>
+      'Progress alignment';
+
+  @override
   String get app_components_progressIndicator_helperTextPercentage_tech =>
       'Helper text progress';
 

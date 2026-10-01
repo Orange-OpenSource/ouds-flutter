@@ -88,10 +88,28 @@ class ProgressIndicatorCustomizationUtils {
   static OudsProgressIndicatorHelperTextAlignment getHelperTextAlignment(
     ProgressIndicatorHelperTextAlignmentEnum selectedHelperTextAlignment,
   ) {
-    return selectedHelperTextAlignment ==
-            ProgressIndicatorHelperTextAlignmentEnum.left
-        ? OudsProgressIndicatorHelperTextAlignment.start
-        : OudsProgressIndicatorHelperTextAlignment.end;
+    switch (selectedHelperTextAlignment) {
+      case ProgressIndicatorHelperTextAlignmentEnum.left:
+        return OudsProgressIndicatorHelperTextAlignment.start;
+      case ProgressIndicatorHelperTextAlignmentEnum.center:
+        return OudsProgressIndicatorHelperTextAlignment.center;
+      case ProgressIndicatorHelperTextAlignmentEnum.right:
+        return OudsProgressIndicatorHelperTextAlignment.end;
+    }
+  }
+
+  /// Returns the progress alignment used by the progress indicator helper text.
+  static OudsProgressIndicatorHelperTextAlignment getProgressAlignment(
+    ProgressIndicatorHelperTextAlignmentEnum selectedProgressAlignment,
+  ) {
+    switch (selectedProgressAlignment) {
+      case ProgressIndicatorHelperTextAlignmentEnum.left:
+        return OudsProgressIndicatorHelperTextAlignment.start;
+      case ProgressIndicatorHelperTextAlignmentEnum.center:
+        return OudsProgressIndicatorHelperTextAlignment.center;
+      case ProgressIndicatorHelperTextAlignmentEnum.right:
+        return OudsProgressIndicatorHelperTextAlignment.end;
+    }
   }
 
   /// Builds the [OudsLinearProgressIndicatorHelperText] configured from the
@@ -112,6 +130,9 @@ class ProgressIndicatorCustomizationUtils {
           : null,
       labelAlignment: getHelperTextAlignment(
         customizationState.selectedAlignment,
+      ),
+      progressAlignment: getProgressAlignment(
+        customizationState.selectedProgressAlignment,
       ),
     );
   }

@@ -372,6 +372,7 @@
   "app_components_progressIndicator_linearProgressIndicator_description_text": "A linear progress indicator shows the progress of a task using a horizontal line. Best used inside layouts to show progress.",
   "app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech": "Stop indicator",
   "app_components_progressIndicator_helperTextAlignment_tech": "Label alignment",
+  "app_components_progressIndicator_helperTextProgressAlignment_tech": "Progress alignment",
   "app_components_progressIndicator_helperTextPercentage_tech": "Helper text progress",
   "app_components_progressIndicator_helperTextLabel_tech": "Helper text label",
   "app_components_progressIndicator_progress_a11y": "Uploading file",

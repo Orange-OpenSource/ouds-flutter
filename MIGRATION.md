@@ -53,7 +53,7 @@ OudsLinearProgressIndicator(
 
 #### 2. `OudsLinearProgressIndicator` — `helperText` / `helperTextAlignment` / `percentage` / `spaceBeforePercentage` merged into a single `helperText` object
 
-The four standalone parameters are replaced by a single `helperText` parameter typed `OudsLinearProgressIndicatorHelperText`, which can combine a progress percentage and/or a custom label on the same line, with `labelAlignment` controlling which side the label takes (the percentage automatically takes the opposite side). Pass `null` to hide the helper text entirely.
+The four standalone parameters are replaced by a single `helperText` parameter typed `OudsLinearProgressIndicatorHelperText`, which can combine a progress percentage and/or a custom label on the same line. Each item has its own alignment — `progressAlignment` and `labelAlignment` (`start`/`center`/`end`) — used when that item is the only one displayed; when both are displayed, `labelAlignment` (`start` or `end` only) decides which side the label takes and the percentage automatically takes the opposite side, unless one of the two explicitly requests `center`, in which case that one is shown alone and the other is ignored. Pass `null` to hide the helper text entirely.
 
 **Impact**: High (breaking — any code using `helperText`, `helperTextAlignment`, `percentage` or `spaceBeforePercentage` on `OudsLinearProgressIndicator` must be updated)
 
@@ -81,11 +81,11 @@ OudsLinearProgressIndicator(
 
 **Required Action**:
 - Replace `helperText: 'my text'` with `helperText: OudsLinearProgressIndicatorHelperText(label: 'my text', progress: false)`
-- Replace `percentage: true` with `helperText: OudsLinearProgressIndicatorHelperText()` (percentage is shown by default) or explicitly set `progress: true`
-- Replace `helperTextAlignment` with `OudsLinearProgressIndicatorHelperText.labelAlignment` — only `start`/`end` are accepted (helper text can no longer be centered when both a label and the percentage are shown; it is automatically centered when only one of them is shown)
+- Replace `percentage: true` with `helperText: OudsLinearProgressIndicatorHelperText()` (percentage is shown by default, centered) or explicitly set `progress: true`
+- Replace `helperTextAlignment` with `OudsLinearProgressIndicatorHelperText.labelAlignment`/`progressAlignment` — when both the label and the percentage are shown, only `start`/`end` make sense for `labelAlignment` (the percentage takes the opposite side); set either to `center` to show that item alone, centered, and hide the other
 - Remove `spaceBeforePercentage` — the percentage formatting is now fixed
 
-**Reason for Change**: Allow the progress percentage and a custom label to be displayed together (instead of one replacing the other) and share the same helper text model with the newly added `OudsCircularProgressIndicator.helperText`
+**Reason for Change**: Allow the progress percentage and a custom label to be displayed together (instead of one replacing the other), let each item be independently aligned when shown alone, and share the same helper text model with the newly added `OudsCircularProgressIndicator.helperText`
 
 #### 3. `OudsProgressIndicatorHelperTextAlignment` — `left`/`right` renamed to `start`/`end`
 

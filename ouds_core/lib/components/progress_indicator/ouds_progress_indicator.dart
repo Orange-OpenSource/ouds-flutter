@@ -31,7 +31,7 @@ enum OudsProgressIndicatorGapSize { defaultSize, small }
 
 /// Defines the horizontal alignment of helper text displayed below
 /// a linear progress indicator.
-enum OudsProgressIndicatorHelperTextAlignment { start, end }
+enum OudsProgressIndicatorHelperTextAlignment { start, center, end }
 
 /// Default size of the indicator (in pixels).
 const double _oudsCircularProgressIndicatorSize = 48.0;
@@ -549,10 +549,18 @@ class _OudsLinearProgressIndicatorState
   /// Builds the optional helper text widget displayed below the indicator.
   ///
   /// - When only the progress percentage or only the label is displayed, it
-  ///   is centered.
-  /// - When both are displayed, the label is positioned according to
-  ///   [OudsLinearProgressIndicatorHelperText.labelAlignment] and the
-  ///   progress percentage automatically takes the opposite side.
+  ///   is positioned according to its own alignment —
+  ///   [OudsLinearProgressIndicatorHelperText.progressAlignment] or
+  ///   [OudsLinearProgressIndicatorHelperText.labelAlignment] — which can be
+  ///   `start`, `center` or `end`.
+  /// - When both would be displayed and one of them requests
+  ///   [OudsProgressIndicatorHelperTextAlignment.center], that one is shown
+  ///   alone (centered) and the other is ignored — two items cannot share
+  ///   the same line when one of them is centered.
+  /// - When both are displayed and neither requests `center`, the label is
+  ///   positioned according to [OudsLinearProgressIndicatorHelperText.labelAlignment]
+  ///   (`start` or `end`) and the progress percentage automatically takes
+  ///   the opposite side.
   /// - The progress percentage is never shown for indeterminate indicators,
   ///   since there is no meaningful value to format — only the label is
   ///   displayed in that case.
@@ -587,20 +595,13 @@ class _OudsLinearProgressIndicatorState
             ),
           )
         : null;
-    // Both are displayed: the label takes its configured side (start or
-    // end) and the progress percentage automatically takes the other one.
-    // Each child is wrapped in Flexible so a long label can shrink and wrap
-    // onto multiple lines instead of overflowing the Row.
-    final labelAtStart =
-        helperText.labelAlignment ==
-        OudsProgressIndicatorHelperTextAlignment.start;
 
     final labelWidget = helperText.label != null
         ? Text(
             helperText.label!,
             style: textStyle,
             textWidthBasis: TextWidthBasis.longestLine,
-            textAlign: labelAtStart ? TextAlign.start : TextAlign.end,
+            textAlign: _textAlignOf(helperText.labelAlignment),
           )
         : null;
 
@@ -608,22 +609,103 @@ class _OudsLinearProgressIndicatorState
       return null;
     }
 
-    // Only one of the two is displayed: helper text is always centered.
-    // Wrapped in Flexible + Center so a long label can wrap onto multiple
-    // lines instead of overflowing when it exceeds the available width.
-    if (progressWidget == null || labelWidget == null) {
-      return Center(child: progressWidget ?? labelWidget);
+    // Both would be displayed: `center` only makes sense for a single item on
+    // the line, so when both are shown, whichever one requests a side
+    // (`start` or `end`) dictates its own position and the other
+    // automatically takes the opposite side — a `center` request from one of
+    // them is only meaningful when the other has no side preference either.
+    // The label's side takes priority over the progress percentage's when
+    // both explicitly request a side, since the label is the primary driver
+    // of the layout.
+    if (progressWidget != null && labelWidget != null) {
+      final progressPreference = helperText.progressAlignment ==
+              OudsProgressIndicatorHelperTextAlignment.center
+          ? null
+          : helperText.progressAlignment;
+      final labelPreference = helperText.labelAlignment ==
+              OudsProgressIndicatorHelperTextAlignment.center
+          ? null
+          : helperText.labelAlignment;
+
+      final OudsProgressIndicatorHelperTextAlignment labelSide;
+      if (labelPreference != null) {
+        labelSide = labelPreference;
+      } else if (progressPreference != null) {
+        labelSide = _opposite(progressPreference);
+      } else {
+        // Neither requests a side: fall back to the default layout (label at
+        // the end, progress percentage at the start).
+        labelSide = OudsProgressIndicatorHelperTextAlignment.end;
+      }
+      final labelAtStart =
+          labelSide == OudsProgressIndicatorHelperTextAlignment.start;
+
+      // The label is wrapped in Flexible so a long label can shrink and wrap
+      // onto multiple lines instead of overflowing the Row.
+      final flexibleLabel = Flexible(child: labelWidget);
+
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: labelAtStart
+            ? [flexibleLabel, progressWidget]
+            : [progressWidget, flexibleLabel],
+      );
     }
 
-    final flexibleLabel = Flexible(child: labelWidget);
+    // Only one of the two is displayed: position it according to its own
+    // alignment.
+    final singleChild = progressWidget ?? labelWidget!;
+    final singleAlignment = progressWidget != null
+        ? helperText.progressAlignment
+        : helperText.labelAlignment;
+    return _alignSingleHelperChild(singleChild, singleAlignment);
+  }
 
+  /// Positions a single helper text child (progress percentage or label)
+  /// according to [alignment], wrapping it in [Flexible] so a long label can
+  /// wrap onto multiple lines instead of overflowing when it exceeds the
+  /// available width.
+  Widget _alignSingleHelperChild(
+    Widget child,
+    OudsProgressIndicatorHelperTextAlignment alignment,
+  ) {
+    final mainAxisAlignment = switch (alignment) {
+      OudsProgressIndicatorHelperTextAlignment.start => MainAxisAlignment.start,
+      OudsProgressIndicatorHelperTextAlignment.center =>
+        MainAxisAlignment.center,
+      OudsProgressIndicatorHelperTextAlignment.end => MainAxisAlignment.end,
+    };
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: labelAtStart
-          ? [flexibleLabel, progressWidget]
-          : [progressWidget, flexibleLabel],
+      mainAxisAlignment: mainAxisAlignment,
+      children: [Flexible(child: child)],
     );
+  }
+
+  /// Returns the opposite side of [alignment] (`start` <-> `end`). Only
+  /// meaningful for `start`/`end` values — `center` is returned unchanged
+  /// since it has no opposite.
+  OudsProgressIndicatorHelperTextAlignment _opposite(
+    OudsProgressIndicatorHelperTextAlignment alignment,
+  ) {
+    return switch (alignment) {
+      OudsProgressIndicatorHelperTextAlignment.start =>
+        OudsProgressIndicatorHelperTextAlignment.end,
+      OudsProgressIndicatorHelperTextAlignment.end =>
+        OudsProgressIndicatorHelperTextAlignment.start,
+      OudsProgressIndicatorHelperTextAlignment.center =>
+        OudsProgressIndicatorHelperTextAlignment.center,
+    };
+  }
+
+  /// Maps an [OudsProgressIndicatorHelperTextAlignment] to the corresponding
+  /// [TextAlign] used by the label [Text] widget.
+  TextAlign _textAlignOf(OudsProgressIndicatorHelperTextAlignment alignment) {
+    return switch (alignment) {
+      OudsProgressIndicatorHelperTextAlignment.start => TextAlign.start,
+      OudsProgressIndicatorHelperTextAlignment.center => TextAlign.center,
+      OudsProgressIndicatorHelperTextAlignment.end => TextAlign.end,
+    };
   }
 
   /// Builds the visual [LinearProgressIndicator].
@@ -800,15 +882,20 @@ class _OudsLinearProgressIndicatorState
 ///
 /// ## Alignment rules
 ///
+/// - [progressAlignment] and [labelAlignment] each control where their own
+///   item is positioned (`start`, `center` or `end`) **when that item is the
+///   only one displayed**.
 /// - By default, only the progress percentage is shown, centered below the
-///   indicator.
-/// - When only the progress percentage or only [label] is displayed, it is
-///   always centered.
-/// - When both are displayed, [label] is positioned according to
-///   [labelAlignment] — [OudsProgressIndicatorHelperTextAlignment.start] or
-///   [OudsProgressIndicatorHelperTextAlignment.end] — and the progress
-///   percentage automatically takes the opposite side. Helper text cannot be
-///   centered when both [progress] and [label] are shown.
+///   indicator ([progressAlignment] defaults to
+///   [OudsProgressIndicatorHelperTextAlignment.center]).
+/// - When both [progress] and [label] would be displayed and one of them
+///   requests [OudsProgressIndicatorHelperTextAlignment.center], that one is
+///   shown alone (centered) and the other is silently ignored — a centered
+///   item cannot share the line with another item.
+/// - When both are displayed and neither requests `center`, [label] is
+///   positioned according to [labelAlignment] — `start` or `end` — and the
+///   progress percentage automatically takes the opposite side
+///   ([progressAlignment] is ignored in that case).
 ///
 /// The progress percentage is never shown when the indicator is
 /// indeterminate (`progressType: OudsProgressIndicatorType.indeterminate`),
@@ -835,16 +922,21 @@ class OudsLinearProgressIndicatorHelperText {
   /// percentage.
   final String? label;
 
-  /// Horizontal position of [label] when both [label] and [progress] are
-  /// displayed; the progress percentage automatically takes the opposite
-  /// side. Ignored when only one of them is displayed, in which case it is
-  /// always centered. Must be [OudsProgressIndicatorHelperTextAlignment.start]
-  /// or [OudsProgressIndicatorHelperTextAlignment.end].
+  /// Horizontal alignment for the custom label when it is the only item
+  /// displayed, or the side it takes (`start`/`end`) when both the label and
+  /// the progress percentage are displayed together.
   final OudsProgressIndicatorHelperTextAlignment labelAlignment;
+
+  /// Horizontal alignment for the progress percentage when it is the only
+  /// item displayed. Ignored when [label] is also displayed and
+  /// non-centered, in which case the progress percentage automatically takes
+  /// the side opposite [labelAlignment].
+  final OudsProgressIndicatorHelperTextAlignment progressAlignment;
 
   const OudsLinearProgressIndicatorHelperText({
     this.progress = true,
     this.label,
     this.labelAlignment = OudsProgressIndicatorHelperTextAlignment.end,
+    this.progressAlignment = OudsProgressIndicatorHelperTextAlignment.start,
   });
 }
