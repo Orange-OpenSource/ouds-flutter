@@ -254,6 +254,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.selectedType ==
               ProgressIndicatorEnumType.determinate,
           keyboardType: TextInputType.number,
+          suffixText: '%',
         ),
         CustomizationDropdownMenu<StatusEnum>(
           label: StatusEnum.enumName(context),

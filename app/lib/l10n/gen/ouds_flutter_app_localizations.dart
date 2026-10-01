@@ -1747,6 +1747,12 @@ abstract class AppLocalizations {
   /// **'Gap size'**
   String get app_components_progressIndicator_gapSize_tech;
 
+  /// No description provided for @app_components_progressIndicator_progress_helper_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a value between 0 and 100'**
+  String get app_components_progressIndicator_progress_helper_label;
+
   /// No description provided for @app_components_progressIndicator_linearProgressIndicator_tech.
   ///
   /// In en, this message translates to:

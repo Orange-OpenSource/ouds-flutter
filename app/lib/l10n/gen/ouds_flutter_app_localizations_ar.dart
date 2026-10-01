@@ -925,6 +925,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_progressIndicator_gapSize_tech => 'Gap size';
 
   @override
+  String get app_components_progressIndicator_progress_helper_label =>
+      'أدخل قيمة بين 0 و 100';
+
+  @override
   String get app_components_progressIndicator_linearProgressIndicator_tech =>
       'Linear progress indicator';
 

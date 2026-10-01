@@ -130,7 +130,7 @@ class ValueState {
   ValueState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _progressValue = "0.75";
+  String _progressValue = "75";
 
   String get value => _progressValue;
   set value(String newValue) {

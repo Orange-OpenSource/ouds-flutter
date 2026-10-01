@@ -91,7 +91,7 @@ class ProgressIndicatorCodeGenerator {
         ProgressIndicatorEnumType.indeterminate) {
       return "value: null";
     } else {
-      return "value: ${customizationState?.value}";
+      return "value: ${ProgressIndicatorCustomizationUtils.getProgressValue(customizationState?.value ?? '')}";
     }
   }
 

@@ -63,14 +63,16 @@ class ProgressIndicatorCustomizationUtils {
     }
   }
 
-  /// Parses the progress value from a string.
-  static double getProgressValue(String progress) {
-    if (progress.isEmpty) return 0.0;
+  /// Parses the progress value from a percentage string (e.g. "75" for 75%)
+  /// and returns the corresponding 0.0-1.0 fraction expected by the progress
+  /// indicator widgets.
+  static double getProgressValue(String percentage) {
+    if (percentage.isEmpty) return 0.0;
     try {
-      final value = double.parse(progress);
-      return value.clamp(0.0, 1.0); // Also clamp to valid range
+      final value = double.parse(percentage);
+      return value.clamp(0.0, 100.0) / 100.0; // Also clamp to valid range
     } catch (e) {
-      debugPrint('Invalid progress value: $progress');
+      debugPrint('Invalid progress value: $percentage');
       return 0.0;
     }
   }
