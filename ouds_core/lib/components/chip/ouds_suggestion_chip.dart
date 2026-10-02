@@ -23,6 +23,8 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -49,6 +51,7 @@ enum OudsChipStyle { defaultStyle, selected }
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
 /// - [icon]: Icon displayed in the suggestion chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the suggestion chip is clicked.
+/// - [skeleton] : An optional skeleton that improves the perceived loading time by providing a visual cue of where the suggestion chip will appear once fully loaded.
 ///
 /// ### You can use [OudsSuggestionChip] component in your project, customizing parameters as needed :
 ///
@@ -73,6 +76,16 @@ enum OudsChipStyle { defaultStyle, selected }
 /// )
 /// ```
 ///
+/// **Text only suggestion chip with Skeleton :**
+///
+/// ```dart
+/// OudsSuggestionChip(
+///       label: 'Label',
+///       onPressed: () {},
+///       skeleton: OudsSkeleton(),
+///     );
+/// ```
+///
 class OudsSuggestionChip extends StatefulWidget {
   final String? label;
   @Deprecated(
@@ -85,6 +98,7 @@ class OudsSuggestionChip extends StatefulWidget {
   )
   final String? contentDescription;
   final VoidCallback? onPressed;
+  final OudsSkeleton? skeleton;
 
   /// Creates a text-only [OudsSuggestionChip].
   ///
@@ -101,6 +115,7 @@ class OudsSuggestionChip extends StatefulWidget {
     )
     this.contentDescription,
     this.onPressed,
+    this.skeleton,
   }) : icon = null;
 
   /// Creates an [OudsSuggestionChip] with a text and an icon.
@@ -112,6 +127,7 @@ class OudsSuggestionChip extends StatefulWidget {
     this.label,
     this.icon,
     this.onPressed,
+    this.skeleton,
   }) : avatar = null,
        contentDescription = null;
 
@@ -191,6 +207,9 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
       context,
       InteractionAspect.pressed,
     );
+    if (widget.skeleton != null) {
+      _isFocused = false;
+    }
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
     final chipStateDeterminer = OudsChipControlStateDeterminer(
@@ -292,30 +311,41 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                     ),
                   ),
                 // Border interior + content
-                Container(
-                  decoration: BoxDecoration(
-                    border: OudsBorder().borderAll(
-                      color: _isFocused
-                          ? OudsTheme.of(
-                              context,
-                            ).colorScheme(context).borderFocusInset
-                          : Colors.transparent,
-                      width: borderTokens.widthFocusInset,
-                    ),
+                OudsSkeletonLayout(
+                  visible: widget.skeleton != null,
+                  securityMargin: widget.skeleton?.securityMargin ?? false,
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       OudsTheme.of(
                         context,
                       ).componentsTokens(context).chip.borderRadius,
                     ),
                   ),
-                  child: _buildLayout(
-                    context,
-                    chipBorderModifier,
-                    chipIconColorModifier,
-                    chipBgColorModifier,
-                    chipTextColorModifier,
-                    chipState,
-                    isDisabled,
+                  content: (context) => Container(
+                    decoration: BoxDecoration(
+                      border: OudsBorder().borderAll(
+                        color: _isFocused
+                            ? OudsTheme.of(
+                                context,
+                              ).colorScheme(context).borderFocusInset
+                            : Colors.transparent,
+                        width: borderTokens.widthFocusInset,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        OudsTheme.of(
+                          context,
+                        ).componentsTokens(context).chip.borderRadius,
+                      ),
+                    ),
+                    child: _buildLayout(
+                      context,
+                      chipBorderModifier,
+                      chipIconColorModifier,
+                      chipBgColorModifier,
+                      chipTextColorModifier,
+                      chipState,
+                      isDisabled,
+                    ),
                   ),
                 ),
               ],

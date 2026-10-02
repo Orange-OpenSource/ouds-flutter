@@ -44,17 +44,17 @@ class ChipFilterCodeGenerator {
     switch (layout) {
       case OudsChipLayout.textOnly:
         code =
-            """OudsFilterChip(\nlabel: "$label",\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)}\n);""";
+            """OudsFilterChip(\n label: "$label",\n selected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)},\n${skeletonCode(context)});""";
         break;
 
       case OudsChipLayout.iconOnly:
         code =
-            "OudsFilterChip.icon(\nicon: OudsIcon('${customizationState?.isTinted == true ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}', tinted: ${customizationState?.tintedIcon}),\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)}\n);";
+            "OudsFilterChip.icon(\n icon: OudsIcon('${customizationState?.isTinted == true ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}', tinted: ${customizationState?.tintedIcon}),\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)},\n${skeletonCode(context)});";
         break;
 
       case OudsChipLayout.iconAndText:
         code =
-            """OudsFilterChip.icon(\nlabel: "$label",\nicon: OudsIcon('${customizationState?.isTinted == true ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}', tinted: ${customizationState?.tintedIcon}),\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)}\n);""";
+            """OudsFilterChip.icon(\n label: "$label",\n icon: OudsIcon('${customizationState?.isTinted == true ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}', tinted: ${customizationState?.tintedIcon}),\n selected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)},\n${skeletonCode(context)});""";
         break;
     }
 
@@ -67,9 +67,19 @@ class ChipFilterCodeGenerator {
       context,
     );
     // Return the onChanged callback code with its enabled or disabled state
-    return "onSelected: ${customizationState?.hasEnabled == true ? "(bool newValue) { \n"
-              "setState(() {\n "
-              "isSelected = newValue;\n "
-              "});\n}" : 'null'},";
+    return " onSelected: ${customizationState?.hasEnabled == true ? "(bool newValue) { \n"
+              " setState(() {\n "
+              " isSelected = newValue;\n "
+              " });\n }" : 'null'}";
+  }
+
+  // Method to generate the skeleton code
+  static String skeletonCode(BuildContext context) {
+    final ChipCustomizationState? customizationState = ChipCustomization.of(
+      context,
+    );
+    return customizationState?.hasSkeleton == true
+        ? ' skeleton: OudsSkeleton(),\n'
+        : '';
   }
 }
