@@ -303,6 +303,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_untinted_tech => 'Untinted';
 
   @override
+  String get app_components_common_skeleton_tech => 'Skeleton';
+
+  @override
   String get app_components_alert_tech => 'Alert';
 
   @override

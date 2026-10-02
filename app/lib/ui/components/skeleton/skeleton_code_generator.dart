@@ -16,7 +16,7 @@ import 'package:ouds_flutter_demo/ui/components/skeleton/skeleton_customization.
 ///
 /// The SkeletonCodeGenerator class is responsible for dynamically generating Flutter
 /// code for the customization of a skeleton component. It leverages the skeleton's
-/// customization state (width, height, animated) and generates the corresponding code
+/// customization state (animated,hasSecurityMargin) and generates the corresponding code
 /// in string format, which can be used for rendering or previewing the skeleton with
 /// the selected properties.
 ///

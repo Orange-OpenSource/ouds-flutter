@@ -56,7 +56,7 @@ class OudsSkeleton extends StatefulWidget {
   const OudsSkeleton({
     super.key,
     this.animated = true,
-    this.securityMargin = true,
+    this.securityMargin = false,
   });
 
   @override
@@ -65,15 +65,25 @@ class OudsSkeleton extends StatefulWidget {
 
 class _OudsSkeletonState extends State<OudsSkeleton>
     with SingleTickerProviderStateMixin {
-  static const _shimmerDuration = Duration(milliseconds: 1500);
+  // The shimmer sweeps across the skeleton in 800ms, then holds at the end position for 450ms
+  // before the next sweep starts, giving the animation a brief pause between each pass.
+  static const _shimmerMoveDuration = Duration(milliseconds: 800);
+  static const _shimmerPauseDuration = Duration(milliseconds: 450);
+  static final _shimmerTotalDuration =
+      _shimmerMoveDuration + _shimmerPauseDuration;
+  static final _shimmerMoveFraction =
+      _shimmerMoveDuration.inMilliseconds /
+      _shimmerTotalDuration.inMilliseconds;
 
   late final AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: _shimmerDuration)
-      ..repeat();
+    _controller = AnimationController(
+      vsync: this,
+      duration: _shimmerTotalDuration,
+    )..repeat();
   }
 
   @override
@@ -105,62 +115,68 @@ class _OudsSkeletonState extends State<OudsSkeleton>
     ).spaceScheme(context).paddingBlockThreeExtraSmall;
     final shouldAnimate = widget.animated && !_shouldDisableAnimations(context);
 
-    final placeholder = Container(
-      padding: widget.securityMargin
-          ? EdgeInsets.symmetric(vertical: padding)
-          : EdgeInsets.zero,
-      width: 200,
-      height: 62,
-      color: tokens.colorBg,
+    // The shimmer is a dedicated gradient layer drawn on top of the background and translated
+    // from fully off-screen left to fully off-screen right, clipped to the skeleton's bounds.
+    // Using a separate layer with normal alpha blending (instead of a ShaderMask blend mode)
+    // keeps the sweep clearly visible regardless of how subtle the gradient token colors are.
+    final shimmer = LayoutBuilder(
+      builder: (context, constraints) {
+        final maxWidth = constraints.maxWidth;
+        return AnimatedBuilder(
+          animation: _controller,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  tokens.colorGradientStartEnd,
+                  tokens.colorGradientMiddle,
+                  tokens.colorGradientStartEnd,
+                ],
+                stops: const [0.0, 0.5, 1.0],
+              ),
+            ),
+          ),
+          builder: (context, child) {
+            // Ease the sweep across the move fraction of the cycle, then hold it in place
+            // (Interval clamps to the curve's end value) for the remaining pause fraction.
+            final progress = Interval(
+              0.0,
+              _shimmerMoveFraction,
+              curve: Curves.easeInOut,
+            ).transform(_controller.value);
+            final dx = -maxWidth + progress * 2 * maxWidth;
+            return Transform.translate(offset: Offset(dx, 0), child: child);
+          },
+        );
+      },
     );
 
-    final content = shouldAnimate
-        ? AnimatedBuilder(
-            animation: _controller,
-            child: placeholder,
-            builder: (context, child) {
-              return ShaderMask(
-                blendMode: BlendMode.srcATop,
-                shaderCallback: (bounds) => LinearGradient(
-                  colors: [
-                    tokens.colorGradientStartEnd,
-                    tokens.colorGradientMiddle,
-                    tokens.colorGradientStartEnd,
-                  ],
-                  stops: const [0.0, 0.5, 1.0],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  transform: _OudsSkeletonShimmerTransform(
-                    slidePercent: _controller.value,
-                  ),
-                ).createShader(bounds),
-                child: child,
-              );
-            },
-          )
-        : placeholder;
+    final content = SizedBox(
+      width: 200,
+      height: 62,
+      child: ClipRect(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            ColoredBox(color: tokens.colorBg),
+            if (shouldAnimate) shimmer,
+          ],
+        ),
+      ),
+    );
 
     return Semantics(
       label: OudsLocalizations.of(context)?.core_common_loading_a11y,
-      child: ExcludeSemantics(child: content),
-    );
-  }
-}
-
-/// Slides the shimmer gradient horizontally across the skeleton's bounds as [slidePercent] goes
-/// from `0.0` to `1.0`. The gradient enters fully off-screen on one side and exits fully
-/// off-screen on the other, so the sweep loops smoothly when the driving animation repeats.
-class _OudsSkeletonShimmerTransform extends GradientTransform {
-  const _OudsSkeletonShimmerTransform({required this.slidePercent});
-
-  final double slidePercent;
-
-  @override
-  Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
-    return Matrix4.translationValues(
-      bounds.width * (slidePercent * 3 - 1.5),
-      0.0,
-      0.0,
+      child: ExcludeSemantics(
+        child: Padding(
+          padding: widget.securityMargin
+              ? EdgeInsets.symmetric(vertical: padding)
+              : EdgeInsets.zero,
+          child: content,
+        ),
+      ),
     );
   }
 }

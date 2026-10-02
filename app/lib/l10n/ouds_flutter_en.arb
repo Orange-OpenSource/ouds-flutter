@@ -142,6 +142,7 @@
   "app_components_common_icon_tech": "Icon",
   "app_components_common_tinted_tech": "Tinted",
   "app_components_common_untinted_tech": "Untinted",
+  "app_components_common_skeleton_tech": "Skeleton",
 
   "@_components_alert": {},
   "app_components_alert_tech": "Alert",

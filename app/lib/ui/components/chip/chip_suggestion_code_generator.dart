@@ -44,20 +44,30 @@ class ChipSuggestionCodeGenerator {
     switch (layout) {
       case OudsChipLayout.textOnly:
         code =
-            """OudsSuggestionChip(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
+            """OudsSuggestionChip(\n label: "$label",\n onPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n${skeletonCode(context)});""";
         break;
 
       case OudsChipLayout.iconOnly:
         code =
-            "OudsSuggestionChip.icon(\nicon: OudsIcon(${customizationState?.isTinted == true ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: ${customizationState?.tintedIcon}),\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
+            "OudsSuggestionChip.icon(\n icon: OudsIcon(${customizationState?.isTinted == true ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: ${customizationState?.tintedIcon}),\n onPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n${skeletonCode(context)});";
         break;
 
       case OudsChipLayout.iconAndText:
         code =
-            """OudsSuggestionChip.icon(\nlabel: "$label",\nicon: OudsIcon(${customizationState?.isTinted == true ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: ${customizationState?.tintedIcon}),\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
+            """OudsSuggestionChip.icon(\n label: "$label",\n icon: OudsIcon(${customizationState?.isTinted == true ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: ${customizationState?.tintedIcon}),\n onPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n${skeletonCode(context)});""";
         break;
     }
 
     return code; // Return the generated code as a string
+  }
+
+  // Method to generate the skeleton code
+  static String skeletonCode(BuildContext context) {
+    final ChipCustomizationState? customizationState = ChipCustomization.of(
+      context,
+    );
+    return customizationState?.hasSkeleton == true
+        ? ' skeleton: OudsSkeleton(),\n'
+        : '';
   }
 }

@@ -655,6 +655,12 @@ abstract class AppLocalizations {
   /// **'Untinted'**
   String get app_components_common_untinted_tech;
 
+  /// No description provided for @app_components_common_skeleton_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Skeleton'**
+  String get app_components_common_skeleton_tech;
+
   /// No description provided for @app_components_alert_tech.
   ///
   /// In en, this message translates to:

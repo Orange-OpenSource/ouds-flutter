@@ -39,11 +39,15 @@ void main() {
         ),
       );
 
-      expect(find.byType(ShaderMask), findsOneWidget);
+      final shimmerFinder = find.descendant(
+        of: find.byType(OudsSkeleton),
+        matching: find.byType(Transform),
+      );
+      expect(shimmerFinder, findsOneWidget);
 
-      // Pumping the animation should not throw and should keep the shader mask mounted.
+      // Pumping the animation should not throw and should keep the shimmer layer mounted.
       await tester.pump(const Duration(milliseconds: 200));
-      expect(find.byType(ShaderMask), findsOneWidget);
+      expect(shimmerFinder, findsOneWidget);
     });
 
     testWidgets('renders a static placeholder when animated is false', (
@@ -59,7 +63,13 @@ void main() {
         ),
       );
 
-      expect(find.byType(ShaderMask), findsNothing);
+      expect(
+        find.descendant(
+          of: find.byType(OudsSkeleton),
+          matching: find.byType(Transform),
+        ),
+        findsNothing,
+      );
     });
 
     testWidgets(
@@ -78,7 +88,13 @@ void main() {
           ),
         );
 
-        expect(find.byType(ShaderMask), findsNothing);
+        expect(
+          find.descendant(
+            of: find.byType(OudsSkeleton),
+            matching: find.byType(Transform),
+          ),
+          findsNothing,
+        );
       },
     );
 
