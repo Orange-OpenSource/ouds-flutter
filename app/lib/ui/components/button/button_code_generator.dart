@@ -50,17 +50,17 @@ class ButtonCodeGenerator {
     switch (layout) {
       case OudsButtonLayout.textOnly:
         code =
-            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\n label: "$label",\n appearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${skeletonCode(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconOnly:
         code =
-            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: ${iconCode(context)},\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\n icon: ${iconCode(context)},\n appearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${skeletonCode(context)}\n${disableCode(context)}\n${skeletonCode(context)}""";
         break;
 
       case OudsButtonLayout.iconAndText:
         code =
-            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: ${iconCode(context)},\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+            """${coloredSurfaceCodeModifier(context)}$buttonSizeConstructor(\nicon: ${iconCode(context)},\n label: "$label",\n appearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${skeletonCode(context)}\n${disableCode(context)}\n${skeletonCode(context)}""";
         break;
     }
 
@@ -76,7 +76,7 @@ class ButtonCodeGenerator {
     String end = customizationState?.hasOnColoredBox == true ? " ),\n);" : ");";
 
     // Return the onPressed callback code with its enabled or disabled state
-    return "onPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n$end";
+    return " onPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n$end";
   }
 
   static String loaderCodeModifier(BuildContext context) {
@@ -84,7 +84,7 @@ class ButtonCodeGenerator {
       context,
     );
     if (customizationState?.hasLoader == true) {
-      return "\nisLoading: true,";
+      return "\n isLoading: true,";
     } else {
       return "";
     }
@@ -95,7 +95,7 @@ class ButtonCodeGenerator {
       context,
     );
     if (customizationState?.hasFullWidth == true) {
-      return "\nisFullWidth: ${customizationState?.hasFullWidth},";
+      return "\n isFullWidth: ${customizationState?.hasFullWidth},";
     } else {
       return "";
     }
@@ -109,8 +109,8 @@ class ButtonCodeGenerator {
     );
     final bool isTinted = customizationState?.isTinted ?? true;
     return isTinted
-        ? "OudsIcon('AppAssets.icons.assistanceTipsAndTricks')"
-        : "OudsIcon('AppAssets.icons.icUntintedSquare', tinted: false)";
+        ? " OudsIcon('AppAssets.icons.assistanceTipsAndTricks')"
+        : " OudsIcon('AppAssets.icons.icUntintedSquare', tinted: false)";
   }
 
   // Method to generate the constructor name based on the selected size:
@@ -135,9 +135,19 @@ class ButtonCodeGenerator {
     // If the button should have a colored surface, wrap the button in OudsColoredBox
     if (customizationState?.hasOnColoredBox == true) {
       code =
-          '''OudsColoredBox(\ncolor: OudsColoredBoxColor.brandPrimary,\nchild: ''';
+          '''OudsColoredBox(\n color: OudsColoredBoxColor.brandPrimary,\n child: ''';
     }
 
     return code;
+  }
+
+  // Method to generate the skeleton code
+  static String skeletonCode(BuildContext context) {
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
+      context,
+    );
+    return customizationState?.hasSkeleton == true
+        ? ' skeleton: OudsSkeleton(),'
+        : '';
   }
 }
