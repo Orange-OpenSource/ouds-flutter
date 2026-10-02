@@ -24,6 +24,8 @@ import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -123,6 +125,7 @@ class OudsAlertMessageActionLayout {
 ///   Each bullet should remain short, clear and easy to scan. Avoid long sentences or complex structures.
 ///   Supports lightweight inline markdown formatting for text emphasis :
 ///   - Strong text `**bold**`.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the alert message will appear once fully loaded.
 ///
 /// ## Usage Example:
 ///
@@ -131,6 +134,15 @@ class OudsAlertMessageActionLayout {
 ///   label: 'Your profile has been updated.',
 ///   status: Positive(),
 ///   onClose: () {},
+/// )
+/// ```
+///
+/// ```dart
+/// OudsAlertMessage(
+///   label: 'Your profile has been updated.',
+///   status: Positive(),
+///   onClose: () {},
+///   skeleton: OudsSkeleton(),
 /// )
 /// ```
 ///
@@ -145,6 +157,7 @@ class OudsAlertMessage extends StatefulWidget {
     this.onDescriptionLinkTapped,
     this.actionLayout,
     this.bulletList,
+    this.skeleton,
   });
 
   /// The main message displayed in the alert.
@@ -177,6 +190,9 @@ class OudsAlertMessage extends StatefulWidget {
 
   /// An optional list of bullet points to display below the main content.
   final List<String>? bulletList;
+
+  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the alert message will appear once fully loaded.
+  final OudsSkeleton? skeleton;
 
   @override
   State<OudsAlertMessage> createState() => _OudsAlertMessageState();
@@ -387,23 +403,30 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
 
     // Wrap the entire component in a Semantics widget for accessibility
     // and a decorated Container for styling.
-    return Container(
-      constraints: BoxConstraints(
-        minWidth: alertTokens.sizeMinWidth,
-        minHeight: alertTokens.sizeMinHeight,
-      ),
-      padding: EdgeInsetsDirectional.only(
-        start: alertTokens.spacePaddingInline,
-      ),
-      decoration: BoxDecoration(
-        border: OudsBorder().borderAll(
-          width: alertMessageTokens.borderWidth,
-          color: Colors.transparent,
-        ),
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      securityMargin: widget.skeleton?.securityMargin ?? false,
+      shape: RoundedRectangleBorder(
         borderRadius: OudsAlertMessageBorderModifier.getBorderRadius(context),
-        color: alertMessageStatusModifier.getStatusColor(widget.status),
       ),
-      child: alertContent,
+      content: (context) => Container(
+        constraints: BoxConstraints(
+          minWidth: alertTokens.sizeMinWidth,
+          minHeight: alertTokens.sizeMinHeight,
+        ),
+        padding: EdgeInsetsDirectional.only(
+          start: alertTokens.spacePaddingInline,
+        ),
+        decoration: BoxDecoration(
+          border: OudsBorder().borderAll(
+            width: alertMessageTokens.borderWidth,
+            color: Colors.transparent,
+          ),
+          borderRadius: OudsAlertMessageBorderModifier.getBorderRadius(context),
+          color: alertMessageStatusModifier.getStatusColor(widget.status),
+        ),
+        child: alertContent,
+      ),
     );
   }
 
