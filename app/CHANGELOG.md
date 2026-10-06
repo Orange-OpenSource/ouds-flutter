@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] For `button` component, update to version 3.3.0 ([#832](https://github.com/Orange-OpenSource/ouds-flutter/issues/832))
 - [DemoApp][Library] Update `progress-indicator`: add size parameter to OudsCircularProgressIndicator for button integration ([#876](https://github.com/Orange-OpenSource/ouds-flutter/issues/876))
 ### Fixed
+- [Library] Bug `Text Input` The suffix is misaligned when the label is null ([#977](https://github.com/Orange-OpenSource/ouds-flutter/issues/977))
 - [Library] for `Alert Message` component, Close button is not reached with keyboard ([#811](https://github.com/Orange-OpenSource/ouds-flutter/issues/811))
 - [Library] Bug A11Y `Top bar` Action button and badge are not grouped in iOS ([#816](https://github.com/Orange-OpenSource/ouds-flutter/issues/816))
 - [Library] `Navigation Button` Disabled state is not vocalized ([#931](https://github.com/Orange-OpenSource/ouds-flutter/issues/931))
