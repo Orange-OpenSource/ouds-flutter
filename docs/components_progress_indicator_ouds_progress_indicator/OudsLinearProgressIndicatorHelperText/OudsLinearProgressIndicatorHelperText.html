@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the OudsProgressIndicator.new constructor from Class OudsProgressIndicator from the ouds_progress_indicator library, for the Dart programming language.">
-  <title>OudsProgressIndicator.new constructor - OudsProgressIndicator - ouds_progress_indicator library - Dart API</title>
+  <meta name="description" content="API docs for the OudsLinearProgressIndicatorHelperText.new constructor from Class OudsLinearProgressIndicatorHelperText from the ouds_progress_indicator library, for the Dart programming language.">
+  <title>OudsLinearProgressIndicatorHelperText.new constructor - OudsLinearProgressIndicatorHelperText - ouds_progress_indicator library - Dart API</title>
 
 
   
@@ -26,10 +26,10 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_progress_indicator_ouds_progress_indicator/">components&#47;progress_indicator&#47;ouds_progress_indicator.dart</a></li>
-    <li><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator-class.html">OudsProgressIndicator</a></li>
-    <li class="self-crumb">OudsProgressIndicator.new const constructor</li>
+    <li><a href="../../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText-class.html">OudsLinearProgressIndicatorHelperText</a></li>
+    <li class="self-crumb">OudsLinearProgressIndicatorHelperText.new const constructor</li>
   </ol>
-  <div class="self-name">OudsProgressIndicator.new</div>
+  <div class="self-name">OudsLinearProgressIndicatorHelperText.new</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -46,47 +46,31 @@
   <div
       id="dartdoc-main-content"
       class="main-content"
-      data-above-sidebar="components_progress_indicator_ouds_progress_indicator&#47;OudsProgressIndicator-class-sidebar.html"
+      data-above-sidebar="components_progress_indicator_ouds_progress_indicator&#47;OudsLinearProgressIndicatorHelperText-class-sidebar.html"
       data-below-sidebar="">
       <div>
-<h1><span class="kind-constructor">OudsProgressIndicator</span> constructor 
+<h1><span class="kind-constructor">OudsLinearProgressIndicatorHelperText</span> constructor 
 </h1></div>
 
     <section class="multi-line-signature">
       const
-      <span class="name ">OudsProgressIndicator</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
-<li><span class="parameter" id="param-progressType"><span class="type-annotation"><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorType.html">OudsProgressIndicatorType</a>?</span> <span class="parameter-name">progressType</span> = <span class="default-value">OudsProgressIndicatorType.determinate</span>, </span></li>
-<li><span class="parameter" id="param-status"><span class="type-annotation"><a href="../../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></span> <span class="parameter-name">status</span> = <span class="default-value">const Neutral()</span>, </span></li>
-<li><span class="parameter" id="param-animated"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">animated</span> = <span class="default-value">true</span>, </span></li>
-<li><span class="parameter" id="param-value"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">value</span>, </span></li>
-<li><span class="parameter" id="param-gapSize"><span class="type-annotation"><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorGapSize.html">OudsProgressIndicatorGapSize</a></span> <span class="parameter-name">gapSize</span> = <span class="default-value">OudsProgressIndicatorGapSize.defaultSize</span>, </span></li>
-<li><span class="parameter" id="param-track"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">track</span> = <span class="default-value">true</span>, </span></li>
-<li><span class="parameter" id="param-semanticsLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticsLabel</span>, </span></li>
+      <span class="name ">OudsLinearProgressIndicatorHelperText</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="param-progress"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">progress</span> = <span class="default-value">true</span>, </span></li>
+<li><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span></li>
+<li><span class="parameter" id="param-labelAlignment"><span class="type-annotation"><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a></span> <span class="parameter-name">labelAlignment</span> = <span class="default-value">OudsProgressIndicatorHelperTextAlignment.end</span>, </span></li>
+<li><span class="parameter" id="param-progressAlignment"><span class="type-annotation"><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a></span> <span class="parameter-name">progressAlignment</span> = <span class="default-value">OudsProgressIndicatorHelperTextAlignment.start</span>, </span></li>
 </ol>})
     </section>
     
-<section class="desc markdown">
-  <p>Creates a progress indicator.</p>
-<p>The <code>value</code> value must be between <code>0.0</code> and <code>1.0</code> when <code>progressType</code>
-is <a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorType.html">OudsProgressIndicatorType.determinate</a>; it is ignored otherwise.</p>
-<h2 id="accessibility">Accessibility</h2>
-<p>Provide a <code>semanticsLabel</code> to describe the purpose of this indicator to
-assistive technologies (TalkBack / VoiceOver).</p>
-</section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">const OudsProgressIndicator({
-  super.key,
-  this.progressType = OudsProgressIndicatorType.determinate,
-  this.status = const Neutral(),
-  this.animated = true,
-  this.value,
-  this.gapSize = OudsProgressIndicatorGapSize.defaultSize,
-  this.track = true,
-  this.semanticsLabel,
+  <pre class="language-dart"><code class="language-dart">const OudsLinearProgressIndicatorHelperText({
+  this.progress = true,
+  this.label,
+  this.labelAlignment = OudsProgressIndicatorHelperTextAlignment.end,
+  this.progressAlignment = OudsProgressIndicatorHelperTextAlignment.start,
 });</code></pre>
 </section>
 
@@ -102,11 +86,11 @@ assistive technologies (TalkBack / VoiceOver).</p>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_progress_indicator_ouds_progress_indicator/">ouds_progress_indicator</a></li>
-    <li><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator-class.html">OudsProgressIndicator</a></li>
-    <li class="self-crumb">OudsProgressIndicator.new const constructor</li>
+    <li><a href="../../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicatorHelperText-class.html">OudsLinearProgressIndicatorHelperText</a></li>
+    <li class="self-crumb">OudsLinearProgressIndicatorHelperText.new const constructor</li>
 </ol>
 
-    <h5>OudsProgressIndicator class</h5>
+    <h5>OudsLinearProgressIndicatorHelperText class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-left-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
