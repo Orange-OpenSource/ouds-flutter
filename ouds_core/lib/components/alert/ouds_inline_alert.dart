@@ -75,6 +75,7 @@ class _OudsInlineAlertState extends State<OudsInlineAlert> {
     return OudsSkeletonLayout(
       visible: widget.skeleton != null,
       securityMargin: widget.skeleton?.securityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
       content: (context) => Semantics(
         label: widget.status is Warning
             ? OudsLocalizations.of(context)?.core_common_warning_a11y

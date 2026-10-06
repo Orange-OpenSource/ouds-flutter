@@ -406,6 +406,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     return OudsSkeletonLayout(
       visible: widget.skeleton != null,
       securityMargin: widget.skeleton?.securityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
       shape: RoundedRectangleBorder(
         borderRadius: OudsAlertMessageBorderModifier.getBorderRadius(context),
       ),

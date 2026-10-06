@@ -19,6 +19,8 @@ import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
@@ -39,9 +41,11 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 /// and notifies changes through [onChanged].
 ///
 ///  Parameters:
-///  [value] The value represented by this switch . Used to determine selection.
-///  [onChanged] Callback triggered when the user selects this switch.
+/// - [value]: The value represented by this switch. Used to determine selection.
+/// - [onChanged]: Callback triggered when the user selects this switch.
 /// If `null`, switch is disabled and non-interactive.
+/// - [readOnly]: Controls the read only state of the switch. When `true` the switch is disabled.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the switch will appear once fully loaded.
 ///
 /// ### You can use [OudsSwitch] component in your project, customizing parameters as needed :
 ///
@@ -52,6 +56,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 ///           // Handle switch change state.
 ///       }
 ///     readOnly: false,
+///     skeleton: OudsSkeleton(),
 ///   );
 /// ```
 ///
@@ -60,12 +65,14 @@ class OudsSwitch extends StatefulWidget {
   final bool value;
   final ValueChanged<bool>? onChanged;
   final bool readOnly;
+  final OudsSkeleton? skeleton;
 
   const OudsSwitch({
     super.key,
     required this.value,
     this.onChanged,
     this.readOnly = false,
+    this.skeleton,
   });
 
   @override
@@ -123,70 +130,75 @@ class _OudsSwitchState extends State<OudsSwitch> {
       context,
     ).componentsTokens(context).switchButton;
 
-    return MergeSemantics(
-      child: Semantics(
-        enabled: widget.onChanged != null,
-        toggled: widget.value,
-        button: true,
-        child: Material(
-          color: Colors.transparent,
-          child: SizedBox(
-            height: switchButton.sizeMinHeightInteractiveArea,
-            child: InkWell(
-              onTap: (!isReadOnly && widget.onChanged != null)
-                  ? () {
-                      _isPressed = true;
-                      // Added to improve visual rendering fluidity by allowing Flutter
-                      // to complete the current frame before executing the state change logic.
-                      SchedulerBinding.instance.addPostFrameCallback((_) {
-                        widget.onChanged!(!widget.value);
-                        _isPressed = false;
-                      });
-                    }
-                  : null,
-              splashFactory: NoSplash.splashFactory,
-              highlightColor: Colors.transparent,
-              onHover: (hovering) {
-                setState(() {
-                  _isHovered = hovering;
-                });
-              },
-              onHighlightChanged: (highlighted) {
-                setState(() {
-                  _isPressed = highlighted;
-                });
-              },
-              onFocusChange: (focused) {
-                setState(() {
-                  _isFocused = focused;
-                });
-              },
-              child: Align(
-                alignment: Alignment.center,
-                child: Container(
-                  width: switchButton.sizeWidthTrack,
-                  height: switchButton.sizeHeightTrack,
-                  constraints: BoxConstraints(
-                    minHeight: switchButton.sizeMinHeight,
-                    minWidth: switchButton.sizeMinWidth,
-                    maxHeight: switchButton.sizeMaxHeight,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      switchButton.borderRadiusTrack,
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      securityMargin: widget.skeleton?.securityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+      content: (context) => MergeSemantics(
+        child: Semantics(
+          enabled: widget.onChanged != null,
+          toggled: widget.value,
+          button: true,
+          child: Material(
+            color: Colors.transparent,
+            child: SizedBox(
+              height: switchButton.sizeMinHeightInteractiveArea,
+              child: InkWell(
+                onTap: (!isReadOnly && widget.onChanged != null)
+                    ? () {
+                        _isPressed = true;
+                        // Added to improve visual rendering fluidity by allowing Flutter
+                        // to complete the current frame before executing the state change logic.
+                        SchedulerBinding.instance.addPostFrameCallback((_) {
+                          widget.onChanged!(!widget.value);
+                          _isPressed = false;
+                        });
+                      }
+                    : null,
+                splashFactory: NoSplash.splashFactory,
+                highlightColor: Colors.transparent,
+                onHover: (hovering) {
+                  setState(() {
+                    _isHovered = hovering;
+                  });
+                },
+                onHighlightChanged: (highlighted) {
+                  setState(() {
+                    _isPressed = highlighted;
+                  });
+                },
+                onFocusChange: (focused) {
+                  setState(() {
+                    _isFocused = focused;
+                  });
+                },
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: switchButton.sizeWidthTrack,
+                    height: switchButton.sizeHeightTrack,
+                    constraints: BoxConstraints(
+                      minHeight: switchButton.sizeMinHeight,
+                      minWidth: switchButton.sizeMinWidth,
+                      maxHeight: switchButton.sizeMaxHeight,
                     ),
-                    color: switchTickModifier.getBackgroundSwitchColor(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        switchButton.borderRadiusTrack,
+                      ),
+                      color: switchTickModifier.getBackgroundSwitchColor(
+                        switchState,
+                        widget.value,
+                        _isHighContrast,
+                      ),
+                    ),
+                    child: _buildCursorIndicator(
+                      context,
                       switchState,
-                      widget.value,
+                      isPressedInherited,
+                      isHoveredInherited,
                       _isHighContrast,
                     ),
-                  ),
-                  child: _buildCursorIndicator(
-                    context,
-                    switchState,
-                    isPressedInherited,
-                    isHoveredInherited,
-                    _isHighContrast,
                   ),
                 ),
               ),

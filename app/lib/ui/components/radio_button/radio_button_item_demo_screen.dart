@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
@@ -195,6 +196,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
               constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                   ? true
                   : false,
+              skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
             ),
             OudsRadioButtonItem<RadioOption>(
               value: RadioOption.second,
@@ -238,6 +240,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
               constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                   ? true
                   : false,
+              skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
             ),
           ],
         ),
@@ -417,6 +420,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             setState(() {
               customizationState.hasConstrainedMaxWidth = value;
             });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
           },
         ),
       ],
