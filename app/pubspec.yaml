@@ -50,7 +50,7 @@ dependencies:
   # WebView.
   webview_flutter: ^4.13.0
   # URL Lancher.
-  url_launcher: ^6.0.3
+  url_launcher: ^6.3.3
   # Core
   ouds_core: ^3.0.0
   # Global raw token
