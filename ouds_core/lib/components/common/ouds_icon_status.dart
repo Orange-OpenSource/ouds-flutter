@@ -19,6 +19,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 
 /// Describes the configuration for an [OudsBadge] / [OudsTag] with an icon.
@@ -34,34 +35,45 @@ import 'package:ouds_core/components/badge/ouds_badge.dart';
 /// *   [Positive], [Info], [Warning], and [Negative] use fixed icons defined
 ///     by the design system to convey a specific meaning.
 ///
-/// ### Example usage in [OudsBadge]
+/// ### Example usage in [OudsAlertMessage]
+///
+/// An Alert message with a fixed "success" icon.
 ///
 /// ```dart
-/// // A badge with a fixed "success" icon.
-/// OudsBadge.icon(
-///   iconStatus: Positive(),
-///   child: Avatar(),
-/// );
+/// OudsAlertMessage(
+///   label: 'Your profile has been updated.',
+///   status: Positive(),
+///   onClose: () {},
+/// )
+/// ```
 ///
-/// // A badge with a custom user-provided icon.
-/// OudsBadge.icon(
-///   iconStatus: Neutral(icon: 'assets/my_custom_icon.svg'),
-///   child: Avatar(),
+/// An Alert message with a custom user-provided icon.
+///
+/// ```dart
+/// OudsAlertMessage(
+///   label: 'My custom message',
+///   status: Neutral(icon: 'assets/my_custom_icon.svg'),
+///   onClose: () {},
 /// );
+/// ```
 ///
 /// ### Example usage in [OudsTag]
 ///
-/// ```dart
-/// // A tag with a fixed "success" icon.
-/// OudsTag(
-///   label: 'Success',
-///   iconStatus: Positive(),
-/// );
+/// A tag with a fixed "success" icon.
 ///
-/// // A tag with a custom user-provided icon with untined icon
-/// OudsTag(
+/// ```dart
+/// OudsTag.icon(
+///   label: 'Success',
+///   status: Positive(),
+/// );
+/// ```
+///
+/// A tag with a custom user-provided icon with untined icon
+///
+/// ```dart
+/// OudsTag.icon(
 ///   label: 'Custom',
-///   iconStatus: Neutral(icon: 'assets/my_custom_icon.svg', tinted = false),
+///   status: Neutral(icon: 'assets/my_custom_icon.svg', tinted: false),
 /// );
 /// ```
 ///

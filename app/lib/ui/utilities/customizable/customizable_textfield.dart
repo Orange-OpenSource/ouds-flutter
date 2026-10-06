@@ -235,23 +235,6 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                      fontSize: themeController
-                          .currentTheme
-                          .fontTokens
-                          .sizeBodyLargeMobile,
-                      fontWeight: themeController
-                          .currentTheme
-                          .fontTokens
-                          .weightLabelStrong,
-                      letterSpacing: themeController
-                          .currentTheme
-                          .fontTokens
-                          .letterSpacingBodyLargeMobile,
-                    ),
-                  ),
                   SizedBox(
                     height: themeController.currentTheme
                         .spaceScheme(context)
@@ -265,7 +248,6 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         controller: _textController,
                         focusNode: widget.focusNode,
                         decoration: OudsInputDecoration(
-                          hintText: '',
                           labelText: widget.title,
                           suffixIcon: OudsTextInputSuffixIconButton(
                             icon: OudsIcon(

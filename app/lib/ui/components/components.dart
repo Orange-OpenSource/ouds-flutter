@@ -437,7 +437,7 @@ List<Component> components(BuildContext context) {
       ComponentContainer(
         child: OudsCircularProgressIndicator(
           value: 0.75,
-          status: Accent(),
+          status: Neutral(),
           animated: false,
         ),
       ),
