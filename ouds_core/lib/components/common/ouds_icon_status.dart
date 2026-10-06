@@ -196,19 +196,27 @@ class Accent extends OudsIconStatus {
 /// A status that indicates success, completion, or approval.
 ///
 /// This status uses a fixed, predefined icon from the design system.
-class Positive extends OudsIconStatus {}
+class Positive extends OudsIconStatus {
+  const Positive();
+}
 
 /// A status that provides informational context without urgency.
 ///
 /// This status uses a fixed, predefined icon from the design system.
-class Info extends OudsIconStatus {}
+class Info extends OudsIconStatus {
+  const Info();
+}
 
 /// A status that alerts the user to potential risks or cautions.
 ///
 /// This status uses a fixed, predefined icon from the design system.
-class Warning extends OudsIconStatus {}
+class Warning extends OudsIconStatus {
+  const Warning();
+}
 
 /// A status that draws attention to errors or critical information.
 ///
 /// This status uses a fixed, predefined icon from the design system.
-class Negative extends OudsIconStatus {}
+class Negative extends OudsIconStatus {
+  const Negative();
+}
