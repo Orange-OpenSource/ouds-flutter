@@ -64,6 +64,7 @@
 </ol>)?, </span></li>
 <li><span class="parameter" id="param-decoration"><span>required</span> <span class="type-annotation"><a href="../../components_form_input_internal_ouds_form_input_decoration/OudsInputDecoration-class.html">OudsInputDecoration</a></span> <span class="parameter-name">decoration</span>, </span></li>
 <li><span class="parameter" id="param-helperLink"><span class="type-annotation"><a href="../../components_link_ouds_link/OudsLink-class.html">OudsLink</a>?</span> <span class="parameter-name">helperLink</span>, </span></li>
+<li><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="../../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span>, </span></li>
 </ol>})
     </section>
     
@@ -82,6 +83,7 @@
   this.onEditingComplete,
   required this.decoration,
   this.helperLink,
+  this.skeleton,
 }) : assert(
        !(decoration.loader != null &amp;&amp; decoration.errorText != null),
        &quot;Error status for Loading state is not relevant&quot;,
