@@ -116,14 +116,14 @@ class OudsTag extends StatefulWidget {
   final OudsTagAppearance appearance;
   final OudsTagLayout layout;
   final bool loading;
-  final OudsIconStatus? status;
+  final OudsIconStatus status;
   final bool roundedCorners;
 
   const OudsTag.text({
     super.key,
     required this.label,
     this.enabled = true,
-    required this.status,
+    this.status = const Neutral(),
     this.appearance = OudsTagAppearance.emphasized,
     this.size = OudsTagSize.defaultSize,
     this.layout = OudsTagLayout.textOnly,

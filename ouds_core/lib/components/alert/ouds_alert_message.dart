@@ -139,7 +139,7 @@ class OudsAlertMessage extends StatefulWidget {
   const OudsAlertMessage({
     super.key,
     required this.label,
-    required this.status,
+    this.status = const Positive(),
     this.description,
     this.onClose,
     this.onDescriptionLinkTapped,
@@ -154,7 +154,7 @@ class OudsAlertMessage extends StatefulWidget {
   final String? description;
 
   /// The status of the alert, which determines its background color and icon is tinted or not.
-  final OudsIconStatus? status;
+  final OudsIconStatus status;
 
   /// A callback invoked when the close button is clicked. If `null`, the close button is not shown.
   final VoidCallback? onClose;

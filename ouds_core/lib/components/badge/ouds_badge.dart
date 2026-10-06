@@ -143,7 +143,7 @@ enum OudsBadgeSize { xsmall, small, medium, large }
 /// ```
 
 class OudsBadge extends StatefulWidget {
-  final OudsIconStatus? status;
+  final OudsIconStatus status;
   final OudsBadgeSize? size;
   final String? label;
   final Widget? child;
@@ -157,7 +157,7 @@ class OudsBadge extends StatefulWidget {
     this.child,
     this.enabled = true,
     this.semanticsLabel,
-    this.status,
+    this.status = const Negative(),
     bool withIcon = true,
   }) : label = null,
        _withIcon = withIcon;
@@ -168,7 +168,7 @@ class OudsBadge extends StatefulWidget {
     this.child,
     this.enabled = true,
     this.semanticsLabel,
-    this.status,
+    this.status = const Negative(),
   }) : label = null,
        _withIcon = false;
 
@@ -179,7 +179,7 @@ class OudsBadge extends StatefulWidget {
     this.child,
     this.enabled = true,
     this.semanticsLabel,
-    this.status,
+    this.status = const Negative(),
   }) : _withIcon = false;
 
   @override
