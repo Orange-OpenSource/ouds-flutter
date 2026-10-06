@@ -24,6 +24,8 @@ import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart'
 import 'package:ouds_core/components/link/internal/ouds_link_size_modifier.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_status_modifier.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_text_style_modifier.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -83,6 +85,7 @@ enum OudsLinkDensity {
 /// - [label] : A text to display in link component.
 /// - [icon] : An optional [OudsIcon] to display within the link (used with [OudsLink.icon]).
 /// - [onPressed]: Callback invoked when the link is clicked.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the link will appear once fully loaded.
 ///
 /// [OudsLink] provides a dedicated named constructor for every supported variant:
 /// - The default (unnamed) constructor renders a text-only link.
@@ -164,6 +167,18 @@ enum OudsLinkDensity {
 ///     );
 /// ```
 ///
+/// ### Link with Skeleton :
+///
+/// Displays a skeleton in place of the link while its content is loading.
+///
+/// ```dart
+/// OudsLink(
+///       label: 'Label',
+///       onPressed: () {},
+///       skeleton: OudsSkeleton(),
+///     );
+/// ```
+///
 ///
 class OudsLink extends StatefulWidget {
   final String label;
@@ -180,6 +195,9 @@ class OudsLink extends StatefulWidget {
   final OudsLinkSize size;
   final OudsLinkDensity density;
   final VoidCallback? onPressed;
+
+  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the link will appear once fully loaded.
+  final OudsSkeleton? skeleton;
 
   final OudsLinkIndicator? _indicator;
 
@@ -218,6 +236,7 @@ class OudsLink extends StatefulWidget {
     this.size = OudsLinkSize.defaultSize,
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
+    this.skeleton,
   }) : _indicator = null;
 
   /// Creates an [OudsLink] displaying its [label] alongside a custom [icon].
@@ -246,6 +265,7 @@ class OudsLink extends StatefulWidget {
     this.size = OudsLinkSize.defaultSize,
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
+    this.skeleton,
   }) : _indicator = null,
        layout = OudsLinkLayout.textAndIcon;
 
@@ -273,6 +293,7 @@ class OudsLink extends StatefulWidget {
     this.size = OudsLinkSize.defaultSize,
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
+    this.skeleton,
   }) : icon = null,
        _indicator = OudsLinkIndicator.previous,
        layout = OudsLinkLayout.back;
@@ -301,6 +322,7 @@ class OudsLink extends StatefulWidget {
     this.size = OudsLinkSize.defaultSize,
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
+    this.skeleton,
   }) : icon = null,
        _indicator = OudsLinkIndicator.next,
        layout = OudsLinkLayout.next;
@@ -331,6 +353,7 @@ class OudsLink extends StatefulWidget {
     this.size = OudsLinkSize.defaultSize,
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
+    this.skeleton,
   }) : icon = null,
        _indicator = OudsLinkIndicator.external,
        layout = OudsLinkLayout.next;
@@ -502,19 +525,25 @@ class _OudsLinkState extends State<OudsLink> {
     final isDisabled = widget.onPressed == null;
     final linkSizeModifier = OudsLinkSizeModifier(context);
 
-    /// Builds the main link container with proper constraints
-    return Semantics(
-      enabled: !isDisabled,
-      link: true,
-      // the link role is not read by talkback so we define it in value
-      value: defaultTargetPlatform == TargetPlatform.android
-          ? OudsLocalizations.of(context)?.core_link_trait_a11y
-          : null,
-      child: _buildLinkContainer(
-        context,
-        child: _buildLinkContent(context),
-        linkSizeModifier: linkSizeModifier,
-        isDisabled: isDisabled,
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      securityMargin: widget.skeleton?.securityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+
+      /// Builds the main link container with proper constraints
+      content: (context) => Semantics(
+        enabled: !isDisabled,
+        link: true,
+        // the link role is not read by talkback so we define it in value
+        value: defaultTargetPlatform == TargetPlatform.android
+            ? OudsLocalizations.of(context)?.core_link_trait_a11y
+            : null,
+        child: _buildLinkContainer(
+          context,
+          child: _buildLinkContent(context),
+          linkSizeModifier: linkSizeModifier,
+          isDisabled: isDisabled,
+        ),
       ),
     );
   }

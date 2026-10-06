@@ -22,6 +22,7 @@ import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dar
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 // All icons and images inside OudsSmallListItem use the small asset size.
@@ -323,6 +324,9 @@ class OudsSmallListItem extends StatelessWidget {
   /// with their own padding.
   final bool edgeToEdge;
 
+  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the list item will appear once fully loaded.
+  final OudsSkeleton? skeleton;
+
   /// Creates a compact OUDS list item.
   const OudsSmallListItem({
     super.key,
@@ -341,6 +345,7 @@ class OudsSmallListItem extends StatelessWidget {
     this.indicator = OudsListItemDefaults.indicator,
     this.card = false,
     this.edgeToEdge = true,
+    this.skeleton,
   });
 
   @override
@@ -362,6 +367,7 @@ class OudsSmallListItem extends StatelessWidget {
       indicator: indicator,
       card: card,
       edgeToEdge: edgeToEdge,
+      skeleton: skeleton,
     );
   }
 

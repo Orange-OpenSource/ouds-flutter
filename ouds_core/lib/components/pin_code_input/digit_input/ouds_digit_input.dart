@@ -20,6 +20,8 @@ import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_c
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
 import 'package:ouds_core/components/pin_code_input/internal/ouds_pin_code_input_control_state.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// [OUDS Pin Code Input guidelines](https://unified-design-system.orange.com/472794e18/p/9767bc-pin-code-input-v1)
@@ -100,6 +102,7 @@ class OudsDigitInput extends StatefulWidget {
   final OudsDigitInputDecoration? digitInputDecoration;
   final bool isFocused;
   final String displayValue;
+  final OudsSkeleton? skeleton;
 
   const OudsDigitInput({
     super.key,
@@ -108,6 +111,7 @@ class OudsDigitInput extends StatefulWidget {
     this.digitInputDecoration,
     this.isFocused = false,
     this.displayValue = '',
+    this.skeleton,
   });
 
   @override
@@ -202,79 +206,86 @@ class _OudsDigitInputState extends State<OudsDigitInput>
       ),
     );
 
-    return ExcludeSemantics(
-      child: MouseRegion(
-        onEnter: (_) {
-          if (mounted) setState(() => _isHovered = true);
-        },
-        onExit: (_) {
-          if (mounted) setState(() => _isHovered = false);
-        },
-        child: Container(
-          height: textInputToken.sizeMinHeight,
-          constraints: BoxConstraints(
-            maxWidth: pinCodeToken.sizeMaxWidth,
-            minWidth: pinCodeToken.sizeMinWidth,
-          ),
-          decoration: BoxDecoration(
-            color: backgroundModifier.getPinCodeBackgroundColor(
-              state,
-              widget.isError,
-              isOutlined,
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      securityMargin: widget.skeleton?.securityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+      content: (context) => ExcludeSemantics(
+        child: MouseRegion(
+          onEnter: (_) {
+            if (mounted) setState(() => _isHovered = true);
+          },
+          onExit: (_) {
+            if (mounted) setState(() => _isHovered = false);
+          },
+          child: Container(
+            height: textInputToken.sizeMinHeight,
+            constraints: BoxConstraints(
+              maxWidth: pinCodeToken.sizeMaxWidth,
+              minWidth: pinCodeToken.sizeMinWidth,
             ),
-            border: borderModifier.getPinCodeBorder(
-              state,
-              widget.isError,
-              isOutlined,
+            decoration: BoxDecoration(
+              color: backgroundModifier.getPinCodeBackgroundColor(
+                state,
+                widget.isError,
+                isOutlined,
+              ),
+              border: borderModifier.getPinCodeBorder(
+                state,
+                widget.isError,
+                isOutlined,
+              ),
+              borderRadius: formBorderModifier.getBorderRadius(context),
             ),
-            borderRadius: formBorderModifier.getBorderRadius(context),
-          ),
-          child: Center(
-            child: showValueWithCursor
-                // Accessibility + focused + filled: value and cursor side-by-side.
-                ? Row(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        displayText,
-                        style: theme.typographyTokens
-                            .typeLabelDefaultLarge(context)
-                            .copyWith(
-                              color: theme.colorScheme(context).contentDefault,
-                            ),
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                      ),
-                      buildCursor(),
-                    ],
-                  )
-                // Focused: cursor only.
-                : showCursor
-                ? buildCursor()
-                // Not focused, empty: hint placeholder.
-                : showHint && widget.digitInputDecoration?.hintText != null
-                ? Text(
-                    widget.digitInputDecoration!.hintText!,
-                    style: theme.typographyTokens
-                        .typeLabelDefaultLarge(context)
-                        .copyWith(
-                          color: theme.colorScheme(context).contentMuted,
+            child: Center(
+              child: showValueWithCursor
+                  // Accessibility + focused + filled: value and cursor side-by-side.
+                  ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          displayText,
+                          style: theme.typographyTokens
+                              .typeLabelDefaultLarge(context)
+                              .copyWith(
+                                color: theme
+                                    .colorScheme(context)
+                                    .contentDefault,
+                              ),
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
                         ),
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                  )
-                // Not focused, filled: masked or plain value.
-                : Text(
-                    displayText,
-                    style: theme.typographyTokens
-                        .typeLabelDefaultLarge(context)
-                        .copyWith(
-                          color: theme.colorScheme(context).contentDefault,
-                        ),
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                  ),
+                        buildCursor(),
+                      ],
+                    )
+                  // Focused: cursor only.
+                  : showCursor
+                  ? buildCursor()
+                  // Not focused, empty: hint placeholder.
+                  : showHint && widget.digitInputDecoration?.hintText != null
+                  ? Text(
+                      widget.digitInputDecoration!.hintText!,
+                      style: theme.typographyTokens
+                          .typeLabelDefaultLarge(context)
+                          .copyWith(
+                            color: theme.colorScheme(context).contentMuted,
+                          ),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                    )
+                  // Not focused, filled: masked or plain value.
+                  : Text(
+                      displayText,
+                      style: theme.typographyTokens
+                          .typeLabelDefaultLarge(context)
+                          .copyWith(
+                            color: theme.colorScheme(context).contentDefault,
+                          ),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                    ),
+            ),
           ),
         ),
       ),

@@ -20,6 +20,8 @@ import 'package:ouds_core/components/control/internal/interaction/ouds_inherited
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_background_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_border_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_icon_style_modifier.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -42,6 +44,7 @@ import 'internal/ouds_tag_control_state.dart';
 /// Parameters:
 /// - [label]: Label displayed in the tag input which describes the tag option.
 /// - [onPressed]: Callback invoked when the tag input is clicked to delete it.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the input tag will appear once fully loaded.
 
 /// ### You can use [OudsInputTag] like this :
 ///
@@ -57,8 +60,14 @@ import 'internal/ouds_tag_control_state.dart';
 class OudsInputTag extends StatefulWidget {
   final String label;
   final VoidCallback? onPressed;
+  final OudsSkeleton? skeleton;
 
-  const OudsInputTag({super.key, required this.label, this.onPressed});
+  const OudsInputTag({
+    super.key,
+    required this.label,
+    this.onPressed,
+    this.skeleton,
+  });
 
   @override
   State<OudsInputTag> createState() => _OudsInputTagState();
@@ -119,15 +128,25 @@ class _OudsInputTagState extends State<OudsInputTag> {
     final tagBackgroundColorModifier =
         OudsInputTagControlBackgroundColorModifier(context);
 
+    final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
+
     return Visibility(
       visible: isVisible,
-      child: _buildInputTag(
-        context,
-        tagBorderModifier,
-        tagTextColorModifier,
-        tagBackgroundColorModifier,
-        tagState,
-        isDisabled,
+      child: OudsSkeletonLayout(
+        visible: widget.skeleton != null,
+        securityMargin: widget.skeleton?.securityMargin ?? false,
+        animated: widget.skeleton?.animated ?? false,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(tagToken.borderRadius),
+        ),
+        content: (context) => _buildInputTag(
+          context,
+          tagBorderModifier,
+          tagTextColorModifier,
+          tagBackgroundColorModifier,
+          tagState,
+          isDisabled,
+        ),
       ),
     );
   }
