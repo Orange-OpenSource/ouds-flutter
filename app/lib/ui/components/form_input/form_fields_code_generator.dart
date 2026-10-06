@@ -110,6 +110,9 @@ class FormFieldsCodeGenerator {
         'countrySelector: CountrySelector(countryFilter:\n CountryFilter.custom,\n codes: ["fr", "tn", "us"],\n onCountryChanged: (country) {},\n ),',
       );
     }
+    if (state.hasSkeleton == true) {
+      lines.add('skeleton: OudsSkeleton(),');
+    }
 
     return lines.join("\n");
   }

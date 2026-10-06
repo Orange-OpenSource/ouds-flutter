@@ -23,6 +23,8 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -52,6 +54,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [readOnly]: Whether the input is read-only.
 /// - [keyboardType]: The type of keyboard to display.
 /// - [decoration]: An [OudsInputDecoration] object to configure label,
+/// - [skeleton]: An optional [OudsSkeleton] to display a loading skeleton.
 ///
 /// ### You can use [OudsPasswordInput] component in your project, customizing parameters as needed :
 ///
@@ -74,6 +77,7 @@ class OudsPasswordInput extends StatefulWidget {
   final TextInputType? keyboardType;
   final void Function(String)? onEditingComplete;
   final OudsPasswordInputDecoration decoration;
+  final OudsSkeleton? skeleton;
 
   OudsPasswordInput({
     super.key,
@@ -84,6 +88,7 @@ class OudsPasswordInput extends StatefulWidget {
     this.keyboardType,
     this.onEditingComplete,
     required this.decoration,
+    this.skeleton,
   }) : assert(
          !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
@@ -234,62 +239,80 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         ? widget.decoration.errorText
         : widget.decoration.helperText ?? "";
 
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minWidth: textInput.sizeMinWidth,
-        maxWidth: widget.decoration.constrainedMaxWidth
-            ? textInput.sizeMaxWidth
-            : double.infinity,
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      securityMargin: widget.skeleton?.securityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+      shape: RoundedRectangleBorder(
+        borderRadius: inputTextBorderModifier.getBorderRadius(context),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          DecoratedBox(
-            decoration: BoxDecoration(
-              // Background color based on current state and error presence
-              color: inputTextBackgroundModifier.getBackgroundColor(
-                state,
-                isError,
-                widget.decoration.outlined,
-              ),
+      content: (context) => ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: textInput.sizeMinWidth,
+          maxWidth: widget.decoration.constrainedMaxWidth
+              ? textInput.sizeMaxWidth
+              : double.infinity,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(
+                // Background color based on current state and error presence
+                color: inputTextBackgroundModifier.getBackgroundColor(
+                  state,
+                  isError,
+                  widget.decoration.outlined,
+                ),
 
-              /// Bottom border styling; full border if style is not default
-              border: inputTextBorderModifier.getBorder(
-                state,
-                isError,
-                widget.decoration.outlined,
-              ),
+                /// Bottom border styling; full border if style is not default
+                border: inputTextBorderModifier.getBorder(
+                  state,
+                  isError,
+                  widget.decoration.outlined,
+                ),
 
-              // Border radius if enabled in theme configuration
-              borderRadius: inputTextBorderModifier.getBorderRadius(context),
-            ),
-            child: Padding(
-              padding: EdgeInsetsGeometry.directional(
-                start: textInput.spacePaddingInlineDefault,
-                end: textInput.spacePaddingInlineTrailingAction,
-                top: textInput.spacePaddingBlockDefault,
-                bottom: textInput.spacePaddingBlockDefault,
+                // Border radius if enabled in theme configuration
+                borderRadius: inputTextBorderModifier.getBorderRadius(context),
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  /// Left block: prefix icon container
-                  Container(
-                    alignment: Alignment.center,
-                    child: _buildPrefixIcon(context, state),
-                  ),
+              child: Padding(
+                padding: EdgeInsetsGeometry.directional(
+                  start: textInput.spacePaddingInlineDefault,
+                  end: textInput.spacePaddingInlineTrailingAction,
+                  top: textInput.spacePaddingBlockDefault,
+                  bottom: textInput.spacePaddingBlockDefault,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    /// Left block: prefix icon container
+                    Container(
+                      alignment: Alignment.center,
+                      child: _buildPrefixIcon(context, state),
+                    ),
 
-                  /// Center block: main text input
-                  Flexible(
-                    fit: FlexFit.loose,
-                    child: Semantics(
-                      hint: helperText,
-                      child:
-                          widget.readOnly == true ||
-                              (widget.decoration.loader != null && _isTyping)
-                          ? IgnorePointer(
-                              child: _buildTextField(
+                    /// Center block: main text input
+                    Flexible(
+                      fit: FlexFit.loose,
+                      child: Semantics(
+                        hint: helperText,
+                        child:
+                            widget.readOnly == true ||
+                                (widget.decoration.loader != null && _isTyping)
+                            ? IgnorePointer(
+                                child: _buildTextField(
+                                  inputTextTextModifier,
+                                  state,
+                                  isError,
+                                  effectiveFocusNode,
+                                  theme,
+                                  context,
+                                  textInput,
+                                  effectiveIsFocused,
+                                ),
+                              )
+                            : _buildTextField(
                                 inputTextTextModifier,
                                 state,
                                 isError,
@@ -299,38 +322,28 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                                 textInput,
                                 effectiveIsFocused,
                               ),
-                            )
-                          : _buildTextField(
-                              inputTextTextModifier,
-                              state,
-                              isError,
-                              effectiveFocusNode,
-                              theme,
-                              context,
-                              textInput,
-                              effectiveIsFocused,
-                            ),
+                      ),
                     ),
-                  ),
 
-                  /// spacing between center container et suffic icon container
-                  SizedBox(width: textInput.spaceColumnGapDefault),
+                    /// spacing between center container et suffic icon container
+                    SizedBox(width: textInput.spaceColumnGapDefault),
 
-                  /// Right block: suffix icon container
-                  _buildSuffixIcon(context, state),
-                ],
+                    /// Right block: suffix icon container
+                    _buildSuffixIcon(context, state),
+                  ],
+                ),
               ),
             ),
-          ),
 
-          /// Display helper text or error text if available
-          if (widget.decoration.helperText != null ||
-              widget.decoration.errorText != null) ...[
-            ExcludeSemantics(
-              child: _buildHelperOrErrorText(context, state, isError == true),
-            ),
+            /// Display helper text or error text if available
+            if (widget.decoration.helperText != null ||
+                widget.decoration.errorText != null) ...[
+              ExcludeSemantics(
+                child: _buildHelperOrErrorText(context, state, isError == true),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

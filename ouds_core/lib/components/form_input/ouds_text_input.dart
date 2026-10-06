@@ -24,6 +24,8 @@ import 'package:ouds_core/components/form_input/internal/ouds_form_input_control
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
@@ -82,6 +84,7 @@ class OudsTextField extends StatefulWidget {
   final void Function(String)? onEditingComplete;
   final OudsInputDecoration decoration;
   final OudsLink? helperLink;
+  final OudsSkeleton? skeleton;
 
   OudsTextField({
     super.key,
@@ -93,6 +96,7 @@ class OudsTextField extends StatefulWidget {
     this.onEditingComplete,
     required this.decoration,
     this.helperLink,
+    this.skeleton,
   }) : assert(
          !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
@@ -287,101 +291,123 @@ class _OudsTextInputState extends State<OudsTextField> {
       loadingLabel,
     ].where((s) => s != null && s.isNotEmpty).join(", ");
 
-    return Semantics(
-      label: semanticsValue,
-      hint: widget.decoration.loader != null ? '' : l10n?.core_common_hint_a11y,
-      value: isError ? l10n?.core_common_error_a11y : null,
-      focused: effectiveFocusNode != null,
-      focusable: true,
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          minWidth: textInput.sizeMinWidth,
-          maxWidth: widget.decoration.constrainedMaxWidth
-              ? textInput.sizeMaxWidth
-              : double.infinity,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: textInput.sizeMinHeight,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  // Background color based on current state and error presence
-                  color: inputTextBackgroundModifier.getBackgroundColor(
-                    state,
-                    isError,
-                    widget.decoration.outlined,
-                  ),
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      securityMargin: widget.skeleton?.securityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+      shape: RoundedRectangleBorder(
+        borderRadius: inputTextBorderModifier.getBorderRadius(context),
+      ),
+      content: (context) => Semantics(
+        label: semanticsValue,
+        hint: widget.decoration.loader != null
+            ? ''
+            : l10n?.core_common_hint_a11y,
+        value: isError ? l10n?.core_common_error_a11y : null,
+        focused: effectiveFocusNode != null,
+        focusable: true,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: textInput.sizeMinWidth,
+            maxWidth: widget.decoration.constrainedMaxWidth
+                ? textInput.sizeMaxWidth
+                : double.infinity,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: textInput.sizeMinHeight,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    // Background color based on current state and error presence
+                    color: inputTextBackgroundModifier.getBackgroundColor(
+                      state,
+                      isError,
+                      widget.decoration.outlined,
+                    ),
 
-                  /// Bottom border styling; full border if style is not default
-                  border: inputTextBorderModifier.getBorder(
-                    state,
-                    isError,
-                    widget.decoration.outlined,
-                  ),
+                    /// Bottom border styling; full border if style is not default
+                    border: inputTextBorderModifier.getBorder(
+                      state,
+                      isError,
+                      widget.decoration.outlined,
+                    ),
 
-                  // Border radius if enabled in theme configuration
-                  borderRadius: inputTextBorderModifier.getBorderRadius(
-                    context,
+                    // Border radius if enabled in theme configuration
+                    borderRadius: inputTextBorderModifier.getBorderRadius(
+                      context,
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: EdgeInsetsGeometry.directional(
-                    start: textInput.spacePaddingInlineDefault,
-                    end:
-                        (widget.decoration.suffixIcon != null ||
-                            widget.decoration.errorText != null ||
-                            widget.decoration.loader != null)
-                        ? textInput.spacePaddingInlineTrailingAction
-                        : textInput.spacePaddingInlineDefault,
-                    top: textInput.spacePaddingBlockDefault,
-                    bottom: textInput.spacePaddingBlockDefault,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      /// Left block: prefix icon container
-                      ExcludeSemantics(child: _buildPrefixIcon(context, state)),
+                  child: Padding(
+                    padding: EdgeInsetsGeometry.directional(
+                      start: textInput.spacePaddingInlineDefault,
+                      end:
+                          (widget.decoration.suffixIcon != null ||
+                              widget.decoration.errorText != null ||
+                              widget.decoration.loader != null)
+                          ? textInput.spacePaddingInlineTrailingAction
+                          : textInput.spacePaddingInlineDefault,
+                      top: textInput.spacePaddingBlockDefault,
+                      bottom: textInput.spacePaddingBlockDefault,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        /// Left block: prefix icon container
+                        ExcludeSemantics(
+                          child: _buildPrefixIcon(context, state),
+                        ),
 
-                      /// Center-left: prefix text displayed even without label
-                      /// Set a flexible to prevent text overflow
-                      if (widget.decoration.prefix != null &&
-                          widget.decoration.labelText == null &&
-                          (widget.decoration.hintText != null ||
-                              _isTyping)) ...[
-                        /// Wrap the prefix Text in Flexible to limit its width and prevent overflow errors
-                        Flexible(
-                          flex: 1, // Allocates 1 part of the available space
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              right: textInput.spaceColumnGapInlineText,
-                            ),
-                            child: Text(
-                              widget.decoration.prefix!,
-                              style: theme.typographyTokens
-                                  .typeLabelDefaultLarge(context)
-                                  .copyWith(
-                                    color: inputTextTextModifier
-                                        .getSuffixPrefixTextColor(state),
-                                  ),
+                        /// Center-left: prefix text displayed even without label
+                        /// Set a flexible to prevent text overflow
+                        if (widget.decoration.prefix != null &&
+                            widget.decoration.labelText == null &&
+                            (widget.decoration.hintText != null ||
+                                _isTyping)) ...[
+                          /// Wrap the prefix Text in Flexible to limit its width and prevent overflow errors
+                          Flexible(
+                            flex: 1, // Allocates 1 part of the available space
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                right: textInput.spaceColumnGapInlineText,
+                              ),
+                              child: Text(
+                                widget.decoration.prefix!,
+                                style: theme.typographyTokens
+                                    .typeLabelDefaultLarge(context)
+                                    .copyWith(
+                                      color: inputTextTextModifier
+                                          .getSuffixPrefixTextColor(state),
+                                    ),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
 
-                      /// Center block: main text input
-                      /// Wrap the TextField in Flexible to control its width
-                      Flexible(
-                        fit: FlexFit.loose,
-                        child: ExcludeSemantics(
-                          child:
-                              widget.readOnly == true ||
-                                  (widget.decoration.loader != null &&
-                                      _isTyping)
-                              ? IgnorePointer(
-                                  child: _buildTextField(
+                        /// Center block: main text input
+                        /// Wrap the TextField in Flexible to control its width
+                        Flexible(
+                          fit: FlexFit.loose,
+                          child: ExcludeSemantics(
+                            child:
+                                widget.readOnly == true ||
+                                    (widget.decoration.loader != null &&
+                                        _isTyping)
+                                ? IgnorePointer(
+                                    child: _buildTextField(
+                                      inputTextTextModifier,
+                                      state,
+                                      isError,
+                                      effectiveFocusNode,
+                                      theme,
+                                      context,
+                                      textInput,
+                                      effectiveIsFocused,
+                                    ),
+                                  )
+                                : _buildTextField(
                                     inputTextTextModifier,
                                     state,
                                     isError,
@@ -391,77 +417,75 @@ class _OudsTextInputState extends State<OudsTextField> {
                                     textInput,
                                     effectiveIsFocused,
                                   ),
-                                )
-                              : _buildTextField(
-                                  inputTextTextModifier,
-                                  state,
-                                  isError,
-                                  effectiveFocusNode,
-                                  theme,
-                                  context,
-                                  textInput,
-                                  effectiveIsFocused,
-                                ),
-                        ),
-                      ),
-
-                      /// Center-left: prefix text displayed even without label
-                      /// Set a flexible to prevent text overflow
-                      if (widget.decoration.suffix != null &&
-                          widget.decoration.labelText == null &&
-                          (widget.decoration.hintText != null ||
-                              _isTyping)) ...[
-                        /// Wrap the suffix Text in Flexible to limit its width and prevent overflow errors
-                        Flexible(
-                          flex: 1, // Allocates 1 part of the available space
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: textInput.spaceColumnGapDefault,
-                            ),
-                            child: Text(
-                              widget.decoration.suffix!,
-                              style: theme.typographyTokens
-                                  .typeLabelDefaultLarge(context)
-                                  .copyWith(
-                                    color: inputTextTextModifier
-                                        .getSuffixPrefixTextColor(state),
-                                  ),
-                            ),
                           ),
                         ),
-                      ],
 
-                      /// Right block: suffix icon container
-                      Semantics(
-                        label:
-                            widget.decoration.suffixIcon != null &&
-                                widget.decoration.loader == null
-                            ? widget.decoration.suffixIcon?.icon.semanticsLabel
-                            : null,
-                        container: true,
-                        button: true,
-                        child: _buildSuffixIcon(context, state),
-                      ),
-                    ],
+                        /// Center-left: prefix text displayed even without label
+                        /// Set a flexible to prevent text overflow
+                        if (widget.decoration.suffix != null &&
+                            widget.decoration.labelText == null &&
+                            (widget.decoration.hintText != null ||
+                                _isTyping)) ...[
+                          /// Wrap the suffix Text in Flexible to limit its width and prevent overflow errors
+                          Flexible(
+                            flex: 1, // Allocates 1 part of the available space
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: textInput.spaceColumnGapDefault,
+                              ),
+                              child: Text(
+                                widget.decoration.suffix!,
+                                style: theme.typographyTokens
+                                    .typeLabelDefaultLarge(context)
+                                    .copyWith(
+                                      color: inputTextTextModifier
+                                          .getSuffixPrefixTextColor(state),
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ],
+
+                        /// Right block: suffix icon container
+                        Semantics(
+                          label:
+                              widget.decoration.suffixIcon != null &&
+                                  widget.decoration.loader == null
+                              ? widget
+                                    .decoration
+                                    .suffixIcon
+                                    ?.icon
+                                    .semanticsLabel
+                              : null,
+                          container: true,
+                          button: true,
+                          child: _buildSuffixIcon(context, state),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
 
-            /// Display helper text or error text if available
-            if (widget.decoration.helperText != null ||
-                widget.decoration.errorText != null) ...[
-              ExcludeSemantics(
-                child: _buildHelperOrErrorText(context, state, isError == true),
-              ),
-            ],
+              /// Display helper text or error text if available
+              if (widget.decoration.helperText != null ||
+                  widget.decoration.errorText != null) ...[
+                ExcludeSemantics(
+                  child: _buildHelperOrErrorText(
+                    context,
+                    state,
+                    isError == true,
+                  ),
+                ),
+              ],
 
-            /// Display helper link if available
-            if (widget.helperLink != null &&
-                widget.helperLink!.label.isNotEmpty) ...[
-              _buildHelperLink(context),
+              /// Display helper link if available
+              if (widget.helperLink != null &&
+                  widget.helperLink!.label.isNotEmpty) ...[
+                _buildHelperLink(context),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
