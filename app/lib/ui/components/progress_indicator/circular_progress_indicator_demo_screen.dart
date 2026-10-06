@@ -151,8 +151,12 @@ class _CircularProgressIndicatorDemoState
           gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
             customizationState!.selectedGapSize,
           ),
-          semanticLabel:
-              context.l10n.app_components_progressIndicator_progress_a11y,
+          helperText: ProgressIndicatorCustomizationUtils.getCircularHelperText(
+            customizationState!,
+          ),
+          semanticsLabel: customizationState!.hasHelperText
+              ? null
+              : context.l10n.app_components_progressIndicator_progress_a11y,
         ),
       );
     } else {
@@ -172,8 +176,12 @@ class _CircularProgressIndicatorDemoState
           gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
             customizationState!.selectedGapSize,
           ),
-          semanticLabel:
-              context.l10n.app_components_progressIndicator_progress_a11y,
+          helperText: ProgressIndicatorCustomizationUtils.getCircularHelperText(
+            customizationState!,
+          ),
+          semanticsLabel: customizationState!.hasHelperText
+              ? null
+              : context.l10n.app_components_progressIndicator_progress_a11y,
         ),
       );
     }
@@ -191,16 +199,19 @@ class _CustomizationContent extends StatefulWidget {
 /// This state class handles the customization options for the progress indicator
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode progressFocus;
+  late final FocusNode helperFocus;
 
   @override
   void initState() {
     super.initState();
     progressFocus = FocusNode();
+    helperFocus = FocusNode();
   }
 
   @override
   void dispose() {
     progressFocus.dispose();
+    helperFocus.dispose();
     super.dispose();
   }
 
@@ -220,6 +231,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedType = selectedOption;
+              customizationState.hasPercentage = false;
             });
           },
         ),
@@ -239,6 +251,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.selectedType ==
               ProgressIndicatorEnumType.determinate,
           keyboardType: TextInputType.number,
+          suffixText: '%',
+          helperText: context
+              .l10n
+              .app_components_progressIndicator_progress_helper_label,
         ),
         CustomizationDropdownMenu<StatusEnum>(
           label: StatusEnum.enumName(context),
@@ -300,6 +316,39 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.hasTrack = value;
             });
           },
+        ),
+        CustomizableSwitch(
+          title: context
+              .l10n
+              .app_components_progressIndicator_helperTextPercentage_tech,
+          value: customizationState.hasPercentage,
+          onChanged:
+              customizationState.selectedType ==
+                  ProgressIndicatorEnumType.determinate
+              ? (value) {
+                  customizationState.hasPercentage = value;
+                }
+              : null,
+        ),
+        CustomizableSwitch(
+          title: context
+              .l10n
+              .app_components_progressIndicator_helperTextLabel_tech,
+          value: customizationState.hasHelperText,
+          onChanged: (value) {
+            customizationState.hasHelperText = value;
+          },
+        ),
+        Visibility(
+          visible: customizationState.hasHelperText,
+          child: CustomizableTextField(
+            title: context
+                .l10n
+                .app_components_progressIndicator_helperTextLabel_tech,
+            text: customizationState.helperText,
+            focusNode: helperFocus,
+            fieldType: FieldType.helper,
+          ),
         ),
       ],
     );
