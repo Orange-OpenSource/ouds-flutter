@@ -109,17 +109,6 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  &#47;*final l10n = OudsLocalizations.of(context);
-
-  String? semanticValue = value == true
-      ? l10n?.core_checkbox_checked_a11y
-      : value == null
-          ? l10n?.core_checkbox_indeterminate_a11y
-          : l10n?.core_checkbox_unchecked_a11y;
-
-  &#47;&#47; add “double tap to toggle”
-  String toggleActionLabel = (onChanged != null &amp;&amp; !readOnly) ? &#39;${l10n?.core_checkbox_hint_a11y}&#39; : &#39;&#39;;
-*&#47;
   return OudsControlItem(
     text: title,
     description: helperTitle,
@@ -133,6 +122,7 @@ Widget build(BuildContext context) {
     constrainedMaxWidth: constrainedMaxWidth,
     reversed: reversed,
     edgeToEdge: edgeToEdge,
+    skeleton: skeleton,
     onTap: onChanged != null
         ? () {
             bool? newValue;

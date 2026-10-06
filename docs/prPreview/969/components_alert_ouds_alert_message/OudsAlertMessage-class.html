@@ -116,12 +116,22 @@ Supports lightweight inline markdown formatting for text emphasis :</p>
 <li>Strong text <code>**bold**</code>.</li>
 </ul>
 </li>
+<li>
+<p><a href="../components_alert_ouds_alert_message/OudsAlertMessage/skeleton.html">skeleton</a>: An optional skeleton that improves the perceived loading time by providing a visual cue of where the alert message will appear once fully loaded.</p>
+</li>
 </ul>
 <h2 id="usage-example">Usage Example:</h2>
 <pre class="language-dart"><code class="language-dart">OudsAlertMessage(
   label: 'Your profile has been updated.',
   status: Positive(),
   onClose: () {},
+)
+</code></pre>
+<pre class="language-dart"><code class="language-dart">OudsAlertMessage(
+  label: 'Your profile has been updated.',
+  status: Positive(),
+  onClose: () {},
+  skeleton: OudsSkeleton(),
 )
 </code></pre>
 </section>
@@ -157,7 +167,7 @@ Supports lightweight inline markdown formatting for text emphasis :</p>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsAlertMessage.new" class="callable">
-          <span class="name"><a href="../components_alert_ouds_alert_message/OudsAlertMessage/OudsAlertMessage.html">OudsAlertMessage</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-status"><span>required</span> <span class="type-annotation"><a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a>?</span> <span class="parameter-name">status</span>, </span><span class="parameter" id="param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">description</span>, </span><span class="parameter" id="param-onClose"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onClose</span>, </span><span class="parameter" id="param-onDescriptionLinkTapped"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">onDescriptionLinkTapped</span>, </span><span class="parameter" id="param-actionLayout"><span class="type-annotation"><a href="../components_alert_ouds_alert_message/OudsAlertMessageActionLayout-class.html">OudsAlertMessageActionLayout</a>?</span> <span class="parameter-name">actionLayout</span>, </span><span class="parameter" id="param-bulletList"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">bulletList</span></span>})</span>
+          <span class="name"><a href="../components_alert_ouds_alert_message/OudsAlertMessage/OudsAlertMessage.html">OudsAlertMessage</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-status"><span>required</span> <span class="type-annotation"><a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a>?</span> <span class="parameter-name">status</span>, </span><span class="parameter" id="param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">description</span>, </span><span class="parameter" id="param-onClose"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onClose</span>, </span><span class="parameter" id="param-onDescriptionLinkTapped"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">onDescriptionLinkTapped</span>, </span><span class="parameter" id="param-actionLayout"><span class="type-annotation"><a href="../components_alert_ouds_alert_message/OudsAlertMessageActionLayout-class.html">OudsAlertMessageActionLayout</a>?</span> <span class="parameter-name">actionLayout</span>, </span><span class="parameter" id="param-bulletList"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">bulletList</span>, </span><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span></span>})</span>
         </dt>
         <dd>
           Creates an OudsAlertMessage.
@@ -276,6 +286,18 @@ Supports lightweight inline markdown formatting for text emphasis :</p>
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="skeleton" class="property">
+  <span class="name"><a href="../components_alert_ouds_alert_message/OudsAlertMessage/skeleton.html">skeleton</a></span>
+  <span class="signature">&#8594; <a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span>
+  
+
+</dt>
+<dd>
+  An optional skeleton that improves the perceived loading time by providing a visual cue of where the alert message will appear once fully loaded.
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 

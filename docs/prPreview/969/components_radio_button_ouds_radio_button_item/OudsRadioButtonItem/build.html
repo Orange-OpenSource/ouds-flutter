@@ -128,6 +128,7 @@ Widget build(BuildContext context) {
       selected: outlined,
       reversed: reversed,
       onTap: onChanged != null ? () =&gt; onChanged!(value) : null,
+      skeleton: skeleton,
       indicator: () =&gt; OudsRadioButton&lt;T&gt;(
         value: value,
         groupValue: groupValue,
