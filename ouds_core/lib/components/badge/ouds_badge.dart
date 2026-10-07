@@ -143,7 +143,7 @@ enum OudsBadgeSize { xsmall, small, medium, large }
 /// ```
 
 class OudsBadge extends StatefulWidget {
-  final OudsIconStatus? status;
+  final OudsIconStatus status;
   final OudsBadgeSize? size;
   final String? label;
   final Widget? child;
@@ -157,7 +157,7 @@ class OudsBadge extends StatefulWidget {
     this.child,
     this.enabled = true,
     this.semanticsLabel,
-    this.status,
+    this.status = const Negative(),
     bool withIcon = true,
   }) : label = null,
        _withIcon = withIcon;
@@ -168,7 +168,7 @@ class OudsBadge extends StatefulWidget {
     this.child,
     this.enabled = true,
     this.semanticsLabel,
-    this.status,
+    this.status = const Negative(),
   }) : label = null,
        _withIcon = false;
 
@@ -179,7 +179,7 @@ class OudsBadge extends StatefulWidget {
     this.child,
     this.enabled = true,
     this.semanticsLabel,
-    this.status,
+    this.status = const Negative(),
   }) : _withIcon = false;
 
   @override
@@ -200,8 +200,6 @@ class _OudsBadgeState extends State<OudsBadge> {
       Accent(icon: final assets) => assets != null,
       // For all other statuses (Positive, Info, etc.), the icon is fixed, so we consider it present.
       Positive() || Info() || Warning() || Negative() => true,
-      // If iconStatus is null
-      null => false,
     };
 
     switch (type) {
@@ -326,12 +324,12 @@ class _OudsBadgeState extends State<OudsBadge> {
     final fixedIcon = badgeStatusModifier.getIcon(widget.status);
 
     // This correctly gets the user-defined icon for Neutral and Accent
-    final userDefinedIcon = widget.status?.nonFunctionalIcon;
+    final userDefinedIcon = widget.status.nonFunctionalIcon;
 
     // The logic correctly prioritizes which icon to use.
     final iconPath = fixedIcon ?? userDefinedIcon ?? "";
 
-    final isTinted = widget.status?.isTinted ?? true;
+    final isTinted = widget.status.isTinted;
 
     if (widget.status is Warning) {
       final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
@@ -385,7 +383,7 @@ class _OudsBadgeState extends State<OudsBadge> {
     }
 
     return Container(
-      color: widget.status?.getBackgroundColor ?? Colors.transparent,
+      color: widget.status.getBackgroundColor ?? Colors.transparent,
       child: SizedBox.expand(
         child: SvgPicture.asset(
           matchTextDirection: true,
@@ -444,8 +442,6 @@ class _OudsBadgeState extends State<OudsBadge> {
       Accent(icon: final assets) => assets != null,
       // For all other statuses (Positive, Info, etc.), the icon is fixed, so we consider it present.
       Positive() || Info() || Warning() || Negative() => true,
-      // If iconStatus is null
-      null => false,
     };
 
     if (hasIcon && widget._withIcon == true) {

@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] For `button` component, update to version 3.3.0 ([#832](https://github.com/Orange-OpenSource/ouds-flutter/issues/832))
 - [DemoApp][Library] Update `progress-indicator`: add size parameter to OudsCircularProgressIndicator for button integration ([#876](https://github.com/Orange-OpenSource/ouds-flutter/issues/876))
 ### Fixed
+- [library] Components with a status, `Badge`, `Tag` and `Alert Message`, should have a default status defined in the API ([#975](https://github.com/Orange-OpenSource/ouds-flutter/issues/975))
 - [Library] `Progress indicator` Percent is not read for determinate state if reduce-motion is activated ([#913](https://github.com/Orange-OpenSource/ouds-flutter/issues/913))
 - [Library] for `Alert Message` component, Close button is not reached with keyboard ([#811](https://github.com/Orange-OpenSource/ouds-flutter/issues/811))
 - [Library] Bug A11Y `Top bar` Action button and badge are not grouped in iOS ([#816](https://github.com/Orange-OpenSource/ouds-flutter/issues/816))
