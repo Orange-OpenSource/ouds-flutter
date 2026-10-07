@@ -326,11 +326,13 @@ Every new component needs a demo screen in `app/lib/ui/components/<name>/` and m
 
 ## 7. Components
 
-**Index:** [Alert](#alert) [Badge](#badge) [Bottom Sheet](#bottom-sheet) [Button](#button) [Checkbox / Switch / Radio](#checkbox--switch--radio-button) [Chips](#filter-chip--suggestion-chip) [Divider](#divider) [Link](#link) [Navigation Bar](#navigation-bar) [Tag](#tag) [Text inputs](#text-input--password--phone--pin-code) [Top bar](#top-bar--app-bar)
+**Index:** [Alert](#alert) [Avatar](#avatar) [Badge](#badge) [Bottom Sheet](#bottom-sheet) [Button](#button) [Checkbox / Switch / Radio](#checkbox--switch--radio-button) [Checkbox / Switch / Radio item](#checkbox--switch--radio-item) [Chips](#filter-chip--suggestion-chip) [Divider](#divider) [Flag](#flag) [Link](#link) [List item](#list-item) [Navigation Bar](#navigation-bar) [Progress indicator](#progress-indicator) [Tag](#tag) [Text inputs](#text-input--password--phone--pin-code) [Top bar](#top-bar--app-bar)
 
 The repository currently exposes component families under:
 
-`alert/` · `badge/` · `bottom_sheet/` · `button/` · `checkbox/` · `chip/` · `country_selector/` · `divider/` · `form_input/` · `link/` · `navigation/` · `pin_code_input/` · `radio_button/` · `switch/` · `tag/` · `top_bar/`
+`alert/` · `avatar/` · `badge/` · `bottom_sheet/` · `button/` · `checkbox/` · `chip/` · `control/` · `country_selector/` · `divider/` · `flag/` · `form_input/` · `link/` · `list_item/` · `navigation/` · `pin_code_input/` · `progress_indicator/` · `radio_button/` · `switch/` · `tag/` · `top_bar/`
+
+The shared `OudsIcon` class (`package:ouds_core/components/common/ouds_icon.dart`) unifies icon configuration (asset path, `tinted`, `backgroundColor`, `semanticsLabel`) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsTextInput`, `OudsPhoneNumberInput`, `OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem` — always prefer it over a raw `String` icon path.
 
 ---
 
@@ -383,6 +385,30 @@ OudsInlineAlert(label: 'This field is required.')                    // default:
 OudsInlineAlert(label: 'Invalid format.', status: Negative())
 OudsInlineAlert(label: 'Saved successfully.', status: Positive())
 OudsInlineAlert(label: 'Check your connection.', status: Warning())
+```
+
+---
+
+### Avatar
+
+Displays a profile image or a monogram (initials). Used standalone or as leading content in `OudsTopAppBar` / `OudsListItem`.
+
+```dart
+// Image avatar
+OudsAvatar(image: 'assets/user_photo.png')
+
+// Monogram avatar
+OudsAvatar(
+  monogram: 'John Doe',
+  contentDescription: 'John Doe',
+)
+
+// Tappable avatar
+OudsAvatar(
+  monogram: 'JD',
+  onClick: () => openProfile(),
+  contentDescription: 'Open profile',
+)
 ```
 
 ---
@@ -519,6 +545,36 @@ OudsRadioButton<String>(
 
 ---
 
+### Checkbox / Switch / Radio item
+
+`OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem` combine a control with a title, optional helper text and icon in a single row (built on the internal `OudsControlItem`).
+
+```dart
+OudsCheckboxItem(
+  value: isChecked,
+  title: 'Label',
+  helperTitle: 'Helper text',
+  icon: OudsIcon('assets/ic_heart.svg'),
+  divider: true,
+  onChanged: (value) => setState(() => isChecked = value),
+)
+
+OudsRadioButtonItem<String>(
+  value: 'option_a',
+  groupValue: _selected,
+  title: 'Option A',
+  onChanged: (value) => setState(() => _selected = value),
+)
+
+OudsSwitchButtonItem(
+  value: isEnabled,
+  title: 'Enable notifications',
+  onChanged: (value) => setState(() => isEnabled = value),
+)
+```
+
+---
+
 ### Filter chip / Suggestion chip
 
 ```dart
@@ -566,6 +622,23 @@ Available colors: `defaultColor`, `muted`, `emphasized`, `brandPrimary`, `onBran
 
 ---
 
+### Flag
+
+Purely decorative country/region flag, always excluded from the semantics tree — pair it with a sibling text label carrying the country name.
+
+```dart
+OudsFlag('fr')
+OudsFlag('US')   // case-insensitive
+
+// Inside a list item
+OudsListItem(
+  label: 'France',
+  leading: OudsListItemLeadingFlag(OudsFlag('fr')),
+)
+```
+
+---
+
 ### Link
 
 Prefer dedicated named constructors for icon/navigation variants. `OudsLink()` (default constructor) is for text-only links.
@@ -585,6 +658,34 @@ OudsLink.external(label: 'Visit website', onPressed: () {})
 ```
 
 > ⚠️ Deprecated: `OudsLink(layout: OudsLinkLayout.back/textAndIcon/next)` → use `OudsLink.previous`, `OudsLink.icon` or `OudsLink.next`/`OudsLink.external` instead.
+
+---
+
+### List item
+
+`OudsListItem` mirrors Flutter's `ListTile` spirit (leading / label / trailing) using OUDS tokens. Static (read-only) by default, becomes a navigation item when `onTap` is provided. `OudsSmallListItem` is a compact variant restricted to icon/image leading content; `OudsCardItem` / `OudsSmallCardItem` apply card styling.
+
+```dart
+// Static, with leading icon
+OudsListItem(
+  label: 'Title',
+  description: 'Secondary text',
+  leading: OudsListItemLeadingIcon(Neutral(icon: 'assets/icons/star.svg')),
+  background: true,
+)
+
+// Navigation item — chevron indicator shown automatically
+OudsListItem(
+  label: 'Navigate',
+  onTap: () => Navigator.of(context).push(route),
+)
+
+// Compact variant
+OudsSmallListItem(
+  label: 'Compact row',
+  leading: OudsSmallListItemLeadingIcon(Positive()),
+)
+```
 
 ---
 
@@ -614,6 +715,29 @@ Scaffold(
     onDestinationSelected: (index) => setState(() => _selectedIndex = index),
   ),
   body: MyScrollableContent(),
+)
+```
+
+---
+
+### Progress indicator
+
+`OudsCircularProgressIndicator` (ring) and `OudsLinearProgressIndicator` (bar). Both support `determinate`/`indeterminate` modes and a `status` color; always provide `semanticsLabel`.
+
+```dart
+// Indeterminate circular
+OudsCircularProgressIndicator(
+  progressType: OudsProgressIndicatorType.indeterminate,
+  semanticsLabel: 'Loading',
+)
+
+// Determinate linear with helper text
+OudsLinearProgressIndicator(
+  progressType: OudsProgressIndicatorType.determinate,
+  value: 0.42,
+  status: Info(),
+  semanticsLabel: 'Upload progress',
+  helperText: OudsLinearProgressIndicatorHelperText(progress: true),
 )
 ```
 
