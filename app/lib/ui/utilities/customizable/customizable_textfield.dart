@@ -263,7 +263,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                               setState(() {});
                             },
                           ),
-                          suffix: "%",
+                          suffix: widget.suffixText,
                           helperText: widget.helperText,
                           errorText: widget.errorText,
                         ),
