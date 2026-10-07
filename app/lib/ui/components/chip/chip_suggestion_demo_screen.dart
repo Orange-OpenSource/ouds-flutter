@@ -31,6 +31,7 @@ import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class ChipSuggestionDemoScreen extends StatefulWidget {
@@ -121,6 +122,10 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
   }
 
   Widget _buildOudsSuggestionChip(BuildContext context) {
+    final colorSurfaceBrandPrimary = OudsTheme.of(
+      context,
+    ).colorScheme(context).surfaceBrandPrimary;
+
     switch (customizationState?.selectedLayout) {
       case ChipEnumLayout.textOnly:
         return OudsSuggestionChip(
@@ -133,9 +138,9 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
           icon: ChipCustomizationUtils.getIcon(
             customizationState,
             themeController!,
-            customizationState!.tintedIcon,
+            colorSurfaceBrandPrimary,
+            null,
           ),
-          tinted: customizationState!.tintedIcon,
           onPressed: customizationState!.hasEnabled == true ? () {} : null,
         );
       case ChipEnumLayout.iconOnly:
@@ -143,10 +148,9 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
           icon: ChipCustomizationUtils.getIcon(
             customizationState,
             themeController!,
-            customizationState!.tintedIcon,
+            colorSurfaceBrandPrimary,
+            context.l10n.app_components_common_icon_a11y,
           ),
-          contentDescription: context.l10n.app_components_common_icon_a11y,
-          tinted: customizationState!.tintedIcon,
           onPressed: customizationState!.hasEnabled == true ? () {} : null,
         );
 

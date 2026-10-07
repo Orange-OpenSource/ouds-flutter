@@ -47,9 +47,9 @@ class ListItemCodeGenerator {
       if (state.description.trim().isNotEmpty)
         "  description: '${state.description.trim()}',",
       if (state.leading != ListItemLeadingEnum.none)
-        '  leading: ${_leadingCode(state.leading)},',
+        '  leading: ${_leadingCode(state.leading, state.leadingIconTinted)},',
       if (state.trailing != ListItemTrailingEnum.none)
-        '  trailing: ${_trailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel, state.trailingTextExtraLabel)},',
+        '  trailing: ${_trailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel, state.trailingTextExtraLabel, state.trailingIconTinted)},',
       if (!state.divider) '  divider: false,',
       if (state.background) '  background: true,',
       if (state.helperText.trim().isNotEmpty)
@@ -72,7 +72,7 @@ class ListItemCodeGenerator {
         "  description: '${state.description.trim()}',",
       if (state.leading != ListItemLeadingEnum.none &&
           ListItemLeadingEnum.smallOptions.contains(state.leading))
-        '  leading: ${_smallLeadingCode(state.leading)},',
+        '  leading: ${_smallLeadingCode(state.leading, state.leadingIconTinted)},',
       if (state.trailing != ListItemTrailingEnum.none &&
           ListItemTrailingEnum.smallOptions.contains(state.trailing))
         '  trailing: ${_smallTrailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel)},',
@@ -109,9 +109,9 @@ class ListItemCodeGenerator {
       if (state.description.trim().isNotEmpty)
         "  description: '${state.description.trim()}',",
       if (state.leading != ListItemLeadingEnum.none)
-        '  leading: ${_leadingCode(state.leading)},',
+        '  leading: ${_leadingCode(state.leading, state.leadingIconTinted)},',
       if (state.trailing != ListItemTrailingEnum.none)
-        '  trailing: ${_trailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel, state.trailingTextExtraLabel)},',
+        '  trailing: ${_trailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel, state.trailingTextExtraLabel, state.trailingIconTinted)},',
       if (state.helperText.trim().isNotEmpty)
         "  helperText: '${state.helperText.trim()}',",
       if (state.boldLabel) '  boldLabel: true,',
@@ -137,7 +137,7 @@ class ListItemCodeGenerator {
         "  description: '${state.description.trim()}',",
       if (state.leading != ListItemLeadingEnum.none &&
           ListItemLeadingEnum.smallOptions.contains(state.leading))
-        '  leading: ${_smallLeadingCode(state.leading)},',
+        '  leading: ${_smallLeadingCode(state.leading, state.leadingIconTinted)},',
       if (state.trailing != ListItemTrailingEnum.none &&
           ListItemTrailingEnum.smallOptions.contains(state.trailing))
         '  trailing: ${_smallTrailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel)},',
@@ -151,10 +151,13 @@ class ListItemCodeGenerator {
     return 'OudsSmallCardItem(\n${params.join('\n')}\n)';
   }
 
-  static String _leadingCode(ListItemLeadingEnum leading) => switch (leading) {
+  static String _leadingCode(
+    ListItemLeadingEnum leading,
+    bool tinted,
+  ) => switch (leading) {
     ListItemLeadingEnum.none => '',
     ListItemLeadingEnum.icon =>
-      "OudsListItemLeadingIcon(Neutral(icon: 'assets/ic_heart.svg'))",
+      "OudsListItemLeadingIcon(Neutral(icon: ${tinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: $tinted))",
     ListItemLeadingEnum.image =>
       "OudsListItemLeadingImage(asset: 'assets/photo.jpg')",
     // TODO[v0.4]: uncomment avatar when available
@@ -168,20 +171,23 @@ class ListItemCodeGenerator {
     //   "OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))",
   };
 
-  static String _smallLeadingCode(ListItemLeadingEnum leading) =>
-      switch (leading) {
-        ListItemLeadingEnum.icon =>
-          "OudsSmallListItemLeadingIcon(Neutral(icon: 'assets/ic_heart.svg'))",
-        ListItemLeadingEnum.image =>
-          "OudsSmallListItemLeadingImage(asset: 'assets/photo.jpg')",
-        _ => '',
-      };
+  static String _smallLeadingCode(
+    ListItemLeadingEnum leading,
+    bool tinted,
+  ) => switch (leading) {
+    ListItemLeadingEnum.icon =>
+      "OudsSmallListItemLeadingIcon(Neutral(icon: ${tinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: $tinted))",
+    ListItemLeadingEnum.image =>
+      "OudsSmallListItemLeadingImage(asset: 'assets/photo.jpg')",
+    _ => '',
+  };
 
   static String _trailingCode(
     ListItemTrailingEnum trailing,
     ListItemTrailingTextStyleEnum trailingTextStyle,
     String trailingTextLabel,
     String trailingTextExtraLabel,
+    bool tinted,
   ) => switch (trailing) {
     ListItemTrailingEnum.none => '',
     ListItemTrailingEnum.text => switch (trailingTextStyle) {
@@ -197,7 +203,7 @@ class ListItemCodeGenerator {
     // TODO[v0.3]: uncomment badge when available
     // TODO[v0.3]: uncomment tag when available
     ListItemTrailingEnum.icon =>
-      "OudsListItemTrailingIcon(Neutral(icon: 'assets/ic_heart.svg'))",
+      "OudsListItemTrailingIcon(Neutral(icon: ${tinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: $tinted))",
     ListItemTrailingEnum.image =>
       "OudsListItemTrailingImage(asset: 'assets/photo.jpg')",
     // TODO[v0.4]: uncomment avatar when available
@@ -252,13 +258,11 @@ class ListItemCodeGenerator {
     ListItemCardDecorationEnum decoration,
     bool divider,
   ) => switch (decoration) {
-    ListItemCardDecorationEnum.background => divider
-        ? null
-        : 'OudsListItemDecorationBackground(divider: false)',
+    ListItemCardDecorationEnum.background =>
+      divider ? null : 'OudsListItemDecorationBackground(divider: false)',
     ListItemCardDecorationEnum.backgroundOnInteraction =>
       'OudsListItemDecorationBackgroundOnInteraction(divider: $divider)',
-    ListItemCardDecorationEnum.outlined =>
-      'OudsListItemDecorationOutlined()',
+    ListItemCardDecorationEnum.outlined => 'OudsListItemDecorationOutlined()',
     ListItemCardDecorationEnum.outlinedOnInteraction =>
       'OudsListItemDecorationOutlinedOnInteraction()',
   };

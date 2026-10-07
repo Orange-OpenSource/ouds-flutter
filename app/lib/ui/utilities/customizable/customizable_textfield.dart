@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/typography/ouds_body_text.dart';
@@ -238,10 +239,6 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  OudsBodyText(
-                    text: widget.title,
-                    size: OudsBodyTextSize.large,
-                  ),
                   SizedBox(
                     height: themeController.currentTheme
                         .spaceScheme(context)
@@ -255,11 +252,12 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         controller: _textController,
                         focusNode: widget.focusNode,
                         decoration: OudsInputDecoration(
-                          hintText: '',
                           labelText: widget.title,
                           suffixIcon: OudsTextInputSuffixIconButton(
-                            icon: AppAssets.icons.functionalActionsDelete(
-                              themeController,
+                            icon: OudsIcon(
+                              AppAssets.icons.functionalActionsDelete(
+                                themeController,
+                              ),
                             ),
                             onPressed: () {
                               _textController.clear();

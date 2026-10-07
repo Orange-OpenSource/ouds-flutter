@@ -18,6 +18,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_size_modifier.dart';
@@ -80,10 +81,7 @@ enum OudsLinkDensity {
 /// - [size] : The size of the link, [OudsLinkSize] such as small or default, to fit various visual needs.
 /// - [density] : The density of the link, [OudsLinkDensity] such as compact or default.
 /// - [label] : A text to display in link component.
-/// - [icon] : An optional SVG asset name to display an icon within the link (used with [OudsLink.icon]).
-/// - [tinted] : tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
-///  When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
-///   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons, only used with [OudsLink.icon].
+/// - [icon] : An optional [OudsIcon] to display within the link (used with [OudsLink.icon]).
 /// - [onPressed]: Callback invoked when the link is clicked.
 ///
 /// [OudsLink] provides a dedicated named constructor for every supported variant:
@@ -114,8 +112,7 @@ enum OudsLinkDensity {
 /// ```dart
 /// OudsLink.icon(
 ///       label: 'Label',
-///       icon: 'assets/ic_heart.svg',
-///       tinted: true,
+///       icon: OudsIcon('assets/ic_heart.svg'),
 ///       onPressed: () {}
 ///     );
 /// ```
@@ -170,8 +167,10 @@ enum OudsLinkDensity {
 ///
 class OudsLink extends StatefulWidget {
   final String label;
-  final String? icon;
-  final bool tinted;
+  @Deprecated(
+    'This parameter is deprecated and will be removed in a future version. Use the dedicated OudsLink.icon constructor instead with new object OudsIcon.',
+  )
+  final OudsIcon? icon;
   @Deprecated(
     'OudsLinkLayout is deprecated and will be removed in a future version. '
     'Use the dedicated OudsLink.icon, OudsLink.previous, OudsLink.next or '
@@ -200,12 +199,16 @@ class OudsLink extends StatefulWidget {
   /// - [onPressed] : Callback invoked when the link is tapped or activated
   ///   (keyboard/screen reader). When `null`, the link is rendered and
   ///   announced as disabled and cannot receive focus.
-  /// - [icon] : Deprecated SVG asset path used to display a custom icon
+  /// - [icon] : Deprecated [OudsIcon] used to display a custom icon
   ///   alongside the [label] when combined with `layout: OudsLinkLayout.textAndIcon`.
   ///   Use [OudsLink.icon] instead.
   const OudsLink({
     super.key,
     required this.label,
+    @Deprecated(
+      'This parameter is deprecated and will be removed in a future version. Use the dedicated OudsLink.icon constructor instead with new object OudsIcon.',
+    )
+    this.icon,
     @Deprecated(
       'OudsLinkLayout is deprecated and will be removed in a future version. '
       'Use the dedicated OudsLink.icon, OudsLink.previous, OudsLink.next or '
@@ -215,17 +218,18 @@ class OudsLink extends StatefulWidget {
     this.size = OudsLinkSize.defaultSize,
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
-    this.icon,
-  }) : _indicator = null,
-       tinted = true;
+  }) : _indicator = null;
 
   /// Creates an [OudsLink] displaying its [label] alongside a custom [icon].
   ///
   /// - [key] : Controls how one widget replaces another widget in the tree.
   /// - [label] : The text displayed by the link. Required, non-empty; wraps
   ///   onto multiple lines automatically if it doesn't fit the available width.
-  /// - [icon] : Required SVG asset path (or package asset) of the custom icon
-  ///   displayed alongside the [label]. Its size automatically adapts to [size].
+  /// - [icon] : Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
+  ///   displayed alongside the [label]. Its size automatically adapts to [size]. Its [OudsIcon.tinted]
+  ///   property controls whether the icon is tinted with the theme color (defaults to `true`);
+  ///   set it to `false` to keep the icon's original colors (e.g. for multi-color or brand icons), in
+  ///   that case ensure sufficient contrast with the background for accessibility reasons.
   /// - [size] : The size of the link, [OudsLinkSize.defaultSize] or
   ///   [OudsLinkSize.small], controlling text style, icon size and touch
   ///   target dimensions. Defaults to [OudsLinkSize.defaultSize].
@@ -235,10 +239,6 @@ class OudsLink extends StatefulWidget {
   /// - [onPressed] : Callback invoked when the link is tapped or activated
   ///   (keyboard/screen reader). When `null`, the link is rendered and
   ///   announced as disabled and cannot receive focus.
-  /// - [tinted] : Whether the icon should be tinted with the theme color.
-  ///   Defaults to `true`. Set to `false` to keep the icon's original colors
-  ///   (e.g. for multi-color or brand icons); in that case, ensure sufficient
-  ///   contrast with the background for accessibility reasons.
   const OudsLink.icon({
     super.key,
     required this.label,
@@ -246,7 +246,6 @@ class OudsLink extends StatefulWidget {
     this.size = OudsLinkSize.defaultSize,
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
-    this.tinted = true,
   }) : _indicator = null,
        layout = OudsLinkLayout.textAndIcon;
 
@@ -275,7 +274,6 @@ class OudsLink extends StatefulWidget {
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
   }) : icon = null,
-       tinted = true,
        _indicator = OudsLinkIndicator.previous,
        layout = OudsLinkLayout.back;
 
@@ -304,7 +302,6 @@ class OudsLink extends StatefulWidget {
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
   }) : icon = null,
-       tinted = true,
        _indicator = OudsLinkIndicator.next,
        layout = OudsLinkLayout.next;
 
@@ -335,7 +332,6 @@ class OudsLink extends StatefulWidget {
     this.density = OudsLinkDensity.defaultDensity,
     this.onPressed,
   }) : icon = null,
-       tinted = true,
        _indicator = OudsLinkIndicator.external,
        layout = OudsLinkLayout.next;
 
@@ -567,7 +563,7 @@ class _OudsLinkState extends State<OudsLink> {
         widget.size,
         widget.layout,
         widget._indicator,
-        widget.icon,
+        widget.icon?.assetsName,
       )!,
       children: [
         Flexible(
@@ -579,7 +575,7 @@ class _OudsLinkState extends State<OudsLink> {
         ),
         _buildIcon(
           context,
-          widget.icon,
+          widget.icon?.assetsName,
           linkControlState,
           widget.layout,
           widget.size,
@@ -604,7 +600,7 @@ class _OudsLinkState extends State<OudsLink> {
         widget.size,
         widget.layout,
         widget._indicator,
-        widget.icon,
+        widget.icon?.assetsName,
       )!,
       children: [
         if (widget.layout == OudsLinkLayout.back ||
@@ -613,7 +609,7 @@ class _OudsLinkState extends State<OudsLink> {
             widget.icon != null)
           _buildIcon(
             context,
-            widget.icon,
+            widget.icon?.assetsName,
             linkControlState,
             widget.layout,
             widget.size,
@@ -742,7 +738,7 @@ class _OudsLinkState extends State<OudsLink> {
 
   /// Renders the icon/chevron as an [SvgPicture], resolving its asset via
   /// [_getIcon] when no custom [assetName] is provided, and applying a
-  /// tint color unless [tinted] is `false` for a custom icon.
+  /// tint color unless the custom icon's [OudsIcon.tinted] is `false`.
   ///
   /// The next/previous/external chevron is scaled with the system text
   /// scale factor, clamped between `1.0×` and `2.0×`, so it stays legible
@@ -781,7 +777,8 @@ class _OudsLinkState extends State<OudsLink> {
       width: scaledWidth,
       height: scaledHeight,
       fit: BoxFit.contain,
-      colorFilter: assetName != null && !widget.tinted
+      colorFilter:
+          assetName != null && widget.icon != null && !widget.icon!.tinted
           ? null
           : ColorFilter.mode(
               !isIcon
@@ -793,11 +790,9 @@ class _OudsLinkState extends State<OudsLink> {
     );
 
     return Container(
-      color: !isIcon && widget.tinted && widget._indicator != null
+      color: widget.icon != null && widget.icon!.tinted
           ? null
-          : widget.tinted
-          ? null
-          : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
+          : widget.icon?.backgroundColor,
 
       child: svgIcon,
     );

@@ -153,19 +153,12 @@ class _LinearProgressIndicatorDemoState
             customizationState!.selectedGapSize,
           ),
           stopIndicator: customizationState!.hasStopIndicator,
-          percentage: customizationState!.hasHelperText
-              ? customizationState!.hasPercentage
-              : false,
-          spaceBeforePercentage: customizationState!.hasSpaceBefore,
-          helperTextAlignment:
-              ProgressIndicatorCustomizationUtils.getHelperTextAlignment(
-                customizationState!.selectedAlignment,
-              ),
-          helperText: customizationState!.hasHelperText
-              ? customizationState!.helperText
-              : null,
-          semanticLabel:
-              context.l10n.app_components_progressIndicator_progress_a11y,
+          helperText: ProgressIndicatorCustomizationUtils.getLinearHelperText(
+            customizationState!,
+          ),
+          semanticsLabel: customizationState!.hasHelperText
+              ? null
+              : context.l10n.app_components_progressIndicator_progress_a11y,
         ),
       );
     } else {
@@ -186,19 +179,12 @@ class _LinearProgressIndicatorDemoState
             customizationState!.selectedGapSize,
           ),
           stopIndicator: customizationState!.hasStopIndicator,
-          percentage: customizationState!.hasHelperText
-              ? customizationState!.hasPercentage
-              : false,
-          spaceBeforePercentage: customizationState!.hasSpaceBefore,
-          helperTextAlignment:
-              ProgressIndicatorCustomizationUtils.getHelperTextAlignment(
-                customizationState!.selectedAlignment,
-              ),
-          helperText: customizationState!.hasHelperText
-              ? customizationState!.helperText
-              : null,
-          semanticLabel:
-              context.l10n.app_components_progressIndicator_progress_a11y,
+          helperText: ProgressIndicatorCustomizationUtils.getLinearHelperText(
+            customizationState!,
+          ),
+          semanticsLabel: customizationState!.hasHelperText
+              ? null
+              : context.l10n.app_components_progressIndicator_progress_a11y,
         ),
       );
     }
@@ -268,6 +254,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.selectedType ==
               ProgressIndicatorEnumType.determinate,
           keyboardType: TextInputType.number,
+          suffixText: '%',
         ),
         CustomizationDropdownMenu<StatusEnum>(
           label: StatusEnum.enumName(context),
@@ -341,26 +328,83 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               : null,
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_common_helperText_label,
+          title: context
+              .l10n
+              .app_components_progressIndicator_helperTextPercentage_tech,
+          value: customizationState.hasPercentage,
+          onChanged:
+              customizationState.selectedType ==
+                  ProgressIndicatorEnumType.determinate
+              ? (value) {
+                  setState(() {
+                    customizationState.hasPercentage = value;
+                    if (value && customizationState.hasHelperText) {
+                      customizationState.selectedProgressAlignment =
+                          ProgressIndicatorHelperTextAlignmentEnum.left;
+                      customizationState.selectedAlignment =
+                          ProgressIndicatorHelperTextAlignmentEnum.right;
+                    }
+                  });
+                }
+              : null,
+        ),
+        Visibility(
+          visible: customizationState.hasPercentage,
+          child: CustomizableChips<ProgressIndicatorHelperTextAlignmentEnum>(
+            title: context
+                .l10n
+                .app_components_progressIndicator_helperTextProgressAlignment_tech,
+            options: customizationState.progressAlignmentState.list,
+            selectedOption: customizationState.selectedProgressAlignment,
+            getText: (option) => option.stringValue(context),
+            disabledOptions: customizationState.hasHelperText
+                ? [ProgressIndicatorHelperTextAlignmentEnum.center]
+                : null,
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.selectedProgressAlignment = selectedOption;
+                // When both progress and label are shown, they always sit on
+                // opposite sides: syncing the label here ensures selecting a
+                // side for the progress percentage has a visible effect.
+                if (customizationState.hasHelperText &&
+                    selectedOption !=
+                        ProgressIndicatorHelperTextAlignmentEnum.center) {
+                  customizationState.selectedAlignment =
+                      selectedOption ==
+                          ProgressIndicatorHelperTextAlignmentEnum.left
+                      ? ProgressIndicatorHelperTextAlignmentEnum.right
+                      : ProgressIndicatorHelperTextAlignmentEnum.left;
+                }
+              });
+            },
+          ),
+        ),
+        CustomizableSwitch(
+          title: context
+              .l10n
+              .app_components_progressIndicator_helperTextLabel_tech,
           value: customizationState.hasHelperText,
           onChanged: (value) {
-            customizationState.hasHelperText = value;
+            setState(() {
+              customizationState.hasHelperText = value;
+              if (value && customizationState.hasPercentage) {
+                customizationState.selectedProgressAlignment =
+                    ProgressIndicatorHelperTextAlignmentEnum.left;
+                customizationState.selectedAlignment =
+                    ProgressIndicatorHelperTextAlignmentEnum.right;
+              }
+            });
           },
         ),
         Visibility(
           visible: customizationState.hasHelperText,
-          child: CustomizableSwitch(
+          child: CustomizableTextField(
             title: context
                 .l10n
-                .app_components_progressIndicator_helperTextPercentage_tech,
-            value: customizationState.hasPercentage,
-            onChanged:
-                customizationState.selectedType ==
-                    ProgressIndicatorEnumType.determinate
-                ? (value) {
-                    customizationState.hasPercentage = value;
-                  }
-                : null,
+                .app_components_progressIndicator_helperTextLabel_tech,
+            text: customizationState.helperText,
+            focusNode: helperFocus,
+            fieldType: FieldType.helper,
           ),
         ),
         Visibility(
@@ -370,37 +414,24 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             options: customizationState.alignmentState.list,
             selectedOption: customizationState.selectedAlignment,
             getText: (option) => option.stringValue(context),
-            onSelected: customizationState.hasPercentage
-                ? (selectedOption) {
-                    setState(() {
-                      customizationState.selectedAlignment = selectedOption;
-                    });
-                  }
+            disabledOptions: customizationState.hasPercentage
+                ? [ProgressIndicatorHelperTextAlignmentEnum.center]
                 : null,
-          ),
-        ),
-        Visibility(
-          visible: customizationState.hasHelperText,
-          child: CustomizableSwitch(
-            title: context
-                .l10n
-                .app_components_progressIndicator_helperTextSpaceBefore_tech,
-            value: customizationState.hasSpaceBefore,
-            onChanged: customizationState.hasPercentage
-                ? (value) {
-                    customizationState.hasSpaceBefore = value;
-                  }
-                : null,
-          ),
-        ),
-        Visibility(
-          visible: customizationState.hasHelperText,
-          child: CustomizableTextField(
-            title: context.l10n.app_components_common_helperText_label,
-            text: customizationState.helperText,
-            focusNode: helperFocus,
-            fieldType: FieldType.helper,
-            fieldEnable: !customizationState.hasPercentage,
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.selectedAlignment = selectedOption;
+                // Same opposite-side sync as above, from the label's side.
+                if (customizationState.hasPercentage &&
+                    selectedOption !=
+                        ProgressIndicatorHelperTextAlignmentEnum.center) {
+                  customizationState.selectedProgressAlignment =
+                      selectedOption ==
+                          ProgressIndicatorHelperTextAlignmentEnum.left
+                      ? ProgressIndicatorHelperTextAlignmentEnum.right
+                      : ProgressIndicatorHelperTextAlignmentEnum.left;
+                }
+              });
+            },
           ),
         ),
       ],

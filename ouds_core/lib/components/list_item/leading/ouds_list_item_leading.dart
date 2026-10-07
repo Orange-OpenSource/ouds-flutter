@@ -51,15 +51,10 @@ class OudsListItemLeadingIcon extends OudsListItemLeading {
   ///   or when the item has multiline content or additional information.
   final OudsListItemIconSize size;
 
-  /// Whether the icon is tinted with the theme color.
-  /// Set to `false` for multicolor icons.
-  final bool tinted;
-
   /// Creates a leading icon configuration.
   const OudsListItemLeadingIcon(
     this.iconStatus, {
     this.size = OudsListItemIconSize.medium,
-    this.tinted = true,
   });
 }
 

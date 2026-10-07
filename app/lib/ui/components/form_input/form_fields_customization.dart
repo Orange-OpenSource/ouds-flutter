@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _FormFieldsCustomization extends InheritedWidget {
@@ -129,19 +132,21 @@ class FormFieldsCustomizationState
   bool get trailingIconTinted =>
       trailingIconState.selected == TrailingIconOptionEnum.tinted;
 
-  /// Returns the prefixIcon as OudsTextInputPrefixIcon for use in decoration.
+  /// Returns the prefixIcon as OudsIcon for use in decoration.
   /// This must be called within a build context where the theme controller is available.
   ///
   /// Uses a single-color, theme-tintable asset when tinted, or the shared
   /// multi-color `icUntintedSquare` asset (kept as-is) when untinted — mirroring
   /// the behavior used in the Button and Link component demos.
-  OudsTextInputPrefixIcon? getPrefixIcon(ThemeController themeController) =>
-      hasLeadingIcon
-      ? OudsTextInputPrefixIcon(
-          icon: leadingIconTinted
+  OudsIcon? getPrefixIcon(ThemeController themeController) => hasLeadingIcon
+      ? OudsIcon(
+          leadingIconTinted
               ? AppAssets.icons.assistanceTipsAndTricks(themeController)
               : AppAssets.icons.icUntintedSquare,
           tinted: leadingIconTinted,
+          backgroundColor: leadingIconTinted
+              ? null
+              : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
         )
       : null;
 
@@ -151,8 +156,13 @@ class FormFieldsCustomizationState
     ThemeController themeController,
   ) => hasTrailingIcon
       ? OudsTextInputSuffixIconButton(
-          icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
-          tinted: trailingIconTinted,
+          icon: OudsIcon(
+            AppAssets.icons.assistanceTipsAndTricks(themeController),
+            tinted: trailingIconTinted,
+            semanticsLabel:
+                context.l10n.app_components_textInput_trailingAction_a11y,
+          ),
+
           onPressed: () {},
         )
       : null;

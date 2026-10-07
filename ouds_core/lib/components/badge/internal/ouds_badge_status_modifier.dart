@@ -121,21 +121,4 @@ class OudsBadgeStatusModifier {
     }
     return null;
   }
-
-  /// Retrieve the asset name defined by user in iconStatus
-  String? getAssetsName(OudsIconStatus? status) {
-    if (status == null) {
-      return null;
-    }
-
-    // Extract the 'icon' property only from Neutral and Accent types.
-    return switch (status) {
-      // If the type is Neutral or Accent, extract the 'icon' value into the 'assets' variable and return it.
-      Neutral(icon: final assets) => assets,
-      Accent(icon: final assets) => assets,
-      // For all other status types (Positive, Info, etc.), return null
-      // as their icons are fixed and not user-defined.
-      _ => null,
-    };
-  }
 }

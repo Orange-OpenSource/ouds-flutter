@@ -70,13 +70,22 @@ class _OudsInlineAlertState extends State<OudsInlineAlert> {
           ? OudsLocalizations.of(context)?.core_common_warning_a11y
           : widget.status is Negative
           ? OudsLocalizations.of(context)?.core_common_error_a11y
+          : widget.status is Info
+          ? OudsLocalizations.of(context)?.core_common_info_a11y
           : null,
       container: true,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: alertTokens.spaceColumnGap,
         children: [
-          alertStatusModifier.buildStatusIcon(context, widget.status),
+          Container(
+            color: widget.status.getBackgroundColor,
+            child: alertStatusModifier.buildStatusIcon(
+              context,
+              widget.status,
+              null,
+            ),
+          ),
           Expanded(
             child: Container(
               constraints: BoxConstraints(
