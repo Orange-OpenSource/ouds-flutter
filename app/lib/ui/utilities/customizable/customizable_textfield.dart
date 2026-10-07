@@ -222,59 +222,34 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         padding: EdgeInsets.all(
           themeController.currentTheme.spaceScheme(context).paddingInlineLarge,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: themeController.currentTheme
-                  .spaceScheme(context)
-                  .scaledExtraSmall,
-            ),
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: themeController.currentTheme
-                        .spaceScheme(context)
-                        .scaledExtraSmall,
+        child: ValueListenableBuilder<TextEditingValue>(
+          valueListenable: _textController,
+          builder: (context, value, _) {
+            return OudsTextField(
+              enabled: widget.fieldEnable,
+              controller: _textController,
+              focusNode: widget.focusNode,
+              decoration: OudsInputDecoration(
+                labelText: widget.title,
+                suffixIcon: OudsTextInputSuffixIconButton(
+                  icon: OudsIcon(
+                    AppAssets.icons.functionalActionsDelete(themeController),
                   ),
-                  ValueListenableBuilder<TextEditingValue>(
-                    valueListenable: _textController,
-                    builder: (context, value, _) {
-                      return OudsTextField(
-                        enabled: widget.fieldEnable,
-                        controller: _textController,
-                        focusNode: widget.focusNode,
-                        decoration: OudsInputDecoration(
-                          labelText: widget.title,
-                          suffixIcon: OudsTextInputSuffixIconButton(
-                            icon: OudsIcon(
-                              AppAssets.icons.functionalActionsDelete(
-                                themeController,
-                              ),
-                            ),
-                            onPressed: () {
-                              _textController.clear();
-                              if (!widget.focusNode.hasFocus) {
-                                widget.focusNode.unfocus();
-                              }
-                              setState(() {});
-                            },
-                          ),
-                          suffix: widget.suffixText,
-                          helperText: widget.helperText,
-                          errorText: widget.errorText,
-                        ),
-                        keyboardType: widget.keyboardType,
-                      );
-                    },
-                  ),
-                ],
+                  onPressed: () {
+                    _textController.clear();
+                    if (!widget.focusNode.hasFocus) {
+                      widget.focusNode.unfocus();
+                    }
+                    setState(() {});
+                  },
+                ),
+                suffix: widget.suffixText,
+                helperText: widget.helperText,
+                errorText: widget.errorText,
               ),
-            ),
-          ],
+              keyboardType: widget.keyboardType,
+            );
+          },
         ),
       ),
     );

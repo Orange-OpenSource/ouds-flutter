@@ -503,7 +503,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                   style: theme.typographyTokens
                       .typeLabelDefaultLarge(context)
                       .copyWith(
-                        color: inputTextTextModifier.getTextColor(
+                        color: inputTextTextModifier.getTextLabelColor(
                           state,
                           isError,
                         ),
