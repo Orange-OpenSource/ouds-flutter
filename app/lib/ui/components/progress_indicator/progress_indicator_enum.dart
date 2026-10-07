@@ -56,8 +56,12 @@ extension CustomElementSize on ProgressIndicatorGapSizeEnum {
   }
 }
 
-/// Defines the horizontal alignment options for helper text displayed
-/// with a progress indicator.
+/// Defines the horizontal alignment options for the progress percentage
+/// and/or the label of the helper text displayed below a linear progress
+/// indicator. Used for the alignment of whichever item (progress percentage
+/// or label) is shown alone, or to pick which side the label takes when both
+/// are shown together (in which case the progress percentage automatically
+/// takes the opposite side).
 enum ProgressIndicatorHelperTextAlignmentEnum {
   left,
   center,

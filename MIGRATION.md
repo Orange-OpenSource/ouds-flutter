@@ -1,5 +1,6 @@
 # Migration Guide
 
+- [v3.0.0 → v3.1.0](#v300--v310)
 - [v2.1.0 → v3.0.0](#v210--v300)
 - [v2.0.0 → v2.1.0](#v200--v210)
 - [v1.3.1 → v2.0.0](#v131--v200)
@@ -8,6 +9,118 @@
 - [v1.1.x → v1.2.0](#v11x--v120)
 - [v1.0.0 → v1.1.1](#v100--v111)
 - [Support](#support)
+
+## v3.0.0 → v3.1.0
+
+### Overview
+
+This release updates the `Progress Indicator` component (`OudsCircularProgressIndicator` / `OudsLinearProgressIndicator`) to v1.2.0 / v1.1.0. `OudsLinearProgressIndicator`'s standalone `helperText` / `helperTextAlignment` / `percentage` / `spaceBeforePercentage` parameters are replaced by a single `helperText: OudsLinearProgressIndicatorHelperText` object, `OudsCircularProgressIndicator` gains the same kind of optional helper text (always centered), the shared `semanticLabel` parameter is renamed to `semanticsLabel`, and `OudsProgressIndicatorHelperTextAlignment`'s `left`/`right` values are renamed to `start`/`end`.
+
+### Before You Begin
+
+#### Prerequisites
+
+- Use version 3.0.0 or older
+
+### Breaking Changes
+
+#### 1. `OudsProgressIndicator` — `semanticLabel` renamed to `semanticsLabel`
+
+The accessibility label parameter shared by `OudsCircularProgressIndicator` and `OudsLinearProgressIndicator` is renamed from `semanticLabel` to `semanticsLabel`, to match Flutter's own naming convention (e.g. `CircularProgressIndicator.semanticsLabel`).
+
+**Impact**: Low (rename only — trivial find-and-replace)
+
+**Before**:
+```dart
+OudsLinearProgressIndicator(
+  value: 0.8,
+  semanticLabel: 'Upload progress',
+)
+```
+
+**After**:
+```dart
+OudsLinearProgressIndicator(
+  value: 0.8,
+  semanticsLabel: 'Upload progress',
+)
+```
+
+**Required Action**:
+- Rename `semanticLabel` to `semanticsLabel` wherever `OudsCircularProgressIndicator` or `OudsLinearProgressIndicator` is used
+
+**Reason for Change**: Consistency with Flutter's own `semanticsLabel` naming on its progress indicator widgets
+
+#### 2. `OudsLinearProgressIndicator` — `helperText` / `helperTextAlignment` / `percentage` / `spaceBeforePercentage` merged into a single `helperText` object
+
+The four standalone parameters are replaced by a single `helperText` parameter typed `OudsLinearProgressIndicatorHelperText`, which can combine a progress percentage and/or a custom label on the same line. Each item has its own alignment — `progressAlignment` and `labelAlignment` (`start`/`center`/`end`) — used when that item is the only one displayed; when both are displayed, `labelAlignment` (`start` or `end` only) decides which side the label takes and the percentage automatically takes the opposite side, unless one of the two explicitly requests `center`, in which case that one is shown alone and the other is ignored. Pass `null` to hide the helper text entirely.
+
+**Impact**: High (breaking — any code using `helperText`, `helperTextAlignment`, `percentage` or `spaceBeforePercentage` on `OudsLinearProgressIndicator` must be updated)
+
+**Before**:
+```dart
+OudsLinearProgressIndicator(
+  value: 0.75,
+  helperText: 'Uploading file',
+  helperTextAlignment: OudsProgressIndicatorHelperTextAlignment.center,
+  percentage: false,
+  spaceBeforePercentage: false,
+)
+```
+
+**After**:
+```dart
+OudsLinearProgressIndicator(
+  value: 0.75,
+  helperText: OudsLinearProgressIndicatorHelperText(
+    label: 'Uploading file',
+    labelAlignment: OudsProgressIndicatorHelperTextAlignment.end,
+  ),
+)
+```
+
+**Required Action**:
+- Replace `helperText: 'my text'` with `helperText: OudsLinearProgressIndicatorHelperText(label: 'my text', progress: false)`
+- Replace `percentage: true` with `helperText: OudsLinearProgressIndicatorHelperText()` (percentage is shown by default, centered) or explicitly set `progress: true`
+- Replace `helperTextAlignment` with `OudsLinearProgressIndicatorHelperText.labelAlignment`/`progressAlignment` — when both the label and the percentage are shown, only `start`/`end` make sense for `labelAlignment` (the percentage takes the opposite side); set either to `center` to show that item alone, centered, and hide the other
+- Remove `spaceBeforePercentage` — the percentage formatting is now fixed
+
+**Reason for Change**: Allow the progress percentage and a custom label to be displayed together (instead of one replacing the other), let each item be independently aligned when shown alone, and share the same helper text model with the newly added `OudsCircularProgressIndicator.helperText`
+
+#### 3. `OudsProgressIndicatorHelperTextAlignment` — `left`/`right` renamed to `start`/`end`
+
+The enum values are renamed for RTL-aware, direction-agnostic naming; `center` is unchanged.
+
+**Impact**: Low (rename only)
+
+**Before**:
+```dart
+OudsProgressIndicatorHelperTextAlignment.left
+OudsProgressIndicatorHelperTextAlignment.right
+```
+
+**After**:
+```dart
+OudsProgressIndicatorHelperTextAlignment.start
+OudsProgressIndicatorHelperTextAlignment.end
+```
+
+**Required Action**:
+- Replace `.left` with `.start` and `.right` with `.end`
+
+**Reason for Change**: Consistency with Flutter's direction-agnostic `AlignmentDirectional`/`TextAlign` naming and proper RTL support
+
+### Component Updates (Non-breaking)
+
+| Component         | Change |
+|--------------------|--------|
+| Progress Indicator | `OudsCircularProgressIndicator` gains an optional `helperText: OudsCircularProgressIndicatorHelperText` (always centered, combining the progress percentage and/or a label below the indicator) |
+| Progress Indicator | When the OS-level "Reduce Motion"/"Remove Animations" accessibility setting is active, the progress percentage is no longer announced to assistive technologies for either indicator — only the label (if any) is |
+
+### Compatibility
+
+- **Backward Compatibility**: No (breaking changes in the `OudsLinearProgressIndicator` helper text API and in the shared `semanticLabel`/`OudsProgressIndicatorHelperTextAlignment` API)
+- **v3.0.0 Support**: Ended with this release
 
 ## v2.1.0 → v3.0.0
 
