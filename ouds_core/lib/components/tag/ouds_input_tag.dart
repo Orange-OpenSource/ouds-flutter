@@ -17,11 +17,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_background_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_border_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_icon_style_modifier.dart';
-import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -78,7 +78,6 @@ class _OudsInputTagState extends State<OudsInputTag> {
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
-  bool isVisible = true;
 
   @override
   void initState() {
@@ -98,8 +97,9 @@ class _OudsInputTagState extends State<OudsInputTag> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onPressed == null)
+    if (widget.onPressed == null) {
       _isFocused = false; // Ignore focus changes if disabled
+    }
     setState(() => _isFocused = focus);
   }
 
@@ -128,26 +128,13 @@ class _OudsInputTagState extends State<OudsInputTag> {
     final tagBackgroundColorModifier =
         OudsInputTagControlBackgroundColorModifier(context);
 
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
-
-    return Visibility(
-      visible: isVisible,
-      child: OudsSkeletonLayout(
-        visible: widget.skeleton != null,
-        securityMargin: widget.skeleton?.securityMargin ?? false,
-        animated: widget.skeleton?.animated ?? false,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(tagToken.borderRadius),
-        ),
-        content: (context) => _buildInputTag(
-          context,
-          tagBorderModifier,
-          tagTextColorModifier,
-          tagBackgroundColorModifier,
-          tagState,
-          isDisabled,
-        ),
-      ),
+    return _buildInputTag(
+      context,
+      tagBorderModifier,
+      tagTextColorModifier,
+      tagBackgroundColorModifier,
+      tagState,
+      isDisabled,
     );
   }
 
@@ -211,7 +198,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
                 clipBehavior: Clip.none,
                 alignment: Alignment.center,
                 children: [
-                  if (_isFocused)
+                  if (_isFocused && widget.skeleton == null)
                     Positioned(
                       top: borderTokens.widthFocus / 2,
                       bottom: borderTokens.widthFocus / 2,
@@ -249,13 +236,23 @@ class _OudsInputTagState extends State<OudsInputTag> {
                         tagToken.borderRadius,
                       ),
                     ),
-                    child: _buildLayout(
-                      context,
-                      tagBorderModifier,
-                      tagTextColorModifier,
-                      tagBgColorModifier,
-                      tagState,
-                      isDisabled,
+                    child: OudsSkeletonLayout(
+                      visible: widget.skeleton != null,
+                      securityMargin: widget.skeleton?.securityMargin ?? false,
+                      animated: widget.skeleton?.animated ?? false,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          tagToken.borderRadius,
+                        ),
+                      ),
+                      content: (context) => _buildLayout(
+                        context,
+                        tagBorderModifier,
+                        tagTextColorModifier,
+                        tagBgColorModifier,
+                        tagState,
+                        isDisabled,
+                      ),
                     ),
                   ),
                 ],

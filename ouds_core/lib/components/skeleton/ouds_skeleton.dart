@@ -168,6 +168,7 @@ class _OudsSkeletonState extends State<OudsSkeleton>
     );
 
     return Semantics(
+      liveRegion: true,
       label: OudsLocalizations.of(context)?.core_common_loading_a11y,
       child: ExcludeSemantics(
         child: Padding(
