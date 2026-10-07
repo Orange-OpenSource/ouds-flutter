@@ -681,7 +681,7 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
-| `v2.1.0 → v3.0.0` | No | Yes | Shared `OudsIcon` type replacing `OudsLinkIcon`/`OudsChipIcon`/`OudsTextInputPrefixIcon`/`OudsControlItemIcon` (breaking) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsCheckboxItem`, `OudsRadioButtonItem`, `OudsSwitchButtonItem`, typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons; `OudsIconStatus.Neutral`/`Accent` gained `tinted`/`backgroundColor`/`semanticsLabel` (non-breaking); `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
+| `v2.1.0 → v3.0.0` | No | Yes | Shared `OudsIcon` type replacing `OudsLinkIcon`/`OudsChipIcon`/`OudsTextInputPrefixIcon`/`OudsControlItemIcon` (breaking) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsCheckboxItem`, `OudsRadioButtonItem`, `OudsSwitchButtonItem`, typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons; `OudsProgressIndicator` — `semanticLabel` → `semanticsLabel`, helper text API refactored, `left`/`right` → `start`/`end` (breaking); `OudsIconStatus.Neutral`/`Accent` gained `tinted`/`backgroundColor`/`semanticsLabel` (non-breaking); `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
 | `v2.0.0 → v2.1.0` | Full | No | `OudsNavigationButton`, `OudsCircularProgressIndicator`, `OudsLinearProgressIndicator`, tokens v2.6.0 |
 | `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
 | `v1.3.0 → v1.3.1` | Full | No | Maintenance release, bug fixes, accessibility improvements |
@@ -870,6 +870,44 @@ OudsBadge.icon(
 **Required actions:**
 
 - None — this is optional. Add `tinted`, `backgroundColor` and `semanticsLabel` on `Neutral`/`Accent` only if you need untinted multi-color icons or a custom accessibility label.
+
+---
+
+#### 3.3.0quinquies `OudsProgressIndicator` — `semanticLabel` renamed to `semanticsLabel` and helper text API refactored (`v2.1.0 → v3.0.0`)
+
+The accessibility label parameter shared by `OudsCircularProgressIndicator` and `OudsLinearProgressIndicator` is renamed from `semanticLabel` to `semanticsLabel`, to match Flutter's own naming convention. Additionally, `OudsLinearProgressIndicator`'s standalone `helperText` / `helperTextAlignment` / `percentage` / `spaceBeforePercentage` parameters are replaced by a single `helperText: OudsLinearProgressIndicatorHelperText` object, and `OudsCircularProgressIndicator` gains the same kind of optional helper text (always centered). The `OudsProgressIndicatorHelperTextAlignment` enum values `left`/`right` are renamed to `start`/`end`.
+
+**`OudsLinearProgressIndicator` — before/after:**
+
+```dart
+// Before
+OudsLinearProgressIndicator(
+  value: 0.75,
+  semanticLabel: 'Upload progress',
+  helperText: 'Uploading file',
+  helperTextAlignment: OudsProgressIndicatorHelperTextAlignment.center,
+  percentage: false,
+  spaceBeforePercentage: false,
+)
+
+// After
+OudsLinearProgressIndicator(
+  value: 0.75,
+  semanticsLabel: 'Upload progress',
+  helperText: OudsLinearProgressIndicatorHelperText(
+    label: 'Uploading file',
+    labelAlignment: OudsProgressIndicatorHelperTextAlignment.end,
+  ),
+)
+```
+
+**Required actions:**
+
+- Rename `semanticLabel` to `semanticsLabel` on progress indicators.
+- Replace `helperText: 'my text'` with `helperText: OudsLinearProgressIndicatorHelperText(label: 'my text', progress: false)`.
+- Replace `percentage: true` with `helperText: OudsLinearProgressIndicatorHelperText()` (percentage is shown by default, centered) or explicitly set `progress: true`.
+- Replace `helperTextAlignment` with `OudsLinearProgressIndicatorHelperText.labelAlignment` / `progressAlignment`.
+- Replace `.left` with `.start` and `.right` with `.end` in `OudsProgressIndicatorHelperTextAlignment`.
 
 ---
 
@@ -1118,6 +1156,21 @@ When the migration guide mentions token updates:
 ---
 
 ### 3.5 New components introduced by version
+
+#### `v2.1.0 → v3.0.0`
+
+| Component | Class |
+|-----------|-------|
+| List item | `OudsListItem`, `OudsSmallListItem`, `OudsCardItem`, `OudsSmallCardItem` |
+| Shared icon | `OudsIcon` (replaces `OudsLinkIcon` / `OudsChipIcon` / `OudsTextInputPrefixIcon` / `OudsControlItemIcon`) |
+
+#### `v2.0.0 → v2.1.0`
+
+| Component | Class |
+|-----------|-------|
+| Navigation button | `OudsNavigationButton` |
+| Circular progress indicator | `OudsCircularProgressIndicator` |
+| Linear progress indicator | `OudsLinearProgressIndicator` |
 
 #### `v1.2.0 → v1.3.0`
 
