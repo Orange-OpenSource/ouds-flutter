@@ -1,4 +1,3 @@
-
 //
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -22,7 +21,6 @@ import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsToolbarTopActionModifier {
-
   final BuildContext context;
 
   OudsToolbarTopActionModifier(this.context);
@@ -43,37 +41,44 @@ class OudsToolbarTopActionModifier {
   /// Returns:
   /// - A [Row] widget containing the action widgets, or null if no actions are provided.
   List<Widget>? getToolBarActions(
-      bool isLeadingAction,
-      List<OudsTopBarActionConfig>? actionsConfig,
-      List<Widget> actions
-      ) {
-
+    bool isLeadingAction,
+    List<OudsTopBarActionConfig>? actionsConfig,
+    List<Widget> actions,
+  ) {
     if (actionsConfig == null || actionsConfig.isEmpty) return null;
 
     /// Set maximum actions
     int maxActions = 3;
 
     /// If an action of type 'back' is present, limit to 1
-    bool hasBackAction = actionsConfig.any((action) => action.type == OudsTopBarActionType.back);
+    bool hasBackAction = actionsConfig.any(
+      (action) => action.type == OudsTopBarActionType.back,
+    );
     if (hasBackAction) {
       maxActions = 1;
     }
 
-    bool hasTextAction = actionsConfig.any((action) => action.type == OudsTopBarActionType.text);
+    bool hasTextAction = actionsConfig.any(
+      (action) => action.type == OudsTopBarActionType.text,
+    );
     if (isLeadingAction && hasTextAction) {
       maxActions = 3;
     }
+
     /// Limit the actions list
     return actions.take(maxActions).toList();
   }
 
-  Widget buildActionIcon(String? customIcon, bool enabled, bool isPressed){
-
-    final enabledColorToken = OudsTheme.of(context).componentsTokens(context)
-        .button.colorContentMinimalEnabled;
-    final disabledColorToken = OudsTheme.of(context).componentsTokens(context)
-        .button.colorContentMinimalDisabled;
-    final pressedColor = OudsTheme.of(context).colorScheme(context).actionPressed;
+  Widget buildActionIcon(String? customIcon, bool enabled, bool isPressed) {
+    final enabledColorToken = OudsTheme.of(
+      context,
+    ).componentsTokens(context).button.colorContentMinimalEnabled;
+    final disabledColorToken = OudsTheme.of(
+      context,
+    ).componentsTokens(context).button.colorContentMinimalDisabled;
+    final pressedColor = OudsTheme.of(
+      context,
+    ).colorScheme(context).actionPressed;
 
     return SvgPicture.asset(
       alignment: AlignmentDirectional.center,
@@ -81,22 +86,29 @@ class OudsToolbarTopActionModifier {
       height: 26,
       excludeFromSemantics: true,
       matchTextDirection: true,
-      customIcon ?? AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+      customIcon ?? AppAssets.icons.functionalSocialAndEngagementHeartRecommend,
       fit: BoxFit.fill,
       colorFilter: ColorFilter.mode(
-        (enabled && !isPressed)? enabledColorToken : (enabled && isPressed) ? pressedColor : disabledColorToken,
+        (enabled && !isPressed)
+            ? enabledColorToken
+            : (enabled && isPressed)
+            ? pressedColor
+            : disabledColorToken,
         BlendMode.srcIn,
       ),
     );
   }
 
-  Widget buildBackIcon(bool enabled, bool isPressed){
-
-    final enabledColorToken = OudsTheme.of(context).componentsTokens(context)
-        .button.colorContentMinimalEnabled;
-    final disabledColorToken = OudsTheme.of(context).componentsTokens(context)
-        .button.colorContentMinimalDisabled;
-    final pressedColor = OudsTheme.of(context).colorScheme(context).actionPressed;
+  Widget buildBackIcon(bool enabled, bool isPressed) {
+    final enabledColorToken = OudsTheme.of(
+      context,
+    ).componentsTokens(context).button.colorContentMinimalEnabled;
+    final disabledColorToken = OudsTheme.of(
+      context,
+    ).componentsTokens(context).button.colorContentMinimalDisabled;
+    final pressedColor = OudsTheme.of(
+      context,
+    ).colorScheme(context).actionPressed;
 
     return SvgPicture.asset(
       width: 28,

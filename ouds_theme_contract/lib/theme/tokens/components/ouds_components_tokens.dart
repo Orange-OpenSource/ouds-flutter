@@ -11,6 +11,7 @@
  */
 
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_accordion_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_alertMessage_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_alert_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_badge_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
@@ -19,7 +20,6 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_buttonMono_toke
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_chip_tokens.dart';
-import 'package:ouds_theme_contract/theme/tokens/components/ouds_controlItem_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_icon_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_inputTag_tokens.dart';
@@ -35,10 +35,12 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tag_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textArea_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_typography_tokens.dart';
 
 class OudsComponentsTokens {
   final OudsAccordionTokens accordion;
   final OudsAlertTokens alert;
+  final OudsAlertMessageTokens alertMessage;
   final OudsBadgeTokens badge;
   final OudsBarTokens bar;
   final OudsBulletListTokens bulletList;
@@ -46,16 +48,12 @@ class OudsComponentsTokens {
   final OudsButtonMonoTokens buttonMono;
   final OudsCheckboxTokens checkbox;
   final OudsChipTokens chip;
-  @Deprecated(
-    "This component is deprecated and will be replaced by control list item in a future version.",
-  )
-  final OudsControlItemTokens controlItem;
   final OudsDividerTokens divider;
   final OudsIconTokens icon;
   final OudsInputTagTokens inputTag;
   final OudsLinkTokens link;
   final OudsLinkMonoTokens linkMono;
-  final OudsListItemTokens listItem;
+  final OudsListItemTokens controlListItem;
   final OudsPinCodeInputTokens pinCodeInput;
   final OudsProgressIndicatorTokens progressIndicator;
   final OudsProgressIndicatorMonoTokens progressIndicatorMono;
@@ -65,10 +63,12 @@ class OudsComponentsTokens {
   final OudsTagTokens tag;
   final OudsTextAreaTokens textArea;
   final OudsTextInputTokens textInput;
+  final OudsTypographyTokens typography;
 
   const OudsComponentsTokens({
     required this.accordion,
     required this.alert,
+    required this.alertMessage,
     required this.badge,
     required this.bar,
     required this.bulletList,
@@ -76,13 +76,12 @@ class OudsComponentsTokens {
     required this.buttonMono,
     required this.checkbox,
     required this.chip,
-    required this.controlItem,
     required this.divider,
     required this.icon,
     required this.inputTag,
     required this.link,
     required this.linkMono,
-    required this.listItem,
+    required this.controlListItem,
     required this.pinCodeInput,
     required this.progressIndicator,
     required this.progressIndicatorMono,
@@ -92,5 +91,6 @@ class OudsComponentsTokens {
     required this.tag,
     required this.textArea,
     required this.textInput,
+    required this.typography,
   });
 }

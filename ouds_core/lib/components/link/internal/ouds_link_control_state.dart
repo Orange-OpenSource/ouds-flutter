@@ -15,13 +15,7 @@
 library;
 
 /// Enum representing the state of the Link control.
-enum OudsLinkControlState {
-  enabled,
-  hovered,
-  pressed,
-  disabled,
-  focused,
-}
+enum OudsLinkControlState { enabled, hovered, pressed, disabled, focused }
 
 /// A class that determines the state of the OudsLink
 class OudsLinkControlStateDeterminer {

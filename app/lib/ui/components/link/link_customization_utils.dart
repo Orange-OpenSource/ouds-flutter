@@ -10,6 +10,8 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
@@ -19,36 +21,73 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 /// Utility class to map tag customization options to corresponding OudsLink attributes.
 ///
 /// This class provides static methods to convert customization enums into the appropriate
-/// [OudsLink] properties. It includes methods for determining the link layout based on the input enum values.
-/// These methods help in translating
+/// [OudsLink] properties. It includes methods for building the dedicated [OudsLink]
+/// constructor matching the selected layout. These methods help in translating
 /// user-selected options into code that is used for link customization and rendering.
 
 class LinkCustomizationUtils {
-  /// Maps the layout enum to `OudsLinkLayout`.
-  static OudsLinkLayout getLayout(Object layout) {
-    switch (layout) {
+  /// Builds the [OudsLink] widget matching the selected layout, using the
+  /// dedicated constructor for each variant (icon, previous, next, external).
+  static OudsLink buildLink({
+    required Color backgroundColor,
+    required LinkCustomizationState customizationState,
+    required ThemeController themeController,
+    required VoidCallback? onPressed,
+  }) {
+    final label = getText(customizationState);
+    final size = getSize(customizationState.selectedSize);
+    final density = getDensity(customizationState.selectedDensity);
+    final isTinted = customizationState.isTinted;
+
+    switch (customizationState.selectedLayout) {
       case LinkEnumLayout.textAndIcon:
-        return OudsLinkLayout.textAndIcon;
+        return OudsLink.icon(
+          label: label,
+          icon: OudsIcon(
+            isTinted
+                ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+                : AppAssets.icons.icUntintedSquare,
+            tinted: isTinted,
+            backgroundColor: backgroundColor,
+          ),
+          size: size,
+          density: density,
+          onPressed: onPressed,
+        );
       case LinkEnumLayout.next:
-        return OudsLinkLayout.next;
-      case LinkEnumLayout.back:
-        return OudsLinkLayout.back;
-      default:
-        return OudsLinkLayout.textOnly;
+        return OudsLink.next(
+          label: label,
+          size: size,
+          density: density,
+          onPressed: onPressed,
+        );
+      case LinkEnumLayout.previous:
+        return OudsLink.previous(
+          label: label,
+          size: size,
+          density: density,
+          onPressed: onPressed,
+        );
+      case LinkEnumLayout.external:
+        return OudsLink.external(
+          label: label,
+          size: size,
+          density: density,
+          onPressed: onPressed,
+        );
+      case LinkEnumLayout.textOnly:
+        return OudsLink(
+          label: label,
+          size: size,
+          density: density,
+          onPressed: onPressed,
+        );
     }
   }
 
   /// Determines the text to display.
   static String getText(LinkCustomizationState customizationState) {
     return customizationState.labelText;
-  }
-
-  /// Determines the icon to display based on the selected layout.
-  static String? getIcon(LinkCustomizationState? customizationState, ThemeController themeController) {
-    if (customizationState?.selectedLayout == LinkEnumLayout.textAndIcon) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController);
-    }
-    return null;
   }
 
   /// Maps the enum to `OudsLinkSize`.
@@ -58,6 +97,16 @@ class LinkCustomizationUtils {
         return OudsLinkSize.small;
       default:
         return OudsLinkSize.defaultSize;
+    }
+  }
+
+  /// Maps the enum to `OudsLinkDensity`.
+  static OudsLinkDensity getDensity(Object density) {
+    switch (density) {
+      case LinkEnumDensity.compact:
+        return OudsLinkDensity.compact;
+      default:
+        return OudsLinkDensity.defaultDensity;
     }
   }
 }

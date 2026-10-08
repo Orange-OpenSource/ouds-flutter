@@ -31,10 +31,10 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [label]: Label displayed in the inline alert. Main message that should be short, clear, and readable at a glance.
 /// - [status]:  The status of the inline alert. its icon color are based on this status.
 ///  There are two types of statuses:
-/// - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert messages. They
+///   - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert messages. They
 /// provide context or highlight content without implying a specific state, system event, or user action. These alerts are not tied to UX patterns such as
 /// success, error, or warning, and may use contextual or brand-related icons to enhance recognition or storytelling.
-/// - Functional statuses communicate specific system statuses, results, or user feedback: [Positive], [Warning],
+///   - Functional statuses communicate specific system statuses, results, or user feedback: [Positive], [Warning],
 /// [Negative], [Info].
 /// Each variant conveys a clear semantic meaning and must always be paired with its dedicated functional icon to ensure clarity and accessibility.
 /// Use functional alerts to inform user about state changes, confirmations, or issues that are directly connected to system logic or user actions. These
@@ -70,13 +70,22 @@ class _OudsInlineAlertState extends State<OudsInlineAlert> {
           ? OudsLocalizations.of(context)?.core_common_warning_a11y
           : widget.status is Negative
           ? OudsLocalizations.of(context)?.core_common_error_a11y
+          : widget.status is Info
+          ? OudsLocalizations.of(context)?.core_common_info_a11y
           : null,
       container: true,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: alertTokens.spaceColumnGap,
         children: [
-          alertStatusModifier.buildStatusIcon(context, widget.status),
+          Container(
+            color: widget.status.getBackgroundColor,
+            child: alertStatusModifier.buildStatusIcon(
+              context,
+              widget.status,
+              null,
+            ),
+          ),
           Expanded(
             child: Container(
               constraints: BoxConstraints(

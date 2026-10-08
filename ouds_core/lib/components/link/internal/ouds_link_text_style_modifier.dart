@@ -15,30 +15,28 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart';
 
 class OudsLinkTextStyleModifier {
-
   final BuildContext context;
 
   OudsLinkTextStyleModifier(this.context);
 
-  /// Returns the text Style  based on the size of link
-   TextStyle buildLinkTextStyle(
-    BuildContext context, {
-    required OudsLinkSize size,
-  }) {
-   return size == OudsLinkSize.defaultSize
-       ? OudsTheme.of(context).typographyTokens.typeLabelStrongLarge(context)
-       : OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context);
-
+  /// Returns the text style based on the size of link
+  TextStyle buildLinkTextStyle({required OudsLinkSize size}) {
+    return size == OudsLinkSize.defaultSize
+        ? OudsTheme.of(context).typographyTokens.typeLabelStrongLarge(context)
+        : OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context);
   }
 
   /// Returns the text color based on link state
-  TextDecoration? getTextDecorationStatus(OudsLinkControlState state,OudsLinkLayout layout) {
-    if (layout == OudsLinkLayout.textOnly) {
+  TextDecoration? getTextDecorationStatus(
+    OudsLinkControlState state,
+    bool isTextOnly,
+  ) {
+    if (isTextOnly) {
       return TextDecoration.underline;
     } else {
       switch (state) {

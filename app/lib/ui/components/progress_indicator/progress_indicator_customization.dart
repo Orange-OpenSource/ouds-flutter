@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
@@ -40,8 +39,7 @@ class ProgressIndicatorCustomization extends StatefulWidget {
 /// tag customization state management
 class ProgressIndicatorCustomizationState
     extends CustomizationWidgetState<ProgressIndicatorCustomization> {
-  late final ProgressState progressState;
-  late final SizeState sizeState;
+  late final ValueState valueState;
   late final StatusState statusState;
   late final TrackState trackState;
   late final AnimatedState animatedState;
@@ -49,15 +47,14 @@ class ProgressIndicatorCustomizationState
   late final GapSizeState gapSizeState;
   late final StopIndicatorState stopIndicatorState;
   late final HelperTextState helperTextState;
-  late final AlignmentState alignmentState;
+  late final LabelAlignmentState alignmentState;
+  late final ProgressAlignmentState progressAlignmentState;
   late final PercentageState percentageState;
-  late final SpaceBeforeState spaceBeforeState;
 
   @override
   void initState() {
     super.initState();
-    progressState = ProgressState(setState);
-    sizeState = SizeState(setState);
+    valueState = ValueState(setState);
     statusState = StatusState(setState);
     trackState = TrackState(setState);
     animatedState = AnimatedState(setState);
@@ -65,16 +62,13 @@ class ProgressIndicatorCustomizationState
     gapSizeState = GapSizeState(setState);
     stopIndicatorState = StopIndicatorState(setState);
     helperTextState = HelperTextState(setState);
-    alignmentState = AlignmentState(setState);
+    alignmentState = LabelAlignmentState(setState);
+    progressAlignmentState = ProgressAlignmentState(setState);
     percentageState = PercentageState(setState);
-    spaceBeforeState = SpaceBeforeState(setState);
   }
 
-  String get progress => progressState.value;
-  set progress(String value) => progressState.value = value;
-
-  LinkEnumSize get selectedSize => sizeState.selected;
-  set selectedSize(LinkEnumSize value) => sizeState.selected = value;
+  String get value => valueState.value;
+  set value(String value) => valueState.value = value;
 
   // Proxy getters and setters to expose state values directly
   StatusEnum get selectedStatus => statusState.selectedStatus;
@@ -113,11 +107,14 @@ class ProgressIndicatorCustomizationState
   set selectedAlignment(ProgressIndicatorHelperTextAlignmentEnum value) =>
       alignmentState.selected = value;
 
+  ProgressIndicatorHelperTextAlignmentEnum get selectedProgressAlignment =>
+      progressAlignmentState.selected;
+  set selectedProgressAlignment(
+    ProgressIndicatorHelperTextAlignmentEnum value,
+  ) => progressAlignmentState.selected = value;
+
   bool get hasPercentage => percentageState.value;
   set hasPercentage(bool value) => percentageState.value = value;
-
-  bool get hasSpaceBefore => spaceBeforeState.value;
-  set hasSpaceBefore(bool value) => spaceBeforeState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -129,11 +126,11 @@ class ProgressIndicatorCustomizationState
 }
 
 /// progress value State Management
-class ProgressState {
-  ProgressState(this._setState);
+class ValueState {
+  ValueState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _progressValue = "0.75";
+  String _progressValue = "75";
 
   String get value => _progressValue;
   set value(String newValue) {
@@ -209,30 +206,6 @@ class AnimatedState {
   set value(bool newValue) {
     _setState(() {
       _hasAnimatedState = newValue;
-    });
-  }
-}
-
-/// Size State Management
-class SizeState {
-  SizeState(this._setState);
-
-  final void Function(void Function()) _setState;
-
-  List<LinkEnumSize> _sizeList = [LinkEnumSize.defaultSize, LinkEnumSize.small];
-  LinkEnumSize _selectedSize = LinkEnumSize.defaultSize;
-
-  List<LinkEnumSize> get list => _sizeList;
-  set list(List<LinkEnumSize> newList) {
-    _setState(() {
-      _sizeList = newList;
-    });
-  }
-
-  LinkEnumSize get selected => _selectedSize;
-  set selected(LinkEnumSize newValue) {
-    _setState(() {
-      _selectedSize = newValue;
     });
   }
 }
@@ -323,21 +296,6 @@ class PercentageState {
   }
 }
 
-/// Percentage State Management
-class SpaceBeforeState {
-  SpaceBeforeState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _hasSpaceBeforeState = true;
-
-  bool get value => _hasSpaceBeforeState;
-  set value(bool newValue) {
-    _setState(() {
-      _hasSpaceBeforeState = newValue;
-    });
-  }
-}
-
 /// Helper text State Management
 class HelperTextState {
   HelperTextState(this._setState);
@@ -352,7 +310,7 @@ class HelperTextState {
     });
   }
 
-  bool _hasHelperTextState = true;
+  bool _hasHelperTextState = false;
 
   bool get hasValue => _hasHelperTextState;
   set hasValue(bool newValue) {
@@ -362,9 +320,38 @@ class HelperTextState {
   }
 }
 
-/// Type State Management
-class AlignmentState {
-  AlignmentState(this._setState);
+/// Label Alignment State Management
+class LabelAlignmentState {
+  LabelAlignmentState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  List<ProgressIndicatorHelperTextAlignmentEnum> _alignmentList = [
+    ProgressIndicatorHelperTextAlignmentEnum.left,
+    ProgressIndicatorHelperTextAlignmentEnum.center,
+    ProgressIndicatorHelperTextAlignmentEnum.right,
+  ];
+  ProgressIndicatorHelperTextAlignmentEnum _selectedAlignment =
+      ProgressIndicatorHelperTextAlignmentEnum.center;
+
+  List<ProgressIndicatorHelperTextAlignmentEnum> get list => _alignmentList;
+  set list(List<ProgressIndicatorHelperTextAlignmentEnum> newList) {
+    _setState(() {
+      _alignmentList = newList;
+    });
+  }
+
+  ProgressIndicatorHelperTextAlignmentEnum get selected => _selectedAlignment;
+  set selected(ProgressIndicatorHelperTextAlignmentEnum newValue) {
+    _setState(() {
+      _selectedAlignment = newValue;
+    });
+  }
+}
+
+/// Progress Alignment State Management
+class ProgressAlignmentState {
+  ProgressAlignmentState(this._setState);
 
   final void Function(void Function()) _setState;
 

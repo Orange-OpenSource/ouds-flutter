@@ -26,30 +26,14 @@ class _Images {
 
   /// Tokens
   final String ilTokensColor = 'assets/illustration/token/il_tokens_color.svg';
-  final String ilTokensColorDark =
-      'assets/illustration/token/il_tokens_color_dark.svg';
-
   final String ilTokensElevation =
       'assets/illustration/token/il_tokens_elevation.svg';
-  final String ilTokensElevationDark =
-      'assets/illustration/token/il_tokens_elevation_dark.svg';
-
   final String ilTokensOpacity =
       'assets/illustration/token/il_tokens_opacity.svg';
-  final String ilTokensOpacityDark =
-      'assets/illustration/token/il_tokens_opacity_dark.svg';
-
   final String ilUnion = 'assets/illustration/token/il_union.svg';
-  final String ilUnionDark = 'assets/illustration/token/il_union_dark.svg';
-
   final String ilTypography =
       'assets/illustration/token/il_tokens_typography.svg';
-  final String ilTypographyDark =
-      'assets/illustration/token/il_tokens_typography_dark.svg';
-
   final String ilTokenBorder = 'assets/illustration/token/il_tokens_border.svg';
-  final String ilTokenBorderDark =
-      'assets/illustration/token/il_tokens_border_dark.svg';
 
   // Components
   final String ilTopAppBarAvatar =
@@ -58,19 +42,24 @@ class _Images {
 
 class _Icons {
   const _Icons();
+  // List item icons
+  final String icUntintedSquare =
+      'assets/illustration/component/ic_untinted_square.svg';
+  final String icUntintedWidescreen =
+      'assets/illustration/component/ic_untinted_widescreen.svg';
 
   String deviceSmartphone(ThemeController themeController) =>
       '${themeController.getAssetsPath(themeController)}communication/device/device-smartphone.svg';
   String functionalSocialAndEngagementContact(
     ThemeController themeController,
   ) =>
-      '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/contact.svg';
-  String functionalSocialAndEngagementHeartEmpty(
+      '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/profil-avatar.svg';
+  String functionalSocialAndEngagementHeartRecommend(
     ThemeController themeController,
   ) =>
-      '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-empty.svg';
+      '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-recommend.svg';
   String functionalActionsDelete(ThemeController themeController) =>
-      '${themeController.getAssetsPath(themeController)}functional/actions/delete.svg';
+      '${themeController.getAssetsPath(themeController)}functional/actions/delete-cross-round.svg';
   String functionalActionsCopy(ThemeController themeController) =>
       '${themeController.getAssetsPath(themeController)}functional/actions/copy.svg';
   String functionalSettingsAndToolsUiLightMode(
@@ -96,7 +85,7 @@ class _Icons {
   String designComponentAtom(ThemeController themeController) =>
       '${themeController.getAssetsPath(themeController)}communication/design/component-atom.svg';
   String designToken(ThemeController themeController) =>
-      '${themeController.getAssetsPath(themeController)}communication/design/design-token.svg';
+      '${themeController.getAssetsPath(themeController)}communication/design/design-token-figma.svg';
 }
 
 class _Fonts {

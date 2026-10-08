@@ -29,6 +29,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_accordion_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_alertMessage_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_alert_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_badge_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_bar_tokens.dart';
@@ -37,7 +38,6 @@ import 'package:ouds_theme_sosh/components/sosh_buttonMono_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_button_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_checkbox_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_chip_tokens.dart';
-import 'package:ouds_theme_sosh/components/sosh_controlItem_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_divider_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_icon_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_inputTag_tokens.dart';
@@ -53,6 +53,7 @@ import 'package:ouds_theme_sosh/components/sosh_switch_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_tag_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_textArea_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_textInput_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_typography_tokens.dart';
 import 'package:ouds_theme_sosh/material/sosh_material_color_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_border_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_color_semantic_tokens.dart';
@@ -62,6 +63,7 @@ import 'package:ouds_theme_sosh/semantic/sosh_grid_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_size_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_space_semantic_tokens.dart';
+import 'package:ouds_theme_sosh/sosh_typography.dart';
 
 /// [SoshTheme] implements the [OudsThemeContract] and defines the theme for the "White label" version of the application.
 /// This theme provides configurations for both light and dark modes, with customizable color schemes, typography,
@@ -211,7 +213,7 @@ class SoshTheme implements OudsThemeContract {
   }
 
   @override
-  OudsTypography get typographyTokens => OudsTypography();
+  OudsTypography get typographyTokens => SoshTypography();
   @override
   OudsProvidersTokens providersTokens(BuildContext context) {
     return OudsProvidersTokens(
@@ -231,6 +233,7 @@ class SoshTheme implements OudsThemeContract {
     return OudsComponentsTokens(
       accordion: SoshAccordionTokens(providersTokens(context)),
       alert: SoshAlertTokens(providersTokens(context)),
+      alertMessage: SoshAlertMessageTokens(providersTokens(context)),
       badge: SoshBadgeTokens(providersTokens(context)),
       bar: SoshBarTokens(providersTokens(context)),
       bulletList: SoshBulletListTokens(providersTokens(context)),
@@ -238,13 +241,12 @@ class SoshTheme implements OudsThemeContract {
       buttonMono: SoshButtonMonoTokens(providersTokens(context)),
       checkbox: SoshCheckboxTokens(providersTokens(context)),
       chip: SoshChipTokens(providersTokens(context)),
-      controlItem: SoshControlItemTokens(providersTokens(context)),
       divider: SoshDividerTokens(providersTokens(context)),
       icon: SoshIconTokens(providersTokens(context)),
       inputTag: SoshInputTagTokens(providersTokens(context)),
       link: SoshLinkTokens(providersTokens(context)),
       linkMono: SoshLinkMonoTokens(providersTokens(context)),
-      listItem: SoshListItemTokens(providersTokens(context)),
+      controlListItem: SoshListItemTokens(providersTokens(context)),
       pinCodeInput: SoshPinCodeInputTokens(providersTokens(context)),
       progressIndicator: SoshProgressIndicatorTokens(providersTokens(context)),
       progressIndicatorMono: SoshProgressIndicatorMonoTokens(
@@ -256,6 +258,7 @@ class SoshTheme implements OudsThemeContract {
       tag: SoshTagTokens(providersTokens(context)),
       textArea: SoshTextAreaTokens(providersTokens(context)),
       textInput: SoshTextInputTokens(providersTokens(context)),
+      typography: SoshTypographyTokens(providersTokens(context)),
     );
   }
 

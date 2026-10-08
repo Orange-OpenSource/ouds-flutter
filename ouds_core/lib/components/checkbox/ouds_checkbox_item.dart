@@ -14,6 +14,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 
 ///
@@ -55,6 +56,8 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///   Defaults to `false`.
 /// - [errorText]: Text shown below the checkbox item indicating an error state. Supports only strong text formatting using `**bold**`.
 ///   Rich text is supported only for error messages.
+/// - [edgeToEdge] Controls the horizontal layout of the checkbox item. When `true`, the checkbox item is designed to span the full width of the screen or container. When `false`,
+///   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
 ///
 ///
 /// ### You can use [OudsCheckboxItem] component in your project, customizing parameters as needed :
@@ -72,9 +75,10 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///   helperTitle: 'Helper text',
 ///   reversed: false,
 ///   readOnly: false,
-///   icon: 'assets/ic_heart/svg',
+///   icon: OudsIcon('assets/ic_heart/svg'),
 ///   isError: false,
 ///   divider: true,
+///   edgeToEdge: true,
 ///   onChanged: (bool? value) {
 ///      setState(() {
 ///         isChecked = value;
@@ -90,7 +94,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final ValueChanged<bool?>? onChanged;
   final String title;
   final String? helperTitle;
-  final String? icon;
+  final OudsIcon? icon;
   final bool reversed;
   final bool readOnly;
   final bool isError;
@@ -99,6 +103,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final bool divider;
   final bool tristate;
   final bool constrainedMaxWidth;
+  final bool edgeToEdge;
 
   const OudsCheckboxItem({
     super.key,
@@ -115,6 +120,7 @@ class OudsCheckboxItem extends StatelessWidget {
     this.divider = false,
     this.tristate = false,
     this.constrainedMaxWidth = false,
+    this.edgeToEdge = true,
   });
 
   @override
@@ -142,6 +148,7 @@ class OudsCheckboxItem extends StatelessWidget {
       divider: divider,
       constrainedMaxWidth: constrainedMaxWidth,
       reversed: reversed,
+      edgeToEdge: edgeToEdge,
       onTap: onChanged != null
           ? () {
               bool? newValue;

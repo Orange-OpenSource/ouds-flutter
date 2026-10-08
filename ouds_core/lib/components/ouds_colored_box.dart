@@ -45,28 +45,19 @@ class OudsColoredBox extends StatelessWidget {
   final Widget child;
   final OudsColoredBoxColor? color;
 
-  const OudsColoredBox({
-    required this.child,
-    this.color,
-    super.key,
-  });
+  const OudsColoredBox({required this.child, this.color, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        minHeight: 80,
-      ),
       width: double.infinity,
       color: color?.getValue(context),
       child: Padding(
         padding: EdgeInsetsDirectional.symmetric(
-            vertical: OudsTheme.of(context).spaceScheme(context).fixedMedium,
-            horizontal: OudsTheme.of(context).gridScheme(context).margin
+          vertical: OudsTheme.of(context).spaceScheme(context).fixedMedium,
+          horizontal: OudsTheme.of(context).gridScheme(context).margin,
         ),
-        child: Center(
-          child: child,
-        ),
+        child: Center(child: child),
       ),
     );
   }

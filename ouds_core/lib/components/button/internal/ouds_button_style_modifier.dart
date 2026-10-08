@@ -19,6 +19,7 @@ import 'package:ouds_core/components/button/internal/ouds_button_border_modifier
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_foreground_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_padding_modifier.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -30,7 +31,9 @@ class OudsButtonStyleModifier {
     OudsButtonControlState? buttonState,
     OudsNavigationButtonLayout? navigationLayout,
     OudsButtonComponent componentType = OudsButtonComponent.defaultButton,
+    OudsButtonSize size = OudsButtonSize.defaultSize,
   }) {
+    final buttonTokens = OudsTheme.of(context).componentsTokens(context).button;
     return ButtonStyle(
       backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(
         context,
@@ -60,17 +63,11 @@ class OudsButtonStyleModifier {
           layout,
           navigationLayout,
           componentType,
+          size: size,
         ),
       ),
       minimumSize: WidgetStateProperty.all<Size>(
-        Size(
-          OudsTheme.of(
-            context,
-          ).componentsTokens(context).button.sizeMinWidthDefault,
-          OudsTheme.of(
-            context,
-          ).componentsTokens(context).button.sizeMinHeightDefault,
-        ),
+        Size(buttonTokens.sizeMinWidth(size), buttonTokens.sizeMinHeight(size)),
       ),
       tapTargetSize: MaterialTapTargetSize
           .shrinkWrap, // this added to eliminate the white space between container and outlined button in orange compact in focus state

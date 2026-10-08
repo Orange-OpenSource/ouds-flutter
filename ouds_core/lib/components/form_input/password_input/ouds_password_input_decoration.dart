@@ -14,6 +14,8 @@
 /// {@category Password input}
 library;
 
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
+
 /// Configuration for decorating the [OudsPasswordInput] widget.
 ///
 /// Provides properties to customize labels, hints, icons, helper and error texts,
@@ -36,7 +38,9 @@ library;
 ///
 /// - [errorText]: Text shown below the input indicating an error state or invalid input.
 ///
-/// - [loader]: When true, displays a loading indicator inside the input.
+/// - [loader]: An [OudsTextInputLoader] instance to display a loading indicator inside the input.
+///   Use [OudsTextInputLoader] with optional [progress] value (0.0 to 1.0) for determinate loading,
+///   or without progress for indeterminate loading. Use `null` to disable the loader.
 ///
 /// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
 ///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
@@ -50,7 +54,7 @@ class OudsPasswordInputDecoration {
   final bool? prefixIcon;
   final String? prefix;
   final String? errorText;
-  final bool? loader;
+  final OudsTextInputLoader? loader;
   final bool? outlined;
   final bool constrainedMaxWidth;
 

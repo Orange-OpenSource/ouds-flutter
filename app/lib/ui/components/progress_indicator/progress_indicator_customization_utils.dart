@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
+import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -62,14 +63,16 @@ class ProgressIndicatorCustomizationUtils {
     }
   }
 
-  /// Parses the progress value from a string.
-  static double getProgressValue(String progress) {
-    if (progress.isEmpty) return 0.0;
+  /// Parses the progress value from a percentage string (e.g. "75" for 75%)
+  /// and returns the corresponding 0.0-1.0 fraction expected by the progress
+  /// indicator widgets.
+  static double getProgressValue(String percentage) {
+    if (percentage.isEmpty) return 0.0;
     try {
-      final value = double.parse(progress);
-      return value.clamp(0.0, 1.0); // Also clamp to valid range
+      final value = double.parse(percentage);
+      return value.clamp(0.0, 100.0) / 100.0; // Also clamp to valid range
     } catch (e) {
-      debugPrint('Invalid progress value: $progress');
+      debugPrint('Invalid progress value: $percentage');
       return 0.0;
     }
   }
@@ -83,16 +86,76 @@ class ProgressIndicatorCustomizationUtils {
         : OudsProgressIndicatorGapSize.small;
   }
 
-  /// Returns the helper text alignment used by the progress indicator.
+  /// Returns the label alignment used by the progress indicator helper text.
   static OudsProgressIndicatorHelperTextAlignment getHelperTextAlignment(
     ProgressIndicatorHelperTextAlignmentEnum selectedHelperTextAlignment,
   ) {
-    return selectedHelperTextAlignment ==
-            ProgressIndicatorHelperTextAlignmentEnum.left
-        ? OudsProgressIndicatorHelperTextAlignment.left
-        : selectedHelperTextAlignment ==
-              ProgressIndicatorHelperTextAlignmentEnum.center
-        ? OudsProgressIndicatorHelperTextAlignment.center
-        : OudsProgressIndicatorHelperTextAlignment.right;
+    switch (selectedHelperTextAlignment) {
+      case ProgressIndicatorHelperTextAlignmentEnum.left:
+        return OudsProgressIndicatorHelperTextAlignment.start;
+      case ProgressIndicatorHelperTextAlignmentEnum.center:
+        return OudsProgressIndicatorHelperTextAlignment.center;
+      case ProgressIndicatorHelperTextAlignmentEnum.right:
+        return OudsProgressIndicatorHelperTextAlignment.end;
+    }
+  }
+
+  /// Returns the progress alignment used by the progress indicator helper text.
+  static OudsProgressIndicatorHelperTextAlignment getProgressAlignment(
+    ProgressIndicatorHelperTextAlignmentEnum selectedProgressAlignment,
+  ) {
+    switch (selectedProgressAlignment) {
+      case ProgressIndicatorHelperTextAlignmentEnum.left:
+        return OudsProgressIndicatorHelperTextAlignment.start;
+      case ProgressIndicatorHelperTextAlignmentEnum.center:
+        return OudsProgressIndicatorHelperTextAlignment.center;
+      case ProgressIndicatorHelperTextAlignmentEnum.right:
+        return OudsProgressIndicatorHelperTextAlignment.end;
+    }
+  }
+
+  /// Builds the [OudsLinearProgressIndicatorHelperText] configured from the
+  /// customization state, or `null` when neither the progress percentage nor
+  /// the label should be displayed.
+  static OudsLinearProgressIndicatorHelperText? getLinearHelperText(
+    ProgressIndicatorCustomizationState customizationState,
+  ) {
+    if (!customizationState.hasPercentage &&
+        !customizationState.hasHelperText) {
+      return null;
+    }
+
+    return OudsLinearProgressIndicatorHelperText(
+      progress: customizationState.hasPercentage,
+      label: customizationState.hasHelperText
+          ? customizationState.helperText
+          : null,
+      labelAlignment: getHelperTextAlignment(
+        customizationState.selectedAlignment,
+      ),
+      progressAlignment: getProgressAlignment(
+        customizationState.selectedProgressAlignment,
+      ),
+    );
+  }
+
+  /// Builds the [OudsCircularProgressIndicatorHelperText] configured from the
+  /// customization state, or `null` when neither the progress percentage nor
+  /// the label should be displayed. Unlike the linear indicator, there is no
+  /// alignment to compute — the circular helper text is always centered.
+  static OudsCircularProgressIndicatorHelperText? getCircularHelperText(
+    ProgressIndicatorCustomizationState customizationState,
+  ) {
+    if (!customizationState.hasPercentage &&
+        !customizationState.hasHelperText) {
+      return null;
+    }
+
+    return OudsCircularProgressIndicatorHelperText(
+      progress: customizationState.hasPercentage,
+      label: customizationState.hasHelperText
+          ? customizationState.helperText
+          : null,
+    );
   }
 }

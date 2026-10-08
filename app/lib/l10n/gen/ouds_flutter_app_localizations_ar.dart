@@ -49,7 +49,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'يرجى اختيار Chip من خلال التنقل بين الخيارات';
 
   @override
-  String get app_common_selected_label => 'Selected';
+  String get app_common_selected_tech => 'Selected';
 
   @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
@@ -98,6 +98,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_themeSettingsDialog_roundedCornerAlertMessage_label =>
       'رسالة تنبيه بزوايا مستديرة';
+
+  @override
+  String get app_themeSettingsDialog_roundedCornerCardItems_label =>
+      'عناصر البطاقة بزوايا مستديرة';
 
   @override
   String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
@@ -209,6 +213,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_size_label => 'Size';
 
   @override
+  String get app_components_common_density_label => 'Density';
+
+  @override
   String get app_components_common_textAndLoaderLayout_label => 'Text + Loader';
 
   @override
@@ -234,6 +241,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_common_helperText_label => 'Helper text';
+
+  @override
+  String get app_components_common_annotatedText_tech =>
+      'Annotated example text';
 
   @override
   String get app_components_common_appearance_label => 'Appearance';
@@ -277,7 +288,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_description_tech => 'Description';
 
   @override
+  String get app_components_common_edgeToEdge_tech => 'Edge to edge';
+
+  @override
   String get app_components_common_type_tech => 'Type';
+
+  @override
+  String get app_components_common_icon_tech => 'Icon';
+
+  @override
+  String get app_components_common_tinted_tech => 'Tinted';
+
+  @override
+  String get app_components_common_untinted_tech => 'Untinted';
 
   @override
   String get app_components_alert_tech => 'Alert';
@@ -629,17 +652,186 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا يمكن أن يكون رقم الهاتف فارغًا.';
 
   @override
-  String get app_components_link_label => 'Link';
+  String get app_components_link_tech => 'Link';
 
   @override
   String get app_components_link_description_text =>
       'Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي';
 
   @override
-  String get app_components_link_backLayout_label => 'Back';
+  String get app_components_link_previousLayout_tech => 'Previous';
 
   @override
-  String get app_components_link_nextLayout_label => 'Next';
+  String get app_components_link_nextLayout_tech => 'Next';
+
+  @override
+  String get app_components_link_externalLayout_tech => 'External';
+
+  @override
+  String get app_components_listItem_tech => 'List item';
+
+  @override
+  String get app_components_listItem_description_text =>
+      'List item هو عنصر واجهة مستخدم  يعرض وحدة من المعلومات في صف تفاعلي أو غير تفاعلي ضمن قائمة منظمة.\n Card item هو عنصر واجهة مستخدم يعرض وحدة من المعلومات في بطاقة تفاعلية أو غير تفاعلية، ضمن تخطيط بطاقات أو بشكل مستقل.';
+
+  @override
+  String get app_components_listItem_listItem_tech => 'List item';
+
+  @override
+  String get app_components_listItem_smallListItem_tech => 'Small list item';
+
+  @override
+  String get app_components_listItem_cardItem_tech => 'Card item';
+
+  @override
+  String get app_components_listItem_cardItem_decoration_tech => 'Decoration';
+
+  @override
+  String get app_components_listItem_smallCardItem_tech => 'Small card item';
+
+  @override
+  String get app_components_listItem_clickable_tech => 'Clickable';
+
+  @override
+  String get app_components_listItem_indicator_tech => 'Indicator';
+
+  @override
+  String get app_components_listItem_verticalAlignment_tech =>
+      'Vertical alignment';
+
+  @override
+  String get app_components_listItem_static_description_text =>
+      'Static list item is a UI element that displays a unit of information in a non-interactive horizontal row within a structured list, and does not navigate, trigger actions, or have interactive states.';
+
+  @override
+  String get app_components_listItem_navigation_tech => 'Navigation';
+
+  @override
+  String get app_components_listItem_overline_tech => 'Overline';
+
+  @override
+  String get app_components_listItem_extraLabel_tech => 'Extra label';
+
+  @override
+  String get app_components_listItem_affordance_tech => 'Affordance';
+
+  @override
+  String get app_components_listItem_alignment_tech => 'Alignment';
+
+  @override
+  String get app_components_listItem_imageSize_tech => 'Image size';
+
+  @override
+  String get app_components_listItem_imageRatio_tech => 'Image ratio';
+
+  @override
+  String get app_components_listItem_imageFormat_tech => 'Image format';
+
+  @override
+  String get app_components_listItem_statusIcon_tech => 'Status icon';
+
+  @override
+  String get app_components_listItem_avatarBadge_label =>
+      'شارة على الصورة الرمزية';
+
+  @override
+  String get app_components_listItem_avatarSize_tech => 'Avatar size';
+
+  @override
+  String get app_components_listItem_avatarType_tech => 'Avatar type';
+
+  @override
+  String get app_components_listItem_background_tech => 'Background';
+
+  @override
+  String get app_components_listItem_boldLabel_tech => 'Bold label';
+
+  @override
+  String get app_components_listItem_cardType_tech => 'Card Item';
+
+  @override
+  String get app_components_listItem_itemType_tech => 'List item';
+
+  @override
+  String get app_components_listItem_iconType_tech => 'Icon type';
+
+  @override
+  String get app_components_listItem_iconSize_tech => 'Icon size';
+
+  @override
+  String get app_components_listItem_indicatorType_tech => 'Indicator Type';
+
+  @override
+  String get app_components_listItem_icon_a11y => 'وصف الأيقونة';
+
+  @override
+  String get app_components_listItem_image_a11y => 'وصف الصورة';
+
+  @override
+  String get app_components_listItem_iconBadge_label => 'شارة على الأيقونة';
+
+  @override
+  String get app_components_listItem_leading_tech => 'Leading';
+
+  @override
+  String get app_components_listItem_roundedCornerImage_tech =>
+      'Rounded corner image';
+
+  @override
+  String get app_components_listItem_roundedMedia_tech => 'Rounded media';
+
+  @override
+  String get app_components_listItem_size_tech => 'Size';
+
+  @override
+  String get app_components_listItem_slot_tech => 'Slot';
+
+  @override
+  String get app_components_listItem_trailing_tech => 'Trailing';
+
+  @override
+  String get app_components_listItem_trailingText_tech => 'Text';
+
+  @override
+  String get app_components_listItem_trailingTextLabel_tech => 'Text label';
+
+  @override
+  String get app_components_listItem_trailingTextStyle_tech => 'Text style';
+
+  @override
+  String get app_components_listItem_trailingTextExtraLabel_tech =>
+      'Text extra label';
+
+  @override
+  String get app_components_listItem_trailing_textType_tech =>
+      'Trailing text type';
+
+  @override
+  String get app_components_listItem_contentConfiguration_label => 'المحتوى';
+
+  @override
+  String get app_components_listItem_globalConfiguration_label => 'عام';
+
+  @override
+  String get app_components_listItem_labelsConfiguration_label => 'التسميات';
+
+  @override
+  String get app_components_listItem_section_general_label => 'General';
+
+  @override
+  String get app_components_listItem_section_texts_label => 'Texts';
+
+  @override
+  String get app_components_listItem_cardItem_description_text =>
+      'عنصر البطاقة الثابتة هو عنصر واجهة مستخدم يعرض وحدة من المعلومات في بطاقة مستقلة وغير تفاعلية، لا تتيح التنقل أو تشغيل الإجراءات أو امتلاك حالات تفاعلية.';
+
+  @override
+  String get app_components_listItem_smallCardItem_description_text =>
+      'نوع بطاقة مضغوط من عنصر القائمة للملخصات للقراءة فقط.';
+
+  @override
+  String get app_components_listItem_smallListItem_description_text =>
+      'عنصر قائمة مضغوط لعروض المحتوى الأصغر.';
 
   @override
   String get app_components_passwordInput_label => 'Password input';
@@ -650,7 +842,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_passwordInput_error_label =>
-      'Please enter your password.';
+      'Your password can\'t be empty';
 
   @override
   String get app_components_pinCodeInput_label => 'Pin code input';
@@ -733,6 +925,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_progressIndicator_gapSize_tech => 'Gap size';
 
   @override
+  String get app_components_progressIndicator_progress_helper_label =>
+      'أدخل قيمة بين 0 و 100';
+
+  @override
   String get app_components_progressIndicator_linearProgressIndicator_tech =>
       'Linear progress indicator';
 
@@ -748,15 +944,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_progressIndicator_helperTextAlignment_tech =>
-      'Alignment';
+      'Label alignment';
 
   @override
-  String get app_components_progressIndicator_helperTextSpaceBefore_tech =>
-      'Space before %';
+  String
+  get app_components_progressIndicator_helperTextProgressAlignment_tech =>
+      'Progress alignment';
 
   @override
   String get app_components_progressIndicator_helperTextPercentage_tech =>
-      'Percentage';
+      'Helper text progress';
+
+  @override
+  String get app_components_progressIndicator_helperTextLabel_tech =>
+      'Helper text label';
 
   @override
   String get app_components_progressIndicator_progress_a11y =>

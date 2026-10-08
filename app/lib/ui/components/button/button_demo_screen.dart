@@ -10,7 +10,6 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -25,11 +24,12 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.d
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -37,45 +37,26 @@ import 'package:provider/provider.dart';
 /// This screen displays a button demo and allows customization of button properties
 class ButtonDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-  const ButtonDemoScreen({super.key,this.previousPageTitle});
+  const ButtonDemoScreen({super.key, this.previousPageTitle});
 
   @override
   State<ButtonDemoScreen> createState() => _ButtonDemoScreenState();
 }
 
 class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: ButtonCustomization(
-        child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
-          child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            key: _scaffoldKey,
-            extendBodyBehindAppBar: true,
-            appBar: MainAppBar(
-              title: context.l10n.app_components_button_label,
-              showBackButton: true,
-                previousPageTitle: widget.previousPageTitle),
-            body: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
+        child: CustomizeBottomSheet(
+          topBar: MainAppBar(
+            title: context.l10n.app_components_button_label,
+            showBackButton: true,
+            previousPageTitle: widget.previousPageTitle,
           ),
+          title: context.l10n.app_common_customize_label,
+          customizationContent: const _CustomizationContent(),
+          body: _Body(),
         ),
       ),
     );
@@ -91,19 +72,22 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
       description: context.l10n.app_components_button_description_text,
       widget: Column(
         children: [
           _ButtonDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: ButtonCodeGenerator.updateCode(context),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
           ),
-          ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.button,
-          )
+          Code(code: ButtonCodeGenerator.updateCode(context)),
+          ReferenceDesignVersionComponent(version: OudsComponentVersion.button),
         ],
       ),
     );
@@ -120,6 +104,49 @@ class _ButtonDemoState extends State<_ButtonDemo> {
   ButtonCustomizationState? customizationState;
   ThemeController? themeController;
 
+  /// Builds the demo [OudsButton], using the [OudsButton.small] constructor when the
+  /// small size is selected, and the default [OudsButton] constructor otherwise.
+  Widget _buildButton(BuildContext context) {
+    final semanticsLabel = context.l10n.app_components_common_icon_a11y;
+    final size = ButtonCustomizationUtils.getSize(
+      customizationState?.selectedSize as Object,
+    );
+    final brandSecondaryColor = OudsTheme.of(
+      context,
+    ).colorScheme(context).surfaceBrandPrimary;
+    final label = ButtonCustomizationUtils.getText(customizationState);
+    final icon = ButtonCustomizationUtils.getIcon(
+      customizationState,
+      themeController!,
+      brandSecondaryColor,
+      semanticsLabel,
+    );
+    final appearance = ButtonCustomizationUtils.getAppearance(
+      customizationState?.selectedAppearance as Object,
+    );
+    final loader = ButtonCustomizationUtils.getLoader(customizationState);
+    final onPressed = customizationState?.hasEnabled == true ? () {} : null;
+    final isFullWidth = customizationState?.hasFullWidth;
+
+    return size == OudsButtonSize.small
+        ? OudsButton.small(
+            label: label,
+            icon: icon,
+            appearance: appearance,
+            isLoading: loader,
+            onPressed: onPressed,
+            isFullWidth: isFullWidth,
+          )
+        : OudsButton(
+            label: label,
+            icon: icon,
+            appearance: appearance,
+            isLoading: loader,
+            onPressed: onPressed,
+            isFullWidth: isFullWidth,
+          );
+  }
+
   @override
   Widget build(BuildContext context) {
     customizationState = ButtonCustomization.of(context);
@@ -133,26 +160,10 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     if (customizationState?.hasOnColoredBox == true) {
       return ComponentDemoBox(
         colored: customizationState?.hasOnColoredBox == true,
-        child: OudsButton(
-          label: ButtonCustomizationUtils.getText(customizationState),
-          icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
-          appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-          loader: ButtonCustomizationUtils.getLoader(customizationState),
-          onPressed: customizationState?.hasEnabled == true ? () {} : null,
-          isFullWidth: customizationState?.hasFullWidth,
-        ),
+        child: _buildButton(context),
       );
     } else {
-      return LightDarkBox(
-        child: OudsButton(
-          label: ButtonCustomizationUtils.getText(customizationState),
-          icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
-          appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-          loader: ButtonCustomizationUtils.getLoader(customizationState),
-          onPressed: customizationState?.hasEnabled == true ? () {} : null,
-          isFullWidth: customizationState?.hasFullWidth,
-        ),
-      );
+      return LightDarkBox(child: _buildButton(context));
     }
   }
 }
@@ -183,8 +194,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
-    if(customizationState == null) return SizedBox.shrink();
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
+      context,
+    );
+    if (customizationState == null) return SizedBox.shrink();
 
     return CustomizableSection(
       children: [
@@ -192,13 +205,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
           onChanged:
-
               /// Specific case: Enabled disabled if style is 'Loading'
               customizationState.isEnabledWhenLoading == true
-                  ? null
-                  : (value) {
-                      customizationState.hasEnabled = value;
-                    },
+              ? null
+              : (value) {
+                  customizationState.hasEnabled = value;
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_button_fullWidth_label,
@@ -211,13 +223,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_components_common_onColoredBackground_label,
           value: customizationState.hasOnColoredBox,
           onChanged:
-
               /// Specific case: OnColoredBox disabled if appearance is 'Negative'
               customizationState.isOnColoredBoxDisabled == true
-                  ? null
-                  : (value) {
-                      customizationState.hasOnColoredBox = value;
-                    },
+              ? null
+              : (value) {
+                  customizationState.hasOnColoredBox = value;
+                },
         ),
         CustomizableChips<ButtonEnumAppearance>(
           title: ButtonEnumAppearance.enumName(context),
@@ -227,6 +238,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedAppearance = selectedOption;
+            });
+          },
+        ),
+        CustomizableChips<ButtonEnumSize>(
+          title: ButtonEnumSize.enumName(context),
+          options: customizationState.sizeState.list,
+          selectedOption: customizationState.selectedSize,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedSize = selectedOption;
             });
           },
         ),
@@ -248,12 +270,24 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        if (customizationState.hasIcon)
+          CustomizableChips<TintedEnum>(
+            title: TintedEnum.enumName(context),
+            options: customizationState.tintedState.list,
+            selectedOption: customizationState.selectedTinted,
+            getText: (option) => option.stringValue(context),
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.selectedTinted = selectedOption;
+              });
+            },
+          ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
           text: customizationState.textValue,
           focusNode: labelFocus,
           fieldType: FieldType.label,
-        )
+        ),
       ],
     );
   }

@@ -104,24 +104,32 @@ class BadgeCustomizationUtils {
   static OudsIconStatus getIconStatus(
     BuildContext context,
     BadgeCustomizationState customizationState,
-    ThemeController? themeController,
+    ThemeController themeController,
   ) {
     switch (customizationState.selectedStatus) {
       case StatusEnum.neutral:
         return Neutral(
           icon: customizationState.selectedType == BadgeEnumType.icon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
-                  themeController!,
-                )
+              ? customizationState.isTinted
+                    ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+                    : AppAssets.icons.icUntintedSquare
               : null,
+          tinted: customizationState.isTinted,
+          backgroundColor: customizationState.isTinted
+              ? null
+              : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
         );
       case StatusEnum.accent:
         return Accent(
           icon: customizationState.selectedType == BadgeEnumType.icon
-              ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
-                  themeController!,
-                )
+              ? customizationState.isTinted
+                    ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+                    : AppAssets.icons.icUntintedSquare
               : null,
+          tinted: customizationState.isTinted,
+          backgroundColor: customizationState.isTinted
+              ? null
+              : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
         );
       case StatusEnum.positive:
         return Positive();
@@ -169,10 +177,15 @@ class BadgeCustomizationUtils {
     ThemeController? themeController,
   ) {
     if (customizationState?.selectedType == BadgeEnumType.icon) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+      return AppAssets.icons.functionalSocialAndEngagementHeartRecommend(
         themeController!,
       );
     }
     return null;
+  }
+
+  static bool isNonFunctionalStatus(BadgeCustomizationState status) {
+    return status.selectedStatus == StatusEnum.accent ||
+        status.selectedStatus == StatusEnum.neutral;
   }
 }

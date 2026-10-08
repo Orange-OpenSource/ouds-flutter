@@ -43,6 +43,23 @@ class OudsAlertStatusModifier {
     return null;
   }
 
+  /// Returns the Border color based on the alert message status.
+  Color getBorderStatusColor(OudsIconStatus? status) {
+    final colorTheme = OudsTheme.of(context).colorScheme(context);
+
+    if (status != null) {
+      return switch (status) {
+        Neutral() => colorTheme.borderDefault,
+        Accent() => colorTheme.borderStatusAccent,
+        Positive() => colorTheme.borderStatusPositive,
+        Info() => colorTheme.borderStatusInfo,
+        Warning() => colorTheme.borderStatusWarning,
+        Negative() => colorTheme.borderStatusNegative,
+      };
+    }
+    return colorTheme.borderDefault;
+  }
+
   /// Returns the text color based on the alert message status.
   Color getStatusTextColor(OudsIconStatus? status) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
@@ -95,7 +112,7 @@ class OudsAlertStatusModifier {
   }
 
   /// Retrieve the asset name defined by user in iconStatus
-  String? getAssetsName(OudsIconStatus? status) {
+  String? _getAssetsName(OudsIconStatus? status) {
     if (status == null) {
       return null;
     }
@@ -115,16 +132,21 @@ class OudsAlertStatusModifier {
   ///
   /// For [Warning] status, it stacks two shapes to create the icon.
   /// For other statuses, it returns a single SVG icon.
-  Widget buildStatusIcon(BuildContext context, OudsIconStatus? status) {
+  Widget buildStatusIcon(
+    BuildContext context,
+    OudsIconStatus? status,
+    String? userIcon,
+  ) {
     final statusModifier = OudsAlertStatusModifier(context);
-    final nonFunctionalIcon = statusModifier.getAssetsName(status);
+    final nonFunctionalIcon = _getAssetsName(status);
     final functionalIcon = statusModifier.getStatusIcon(status);
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
     final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
 
     //zoom in/out icon according to accessibility feature
     final textScaler = MediaQuery.textScalerOf(context);
-    final double scaledSizeIcon = textScaler.scale(alertTokens.sizeIcon);
+    final double scaledSizeIcon = textScaler.scale(alertTokens.sizeAsset);
+    final tinted = status?.isTinted ?? true;
 
     if (status is Warning) {
       return Stack(
@@ -162,17 +184,19 @@ class OudsAlertStatusModifier {
     return SvgPicture.asset(
       matchTextDirection: nonFunctionalIcon != null ? true : false,
       excludeFromSemantics: true,
-      functionalIcon ?? nonFunctionalIcon ?? "",
+      nonFunctionalIcon ?? functionalIcon ?? "",
       package: functionalIcon != null
           ? OudsTheme.of(context).packageName
           : null,
       width: scaledSizeIcon,
       height: scaledSizeIcon,
       fit: BoxFit.contain,
-      colorFilter: ColorFilter.mode(
-        statusModifier.getStatusIconColor(status),
-        BlendMode.srcIn,
-      ),
+      colorFilter: nonFunctionalIcon != null && !tinted
+          ? null
+          : ColorFilter.mode(
+              statusModifier.getStatusIconColor(status),
+              BlendMode.srcIn,
+            ),
     );
   }
 

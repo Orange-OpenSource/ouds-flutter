@@ -4,9 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...develop)
 ### Added
 ### Changed
+### Fixed
+
+## [3.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...3.0.0) - 2026-10-07
+### Added
+### Changed
+- [Library] update tokens 2.7.0 ([943](https://github.com/Orange-OpenSource/ouds-flutter/issues/943))
+- [Library] In `docs` Update links to download Orange fonts ([#961](https://github.com/Orange-OpenSource/ouds-flutter/issues/961))
+- [Library] For `textInput` component, update to v1.4.1 ([#784](https://github.com/Orange-OpenSource/ouds-flutter/issues/784))
+- [Library] Add typography Tokens component ([#905](https://github.com/Orange-OpenSource/ouds-flutter/issues/905))
+- [Library] update icons to use the icons pack 2.3.0 ([#863](https://github.com/Orange-OpenSource/ouds-flutter/issues/863))
 ### Fixed
 
 ## [2.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.0.0...2.1.0) - 2026-08-07

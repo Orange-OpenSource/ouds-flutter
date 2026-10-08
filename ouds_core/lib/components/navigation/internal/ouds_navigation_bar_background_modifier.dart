@@ -16,7 +16,6 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_theme_contract/theme/utilities/theme_utils.dart';
 
 class OudsNavigationBarBackgroundColorModifier {
   final BuildContext context;
@@ -26,9 +25,8 @@ class OudsNavigationBarBackgroundColorModifier {
   /// Returns the navigation bar background color based on translucency and the current theme (light/dark).
   Color getBackgroundColor(bool isTranslucent) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
-    final isDark = ThemeUtils.isDarkTheme(context);
     if (isTranslucent) {
-      return isDark ? barTheme.colorBgTranslucentDark : barTheme.colorBgTranslucentLight;
+      return barTheme.colorBgTranslucent;
     } else {
       return barTheme.colorBgOpaque;
     }

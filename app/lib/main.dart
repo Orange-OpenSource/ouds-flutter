@@ -19,6 +19,7 @@ import 'package:ouds_flutter_demo/ui/main_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_theme_contract/config/component/ouds_alert_message_config_border.dart';
 import 'package:ouds_theme_contract/config/component/ouds_button_config.dart';
+import 'package:ouds_theme_contract/config/component/ouds_card_item_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_progress_indicator_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
@@ -93,6 +94,9 @@ class _OudsApplicationState extends State<OudsApplication> {
                   ),
                   alertMessage: OudsAlertMessageConfig(
                     rounded: themeController.onBorderRadiusAlertMessageState,
+                  ),
+                  cardItem: OudsCardItemConfig(
+                    rounded: themeController.onBorderRadiusCardItemState,
                   ),
                   progressIndicator: OudsProgressIndicatorConfig(
                     rounded:

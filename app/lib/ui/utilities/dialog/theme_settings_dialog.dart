@@ -51,6 +51,7 @@ class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
   late bool _isButtonRounded;
   late bool _isTextInputRounded;
   late bool _isAlertMessageRounded;
+  late bool _isCardItemRounded;
   late bool _isProgressIndicatorRounded;
 
   @override
@@ -60,6 +61,7 @@ class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
     _isTextInputRounded = widget.themeController.onBorderRadiusTextInputState;
     _isAlertMessageRounded =
         widget.themeController.onBorderRadiusAlertMessageState;
+    _isCardItemRounded = widget.themeController.onBorderRadiusCardItemState;
     _isProgressIndicatorRounded =
         widget.themeController.onBorderRadiusProgressIndicatorState;
   }
@@ -77,7 +79,9 @@ class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
         buttonRoundedConfig: _isButtonRounded,
         textInputRoundedConfig: _isTextInputRounded,
         alertMessageRoundedConfig: _isAlertMessageRounded,
+        cardItemRoundedConfig: _isCardItemRounded,
         progressIndicatorRoundedConfig: _isProgressIndicatorRounded,
+
         onAlertMessageRoundedChanged: (value) {
           setState(() {
             _isAlertMessageRounded = value;
@@ -96,6 +100,11 @@ class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
         onTextInputRoundedChanged: (value) {
           setState(() {
             _isTextInputRounded = value;
+          });
+        },
+        onCardItemRoundedChanged: (value) {
+          setState(() {
+            _isCardItemRounded = value;
           });
         },
       ),
@@ -119,6 +128,9 @@ class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
             );
             widget.themeController.setOnBorderRadiusAlertMessageState(
               _isAlertMessageRounded,
+            );
+            widget.themeController.setOnBorderRadiusCardItemState(
+              _isCardItemRounded,
             );
             widget.themeController.setOnBorderRadiusProgressIndicatorState(
               _isProgressIndicatorRounded,
