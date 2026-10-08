@@ -18,6 +18,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -99,6 +100,7 @@ enum OudsPinCodeInputKeyboardType {
 /// - [onEditingComplete]: Called with the full PIN when all cells are filled.
 /// - [onChanged]: Called with the current PIN on every keystroke.
 /// - [digitInputDecoration]: Visual and keyboard configuration for the cells.
+/// - [skeleton]: Optional skeleton widget to display while loading or in a placeholder state.
 ///
 class OudsPinCodeInput extends StatefulWidget {
   final OudsPinCodeInputLength length;
@@ -108,6 +110,7 @@ class OudsPinCodeInput extends StatefulWidget {
   final void Function(String)? onEditingComplete;
   final void Function(String)? onChanged;
   final OudsDigitInputDecoration digitInputDecoration;
+  final OudsSkeleton? skeleton;
 
   const OudsPinCodeInput({
     super.key,
@@ -117,6 +120,7 @@ class OudsPinCodeInput extends StatefulWidget {
     this.controllers,
     this.onEditingComplete,
     this.onChanged,
+    this.skeleton,
     required this.digitInputDecoration,
   });
 
@@ -506,6 +510,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                         isError: isError,
                         isFocused: isActive,
                         displayValue: char,
+                        skeleton: widget.skeleton,
                         digitInputDecoration: OudsDigitInputDecoration(
                           hintText: _hintText(index),
                           hiddenPassword:
@@ -523,8 +528,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
           ),
 
           // ── Helper / error text ──────────────────────────────────────────
-          if (widget.helperText != null ||
-              (widget.errorText != null && isError)) ...[
+          if (widget.skeleton == null &&
+              (widget.helperText != null ||
+                  (widget.errorText != null && isError))) ...[
             Container(
               constraints: BoxConstraints(
                 maxWidth: widget.digitInputDecoration.constrainedMaxWidth
