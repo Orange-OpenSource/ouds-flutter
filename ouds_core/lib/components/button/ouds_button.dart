@@ -1177,7 +1177,7 @@ enum OudsNavigationButtonLayout { next, previous }
 ///     // Navigate to the next screen.
 ///   },
 /// );
-///
+/// ```
 ///
 /// **Icon-only navigation button (accessibility label required):**
 /// ```dart
