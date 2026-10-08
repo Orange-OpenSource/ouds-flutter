@@ -78,7 +78,7 @@ class OudsAlertMessageActionLayout {
 
 /// [OUDS Alert Message design guidelines](https://r.orange.fr/r/S-ouds-doc-alert-message)
 ///
-/// **Reference design version : 1.1.0**
+/// **Reference design version : 1.2.0**
 ///
 /// Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable
 /// communication. Alert message includes functional icon and semantic colour, and may include as well a close button and/or action link.
@@ -151,7 +151,7 @@ class OudsAlertMessage extends StatefulWidget {
   const OudsAlertMessage({
     super.key,
     required this.label,
-    required this.status,
+    this.status = const Positive(),
     this.description,
     this.onClose,
     this.onDescriptionLinkTapped,
@@ -167,7 +167,7 @@ class OudsAlertMessage extends StatefulWidget {
   final String? description;
 
   /// The status of the alert, which determines its background color and icon is tinted or not.
-  final OudsIconStatus? status;
+  final OudsIconStatus status;
 
   /// A callback invoked when the close button is clicked. If `null`, the close button is not shown.
   final VoidCallback? onClose;
@@ -283,7 +283,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
         : null;
 
     // Determine if a custom icon is provided for Neutral or Accent statuses.
-    final nonFunctionalIcon = widget.status?.nonFunctionalIcon;
+    final nonFunctionalIcon = widget.status.nonFunctionalIcon;
 
     bool isTrailingActionLink =
         widget.actionLayout != null &&
@@ -318,7 +318,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                       bottom: alertTokens.spacePaddingBlock,
                     ),
                     child: Container(
-                      color: widget.status?.getBackgroundColor,
+                      color: widget.status.getBackgroundColor,
                       child: SvgPicture.asset(
                         matchTextDirection: true,
                         excludeFromSemantics: true,
@@ -330,7 +330,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                           context,
                         ).scale(alertTokens.sizeAsset),
                         fit: BoxFit.contain,
-                        colorFilter: widget.status?.isTinted ?? true
+                        colorFilter: widget.status.isTinted
                             ? ColorFilter.mode(
                                 alertMessageStatusModifier.getStatusIconColor(
                                   widget.status,

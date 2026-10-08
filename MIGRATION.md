@@ -1,5 +1,4 @@
 # Migration Guide
-
 - [v2.1.0 → v3.0.0](#v210--v300)
 - [v2.0.0 → v2.1.0](#v200--v210)
 - [v1.3.1 → v2.0.0](#v131--v200)
@@ -13,7 +12,7 @@
 
 ### Overview
 
-This release adds the `List item` component and a typography tokens component, updates the icon library to v2.3.0, updates the `Button` component to v3.3.0 with tinted/untinted icon support, updates the `Link` component to v2.4.0, adds a `size` parameter to `OudsCircularProgressIndicator` for button integration, and fixes a crash in `OudsTabBar`. It also introduces a typed prefix/suffix icon configuration with tinting support for `OudsTextInput`.
+This release adds the `List item` component and a typography tokens component, updates the icon library to v2.3.0, updates the `Button` and `Navigation Button` components to v3.4.0 with tinted/untinted icon support, updates the `Link` component to v2.4.0, updates the `Progress Indicator` component to v1.2.0 (with breaking changes to the helper text API), adds a `size` parameter to `OudsCircularProgressIndicator` for button integration, and fixes a crash in `OudsTabBar`. It also introduces a typed prefix/suffix icon configuration with tinting support for `OudsTextInput`.
 
 It also introduces a new shared `OudsIcon` class (`package:ouds_core/components/common/ouds_icon.dart`) that unifies icon configuration (asset path, `tinted` state, `backgroundColor` and `semanticsLabel`) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsTextInput`, `OudsPhoneNumberInput`, `OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem`. It replaces the component-specific `OudsTextInputPrefixIcon` and `OudsControlItemIcon` classes and `String` type. All these components now support tinted/untinted icon display through `OudsIcon.tinted` (defaults to `true`).
 
@@ -226,6 +225,45 @@ OudsCheckboxItem(
 
 **Reason for Change**: Reuse the shared `OudsIcon` configuration instead of a control-item-specific icon class
 
+#### 7. `OudsProgressIndicator` — `semanticLabel` renamed to `semanticsLabel` and helper text API refactored
+
+The accessibility label parameter shared by `OudsCircularProgressIndicator` and `OudsLinearProgressIndicator` is renamed from `semanticLabel` to `semanticsLabel`, to match Flutter's own naming convention. Additionally, `OudsLinearProgressIndicator`'s standalone `helperText` / `helperTextAlignment` / `percentage` / `spaceBeforePercentage` parameters are replaced by a single `helperText: OudsLinearProgressIndicatorHelperText` object, and `OudsCircularProgressIndicator` gains the same kind of optional helper text (always centered). The `OudsProgressIndicatorHelperTextAlignment` enum values `left`/`right` are renamed to `start`/`end`.
+
+**Impact**: High (breaking — any code using `semanticLabel`, `helperText`, `helperTextAlignment`, `percentage` or `spaceBeforePercentage` on progress indicators must be updated)
+
+**Before**:
+```dart
+OudsLinearProgressIndicator(
+  value: 0.75,
+  semanticLabel: 'Upload progress',
+  helperText: 'Uploading file',
+  helperTextAlignment: OudsProgressIndicatorHelperTextAlignment.center,
+  percentage: false,
+  spaceBeforePercentage: false,
+)
+```
+
+**After**:
+```dart
+OudsLinearProgressIndicator(
+  value: 0.75,
+  semanticsLabel: 'Upload progress',
+  helperText: OudsLinearProgressIndicatorHelperText(
+    label: 'Uploading file',
+    labelAlignment: OudsProgressIndicatorHelperTextAlignment.end,
+  ),
+)
+```
+
+**Required Action**:
+- Rename `semanticLabel` to `semanticsLabel` on progress indicators
+- Replace `helperText: 'my text'` with `helperText: OudsLinearProgressIndicatorHelperText(label: 'my text', progress: false)`
+- Replace `percentage: true` with `helperText: OudsLinearProgressIndicatorHelperText()` (percentage is shown by default, centered) or explicitly set `progress: true`
+- Replace `helperTextAlignment` with `OudsLinearProgressIndicatorHelperText.labelAlignment`/`progressAlignment`
+- Replace `.left` with `.start` and `.right` with `.end` in `OudsProgressIndicatorHelperTextAlignment`
+
+**Reason for Change**: Consistency with Flutter's `semanticsLabel` naming, allow progress percentage and custom label to be displayed together, and proper RTL support
+
 ### Icon Library Update — v2.3.0
 
 The OUDS icon library has been updated to version 2.3.0. Some icon names or asset paths may have changed.
@@ -246,12 +284,19 @@ The OUDS icon library has been updated to version 2.3.0. Some icon names or asse
 
 | Component                        | Change |
 |----------------------------------|--------|
-| Button                           | Updated to v3.3.0 — icon now configured via the shared `OudsIcon` type, with tinted/untinted support |
+| Button                           | Updated to v3.4.0 — icon now configured via the shared `OudsIcon` type, with tinted/untinted support |
+| Navigation Button                | Updated to v3.4.0 |
 | Link                             | Updated to v2.4.0 |
+| Alert Message                    | Updated to v1.2.0 — default vocalization on "info" status |
+| Filter Chip / Suggestion Chip    | Updated to v1.5.0 |
 | Alert / Badge / Tag / List items | `OudsIconStatus.Neutral` and `OudsIconStatus.Accent` gained `tinted`, `backgroundColor` and `semanticsLabel` parameters to control custom icon tinting, background and accessibility label |
-| Progress Indicator               | Added `size` parameter to `OudsCircularProgressIndicator` for button integration |
+| Progress Indicator               | Updated to v1.2.0 — added `size` parameter to `OudsCircularProgressIndicator` for button integration; `semanticLabel` renamed to `semanticsLabel`; `OudsLinearProgressIndicator` helper text refactored into a single `OudsLinearProgressIndicatorHelperText` object; `OudsCircularProgressIndicator` gains optional `helperText` |
+| Text Input                       | Updated to v1.4.1 |
+| Password Input                   | Updated to v1.3.1 |
+| Phone Number Input               | Updated to v1.3.1 |
 | Tab Bar                          | Fixed `Invalid value: Not in inclusive range 0..2: 3` crash |
 | Typography                       | Added typography tokens component |
+| Tokens                           | Updated to v2.7.0 |
 
 ### Compatibility
 

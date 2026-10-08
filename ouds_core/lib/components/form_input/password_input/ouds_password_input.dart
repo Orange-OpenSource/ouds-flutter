@@ -390,10 +390,8 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelDefaultLarge(context)
-          .copyWith(
-            color: inputTextTextModifier.getTextLabelColor(state, isError),
-          ),
+          .typeLabelModerateLarge(context)
+          .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
       onChanged: (value) {
@@ -431,7 +429,10 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                 style: theme.typographyTokens
                     .typeLabelDefaultLarge(context)
                     .copyWith(
-                      color: inputTextTextModifier.getTextColor(state, isError),
+                      color: inputTextTextModifier.getTextLabelColor(
+                        state,
+                        isError,
+                      ),
                     ),
               )
             : null,

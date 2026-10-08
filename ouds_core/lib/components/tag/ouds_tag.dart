@@ -119,7 +119,7 @@ class OudsTag extends StatefulWidget {
   final OudsTagAppearance appearance;
   final OudsTagLayout layout;
   final bool loading;
-  final OudsIconStatus? status;
+  final OudsIconStatus status;
   final bool roundedCorners;
 
   /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the tag will appear once fully loaded.
@@ -129,7 +129,7 @@ class OudsTag extends StatefulWidget {
     super.key,
     required this.label,
     this.enabled = true,
-    required this.status,
+    this.status = const Neutral(),
     this.appearance = OudsTagAppearance.emphasized,
     this.size = OudsTagSize.defaultSize,
     this.layout = OudsTagLayout.textOnly,
@@ -295,7 +295,7 @@ class _OudsTagState extends State<OudsTag> {
         ],
       );
     }
-    final isTinted = widget.status?.isTinted ?? true;
+    final isTinted = widget.status.isTinted;
 
     return SvgPicture.asset(
       excludeFromSemantics: true,
@@ -426,7 +426,7 @@ class _OudsTagState extends State<OudsTag> {
                   00,
             ),
             child: Container(
-              color: widget.status?.getBackgroundColor ?? Colors.transparent,
+              color: widget.status.getBackgroundColor ?? Colors.transparent,
               child: _buildIcon(
                 context,
                 widget.status,

@@ -360,54 +360,17 @@ class _OudsTextInputState extends State<OudsTextField> {
                           child: _buildPrefixIcon(context, state),
                         ),
 
-                        /// Center-left: prefix text displayed even without label
-                        /// Set a flexible to prevent text overflow
-                        if (widget.decoration.prefix != null &&
-                            widget.decoration.labelText == null &&
-                            (widget.decoration.hintText != null ||
-                                _isTyping)) ...[
-                          /// Wrap the prefix Text in Flexible to limit its width and prevent overflow errors
-                          Flexible(
-                            flex: 1, // Allocates 1 part of the available space
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                right: textInput.spaceColumnGapInlineText,
-                              ),
-                              child: Text(
-                                widget.decoration.prefix!,
-                                style: theme.typographyTokens
-                                    .typeLabelDefaultLarge(context)
-                                    .copyWith(
-                                      color: inputTextTextModifier
-                                          .getSuffixPrefixTextColor(state),
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ],
-
-                        /// Center block: main text input
-                        /// Wrap the TextField in Flexible to control its width
-                        Flexible(
-                          fit: FlexFit.loose,
-                          child: ExcludeSemantics(
-                            child:
-                                widget.readOnly == true ||
-                                    (widget.decoration.loader != null &&
-                                        _isTyping)
-                                ? IgnorePointer(
-                                    child: _buildTextField(
-                                      inputTextTextModifier,
-                                      state,
-                                      isError,
-                                      effectiveFocusNode,
-                                      theme,
-                                      context,
-                                      textInput,
-                                      effectiveIsFocused,
-                                    ),
-                                  )
-                                : _buildTextField(
+                      /// Center block: main text input
+                      /// Wrap the TextField in Flexible to control its width
+                      Flexible(
+                        fit: FlexFit.loose,
+                        child: ExcludeSemantics(
+                          child:
+                              widget.readOnly == true ||
+                                  (widget.decoration.loader != null &&
+                                      _isTyping)
+                              ? IgnorePointer(
+                                  child: _buildTextField(
                                     inputTextTextModifier,
                                     state,
                                     isError,
@@ -417,55 +380,36 @@ class _OudsTextInputState extends State<OudsTextField> {
                                     textInput,
                                     effectiveIsFocused,
                                   ),
-                          ),
+                                )
+                              : _buildTextField(
+                                  inputTextTextModifier,
+                                  state,
+                                  isError,
+                                  effectiveFocusNode,
+                                  theme,
+                                  context,
+                                  textInput,
+                                  effectiveIsFocused,
+                                ),
                         ),
+                      ),
 
-                        /// Center-left: prefix text displayed even without label
-                        /// Set a flexible to prevent text overflow
-                        if (widget.decoration.suffix != null &&
-                            widget.decoration.labelText == null &&
-                            (widget.decoration.hintText != null ||
-                                _isTyping)) ...[
-                          /// Wrap the suffix Text in Flexible to limit its width and prevent overflow errors
-                          Flexible(
-                            flex: 1, // Allocates 1 part of the available space
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                left: textInput.spaceColumnGapDefault,
-                              ),
-                              child: Text(
-                                widget.decoration.suffix!,
-                                style: theme.typographyTokens
-                                    .typeLabelDefaultLarge(context)
-                                    .copyWith(
-                                      color: inputTextTextModifier
-                                          .getSuffixPrefixTextColor(state),
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ],
-
-                        /// Right block: suffix icon container
-                        Semantics(
-                          label:
-                              widget.decoration.suffixIcon != null &&
-                                  widget.decoration.loader == null
-                              ? widget
-                                    .decoration
-                                    .suffixIcon
-                                    ?.icon
-                                    .semanticsLabel
-                              : null,
-                          container: true,
-                          button: true,
-                          child: _buildSuffixIcon(context, state),
-                        ),
-                      ],
-                    ),
+                      /// Right block: suffix icon container
+                      Semantics(
+                        label:
+                            widget.decoration.suffixIcon != null &&
+                                widget.decoration.loader == null
+                            ? widget.decoration.suffixIcon?.icon.semanticsLabel
+                            : null,
+                        container: true,
+                        button: true,
+                        child: _buildSuffixIcon(context, state),
+                      ),
+                    ],
                   ),
                 ),
               ),
+            ),
 
               /// Display helper text or error text if available
               if (widget.decoration.helperText != null ||
@@ -533,7 +477,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelDefaultLarge(context)
+          .typeLabelModerateLarge(context)
           .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
@@ -579,7 +523,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                   style: theme.typographyTokens
                       .typeLabelDefaultLarge(context)
                       .copyWith(
-                        color: inputTextTextModifier.getTextColor(
+                        color: inputTextTextModifier.getTextLabelColor(
                           state,
                           isError,
                         ),
@@ -602,7 +546,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                 overflow: TextOverflow.ellipsis,
                 widget.decoration.hintText!,
                 style: theme.typographyTokens
-                    .typeLabelModerateLarge(context)
+                    .typeLabelDefaultLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
                     ),
@@ -611,9 +555,7 @@ class _OudsTextInputState extends State<OudsTextField> {
 
         // Prefix widget displayed when prefix and labelText are both set
         // Set a maximum width to prevent text overflow
-        prefix:
-            widget.decoration.prefix != null &&
-                widget.decoration.labelText != null
+        prefix: widget.decoration.prefix != null
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -638,9 +580,7 @@ class _OudsTextInputState extends State<OudsTextField> {
 
         // Suffix widget displayed when suffix and labelText are both set
         // Set a maximum width to prevent text overflow
-        suffix:
-            widget.decoration.suffix != null &&
-                widget.decoration.labelText != null
+        suffix: widget.decoration.suffix != null
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -656,7 +596,12 @@ class _OudsTextInputState extends State<OudsTextField> {
                           ),
                     ),
                   ),
-                  SizedBox(width: textInput.spacePaddingInlineDefault),
+                  if (widget.decoration.suffixIcon != null &&
+                      widget.decoration.errorText == null)
+                    SizedBox(width: textInput.spaceColumnGapDefault),
+                  if (widget.decoration.errorText != null &&
+                      widget.decoration.suffixIcon == null)
+                    SizedBox(width: textInput.spaceColumnGapDefault),
                 ],
               )
             : null,

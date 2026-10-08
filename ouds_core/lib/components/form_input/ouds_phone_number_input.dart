@@ -473,10 +473,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       focusNode: effectiveFocusNode,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelDefaultMedium(context)
-          .copyWith(
-            color: inputTextTextModifier.getTextLabelColor(state, isError),
-          ),
+          .typeLabelModerateLarge(context)
+          .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
       inputFormatters: [
@@ -536,7 +534,10 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                 style: theme.typographyTokens
                     .typeLabelDefaultLarge(context)
                     .copyWith(
-                      color: inputTextTextModifier.getTextColor(state, isError),
+                      color: inputTextTextModifier.getTextLabelColor(
+                        state,
+                        isError,
+                      ),
                     ),
               )
             : null,
