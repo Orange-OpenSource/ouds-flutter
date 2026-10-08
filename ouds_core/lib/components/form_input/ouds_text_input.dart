@@ -360,17 +360,28 @@ class _OudsTextInputState extends State<OudsTextField> {
                           child: _buildPrefixIcon(context, state),
                         ),
 
-                      /// Center block: main text input
-                      /// Wrap the TextField in Flexible to control its width
-                      Flexible(
-                        fit: FlexFit.loose,
-                        child: ExcludeSemantics(
-                          child:
-                              widget.readOnly == true ||
-                                  (widget.decoration.loader != null &&
-                                      _isTyping)
-                              ? IgnorePointer(
-                                  child: _buildTextField(
+                        /// Center block: main text input
+                        /// Wrap the TextField in Flexible to control its width
+                        Flexible(
+                          fit: FlexFit.loose,
+                          child: ExcludeSemantics(
+                            child:
+                                widget.readOnly == true ||
+                                    (widget.decoration.loader != null &&
+                                        _isTyping)
+                                ? IgnorePointer(
+                                    child: _buildTextField(
+                                      inputTextTextModifier,
+                                      state,
+                                      isError,
+                                      effectiveFocusNode,
+                                      theme,
+                                      context,
+                                      textInput,
+                                      effectiveIsFocused,
+                                    ),
+                                  )
+                                : _buildTextField(
                                     inputTextTextModifier,
                                     state,
                                     isError,
@@ -380,36 +391,29 @@ class _OudsTextInputState extends State<OudsTextField> {
                                     textInput,
                                     effectiveIsFocused,
                                   ),
-                                )
-                              : _buildTextField(
-                                  inputTextTextModifier,
-                                  state,
-                                  isError,
-                                  effectiveFocusNode,
-                                  theme,
-                                  context,
-                                  textInput,
-                                  effectiveIsFocused,
-                                ),
+                          ),
                         ),
-                      ),
 
-                      /// Right block: suffix icon container
-                      Semantics(
-                        label:
-                            widget.decoration.suffixIcon != null &&
-                                widget.decoration.loader == null
-                            ? widget.decoration.suffixIcon?.icon.semanticsLabel
-                            : null,
-                        container: true,
-                        button: true,
-                        child: _buildSuffixIcon(context, state),
-                      ),
-                    ],
+                        /// Right block: suffix icon container
+                        Semantics(
+                          label:
+                              widget.decoration.suffixIcon != null &&
+                                  widget.decoration.loader == null
+                              ? widget
+                                    .decoration
+                                    .suffixIcon
+                                    ?.icon
+                                    .semanticsLabel
+                              : null,
+                          container: true,
+                          button: true,
+                          child: _buildSuffixIcon(context, state),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
 
               /// Display helper text or error text if available
               if (widget.decoration.helperText != null ||

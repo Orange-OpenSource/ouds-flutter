@@ -151,6 +151,11 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
             readOnly: customizationState.hasReadOnly ? true : false,
             skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
           ),
+          SizedBox(
+            width: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedExtraSmall,
+          ),
           OudsCheckbox(
             value: isCheckedSecond,
             onChanged: customizationState.hasEnabled == true

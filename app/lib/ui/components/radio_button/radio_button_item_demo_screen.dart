@@ -135,16 +135,17 @@ class _RadioButtonItemDemo extends StatefulWidget {
 class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
   RadioOption _selectedOption = RadioOption.first;
 
-  ThemeController? themeController;
-
   @override
   Widget build(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context)!;
-    themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnColoredSurface(customizationState.hasOnColoredBox);
+      themeController.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
 
     final surfaceBrandPrimaryColor = OudsTheme.of(
@@ -184,7 +185,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                   ? OudsIcon(
                       customizationState.isTinted
                           ? AppAssets.icons.assistanceTipsAndTricks(
-                              themeController!,
+                              themeController,
                             )
                           : AppAssets.icons.icUntintedSquare,
                       tinted: customizationState.isTinted,
@@ -197,6 +198,9 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                   ? true
                   : false,
               skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+            ),
+            SizedBox(
+              height: themeController.currentTheme.gridScheme(context).margin,
             ),
             OudsRadioButtonItem<RadioOption>(
               value: RadioOption.second,
@@ -225,7 +229,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                   ? OudsIcon(
                       customizationState.isTinted
                           ? AppAssets.icons.assistanceTipsAndTricks(
-                              themeController!,
+                              themeController,
                             )
                           : AppAssets.icons.icUntintedSquare,
                       tinted: customizationState.isTinted,

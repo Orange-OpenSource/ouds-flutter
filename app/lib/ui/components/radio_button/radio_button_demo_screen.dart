@@ -163,6 +163,11 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
             readOnly: customizationState.hasReadOnly ? true : false,
             skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
           ),
+          SizedBox(
+            width: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedExtraSmall,
+          ),
           OudsRadioButton<RadioOption>(
             value: RadioOption.second,
             groupValue: widget.selectedOption,
