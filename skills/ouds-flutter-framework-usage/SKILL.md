@@ -326,11 +326,13 @@ Every new component needs a demo screen in `app/lib/ui/components/<name>/` and m
 
 ## 7. Components
 
-**Index:** [Alert](#alert) [Badge](#badge) [Bottom Sheet](#bottom-sheet) [Button](#button) [Checkbox / Switch / Radio](#checkbox--switch--radio-button) [Chips](#filter-chip--suggestion-chip) [Divider](#divider) [Link](#link) [Navigation Bar](#navigation-bar) [Tag](#tag) [Text inputs](#text-input--password--phone--pin-code) [Top bar](#top-bar--app-bar)
+**Index:** [Alert](#alert) [Avatar](#avatar) [Badge](#badge) [Bottom Sheet](#bottom-sheet) [Button](#button) [Checkbox / Switch / Radio](#checkbox--switch--radio-button) [Checkbox / Switch / Radio item](#checkbox--switch--radio-item) [Chips](#filter-chip--suggestion-chip) [Divider](#divider) [Flag](#flag) [Link](#link) [List item](#list-item) [Navigation Bar](#navigation-bar) [Progress indicator](#progress-indicator) [Tag](#tag) [Text inputs](#text-input--password--phone--pin-code) [Top bar](#top-bar--app-bar)
 
 The repository currently exposes component families under:
 
-`alert/` · `badge/` · `bottom_sheet/` · `button/` · `checkbox/` · `chip/` · `country_selector/` · `divider/` · `form_input/` · `link/` · `navigation/` · `pin_code_input/` · `radio_button/` · `switch/` · `tag/` · `top_bar/`
+`alert/` · `avatar/` · `badge/` · `bottom_sheet/` · `button/` · `checkbox/` · `chip/` · `control/` · `country_selector/` · `divider/` · `flag/` · `form_input/` · `link/` · `list_item/` · `navigation/` · `pin_code_input/` · `progress_indicator/` · `radio_button/` · `switch/` · `tag/` · `top_bar/`
+
+The shared `OudsIcon` class (`package:ouds_core/components/common/ouds_icon.dart`) unifies icon configuration (asset path, `tinted`, `backgroundColor`, `semanticsLabel`) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsTextInput`, `OudsPhoneNumberInput`, `OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem` — always prefer it over a raw `String` icon path.
 
 ---
 
@@ -387,6 +389,30 @@ OudsInlineAlert(label: 'Check your connection.', status: Warning())
 
 ---
 
+### Avatar
+
+Displays a profile image or a monogram (initials). Used standalone or as leading content in `OudsTopAppBar` / `OudsListItem`.
+
+```dart
+// Image avatar
+OudsAvatar(image: 'assets/user_photo.png')
+
+// Monogram avatar
+OudsAvatar(
+  monogram: 'John Doe',
+  contentDescription: 'John Doe',
+)
+
+// Tappable avatar
+OudsAvatar(
+  monogram: 'JD',
+  onClick: () => openProfile(),
+  contentDescription: 'Open profile',
+)
+```
+
+---
+
 ### Badge
 
 Always provide `semanticsLabel` — color is the only visual differentiator.
@@ -424,7 +450,21 @@ OudsBadge.icon(
   semanticsLabel: 'Favorite',
   child: Icon(Icons.person),
 )
+
+// Icon badge with untinted custom icon and background (Neutral/Accent only)
+OudsBadge.icon(
+  status: Neutral(
+    icon: 'assets/multicolor_icon.svg',
+    tinted: false,
+    backgroundColor: Colors.white,
+    semanticsLabel: 'Custom status',
+  ),
+  size: OudsBadgeSize.medium,
+  child: Icon(Icons.person),
+)
 ```
+
+> `Neutral` and `Accent` custom icons support `tinted` (default `true`), `backgroundColor` (only applied when `tinted: false`) and `semanticsLabel`.
 
 > ⚠️ Deprecated: `OudsBadge(status: OudsBadgeStatus.positive)` → use named constructors above.
 
@@ -473,7 +513,7 @@ OudsButton(
 )
 
 OudsButton(
-  icon: 'assets/ic_heart.svg',
+  icon: OudsIcon('assets/ic_heart.svg'),
   appearance: OudsButtonAppearance.strong,
   onPressed: () {},
 )
@@ -505,6 +545,36 @@ OudsRadioButton<String>(
 
 ---
 
+### Checkbox / Switch / Radio item
+
+`OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem` combine a control with a title, optional helper text and icon in a single row (built on the internal `OudsControlItem`).
+
+```dart
+OudsCheckboxItem(
+  value: isChecked,
+  title: 'Label',
+  helperTitle: 'Helper text',
+  icon: OudsIcon('assets/ic_heart.svg'),
+  divider: true,
+  onChanged: (value) => setState(() => isChecked = value),
+)
+
+OudsRadioButtonItem<String>(
+  value: 'option_a',
+  groupValue: _selected,
+  title: 'Option A',
+  onChanged: (value) => setState(() => _selected = value),
+)
+
+OudsSwitchButtonItem(
+  value: isEnabled,
+  title: 'Enable notifications',
+  onChanged: (value) => setState(() => isEnabled = value),
+)
+```
+
+---
+
 ### Filter chip / Suggestion chip
 
 ```dart
@@ -514,11 +584,26 @@ OudsFilterChip(
   onSelected: (selected) {},
 )
 
+OudsFilterChip.icon(
+  label: 'Label',
+  icon: OudsIcon('assets/ic_chip_heart.svg', tinted: true),
+  selected: true,
+  onSelected: (selected) {},
+)
+
 OudsSuggestionChip(
   label: 'Label',
   onPressed: () {},
 )
+
+OudsSuggestionChip.icon(
+  label: 'Label',
+  icon: OudsIcon('assets/ic_chip_heart.svg', tinted: true),
+  onPressed: () {},
+)
 ```
+
+> `avatar` is deprecated on both `OudsFilterChip` and `OudsSuggestionChip` default constructors — use the `.icon` named constructor with its `icon` parameter instead.
 
 ---
 
@@ -537,18 +622,68 @@ Available colors: `defaultColor`, `muted`, `emphasized`, `brandPrimary`, `onBran
 
 ---
 
-### Link
+### Flag
+
+Purely decorative country/region flag, always excluded from the semantics tree — pair it with a sibling text label carrying the country name.
 
 ```dart
-OudsLink(
-  label: 'Learn more',
+OudsFlag('fr')
+OudsFlag('US')   // case-insensitive
+
+// Inside a list item
+OudsListItem(
+  label: 'France',
+  leading: OudsListItemLeadingFlag(OudsFlag('fr')),
+)
+```
+
+---
+
+### Link
+
+Prefer dedicated named constructors for icon/navigation variants. `OudsLink()` (default constructor) is for text-only links.
+
+```dart
+OudsLink(label: 'Learn more', onPressed: () {})
+
+OudsLink.icon(
+  label: 'Favorite',
+  icon: OudsIcon('assets/ic_heart.svg', tinted: true),
   onPressed: () {},
 )
 
-OudsLink(
-  label: 'Back',
-  layout: OudsLinkLayout.back,
-  onPressed: () {},
+OudsLink.previous(label: 'Back', onPressed: () {})
+OudsLink.next(label: 'Next', onPressed: () {})
+OudsLink.external(label: 'Visit website', onPressed: () {})
+```
+
+> ⚠️ Deprecated: `OudsLink(layout: OudsLinkLayout.back/textAndIcon/next)` → use `OudsLink.previous`, `OudsLink.icon` or `OudsLink.next`/`OudsLink.external` instead.
+
+---
+
+### List item
+
+`OudsListItem` mirrors Flutter's `ListTile` spirit (leading / label / trailing) using OUDS tokens. Static (read-only) by default, becomes a navigation item when `onTap` is provided. `OudsSmallListItem` is a compact variant restricted to icon/image leading content; `OudsCardItem` / `OudsSmallCardItem` apply card styling.
+
+```dart
+// Static, with leading icon
+OudsListItem(
+  label: 'Title',
+  description: 'Secondary text',
+  leading: OudsListItemLeadingIcon(Neutral(icon: 'assets/icons/star.svg')),
+  background: true,
+)
+
+// Navigation item — chevron indicator shown automatically
+OudsListItem(
+  label: 'Navigate',
+  onTap: () => Navigator.of(context).push(route),
+)
+
+// Compact variant
+OudsSmallListItem(
+  label: 'Compact row',
+  leading: OudsSmallListItemLeadingIcon(Positive()),
 )
 ```
 
@@ -585,6 +720,29 @@ Scaffold(
 
 ---
 
+### Progress indicator
+
+`OudsCircularProgressIndicator` (ring) and `OudsLinearProgressIndicator` (bar). Both support `determinate`/`indeterminate` modes and a `status` color; always provide `semanticsLabel`.
+
+```dart
+// Indeterminate circular
+OudsCircularProgressIndicator(
+  progressType: OudsProgressIndicatorType.indeterminate,
+  semanticsLabel: 'Loading',
+)
+
+// Determinate linear with helper text
+OudsLinearProgressIndicator(
+  progressType: OudsProgressIndicatorType.determinate,
+  value: 0.42,
+  status: Info(),
+  semanticsLabel: 'Upload progress',
+  helperText: OudsLinearProgressIndicatorHelperText(progress: true),
+)
+```
+
+---
+
 ### Tag
 
 Prefer named constructors. Statuses: `Positive()`, `Negative()`, `Info()`, `Warning()`, `Accent()`, `Neutral()`.
@@ -610,7 +768,7 @@ OudsTextField(
   decoration: OudsInputDecoration(
     labelText: 'Email',
     hintText: 'you@example.com',
-    prefixIcon: 'assets/ic_mail.svg',
+    prefixIcon: OudsIcon('assets/ic_mail.svg'),
     helperText: 'We will never share your address.',
   ),
   helperLink: OudsLink(label: 'Privacy policy', onPressed: () {}),

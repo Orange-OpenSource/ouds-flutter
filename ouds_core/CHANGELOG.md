@@ -4,10 +4,47 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...develop)
 ### Added
 ### Changed
 ### Fixed
+
+## [3.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...3.0.0) - 2026-10-07
+### Added
+- [Library] For `control item` components, add edge to edge configuration ([#880](https://github.com/Orange-OpenSource/ouds-flutter/issues/880))
+- [Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
+### Changed
+- [Library] For `progress indicator` component, update to v1.2.0 ([#892](https://github.com/Orange-OpenSource/ouds-flutter/issues/892))
+- [Library] for `Alert Message` component, Add default vocalisation on "info" status ([#806](https://github.com/Orange-OpenSource/ouds-flutter/issues/806))
+- [Library] For `Alert Message` component, update to v1.2.0 ([#878](https://github.com/Orange-OpenSource/ouds-flutter/issues/878))
+- [Library] For `navigation button` component, update to v3.4.0 ([#870](https://github.com/Orange-OpenSource/ouds-flutter/issues/870))
+- [Library] For `button` component, update to version 3.4.0 ([#869](https://github.com/Orange-OpenSource/ouds-flutter/issues/869))
+- [Library] update tokens 2.7.0 ([943](https://github.com/Orange-OpenSource/ouds-flutter/issues/943))
+- [Library] Update `alert message`, `inline alert`, `button`, `badge`, `checkbox item`, `radio button item`, `switch item`, `suggestion chip`, `filter chip`, `link`, `tag` and `text input` to allow the use of fixed images ([#779](https://github.com/Orange-OpenSource/ouds-flutter/issues/779))
+- [Library] In library, update chips components to v1.5.0 ([#837](https://github.com/Orange-OpenSource/ouds-flutter/issues/837))
+- [Library] For `Button` component, add with `tinted` parameter ([#912](https://github.com/Orange-OpenSource/ouds-flutter/issues/912))
+- [Library] For `passwordInput` component, update to v1.3.1 ([#785](https://github.com/Orange-OpenSource/ouds-flutter/issues/785))
+- [Library] For `textInput` component, update to v1.4.1 ([#784](https://github.com/Orange-OpenSource/ouds-flutter/issues/784))
+- [Library] For `phoneNumberInput` component, update to v1.3.1 ([#839](https://github.com/Orange-OpenSource/ouds-flutter/issues/839))
+- [Library] Add typography Tokens component ([#905](https://github.com/Orange-OpenSource/ouds-flutter/issues/905))
+- [Library] update icons to use the icons pack 2.3.0 ([#863](https://github.com/Orange-OpenSource/ouds-flutter/issues/863))
+- [Library] In library, update `link` component to v2.4.0 ([#861](https://github.com/Orange-OpenSource/ouds-flutter/issues/861))
+- [Library] In library, update `link` component to v2.3.0 ([#838](https://github.com/Orange-OpenSource/ouds-flutter/issues/838))
+- [Library] For `button` component, update to version 3.3.0 ([#832](https://github.com/Orange-OpenSource/ouds-flutter/issues/832))
+- [Library] Update `progress-indicator`: add size parameter to OudsCircularProgressIndicator for button integration ([#876](https://github.com/Orange-OpenSource/ouds-flutter/issues/876))
+### Fixed
+- [Library] Bug `Text Input` The suffix is misaligned when the label is null ([#977](https://github.com/Orange-OpenSource/ouds-flutter/issues/977))
+- [library] Components with a status, `Badge`, `Tag` and `Alert Message`, should have a default status defined in the API ([#975](https://github.com/Orange-OpenSource/ouds-flutter/issues/975))
+- [Library] `Progress indicator` Percent is not read for determinate state if reduce-motion is activated ([#913](https://github.com/Orange-OpenSource/ouds-flutter/issues/913))
+- [Library] for `Alert Message` component, Close button is not reached with keyboard ([#811](https://github.com/Orange-OpenSource/ouds-flutter/issues/811))
+- [Library] Bug A11Y `Top bar` Action button and badge are not grouped in iOS ([#816](https://github.com/Orange-OpenSource/ouds-flutter/issues/816))
+- [Library] `Navigation Button` Disabled state is not vocalized ([#931](https://github.com/Orange-OpenSource/ouds-flutter/issues/931))
+- [Library] fix: fix Indicator Icon with text direction `list item` to resolve ar ([#925](https://github.com/Orange-OpenSource/ouds-flutter/issues/925))
+- [Library] `List item` with external indicator should have a role link ([#918](https://github.com/Orange-OpenSource/ouds-flutter/issues/918))
+- [Library] `List item` Trailing, labels and leading elements should be grouped ([#919](https://github.com/Orange-OpenSource/ouds-flutter/issues/919))
+- [Library] `List item` Leading/Trailing elements have a wrong accessible name ([#927](https://github.com/Orange-OpenSource/ouds-flutter/issues/927))
+- [Library] `list item` fix Indicator Icon with text direction  to resolve ar ([#925](https://github.com/Orange-OpenSource/ouds-flutter/issues/925))
+- [Library] Invalid value: Not in inclusive range 0..2: 3 dans OudsTabBar` ([#896](https://github.com/Orange-OpenSource/ouds-flutter/issues/896))
 
 ## [2.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.0.0...2.1.0) - 2026-08-07
 ### Added
@@ -16,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Library] update tokens 2.6.0 ([#842](https://github.com/Orange-OpenSource/ouds-flutter/issues/842))
 ### Fixed
+
 
 ## [2.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...2.0.0) - 2026-06-19
 ### Added

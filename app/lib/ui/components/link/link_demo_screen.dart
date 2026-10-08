@@ -10,9 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_code_generator.dart';
@@ -25,54 +23,38 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.d
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class LinkDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-  const LinkDemoScreen({super.key,this.previousPageTitle});
+  const LinkDemoScreen({super.key, this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() => _LinkDemoScreenState();
 }
 
 class _LinkDemoScreenState extends State<LinkDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: LinkCustomization(
-        child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
-          child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            key: _scaffoldKey,
-            extendBodyBehindAppBar: true,
-            appBar: MainAppBar(
-                showBackButton: true,
-                title: context.l10n.app_components_link_label,
-                previousPageTitle: widget.previousPageTitle,
-            ),
-            body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+        child: CustomizeBottomSheet(
+          topBar: MainAppBar(
+            showBackButton: true,
+            title: context.l10n.app_components_link_tech,
+            previousPageTitle: widget.previousPageTitle,
           ),
+          title: context.l10n.app_common_customize_label,
+          customizationContent: const _CustomizationContent(),
+          body: _Body(),
         ),
       ),
     );
@@ -90,19 +72,22 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
       description: context.l10n.app_components_link_description_text,
       widget: Column(
         children: [
           _LinkDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: LinkCodeGenerator.updateCode(context),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
           ),
-          ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.link,
-          )
+          Code(code: LinkCodeGenerator.updateCode(context)),
+          ReferenceDesignVersionComponent(version: OudsComponentVersion.link),
         ],
       ),
     );
@@ -127,6 +112,9 @@ class _LinkDemoState extends State<_LinkDemo> {
   Widget build(BuildContext context) {
     customizationState = LinkCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
+    final colorSurfaceBrandPrimary = OudsTheme.of(
+      context,
+    ).colorScheme(context).surfaceBrandPrimary;
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -136,23 +124,22 @@ class _LinkDemoState extends State<_LinkDemo> {
     if (customizationState?.hasOnColoredBox == true) {
       return ComponentDemoBox(
         colored: customizationState?.hasOnColoredBox == true,
-        child: OudsLink(
-          label: customizationState!.labelText,
-          icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
-          size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-          layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+        child: LinkCustomizationUtils.buildLink(
+          backgroundColor: colorSurfaceBrandPrimary,
+          customizationState: customizationState!,
+          themeController: themeController!,
+          onPressed: customizationState!.hasEnabled == true ? () {} : null,
         ),
       );
     } else {
       return LightDarkBox(
-          child: OudsLink(
-        label: customizationState!.labelText,
-        icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
-        size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-        layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-        onPressed: customizationState?.hasEnabled == true ? () {} : null,
-      ));
+        child: LinkCustomizationUtils.buildLink(
+          backgroundColor: colorSurfaceBrandPrimary,
+          customizationState: customizationState!,
+          themeController: themeController!,
+          onPressed: customizationState!.hasEnabled == true ? () {} : null,
+        ),
+      );
     }
   }
 }
@@ -183,7 +170,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final LinkCustomizationState? customizationState = LinkCustomization.of(context);
+    final LinkCustomizationState? customizationState = LinkCustomization.of(
+      context,
+    );
 
     return CustomizableSection(
       children: [
@@ -214,6 +203,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        CustomizableChips<LinkEnumDensity>(
+          title: LinkEnumDensity.enumName(context),
+          options: customizationState.densityState.list,
+          selectedOption: customizationState.selectedDensity,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedDensity = selectedOption;
+            });
+          },
+        ),
         CustomizableChips<LinkEnumLayout>(
           title: LinkEnumLayout.enumName(context),
           options: customizationState.layoutState.list,
@@ -225,12 +225,24 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        if (customizationState.selectedLayout == LinkEnumLayout.textAndIcon)
+          CustomizableChips<TintedEnum>(
+            title: TintedEnum.enumName(context),
+            options: customizationState.tintedState.list,
+            selectedOption: customizationState.selectedTinted,
+            getText: (option) => option.stringValue(context),
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.selectedTinted = selectedOption;
+              });
+            },
+          ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
-        )
+        ),
       ],
     );
   }

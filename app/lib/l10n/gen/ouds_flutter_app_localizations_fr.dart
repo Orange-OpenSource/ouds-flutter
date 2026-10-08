@@ -49,7 +49,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Veuillez sélectionner une puce en naviguant parmi les options';
 
   @override
-  String get app_common_selected_label => 'Sélectionné';
+  String get app_common_selected_tech => 'Selected';
 
   @override
   String get app_topBar_theme_button_a11y => 'Changer le thème';
@@ -99,6 +99,10 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get app_themeSettingsDialog_roundedCornerAlertMessage_label =>
       'Message d’alerte à coins arrondis';
+
+  @override
+  String get app_themeSettingsDialog_roundedCornerCardItems_label =>
+      'Éléments de card à coins arrondis';
 
   @override
   String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
@@ -211,6 +215,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_common_size_label => 'Size';
 
   @override
+  String get app_components_common_density_label => 'Density';
+
+  @override
   String get app_components_common_textAndLoaderLayout_label => 'Text + Loader';
 
   @override
@@ -236,6 +243,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_common_helperText_label => 'Helper text';
+
+  @override
+  String get app_components_common_annotatedText_tech =>
+      'Annotated example text';
 
   @override
   String get app_components_common_appearance_label => 'Appearance';
@@ -279,7 +290,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_common_description_tech => 'Description';
 
   @override
+  String get app_components_common_edgeToEdge_tech => 'Edge to edge';
+
+  @override
   String get app_components_common_type_tech => 'Type';
+
+  @override
+  String get app_components_common_icon_tech => 'Icon';
+
+  @override
+  String get app_components_common_tinted_tech => 'Tinted';
+
+  @override
+  String get app_components_common_untinted_tech => 'Untinted';
 
   @override
   String get app_components_alert_tech => 'Alert';
@@ -633,17 +656,185 @@ class AppLocalizationsFr extends AppLocalizations {
       'The phone number can\'t be empty.';
 
   @override
-  String get app_components_link_label => 'Link';
+  String get app_components_link_tech => 'Link';
 
   @override
   String get app_components_link_description_text =>
       'Un Link (ou lien) est un élément d\'interface utilisateur qui permet de naviguer d\'un emplacement à un autre, que ce soit au sein de la même page, entre différentes pages de la même ressource ou vers une ressource externe.';
 
   @override
-  String get app_components_link_backLayout_label => 'Back';
+  String get app_components_link_previousLayout_tech => 'Previous';
 
   @override
-  String get app_components_link_nextLayout_label => 'Next';
+  String get app_components_link_nextLayout_tech => 'Next';
+
+  @override
+  String get app_components_link_externalLayout_tech => 'External';
+
+  @override
+  String get app_components_listItem_tech => 'List item';
+
+  @override
+  String get app_components_listItem_description_text =>
+      'L\'élément de liste est un composant d\'interface utilisateur qui affiche une unité d\'information dans une ligne interactive ou non interactive, au sein d\'une liste structurée.\n L\'élément de carte est un composant d\'interface utilisateur qui affiche une unité d\'information dans une carte interactive ou non interactive, au sein d\'une disposition en cartes ou de manière indépendante.';
+
+  @override
+  String get app_components_listItem_listItem_tech => 'List item';
+
+  @override
+  String get app_components_listItem_smallListItem_tech => 'Small list item';
+
+  @override
+  String get app_components_listItem_cardItem_tech => 'Card item';
+
+  @override
+  String get app_components_listItem_cardItem_decoration_tech => 'Decoration';
+
+  @override
+  String get app_components_listItem_smallCardItem_tech => 'Small card item';
+
+  @override
+  String get app_components_listItem_clickable_tech => 'Clickable';
+
+  @override
+  String get app_components_listItem_indicator_tech => 'Indicator';
+
+  @override
+  String get app_components_listItem_verticalAlignment_tech =>
+      'Vertical alignment';
+
+  @override
+  String get app_components_listItem_static_description_text =>
+      'L\'élément de liste statique est un composant d\'interface utilisateur qui affiche une unité d\'information dans une ligne horizontale non interactive au sein d\'une liste structurée, et ne permet pas de naviguer, de déclencher des actions ou d\'avoir des états interactifs.';
+
+  @override
+  String get app_components_listItem_navigation_tech => 'Navigation';
+
+  @override
+  String get app_components_listItem_overline_tech => 'Overline';
+
+  @override
+  String get app_components_listItem_extraLabel_tech => 'Extra label';
+
+  @override
+  String get app_components_listItem_affordance_tech => 'Affordance';
+
+  @override
+  String get app_components_listItem_alignment_tech => 'Alignment';
+
+  @override
+  String get app_components_listItem_imageSize_tech => 'Image size';
+
+  @override
+  String get app_components_listItem_imageRatio_tech => 'Image ratio';
+
+  @override
+  String get app_components_listItem_imageFormat_tech => 'Image format';
+
+  @override
+  String get app_components_listItem_statusIcon_tech => 'Status icon';
+
+  @override
+  String get app_components_listItem_avatarBadge_label => 'Badge sur l\'avatar';
+
+  @override
+  String get app_components_listItem_avatarSize_tech => 'Avatar size';
+
+  @override
+  String get app_components_listItem_avatarType_tech => 'Avatar type';
+
+  @override
+  String get app_components_listItem_background_tech => 'Background';
+
+  @override
+  String get app_components_listItem_boldLabel_tech => 'Bold label';
+
+  @override
+  String get app_components_listItem_cardType_tech => 'Card Item';
+
+  @override
+  String get app_components_listItem_itemType_tech => 'List item';
+
+  @override
+  String get app_components_listItem_iconType_tech => 'Icon type';
+
+  @override
+  String get app_components_listItem_iconSize_tech => 'Icon size';
+
+  @override
+  String get app_components_listItem_indicatorType_tech => 'Indicator Type';
+
+  @override
+  String get app_components_listItem_icon_a11y => 'Description de l\'icône';
+
+  @override
+  String get app_components_listItem_image_a11y => 'Description de l\'image';
+
+  @override
+  String get app_components_listItem_iconBadge_label => 'Badge sur l\'icône';
+
+  @override
+  String get app_components_listItem_leading_tech => 'Leading';
+
+  @override
+  String get app_components_listItem_roundedCornerImage_tech =>
+      'Rounded corner image';
+
+  @override
+  String get app_components_listItem_roundedMedia_tech => 'Rounded media';
+
+  @override
+  String get app_components_listItem_size_tech => 'Size';
+
+  @override
+  String get app_components_listItem_slot_tech => 'Slot';
+
+  @override
+  String get app_components_listItem_trailing_tech => 'Trailing';
+
+  @override
+  String get app_components_listItem_trailingText_tech => 'Text';
+
+  @override
+  String get app_components_listItem_trailingTextLabel_tech => 'Text label';
+
+  @override
+  String get app_components_listItem_trailingTextStyle_tech => 'Text style';
+
+  @override
+  String get app_components_listItem_trailingTextExtraLabel_tech =>
+      'Text extra label';
+
+  @override
+  String get app_components_listItem_trailing_textType_tech =>
+      'Trailing text type';
+
+  @override
+  String get app_components_listItem_contentConfiguration_label => 'Contenu';
+
+  @override
+  String get app_components_listItem_globalConfiguration_label => 'Global';
+
+  @override
+  String get app_components_listItem_labelsConfiguration_label => 'Étiquettes';
+
+  @override
+  String get app_components_listItem_section_general_label => 'General';
+
+  @override
+  String get app_components_listItem_section_texts_label => 'Texts';
+
+  @override
+  String get app_components_listItem_cardItem_description_text =>
+      'L\'élément de carte statique est un composant d\'interface utilisateur qui affiche une unité d\'information dans une carte autonome et non interactive, qui ne permet pas de naviguer, de déclencher des actions ou d\'avoir des états interactifs.';
+
+  @override
+  String get app_components_listItem_smallCardItem_description_text =>
+      'Une variante carte compacte de l\'élément de liste pour les résumés en lecture seule.';
+
+  @override
+  String get app_components_listItem_smallListItem_description_text =>
+      'Un élément de liste compact pour les présentations de contenu réduites.';
 
   @override
   String get app_components_passwordInput_label => 'Password input';
@@ -654,7 +845,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_passwordInput_error_label =>
-      'Please enter your password.';
+      'Your password can\'t be empty';
 
   @override
   String get app_components_pinCodeInput_label => 'Pin code input';
@@ -737,6 +928,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_progressIndicator_gapSize_tech => 'Gap size';
 
   @override
+  String get app_components_progressIndicator_progress_helper_label =>
+      'Saisissez une valeur comprise entre 0 et 100';
+
+  @override
   String get app_components_progressIndicator_linearProgressIndicator_tech =>
       'Linear progress indicator';
 
@@ -752,15 +947,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_progressIndicator_helperTextAlignment_tech =>
-      'Alignment';
+      'Label alignment';
 
   @override
-  String get app_components_progressIndicator_helperTextSpaceBefore_tech =>
-      'Space before %';
+  String
+  get app_components_progressIndicator_helperTextProgressAlignment_tech =>
+      'Progress alignment';
 
   @override
   String get app_components_progressIndicator_helperTextPercentage_tech =>
-      'Percentage';
+      'Helper text progress';
+
+  @override
+  String get app_components_progressIndicator_helperTextLabel_tech =>
+      'Helper text label';
 
   @override
   String get app_components_progressIndicator_progress_a11y =>

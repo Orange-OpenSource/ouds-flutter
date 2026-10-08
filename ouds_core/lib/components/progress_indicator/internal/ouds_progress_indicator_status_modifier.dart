@@ -26,7 +26,11 @@ class OudsProgressIndicatorStatusModifier {
   /// Returns the indicator color based on the progress indicator status.
   Color getStatusColor(OudsIconStatus status) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
 
+    if (onColoredSurface) {
+      return colorTheme.contentDefault;
+    }
     return switch (status) {
       Neutral() => colorTheme.contentDefault,
       Accent() => colorTheme.contentStatusAccent,

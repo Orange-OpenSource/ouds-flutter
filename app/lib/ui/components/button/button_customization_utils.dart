@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
@@ -43,11 +44,21 @@ class ButtonCustomizationUtils {
   }
 
   /// Displays the loader if it is selected .
-  static Loader? getLoader(ButtonCustomizationState? customizationState) {
+  static bool? getLoader(ButtonCustomizationState? customizationState) {
     if (customizationState?.hasLoader == true) {
-      return Loader(progress: null);
+      return true;
     }
     return null;
+  }
+
+  /// Maps the size enum to `OudsButtonSize`.
+  static OudsButtonSize getSize(Object size) {
+    switch (size) {
+      case ButtonEnumSize.small:
+        return OudsButtonSize.small;
+      default:
+        return OudsButtonSize.defaultSize;
+    }
   }
 
   /// Maps the layout enum to `OudsButtonLayout`.
@@ -65,15 +76,33 @@ class ButtonCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(
+  ///
+  /// Uses a single-color, theme-tintable asset when [ButtonCustomizationState.isTinted]
+  /// is true, or a multi-color asset kept as-is (untinted) otherwise. This mirrors
+  /// the behavior used in the Link component demo.
+  static OudsIcon? getIcon(
     ButtonCustomizationState? customizationState,
     ThemeController themeController,
+    Color backgroundColor,
+    String semanticsLabel,
   ) {
-    if (customizationState?.selectedLayout == ButtonEnumLayout.iconOnly ||
-        customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
-        themeController,
-      );
+    final iconOnly =
+        customizationState?.selectedLayout == ButtonEnumLayout.iconOnly;
+    final iconAndText =
+        customizationState?.selectedLayout == ButtonEnumLayout.iconAndText;
+
+    if (iconOnly || iconAndText) {
+      return customizationState?.isTinted == true
+          ? OudsIcon(
+              AppAssets.icons.assistanceTipsAndTricks(themeController),
+              semanticsLabel: iconOnly ? semanticsLabel : null,
+            )
+          : OudsIcon(
+              AppAssets.icons.icUntintedSquare,
+              tinted: false,
+              backgroundColor: backgroundColor,
+              semanticsLabel: iconOnly ? semanticsLabel : null,
+            );
     }
     return null;
   }

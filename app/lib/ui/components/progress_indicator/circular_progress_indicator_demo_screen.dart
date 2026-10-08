@@ -10,7 +10,6 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -31,7 +30,7 @@ import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -50,45 +49,21 @@ class CircularProgressIndicatorDemoScreen extends StatefulWidget {
 
 class _CircularProgressIndicatorDemoScreenState
     extends State<CircularProgressIndicatorDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: ProgressIndicatorCustomization(
-        child: Padding(
-          padding: EdgeInsets.only(
-            bottom: defaultTargetPlatform == TargetPlatform.android
-                ? MediaQuery.of(context).viewPadding.bottom
-                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+        child: CustomizeBottomSheet(
+          topBar: MainAppBar(
+            showBackButton: true,
+            title: context
+                .l10n
+                .app_components_progressIndicator_circularProgressIndicator_tech,
+            previousPageTitle: widget.previousPageTitle,
           ),
-          child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            key: _scaffoldKey,
-            extendBodyBehindAppBar: true,
-            appBar: MainAppBar(
-              showBackButton: true,
-              title: context
-                  .l10n
-                  .app_components_progressIndicator_circularProgressIndicator_tech,
-              previousPageTitle: widget.previousPageTitle,
-            ),
-            body: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
-          ),
+          title: context.l10n.app_common_customize_label,
+          customizationContent: const _CustomizationContent(),
+          body: _Body(),
         ),
       ),
     );
@@ -124,7 +99,7 @@ class _BodyState extends State<_Body> {
           ),
           Code(code: ProgressIndicatorCodeGenerator.updateCode(context)),
           ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.progressIndicator,
+            version: OudsComponentVersion.circularProgressIndicator,
           ),
         ],
       ),
@@ -153,26 +128,63 @@ class _CircularProgressIndicatorDemoState
     customizationState = ProgressIndicatorCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
-    return LightDarkBox(
-      child: OudsCircularProgressIndicator(
-        progressType: ProgressIndicatorCustomizationUtils.getProgressType(
-          customizationState!.selectedType,
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+    });
+
+    if (customizationState?.hasOnColoredBox == true) {
+      return ComponentDemoBox(
+        colored: customizationState?.hasOnColoredBox == true,
+        child: OudsCircularProgressIndicator(
+          progressType: ProgressIndicatorCustomizationUtils.getProgressType(
+            customizationState!.selectedType,
+          ),
+          status: ProgressIndicatorCustomizationUtils.getStatus(
+            customizationState!.selectedStatus,
+          ),
+          value: ProgressIndicatorCustomizationUtils.getProgressValue(
+            customizationState!.value,
+          ),
+          track: customizationState!.hasTrack,
+          animated: customizationState!.hasAnimation,
+          gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
+            customizationState!.selectedGapSize,
+          ),
+          helperText: ProgressIndicatorCustomizationUtils.getCircularHelperText(
+            customizationState!,
+          ),
+          semanticsLabel: customizationState!.hasHelperText
+              ? null
+              : context.l10n.app_components_progressIndicator_progress_a11y,
         ),
-        status: ProgressIndicatorCustomizationUtils.getStatus(
-          customizationState!.selectedStatus,
+      );
+    } else {
+      return LightDarkBox(
+        child: OudsCircularProgressIndicator(
+          progressType: ProgressIndicatorCustomizationUtils.getProgressType(
+            customizationState!.selectedType,
+          ),
+          status: ProgressIndicatorCustomizationUtils.getStatus(
+            customizationState!.selectedStatus,
+          ),
+          value: ProgressIndicatorCustomizationUtils.getProgressValue(
+            customizationState!.value,
+          ),
+          track: customizationState!.hasTrack,
+          animated: customizationState!.hasAnimation,
+          gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
+            customizationState!.selectedGapSize,
+          ),
+          helperText: ProgressIndicatorCustomizationUtils.getCircularHelperText(
+            customizationState!,
+          ),
+          semanticsLabel: customizationState!.hasHelperText
+              ? null
+              : context.l10n.app_components_progressIndicator_progress_a11y,
         ),
-        progress: ProgressIndicatorCustomizationUtils.getProgressValue(
-          customizationState!.progress,
-        ),
-        track: customizationState!.hasTrack,
-        animated: customizationState!.hasAnimation,
-        gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
-          customizationState!.selectedGapSize,
-        ),
-        semanticLabel:
-            context.l10n.app_components_progressIndicator_progress_a11y,
-      ),
-    );
+      );
+    }
   }
 }
 
@@ -187,16 +199,19 @@ class _CustomizationContent extends StatefulWidget {
 /// This state class handles the customization options for the progress indicator
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode progressFocus;
+  late final FocusNode helperFocus;
 
   @override
   void initState() {
     super.initState();
     progressFocus = FocusNode();
+    helperFocus = FocusNode();
   }
 
   @override
   void dispose() {
     progressFocus.dispose();
+    helperFocus.dispose();
     super.dispose();
   }
 
@@ -216,22 +231,37 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedType = selectedOption;
+              customizationState.hasPercentage = false;
             });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_onColoredBackground_label,
+          value: customizationState.hasOnColoredBox,
+          onChanged: (value) {
+            customizationState.hasOnColoredBox = value;
           },
         ),
         CustomizableTextField(
           title: context.l10n.app_components_progressIndicator_progress_tech,
-          text: customizationState.progress.toString(),
+          text: customizationState.value.toString(),
           focusNode: progressFocus,
           fieldType: FieldType.label,
           fieldEnable:
               customizationState.selectedType ==
               ProgressIndicatorEnumType.determinate,
           keyboardType: TextInputType.number,
+          suffixText: '%',
+          helperText: context
+              .l10n
+              .app_components_progressIndicator_progress_helper_label,
         ),
         CustomizationDropdownMenu<StatusEnum>(
           label: StatusEnum.enumName(context),
           options: customizationState.statusState.list,
+          disabledOptions: customizationState.hasOnColoredBox
+              ? customizationState.statusState.list
+              : null,
           selectedItemIndex: customizationState.selectedIndex,
           selectedOption: customizationState.selectedStatus,
           getText: (option) => option.stringValue(context),
@@ -286,6 +316,39 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.hasTrack = value;
             });
           },
+        ),
+        CustomizableSwitch(
+          title: context
+              .l10n
+              .app_components_progressIndicator_helperTextPercentage_tech,
+          value: customizationState.hasPercentage,
+          onChanged:
+              customizationState.selectedType ==
+                  ProgressIndicatorEnumType.determinate
+              ? (value) {
+                  customizationState.hasPercentage = value;
+                }
+              : null,
+        ),
+        CustomizableSwitch(
+          title: context
+              .l10n
+              .app_components_progressIndicator_helperTextLabel_tech,
+          value: customizationState.hasHelperText,
+          onChanged: (value) {
+            customizationState.hasHelperText = value;
+          },
+        ),
+        Visibility(
+          visible: customizationState.hasHelperText,
+          child: CustomizableTextField(
+            title: context
+                .l10n
+                .app_components_progressIndicator_helperTextLabel_tech,
+            text: customizationState.helperText,
+            focusNode: helperFocus,
+            fieldType: FieldType.helper,
+          ),
         ),
       ],
     );

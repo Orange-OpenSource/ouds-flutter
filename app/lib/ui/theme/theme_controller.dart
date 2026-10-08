@@ -27,6 +27,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   bool _onBorderRadiusTextInputState = false;
   bool _onBorderRadiusAlertMessageState = false;
   bool _onBorderRadiusProgressIndicatorState = false;
+  bool _onBorderRadiusCardItemState = false;
 
   /// Getter to access the current theme
   OudsThemeContract get currentTheme => _currentTheme;
@@ -43,6 +44,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   bool get onBorderRadiusAlertMessageState => _onBorderRadiusAlertMessageState;
   bool get onBorderRadiusProgressIndicatorState =>
       _onBorderRadiusProgressIndicatorState;
+  bool get onBorderRadiusCardItemState => _onBorderRadiusCardItemState;
 
   ThemeController(this.fontFamily) {
     /// Initialize the theme based on the system's current brightness setting
@@ -146,6 +148,14 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     bool newValue = value ?? false;
     if (_onBorderRadiusProgressIndicatorState != newValue) {
       _onBorderRadiusProgressIndicatorState = newValue;
+      notifyListeners();
+    }
+  }
+
+  void setOnBorderRadiusCardItemState(bool? value) {
+    bool newValue = value ?? false;
+    if (_onBorderRadiusCardItemState != newValue) {
+      _onBorderRadiusCardItemState = newValue;
       notifyListeners();
     }
   }

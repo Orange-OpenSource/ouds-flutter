@@ -13,7 +13,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_background_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dart';
@@ -21,6 +21,7 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart'
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -36,7 +37,7 @@ enum OudsChipStyle { defaultStyle, selected }
 ///
 /// [OUDS Chip design guidelines](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
 ///
-/// **Reference design version : 1.4.0**
+/// **Reference design version : 1.5.0**
 ///
 /// Suggestion chip is a UI element that allows to present recommended or predictive options
 /// based on user’s input or context, and is commonly used to capture filtering decisions.
@@ -46,7 +47,7 @@ enum OudsChipStyle { defaultStyle, selected }
 ///
 /// Parameters:
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
-/// - [avatar]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
+/// - [icon]: Icon displayed in the suggestion chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the suggestion chip is clicked.
 ///
 /// ### You can use [OudsSuggestionChip] component in your project, customizing parameters as needed :
@@ -62,31 +63,74 @@ enum OudsChipStyle { defaultStyle, selected }
 ///     );
 /// ```
 ///
+/// **Text with icon suggestion chip :**
+///
+/// ```dart
+/// OudsSuggestionChip.icon(
+///   label: 'Label',
+///   icon: OudsIcon('assets/ic_chip_heart.svg'),
+///   onPressed: () {},
+/// )
+/// ```
 ///
 class OudsSuggestionChip extends StatefulWidget {
   final String? label;
+  @Deprecated(
+    "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsSuggestionChip.icon constructor .",
+  )
   final String? avatar;
+  final OudsIcon? icon;
+  @Deprecated(
+    "This parameter is deprecated and will be removed in a future version. Use icon.semanticsLabel instead in OudsSuggestionChip.icon constructor .",
+  )
+  final String? contentDescription;
   final VoidCallback? onPressed;
 
+  /// Creates a text-only [OudsSuggestionChip].
+  ///
+  /// This is the default constructor. The [label] parameter must be provided to display the text.
   const OudsSuggestionChip({
     super.key,
     this.label,
+    @Deprecated(
+      "This parameter is deprecated and will be removed in a future version. Use icon instead in OudsSuggestionChip.icon constructor .",
+    )
     this.avatar,
+    @Deprecated(
+      "This parameter is deprecated and will be removed in a future version. Use icon.semanticsLabel instead in OudsSuggestionChip.icon constructor .",
+    )
+    this.contentDescription,
     this.onPressed,
-  });
+  }) : icon = null;
+
+  /// Creates an [OudsSuggestionChip] with a text and an icon.
+  ///
+  /// Use this constructor to display an [icon] alongside the [label].
+  /// If only an icon is provided (without a label), it acts as an icon-only chip.
+  const OudsSuggestionChip.icon({
+    super.key,
+    this.label,
+    this.icon,
+    this.onPressed,
+  }) : avatar = null,
+       contentDescription = null;
 
   @override
   State<OudsSuggestionChip> createState() => _OudsSuggestionChipState();
 
   /// Property that detects and returns the chip layout based on the provided elements (text and/or icon)
-  OudsChipLayout get layout => _detectLayout(label, avatar);
+  OudsChipLayout get layout => _detectLayout(label, avatar, icon?.assetsName);
 
-  static OudsChipLayout _detectLayout(String? label, String? icon) {
-    if (label != null && icon != null) {
+  static OudsChipLayout _detectLayout(
+    String? label,
+    String? avatar,
+    String? icon,
+  ) {
+    if (label != null && (icon != null || avatar != null)) {
       return OudsChipLayout.iconAndText;
     } else if (label != null) {
       return OudsChipLayout.textOnly;
-    } else if (icon != null) {
+    } else if (icon != null || avatar != null) {
       return OudsChipLayout.iconOnly;
     }
     return OudsChipLayout.textOnly;
@@ -337,9 +381,13 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
   ) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final l10n = OudsLocalizations.of(context);
+    final resolvedSemanticsLabel =
+        widget.icon != null && widget.icon!.semanticsLabel != null
+        ? widget.icon!.semanticsLabel
+        : widget.contentDescription ?? l10n?.core_chip_chip_icon_a11y;
 
     return Semantics(
-      label: l10n?.core_chip_chip_icon_a11y,
+      label: resolvedSemanticsLabel,
       button: true,
       enabled: widget.onPressed != null,
       child: Stack(
@@ -381,7 +429,11 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ExcludeSemantics(
-                    child: _buildIcon(context, widget.avatar!, chipState),
+                    child: _buildIcon(
+                      context,
+                      widget.avatar ?? widget.icon?.assetsName ?? "",
+                      chipState,
+                    ),
                   ),
                 ],
               ),
@@ -446,13 +498,17 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ExcludeSemantics(
-                    child: _buildIcon(context, widget.avatar!, chipState),
+                    child: _buildIcon(
+                      context,
+                      widget.avatar ?? widget.icon?.assetsName ?? "",
+                      chipState,
+                    ),
                   ),
                   SizedBox(width: chipToken.spaceColumnGapIcon),
                   Flexible(
                     child: Text(
                       widget.label ?? "",
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
                       style: OudsTheme.of(context).typographyTokens
                           .typeLabelModerateMedium(context)
                           .copyWith(
@@ -525,7 +581,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                   Flexible(
                     child: Text(
                       widget.label ?? "",
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
                       style: OudsTheme.of(context).typographyTokens
                           .typeLabelModerateMedium(context)
                           .copyWith(
@@ -553,15 +609,29 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
     OudsChipControlState controlItemState,
   ) {
     final controlIconModifier = OudsChipControlIconColorModifier(context);
+    final sizeIcon = OudsTheme.of(
+      context,
+    ).componentsTokens(context).chip.sizeIcon;
 
-    return SvgPicture.asset(
-      assetName,
-      fit: BoxFit.contain,
-      width: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
-      height: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
-      colorFilter: ColorFilter.mode(
-        controlIconModifier.getIconColor(controlItemState, _isHighContrast),
-        BlendMode.srcIn,
+    final isTinted = widget.icon != null && widget.icon!.tinted;
+
+    return Container(
+      color: isTinted ? null : widget.icon?.backgroundColor,
+      child: SvgPicture.asset(
+        matchTextDirection: true,
+        assetName,
+        fit: BoxFit.contain,
+        width: sizeIcon,
+        height: sizeIcon,
+        colorFilter: isTinted
+            ? ColorFilter.mode(
+                controlIconModifier.getIconColor(
+                  controlItemState,
+                  _isHighContrast,
+                ),
+                BlendMode.srcIn,
+              )
+            : null,
       ),
     );
   }

@@ -15,6 +15,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
@@ -53,6 +54,8 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 ///   Defaults to `false`.
 /// - [errorText]: Text shown below the radio button item indicating an error state. Supports only strong text formatting using `**bold**`.
 ///   Rich text is supported only for error messages.
+/// - [edgeToEdge] Controls the horizontal layout of the checkbox item. When `true`, the checkbox item is designed to span the full width of the screen or container. When `false`,
+///   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
 ///
 ///
 /// ### You can use [OudsRadioButtonItem] component in your project, customizing parameters as needed :
@@ -74,10 +77,11 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 ///     helperTitle: 'Helper text',
 ///     reversed: false,
 ///     readOnly: false,
-///     icon: 'assets/ic_heart.svg',
+///     icon: OudsIcon('assets/ic_heart.svg'),
 ///     isError: false,
 ///     divider: true,
-///     outlined: false
+///     outlined: false,
+///     edgeToEdge: true,
 /// );
 /// ```
 ///
@@ -89,7 +93,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
   final String title;
   final String? extraLabelText;
   final String? helperTitle;
-  final String? icon;
+  final OudsIcon? icon;
   final bool outlined;
   final bool reversed;
   final bool readOnly;
@@ -98,6 +102,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
   final bool enabled;
   final bool divider;
   final bool constrainedMaxWidth;
+  final bool edgeToEdge;
 
   const OudsRadioButtonItem({
     super.key,
@@ -116,6 +121,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
     this.enabled = true,
     this.divider = false,
     this.constrainedMaxWidth = false,
+    this.edgeToEdge = true,
   });
 
   bool get _selected => value == groupValue;
@@ -136,6 +142,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
         componentType: OudsControlItemType.radio,
         divider: divider,
         constrainedMaxWidth: constrainedMaxWidth,
+        edgeToEdge: edgeToEdge,
         outlined: _selected == true ? outlined : false,
         selected: outlined,
         reversed: reversed,

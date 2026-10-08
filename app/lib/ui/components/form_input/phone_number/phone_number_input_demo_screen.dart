@@ -11,8 +11,8 @@
  * //
  */
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
@@ -33,9 +33,8 @@ import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class PhoneNumberInputDemoScreen extends StatefulWidget {
@@ -49,44 +48,20 @@ class PhoneNumberInputDemoScreen extends StatefulWidget {
 
 class _PhoneNumberInputDemoScreenState
     extends State<PhoneNumberInputDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: FormFieldsCustomization(
-        key: _scaffoldKey,
         inputType: FormFieldsTypeEnum.phoneNumberInput,
-        child: Padding(
-          padding: EdgeInsets.only(
-            bottom: defaultTargetPlatform == TargetPlatform.android
-                ? MediaQuery.of(context).viewPadding.bottom
-                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+        child: CustomizeBottomSheet(
+          topBar: MainAppBar(
+            showBackButton: true,
+            title: context.l10n.app_components_phoneNumberInput_label,
+            previousPageTitle: widget.previousPageTitle,
           ),
-          child: Scaffold(
-            extendBodyBehindAppBar: true,
-            appBar: MainAppBar(
-              showBackButton: true,
-              title: context.l10n.app_components_phoneNumberInput_label,
-              previousPageTitle: widget.previousPageTitle,
-            ),
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            body: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: const _Body(),
-            ),
-          ),
+          title: context.l10n.app_common_customize_label,
+          customizationContent: const _CustomizationContent(),
+          body: const _Body(),
         ),
       ),
     );
@@ -231,9 +206,13 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
           labelText: customizationState.labelText.isNotEmpty
               ? FormFieldsCustomizationUtils.getLabelText(customizationState)
               : null,
-          helperText: customizationState.helperText.isNotEmpty
-              ? FormFieldsCustomizationUtils.getHelperText(customizationState)
-              : null,
+          helperText: customizationState.hasAnnotatedHelper
+              ? customizationState.annotatedHelperText
+              : (customizationState.helperText.isNotEmpty
+                    ? FormFieldsCustomizationUtils.getHelperText(
+                        customizationState,
+                      )
+                    : null),
           hintText: customizationState.placeholderText.isNotEmpty
               ? FormFieldsCustomizationUtils.getPlaceholderText(
                   customizationState,
@@ -244,12 +223,14 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               : null,
           hasPrefix: customizationState.hasPrefix,
           prefixIcon: customizationState.hasLeadingIcon
-              ? AppAssets.icons.deviceSmartphone(themeController)
+              ? OudsIcon(AppAssets.icons.deviceSmartphone(themeController))
               : null,
           errorText: customizationState.hasError
-              ? context.l10n.app_components_phoneNumberInput_error_label
+              ? (customizationState.hasAnnotatedHelper
+                    ? customizationState.annotatedErrorText
+                    : context.l10n.app_components_phoneNumberInput_error_label)
               : null,
-          loader: customizationState.hasLoader,
+          loader: customizationState.loader,
           outlined: customizationState.hasOutlined,
           constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
               ? true
@@ -403,6 +384,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,
+          fieldEnable: customizationState.isHelperTextEnabled,
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_constrainedMaxWidth_label,
@@ -410,6 +392,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: (value) {
             setState(() {
               customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_annotatedText_tech,
+          value: customizationState.hasAnnotatedHelper,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasAnnotatedHelper = value;
             });
           },
         ),

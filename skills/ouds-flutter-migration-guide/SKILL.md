@@ -681,6 +681,9 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
+| `v2.1.0 → v3.0.0` | No | Yes | Shared `OudsIcon` type replacing `OudsLinkIcon`/`OudsChipIcon`/`OudsTextInputPrefixIcon`/`OudsControlItemIcon` (breaking) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsCheckboxItem`, `OudsRadioButtonItem`, `OudsSwitchButtonItem`, typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons; `OudsProgressIndicator` — `semanticLabel` → `semanticsLabel`, helper text API refactored, `left`/`right` → `start`/`end` (breaking); `OudsIconStatus.Neutral`/`Accent` gained `tinted`/`backgroundColor`/`semanticsLabel` (non-breaking); `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
+| `v2.0.0 → v2.1.0` | Full | No | `OudsNavigationButton`, `OudsCircularProgressIndicator`, `OudsLinearProgressIndicator`, tokens v2.6.0 |
+| `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
 | `v1.3.0 → v1.3.1` | Full | No | Maintenance release, bug fixes, accessibility improvements |
 | `v1.2.0 → v1.3.0` | Partial | Yes for deprecated APIs | `OudsTag` named constructors, `OudsBadge` named constructors, `OudsPinCodeInput.keyboardType`, new alert/bottom-sheet components |
 | `v1.1.x → v1.2.0` | No | Yes | `OudsTagConfig` removal from theme config, status icon updates, top bar components, French support |
@@ -689,6 +692,287 @@ Before proposing changes:
 ---
 
 ### 3.3 High-impact migrations
+
+#### 3.3.0 `OudsLink` → dedicated named constructors (`v1.3.1 → v2.0.0`)
+
+**Before:**
+
+```dart
+OudsLink(
+  label: 'Label',
+  icon: 'assets/ic_heart.svg',
+)
+
+OudsLink(label: 'Label', layout: OudsLinkLayout.back)
+
+OudsLink(label: 'Label', layout: OudsLinkLayout.next)
+```
+
+**After:**
+
+```dart
+OudsLink.icon(
+  label: 'Label',
+  icon: 'assets/ic_heart.svg',
+  tinted: true,
+)
+
+OudsLink.previous(label: 'Label')
+
+OudsLink.next(label: 'Label')
+
+OudsLink.external(label: 'Label')
+```
+
+**Required actions:**
+
+- Replace `OudsLink(icon: ...)` with `OudsLink.icon(icon: ..., tinted: ...)`.
+- Replace `OudsLink(layout: OudsLinkLayout.back)` with `OudsLink.previous(...)`.
+- Replace `OudsLink(layout: OudsLinkLayout.next)` with `OudsLink.next(...)`.
+- Use `OudsLink.external(...)` for links navigating outside the current product, service or application.
+- Text-only links keep using the default `OudsLink(...)` constructor unchanged.
+- The deprecated `layout` (`OudsLinkLayout`) parameter on the default constructor still works but should be migrated.
+
+---
+
+#### 3.3.0bis Shared `OudsIcon` type replacing `OudsLinkIcon`, `OudsChipIcon`, `OudsTextInputPrefixIcon`, `OudsControlItemIcon` (`v2.1.0 → v3.0.0`)
+
+Icon configuration (asset path, `tinted`, `backgroundColor`, `semanticsLabel`) is now expressed with a single shared `OudsIcon` class (`package:ouds_core/components/common/ouds_icon.dart`) used by `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsTextInput`, `OudsPhoneNumberInput`, `OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem`. The component-specific `OudsLinkIcon`, `OudsChipIcon`, `OudsTextInputPrefixIcon` and `OudsControlItemIcon` classes are removed, and `OudsButton`'s standalone `tinted` parameter is removed (moved into `OudsIcon.tinted`). All these classes/components support tinting the icon: set `OudsIcon(tinted: false)` to keep the icon's original (multi-color) colors instead of the theme color.
+
+**`OudsButton` — before/after:**
+
+```dart
+// Before
+OudsButton(
+  icon: 'assets/ic_heart.svg',
+  tinted: false,
+  onPressed: () {},
+)
+
+// After
+OudsButton(
+  icon: OudsIcon('assets/ic_heart.svg', tinted: false, backgroundColor: myBrandColor),
+  onPressed: () {},
+)
+```
+
+**`OudsLink` — before/after:**
+
+```dart
+// Before
+OudsLink.icon(
+  label: 'Label',
+  icon: OudsLinkIcon('assets/ic_heart.svg', tinted: true),
+  onPressed: () {},
+)
+
+// After
+OudsLink.icon(
+  label: 'Label',
+  icon: OudsIcon('assets/ic_heart.svg', tinted: true),
+  onPressed: () {},
+)
+```
+
+**`OudsFilterChip` / `OudsSuggestionChip` — before/after:**
+
+```dart
+// Before
+OudsFilterChip.icon(
+  label: 'Label',
+  icon: OudsChipIcon('assets/ic_chip_heart.svg', tinted: true),
+  selected: true,
+  onSelected: (bool selected) {},
+)
+
+// After
+OudsFilterChip.icon(
+  label: 'Label',
+  icon: OudsIcon('assets/ic_chip_heart.svg', tinted: true),
+  selected: true,
+  onSelected: (bool selected) {},
+)
+```
+
+**`OudsTextInput` / `OudsPhoneNumberInput` — before/after:**
+
+`OudsInputDecoration`/`OudsFormInputDecoration.prefixIcon` and `suffixIcon` are no longer `String`/`VoidCallback` values. `prefixIcon` now takes an `OudsIcon` directly, and `suffixIcon` takes an `OudsTextInputSuffixIconButton` whose `icon` field is also an `OudsIcon` (its own `tinted` flag is removed — use `OudsIcon.tinted`, defaults to `true`). `onSuffixPressed` has been removed; use `OudsTextInputSuffixIconButton.onPressed` instead.
+
+```dart
+// Before
+OudsInputDecoration(
+  prefixIcon: 'assets/ic_heart.svg',
+  suffixIcon: 'assets/ic_heart.svg',
+  onSuffixPressed: () {},
+)
+
+// After
+OudsInputDecoration(
+  prefixIcon: OudsIcon('assets/ic_heart.svg', tinted: true),
+  suffixIcon: OudsTextInputSuffixIconButton(
+    icon: OudsIcon('assets/ic_heart.svg', tinted: true),
+    onPressed: () {},
+  ),
+)
+```
+
+**`OudsCheckboxItem` / `OudsRadioButtonItem` / `OudsSwitchButtonItem` — before/after:**
+
+```dart
+// Before
+OudsCheckboxItem(
+  title: 'Label',
+  icon: OudsControlItemIcon('assets/ic_heart.svg', tinted: true),
+  value: true,
+  onChanged: (value) {},
+)
+
+// After
+OudsCheckboxItem(
+  title: 'Label',
+  icon: OudsIcon('assets/ic_heart.svg', tinted: true),
+  value: true,
+  onChanged: (value) {},
+)
+```
+
+**Required actions:**
+
+- Import `package:ouds_core/components/common/ouds_icon.dart`.
+- Replace `OudsLinkIcon(...)`, `OudsChipIcon(...)`, `OudsTextInputPrefixIcon(icon: ...)` and `OudsControlItemIcon(...)` with `OudsIcon(...)` — the constructor signature (asset path as first positional argument, `tinted`, `backgroundColor`) is unchanged.
+- On `OudsButton`/`OudsButton.small`, move the `tinted` value inside `OudsIcon(tinted: ...)`; provide `backgroundColor` on `OudsIcon` when `tinted: false` so the icon remains visible.
+- On `OudsTextInputSuffixIconButton`, move the `tinted` value inside the nested `OudsIcon`.
+- Move `onSuffixPressed` into `OudsTextInputSuffixIconButton.onPressed`.
+- On `OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem`, replace `OudsControlItemIcon(...)` with `OudsIcon(...)`.
+- Optionally use the new `semanticsLabel` parameter on `OudsIcon` where relevant.
+
+---
+
+#### 3.3.0quater `OudsIconStatus.Neutral`/`Accent` — added `tinted`, `backgroundColor` and `semanticsLabel` (`v2.1.0 → v3.0.0`, non-breaking)
+
+`OudsIconStatus.Neutral` and `OudsIconStatus.Accent` (used by `OudsBadge`/`OudsTag` custom icon statuses) gained `tinted` (default `true`), `backgroundColor` (applied only when `tinted: false`) and `semanticsLabel` parameters, mirroring the same tinting model as `OudsIcon`. This is additive and non-breaking — existing `Neutral(icon: ...)`/`Accent(icon: ...)` calls keep working unchanged.
+
+```dart
+// Before — icon only
+OudsBadge.icon(status: Accent(icon: 'assets/heart.svg'));
+
+// After — optional tinting/background/accessibility control
+OudsBadge.icon(
+  status: Accent(
+    icon: 'assets/heart.svg',
+    tinted: false,
+    backgroundColor: Colors.white,
+    semanticsLabel: 'Favorite',
+  ),
+);
+```
+
+**Required actions:**
+
+- None — this is optional. Add `tinted`, `backgroundColor` and `semanticsLabel` on `Neutral`/`Accent` only if you need untinted multi-color icons or a custom accessibility label.
+
+---
+
+#### 3.3.0quinquies `OudsProgressIndicator` — `semanticLabel` renamed to `semanticsLabel` and helper text API refactored (`v2.1.0 → v3.0.0`)
+
+The accessibility label parameter shared by `OudsCircularProgressIndicator` and `OudsLinearProgressIndicator` is renamed from `semanticLabel` to `semanticsLabel`, to match Flutter's own naming convention. Additionally, `OudsLinearProgressIndicator`'s standalone `helperText` / `helperTextAlignment` / `percentage` / `spaceBeforePercentage` parameters are replaced by a single `helperText: OudsLinearProgressIndicatorHelperText` object, and `OudsCircularProgressIndicator` gains the same kind of optional helper text (always centered). The `OudsProgressIndicatorHelperTextAlignment` enum values `left`/`right` are renamed to `start`/`end`.
+
+**`OudsLinearProgressIndicator` — before/after:**
+
+```dart
+// Before
+OudsLinearProgressIndicator(
+  value: 0.75,
+  semanticLabel: 'Upload progress',
+  helperText: 'Uploading file',
+  helperTextAlignment: OudsProgressIndicatorHelperTextAlignment.center,
+  percentage: false,
+  spaceBeforePercentage: false,
+)
+
+// After
+OudsLinearProgressIndicator(
+  value: 0.75,
+  semanticsLabel: 'Upload progress',
+  helperText: OudsLinearProgressIndicatorHelperText(
+    label: 'Uploading file',
+    labelAlignment: OudsProgressIndicatorHelperTextAlignment.end,
+  ),
+)
+```
+
+**Required actions:**
+
+- Rename `semanticLabel` to `semanticsLabel` on progress indicators.
+- Replace `helperText: 'my text'` with `helperText: OudsLinearProgressIndicatorHelperText(label: 'my text', progress: false)`.
+- Replace `percentage: true` with `helperText: OudsLinearProgressIndicatorHelperText()` (percentage is shown by default, centered) or explicitly set `progress: true`.
+- Replace `helperTextAlignment` with `OudsLinearProgressIndicatorHelperText.labelAlignment` / `progressAlignment`.
+- Replace `.left` with `.start` and `.right` with `.end` in `OudsProgressIndicatorHelperTextAlignment`.
+
+---
+
+#### 3.3.0bis `OudsFilterChip` → `avatar` deprecated in favor of `OudsFilterChip.icon` (`v1.3.1 → v2.0.0`)
+
+**Before:**
+
+```dart
+OudsFilterChip(
+  label: 'Label',
+  avatar: 'assets/ic_chip_heart.svg',
+  selected: true,
+  onSelected: (bool selected) {},
+)
+```
+
+**After:**
+
+```dart
+OudsFilterChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  selected: true,
+  onSelected: (bool selected) {},
+)
+```
+
+**Required actions:**
+
+- Replace `OudsFilterChip(avatar: ...)` with `OudsFilterChip.icon(icon: ...)`.
+- Text-only filter chips keep using the default `OudsFilterChip(...)` constructor unchanged.
+- The deprecated `avatar` parameter on the default constructor still works but should be migrated.
+
+---
+
+#### 3.3.0ter `OudsSuggestionChip` → `avatar` deprecated in favor of `OudsSuggestionChip.icon` (`v1.3.1 → v2.0.0`)
+
+**Before:**
+
+```dart
+OudsSuggestionChip(
+  label: 'Label',
+  avatar: 'assets/ic_chip_heart.svg',
+  onPressed: () {},
+)
+```
+
+**After:**
+
+```dart
+OudsSuggestionChip.icon(
+  label: 'Label',
+  icon: 'assets/ic_chip_heart.svg',
+  tinted: true,
+  onPressed: () {},
+)
+```
+
+**Required actions:**
+
+- Replace `OudsSuggestionChip(avatar: ...)` with `OudsSuggestionChip.icon(icon: ...)`.
+- Text-only suggestion chips keep using the default `OudsSuggestionChip(...)` constructor unchanged.
+- The deprecated `avatar` parameter on the default constructor still works but should be migrated.
+
+---
 
 #### 3.3.1 `OudsTag` → named constructors (`v1.2.x` → `v1.3.0`)
 
@@ -872,6 +1156,21 @@ When the migration guide mentions token updates:
 ---
 
 ### 3.5 New components introduced by version
+
+#### `v2.1.0 → v3.0.0`
+
+| Component | Class |
+|-----------|-------|
+| List item | `OudsListItem`, `OudsSmallListItem`, `OudsCardItem`, `OudsSmallCardItem` |
+| Shared icon | `OudsIcon` (replaces `OudsLinkIcon` / `OudsChipIcon` / `OudsTextInputPrefixIcon` / `OudsControlItemIcon`) |
+
+#### `v2.0.0 → v2.1.0`
+
+| Component | Class |
+|-----------|-------|
+| Navigation button | `OudsNavigationButton` |
+| Circular progress indicator | `OudsCircularProgressIndicator` |
+| Linear progress indicator | `OudsLinearProgressIndicator` |
 
 #### `v1.2.0 → v1.3.0`
 
