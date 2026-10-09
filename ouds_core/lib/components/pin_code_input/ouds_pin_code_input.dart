@@ -18,6 +18,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
+import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -55,7 +56,7 @@ enum OudsPinCodeInputKeyboardType {
 
 /// [OUDS PIN Code Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
 ///
-/// **Reference design version : 1.3.0**
+/// **Reference design version : 1.4.0**
 ///
 /// A fixed-length PIN code input composed of individual digit cells, typically
 /// used for authentication or confirmation flows.
@@ -84,7 +85,7 @@ enum OudsPinCodeInputKeyboardType {
 ///   helperText: 'Enter your 6-digit code',
 ///   digitInputDecoration: OudsDigitInputDecoration(
 ///     hintText: '-',
-///     hiddenPassword: true,
+///     hiddenCharacter: true,
 ///   ),
 ///   onChanged: (value) => print('Current PIN: $value'),
 ///   onEditingComplete: (value) => print('PIN complete: $value'),
@@ -94,11 +95,24 @@ enum OudsPinCodeInputKeyboardType {
 /// Parameters:
 /// - [length]: Number of digit cells. Defaults to [OudsPinCodeInputLength.six].
 /// - [helperText]: Supporting text shown below the input.
+///   Supports strong text formatting using `**bold**`.
 /// - [errorText]: Error message shown below the input; also sets the error state.
+///   Supports strong text formatting using `**bold**`.
 /// - [controllers]: Optional per-cell controllers for reading individual values.
 /// - [onEditingComplete]: Called with the full PIN when all cells are filled.
 /// - [onChanged]: Called with the current PIN on every keystroke.
 /// - [digitInputDecoration]: Visual and keyboard configuration for the cells.
+///
+/// ## Rich text in [helperText] and [errorText]
+///
+/// Both [helperText] and [errorText] accept simple rich text: wrap the words
+/// to emphasize with `**` on each side (e.g. `'**Strong** text'`) and they
+/// will be rendered using the "Strong" token matching the current text style.
+///
+/// ### ⚠️ Underline text
+///
+/// Underlined text must not be applied manually (e.g. in helper text), as it
+/// is commonly associated with hyperlinks and may mislead users.
 ///
 class OudsPinCodeInput extends StatefulWidget {
   final OudsPinCodeInputLength length;
@@ -499,7 +513,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                       hint: l10n?.core_common_hint_a11y,
                       label:
                           "${getDigitPositionLabel(context, index)}, "
-                          "${!widget.digitInputDecoration.hiddenPassword && widget.controllers != null ? widget.controllers![index].text : ''}, "
+                          "${!widget.digitInputDecoration.hiddenCharacter && widget.controllers != null ? widget.controllers![index].text : ''}, "
                           "${l10n?.core_pinCodeInput_trait_a11y}",
                       child: OudsDigitInput(
                         index: index,
@@ -508,8 +522,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                         displayValue: char,
                         digitInputDecoration: OudsDigitInputDecoration(
                           hintText: _hintText(index),
-                          hiddenPassword:
-                              widget.digitInputDecoration.hiddenPassword,
+                          hiddenCharacter:
+                              widget.digitInputDecoration.hiddenCharacter,
                           isOutlined: widget.digitInputDecoration.isOutlined,
                           keyboardType:
                               widget.digitInputDecoration.keyboardType,
@@ -540,18 +554,20 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: ExcludeSemantics(
-                    child: Text(
+                    child: Text.rich(
                       softWrap: true,
-                      widget.errorText != null && isError
-                          ? widget.errorText!
-                          : widget.helperText!,
-                      style: theme.typographyTokens
-                          .typeLabelDefaultMedium(context)
-                          .copyWith(
-                            color: OudsPinCodeInputTextColorModifier(
-                              context,
-                            ).getPinCodeHelperTextColor(isError),
-                          ),
+                      MarkdownSpanBuilder.buildBoldOnly(
+                        widget.errorText != null && isError
+                            ? widget.errorText ?? ""
+                            : widget.helperText ?? "",
+                        baseStyle: theme.typographyTokens
+                            .typeLabelDefaultMedium(context)
+                            .copyWith(
+                              color: OudsPinCodeInputTextColorModifier(
+                                context,
+                              ).getPinCodeHelperTextColor(isError),
+                            ),
+                      ),
                     ),
                   ),
                 ),

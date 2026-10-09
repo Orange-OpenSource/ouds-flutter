@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...develop)
 ### Added
 ### Changed
+- [DemoApp][Library] For `PIN Code input` component, update to version 1.4 ([#967](https://github.com/Orange-OpenSource/ouds-flutter/issues/967))
 ### Fixed
 
 ## [3.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...3.0.0) - 2026-10-07

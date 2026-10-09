@@ -855,15 +855,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_4 =>
-      'Enter the 4-digit code sent to your phone.';
+      'Enter the **4-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_6 =>
-      'Enter the 6-digit code sent to your phone.';
+      'Enter the **6-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_8 =>
-      'Enter the 8-digit code sent to your phone.';
+      'Enter the **8-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_error_label =>
@@ -874,8 +874,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Verification failed. Check and enter the correct code.';
 
   @override
-  String get app_components_pinCodeInput_hidden_password_label =>
-      'Hidden Password';
+  String get app_components_pinCodeInput_hidden_character_tech =>
+      'Hidden character';
 
   @override
   String get app_components_pinCodeInput_keyboardType_label => 'Keyboard type';
