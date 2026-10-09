@@ -25,6 +25,8 @@ import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dar
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
@@ -240,6 +242,9 @@ class OudsListItem extends StatefulWidget {
   /// with their own padding.
   final bool edgeToEdge;
 
+  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the list item will appear once fully loaded.
+  final OudsSkeleton? skeleton;
+
   /// Creates an OUDS list item.
   const OudsListItem({
     super.key,
@@ -261,6 +266,7 @@ class OudsListItem extends StatefulWidget {
     this.indicator = OudsListItemDefaults.indicator,
     this.card = false,
     this.edgeToEdge = true,
+    this.skeleton,
   });
 
   @override
@@ -355,221 +361,234 @@ class _OudsListItemState extends State<OudsListItem> {
 
     final verticalPadding = _verticalPadding(tokens);
 
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minWidth: tokens.sizeMinWidth,
-        maxWidth: tokens.sizeMaxWidth,
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+      shape: RoundedRectangleBorder(
+        borderRadius:
+            _resolveBorderRadius(tokens: tokens, decoration: decoration) ??
+            BorderRadius.zero,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Group the full row and helper text into one accessibility node,
-          // so screen readers announce the helper text when the item is focused.
-          MergeSemantics(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Semantics(
-                  // list item has a button role by default.
-                  button:
-                      widget.onTap != null &&
-                      widget.indicator is! OudsListItemIndicatorExternal,
-                  // Link role only when external indicator is activated.
-                  link:
-                      widget.onTap != null &&
-                      widget.indicator is OudsListItemIndicatorExternal,
-                  // TalkBack does not map the `link` flag to a spoken role
-                  // for whole-node elements (unlike VoiceOver on iOS). The
-                  // engine concatenates contentDescription as
-                  hint:
-                      widget.onTap != null &&
-                          widget.indicator is OudsListItemIndicatorExternal &&
-                          defaultTargetPlatform == TargetPlatform.android
-                      ? OudsLocalizations.of(context)?.core_link_trait_a11y
-                      : null,
-                  // Group all content (leading, labels, trailing) into single label
-                  enabled: widget.enable,
-                  child: Focus(
-                    focusNode: _focusNode,
-                    // Skip focus entirely for non-interactive items.
-                    canRequestFocus: _isInteractive,
-                    onKeyEvent: (_, event) {
-                      if (!_isInteractive) return KeyEventResult.ignored;
-                      if (event is KeyDownEvent &&
-                          (event.logicalKey == LogicalKeyboardKey.enter ||
-                              event.logicalKey == LogicalKeyboardKey.space)) {
-                        widget.onTap?.call();
-                        HapticFeedback.lightImpact();
-                        return KeyEventResult.handled;
-                      }
-                      return KeyEventResult.ignored;
-                    },
-                    child: MouseRegion(
-                      // Track hover only for interactive items — no cursor change on static items.
-                      cursor: _isInteractive
-                          ? SystemMouseCursors.click
-                          : MouseCursor.defer,
-                      onEnter: _isInteractive ? _onEnter : null,
-                      onExit: _isInteractive ? _onExit : null,
-                      child: GestureDetector(
-                        onTap: widget.enable ? widget.onTap : null,
-                        onTapDown: _isInteractive ? _onTapDown : null,
-                        onTapUp: _isInteractive ? _onTapUp : null,
-                        onTapCancel: _isInteractive ? _onTapCancel : null,
-                        child: Container(
-                          // Use BoxDecoration to support both the background color
-                          // and the focus ring (border) simultaneously.
-                          // The focus ring is drawn around the complete navigation
-                          // target as required by the OUDS spec.
-                          decoration: BoxDecoration(
-                            color: OudsListItemBackgroundModifier(
-                              context,
-                            ).getBackgroundColor(state, decoration),
-                            border: _resolveBorder(
-                              colorScheme: colorScheme,
-                              tokens: tokens,
-                              decoration: decoration,
-                              state: state,
+      content: (context) => ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: tokens.sizeMinWidth,
+          maxWidth: tokens.sizeMaxWidth,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Group the full row and helper text into one accessibility node,
+            // so screen readers announce the helper text when the item is focused.
+            MergeSemantics(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Semantics(
+                    // list item has a button role by default.
+                    button:
+                        widget.onTap != null &&
+                        widget.indicator is! OudsListItemIndicatorExternal,
+                    // Link role only when external indicator is activated.
+                    link:
+                        widget.onTap != null &&
+                        widget.indicator is OudsListItemIndicatorExternal,
+                    // TalkBack does not map the `link` flag to a spoken role
+                    // for whole-node elements (unlike VoiceOver on iOS). The
+                    // engine concatenates contentDescription as
+                    hint:
+                        widget.onTap != null &&
+                            widget.indicator is OudsListItemIndicatorExternal &&
+                            defaultTargetPlatform == TargetPlatform.android
+                        ? OudsLocalizations.of(context)?.core_link_trait_a11y
+                        : null,
+                    // Group all content (leading, labels, trailing) into single label
+                    enabled: widget.enable,
+                    child: Focus(
+                      focusNode: _focusNode,
+                      // Skip focus entirely for non-interactive items.
+                      canRequestFocus: _isInteractive,
+                      onKeyEvent: (_, event) {
+                        if (!_isInteractive) return KeyEventResult.ignored;
+                        if (event is KeyDownEvent &&
+                            (event.logicalKey == LogicalKeyboardKey.enter ||
+                                event.logicalKey == LogicalKeyboardKey.space)) {
+                          widget.onTap?.call();
+                          HapticFeedback.lightImpact();
+                          return KeyEventResult.handled;
+                        }
+                        return KeyEventResult.ignored;
+                      },
+                      child: MouseRegion(
+                        // Track hover only for interactive items — no cursor change on static items.
+                        cursor: _isInteractive
+                            ? SystemMouseCursors.click
+                            : MouseCursor.defer,
+                        onEnter: _isInteractive ? _onEnter : null,
+                        onExit: _isInteractive ? _onExit : null,
+                        child: GestureDetector(
+                          onTap: widget.enable ? widget.onTap : null,
+                          onTapDown: _isInteractive ? _onTapDown : null,
+                          onTapUp: _isInteractive ? _onTapUp : null,
+                          onTapCancel: _isInteractive ? _onTapCancel : null,
+                          child: Container(
+                            // Use BoxDecoration to support both the background color
+                            // and the focus ring (border) simultaneously.
+                            // The focus ring is drawn around the complete navigation
+                            // target as required by the OUDS spec.
+                            decoration: BoxDecoration(
+                              color: OudsListItemBackgroundModifier(
+                                context,
+                              ).getBackgroundColor(state, decoration),
+                              border: _resolveBorder(
+                                colorScheme: colorScheme,
+                                tokens: tokens,
+                                decoration: decoration,
+                                state: state,
+                              ),
+                              borderRadius: _resolveBorderRadius(
+                                tokens: tokens,
+                                decoration: decoration,
+                              ),
                             ),
-                            borderRadius: _resolveBorderRadius(
-                              tokens: tokens,
-                              decoration: decoration,
+                            foregroundDecoration: decoration.divider
+                                ? BoxDecoration(
+                                    borderRadius: _resolveBorderRadius(
+                                      tokens: tokens,
+                                      decoration: decoration,
+                                    ),
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: colorScheme.borderMuted,
+                                        width: oudsTheme
+                                            .componentsTokens(context)
+                                            .divider
+                                            .borderWidth,
+                                      ),
+                                    ),
+                                  )
+                                : null,
+                            constraints: BoxConstraints(
+                              minHeight: _minHeight(tokens),
+                              minWidth: tokens.sizeMinWidth,
                             ),
-                          ),
-                          foregroundDecoration: decoration.divider
-                              ? BoxDecoration(
-                                  borderRadius: _resolveBorderRadius(
-                                    tokens: tokens,
-                                    decoration: decoration,
-                                  ),
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: colorScheme.borderMuted,
-                                      width: oudsTheme
-                                          .componentsTokens(context)
-                                          .divider
-                                          .borderWidth,
-                                    ),
-                                  ),
-                                )
-                              : null,
-                          constraints: BoxConstraints(
-                            minHeight: _minHeight(tokens),
-                            minWidth: tokens.sizeMinWidth,
-                          ),
-                          padding: EdgeInsets.only(
-                            top: verticalPadding.top,
-                            bottom: verticalPadding.bottom,
-                            left: _horizontalPadding(tokens),
-                            right: _horizontalPadding(tokens),
-                          ),
-                          child: Align(
-                            alignment: _rowAlignment(),
-                            child: Row(
-                              crossAxisAlignment: _rowCrossAxisAlignment(),
-                              children: [
-                                // Previous indicator — chevron at the start of the row.
-                                if (showPreviousIndicator) ...[
-                                  _buildIndicator(
-                                    context,
-                                    state,
-                                    oudsTheme.packageName,
-                                    contentAlignment: widget.contentAlignment,
-                                    size: widget.size,
-                                  ),
-                                  SizedBox(width: tokens.spaceColumnGap),
-                                ],
-
-                                // Leading slot — constrained by sizeMaxSizeLeadingTrailingSlot.
-                                // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
-                                // the 96px sizeMaxSizeLeadingTrailingSlot token).
-                                if (widget.leading != null &&
-                                    !showPreviousIndicator) ...[
-                                  ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      // maxWidth:tokens.sizeMaxSizeLeadingTrailingSlot,
-                                      // maxHeight:tokens.sizeMaxSizeLeadingTrailingSlot,
-                                    ),
-                                    child: _buildLeading(
+                            padding: EdgeInsets.only(
+                              top: verticalPadding.top,
+                              bottom: verticalPadding.bottom,
+                              left: _horizontalPadding(tokens),
+                              right: _horizontalPadding(tokens),
+                            ),
+                            child: Align(
+                              alignment: _rowAlignment(),
+                              child: Row(
+                                crossAxisAlignment: _rowCrossAxisAlignment(),
+                                children: [
+                                  // Previous indicator — chevron at the start of the row.
+                                  if (showPreviousIndicator) ...[
+                                    _buildIndicator(
                                       context,
-                                      widget.leading!,
-                                      enable: widget.enable,
+                                      state,
+                                      oudsTheme.packageName,
                                       contentAlignment: widget.contentAlignment,
                                       size: widget.size,
                                     ),
-                                  ),
-                                  SizedBox(width: tokens.spaceColumnGap),
-                                ],
+                                    SizedBox(width: tokens.spaceColumnGap),
+                                  ],
 
-                                // Content column — expands to fill remaining space.
-                                Expanded(
-                                  child: _buildContent(
-                                    context,
-                                    typography,
-                                    contentColor,
-                                    mutedColor,
-                                  ),
-                                ),
-
-                                // Trailing slot — unconstrained to allow widescreen extra-large images
-                                // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
-                                // the 96px sizeMaxSizeLeadingTrailingSlot token).
-                                if (widget.trailing != null) ...[
-                                  SizedBox(width: tokens.spaceColumnGap),
-                                  ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      //maxWidth: tokens.sizeMaxSizeLeadingTrailingSlot,
-                                      //maxHeight: tokens.sizeMaxSizeLeadingTrailingSlot,
+                                  // Leading slot — constrained by sizeMaxSizeLeadingTrailingSlot.
+                                  // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
+                                  // the 96px sizeMaxSizeLeadingTrailingSlot token).
+                                  if (widget.leading != null &&
+                                      !showPreviousIndicator) ...[
+                                    ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                        // maxWidth:tokens.sizeMaxSizeLeadingTrailingSlot,
+                                        // maxHeight:tokens.sizeMaxSizeLeadingTrailingSlot,
+                                      ),
+                                      child: _buildLeading(
+                                        context,
+                                        widget.leading!,
+                                        enable: widget.enable,
+                                        contentAlignment:
+                                            widget.contentAlignment,
+                                        size: widget.size,
+                                      ),
                                     ),
-                                    child: _buildTrailing(
+                                    SizedBox(width: tokens.spaceColumnGap),
+                                  ],
+
+                                  // Content column — expands to fill remaining space.
+                                  Expanded(
+                                    child: _buildContent(
                                       context,
-                                      widget.trailing!,
-                                      enable: widget.enable,
+                                      typography,
+                                      contentColor,
+                                      mutedColor,
+                                    ),
+                                  ),
+
+                                  // Trailing slot — unconstrained to allow widescreen extra-large images
+                                  // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
+                                  // the 96px sizeMaxSizeLeadingTrailingSlot token).
+                                  if (widget.trailing != null) ...[
+                                    SizedBox(width: tokens.spaceColumnGap),
+                                    ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                        //maxWidth: tokens.sizeMaxSizeLeadingTrailingSlot,
+                                        //maxHeight: tokens.sizeMaxSizeLeadingTrailingSlot,
+                                      ),
+                                      child: _buildTrailing(
+                                        context,
+                                        widget.trailing!,
+                                        enable: widget.enable,
+                                        contentAlignment:
+                                            widget.contentAlignment,
+                                        size: widget.size,
+                                      ),
+                                    ),
+                                  ],
+
+                                  // Next / External indicator — icon at the end of the row.
+                                  if (showNextIndicator) ...[
+                                    SizedBox(width: tokens.spaceColumnGap),
+                                    _buildIndicator(
+                                      context,
+                                      state,
+                                      oudsTheme.packageName,
                                       contentAlignment: widget.contentAlignment,
                                       size: widget.size,
                                     ),
-                                  ),
+                                  ],
                                 ],
-
-                                // Next / External indicator — icon at the end of the row.
-                                if (showNextIndicator) ...[
-                                  SizedBox(width: tokens.spaceColumnGap),
-                                  _buildIndicator(
-                                    context,
-                                    state,
-                                    oudsTheme.packageName,
-                                    contentAlignment: widget.contentAlignment,
-                                    size: widget.size,
-                                  ),
-                                ],
-                              ],
-                            ),
-                          ), // Row
-                        ), // Container
-                      ), // GestureDetector
-                    ), // MouseRegion
-                  ), // Focus
-                ), // Semantics
-                // Helper text below the divider — included in MergeSemantics
-                // for screen reader accessibility.
-                if (widget.helperText != null && widget.helperText!.isNotEmpty)
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: tokens.spacePaddingBlockTopHelperText,
-                      left: _horizontalPadding(tokens),
-                      right: _horizontalPadding(tokens),
+                              ),
+                            ), // Row
+                          ), // Container
+                        ), // GestureDetector
+                      ), // MouseRegion
+                    ), // Focus
+                  ), // Semantics
+                  // Helper text below the divider — included in MergeSemantics
+                  // for screen reader accessibility.
+                  if (widget.helperText != null &&
+                      widget.helperText!.isNotEmpty)
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: tokens.spacePaddingBlockTopHelperText,
+                        left: _horizontalPadding(tokens),
+                        right: _horizontalPadding(tokens),
+                      ),
+                      child: Text(
+                        widget.helperText!,
+                        style: typography
+                            .typeLabelDefaultMedium(context)
+                            .copyWith(color: mutedColor),
+                      ),
                     ),
-                    child: Text(
-                      widget.helperText!,
-                      style: typography
-                          .typeLabelDefaultMedium(context)
-                          .copyWith(color: mutedColor),
-                    ),
-                  ),
-              ],
-            ),
-          ), // MergeSemantics
-        ],
+                ],
+              ),
+            ), // MergeSemantics
+          ],
+        ),
       ),
     );
   }

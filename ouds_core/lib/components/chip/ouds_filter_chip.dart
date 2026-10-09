@@ -25,6 +25,8 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -54,6 +56,7 @@ enum OudsChipStyle { defaultStyle, selected }
 /// - [icon]: Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [selected]: Whether this chip is selected or not. If this value is null so the component is in disabled state.
 /// - [onSelected] : Called when this chip is clicked. A null value indicates that the component is disabled.
+/// - [skeleton] : An optional skeleton that improves the perceived loading time by providing a visual cue of where the filter chip will appear once fully loaded.
 ///
 /// ### You can use [OudsFilterChip] component in your project, customizing parameters as needed :
 ///
@@ -80,6 +83,16 @@ enum OudsChipStyle { defaultStyle, selected }
 /// )
 /// ```
 ///
+/// **Text only filter chip with Skeleton :**
+///
+/// ```dart
+/// OudsFilterChip(
+///       label: 'Label',
+///       selected: true,
+///       onSelected: () {},
+///       skeleton: OudsSkeleton(),
+///     );
+/// ```
 class OudsFilterChip extends StatefulWidget {
   final String? label;
   @Deprecated(
@@ -87,9 +100,13 @@ class OudsFilterChip extends StatefulWidget {
   )
   final String? avatar;
   final OudsIcon? icon;
+  @Deprecated(
+    "This parameter is deprecated and will be removed in a future version. Use icon.semanticsLabel instead in OudsFilterChip.icon constructor .",
+  )
   final String? contentDescription;
   final bool selected;
   final ValueChanged<bool>? onSelected;
+  final OudsSkeleton? skeleton;
 
   /// Creates a text-only [OudsFilterChip].
   ///
@@ -103,6 +120,7 @@ class OudsFilterChip extends StatefulWidget {
     this.avatar,
     this.selected = false,
     this.onSelected,
+    this.skeleton,
   }) : contentDescription = null,
        icon = null;
 
@@ -117,6 +135,7 @@ class OudsFilterChip extends StatefulWidget {
     this.selected = false,
     this.onSelected,
     this.contentDescription,
+    this.skeleton,
   }) : avatar = null;
 
   @override
@@ -199,6 +218,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
 
+    if (widget.skeleton != null) {
+      _isFocused = false;
+    }
+
     final chipStateDeterminer = OudsChipControlStateDeterminer(
       enabled: !isDisabled,
       isPressed: _isPressed || isPressed,
@@ -238,9 +261,11 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
     final enabled = widget.onSelected != null;
+    final resolvedSemanticsLabel =
+        widget.contentDescription ?? widget.icon?.semanticsLabel;
 
     String? accessibilityLabel = widget.label == null && widget.icon != null
-        ? widget.contentDescription
+        ? resolvedSemanticsLabel
         : widget.label;
     String? accessibilityHint;
 
@@ -296,42 +321,37 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     alignment: Alignment.center,
                     children: [
                       // Border exterior
-                      if (_isFocused)
-                        Positioned(
-                          top: borderTokens.widthFocus / 2,
-                          bottom: borderTokens.widthFocus / 2,
-                          left: -borderTokens.widthFocus / 2,
-                          right: -borderTokens.widthFocus / 2,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: OudsBorder().borderAll(
-                                color: OudsTheme.of(
-                                  context,
-                                ).colorScheme(context).borderFocus,
-                                width: borderTokens.widthFocus,
-                              ),
-                              borderRadius: BorderRadius.circular(
-                                OudsTheme.of(context)
-                                        .componentsTokens(context)
-                                        .chip
-                                        .borderRadius +
-                                    OudsTheme.of(
-                                      context,
-                                    ).borderTokens.widthFocus,
-                              ),
+                      Positioned(
+                        top: borderTokens.widthFocus / 2,
+                        bottom: borderTokens.widthFocus / 2,
+                        left: -borderTokens.widthFocus / 2,
+                        right: -borderTokens.widthFocus / 2,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: OudsBorder().borderAll(
+                              color: OudsTheme.of(
+                                context,
+                              ).colorScheme(context).borderFocus,
+                              width: borderTokens.widthFocus,
+                            ),
+                            borderRadius: BorderRadius.circular(
+                              OudsTheme.of(context)
+                                      .componentsTokens(context)
+                                      .chip
+                                      .borderRadius +
+                                  OudsTheme.of(context).borderTokens.widthFocus,
                             ),
                           ),
                         ),
+                      ),
 
                       // Border interior + content
                       Container(
                         decoration: BoxDecoration(
                           border: OudsBorder().borderAll(
-                            color: _isFocused
-                                ? OudsTheme.of(
-                                    context,
-                                  ).colorScheme(context).borderFocusInset
-                                : Colors.transparent,
+                            color: OudsTheme.of(
+                              context,
+                            ).colorScheme(context).borderFocusInset,
                             width: borderTokens.widthFocusInset,
                           ),
                           borderRadius: BorderRadius.circular(
@@ -357,30 +377,35 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     alignment: Alignment.center,
                     children: [
                       // Border interior + content
-                      Container(
-                        decoration: BoxDecoration(
-                          border: OudsBorder().borderAll(
-                            color: _isFocused
-                                ? OudsTheme.of(
-                                    context,
-                                  ).colorScheme(context).borderFocusInset
-                                : Colors.transparent,
-                            width: borderTokens.widthFocusInset,
-                          ),
+                      OudsSkeletonLayout(
+                        visible: widget.skeleton != null,
+                        hasSecurityMargin:
+                            widget.skeleton?.hasSecurityMargin ?? false,
+                        animated: widget.skeleton?.animated ?? false,
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                             OudsTheme.of(
                               context,
                             ).componentsTokens(context).chip.borderRadius,
                           ),
                         ),
-                        child: _buildLayout(
-                          context,
-                          chipBorderModifier,
-                          chipIconColorModifier,
-                          chipBgColorModifier,
-                          chipTextColorModifier,
-                          chipState,
-                          isDisabled,
+                        content: (context) => Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              OudsTheme.of(
+                                context,
+                              ).componentsTokens(context).chip.borderRadius,
+                            ),
+                          ),
+                          child: _buildLayout(
+                            context,
+                            chipBorderModifier,
+                            chipIconColorModifier,
+                            chipBgColorModifier,
+                            chipTextColorModifier,
+                            chipState,
+                            isDisabled,
+                          ),
                         ),
                       ),
                     ],

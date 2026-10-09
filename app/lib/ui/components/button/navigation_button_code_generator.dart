@@ -59,27 +59,28 @@ class NavigationButtonCodeGenerator {
     final String layoutStr = layout.toString();
     final String appearanceStr = appearance.toString();
 
-    final String labelLine = label != null ? '\nlabel: "$label",' : '';
+    final String labelLine = label != null ? '\n label: "$label",' : '';
     final String loaderLine = _loaderCodeModifier(customizationState);
     final String fullWidthLine = _fullWidthCodeModifier(customizationState);
     final String onPressedLine = _disableCode(customizationState);
     final String coloredBoxPrefix = _coloredBoxPrefix(customizationState);
     final String coloredBoxSuffix = _coloredBoxSuffix(customizationState);
+    final String skeleton = _skeletonCode(context);
 
     return '''${coloredBoxPrefix}OudsNavigationButton($labelLine
-layout: $layoutStr,
-appearance: $appearanceStr,$fullWidthLine$loaderLine
+ layout: $layoutStr,
+ appearance: $appearanceStr,$fullWidthLine$loaderLine$skeleton
 $onPressedLine$coloredBoxSuffix''';
   }
 
   /// Returns the `loader:` line when the loader is enabled.
   static String _loaderCodeModifier(ButtonCustomizationState state) {
-    return state.hasLoader ? '\nloader: Loader(progress: null),' : '';
+    return state.hasLoader ? '\n loader: Loader(progress: null),' : '';
   }
 
   /// Returns the `isFullWidth:` line when full-width is enabled.
   static String _fullWidthCodeModifier(ButtonCustomizationState state) {
-    return state.hasFullWidth ? '\nisFullWidth: true,' : '';
+    return state.hasFullWidth ? '\n isFullWidth: true,' : '';
   }
 
   /// Returns the `onPressed:` line with enabled or disabled callback.
@@ -89,17 +90,27 @@ $onPressedLine$coloredBoxSuffix''';
   static String _disableCode(ButtonCustomizationState state) {
     final String end = state.hasOnColoredBox ? ' ),\n);' : ');';
     final String callback = state.hasEnabled == true ? '() {}' : 'null';
-    return 'onPressed: $callback,\n$end';
+    return ' onPressed: $callback,\n$end';
   }
 
   /// Returns the `OudsColoredBox(` opening wrapper when the colored box is enabled.
   static String _coloredBoxPrefix(ButtonCustomizationState state) {
     if (state.hasOnColoredBox) {
-      return 'OudsColoredBox(\ncolor: OudsColoredBoxColor.brandPrimary,\nchild: ';
+      return 'OudsColoredBox(\n color: OudsColoredBoxColor.brandPrimary,\n child: ';
     }
     return '';
   }
 
   /// Returns an empty string (closing is handled inside [_disableCode]).
   static String _coloredBoxSuffix(ButtonCustomizationState state) => '';
+
+  /// Method to generate the skeleton code
+  static String _skeletonCode(BuildContext context) {
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
+      context,
+    );
+    return customizationState?.hasSkeleton == true
+        ? ' skeleton: OudsSkeleton(),'
+        : '';
+  }
 }

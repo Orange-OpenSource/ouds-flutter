@@ -19,6 +19,7 @@ import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
 ///
 /// [OUDS Radio Button Design Guidelines](https://r.orange.fr/r/S-ouds-doc-radio-button)
@@ -33,11 +34,11 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 /// If you want to use a standalone radio button please use [OudsRadioButton].
 ///
 /// Parameters:
-/// - [value] The value represented by this radio button. Used to determine selection.
-/// - [groupValue] The currently selected value in the radio button group.
+/// - [value]: The value represented by this radio button. Used to determine selection.
+/// - [groupValue]: The currently selected value in the radio button group.
 /// This radio button is considered selected if [value] == [groupValue].
-/// - [onChanged] Callback triggered when the user selects this radio button. If `null`, the radio button is disabled and non-interactive.
-/// - [isError] Indicates whether the radio button is in an error state.
+/// - [onChanged]: Callback triggered when the user selects this radio button. If `null`, the radio button is disabled and non-interactive.
+/// - [isError]: Indicates whether the radio button is in an error state.
 /// - [title]: The main label of the radio button item.
 /// - [extraLabelText]: Optional strong accompanying text for the main label.
 /// - [helperTitle]: Optional text displayed below the label.
@@ -54,9 +55,9 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 ///   Defaults to `false`.
 /// - [errorText]: Text shown below the radio button item indicating an error state. Supports only strong text formatting using `**bold**`.
 ///   Rich text is supported only for error messages.
-/// - [edgeToEdge] Controls the horizontal layout of the checkbox item. When `true`, the checkbox item is designed to span the full width of the screen or container. When `false`,
+/// - [edgeToEdge]: Controls the horizontal layout of the checkbox item. When `true`, the checkbox item is designed to span the full width of the screen or container. When `false`,
 ///   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
-///
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the radio button item will appear once fully loaded.
 ///
 /// ### You can use [OudsRadioButtonItem] component in your project, customizing parameters as needed :
 ///
@@ -82,6 +83,7 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 ///     divider: true,
 ///     outlined: false,
 ///     edgeToEdge: true,
+///     skeleton: OudsSkeleton(),
 /// );
 /// ```
 ///
@@ -103,6 +105,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
   final bool divider;
   final bool constrainedMaxWidth;
   final bool edgeToEdge;
+  final OudsSkeleton? skeleton;
 
   const OudsRadioButtonItem({
     super.key,
@@ -122,6 +125,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
     this.divider = false,
     this.constrainedMaxWidth = false,
     this.edgeToEdge = true,
+    this.skeleton,
   });
 
   bool get _selected => value == groupValue;
@@ -147,6 +151,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
         selected: outlined,
         reversed: reversed,
         onTap: onChanged != null ? () => onChanged!(value) : null,
+        skeleton: skeleton,
         indicator: () => OudsRadioButton<T>(
           value: value,
           groupValue: groupValue,

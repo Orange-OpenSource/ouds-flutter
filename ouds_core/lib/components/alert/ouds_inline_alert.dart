@@ -16,6 +16,8 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/alert/internal/ouds_alert_status_modifier.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -39,6 +41,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// Each variant conveys a clear semantic meaning and must always be paired with its dedicated functional icon to ensure clarity and accessibility.
 /// Use functional alerts to inform user about state changes, confirmations, or issues that are directly connected to system logic or user actions. These
 /// messages carry functional meaning and help guide user response or acknowledgment.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the inline message will appear once fully loaded.
 ///
 class OudsInlineAlert extends StatefulWidget {
   /// Creates an OudsInlineAlert.
@@ -46,6 +49,7 @@ class OudsInlineAlert extends StatefulWidget {
     super.key,
     required this.label,
     this.status = const Neutral(),
+    this.skeleton,
   });
 
   /// The main message displayed in the alert.
@@ -53,6 +57,9 @@ class OudsInlineAlert extends StatefulWidget {
 
   /// The status of the alert, which determines its background color and icon.
   final OudsIconStatus status;
+
+  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the inline message will appear once fully loaded.
+  final OudsSkeleton? skeleton;
 
   @override
   State<OudsInlineAlert> createState() => _OudsInlineAlertState();
@@ -65,45 +72,50 @@ class _OudsInlineAlertState extends State<OudsInlineAlert> {
     final alertTokens = theme.componentsTokens(context).alert;
     final alertStatusModifier = OudsAlertStatusModifier(context);
 
-    return Semantics(
-      label: widget.status is Warning
-          ? OudsLocalizations.of(context)?.core_common_warning_a11y
-          : widget.status is Negative
-          ? OudsLocalizations.of(context)?.core_common_error_a11y
-          : widget.status is Info
-          ? OudsLocalizations.of(context)?.core_common_info_a11y
-          : null,
-      container: true,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: alertTokens.spaceColumnGap,
-        children: [
-          Container(
-            color: widget.status.getBackgroundColor,
-            child: alertStatusModifier.buildStatusIcon(
-              context,
-              widget.status,
-              null,
-            ),
-          ),
-          Expanded(
-            child: Container(
-              constraints: BoxConstraints(
-                maxWidth: theme.sizeScheme(context).maxWidthLabelLarge,
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+      content: (context) => Semantics(
+        label: widget.status is Warning
+            ? OudsLocalizations.of(context)?.core_common_warning_a11y
+            : widget.status is Negative
+            ? OudsLocalizations.of(context)?.core_common_error_a11y
+            : widget.status is Info
+            ? OudsLocalizations.of(context)?.core_common_info_a11y
+            : null,
+        container: true,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: alertTokens.spaceColumnGap,
+          children: [
+            Container(
+              color: widget.status.getBackgroundColor,
+              child: alertStatusModifier.buildStatusIcon(
+                context,
+                widget.status,
+                null,
               ),
-              child: Text(
-                widget.label,
-                style: theme.typographyTokens
-                    .typeLabelModerateLarge(context)
-                    .copyWith(
-                      color: alertStatusModifier.getInlineAlertTextColor(
-                        widget.status,
+            ),
+            Expanded(
+              child: Container(
+                constraints: BoxConstraints(
+                  maxWidth: theme.sizeScheme(context).maxWidthLabelLarge,
+                ),
+                child: Text(
+                  widget.label,
+                  style: theme.typographyTokens
+                      .typeLabelModerateLarge(context)
+                      .copyWith(
+                        color: alertStatusModifier.getInlineAlertTextColor(
+                          widget.status,
+                        ),
                       ),
-                    ),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -24,8 +24,13 @@ import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_s
 ///
 class RadioButtonCodeGenerator {
   /// Static method to generate the code based on radio button customization state.
-  static String updateCode(BuildContext context, bool indeterminate, RadioOption selectedOption) {
-    final RadioButtonCustomizationState? customizationState = RadioButtonCustomization.of(context);
+  static String updateCode(
+    BuildContext context,
+    bool indeterminate,
+    RadioOption selectedOption,
+  ) {
+    final RadioButtonCustomizationState? customizationState =
+        RadioButtonCustomization.of(context);
 
     bool value = selectedOption == RadioOption.first;
 
@@ -62,6 +67,10 @@ class RadioButtonCodeGenerator {
       code.add('  tristate: true,');
     }
 
+    // Add the skeleton property only when true.
+    if (customizationState?.hasSkeleton == true) {
+      code.add('  skeleton: OudsSkeleton(),');
+    }
     // End of the widget declaration.
     code.add(');');
 

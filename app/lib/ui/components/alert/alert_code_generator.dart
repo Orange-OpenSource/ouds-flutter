@@ -75,6 +75,10 @@ class AlertCodeGenerator {
     if (customization.hasCloseButton) {
       buffer.writeln('  onClose: (){},');
     }
+    final skeleton = _skeletonCode(customization);
+    if (skeleton.isNotEmpty) {
+      buffer.writeln('  $skeleton');
+    }
 
     buffer.write(')');
 
@@ -98,6 +102,10 @@ class AlertCodeGenerator {
     final status = _getIconStatusCode(customization);
     if (status != null) {
       buffer.writeln('  status: $status,');
+    }
+    final skeleton = _skeletonCode(customization);
+    if (skeleton.isNotEmpty) {
+      buffer.writeln('  $skeleton');
     }
 
     buffer.write(')');
@@ -125,5 +133,12 @@ class AlertCodeGenerator {
       case StatusEnum.neutral:
         return "Neutral(${customization.hasIconStatus ? 'icon: ${customization.isTinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'} , tinted: ${customization.isTinted}' : ''})";
     }
+  }
+
+  /// Method to generate the skeleton code
+  static String _skeletonCode(AlertCustomizationState customizationState) {
+    return customizationState.hasSkeleton == true
+        ? 'skeleton: OudsSkeleton(),'
+        : '';
   }
 }

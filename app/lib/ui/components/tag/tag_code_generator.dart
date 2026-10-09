@@ -53,6 +53,9 @@ class TagCodeGenerator {
         ? "OudsTagSize.small"
         : "OudsTagSize.defaultSize";
     String? statusCode = _getStatusCode(customizationState);
+    String? skeletonCode = customizationState.hasSkeleton
+        ? ' skeleton: OudsSkeleton()'
+        : null;
 
     List<String> params = [
       ' label: "$label",',
@@ -61,8 +64,12 @@ class TagCodeGenerator {
       ' size: $sizeCode,',
       ' status: $statusCode,',
       ' loading: ${customizationState.hasLoader},',
-      ' roundedCorners: ${customizationState.hasRoundedCorner}',
+      ' roundedCorners: ${customizationState.hasRoundedCorner},',
     ];
+
+    if (skeletonCode != null) {
+      params.add(skeletonCode);
+    }
 
     switch (layout) {
       case OudsTagLayout.textOnly:

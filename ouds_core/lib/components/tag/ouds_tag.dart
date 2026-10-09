@@ -19,6 +19,8 @@ import 'package:ouds_core/components/tag/internal/ouds_tag_border_modifier.dart'
 import 'package:ouds_core/components/tag/internal/ouds_tag_size_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -86,6 +88,7 @@ enum OudsTagAppearance { emphasized, muted }
 /// - [loading]: A circular progress indicator displayed in the input or tag area to indicate that tags are being loaded or processed.
 /// - [roundedCorners]: Controls the shape of the tag. When true, the tag has rounded corners, providing a softer and more approachable look, suitable for most modern interfaces.
 ///     When false, the tag has sharp, square corners, providing a more formal, structured, or technical feel. Often used in a business context to label promotions, offers or important notices.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the tag will appear once fully loaded.
 ///
 /// ### Usage Example
 ///
@@ -119,6 +122,9 @@ class OudsTag extends StatefulWidget {
   final OudsIconStatus status;
   final bool roundedCorners;
 
+  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the tag will appear once fully loaded.
+  final OudsSkeleton? skeleton;
+
   const OudsTag.text({
     super.key,
     required this.label,
@@ -129,6 +135,7 @@ class OudsTag extends StatefulWidget {
     this.layout = OudsTagLayout.textOnly,
     this.loading = false,
     this.roundedCorners = true,
+    this.skeleton,
   });
 
   const OudsTag.bullet({
@@ -141,6 +148,7 @@ class OudsTag extends StatefulWidget {
     this.layout = OudsTagLayout.textAndBullet,
     this.loading = false,
     this.roundedCorners = true,
+    this.skeleton,
   });
 
   const OudsTag.icon({
@@ -153,6 +161,7 @@ class OudsTag extends StatefulWidget {
     this.layout = OudsTagLayout.textAndIcon,
     this.loading = false,
     this.roundedCorners = true,
+    this.skeleton,
   });
 
   @override
@@ -172,19 +181,30 @@ class _OudsTagState extends State<OudsTag> {
     final tagStyleModifier = OudsTagStyleModifier(context);
     final l10n = OudsLocalizations.of(context);
 
-    return Semantics(
-      label: widget.loading
-          ? "${l10n?.core_common_loading_a11y}, ${widget.label}"
-          : widget.label,
-      enabled: widget.enabled,
-      child: Material(
-        color: Colors.transparent,
-        child: ExcludeSemantics(
-          child: _buildTag(
-            context,
-            tagStatusModifier,
-            tagSizeModifier,
-            tagStyleModifier,
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+      shape: RoundedRectangleBorder(
+        borderRadius: OudsTagControlBorderModifier.getBorderRadius(
+          context,
+          widget.roundedCorners,
+        ),
+      ),
+      content: (context) => Semantics(
+        label: widget.loading
+            ? "${l10n?.core_common_loading_a11y}, ${widget.label}"
+            : widget.label,
+        enabled: widget.enabled,
+        child: Material(
+          color: Colors.transparent,
+          child: ExcludeSemantics(
+            child: _buildTag(
+              context,
+              tagStatusModifier,
+              tagSizeModifier,
+              tagStyleModifier,
+            ),
           ),
         ),
       ),

@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -112,6 +113,7 @@ class _TagDemoState extends State<_TagDemo> {
   Widget build(BuildContext context) {
     final customizationState = TagCustomization.of(context)!;
     final themeController = Provider.of<ThemeController>(context, listen: true);
+    final skeleton = customizationState.hasSkeleton ? OudsSkeleton() : null;
 
     return LightDarkBox(
       child: customizationState.selectedLayout == TagEnumLayout.bulletAndText
@@ -131,6 +133,7 @@ class _TagDemoState extends State<_TagDemo> {
               ),
               loading: customizationState.hasLoader,
               roundedCorners: customizationState.hasRoundedCorner,
+              skeleton: skeleton,
             )
           : customizationState.selectedLayout == TagEnumLayout.iconAndText
           ? OudsTag.icon(
@@ -149,6 +152,7 @@ class _TagDemoState extends State<_TagDemo> {
               ),
               loading: customizationState.hasLoader,
               roundedCorners: customizationState.hasRoundedCorner,
+              skeleton: skeleton,
             )
           : OudsTag.text(
               status: TagCustomizationUtils.getIconStatus(
@@ -166,6 +170,7 @@ class _TagDemoState extends State<_TagDemo> {
               ),
               loading: customizationState.hasLoader,
               roundedCorners: customizationState.hasRoundedCorner,
+              skeleton: skeleton,
             ),
     );
   }
@@ -315,6 +320,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
+          },
         ),
       ],
     );

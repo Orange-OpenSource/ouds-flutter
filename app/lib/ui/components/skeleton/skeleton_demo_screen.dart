@@ -12,51 +12,51 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
-import 'package:ouds_core/components/tag/ouds_input_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/tag/input_tag_code_generator.dart';
-import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/skeleton/skeleton_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/skeleton/skeleton_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:provider/provider.dart';
 
-class InputTagDemoScreen extends StatefulWidget {
+class SkeletonDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-
-  const InputTagDemoScreen({super.key, this.previousPageTitle});
+  const SkeletonDemoScreen({super.key, this.previousPageTitle});
 
   @override
-  State<StatefulWidget> createState() => _InputTagDemoScreenState();
+  State<StatefulWidget> createState() => _SkeletonDemoScreenState();
 }
 
-class _InputTagDemoScreenState extends State<InputTagDemoScreen> {
+class _SkeletonDemoScreenState extends State<SkeletonDemoScreen> {
   @override
   Widget build(BuildContext context) {
-    return TagCustomization(
-      child: CustomizeBottomSheet(
-        topBar: MainAppBar(
-          showBackButton: true,
-          title: context.l10n.app_components_tag_inputTag_label,
-          previousPageTitle: widget.previousPageTitle,
+    return DismissKeyboard(
+      child: SkeletonCustomization(
+        child: CustomizeBottomSheet(
+          topBar: MainAppBar(
+            showBackButton: true,
+            title: context.l10n.app_components_skeleton_label,
+            previousPageTitle: widget.previousPageTitle,
+          ),
+          title: context.l10n.app_common_customize_label,
+          customizationContent: const _CustomizationContent(),
+          body: const _Body(),
         ),
-        title: context.l10n.app_common_customize_label,
-        customizationContent: const _CustomizationContent(),
-        body: _Body(),
       ),
     );
   }
 }
 
-/// This widget represents the body of the screen where the tag demo and code will be displayed
+/// This widget represents the body of the screen where the skeleton demo and code will be displayed
 class _Body extends StatefulWidget {
   const _Body();
 
@@ -72,18 +72,18 @@ class _BodyState extends State<_Body> {
       listen: false,
     );
     return DetailScreenDescription(
-      description: context.l10n.app_components_inputTag_description_text,
+      description: context.l10n.app_components_skeleton_description_text,
       widget: Column(
         children: [
-          _InputTagDemo(),
+          const _SkeletonDemo(),
           SizedBox(
             height: themeController.currentTheme
                 .spaceScheme(context)
                 .fixedMedium,
           ),
-          Code(code: InputTagCodeGenerator.updateCode(context)),
+          Code(code: SkeletonCodeGenerator.updateCode(context)),
           ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.inputTag,
+            version: OudsComponentVersion.skeleton,
           ),
         ],
       ),
@@ -91,32 +91,23 @@ class _BodyState extends State<_Body> {
   }
 }
 
-/// This widget is now a StatefulWidget for the tag demo.
-///
-/// Component [InputTagDemoScreen] demonstrates the behavior and functionality of a tag.
-class _InputTagDemo extends StatefulWidget {
-  const _InputTagDemo();
+/// Component [_SkeletonDemo] demonstrates the behavior and functionality of a skeleton.
+class _SkeletonDemo extends StatefulWidget {
+  const _SkeletonDemo();
 
   @override
-  State<_InputTagDemo> createState() => _InputTagDemoState();
+  State<_SkeletonDemo> createState() => _SkeletonDemoState();
 }
 
-class _InputTagDemoState extends State<_InputTagDemo> {
-  ThemeController? themeController;
-  TagCustomizationState? customizationState;
-
+class _SkeletonDemoState extends State<_SkeletonDemo> {
   @override
   Widget build(BuildContext context) {
-    customizationState = TagCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: true);
+    final customizationState = SkeletonCustomization.of(context)!;
 
     return LightDarkBox(
-      child: OudsInputTag(
-        label: customizationState?.labelText ?? "",
-        onPressed: customizationState?.hasEnabled == true ? () {} : null,
-        skeleton: customizationState?.hasSkeleton == true
-            ? OudsSkeleton()
-            : null,
+      child: OudsSkeleton(
+        animated: customizationState.hasAnimated,
+        hasSecurityMargin: customizationState.hasSecurityMargin,
       ),
     );
   }
@@ -130,37 +121,48 @@ class _CustomizationContent extends StatefulWidget {
   State<_CustomizationContent> createState() => _CustomizationContentState();
 }
 
-/// This state class handles the customization options for the tag
+/// This state class handles the customization options for the skeleton
 class _CustomizationContentState extends State<_CustomizationContent> {
-  _CustomizationContentState();
+  late final FocusNode widthFocus;
+  late final FocusNode heightFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    widthFocus = FocusNode();
+    heightFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    widthFocus.dispose();
+    heightFocus.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TagCustomizationState? customizationState = TagCustomization.of(
-      context,
-    );
-    final labelFocus = FocusNode();
+    final SkeletonCustomizationState? customizationState =
+        SkeletonCustomization.of(context);
 
     return CustomizableSection(
       children: [
         CustomizableSwitch(
-          title: context.l10n.app_common_enabled_label,
-          value: customizationState!.hasEnabled,
+          title: context.l10n.app_components_skeleton_hasSecurityMargin_tech,
+          value: customizationState!.hasSecurityMargin,
           onChanged: (value) {
-            customizationState.hasEnabled = value;
+            setState(() {
+              customizationState.hasSecurityMargin = value;
+            });
           },
         ),
-        CustomizableTextField(
-          title: context.l10n.app_components_common_label_label,
-          text: customizationState.labelText,
-          focusNode: labelFocus,
-          fieldType: FieldType.label,
-        ),
         CustomizableSwitch(
-          title: context.l10n.app_components_common_skeleton_tech,
-          value: customizationState.hasSkeleton,
+          title: context.l10n.app_components_skeleton_animated_tech,
+          value: customizationState.hasAnimated,
           onChanged: (value) {
-            customizationState.hasSkeleton = value;
+            setState(() {
+              customizationState.hasAnimated = value;
+            });
           },
         ),
       ],

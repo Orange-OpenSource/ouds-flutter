@@ -17,6 +17,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_background_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_border_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_icon_style_modifier.dart';
@@ -42,6 +44,7 @@ import 'internal/ouds_tag_control_state.dart';
 /// Parameters:
 /// - [label]: Label displayed in the tag input which describes the tag option.
 /// - [onPressed]: Callback invoked when the tag input is clicked to delete it.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the input tag will appear once fully loaded.
 
 /// ### You can use [OudsInputTag] like this :
 ///
@@ -57,8 +60,14 @@ import 'internal/ouds_tag_control_state.dart';
 class OudsInputTag extends StatefulWidget {
   final String label;
   final VoidCallback? onPressed;
+  final OudsSkeleton? skeleton;
 
-  const OudsInputTag({super.key, required this.label, this.onPressed});
+  const OudsInputTag({
+    super.key,
+    required this.label,
+    this.onPressed,
+    this.skeleton,
+  });
 
   @override
   State<OudsInputTag> createState() => _OudsInputTagState();
@@ -69,7 +78,6 @@ class _OudsInputTagState extends State<OudsInputTag> {
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
-  bool isVisible = true;
 
   @override
   void initState() {
@@ -120,16 +128,13 @@ class _OudsInputTagState extends State<OudsInputTag> {
     final tagBackgroundColorModifier =
         OudsInputTagControlBackgroundColorModifier(context);
 
-    return Visibility(
-      visible: isVisible,
-      child: _buildInputTag(
-        context,
-        tagBorderModifier,
-        tagTextColorModifier,
-        tagBackgroundColorModifier,
-        tagState,
-        isDisabled,
-      ),
+    return _buildInputTag(
+      context,
+      tagBorderModifier,
+      tagTextColorModifier,
+      tagBackgroundColorModifier,
+      tagState,
+      isDisabled,
     );
   }
 
@@ -193,7 +198,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
                 clipBehavior: Clip.none,
                 alignment: Alignment.center,
                 children: [
-                  if (_isFocused)
+                  if (_isFocused && widget.skeleton == null)
                     Positioned(
                       top: borderTokens.widthFocus / 2,
                       bottom: borderTokens.widthFocus / 2,
@@ -231,13 +236,24 @@ class _OudsInputTagState extends State<OudsInputTag> {
                         tagToken.borderRadius,
                       ),
                     ),
-                    child: _buildLayout(
-                      context,
-                      tagBorderModifier,
-                      tagTextColorModifier,
-                      tagBgColorModifier,
-                      tagState,
-                      isDisabled,
+                    child: OudsSkeletonLayout(
+                      visible: widget.skeleton != null,
+                      hasSecurityMargin:
+                          widget.skeleton?.hasSecurityMargin ?? false,
+                      animated: widget.skeleton?.animated ?? false,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          tagToken.borderRadius,
+                        ),
+                      ),
+                      content: (context) => _buildLayout(
+                        context,
+                        tagBorderModifier,
+                        tagTextColorModifier,
+                        tagBgColorModifier,
+                        tagState,
+                        isDisabled,
+                      ),
                     ),
                   ),
                 ],

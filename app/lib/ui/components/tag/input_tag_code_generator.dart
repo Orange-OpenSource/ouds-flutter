@@ -12,12 +12,13 @@ class InputTagCodeGenerator {
   // Static method to generate the code based on tag customization state
   static String updateCode(BuildContext context) {
     // Fetch the current tag customization state from context
-    final TagCustomizationState? customizationState = TagCustomization.of(context);
+    final TagCustomizationState? customizationState = TagCustomization.of(
+      context,
+    );
 
     // Get the text value for the tag from customization state
     String label = customizationState?.labelText ?? "Label";
 
-    return  """OudsInputTag(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
-    }
-
+    return """OudsInputTag(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},${customizationState?.hasSkeleton == true ? '\nskeleton: OudsSkeleton(),' : ''}\n);""";
+  }
 }
