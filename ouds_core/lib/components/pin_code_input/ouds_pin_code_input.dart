@@ -431,6 +431,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
         ? widget.helperText!
         : '';
     final currentText = _hiddenController.text;
+    final semanticsLabel = isError
+        ? '${l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount)},${l10n?.core_common_error_a11y}'
+        : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount);
 
     return Container(
       constraints: BoxConstraints(
@@ -486,9 +489,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
             onLongPress: _pasteFromClipboard,
             child: Semantics(
               hint: hintSemanticText,
-              label: isError
-                  ? l10n?.core_common_error_a11y
-                  : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
+              label: semanticsLabel,
               child: Row(
                 mainAxisAlignment:
                     widget.digitInputDecoration.constrainedMaxWidth
