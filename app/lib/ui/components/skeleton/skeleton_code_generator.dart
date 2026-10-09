@@ -26,8 +26,8 @@ class SkeletonCodeGenerator {
     final customizationState = SkeletonCustomization.of(context)!;
 
     final List<String> parameters = [
-      "securityMargin: ${customizationState.hasSecurityMargin}",
-      "animated: ${customizationState.hasAnimated}",
+      "  hasSecurityMargin: ${customizationState.hasSecurityMargin}",
+      "  animated: ${customizationState.hasAnimated}",
     ];
 
     return "OudsSkeleton(\n${parameters.join(',\n')},\n)";

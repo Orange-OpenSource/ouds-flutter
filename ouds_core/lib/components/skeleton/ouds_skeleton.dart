@@ -40,7 +40,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// ```dart
 /// OudsSkeleton(
 ///   animated: true,
-///   securityMargin: false,
+///   hasSecurityMargin: false,
 /// )
 /// ```
 ///
@@ -50,13 +50,13 @@ class OudsSkeleton extends StatefulWidget {
   final bool animated;
 
   /// Whether to apply vertical padding to the skeleton. Defaults to true.
-  final bool securityMargin;
+  final bool hasSecurityMargin;
 
   /// Creates an [OudsSkeleton].
   const OudsSkeleton({
     super.key,
     this.animated = true,
-    this.securityMargin = false,
+    this.hasSecurityMargin = false,
   });
 
   @override
@@ -172,7 +172,7 @@ class _OudsSkeletonState extends State<OudsSkeleton>
       label: OudsLocalizations.of(context)?.core_common_loading_a11y,
       child: ExcludeSemantics(
         child: Padding(
-          padding: widget.securityMargin
+          padding: widget.hasSecurityMargin
               ? EdgeInsets.symmetric(vertical: padding)
               : EdgeInsets.zero,
           child: content,

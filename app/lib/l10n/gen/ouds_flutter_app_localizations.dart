@@ -1014,11 +1014,11 @@ abstract class AppLocalizations {
   /// **'Animated'**
   String get app_components_skeleton_animated_tech;
 
-  /// No description provided for @app_components_skeleton_securityMargin_tech.
+  /// No description provided for @app_components_skeleton_hasSecurityMargin_tech.
   ///
   /// In en, this message translates to:
   /// **'Security Margin'**
-  String get app_components_skeleton_securityMargin_tech;
+  String get app_components_skeleton_hasSecurityMargin_tech;
 
   /// No description provided for @app_components_switch_label.
   ///

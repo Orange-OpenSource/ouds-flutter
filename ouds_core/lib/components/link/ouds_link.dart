@@ -527,7 +527,7 @@ class _OudsLinkState extends State<OudsLink> {
 
     return OudsSkeletonLayout(
       visible: widget.skeleton != null,
-      securityMargin: widget.skeleton?.securityMargin ?? false,
+      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
       animated: widget.skeleton?.animated ?? false,
 
       /// Builds the main link container with proper constraints

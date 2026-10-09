@@ -43,20 +43,20 @@ class SkeletonCustomization extends StatefulWidget {
 class SkeletonCustomizationState
     extends CustomizationWidgetState<SkeletonCustomization> {
   late final SkeletonAnimatedState animatedState;
-  late final SkeletonSecurityMarginState securityMarginState;
+  late final SkeletonSecurityMarginState hasSecurityMarginState;
 
   @override
   void initState() {
     super.initState();
     animatedState = SkeletonAnimatedState(setState);
-    securityMarginState = SkeletonSecurityMarginState(setState);
+    hasSecurityMarginState = SkeletonSecurityMarginState(setState);
   }
 
   bool get hasAnimated => animatedState.value;
   set hasAnimated(bool value) => animatedState.value = value;
 
-  bool get hasSecurityMargin => securityMarginState.value;
-  set hasSecurityMargin(bool value) => securityMarginState.value = value;
+  bool get hasSecurityMargin => hasSecurityMarginState.value;
+  set hasSecurityMargin(bool value) => hasSecurityMarginState.value = value;
 
   @override
   Widget build(BuildContext context) {

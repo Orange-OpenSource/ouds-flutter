@@ -379,8 +379,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                       // Border interior + content
                       OudsSkeletonLayout(
                         visible: widget.skeleton != null,
-                        securityMargin:
-                            widget.skeleton?.securityMargin ?? false,
+                        hasSecurityMargin:
+                            widget.skeleton?.hasSecurityMargin ?? false,
                         animated: widget.skeleton?.animated ?? false,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(

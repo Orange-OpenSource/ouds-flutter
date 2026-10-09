@@ -155,7 +155,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
 
     return OudsSkeletonLayout(
       visible: widget.skeleton != null,
-      securityMargin: widget.skeleton?.securityMargin ?? false,
+      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
       animated: widget.skeleton?.animated ?? false,
       content: (context) => Semantics(
         enabled: widget.onChanged != null && !(widget.readOnly),

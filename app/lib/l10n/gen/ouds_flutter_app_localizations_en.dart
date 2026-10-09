@@ -520,7 +520,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_skeleton_animated_tech => 'Animated';
 
   @override
-  String get app_components_skeleton_securityMargin_tech => 'Security Margin';
+  String get app_components_skeleton_hasSecurityMargin_tech =>
+      'Security Margin';
 
   @override
   String get app_components_switch_label => 'Switch';

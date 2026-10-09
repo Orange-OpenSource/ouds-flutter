@@ -107,7 +107,7 @@ class _SkeletonDemoState extends State<_SkeletonDemo> {
     return LightDarkBox(
       child: OudsSkeleton(
         animated: customizationState.hasAnimated,
-        securityMargin: customizationState.hasSecurityMargin,
+        hasSecurityMargin: customizationState.hasSecurityMargin,
       ),
     );
   }
@@ -148,7 +148,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     return CustomizableSection(
       children: [
         CustomizableSwitch(
-          title: context.l10n.app_components_skeleton_securityMargin_tech,
+          title: context.l10n.app_components_skeleton_hasSecurityMargin_tech,
           value: customizationState!.hasSecurityMargin,
           onChanged: (value) {
             setState(() {

@@ -95,12 +95,32 @@ enum OudsPinCodeInputKeyboardType {
 /// Parameters:
 /// - [length]: Number of digit cells. Defaults to [OudsPinCodeInputLength.six].
 /// - [helperText]: Supporting text shown below the input.
+///   Supports strong text formatting using `**bold**`.
 /// - [errorText]: Error message shown below the input; also sets the error state.
+///   Supports strong text formatting using `**bold**`.
 /// - [controllers]: Optional per-cell controllers for reading individual values.
 /// - [onEditingComplete]: Called with the full PIN when all cells are filled.
 /// - [onChanged]: Called with the current PIN on every keystroke.
 /// - [digitInputDecoration]: Visual and keyboard configuration for the cells.
 /// - [skeleton]: Optional skeleton widget to display while loading or in a placeholder state.
+///
+/// ## Rich text in [helperText] and [errorText]
+///
+/// Both [helperText] and [errorText] accept simple rich text: wrap the words
+/// to emphasize with `**` on each side (e.g. `'**Strong** text'`) and they
+/// will be rendered using the "Strong" token (e.g. Label/Medium/Strong)
+/// matching the current text style.
+///
+/// ### ✅ Strong text
+///
+/// Strong text can be used sparingly to highlight key information within the
+/// content. Only the dedicated "Strong" token is applied — no other text
+/// styles or custom font weights should be used.
+///
+/// ### ⚠️ Underline text
+///
+/// Underlined text must not be applied manually (e.g. in helper text), as it
+/// is commonly associated with hyperlinks and may mislead users.
 ///
 class OudsPinCodeInput extends StatefulWidget {
   final OudsPinCodeInputLength length;

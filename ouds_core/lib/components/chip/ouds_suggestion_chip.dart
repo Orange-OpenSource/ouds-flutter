@@ -313,7 +313,8 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                 // Border interior + content
                 OudsSkeletonLayout(
                   visible: widget.skeleton != null,
-                  securityMargin: widget.skeleton?.securityMargin ?? false,
+                  hasSecurityMargin:
+                      widget.skeleton?.hasSecurityMargin ?? false,
                   animated: widget.skeleton?.animated ?? false,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
