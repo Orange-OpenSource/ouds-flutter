@@ -28,7 +28,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// Parameters:
 /// - [hintText]: Placeholder shown in an empty, unfocused cell (e.g. `"-"`).
-/// - [hiddenPassword]: When `true` (default), filled cells show `●` instead of
+/// - [hiddenCharacter]: When `true` (default), filled cells show `●` instead of
 ///   the actual character.
 /// - [isOutlined]: `false` (default) for a filled style, `true` for outlined.
 /// - [constrainedMaxWidth]: When `true`, cells are capped to the design-token
@@ -38,14 +38,14 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 class OudsDigitInputDecoration {
   final String? hintText;
-  final bool hiddenPassword;
+  final bool hiddenCharacter;
   final bool isOutlined;
   final bool constrainedMaxWidth;
   final OudsPinCodeInputKeyboardType keyboardType;
 
   const OudsDigitInputDecoration({
     this.hintText,
-    this.hiddenPassword = true,
+    this.hiddenCharacter = true,
     this.isOutlined = false,
     this.constrainedMaxWidth = false,
     this.keyboardType = OudsPinCodeInputKeyboardType.numeric,
@@ -62,7 +62,7 @@ class OudsDigitInputDecoration {
 /// | Condition | Content shown |
 /// |---|---|
 /// | Not focused, empty | Hint placeholder |
-/// | Not focused, filled | Value (`●` when `hiddenPassword` is `true`) |
+/// | Not focused, filled | Value (`●` when `hiddenCharacter` is `true`) |
 /// | Focused, empty | Blinking cursor |
 /// | Focused, filled — normal mode | Blinking cursor only |
 /// | Focused, filled — accessibility mode | Value **+** blinking cursor |
@@ -82,7 +82,7 @@ class OudsDigitInputDecoration {
 ///   isAccessibilityActive: false,
 ///   digitInputDecoration: OudsDigitInputDecoration(
 ///     hintText: '-',
-///     hiddenPassword: true,
+///     hiddenCharacter: true,
 ///   ),
 /// )
 /// ```
@@ -167,7 +167,8 @@ class _OudsDigitInputState extends State<OudsDigitInput>
     final cursorColorModifier = OudsPinCodeInputTextColorModifier(context);
 
     final isOutlined = widget.digitInputDecoration?.isOutlined ?? false;
-    final hiddenPassword = widget.digitInputDecoration?.hiddenPassword ?? true;
+    final hiddenCharacter =
+        widget.digitInputDecoration?.hiddenCharacter ?? true;
 
     final state = OudsPinCodeInputControlStateDeterminer(
       isFocused: widget.isFocused,
@@ -177,9 +178,9 @@ class _OudsDigitInputState extends State<OudsDigitInput>
     // Show hint only when the cell is empty and not focused.
     final showHint = widget.displayValue.isEmpty && !widget.isFocused;
 
-    // Mask filled value with a bullet when hiddenPassword is enabled.
+    // Mask filled value with a bullet when hiddenCharacter is enabled.
     final displayText = widget.displayValue.isNotEmpty
-        ? (hiddenPassword ? '●' : widget.displayValue)
+        ? (hiddenCharacter ? '●' : widget.displayValue)
         : '';
 
     // Show cursor whenever the cell is focused.
@@ -239,7 +240,7 @@ class _OudsDigitInputState extends State<OudsDigitInput>
                       Text(
                         displayText,
                         style: theme.typographyTokens
-                            .typeLabelDefaultLarge(context)
+                            .typeLabelModerateLarge(context)
                             .copyWith(
                               color: theme.colorScheme(context).contentDefault,
                             ),

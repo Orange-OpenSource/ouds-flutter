@@ -1635,19 +1635,19 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_pinCodeInput_helperText_description_text_4.
   ///
   /// In en, this message translates to:
-  /// **'Enter the 4-digit code sent to your phone.'**
+  /// **'Enter the **4-digit code** sent to your phone.'**
   String get app_components_pinCodeInput_helperText_description_text_4;
 
   /// No description provided for @app_components_pinCodeInput_helperText_description_text_6.
   ///
   /// In en, this message translates to:
-  /// **'Enter the 6-digit code sent to your phone.'**
+  /// **'Enter the **6-digit code** sent to your phone.'**
   String get app_components_pinCodeInput_helperText_description_text_6;
 
   /// No description provided for @app_components_pinCodeInput_helperText_description_text_8.
   ///
   /// In en, this message translates to:
-  /// **'Enter the 8-digit code sent to your phone.'**
+  /// **'Enter the **8-digit code** sent to your phone.'**
   String get app_components_pinCodeInput_helperText_description_text_8;
 
   /// No description provided for @app_components_pinCodeInput_error_label.
@@ -1662,11 +1662,11 @@ abstract class AppLocalizations {
   /// **'Verification failed. Check and enter the correct code.'**
   String get app_components_pinCodeInput_verification_error_label;
 
-  /// No description provided for @app_components_pinCodeInput_hidden_password_label.
+  /// No description provided for @app_components_pinCodeInput_hidden_character_tech.
   ///
   /// In en, this message translates to:
-  /// **'Hidden Password'**
-  String get app_components_pinCodeInput_hidden_password_label;
+  /// **'Hidden character'**
+  String get app_components_pinCodeInput_hidden_character_tech;
 
   /// No description provided for @app_components_pinCodeInput_keyboardType_label.
   ///

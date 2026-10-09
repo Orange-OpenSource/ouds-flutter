@@ -154,7 +154,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
           hintText: PinCodeInputCustomizationUtils.getPinCodePlaceholderText(
             customizationState,
           ),
-          hiddenPassword: customizationState.hasHiddenPassword,
+          hiddenCharacter: customizationState.hasHiddenCharacter,
           isOutlined: customizationState.hasOutlined,
           constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
               ? true
@@ -293,10 +293,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           ),
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_pinCodeInput_hidden_password_label,
-          value: customizationState.hasHiddenPassword,
+          title: context.l10n.app_components_pinCodeInput_hidden_character_tech,
+          value: customizationState.hasHiddenCharacter,
           onChanged: (value) {
-            customizationState.hasHiddenPassword = value;
+            customizationState.hasHiddenCharacter = value;
           },
         ),
         CustomizableChips<PinCodeLengthEnum>(
