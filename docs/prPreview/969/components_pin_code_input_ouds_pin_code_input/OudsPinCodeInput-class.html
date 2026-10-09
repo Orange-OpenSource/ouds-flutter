@@ -87,14 +87,28 @@ cells whose content changed after a keystroke.</li>
 <p>Parameters:</p>
 <ul>
 <li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/length.html">length</a>: Number of digit cells. Defaults to <a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInputLength.html">OudsPinCodeInputLength.six</a>.</li>
-<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/helperText.html">helperText</a>: Supporting text shown below the input.</li>
-<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/errorText.html">errorText</a>: Error message shown below the input; also sets the error state.</li>
+<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/helperText.html">helperText</a>: Supporting text shown below the input.
+Supports strong text formatting using <code>**bold**</code>.</li>
+<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/errorText.html">errorText</a>: Error message shown below the input; also sets the error state.
+Supports strong text formatting using <code>**bold**</code>.</li>
 <li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/controllers.html">controllers</a>: Optional per-cell controllers for reading individual values.</li>
 <li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/onEditingComplete.html">onEditingComplete</a>: Called with the full PIN when all cells are filled.</li>
 <li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/onChanged.html">onChanged</a>: Called with the current PIN on every keystroke.</li>
 <li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/digitInputDecoration.html">digitInputDecoration</a>: Visual and keyboard configuration for the cells.</li>
 <li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/skeleton.html">skeleton</a>: Optional skeleton widget to display while loading or in a placeholder state.</li>
 </ul>
+<h2 id="rich-text-in-helpertext-and-errortext">Rich text in <a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/helperText.html">helperText</a> and <a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/errorText.html">errorText</a></h2>
+<p>Both <a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/helperText.html">helperText</a> and <a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/errorText.html">errorText</a> accept simple rich text: wrap the words
+to emphasize with <code>**</code> on each side (e.g. <code>'**Strong** text'</code>) and they
+will be rendered using the "Strong" token (e.g. Label/Medium/Strong)
+matching the current text style.</p>
+<h3 id="-strong-text">✅ Strong text</h3>
+<p>Strong text can be used sparingly to highlight key information within the
+content. Only the dedicated "Strong" token is applied — no other text
+styles or custom font weights should be used.</p>
+<h3 id="-underline-text">⚠️ Underline text</h3>
+<p>Underlined text must not be applied manually (e.g. in helper text), as it
+is commonly associated with hyperlinks and may mislead users.</p>
 </section>
 
 
