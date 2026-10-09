@@ -23,7 +23,12 @@ class OudsControlBorderModifier {
   OudsControlBorderModifier(this.context);
 
   /// Gets the border color based on the indicator state and error status.
-  Color getBorderColor(OudsControlState state, bool error, bool selected, bool _isHighContrast) {
+  Color getBorderColor(
+    OudsControlState state,
+    bool error,
+    bool selected,
+    bool _isHighContrast,
+  ) {
     final colorScheme = OudsTheme.of(context).colorScheme;
     if (error) {
       // Error
@@ -31,7 +36,9 @@ class OudsControlBorderModifier {
         case OudsControlState.enabled:
           return colorScheme(context).actionNegativeEnabled;
         case OudsControlState.disabled:
-          throw StateError("Color not allowed for disabled state when error is true");
+          throw StateError(
+            "Color not allowed for disabled state when error is true",
+          );
         case OudsControlState.hovered:
           return colorScheme(context).actionNegativeHover;
         case OudsControlState.pressed:
@@ -39,7 +46,9 @@ class OudsControlBorderModifier {
         case OudsControlState.focused:
           return colorScheme(context).actionNegativeFocus;
         case OudsControlState.readOnly:
-          throw StateError("Color not allowed for readOnly state when error is true");
+          throw StateError(
+            "Color not allowed for readOnly state when error is true",
+          );
       }
     } else {
       // Normal
@@ -47,9 +56,11 @@ class OudsControlBorderModifier {
         case OudsControlState.enabled:
           if (selected) {
             // In order to reach the a11y AAA level, the selected checkbox is black
-            return _isHighContrast ? colorScheme(context).contentDefault : colorScheme(context).actionSelected;
+            return _isHighContrast
+                ? colorScheme(context).contentDefault
+                : colorScheme(context).actionSelected;
           } else {
-            return colorScheme(context).actionEnabled;
+            return colorScheme(context).borderEmphasized;
           }
         case OudsControlState.disabled:
           return colorScheme(context).actionDisabled;
@@ -57,7 +68,9 @@ class OudsControlBorderModifier {
           return colorScheme(context).actionHover;
         case OudsControlState.pressed:
           // In order to reach the a11y AAA level, the pressed checkbox is black
-          return _isHighContrast ? colorScheme(context).contentDefault : colorScheme(context).actionPressed;
+          return _isHighContrast
+              ? colorScheme(context).contentDefault
+              : colorScheme(context).actionPressed;
         case OudsControlState.focused:
           return colorScheme(context).actionFocus;
         case OudsControlState.readOnly:
@@ -70,17 +83,29 @@ class OudsControlBorderModifier {
   double getBorderWidth(OudsControlState state, bool selected, token) {
     switch (state) {
       case OudsControlState.enabled:
-        return selected ? token.borderWidthSelected : token.borderWidthUnselected;
+        return selected
+            ? token.borderWidthSelected
+            : token.borderWidthUnselected;
       case OudsControlState.disabled:
-        return selected ? token.borderWidthSelected : token.borderWidthUnselected;
+        return selected
+            ? token.borderWidthSelected
+            : token.borderWidthUnselected;
       case OudsControlState.hovered:
-        return selected ? token.borderWidthSelectedHover : token.borderWidthUnselectedHover;
+        return selected
+            ? token.borderWidthSelectedHover
+            : token.borderWidthUnselectedHover;
       case OudsControlState.pressed:
-        return selected ? token.borderWidthSelectedPressed : token.borderWidthUnselectedPressed;
+        return selected
+            ? token.borderWidthSelectedPressed
+            : token.borderWidthUnselectedPressed;
       case OudsControlState.focused:
-        return selected ? token.borderWidthSelectedFocus : token.borderWidthUnselectedFocus;
+        return selected
+            ? token.borderWidthSelectedFocus
+            : token.borderWidthUnselectedFocus;
       case OudsControlState.readOnly:
-        return selected ? token.borderWidthSelected : token.borderWidthUnselected;
+        return selected
+            ? token.borderWidthSelected
+            : token.borderWidthUnselected;
     }
   }
 
