@@ -340,62 +340,17 @@ class OudsLink extends StatefulWidget {
 }
 
 class _OudsLinkState extends State<OudsLink> {
-  bool isSingleLine = true;
   late FocusNode _focusNode;
   bool _isHovered = false;
   bool _isFocused = false;
   bool _isPressed = false;
 
-  /// Initializes the focus node (listening for focus changes) and schedules
-  /// the first [_checkTextLines] measurement after the initial layout.
+  /// Initializes the focus node, listening for focus changes.
   @override
   void initState() {
     super.initState();
     _focusNode = FocusNode()
       ..addListener(() => _handleFocusChange(_focusNode.hasFocus));
-    // After the initial layout phase, measure the rendered text
-    // to determine whether it fits on one line or wraps to multiple lines.
-    WidgetsBinding.instance.addPostFrameCallback((_) => _checkTextLines());
-  }
-
-  /// Re-measures the label's line count whenever the [label] changes, so the
-  /// icon's vertical alignment stays accurate after an update.
-  @override
-  void didUpdateWidget(covariant OudsLink oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    // If the text label has changed, schedule a check after the next frame.
-    // This ensures the widget re-measures how many lines the text occupies
-    // and adjusts the icon’s vertical alignment accordingly
-    // (centered for a single-line label, bottom-aligned otherwise).
-    if (oldWidget.label != widget.label) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _checkTextLines());
-    }
-  }
-
-  /// Dynamically measures how many lines the rendered text occupies.
-  ///
-  /// This method uses a [TextPainter] to calculate the actual text layout
-  /// based on the available width. The result updates the [isSingleLine] state,
-  /// which is used to control the vertical alignment of the icon
-  /// within the surrounding [Row].
-  void _checkTextLines() {
-    final renderBox = context.findRenderObject() as RenderBox?;
-    if (renderBox == null || !mounted) return;
-
-    final availableWidth = renderBox.size.width == 0
-        ? double.infinity
-        : renderBox.size.width;
-    final labelText = TextPainter(
-      text: TextSpan(text: widget.label),
-      textDirection: Directionality.of(context),
-      maxLines: null,
-    );
-    labelText.layout(maxWidth: availableWidth);
-    final lineCount = labelText.computeLineMetrics().length;
-
-    setState(() {
-      isSingleLine = lineCount == 1;
-    });
   }
 
   @override
@@ -531,7 +486,7 @@ class _OudsLinkState extends State<OudsLink> {
     );
     return Text(
       widget.label,
-      textAlign: TextAlign.left,
+      textAlign: TextAlign.start,
       style: linkTextStyleModifier
           .buildLinkTextStyle(size: widget.size)
           .copyWith(
@@ -546,42 +501,59 @@ class _OudsLinkState extends State<OudsLink> {
     );
   }
 
-  /// Returns a Row widget for a link with `next` layout, including the label
-  /// and a next icon of a link component.
+  /// Returns a [Text.rich] for a link with `next`/`external` layout, with the
+  /// chevron or external indicator inlined right after the last character of
+  /// the [label] (as a [WidgetSpan]), so it naturally follows the text flow
+  /// even when the label wraps onto several lines, instead of being pinned
+  /// to a fixed trailing column.
   Widget _getNextOrExternalContent(
     OudsLinkControlState linkControlState,
     OudsLinkStatusModifier linkStatusModifier,
     OudsLinkTextStyleModifier linkTextStyleModifier,
     OudsLinkSizeModifier linkSizeModifier,
   ) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: isSingleLine
-          ? CrossAxisAlignment.center
-          : CrossAxisAlignment.end,
-      spacing: linkSizeModifier.getSizeColumnGap(
-        widget.size,
-        widget.layout,
-        widget._indicator,
-        widget.icon?.assetsName,
-      )!,
-      children: [
-        Flexible(
-          child: _buildLabelText(
+    final textAndIconColor = linkStatusModifier.getTextAndIconColor(
+      linkControlState,
+    );
+    final textStyle = linkTextStyleModifier
+        .buildLinkTextStyle(size: widget.size)
+        .copyWith(
+          color: textAndIconColor,
+          decoration: linkTextStyleModifier.getTextDecorationStatus(
             linkControlState,
-            linkStatusModifier,
-            linkTextStyleModifier,
+            false,
           ),
-        ),
-        _buildIcon(
-          context,
-          widget.icon?.assetsName,
-          linkControlState,
-          widget.layout,
-          widget.size,
-          widget._indicator,
-        ),
-      ],
+          decorationColor: textAndIconColor,
+        );
+    final columnGap = linkSizeModifier.getSizeColumnGap(
+      widget.size,
+      widget.layout,
+      widget._indicator,
+      widget.icon?.assetsName,
+    )!;
+
+    return Text.rich(
+      textAlign: TextAlign.start,
+      TextSpan(
+        style: textStyle,
+        children: [
+          TextSpan(text: widget.label),
+          WidgetSpan(
+            alignment: PlaceholderAlignment.middle,
+            child: Padding(
+              padding: EdgeInsetsDirectional.only(start: columnGap),
+              child: _buildIcon(
+                context,
+                widget.icon?.assetsName,
+                linkControlState,
+                widget.layout,
+                widget.size,
+                widget._indicator,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
