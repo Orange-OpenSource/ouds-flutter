@@ -76,7 +76,7 @@ class OudsAlertMessageActionLayout {
 
 /// [OUDS Alert Message design guidelines](https://r.orange.fr/r/S-ouds-doc-alert-message)
 ///
-/// **Reference design version : 1.1.0**
+/// **Reference design version : 1.2.0**
 ///
 /// Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable
 /// communication. Alert message includes functional icon and semantic colour, and may include as well a close button and/or action link.
