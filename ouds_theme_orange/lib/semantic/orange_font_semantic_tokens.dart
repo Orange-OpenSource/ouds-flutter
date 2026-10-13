@@ -35,8 +35,6 @@ class OrangeFontSemanticTokens extends OudsFontSemanticTokens {
   @override
   double get letterSpacingCodeMedium => FontRawTokens.fontLetterSpacing200;
   @override
-  double get letterSpacingCodeMedium => FontRawTokens.fontLetterSpacing200;
-  @override
   double get letterSpacingDisplayLargeMobile =>
       FontRawTokens.fontLetterSpacing850;
   @override

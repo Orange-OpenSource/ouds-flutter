@@ -38,29 +38,13 @@ void main() {
       expect(textWidget.textSpan?.style?.color, Colors.red);
     });
 
-    testWidgets('uses a monospace font family', (tester) async {
+    testWidgets('uses a menlo font family', (tester) async {
       await tester.pumpWidget(
         testableWidget(const OudsCodeText(text: 'const x = 1;')),
       );
 
       final textWidget = tester.widget<Text>(find.text('const x = 1;'));
       expect(textWidget.textSpan?.style?.fontFamily, 'monospace');
-    });
-
-    testWidgets('renders bold markdown syntax', (tester) async {
-      await tester.pumpWidget(
-        testableWidget(const OudsCodeText(text: 'This is **bold** text')),
-      );
-
-      final textWidget = tester.widget<Text>(find.byType(Text));
-      final wrapper =
-          (textWidget.textSpan! as TextSpan).children!.single as TextSpan;
-      final boldSpan =
-          wrapper.children!.firstWhere(
-                (span) => (span as TextSpan).text == 'bold',
-              )
-              as TextSpan;
-      expect(boldSpan.style?.fontWeight, FontWeight.bold);
     });
 
     testWidgets('.rich colors only the span wrapped in withColor', (

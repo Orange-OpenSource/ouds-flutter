@@ -51,10 +51,12 @@ enum OudsDisplayTextSize { large, medium, small }
 /// )
 /// ```
 ///
-/// This widget also accepts lightweight rich text: `**bold**`, `__**underline bold**__` and
-/// `[link](https://example.com)` are supported directly in [text], and a `.rich` constructor
-/// ([OudsDisplayText.rich]) is exposed to color only part of the text. Build the `.rich`
+/// Multiple colors can be used simultaneously within the same text.
+/// The `.rich` constructor ([OudsDisplayText.rich]) is exposed to color only part of the text. Build the `.rich`
 /// constructor's `text` argument with [buildOudsAnnotatedText].
+///
+/// The user must ensure that the contrast between the colors used meets current accessibility standards
+/// and that the colors align with the brand’s and its entity’s visual identity.
 ///
 /// ```dart
 /// OudsDisplayText.rich(
@@ -65,8 +67,6 @@ enum OudsDisplayTextSize { large, medium, small }
 /// )
 /// ```
 ///
-/// Note: `[link](https://example.com)` is rendered (underlined) but the tap is not handled by this
-/// widget.
 class OudsDisplayText extends StatelessWidget {
   /// The text to display. Empty when built via [OudsDisplayText.rich].
   final String text;
@@ -144,7 +144,7 @@ class OudsDisplayText extends StatelessWidget {
     final resolvedColor =
         color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
     final annotatedText = _annotatedText;
-
+    final Text textWidget;
     // Every span (or the plain text) is run through the markdown span builder so bold, underline
     // bold and links are always supported, whether the text is plain or annotated with colors.
     final List<InlineSpan> children;
@@ -157,26 +157,27 @@ class OudsDisplayText extends StatelessWidget {
           baseStyle: style.copyWith(color: segmentColor),
         );
       }).toList();
-    } else {
-      children = [
-        MarkdownSpanBuilder.buildRichText(
-          context,
-          text,
-          baseStyle: style.copyWith(color: resolvedColor),
-        ),
-      ];
-    }
 
-    final textWidget = Text.rich(
-      TextSpan(
+      textWidget = Text.rich(
+        TextSpan(
+          style: style.copyWith(color: resolvedColor),
+          children: children,
+        ),
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+        softWrap: softWrap,
+      );
+    } else {
+      textWidget = Text(
+        text,
         style: style.copyWith(color: resolvedColor),
-        children: children,
-      ),
-      textAlign: textAlign,
-      maxLines: maxLines,
-      overflow: overflow,
-      softWrap: softWrap,
-    );
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+        softWrap: softWrap,
+      );
+    }
 
     final typographySizeModifier = OudsTypographySizeModifier(context);
     return Container(

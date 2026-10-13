@@ -16,8 +16,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/typography/internal/ouds_typography_size_modifier.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
-import 'package:ouds_core/components/typography/ouds_body_text.dart'
-    show OudsTextWeight;
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -50,10 +48,15 @@ enum OudsLabelTextSize { xLarge, large, medium, small }
 /// )
 /// ```
 ///
-/// This widget also accepts lightweight rich text: `**bold**`, `__**underline bold**__` and
+/// Multiple colors can be used simultaneously within the same text.
+///
+/// This widget also accepts lightweight rich text: `**bold**`, `~~line through~~` and
 /// `[link](https://example.com)` are supported directly in [text], and a `.rich` constructor
 /// ([OudsLabelText.rich]) is exposed to color only part of the text. Build the `.rich`
 /// constructor's `text` argument with [buildOudsAnnotatedText].
+///
+/// The user must ensure that the contrast between the colors used meets current accessibility standards
+/// and that the colors align with the brand’s and its entity’s visual identity.
 ///
 /// ```dart
 /// OudsLabelText.rich(

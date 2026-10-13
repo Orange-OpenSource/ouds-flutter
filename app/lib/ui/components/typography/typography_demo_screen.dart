@@ -25,7 +25,6 @@ import 'package:ouds_flutter_demo/ui/components/typography/typography_customizat
 import 'package:ouds_flutter_demo/ui/components/typography/typography_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
-import 'package:ouds_flutter_demo/ui/utilities/colors_utils.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
@@ -36,6 +35,7 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -86,15 +86,6 @@ String _description(BuildContext context, TypographyVariant variant) {
 }
 
 class _TypographyDemoScreenState extends State<TypographyDemoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = true;
-
-  void _onExpansionChanged(bool isExpanded) {
-    setState(() {
-      _isBottomSheetExpanded = isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return TypographyCustomization(
@@ -304,22 +295,13 @@ class _TypographyDemoState extends State<_TypographyDemo> {
     });
 
     if (customizationState.hasAnnotatedText) {
-      final colorTokens = OudsTheme.of(context).colorScheme(context);
-      final brandSecondaryColor = ColorTokenItem(
-        name: 'contentBrandSecondary',
-        value: colorTokens.contentBrandSecondary,
-      );
-      final color =
-          brandSecondaryColor.colorToHex(brandSecondaryColor.value) !=
-              colorUnspecified
-          ? colorTokens.borderBrandSecondary
-          : colorTokens.contentBrandPrimary;
+      final colorScheme = OudsTheme.of(context).colorScheme(context);
 
       return LightDarkBox(
         child: buildOudsAnnotatedTypography(
           widget.variant,
           customizationState.selectedSize,
-          color,
+          colorScheme,
           marker: customizationState.hasMarker,
           weight: customizationState.selectedWeight,
         ),
@@ -337,19 +319,29 @@ class _TypographyDemoState extends State<_TypographyDemo> {
     );
   }
 
-  /// Builds the `.rich` typography widget matching [variant], with a sample text partly
-  /// colored with [color] via [buildOudsAnnotatedText], casting [size] to the enum type expected
-  /// by that variant's widget.
+  /// Builds the `.rich` typography widget matching [variant], with a sample text showcasing a
+  /// per-variant sentence (see [annotatedTextSegmentsFor]) where some words are colored via
+  /// [buildOudsAnnotatedText], resolving each segment's color token from [colorScheme]. [size] is
+  /// cast to the enum type expected by that variant's widget.
   Widget buildOudsAnnotatedTypography(
     TypographyVariant variant,
     Object? size,
-    Color color, {
+    OudsColorScheme colorScheme, {
     bool marker = true,
     OudsTextWeight weight = OudsTextWeight.defaultWeight,
   }) {
     final text = buildOudsAnnotatedText((builder) {
-      builder.append('${variant.formattedName} with __**underline**__ and ');
-      builder.withColor(color, () => builder.append('colored text'));
+      for (final segment in annotatedTextSegmentsFor(variant)) {
+        final color = resolveAnnotatedTextSegmentColor(
+          colorScheme,
+          segment.colorTokenName,
+        );
+        if (color == null) {
+          builder.append(segment.text);
+        } else {
+          builder.withColor(color, () => builder.append(segment.text));
+        }
+      }
     });
 
     switch (variant) {

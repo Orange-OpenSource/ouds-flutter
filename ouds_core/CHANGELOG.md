@@ -6,16 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...develop)
 ### Added
+- [Library] Create components - `typography` ([#829](https://github.com/Orange-OpenSource/ouds-flutter/issues/829))
 ### Changed
+- [Library] For typography heading component, update to v1.1.0 ([#921](https://github.com/Orange-OpenSource/ouds-flutter/issues/921))
 ### Fixed
 
 ## [3.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...3.0.0) - 2026-10-07
 ### Added
-- [Library] Create components - `typography` ([#829](https://github.com/Orange-OpenSource/ouds-flutter/issues/829))
 - [Library] For `control item` components, add edge to edge configuration ([#880](https://github.com/Orange-OpenSource/ouds-flutter/issues/880))
 - [Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
-- [Library] For typography heading component, update to v1.1.0 ([#921](https://github.com/Orange-OpenSource/ouds-flutter/issues/921))
 - [Library] For `progress indicator` component, update to v1.2.0 ([#892](https://github.com/Orange-OpenSource/ouds-flutter/issues/892))
 - [Library] for `Alert Message` component, Add default vocalisation on "info" status ([#806](https://github.com/Orange-OpenSource/ouds-flutter/issues/806))
 - [Library] For `Alert Message` component, update to v1.2.0 ([#878](https://github.com/Orange-OpenSource/ouds-flutter/issues/878))

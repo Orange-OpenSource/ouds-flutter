@@ -679,7 +679,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "CodeMedium",
         style: currentTheme.typographyTokens.typeCodeMedium(context),
-        family: "monospace",
+        family: "Menlo",
         weight: currentTheme.typographyTokens
             .typeCodeMedium(context)
             .fontWeight!,

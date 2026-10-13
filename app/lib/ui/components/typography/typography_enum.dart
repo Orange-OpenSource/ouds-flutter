@@ -16,6 +16,7 @@ import 'package:ouds_core/components/typography/ouds_display_text.dart';
 import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 import 'package:ouds_core/components/typography/ouds_label_text.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 
 /// The typography family showcased by the typography demo/customization screens.
 enum TypographyVariant { display, heading, body, label, code }
@@ -45,6 +46,77 @@ Color? resolveTypographyColor(BuildContext context, TypographyEnumColor color) {
       return colorScheme.contentStatusPositive;
     case TypographyEnumColor.statusNegative:
       return colorScheme.contentStatusNegative;
+  }
+}
+
+/// A single run of text within the "annotated text" demo sample, optionally colored by a
+/// semantic color token name resolved via [resolveAnnotatedTextSegmentColor].
+class AnnotatedTextSegment {
+  const AnnotatedTextSegment(this.text, [this.colorTokenName]);
+
+  final String text;
+  final String? colorTokenName;
+}
+
+/// Returns the sample sentence (as a list of colored/plain [AnnotatedTextSegment]) showcased by
+/// the "annotated text" demo toggle for the given [variant].
+List<AnnotatedTextSegment> annotatedTextSegmentsFor(TypographyVariant variant) {
+  switch (variant) {
+    case TypographyVariant.display:
+      return const [
+        AnnotatedTextSegment('Welcome', 'contentBrandPrimary'),
+        AnnotatedTextSegment(' Home !'),
+      ];
+    case TypographyVariant.heading:
+      return const [
+        AnnotatedTextSegment('Here is the '),
+        AnnotatedTextSegment('new Livebox', 'contentBrandPrimary'),
+      ];
+    case TypographyVariant.body:
+      return const [
+        AnnotatedTextSegment('Your option has been '),
+        AnnotatedTextSegment('removed', 'contentStatusNegative'),
+      ];
+    case TypographyVariant.label:
+      return const [
+        AnnotatedTextSegment('Your order has been '),
+        AnnotatedTextSegment('successfully confirmed', 'contentStatusPositive'),
+        AnnotatedTextSegment('.'),
+      ];
+    case TypographyVariant.code:
+      return const [
+        AnnotatedTextSegment('import ', 'contentBrandPrimary'),
+        AnnotatedTextSegment(
+          "'package:flutter/material.dart'",
+          'contentStatusPositive',
+        ),
+        AnnotatedTextSegment(';\n\n'),
+        AnnotatedTextSegment('void ', 'contentStatusInfo'),
+        AnnotatedTextSegment('main() {\n  runApp('),
+        AnnotatedTextSegment('const ', 'contentStatusInfo'),
+        AnnotatedTextSegment('MyApp());\n}'),
+      ];
+  }
+}
+
+/// Resolves [colorTokenName] (as used by [annotatedTextSegmentsFor]) to the actual [Color]
+/// defined by the active [colorScheme]. Returns `null` when [colorTokenName] is `null`, so the
+/// component falls back to its own default color.
+Color? resolveAnnotatedTextSegmentColor(
+  OudsColorScheme colorScheme,
+  String? colorTokenName,
+) {
+  switch (colorTokenName) {
+    case 'contentBrandPrimary':
+      return colorScheme.contentBrandPrimary;
+    case 'contentStatusNegative':
+      return colorScheme.contentStatusNegative;
+    case 'contentStatusPositive':
+      return colorScheme.contentStatusPositive;
+    case 'contentStatusInfo':
+      return colorScheme.contentStatusInfo;
+    default:
+      return null;
   }
 }
 

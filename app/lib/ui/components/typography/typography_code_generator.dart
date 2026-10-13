@@ -27,7 +27,7 @@ class TypographyCodeGenerator {
     final size = variant != TypographyVariant.code
         ? customizationState?.selectedSize ?? defaultSizeFor(variant)
         : null;
-    final text = customizationState?.labelText ?? '';
+    final text = customizationState?.labelText;
     final marker = customizationState?.hasMarker ?? true;
     final markerLine =
         variant == TypographyVariant.heading &&
@@ -43,11 +43,21 @@ class TypographyCodeGenerator {
         ? "size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},"
         : "";
     if (hasAnnotatedText) {
-      return """${classNameFor(variant)}.rich(
-$sizeLine$weightLine$markerLine
+      final appendLines = annotatedTextSegmentsFor(variant)
+          .map((segment) {
+            final escapedText = segment.text
+                .replaceAll('\\', r'\\')
+                .replaceAll("'", r"\'")
+                .replaceAll('\n', r'\n');
+            return segment.colorTokenName == null
+                ? "    builder.append('$escapedText');"
+                : "    builder.withColor(colorScheme.${segment.colorTokenName}, () => builder.append('$escapedText'));";
+          })
+          .join('\n');
+      return """
+${variant != TypographyVariant.code ? '${classNameFor(variant)}.rich($sizeLine$weightLine$markerLine' : '${classNameFor(variant)}.rich('}
   text: buildOudsAnnotatedText((builder) {
-    builder.append('${variant.formattedName} with __**underline**__ and  ');
-    builder.withColor(color, () => builder.append('colored text'));
+$appendLines
   }),
 )""";
     }

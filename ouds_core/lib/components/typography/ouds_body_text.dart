@@ -47,10 +47,16 @@ enum OudsBodyTextSize { large, medium, small }
 /// )
 /// ```
 ///
-/// This widget also accepts lightweight rich text: `**bold**`, `__**underline bold**__` and
+/// Multiple colors can be used simultaneously within the same text.
+///
+/// This widget also accepts lightweight rich text: `**bold**`, `~~line through~~` and
 /// `[link](https://example.com)` are supported directly in [text], and a `.rich` constructor
 /// ([OudsBodyText.rich]) is exposed to color only part of the text. Build the `.rich`
 /// constructor's `text` argument with [buildOudsAnnotatedText].
+///
+/// The user must ensure that the contrast between the colors used meets current accessibility standards
+/// and that the colors align with the brand’s and its entity’s visual identity.
+///
 ///
 /// ```dart
 /// OudsBodyText.rich(
@@ -182,8 +188,8 @@ class OudsBodyText extends StatelessWidget {
     final annotatedText = _annotatedText;
 
     final List<InlineSpan> children;
-    // Every span (or the plain text) is run through the markdown span builder so bold, underline
-    // bold and links are always supported, whether the text is plain or annotated with colors.
+    // Every span (or the plain text) is run through the markdown span builder so bold, line Through
+    // and links are always supported, whether the text is plain or annotated with colors.
     if (annotatedText != null) {
       children = annotatedText.spans.map((span) {
         final segmentColor = span.style?.color ?? resolvedColor;

@@ -56,10 +56,12 @@ enum OudsHeadingTextSize { xLarge, large, medium, small }
 /// )
 /// ```
 ///
-/// This widget also accepts lightweight rich text: `**bold**`, `__**underline bold**__` and
-/// `[link](https://example.com)` are supported directly in [text], and a `.rich` constructor
-/// ([OudsHeadingText.rich]) is exposed to color only part of the text. Build the `.rich`
+/// Multiple colors can be used simultaneously within the same text.
+/// The `.rich` constructor ([OudsHeadingText.rich]) is exposed to color only part of the text. Build the `.rich`
 /// constructor's `text` argument with [buildOudsAnnotatedText].
+///
+/// The user must ensure that the contrast between the colors used meets current accessibility standards
+/// and that the colors align with the brand’s and its entity’s visual identity.
 ///
 /// ```dart
 /// OudsHeadingText.rich(
@@ -70,8 +72,6 @@ enum OudsHeadingTextSize { xLarge, large, medium, small }
 /// )
 /// ```
 ///
-/// Note: `[link](https://example.com)` is rendered (underlined) but the tap is not handled by this
-/// widget.
 class OudsHeadingText extends StatelessWidget {
   /// The text to display. Empty when built via [OudsHeadingText.rich].
   final String text;
@@ -160,7 +160,7 @@ class OudsHeadingText extends StatelessWidget {
     final resolvedColor =
         color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
     final annotatedText = _annotatedText;
-
+    final Text textContent;
     final List<InlineSpan> children;
     // Every span (or the plain text) is run through the markdown span builder so bold, underline
     // bold and links are always supported, whether the text is plain or annotated with colors.
@@ -173,26 +173,27 @@ class OudsHeadingText extends StatelessWidget {
           baseStyle: style.copyWith(color: segmentColor),
         );
       }).toList();
-    } else {
-      children = [
-        MarkdownSpanBuilder.buildRichText(
-          context,
-          text,
-          baseStyle: style.copyWith(color: resolvedColor),
-        ),
-      ];
-    }
 
-    final textContent = Text.rich(
-      TextSpan(
+      textContent = Text.rich(
+        TextSpan(
+          style: style.copyWith(color: resolvedColor),
+          children: children,
+        ),
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+        softWrap: softWrap,
+      );
+    } else {
+      textContent = Text(
+        text,
         style: style.copyWith(color: resolvedColor),
-        children: children,
-      ),
-      textAlign: textAlign,
-      maxLines: maxLines,
-      overflow: overflow,
-      softWrap: softWrap,
-    );
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+        softWrap: softWrap,
+      );
+    }
 
     final typographySizeModifier = OudsTypographySizeModifier(context);
     final typographyTokens = OudsTheme.of(

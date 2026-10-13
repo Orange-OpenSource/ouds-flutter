@@ -38,22 +38,6 @@ void main() {
       final textWidget = tester.widget<Text>(find.text('Colored text'));
       expect(textWidget.textSpan?.style?.color, Colors.red);
     });
-
-    testWidgets('renders bold markdown syntax', (tester) async {
-      await tester.pumpWidget(
-        testableWidget(const OudsHeadingText(text: 'This is **bold** text')),
-      );
-
-      final textWidget = tester.widget<Text>(find.byType(Text));
-      final wrapper =
-          (textWidget.textSpan! as TextSpan).children!.single as TextSpan;
-      final boldSpan =
-          wrapper.children!.firstWhere(
-                (span) => (span as TextSpan).text == 'bold',
-              )
-              as TextSpan;
-      expect(boldSpan.style?.fontWeight, FontWeight.bold);
-    });
   });
 
   group('OudsHeadingText', () {

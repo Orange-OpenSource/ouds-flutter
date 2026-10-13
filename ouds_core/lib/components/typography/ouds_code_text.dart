@@ -39,10 +39,13 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// )
 /// ```
 ///
-/// This widget also accepts lightweight rich text: `**bold**`, `__**underline bold**__` and
-/// `[link](https://example.com)` are supported directly in [text], and a `.rich` constructor
-/// ([OudsCodeText.rich]) is exposed to color only part of the text. Build the `.rich`
-/// constructor's `text` argument with [buildOudsAnnotatedText].
+/// Multiple colors can be used simultaneously within the same text.
+///
+/// The `.rich` constructor ([OudsCodeText.rich]) is exposed to color only part of the text.
+/// Build the `.rich` constructor's `text` argument with [buildOudsAnnotatedText].
+///
+/// The user must ensure that the contrast between the colors used meets current accessibility standards
+/// and that the colors align with the brand’s and its entity’s visual identity.
 ///
 /// ```dart
 /// OudsCodeText.rich(
@@ -53,8 +56,6 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// )
 /// ```
 ///
-/// Note: `[link](https://example.com)` is rendered (underlined) but the tap is not handled by this
-/// widget.
 class OudsCodeText extends StatelessWidget {
   /// The text to display. Empty when built via [OudsCodeText.rich].
   final String text;
@@ -129,25 +130,26 @@ class OudsCodeText extends StatelessWidget {
           baseStyle: style.copyWith(color: segmentColor),
         );
       }).toList();
-    } else {
-      children = [
-        MarkdownSpanBuilder.buildRichText(
-          context,
-          text,
-          baseStyle: style.copyWith(color: resolvedColor),
-        ),
-      ];
-    }
 
-    return Text.rich(
-      TextSpan(
+      return Text.rich(
+        TextSpan(
+          style: style.copyWith(color: resolvedColor),
+          children: children,
+        ),
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+        softWrap: softWrap,
+      );
+    } else {
+      return Text(
+        text,
         style: style.copyWith(color: resolvedColor),
-        children: children,
-      ),
-      textAlign: textAlign,
-      maxLines: maxLines,
-      overflow: overflow,
-      softWrap: softWrap,
-    );
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+        softWrap: softWrap,
+      );
+    }
   }
 }

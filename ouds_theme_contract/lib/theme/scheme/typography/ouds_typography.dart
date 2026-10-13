@@ -869,7 +869,7 @@ class OudsTypography {
     final theme = OudsTheme.of(context);
 
     return TextStyle(
-      fontFamily: 'monospace',
+      fontFamily: 'menlo',
       fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
         mobile: theme.fontTokens.sizeCodeMedium,
