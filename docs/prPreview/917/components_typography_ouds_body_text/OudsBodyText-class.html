@@ -71,10 +71,13 @@ the text is displayed on a colored surface:</p>
   color: OudsTheme.of(context).colorScheme(context).contentDefault,
 )
 </code></pre>
-<p>This widget also accepts lightweight rich text: <code>**bold**</code>, <code>__**underline bold**__</code> and
+<p>Multiple colors can be used simultaneously within the same text.</p>
+<p>This widget also accepts lightweight rich text: <code>**bold**</code>, <code>~~line through~~</code> and
 <code>[link](https://example.com)</code> are supported directly in <a href="../components_typography_ouds_body_text/OudsBodyText/text.html">text</a>, and a <code>.rich</code> constructor
 (<a href="../components_typography_ouds_body_text/OudsBodyText/OudsBodyText.rich.html">OudsBodyText.rich</a>) is exposed to color only part of the text. Build the <code>.rich</code>
 constructor's <code>text</code> argument with <a href="../components_typography_ouds_annotated_text/buildOudsAnnotatedText.html">buildOudsAnnotatedText</a>.</p>
+<p>The user must ensure that the contrast between the colors used meets current accessibility standards
+and that the colors align with the brand’s and its entity’s visual identity.</p>
 <pre class="language-dart"><code class="language-dart">OudsBodyText.rich(
   text: buildOudsAnnotatedText((builder) {
     builder.append('Body with ');

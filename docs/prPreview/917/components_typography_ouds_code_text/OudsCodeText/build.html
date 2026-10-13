@@ -126,26 +126,27 @@ Widget build(BuildContext context) {
         baseStyle: style.copyWith(color: segmentColor),
       );
     }).toList();
-  } else {
-    children = [
-      MarkdownSpanBuilder.buildRichText(
-        context,
-        text,
-        baseStyle: style.copyWith(color: resolvedColor),
-      ),
-    ];
-  }
 
-  return Text.rich(
-    TextSpan(
+    return Text.rich(
+      TextSpan(
+        style: style.copyWith(color: resolvedColor),
+        children: children,
+      ),
+      textAlign: textAlign,
+      maxLines: maxLines,
+      overflow: overflow,
+      softWrap: softWrap,
+    );
+  } else {
+    return Text(
+      text,
       style: style.copyWith(color: resolvedColor),
-      children: children,
-    ),
-    textAlign: textAlign,
-    maxLines: maxLines,
-    overflow: overflow,
-    softWrap: softWrap,
-  );
+      textAlign: textAlign,
+      maxLines: maxLines,
+      overflow: overflow,
+      softWrap: softWrap,
+    );
+  }
 }</code></pre>
 </section>
 
