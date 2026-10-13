@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the semanticLabel property from the OudsProgressIndicator class, for the Dart programming language.">
-  <title>semanticLabel property - OudsProgressIndicator class - ouds_progress_indicator library - Dart API</title>
+  <meta name="description" content="API docs for the getBackgroundColor property from the OudsIconStatus class, for the Dart programming language.">
+  <title>getBackgroundColor property - OudsIconStatus class - ouds_icon_status library - Dart API</title>
 
 
   
@@ -25,11 +25,11 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_progress_indicator_ouds_progress_indicator/">components&#47;progress_indicator&#47;ouds_progress_indicator.dart</a></li>
-    <li><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator-class.html">OudsProgressIndicator</a></li>
-    <li class="self-crumb">semanticLabel property</li>
+    <li><a href="../../components_common_ouds_icon_status/">components&#47;common&#47;ouds_icon_status.dart</a></li>
+    <li><a href="../../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></li>
+    <li class="self-crumb">getBackgroundColor property</li>
   </ol>
-  <div class="self-name">semanticLabel</div>
+  <div class="self-name">getBackgroundColor</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -46,30 +46,46 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="components_progress_indicator_ouds_progress_indicator&#47;OudsProgressIndicator-class-sidebar.html"
+    data-above-sidebar="components_common_ouds_icon_status&#47;OudsIconStatus-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-property">semanticLabel</span> property 
+<h1><span class="kind-property">getBackgroundColor</span> property 
 </h1></div>
 
     
-      <section class="multi-line-signature">
-        
-        <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?
-        <span class="name ">semanticLabel</span>
-        <div class="features"><span class="feature">final</span></div>
-
-      </section>
-      
-
-      
-<section class="summary source-code" id="source">
-  <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final String? semanticLabel;</code></pre>
-</section>
-
 
     
+        
+  <section id="getter">
+    <section class="multi-line-signature">
+      
+      <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span>
+      get
+      <span class="name ">getBackgroundColor</span>
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Returns the background color to apply behind the icon.</p>
+<p>A custom background is only applied when the icon is not tinted
+(<a href="../../components_common_ouds_icon_status/Neutral/tinted.html">Neutral.tinted</a> or <a href="../../components_common_ouds_icon_status/Accent/tinted.html">Accent.tinted</a> is <code>false</code>). Otherwise, no
+background is applied and the theme default is used.</p>
+</section>
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">Color? get getBackgroundColor =&gt; switch (this) {
+  Neutral(tinted: false, backgroundColor: final bg) =&gt; bg,
+  Accent(tinted: false, backgroundColor: final bg) =&gt; bg,
+  _ =&gt; null,
+};</code></pre>
+</section>
+
+  </section>
+
+
 </div> <!-- /.main-content -->
 <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
   <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
@@ -80,12 +96,12 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_progress_indicator_ouds_progress_indicator/">ouds_progress_indicator</a></li>
-    <li><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator-class.html">OudsProgressIndicator</a></li>
-    <li class="self-crumb">semanticLabel property</li>
+    <li><a href="../../components_common_ouds_icon_status/">ouds_icon_status</a></li>
+    <li><a href="../../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></li>
+    <li class="self-crumb">getBackgroundColor property</li>
 </ol>
 
-  <h5>OudsProgressIndicator class</h5>
+  <h5>OudsIconStatus class</h5>
   <div id="dartdoc-sidebar-left-content"></div>
 </div><!--/.sidebar-offcanvas-->
 <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
@@ -94,7 +110,7 @@
 <footer>
   <span class="no-break">
     ouds_core
-      3.0.0
+      3.1.0
   </span>
   
 </footer>
