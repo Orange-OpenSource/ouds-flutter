@@ -156,13 +156,18 @@ class _OudsSkeletonState extends State<OudsSkeleton>
     final content = SizedBox(
       width: 200,
       height: 62,
-      child: ClipRect(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            ColoredBox(color: tokens.colorBg),
-            if (shouldAnimate) shimmer,
-          ],
+      child: Padding(
+        padding: widget.hasSecurityMargin
+            ? EdgeInsets.symmetric(vertical: padding)
+            : EdgeInsets.zero,
+        child: ClipRect(
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              ColoredBox(color: tokens.colorBg),
+              if (shouldAnimate) shimmer,
+            ],
+          ),
         ),
       ),
     );
@@ -170,14 +175,7 @@ class _OudsSkeletonState extends State<OudsSkeleton>
     return Semantics(
       liveRegion: true,
       label: OudsLocalizations.of(context)?.core_common_loading_a11y,
-      child: ExcludeSemantics(
-        child: Padding(
-          padding: widget.hasSecurityMargin
-              ? EdgeInsets.symmetric(vertical: padding)
-              : EdgeInsets.zero,
-          child: content,
-        ),
-      ),
+      child: ExcludeSemantics(child: content),
     );
   }
 }
