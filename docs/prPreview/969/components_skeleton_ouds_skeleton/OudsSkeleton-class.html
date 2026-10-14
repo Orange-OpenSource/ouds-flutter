@@ -73,6 +73,27 @@ constraints provided by its parent. To display it at a specific size, wrap it in
   hasSecurityMargin: false,
 )
 </code></pre>
+<h2 id="accessibility">Accessibility</h2>
+<p>By default, OudsSkeleton announces its loading state to screen readers.
+For screens with multiple skeletons, exclude them from semantics and provide
+a single screen-level loading announcement to avoid repetition.</p>
+<pre class="language-dart"><code class="language-dart">Column(
+  children: [
+    ExcludeSemantics(child: OudsSkeleton()),
+    ExcludeSemantics(child: OudsSkeleton()),
+    ExcludeSemantics(child: OudsSkeleton()),
+  ],
+)
+
+// Somewhere once for the whole screen:
+Semantics(
+  liveRegion: true,
+  label: OudsLocalizations.of(context)?.core_common_loading_a11y,
+  child: ...,
+)
+</code></pre>
+<p>Choose the pattern that matches the context: one loading announcement per isolated skeleton,
+or a single announcement for a screen presenting many skeletons at once.</p>
 </section>
 
 
