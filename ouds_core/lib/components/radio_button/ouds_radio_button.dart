@@ -153,12 +153,8 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
     return Semantics(
       inMutuallyExclusiveGroup: true,
-      // On Android, `checked` + `inMutuallyExclusiveGroup` make TalkBack map this node to
-      // android.widget.RadioButton and announce the checked state natively.
-      // On iOS, `checked` (hasCheckedState) forces an unwanted "button" trait AND the engine
-      // silences accessibilityValue for nodes in a mutually exclusive group (checked/unchecked
-      // would never be spoken anyway). So iOS uses `selected` instead, which maps to the
-      // "Selected" trait without adding "button".
+      // Use checked with inMutuallyExclusiveGroup on Android for native radio-button announcements.
+      // On iOS, use selected to announce the selected state without adding an unwanted button trait.
       checked: isIOS ? null : _selected,
       selected: isIOS ? _selected : null,
       hint: (isIOS && isItemEnabled) ? l10n?.core_checkbox_hint_a11y : null,
