@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [DemoApp][Library] In library, add component `skeleton` ([#867](https://github.com/Orange-OpenSource/ouds-flutter/issues/867))
 ### Changed
+- [Library] Update `link` to display trailing icon after the last character ([#930](https://github.com/Orange-OpenSource/ouds-flutter/issues/930))
 ### Fixed
 
 ## [3.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...3.0.0) - 2026-10-07
