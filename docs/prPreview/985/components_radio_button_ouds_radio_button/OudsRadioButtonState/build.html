@@ -216,12 +216,8 @@ Widget build(BuildContext context) {
 
   return Semantics(
     inMutuallyExclusiveGroup: true,
-    &#47;&#47; On Android, `checked` + `inMutuallyExclusiveGroup` make TalkBack map this node to
-    &#47;&#47; android.widget.RadioButton and announce the checked state natively.
-    &#47;&#47; On iOS, `checked` (hasCheckedState) forces an unwanted &quot;button&quot; trait AND the engine
-    &#47;&#47; silences accessibilityValue for nodes in a mutually exclusive group (checked&#47;unchecked
-    &#47;&#47; would never be spoken anyway). So iOS uses `selected` instead, which maps to the
-    &#47;&#47; &quot;Selected&quot; trait without adding &quot;button&quot;.
+    &#47;&#47; Use checked with inMutuallyExclusiveGroup on Android for native radio-button announcements.
+    &#47;&#47; On iOS, use selected to announce the selected state without adding an unwanted button trait.
     checked: isIOS ? null : _selected,
     selected: isIOS ? _selected : null,
     hint: (isIOS &amp;&amp; isItemEnabled) ? l10n?.core_checkbox_hint_a11y : null,
