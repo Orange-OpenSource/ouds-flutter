@@ -532,24 +532,46 @@ class _OudsLinkState extends State<OudsLink> {
       widget.icon?.assetsName,
     )!;
 
+    // A WidgetSpan is laid out as an independent replacement object, so a
+    // word joiner between the label text and the icon is not enough to
+    // prevent a line break between them. Instead, the last word of the
+    // label is bundled together with the icon inside a single WidgetSpan
+    // (as an inline Row), so they always stay on the same line and wrap
+    // together as one atomic unit.
+    final label = widget.label;
+    final lastSpaceIndex = label.lastIndexOf(' ');
+    final leadingText = lastSpaceIndex == -1
+        ? ''
+        : label.substring(0, lastSpaceIndex + 1);
+    final lastWord = lastSpaceIndex == -1
+        ? label
+        : label.substring(lastSpaceIndex + 1);
+
     return Text.rich(
       textAlign: TextAlign.start,
       TextSpan(
         style: textStyle,
         children: [
-          TextSpan(text: widget.label),
+          if (leadingText.isNotEmpty) TextSpan(text: leadingText),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(start: columnGap),
-              child: _buildIcon(
-                context,
-                widget.icon?.assetsName,
-                linkControlState,
-                widget.layout,
-                widget.size,
-                widget._indicator,
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(lastWord, style: textStyle),
+                Padding(
+                  padding: EdgeInsetsDirectional.only(start: columnGap),
+                  child: _buildIcon(
+                    context,
+                    widget.icon?.assetsName,
+                    linkControlState,
+                    widget.layout,
+                    widget.size,
+                    widget._indicator,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
