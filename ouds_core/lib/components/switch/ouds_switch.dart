@@ -130,51 +130,57 @@ class _OudsSwitchState extends State<OudsSwitch> {
       context,
     ).componentsTokens(context).switchButton;
 
-    return OudsSkeletonLayout(
-      visible: widget.skeleton != null,
-      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-      animated: widget.skeleton?.animated ?? false,
-      content: (context) => MergeSemantics(
-        child: Semantics(
-          enabled: widget.onChanged != null,
-          toggled: widget.value,
-          button: true,
-          child: Material(
-            color: Colors.transparent,
-            child: SizedBox(
-              height: switchButton.sizeMinHeightInteractiveArea,
-              child: InkWell(
-                onTap: (!isReadOnly && widget.onChanged != null)
-                    ? () {
-                        _isPressed = true;
-                        // Added to improve visual rendering fluidity by allowing Flutter
-                        // to complete the current frame before executing the state change logic.
-                        SchedulerBinding.instance.addPostFrameCallback((_) {
-                          widget.onChanged!(!widget.value);
-                          _isPressed = false;
-                        });
-                      }
-                    : null,
-                splashFactory: NoSplash.splashFactory,
-                highlightColor: Colors.transparent,
-                onHover: (hovering) {
-                  setState(() {
-                    _isHovered = hovering;
-                  });
-                },
-                onHighlightChanged: (highlighted) {
-                  setState(() {
-                    _isPressed = highlighted;
-                  });
-                },
-                onFocusChange: (focused) {
-                  setState(() {
-                    _isFocused = focused;
-                  });
-                },
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Container(
+    return MergeSemantics(
+      child: Semantics(
+        enabled: widget.onChanged != null,
+        toggled: widget.value,
+        button: true,
+        child: Material(
+          color: Colors.transparent,
+          child: SizedBox(
+            height: switchButton.sizeMinHeightInteractiveArea,
+            child: InkWell(
+              onTap: (!isReadOnly && widget.onChanged != null)
+                  ? () {
+                      _isPressed = true;
+                      // Added to improve visual rendering fluidity by allowing Flutter
+                      // to complete the current frame before executing the state change logic.
+                      SchedulerBinding.instance.addPostFrameCallback((_) {
+                        widget.onChanged!(!widget.value);
+                        _isPressed = false;
+                      });
+                    }
+                  : null,
+              splashFactory: NoSplash.splashFactory,
+              highlightColor: Colors.transparent,
+              onHover: (hovering) {
+                setState(() {
+                  _isHovered = hovering;
+                });
+              },
+              onHighlightChanged: (highlighted) {
+                setState(() {
+                  _isPressed = highlighted;
+                });
+              },
+              onFocusChange: (focused) {
+                setState(() {
+                  _isFocused = focused;
+                });
+              },
+              child: Align(
+                alignment: Alignment.center,
+                child: OudsSkeletonLayout(
+                  visible: widget.skeleton != null,
+                  hasSecurityMargin:
+                      widget.skeleton?.hasSecurityMargin ?? false,
+                  animated: widget.skeleton?.animated ?? false,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      switchButton.borderRadiusTrack,
+                    ),
+                  ),
+                  content: (context) => Container(
                     width: switchButton.sizeWidthTrack,
                     height: switchButton.sizeHeightTrack,
                     constraints: BoxConstraints(

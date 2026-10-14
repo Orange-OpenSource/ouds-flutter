@@ -44,6 +44,32 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// )
 /// ```
 ///
+/// ## Accessibility
+///
+/// By default, OudsSkeleton announces its loading state to screen readers.
+/// For screens with multiple skeletons, exclude them from semantics and provide
+/// a single screen-level loading announcement to avoid repetition.
+///
+/// ```dart
+/// Column(
+///   children: [
+///     ExcludeSemantics(child: OudsSkeleton()),
+///     ExcludeSemantics(child: OudsSkeleton()),
+///     ExcludeSemantics(child: OudsSkeleton()),
+///   ],
+/// )
+///
+/// // Somewhere once for the whole screen:
+/// Semantics(
+///   liveRegion: true,
+///   label: OudsLocalizations.of(context)?.core_common_loading_a11y,
+///   child: ...,
+/// )
+/// ```
+///
+/// Choose the pattern that matches the context: one loading announcement per isolated skeleton,
+/// or a single announcement for a screen presenting many skeletons at once.
+///
 class OudsSkeleton extends StatefulWidget {
   /// Whether the shimmer sweep animation is enabled. Defaults to `true`. Automatically disabled
   /// when the system "reduce motion" accessibility setting is active, regardless of this value.
