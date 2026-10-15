@@ -73,6 +73,7 @@ This parameter should be consistent with the <a href="../components_form_input_o
 <li><a href="../components_form_input_ouds_phone_number_input/OudsPhoneNumberInput/countrySelector.html">countrySelector</a>: Optional. If provided, displays a country selector for choosing the country of the number.</li>
 <li><a href="../components_form_input_ouds_phone_number_input/OudsPhoneNumberInput/decoration.html">decoration</a>: Decoration configuration for the input field, including labels, icons, helper texts, etc.</li>
 <li><a href="../components_form_input_ouds_phone_number_input/OudsPhoneNumberInput/onEditingComplete.html">onEditingComplete</a>: Callback invoked when editing is complete.</li>
+<li><a href="../components_form_input_ouds_phone_number_input/OudsPhoneNumberInput/skeleton.html">skeleton</a>: An optional <a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a> to display a loading skeleton.</li>
 </ul>
 <h3 id="you-can-use-oudsphonenumberinput-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_form_input_ouds_phone_number_input/OudsPhoneNumberInput-class.html">OudsPhoneNumberInput</a> component in your project, customizing parameters as needed :</h3>
 <pre class="language-dart"><code class="language-dart">Example 1: With a country selector
@@ -102,6 +103,7 @@ OudsPhoneNumberInput(
   controller: myController,
   // No countrySelector provided
   readOnly: false,
+  skeleton: OudsSkeleton(),
 )
 </code></pre>
 </section>
@@ -137,7 +139,7 @@ OudsPhoneNumberInput(
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsPhoneNumberInput.new" class="callable">
-          <span class="name"><a href="../components_form_input_ouds_phone_number_input/OudsPhoneNumberInput/OudsPhoneNumberInput.html">OudsPhoneNumberInput</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-controller"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/TextEditingController-class.html">TextEditingController</a>?</span> <span class="parameter-name">controller</span>, </span><span class="parameter" id="param-focusNode"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html">FocusNode</a>?</span> <span class="parameter-name">focusNode</span>, </span><span class="parameter" id="param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-readOnly"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">readOnly</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-keyboardType"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextInputType-class.html">TextInputType</a>?</span> <span class="parameter-name">keyboardType</span>, </span><span class="parameter" id="param-countrySelector"><span class="type-annotation">CountrySelector?</span> <span class="parameter-name">countrySelector</span>, </span><span class="parameter" id="param-decoration"><span>required</span> <span class="type-annotation"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsInputDecoration-class.html">OudsInputDecoration</a></span> <span class="parameter-name">decoration</span>, </span><span class="parameter" id="param-onEditingComplete"><span class="type-annotation">void</span> <span class="parameter-name">onEditingComplete</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span></span>)?</span>})</span>
+          <span class="name"><a href="../components_form_input_ouds_phone_number_input/OudsPhoneNumberInput/OudsPhoneNumberInput.html">OudsPhoneNumberInput</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-controller"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/TextEditingController-class.html">TextEditingController</a>?</span> <span class="parameter-name">controller</span>, </span><span class="parameter" id="param-focusNode"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html">FocusNode</a>?</span> <span class="parameter-name">focusNode</span>, </span><span class="parameter" id="param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-readOnly"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">readOnly</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-keyboardType"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextInputType-class.html">TextInputType</a>?</span> <span class="parameter-name">keyboardType</span>, </span><span class="parameter" id="param-countrySelector"><span class="type-annotation">CountrySelector?</span> <span class="parameter-name">countrySelector</span>, </span><span class="parameter" id="param-decoration"><span>required</span> <span class="type-annotation"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsInputDecoration-class.html">OudsInputDecoration</a></span> <span class="parameter-name">decoration</span>, </span><span class="parameter" id="param-onEditingComplete"><span class="type-annotation">void</span> <span class="parameter-name">onEditingComplete</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span></span>)?, </span><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span></span>})</span>
         </dt>
         <dd>
           
@@ -279,6 +281,18 @@ OudsPhoneNumberInput(
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="skeleton" class="property">
+  <span class="name"><a href="../components_form_input_ouds_phone_number_input/OudsPhoneNumberInput/skeleton.html">skeleton</a></span>
+  <span class="signature">&#8594; <a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
