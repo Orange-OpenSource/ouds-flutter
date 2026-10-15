@@ -61,13 +61,17 @@ provides greater flexibility when creating other components that require a Radio
 <p>This widget displays a radio button that is part of a group. It determines its selected state
 by comparing its own <a href="../components_radio_button_ouds_radio_button/OudsRadioButton/value.html">value</a> with the current <a href="../components_radio_button_ouds_radio_button/OudsRadioButton/groupValue.html">groupValue</a>. It also supports an error state
 and notifies changes through <a href="../components_radio_button_ouds_radio_button/OudsRadioButton/onChanged.html">onChanged</a>.</p>
-<p>Parameters:
-<a href="../components_radio_button_ouds_radio_button/OudsRadioButton/value.html">value</a> The value represented by this radio button. Used to determine selection.
- <a href="../components_radio_button_ouds_radio_button/OudsRadioButton/groupValue.html">groupValue</a> The currently selected value in the radio button group.
-This radio button is considered selected if <a href="../components_radio_button_ouds_radio_button/OudsRadioButton/value.html">value</a> == <a href="../components_radio_button_ouds_radio_button/OudsRadioButton/groupValue.html">groupValue</a>.
- <a href="../components_radio_button_ouds_radio_button/OudsRadioButton/onChanged.html">onChanged</a> Callback triggered when the user selects this radio button.
-If <code>null</code>, the radio button is disabled and non-interactive.
- <a href="../components_radio_button_ouds_radio_button/OudsRadioButton/isError.html">isError</a> Indicates whether the radio button is in an error state.</p>
+<p>Parameters:</p>
+<ul>
+<li><a href="../components_radio_button_ouds_radio_button/OudsRadioButton/value.html">value</a>: The value represented by this radio button. Used to determine selection.</li>
+<li><a href="../components_radio_button_ouds_radio_button/OudsRadioButton/groupValue.html">groupValue</a>: The currently selected value in the radio button group.
+This radio button is considered selected if <a href="../components_radio_button_ouds_radio_button/OudsRadioButton/value.html">value</a> == <a href="../components_radio_button_ouds_radio_button/OudsRadioButton/groupValue.html">groupValue</a>.</li>
+<li><a href="../components_radio_button_ouds_radio_button/OudsRadioButton/onChanged.html">onChanged</a>: Callback triggered when the user selects this radio button.
+If <code>null</code>, the radio button is disabled and non-interactive.</li>
+<li><a href="../components_radio_button_ouds_radio_button/OudsRadioButton/isError.html">isError</a>: Indicates whether the radio button is in an error state.</li>
+<li><a href="../components_radio_button_ouds_radio_button/OudsRadioButton/readOnly.html">readOnly</a>: Controls the read only state of the radio button. When <code>true</code> the radio button is disabled.</li>
+<li><a href="../components_radio_button_ouds_radio_button/OudsRadioButton/skeleton.html">skeleton</a>: An optional skeleton that improves the perceived loading time by providing a visual cue of where the radio button will appear once fully loaded.</li>
+</ul>
 <h3 id="you-can-use-oudsradiobutton-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_radio_button_ouds_radio_button/OudsRadioButton-class.html">OudsRadioButton</a> component in your project, customizing parameters as needed :</h3>
 <p><strong>Selection status :</strong></p>
 <p>Typically, a radio button has two main states: Selected and Unselected.</p>
@@ -81,6 +85,7 @@ If <code>null</code>, the radio button is disabled and non-interactive.
    }
    isError: false,
    readOnly: false,
+   skeleton: OudsSkeleton(),
 );
 </code></pre>
 </section>
@@ -116,7 +121,7 @@ If <code>null</code>, the radio button is disabled and non-interactive.
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsRadioButton.new" class="callable">
-          <span class="name"><a href="../components_radio_button_ouds_radio_button/OudsRadioButton/OudsRadioButton.html">OudsRadioButton</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-value"><span>required</span> <span class="type-annotation">T</span> <span class="parameter-name">value</span>, </span><span class="parameter" id="param-groupValue"><span>required</span> <span class="type-annotation">T</span> <span class="parameter-name">groupValue</span>, </span><span class="parameter" id="param-onChanged"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span>?</span> <span class="parameter-name">onChanged</span>, </span><span class="parameter" id="param-isError"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isError</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-readOnly"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span> = <span class="default-value">false</span></span>})</span>
+          <span class="name"><a href="../components_radio_button_ouds_radio_button/OudsRadioButton/OudsRadioButton.html">OudsRadioButton</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-value"><span>required</span> <span class="type-annotation">T</span> <span class="parameter-name">value</span>, </span><span class="parameter" id="param-groupValue"><span>required</span> <span class="type-annotation">T</span> <span class="parameter-name">groupValue</span>, </span><span class="parameter" id="param-onChanged"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span>?</span> <span class="parameter-name">onChanged</span>, </span><span class="parameter" id="param-isError"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isError</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-readOnly"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span></span>})</span>
         </dt>
         <dd>
           
@@ -211,6 +216,18 @@ If <code>null</code>, the radio button is disabled and non-interactive.
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="skeleton" class="property">
+  <span class="name"><a href="../components_radio_button_ouds_radio_button/OudsRadioButton/skeleton.html">skeleton</a></span>
+  <span class="signature">&#8594; <a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 

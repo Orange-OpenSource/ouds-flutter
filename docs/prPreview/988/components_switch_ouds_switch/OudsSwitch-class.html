@@ -63,10 +63,14 @@ provides greater flexibility when creating other components that require a Switc
 <p>This widget displays a switch that is part of a group. It determines its selected state
 by comparing its own <a href="../components_switch_ouds_switch/OudsSwitch/value.html">value</a> with the current <code>groupValue</code>. It also supports an error state
 and notifies changes through <a href="../components_switch_ouds_switch/OudsSwitch/onChanged.html">onChanged</a>.</p>
-<p>Parameters:
-<a href="../components_switch_ouds_switch/OudsSwitch/value.html">value</a> The value represented by this switch . Used to determine selection.
- <a href="../components_switch_ouds_switch/OudsSwitch/onChanged.html">onChanged</a> Callback triggered when the user selects this switch.
-If <code>null</code>, switch is disabled and non-interactive.</p>
+<p>Parameters:</p>
+<ul>
+<li><a href="../components_switch_ouds_switch/OudsSwitch/value.html">value</a>: The value represented by this switch. Used to determine selection.</li>
+<li><a href="../components_switch_ouds_switch/OudsSwitch/onChanged.html">onChanged</a>: Callback triggered when the user selects this switch.
+If <code>null</code>, switch is disabled and non-interactive.</li>
+<li><a href="../components_switch_ouds_switch/OudsSwitch/readOnly.html">readOnly</a>: Controls the read only state of the switch. When <code>true</code> the switch is disabled.</li>
+<li><a href="../components_switch_ouds_switch/OudsSwitch/skeleton.html">skeleton</a>: An optional skeleton that improves the perceived loading time by providing a visual cue of where the switch will appear once fully loaded.</li>
+</ul>
 <h3 id="you-can-use-oudsswitch-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_switch_ouds_switch/OudsSwitch-class.html">OudsSwitch</a> component in your project, customizing parameters as needed :</h3>
 <pre class="language-dart"><code class="language-dart"> OudsSwitch(
     value: true,
@@ -74,6 +78,7 @@ If <code>null</code>, switch is disabled and non-interactive.</p>
           // Handle switch change state.
       }
     readOnly: false,
+    skeleton: OudsSkeleton(),
   );
 </code></pre>
 </section>
@@ -109,7 +114,7 @@ If <code>null</code>, switch is disabled and non-interactive.</p>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsSwitch.new" class="callable">
-          <span class="name"><a href="../components_switch_ouds_switch/OudsSwitch/OudsSwitch.html">OudsSwitch</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-value"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">value</span>, </span><span class="parameter" id="param-onChanged"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span>?</span> <span class="parameter-name">onChanged</span>, </span><span class="parameter" id="param-readOnly"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span> = <span class="default-value">false</span></span>})</span>
+          <span class="name"><a href="../components_switch_ouds_switch/OudsSwitch/OudsSwitch.html">OudsSwitch</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-value"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">value</span>, </span><span class="parameter" id="param-onChanged"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span>?</span> <span class="parameter-name">onChanged</span>, </span><span class="parameter" id="param-readOnly"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span></span>})</span>
         </dt>
         <dd>
           
@@ -180,6 +185,18 @@ If <code>null</code>, switch is disabled and non-interactive.</p>
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="skeleton" class="property">
+  <span class="name"><a href="../components_switch_ouds_switch/OudsSwitch/skeleton.html">skeleton</a></span>
+  <span class="signature">&#8594; <a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
