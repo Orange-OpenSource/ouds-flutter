@@ -19,6 +19,7 @@ import 'package:flutter/services.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -56,7 +57,7 @@ enum OudsPinCodeInputKeyboardType {
 
 /// [OUDS PIN Code Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
 ///
-/// **Reference design version : 1.3.0**
+/// **Reference design version : 1.4.0**
 ///
 /// A fixed-length PIN code input composed of individual digit cells, typically
 /// used for authentication or confirmation flows.
@@ -85,7 +86,7 @@ enum OudsPinCodeInputKeyboardType {
 ///   helperText: 'Enter your 6-digit code',
 ///   digitInputDecoration: OudsDigitInputDecoration(
 ///     hintText: '-',
-///     hiddenPassword: true,
+///     hiddenCharacter: true,
 ///   ),
 ///   onChanged: (value) => print('Current PIN: $value'),
 ///   onEditingComplete: (value) => print('PIN complete: $value'),
@@ -116,6 +117,17 @@ enum OudsPinCodeInputKeyboardType {
 /// Strong text can be used sparingly to highlight key information within the
 /// content. Only the dedicated "Strong" token is applied — no other text
 /// styles or custom font weights should be used.
+///
+/// ### ⚠️ Underline text
+///
+/// Underlined text must not be applied manually (e.g. in helper text), as it
+/// is commonly associated with hyperlinks and may mislead users.
+///
+/// ## Rich text in [helperText] and [errorText]
+///
+/// Both [helperText] and [errorText] accept simple rich text: wrap the words
+/// to emphasize with `**` on each side (e.g. `'**Strong** text'`) and they
+/// will be rendered using the "Strong" token matching the current text style.
 ///
 /// ### ⚠️ Underline text
 ///
@@ -441,6 +453,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
         ? widget.helperText!
         : '';
     final currentText = _hiddenController.text;
+    final semanticsLabel = isError
+        ? '${l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount)},${l10n?.core_common_error_a11y}'
+        : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount);
 
     return Container(
       constraints: BoxConstraints(
@@ -496,9 +511,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
             onLongPress: _pasteFromClipboard,
             child: Semantics(
               hint: hintSemanticText,
-              label: isError
-                  ? l10n?.core_common_error_a11y
-                  : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
+              label: semanticsLabel,
               child: Row(
                 mainAxisAlignment:
                     widget.digitInputDecoration.constrainedMaxWidth
@@ -523,7 +536,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                       hint: l10n?.core_common_hint_a11y,
                       label:
                           "${getDigitPositionLabel(context, index)}, "
-                          "${!widget.digitInputDecoration.hiddenPassword && widget.controllers != null ? widget.controllers![index].text : ''}, "
+                          "${!widget.digitInputDecoration.hiddenCharacter && widget.controllers != null ? widget.controllers![index].text : ''}, "
                           "${l10n?.core_pinCodeInput_trait_a11y}",
                       child: OudsDigitInput(
                         index: index,
@@ -533,8 +546,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                         skeleton: widget.skeleton,
                         digitInputDecoration: OudsDigitInputDecoration(
                           hintText: _hintText(index),
-                          hiddenPassword:
-                              widget.digitInputDecoration.hiddenPassword,
+                          hiddenCharacter:
+                              widget.digitInputDecoration.hiddenCharacter,
                           isOutlined: widget.digitInputDecoration.isOutlined,
                           keyboardType:
                               widget.digitInputDecoration.keyboardType,
@@ -566,18 +579,20 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: ExcludeSemantics(
-                    child: Text(
+                    child: Text.rich(
                       softWrap: true,
-                      widget.errorText != null && isError
-                          ? widget.errorText!
-                          : widget.helperText!,
-                      style: theme.typographyTokens
-                          .typeLabelDefaultMedium(context)
-                          .copyWith(
-                            color: OudsPinCodeInputTextColorModifier(
-                              context,
-                            ).getPinCodeHelperTextColor(isError),
-                          ),
+                      MarkdownSpanBuilder.buildBoldOnly(
+                        widget.errorText != null && isError
+                            ? widget.errorText ?? ""
+                            : widget.helperText ?? "",
+                        baseStyle: theme.typographyTokens
+                            .typeLabelDefaultMedium(context)
+                            .copyWith(
+                              color: OudsPinCodeInputTextColorModifier(
+                                context,
+                              ).getPinCodeHelperTextColor(isError),
+                            ),
+                      ),
                     ),
                   ),
                 ),

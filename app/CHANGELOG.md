@@ -8,8 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [DemoApp][Library] In library, add component `skeleton` ([#867](https://github.com/Orange-OpenSource/ouds-flutter/issues/867))
 ### Changed
+- [DemoApp][Library] For `PIN Code input` component, update to version 1.4 ([#967](https://github.com/Orange-OpenSource/ouds-flutter/issues/967))
 - [Library] Update `link` to display trailing icon after the last character ([#930](https://github.com/Orange-OpenSource/ouds-flutter/issues/930))
 ### Fixed
+- [Library] Bug A11Y `PIN code` Error message not read ([#853](https://github.com/Orange-OpenSource/ouds-flutter/issues/853))
 
 ## [3.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...3.0.0) - 2026-10-07
 ### Added

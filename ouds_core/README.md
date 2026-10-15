@@ -140,7 +140,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Pin Code Input</td>
-      <td>1.3.0</td>
+      <td>1.4.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Radio Button</td>
