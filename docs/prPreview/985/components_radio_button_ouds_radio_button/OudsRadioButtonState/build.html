@@ -214,120 +214,125 @@ Widget build(BuildContext context) {
 
   final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
 
-  return Semantics(
-    inMutuallyExclusiveGroup: true,
-    &#47;&#47; Use checked with inMutuallyExclusiveGroup on Android for native radio-button announcements.
-    &#47;&#47; On iOS, use selected to announce the selected state without adding an unwanted button trait.
-    checked: isIOS ? null : _selected,
-    selected: isIOS ? _selected : null,
-    hint: (isIOS &amp;&amp; isItemEnabled) ? l10n?.core_checkbox_hint_a11y : null,
-    enabled: isItemEnabled,
-    &#47;&#47; VoiceOver has no native &quot;radio button&quot; trait (unlike TalkBack, which infers it
-    &#47;&#47; from inMutuallyExclusiveGroup), so the trait is announced explicitly in value on iOS.
-    value: isIOS
-        ? (widget.isError
-              ? &#39;${l10n?.core_radioButton_radioButton_a11y}. ${l10n?.core_common_error_a11y}&#39;
-              : l10n?.core_radioButton_radioButton_a11y)
-        : (widget.isError ? l10n?.core_common_error_a11y : null),
-    child: SizedBox(
-      width: radioButton.sizeMinWidth,
-      child: InkWell(
-        excludeFromSemantics: true,
-        onTap: (!isReadOnly &amp;&amp; widget.onChanged != null)
-            ? () {
-                _isPressed = true;
-                &#47;&#47; Added to improve visual rendering fluidity by allowing Flutter
-                &#47;&#47; to complete the current frame before executing the onChanged callback.
-                SchedulerBinding.instance.addPostFrameCallback((_) {
-                  widget.onChanged!(widget.value);
-                  _isPressed = false;
-                });
-              }
-            : null,
-        splashColor: Colors.transparent,
-        onHover: (hovering) {
-          setState(() {
-            _isHovered = hovering;
-          });
-        },
-        onHighlightChanged: (highlighted) {
-          setState(() {
-            _isPressed = highlighted;
-          });
-        },
-        child: Container(
-          constraints: BoxConstraints(
-            maxHeight: radioButton.sizeMaxHeight,
-            minHeight: radioButton.sizeMinHeight,
-            minWidth: radioButton.sizeMinWidth,
-          ),
-          decoration: BoxDecoration(
-            color: _isPressed
-                ? radioButtonBackgroundModifier.getBackgroundColor(
-                    radioButtonState,
-                  )
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(
-              radioButtonBorderModifier.getBorderRadius(
-                controlListItem.borderRadiusItemOnly,
+  return OudsSkeletonLayout(
+    visible: widget.skeleton != null,
+    hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
+    animated: widget.skeleton?.animated ?? false,
+    content: (context) =&gt; Semantics(
+      inMutuallyExclusiveGroup: true,
+      &#47;&#47; Use checked with inMutuallyExclusiveGroup on Android for native radio-button announcements.
+      &#47;&#47; On iOS, use selected to announce the selected state without adding an unwanted button trait.
+      checked: isIOS ? null : _selected,
+      selected: isIOS ? _selected : null,
+      hint: (isIOS &amp;&amp; isItemEnabled) ? l10n?.core_checkbox_hint_a11y : null,
+      enabled: isItemEnabled,
+      &#47;&#47; VoiceOver has no native &quot;radio button&quot; trait (unlike TalkBack, which infers it
+      &#47;&#47; from inMutuallyExclusiveGroup), so the trait is announced explicitly in value on iOS.
+      value: isIOS
+          ? (widget.isError
+                ? &#39;${l10n?.core_radioButton_radioButton_a11y}. ${l10n?.core_common_error_a11y}&#39;
+                : l10n?.core_radioButton_radioButton_a11y)
+          : (widget.isError ? l10n?.core_common_error_a11y : null),
+      child: SizedBox(
+        width: radioButton.sizeMinWidth,
+        child: InkWell(
+          excludeFromSemantics: true,
+          onTap: (!isReadOnly &amp;&amp; widget.onChanged != null)
+              ? () {
+                  _isPressed = true;
+                  &#47;&#47; Added to improve visual rendering fluidity by allowing Flutter
+                  &#47;&#47; to complete the current frame before executing the onChanged callback.
+                  SchedulerBinding.instance.addPostFrameCallback((_) {
+                    widget.onChanged!(widget.value);
+                    _isPressed = false;
+                  });
+                }
+              : null,
+          splashColor: Colors.transparent,
+          onHover: (hovering) {
+            setState(() {
+              _isHovered = hovering;
+            });
+          },
+          onHighlightChanged: (highlighted) {
+            setState(() {
+              _isPressed = highlighted;
+            });
+          },
+          child: Container(
+            constraints: BoxConstraints(
+              maxHeight: radioButton.sizeMaxHeight,
+              minHeight: radioButton.sizeMinHeight,
+              minWidth: radioButton.sizeMinWidth,
+            ),
+            decoration: BoxDecoration(
+              color: _isPressed
+                  ? radioButtonBackgroundModifier.getBackgroundColor(
+                      radioButtonState,
+                    )
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(
+                radioButtonBorderModifier.getBorderRadius(
+                  controlListItem.borderRadiusItemOnly,
+                ),
               ),
             ),
-          ),
-          child: Center(
-            child: SizedBox(
-              width: controlListItem.sizeControlIndicator,
-              height: controlListItem.sizeControlIndicator,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  &#47;&#47; --- Decorated back-end : border, radius, etc.
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      border: OudsBorder().borderAll(
-                        color: radioButtonBorderModifier.getBorderColor(
-                          radioButtonState,
-                          widget.isError,
-                          _selected,
-                          _isHighContrast,
+            child: Center(
+              child: SizedBox(
+                width: controlListItem.sizeControlIndicator,
+                height: controlListItem.sizeControlIndicator,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    &#47;&#47; --- Decorated back-end : border, radius, etc.
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        border: OudsBorder().borderAll(
+                          color: radioButtonBorderModifier.getBorderColor(
+                            radioButtonState,
+                            widget.isError,
+                            _selected,
+                            _isHighContrast,
+                          ),
+                          width: radioButtonBorderModifier.getBorderWidth(
+                            radioButtonState,
+                            _selected,
+                            radioButton,
+                          ),
                         ),
-                        width: radioButtonBorderModifier.getBorderWidth(
-                          radioButtonState,
-                          _selected,
-                          radioButton,
-                        ),
-                      ),
-                      borderRadius: BorderRadius.circular(
-                        radioButtonBorderModifier.getBorderRadius(
-                          radioButton.borderRadius,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  &#47;&#47; --- Tick selected
-                  if (_selected)
-                    Center(
-                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(
-                          radioButton.borderRadius,
-                        ),
-                        child: SvgPicture.asset(
-                          AppAssets.icons.componentRadioButtonSelected,
-                          excludeFromSemantics: true,
-                          package: OudsTheme.of(context).packageName,
-                          fit: BoxFit.contain,
-                          colorFilter: ColorFilter.mode(
-                            radioButtonTickModifier.getTickColor(
-                              radioButtonState,
-                              widget.isError,
-                              _isHighContrast,
-                            ),
-                            BlendMode.srcIn,
+                          radioButtonBorderModifier.getBorderRadius(
+                            radioButton.borderRadius,
                           ),
                         ),
                       ),
                     ),
-                ],
+
+                    &#47;&#47; --- Tick selected
+                    if (_selected)
+                      Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                            radioButton.borderRadius,
+                          ),
+                          child: SvgPicture.asset(
+                            AppAssets.icons.componentRadioButtonSelected,
+                            excludeFromSemantics: true,
+                            package: OudsTheme.of(context).packageName,
+                            fit: BoxFit.contain,
+                            colorFilter: ColorFilter.mode(
+                              radioButtonTickModifier.getTickColor(
+                                radioButtonState,
+                                widget.isError,
+                                _isHighContrast,
+                              ),
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

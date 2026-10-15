@@ -68,6 +68,7 @@ the parent checkbox becomes an indeterminate checkbox.</p>
 the checked state.</li>
 <li><a href="../components_checkbox_ouds_checkbox/OudsCheckbox/tristate.html">tristate</a>: If true, the checkboxes value can be true, false, or null. If false, only true and false states are managed.</li>
 <li><a href="../components_checkbox_ouds_checkbox/OudsCheckbox/isError.html">isError</a>: Controls the error state of the checkbox.</li>
+<li><a href="../components_checkbox_ouds_checkbox/OudsCheckbox/skeleton.html">skeleton</a>: An optional skeleton that improves the perceived loading time by providing a visual cue of where the checkbox will appear once fully loaded.</li>
 </ul>
 <h3 id="you-can-use-oudscheckbox-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_checkbox_ouds_checkbox/OudsCheckbox-class.html">OudsCheckbox</a> component in your project, customizing parameters as needed :</h3>
 <p><strong>Enabled checkbox sample :</strong></p>
@@ -81,6 +82,7 @@ the checked state.</li>
     },
   isError: false,
   readOnly: false,
+  skeleton: OudsSkeleton(),
 );
 </code></pre>
 </section>
@@ -116,7 +118,7 @@ the checked state.</li>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsCheckbox.new" class="callable">
-          <span class="name"><a href="../components_checkbox_ouds_checkbox/OudsCheckbox/OudsCheckbox.html">OudsCheckbox</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-value"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">value</span>, </span><span class="parameter" id="param-onChanged"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span>&gt;</span>?</span> <span class="parameter-name">onChanged</span>, </span><span class="parameter" id="param-isError"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isError</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-tristate"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tristate</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-readOnly"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span> = <span class="default-value">false</span></span>})</span>
+          <span class="name"><a href="../components_checkbox_ouds_checkbox/OudsCheckbox/OudsCheckbox.html">OudsCheckbox</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-value"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">value</span>, </span><span class="parameter" id="param-onChanged"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span>&gt;</span>?</span> <span class="parameter-name">onChanged</span>, </span><span class="parameter" id="param-isError"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isError</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-tristate"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tristate</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-readOnly"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span></span>})</span>
         </dt>
         <dd>
           
@@ -199,6 +201,18 @@ the checked state.</li>
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="skeleton" class="property">
+  <span class="name"><a href="../components_checkbox_ouds_checkbox/OudsCheckbox/skeleton.html">skeleton</a></span>
+  <span class="signature">&#8594; <a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
