@@ -37,7 +37,7 @@ Color? resolveTypographyColor(BuildContext context, TypographyEnumColor color) {
   final colorScheme = OudsTheme.of(context).colorScheme(context);
   switch (color) {
     case TypographyEnumColor.defaultColor:
-      return null;
+      return throw UnimplementedError("Error typography color is not relevant");
     case TypographyEnumColor.brandPrimary:
       return colorScheme.contentBrandPrimary;
     case TypographyEnumColor.onBrandPrimary:
@@ -116,7 +116,7 @@ Color? resolveAnnotatedTextSegmentColor(
     case 'contentStatusInfo':
       return colorScheme.contentStatusInfo;
     default:
-      return null;
+      return throw UnimplementedError("Annotated text color is not relevant");
   }
 }
 

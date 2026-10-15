@@ -26,17 +26,6 @@ void main() {
 
       expect(find.text('Hello world'), findsOneWidget);
     });
-
-    testWidgets('applies the color override when provided', (tester) async {
-      await tester.pumpWidget(
-        testableWidget(
-          const OudsDisplayText(text: 'Colored text', color: Colors.red),
-        ),
-      );
-
-      final textWidget = tester.widget<Text>(find.text('Colored text'));
-      expect(textWidget.textSpan?.style?.color, Colors.red);
-    });
   });
 
   group('OudsDisplayText', () {

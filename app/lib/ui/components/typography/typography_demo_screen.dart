@@ -90,7 +90,7 @@ class _TypographyDemoScreenState extends State<TypographyDemoScreen> {
   Widget build(BuildContext context) {
     return TypographyCustomization(
       variant: widget.variant,
-      initialText: "Label",
+      initialText: context.l10n.app_components_common_label_label,
       child: Padding(
         padding: EdgeInsets.only(
           bottom: defaultTargetPlatform == TargetPlatform.android

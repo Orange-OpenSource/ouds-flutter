@@ -166,6 +166,31 @@ class AppLocalizationsAr extends AppLocalizations {
       'الخط هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.';
 
   @override
+  String app_tokens_typography_family_tech(String family) {
+    return 'Family: ($family)';
+  }
+
+  @override
+  String app_tokens_typography_size_tech(String size) {
+    return 'Size: ($size)';
+  }
+
+  @override
+  String app_tokens_typography_weight_tech(String weight) {
+    return 'Weight: ($weight)';
+  }
+
+  @override
+  String app_tokens_typography_letterSpacing_tech(String letterSpacing) {
+    return 'Letter spacing: ($letterSpacing)';
+  }
+
+  @override
+  String app_tokens_typography_lineHeight_tech(String lineHeight) {
+    return 'Line height: ($lineHeight)';
+  }
+
+  @override
   String get app_tokens_border_label => 'Border';
 
   @override

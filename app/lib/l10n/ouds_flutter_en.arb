@@ -94,6 +94,46 @@
   "@_token_typography": {},
   "app_tokens_typography_label": "Typography",
   "app_tokens_typography_description_text": "Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.",
+  "app_tokens_typography_family_tech": "Family: ({family})",
+  "@app_tokens_typography_family_tech": {
+    "placeholders": {
+      "family": {
+        "type": "String"
+      }
+    }
+  },
+  "app_tokens_typography_size_tech": "Size: ({size})",
+  "@app_tokens_typography_size_tech": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "app_tokens_typography_weight_tech": "Weight: ({weight})",
+  "@app_tokens_typography_weight_tech": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      }
+    }
+  },
+  "app_tokens_typography_letterSpacing_tech": "Letter spacing: ({letterSpacing})",
+  "@app_tokens_typography_letterSpacing_tech": {
+    "placeholders": {
+      "letterSpacing": {
+        "type": "String"
+      }
+    }
+  },
+  "app_tokens_typography_lineHeight_tech": "Line height: ({lineHeight})",
+  "@app_tokens_typography_lineHeight_tech": {
+    "placeholders": {
+      "lineHeight": {
+        "type": "String"
+      }
+    }
+  },
 
  "@_token_border": {},
   "app_tokens_border_label": "Border",

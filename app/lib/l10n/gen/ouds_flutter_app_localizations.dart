@@ -391,6 +391,36 @@ abstract class AppLocalizations {
   /// **'Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.'**
   String get app_tokens_typography_description_text;
 
+  /// No description provided for @app_tokens_typography_family_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Family: ({family})'**
+  String app_tokens_typography_family_tech(String family);
+
+  /// No description provided for @app_tokens_typography_size_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Size: ({size})'**
+  String app_tokens_typography_size_tech(String size);
+
+  /// No description provided for @app_tokens_typography_weight_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight: ({weight})'**
+  String app_tokens_typography_weight_tech(String weight);
+
+  /// No description provided for @app_tokens_typography_letterSpacing_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Letter spacing: ({letterSpacing})'**
+  String app_tokens_typography_letterSpacing_tech(String letterSpacing);
+
+  /// No description provided for @app_tokens_typography_lineHeight_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Line height: ({lineHeight})'**
+  String app_tokens_typography_lineHeight_tech(String lineHeight);
+
   /// No description provided for @app_tokens_border_label.
   ///
   /// In en, this message translates to:

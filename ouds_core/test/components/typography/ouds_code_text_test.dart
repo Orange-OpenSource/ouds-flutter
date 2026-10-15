@@ -35,7 +35,7 @@ void main() {
       );
 
       final textWidget = tester.widget<Text>(find.text('Colored text'));
-      expect(textWidget.textSpan?.style?.color, Colors.red);
+      expect(textWidget.style?.color, Colors.red);
     });
 
     testWidgets('uses a menlo font family', (tester) async {
@@ -44,7 +44,7 @@ void main() {
       );
 
       final textWidget = tester.widget<Text>(find.text('const x = 1;'));
-      expect(textWidget.textSpan?.style?.fontFamily, 'monospace');
+      expect(textWidget.style?.fontFamily, 'menlo');
     });
 
     testWidgets('.rich colors only the span wrapped in withColor', (

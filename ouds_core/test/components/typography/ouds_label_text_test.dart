@@ -13,8 +13,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
-import 'package:ouds_core/components/typography/ouds_body_text.dart'
-    show OudsTextWeight;
 import 'package:ouds_core/components/typography/ouds_label_text.dart';
 
 import '../../helpers/testable_widget_helper.dart';
