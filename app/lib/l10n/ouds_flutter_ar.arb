@@ -89,6 +89,9 @@
   "@_components_radio_button": {},
   "app_components_radioButton_description_text": "Radio button هو عنصر واجهة مستخدم يسمح باختيار خيار واحد فقط من مجموعة من الخيارات المتعارضة.",
 
+  "@_components_skeleton": {},
+  "app_components_skeleton_description_text": "Skeleton هو عنصر واجهة مستخدم يعرض شكلاً متحركًا مؤقتًا أثناء تحميل المحتوى.",
+
   "@_components_switch": {},
   "app_components_switch_description_text": "Switch هو عنصر واجهة مستخدم يسمح بالتبديل بين حالتين، عادةً \"تشغيل\" و \"إيقاف\"، ويستخدم لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات.",
   "app_components_switch_switch_a11y": "وصف محتوى المفتاح",
