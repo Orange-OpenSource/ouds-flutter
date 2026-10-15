@@ -13,6 +13,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/alert/ouds_inline_alert.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_code_generator.dart';
@@ -24,6 +25,7 @@ import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
@@ -117,6 +119,7 @@ class _InlineAlertDemoState extends State<_InlineAlertDemo> {
           customizationState,
           themeController,
         ),
+        skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
       ),
     );
   }
@@ -195,6 +198,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.label,
           focusNode: labelFocus,
           fieldType: FieldType.label,
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
+          },
         ),
       ],
     );

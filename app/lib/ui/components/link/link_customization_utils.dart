@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -38,6 +39,7 @@ class LinkCustomizationUtils {
     final size = getSize(customizationState.selectedSize);
     final density = getDensity(customizationState.selectedDensity);
     final isTinted = customizationState.isTinted;
+    final skeleton = customizationState.hasSkeleton ? OudsSkeleton() : null;
 
     switch (customizationState.selectedLayout) {
       case LinkEnumLayout.textAndIcon:
@@ -53,6 +55,7 @@ class LinkCustomizationUtils {
           size: size,
           density: density,
           onPressed: onPressed,
+          skeleton: skeleton,
         );
       case LinkEnumLayout.next:
         return OudsLink.next(
@@ -60,6 +63,7 @@ class LinkCustomizationUtils {
           size: size,
           density: density,
           onPressed: onPressed,
+          skeleton: skeleton,
         );
       case LinkEnumLayout.previous:
         return OudsLink.previous(
@@ -67,6 +71,7 @@ class LinkCustomizationUtils {
           size: size,
           density: density,
           onPressed: onPressed,
+          skeleton: skeleton,
         );
       case LinkEnumLayout.external:
         return OudsLink.external(
@@ -74,6 +79,7 @@ class LinkCustomizationUtils {
           size: size,
           density: density,
           onPressed: onPressed,
+          skeleton: skeleton,
         );
       case LinkEnumLayout.textOnly:
         return OudsLink(
@@ -81,6 +87,7 @@ class LinkCustomizationUtils {
           size: size,
           density: density,
           onPressed: onPressed,
+          skeleton: skeleton,
         );
     }
   }

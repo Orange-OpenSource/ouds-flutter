@@ -25,6 +25,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget>
   late final CenterAlignedState centerAlignedState;
   late final EdgeState edgeToEdgeState;
   late final TintedState tintedState;
+  late final SkeletonState skeletonState;
 
   @override
   void initState() {
@@ -38,6 +39,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget>
     centerAlignedState = CenterAlignedState(setState);
     edgeToEdgeState = EdgeState(setState, initial: true);
     tintedState = TintedState(setState);
+    skeletonState = SkeletonState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -67,6 +69,9 @@ abstract class CustomizationWidgetState<T extends StatefulWidget>
 
   TintedEnum get selectedTinted => tintedState.selected;
   set selectedTinted(TintedEnum value) => tintedState.selected = value;
+
+  bool get hasSkeleton => skeletonState.value;
+  set hasSkeleton(bool value) => skeletonState.value = value;
 }
 
 /// Enabled State Management
@@ -190,6 +195,21 @@ class TintedState {
   set selected(TintedEnum newValue) {
     _setState(() {
       _selectedTinted = newValue;
+    });
+  }
+}
+
+/// Skeleton State Management
+class SkeletonState {
+  SkeletonState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasSkeleton = false;
+
+  bool get value => _hasSkeleton;
+  set value(bool newValue) {
+    _setState(() {
+      _hasSkeleton = newValue;
     });
   }
 }
