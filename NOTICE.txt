@@ -133,6 +133,7 @@ ouds_theme_orange/assets/component/list-item/external-link.svg
 ouds_theme_orange/assets/component/list-item/next.svg
 ouds_theme_orange/assets/component/list-item/previous.svg
 ouds_theme_orange/assets/component/list-item/select.svg
+ouds_theme_orange/assets/component/typography/ic_heading_text_marker.svg
 
 
 ouds_theme_orange/fonts/Roboto-Black.ttf
@@ -183,6 +184,7 @@ ouds_theme_orange_compact/assets/component/list-item/external-link.svg
 ouds_theme_orange_compact/assets/component/list-item/next.svg
 ouds_theme_orange_compact/assets/component/list-item/previous.svg
 ouds_theme_orange_compact/assets/component/list-item/select.svg
+ouds_theme_orange/assets/component/typography/ic_heading_text_marker.svg
 
 
 ouds_theme_orange_compact/fonts/Roboto-Black.ttf
@@ -281,6 +283,7 @@ ouds_theme_wireframe/assets/component/list-item/external-link.svg
 ouds_theme_wireframe/assets/component/list-item/next.svg
 ouds_theme_wireframe/assets/component/list-item/previous.svg
 ouds_theme_wireframe/assets/component/list-item/select.svg
+ouds_theme_wireframe/assets/component/typography/ic_heading_text_marker.svg
 
 
 ouds_theme_wireframe/fonts/ShantellSans-Bold.ttf
