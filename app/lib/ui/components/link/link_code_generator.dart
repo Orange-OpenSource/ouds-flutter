@@ -70,6 +70,8 @@ class LinkCodeGenerator {
       '  size: $sizeCode,',
       '  density: $densityCode,',
       '  onPressed:$pressedCode',
+      if (customizationState?.hasSkeleton == true)
+        '  skeleton: OudsSkeleton(),',
     ];
 
     // Base widget

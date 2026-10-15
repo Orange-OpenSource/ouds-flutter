@@ -13,6 +13,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_code_generator.dart';
@@ -73,8 +74,6 @@ class _Body extends StatefulWidget {
 
 class _BodyState extends State<_Body> {
   RadioOption _selectedOption = RadioOption.first;
-  final String codeString =
-      '''Radio<bool>(\nvalue: true,\ngroupValue: isCheckedFirst,\nonChanged: (bool? newValue) => setState(() => isCheckedFirst = newValue!),\n)''';
 
   void _handleRadioChanged(RadioOption newValue) {
     setState(() {
@@ -133,17 +132,17 @@ class _RadioButtonDemo extends StatefulWidget {
 }
 
 class _RadioButtonDemoState extends State<_RadioButtonDemo> {
-  ThemeController? themeController;
-  RadioButtonCustomizationState? customizationState;
-
   @override
   Widget build(BuildContext context) {
-    customizationState = RadioButtonCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: false);
+    final customizationState = RadioButtonCustomization.of(context)!;
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+      themeController.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
 
     return LightDarkBox(
@@ -153,28 +152,35 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
           OudsRadioButton<RadioOption>(
             value: RadioOption.first,
             groupValue: widget.selectedOption,
-            onChanged: customizationState!.hasEnabled
+            onChanged: customizationState.hasEnabled
                 ? (RadioOption? value) {
                     setState(() {
                       widget.updateGlobalValue(value!);
                     });
                   }
                 : null,
-            isError: customizationState!.hasError,
-            readOnly: customizationState!.hasReadOnly ? true : false,
+            isError: customizationState.hasError,
+            readOnly: customizationState.hasReadOnly ? true : false,
+            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+          ),
+          SizedBox(
+            width: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedExtraSmall,
           ),
           OudsRadioButton<RadioOption>(
             value: RadioOption.second,
             groupValue: widget.selectedOption,
-            onChanged: customizationState!.hasEnabled
+            onChanged: customizationState.hasEnabled
                 ? (RadioOption? value) {
                     setState(() {
                       widget.updateGlobalValue(value!);
                     });
                   }
                 : null,
-            isError: customizationState!.hasError,
-            readOnly: customizationState!.hasReadOnly ? true : false,
+            isError: customizationState.hasError,
+            readOnly: customizationState.hasReadOnly ? true : false,
+            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
           ),
         ],
       ),
@@ -236,6 +242,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                     customizationState.hasReadOnly = value;
                   });
                 },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
+          },
         ),
       ],
     );

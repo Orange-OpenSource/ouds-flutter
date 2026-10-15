@@ -19,6 +19,8 @@ import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
@@ -39,9 +41,11 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 /// and notifies changes through [onChanged].
 ///
 ///  Parameters:
-///  [value] The value represented by this switch . Used to determine selection.
-///  [onChanged] Callback triggered when the user selects this switch.
+/// - [value]: The value represented by this switch. Used to determine selection.
+/// - [onChanged]: Callback triggered when the user selects this switch.
 /// If `null`, switch is disabled and non-interactive.
+/// - [readOnly]: Controls the read only state of the switch. When `true` the switch is disabled.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the switch will appear once fully loaded.
 ///
 /// ### You can use [OudsSwitch] component in your project, customizing parameters as needed :
 ///
@@ -52,6 +56,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 ///           // Handle switch change state.
 ///       }
 ///     readOnly: false,
+///     skeleton: OudsSkeleton(),
 ///   );
 /// ```
 ///
@@ -60,12 +65,14 @@ class OudsSwitch extends StatefulWidget {
   final bool value;
   final ValueChanged<bool>? onChanged;
   final bool readOnly;
+  final OudsSkeleton? skeleton;
 
   const OudsSwitch({
     super.key,
     required this.value,
     this.onChanged,
     this.readOnly = false,
+    this.skeleton,
   });
 
   @override
@@ -163,30 +170,41 @@ class _OudsSwitchState extends State<OudsSwitch> {
               },
               child: Align(
                 alignment: Alignment.center,
-                child: Container(
-                  width: switchButton.sizeWidthTrack,
-                  height: switchButton.sizeHeightTrack,
-                  constraints: BoxConstraints(
-                    minHeight: switchButton.sizeMinHeight,
-                    minWidth: switchButton.sizeMinWidth,
-                    maxHeight: switchButton.sizeMaxHeight,
-                  ),
-                  decoration: BoxDecoration(
+                child: OudsSkeletonLayout(
+                  visible: widget.skeleton != null,
+                  hasSecurityMargin:
+                      widget.skeleton?.hasSecurityMargin ?? false,
+                  animated: widget.skeleton?.animated ?? false,
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       switchButton.borderRadiusTrack,
                     ),
-                    color: switchTickModifier.getBackgroundSwitchColor(
+                  ),
+                  content: (context) => Container(
+                    width: switchButton.sizeWidthTrack,
+                    height: switchButton.sizeHeightTrack,
+                    constraints: BoxConstraints(
+                      minHeight: switchButton.sizeMinHeight,
+                      minWidth: switchButton.sizeMinWidth,
+                      maxHeight: switchButton.sizeMaxHeight,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        switchButton.borderRadiusTrack,
+                      ),
+                      color: switchTickModifier.getBackgroundSwitchColor(
+                        switchState,
+                        widget.value,
+                        _isHighContrast,
+                      ),
+                    ),
+                    child: _buildCursorIndicator(
+                      context,
                       switchState,
-                      widget.value,
+                      isPressedInherited,
+                      isHoveredInherited,
                       _isHighContrast,
                     ),
-                  ),
-                  child: _buildCursorIndicator(
-                    context,
-                    switchState,
-                    isPressedInherited,
-                    isHoveredInherited,
-                    _isHighContrast,
                   ),
                 ),
               ),

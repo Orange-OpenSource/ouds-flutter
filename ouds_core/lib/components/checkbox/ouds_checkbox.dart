@@ -22,6 +22,8 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -47,6 +49,7 @@ enum ToggleableState { off, indeterminate, on }
 ///   the checked state.
 /// - [tristate]: If true, the checkboxes value can be true, false, or null. If false, only true and false states are managed.
 /// - [isError]: Controls the error state of the checkbox.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the checkbox will appear once fully loaded.
 ///
 /// ### You can use [OudsCheckbox] component in your project, customizing parameters as needed :
 ///
@@ -65,6 +68,7 @@ enum ToggleableState { off, indeterminate, on }
 ///     },
 ///   isError: false,
 ///   readOnly: false,
+///   skeleton: OudsSkeleton(),
 /// );
 /// ```
 ///
@@ -74,6 +78,7 @@ class OudsCheckbox extends StatefulWidget {
   final bool isError;
   final bool tristate;
   final bool readOnly;
+  final OudsSkeleton? skeleton;
 
   const OudsCheckbox({
     super.key,
@@ -82,6 +87,7 @@ class OudsCheckbox extends StatefulWidget {
     this.isError = false,
     this.tristate = false,
     this.readOnly = false,
+    this.skeleton,
   });
 
   @override
@@ -147,142 +153,147 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
         ? '${l10n?.core_checkbox_hint_a11y}'
         : '';
 
-    return Semantics(
-      enabled: widget.onChanged != null && !(widget.readOnly),
-      value: '${l10n?.core_checkbox_trait_a11y}. $semanticValue',
-      hint: widget.isError
-          ? '${'${l10n!.core_common_error_a11y}, '}$toggleActionLabel'
-          : toggleActionLabel,
-      // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
-      excludeSemantics: true,
-      child: Material(
-        color: Colors.transparent,
-        child: SizedBox(
-          width: checkbox.sizeMaxHeight,
-          child: InkWell(
-            onTap: (!isReadOnly && widget.onChanged != null)
-                ? () {
-                    _isPressed = true;
-                    SchedulerBinding.instance.addPostFrameCallback((_) {
-                      bool? newValue;
-                      if (widget.tristate) {
-                        if (widget.value == true) {
-                          newValue = null;
-                        } else if (widget.value == null) {
-                          newValue = false;
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+      content: (context) => Semantics(
+        enabled: widget.onChanged != null && !(widget.readOnly),
+        value: '${l10n?.core_checkbox_trait_a11y}. $semanticValue',
+        hint: widget.isError
+            ? '${'${l10n!.core_common_error_a11y}, '}$toggleActionLabel'
+            : toggleActionLabel,
+        // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
+        excludeSemantics: true,
+        child: Material(
+          color: Colors.transparent,
+          child: SizedBox(
+            width: checkbox.sizeMaxHeight,
+            child: InkWell(
+              onTap: (!isReadOnly && widget.onChanged != null)
+                  ? () {
+                      _isPressed = true;
+                      SchedulerBinding.instance.addPostFrameCallback((_) {
+                        bool? newValue;
+                        if (widget.tristate) {
+                          if (widget.value == true) {
+                            newValue = null;
+                          } else if (widget.value == null) {
+                            newValue = false;
+                          } else {
+                            newValue = true;
+                          }
                         } else {
-                          newValue = true;
+                          newValue = !widget.value!;
                         }
-                      } else {
-                        newValue = !widget.value!;
-                      }
 
-                      widget.onChanged!(newValue);
-                      _isPressed = false;
-                    });
-                  }
-                : null,
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onHover: (hovering) {
-              setState(() {
-                _isHovered = hovering;
-              });
-            },
-            onHighlightChanged: (highlighted) {
-              setState(() {
-                _isPressed = highlighted;
-              });
-            },
-            child: Container(
-              constraints: BoxConstraints(
-                maxHeight: checkbox.sizeMaxHeight,
-                minHeight: checkbox.sizeMinHeight,
-                minWidth: checkbox.sizeMinWidth,
-              ),
-              decoration: BoxDecoration(
-                color: _isPressed
-                    ? checkboxBackgroundModifier.getBackgroundColor(
-                        checkboxState,
-                      )
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(
-                  checkboxBorderModifier.getBorderRadius(
-                    controlListItem.borderRadiusItemOnly,
+                        widget.onChanged!(newValue);
+                        _isPressed = false;
+                      });
+                    }
+                  : null,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onHover: (hovering) {
+                setState(() {
+                  _isHovered = hovering;
+                });
+              },
+              onHighlightChanged: (highlighted) {
+                setState(() {
+                  _isPressed = highlighted;
+                });
+              },
+              child: Container(
+                constraints: BoxConstraints(
+                  maxHeight: checkbox.sizeMaxHeight,
+                  minHeight: checkbox.sizeMinHeight,
+                  minWidth: checkbox.sizeMinWidth,
+                ),
+                decoration: BoxDecoration(
+                  color: _isPressed
+                      ? checkboxBackgroundModifier.getBackgroundColor(
+                          checkboxState,
+                        )
+                      : Colors.transparent,
+                  borderRadius: BorderRadius.circular(
+                    checkboxBorderModifier.getBorderRadius(
+                      controlListItem.borderRadiusItemOnly,
+                    ),
                   ),
                 ),
-              ),
-              child: Center(
-                child: ExcludeSemantics(
-                  child: SizedBox(
-                    width: checkbox.sizeIndicator,
-                    height: checkbox.sizeIndicator,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                        checkboxBorderModifier.getBorderRadius(
-                          checkbox.borderRadius,
-                        ),
-                      ),
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          DecoratedBox(
-                            decoration: BoxDecoration(
-                              border: OudsBorder().borderAll(
-                                color: checkboxBorderModifier.getBorderColor(
-                                  checkboxState,
-                                  widget.isError,
-                                  isCheckedOrIndeterminate(widget.value),
-                                  _isHighContrast,
-                                ),
-                                width: checkboxBorderModifier.getBorderWidth(
-                                  checkboxState,
-                                  isCheckedOrIndeterminate(widget.value),
-                                  checkbox,
-                                ),
-                              ),
-                              borderRadius: BorderRadius.circular(
-                                checkboxBorderModifier.getBorderRadius(
-                                  checkbox.borderRadius,
-                                ),
-                              ),
-                            ),
+                child: Center(
+                  child: ExcludeSemantics(
+                    child: SizedBox(
+                      width: checkbox.sizeIndicator,
+                      height: checkbox.sizeIndicator,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                          checkboxBorderModifier.getBorderRadius(
+                            checkbox.borderRadius,
                           ),
-                          if (widget.value == true)
-                            Center(
-                              child: SvgPicture.asset(
-                                excludeFromSemantics: true,
-                                AppAssets.icons.componentCheckboxSelected,
-                                package: OudsTheme.of(context).packageName,
-                                fit: BoxFit.contain,
-                                colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(
+                        ),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            DecoratedBox(
+                              decoration: BoxDecoration(
+                                border: OudsBorder().borderAll(
+                                  color: checkboxBorderModifier.getBorderColor(
                                     checkboxState,
                                     widget.isError,
+                                    isCheckedOrIndeterminate(widget.value),
                                     _isHighContrast,
                                   ),
-                                  BlendMode.srcIn,
+                                  width: checkboxBorderModifier.getBorderWidth(
+                                    checkboxState,
+                                    isCheckedOrIndeterminate(widget.value),
+                                    checkbox,
+                                  ),
                                 ),
-                              ),
-                            )
-                          else if (widget.value == null)
-                            Center(
-                              child: SvgPicture.asset(
-                                excludeFromSemantics: true,
-                                AppAssets.icons.componentCheckboxUndetermined,
-                                package: OudsTheme.of(context).packageName,
-                                fit: BoxFit.contain,
-                                colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(
-                                    checkboxState,
-                                    widget.isError,
-                                    _isHighContrast,
+                                borderRadius: BorderRadius.circular(
+                                  checkboxBorderModifier.getBorderRadius(
+                                    checkbox.borderRadius,
                                   ),
-                                  BlendMode.srcIn,
                                 ),
                               ),
                             ),
-                        ],
+                            if (widget.value == true)
+                              Center(
+                                child: SvgPicture.asset(
+                                  excludeFromSemantics: true,
+                                  AppAssets.icons.componentCheckboxSelected,
+                                  package: OudsTheme.of(context).packageName,
+                                  fit: BoxFit.contain,
+                                  colorFilter: ColorFilter.mode(
+                                    checkboxTickModifier.getTickColor(
+                                      checkboxState,
+                                      widget.isError,
+                                      _isHighContrast,
+                                    ),
+                                    BlendMode.srcIn,
+                                  ),
+                                ),
+                              )
+                            else if (widget.value == null)
+                              Center(
+                                child: SvgPicture.asset(
+                                  excludeFromSemantics: true,
+                                  AppAssets.icons.componentCheckboxUndetermined,
+                                  package: OudsTheme.of(context).packageName,
+                                  fit: BoxFit.contain,
+                                  colorFilter: ColorFilter.mode(
+                                    checkboxTickModifier.getTickColor(
+                                      checkboxState,
+                                      widget.isError,
+                                      _isHighContrast,
+                                    ),
+                                    BlendMode.srcIn,
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
