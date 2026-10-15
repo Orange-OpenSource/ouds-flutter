@@ -12,6 +12,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_code_generator.dart';
@@ -163,6 +164,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
             customizationState.selectedKeyboardType,
           ),
         ),
+        skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
         onEditingComplete: (value) async {
           final errorLabel =
               context.l10n.app_components_pinCodeInput_error_label;
@@ -341,6 +343,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             setState(() {
               customizationState.hasConstrainedMaxWidth = value;
             });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
           },
         ),
       ],

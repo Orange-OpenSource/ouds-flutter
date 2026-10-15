@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...develop)
 ### Added
+- [Library] In library, add component `skeleton` ([#867](https://github.com/Orange-OpenSource/ouds-flutter/issues/867))
 ### Changed
 - [Library] For `PIN Code input` component, update to version 1.4 ([#967](https://github.com/Orange-OpenSource/ouds-flutter/issues/967))
 - [Library] Update `link` to display trailing icon after the last character ([#930](https://github.com/Orange-OpenSource/ouds-flutter/issues/930))

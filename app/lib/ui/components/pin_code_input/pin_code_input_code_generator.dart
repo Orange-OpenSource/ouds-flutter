@@ -49,6 +49,9 @@ class PinCodeInputCodeGenerator {
     );
 
     lines.add(' onChange: (value) {\n  //handle change digit input\n},');
+    if (state.hasSkeleton) {
+      lines.add(' skeleton: OudsSkeleton(),');
+    }
 
     final String decoration = _digitDecorationCode(state);
 
