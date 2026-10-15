@@ -25,6 +25,8 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -42,12 +44,14 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// and notifies changes through [onChanged].
 ///
 ///  Parameters:
-///  [value] The value represented by this radio button. Used to determine selection.
-///  [groupValue] The currently selected value in the radio button group.
+/// - [value]: The value represented by this radio button. Used to determine selection.
+/// - [groupValue]: The currently selected value in the radio button group.
 /// This radio button is considered selected if [value] == [groupValue].
-///  [onChanged] Callback triggered when the user selects this radio button.
+/// - [onChanged]: Callback triggered when the user selects this radio button.
 /// If `null`, the radio button is disabled and non-interactive.
-///  [isError] Indicates whether the radio button is in an error state.
+/// - [isError]: Indicates whether the radio button is in an error state.
+/// - [readOnly]: Controls the read only state of the radio button. When `true` the radio button is disabled.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the radio button will appear once fully loaded.
 ///
 /// ### You can use [OudsRadioButton] component in your project, customizing parameters as needed :
 ///
@@ -69,6 +73,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///    }
 ///    isError: false,
 ///    readOnly: false,
+///    skeleton: OudsSkeleton(),
 /// );
 /// ```
 ///
@@ -79,6 +84,7 @@ class OudsRadioButton<T> extends StatefulWidget {
   final ValueChanged<T?>? onChanged;
   final bool isError;
   final bool readOnly;
+  final OudsSkeleton? skeleton;
 
   const OudsRadioButton({
     super.key,
@@ -87,6 +93,7 @@ class OudsRadioButton<T> extends StatefulWidget {
     required this.onChanged,
     this.isError = false,
     this.readOnly = false,
+    this.skeleton,
   });
 
   @override
@@ -151,120 +158,125 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
     final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
 
-    return Semantics(
-      inMutuallyExclusiveGroup: true,
-      // Use checked with inMutuallyExclusiveGroup on Android for native radio-button announcements.
-      // On iOS, use selected to announce the selected state without adding an unwanted button trait.
-      checked: isIOS ? null : _selected,
-      selected: isIOS ? _selected : null,
-      hint: (isIOS && isItemEnabled) ? l10n?.core_checkbox_hint_a11y : null,
-      enabled: isItemEnabled,
-      // VoiceOver has no native "radio button" trait (unlike TalkBack, which infers it
-      // from inMutuallyExclusiveGroup), so the trait is announced explicitly in value on iOS.
-      value: isIOS
-          ? (widget.isError
-                ? '${l10n?.core_radioButton_radioButton_a11y}. ${l10n?.core_common_error_a11y}'
-                : l10n?.core_radioButton_radioButton_a11y)
-          : (widget.isError ? l10n?.core_common_error_a11y : null),
-      child: SizedBox(
-        width: radioButton.sizeMinWidth,
-        child: InkWell(
-          excludeFromSemantics: true,
-          onTap: (!isReadOnly && widget.onChanged != null)
-              ? () {
-                  _isPressed = true;
-                  // Added to improve visual rendering fluidity by allowing Flutter
-                  // to complete the current frame before executing the onChanged callback.
-                  SchedulerBinding.instance.addPostFrameCallback((_) {
-                    widget.onChanged!(widget.value);
-                    _isPressed = false;
-                  });
-                }
-              : null,
-          splashColor: Colors.transparent,
-          onHover: (hovering) {
-            setState(() {
-              _isHovered = hovering;
-            });
-          },
-          onHighlightChanged: (highlighted) {
-            setState(() {
-              _isPressed = highlighted;
-            });
-          },
-          child: Container(
-            constraints: BoxConstraints(
-              maxHeight: radioButton.sizeMaxHeight,
-              minHeight: radioButton.sizeMinHeight,
-              minWidth: radioButton.sizeMinWidth,
-            ),
-            decoration: BoxDecoration(
-              color: _isPressed
-                  ? radioButtonBackgroundModifier.getBackgroundColor(
-                      radioButtonState,
-                    )
-                  : Colors.transparent,
-              borderRadius: BorderRadius.circular(
-                radioButtonBorderModifier.getBorderRadius(
-                  controlListItem.borderRadiusItemOnly,
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+      content: (context) => Semantics(
+        inMutuallyExclusiveGroup: true,
+        // Use checked with inMutuallyExclusiveGroup on Android for native radio-button announcements.
+        // On iOS, use selected to announce the selected state without adding an unwanted button trait.
+        checked: isIOS ? null : _selected,
+        selected: isIOS ? _selected : null,
+        hint: (isIOS && isItemEnabled) ? l10n?.core_checkbox_hint_a11y : null,
+        enabled: isItemEnabled,
+        // VoiceOver has no native "radio button" trait (unlike TalkBack, which infers it
+        // from inMutuallyExclusiveGroup), so the trait is announced explicitly in value on iOS.
+        value: isIOS
+            ? (widget.isError
+                  ? '${l10n?.core_radioButton_radioButton_a11y}. ${l10n?.core_common_error_a11y}'
+                  : l10n?.core_radioButton_radioButton_a11y)
+            : (widget.isError ? l10n?.core_common_error_a11y : null),
+        child: SizedBox(
+          width: radioButton.sizeMinWidth,
+          child: InkWell(
+            excludeFromSemantics: true,
+            onTap: (!isReadOnly && widget.onChanged != null)
+                ? () {
+                    _isPressed = true;
+                    // Added to improve visual rendering fluidity by allowing Flutter
+                    // to complete the current frame before executing the onChanged callback.
+                    SchedulerBinding.instance.addPostFrameCallback((_) {
+                      widget.onChanged!(widget.value);
+                      _isPressed = false;
+                    });
+                  }
+                : null,
+            splashColor: Colors.transparent,
+            onHover: (hovering) {
+              setState(() {
+                _isHovered = hovering;
+              });
+            },
+            onHighlightChanged: (highlighted) {
+              setState(() {
+                _isPressed = highlighted;
+              });
+            },
+            child: Container(
+              constraints: BoxConstraints(
+                maxHeight: radioButton.sizeMaxHeight,
+                minHeight: radioButton.sizeMinHeight,
+                minWidth: radioButton.sizeMinWidth,
+              ),
+              decoration: BoxDecoration(
+                color: _isPressed
+                    ? radioButtonBackgroundModifier.getBackgroundColor(
+                        radioButtonState,
+                      )
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(
+                  radioButtonBorderModifier.getBorderRadius(
+                    controlListItem.borderRadiusItemOnly,
+                  ),
                 ),
               ),
-            ),
-            child: Center(
-              child: SizedBox(
-                width: controlListItem.sizeControlIndicator,
-                height: controlListItem.sizeControlIndicator,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    // --- Decorated back-end : border, radius, etc.
-                    DecoratedBox(
-                      decoration: BoxDecoration(
-                        border: OudsBorder().borderAll(
-                          color: radioButtonBorderModifier.getBorderColor(
-                            radioButtonState,
-                            widget.isError,
-                            _selected,
-                            _isHighContrast,
+              child: Center(
+                child: SizedBox(
+                  width: controlListItem.sizeControlIndicator,
+                  height: controlListItem.sizeControlIndicator,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      // --- Decorated back-end : border, radius, etc.
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          border: OudsBorder().borderAll(
+                            color: radioButtonBorderModifier.getBorderColor(
+                              radioButtonState,
+                              widget.isError,
+                              _selected,
+                              _isHighContrast,
+                            ),
+                            width: radioButtonBorderModifier.getBorderWidth(
+                              radioButtonState,
+                              _selected,
+                              radioButton,
+                            ),
                           ),
-                          width: radioButtonBorderModifier.getBorderWidth(
-                            radioButtonState,
-                            _selected,
-                            radioButton,
-                          ),
-                        ),
-                        borderRadius: BorderRadius.circular(
-                          radioButtonBorderModifier.getBorderRadius(
-                            radioButton.borderRadius,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // --- Tick selected
-                    if (_selected)
-                      Center(
-                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(
-                            radioButton.borderRadius,
-                          ),
-                          child: SvgPicture.asset(
-                            AppAssets.icons.componentRadioButtonSelected,
-                            excludeFromSemantics: true,
-                            package: OudsTheme.of(context).packageName,
-                            fit: BoxFit.contain,
-                            colorFilter: ColorFilter.mode(
-                              radioButtonTickModifier.getTickColor(
-                                radioButtonState,
-                                widget.isError,
-                                _isHighContrast,
-                              ),
-                              BlendMode.srcIn,
+                            radioButtonBorderModifier.getBorderRadius(
+                              radioButton.borderRadius,
                             ),
                           ),
                         ),
                       ),
-                  ],
+
+                      // --- Tick selected
+                      if (_selected)
+                        Center(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                              radioButton.borderRadius,
+                            ),
+                            child: SvgPicture.asset(
+                              AppAssets.icons.componentRadioButtonSelected,
+                              excludeFromSemantics: true,
+                              package: OudsTheme.of(context).packageName,
+                              fit: BoxFit.contain,
+                              colorFilter: ColorFilter.mode(
+                                radioButtonTickModifier.getTickColor(
+                                  radioButtonState,
+                                  widget.isError,
+                                  _isHighContrast,
+                                ),
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),

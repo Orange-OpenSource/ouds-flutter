@@ -17,7 +17,9 @@ import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_en
 
 class PinCodeInputCodeGenerator {
   static String updateCode(BuildContext context) {
-    final PinCodeInputCustomizationState? state = PinCodeInputCustomization.of(context);
+    final PinCodeInputCustomizationState? state = PinCodeInputCustomization.of(
+      context,
+    );
 
     if (state == null) return "OudsPinCodeInput(),";
 
@@ -26,19 +28,30 @@ class PinCodeInputCodeGenerator {
     lines.add(" controllers: controllers,");
 
     if (state.hasHelperText && !state.hasError) {
-      lines.add(' helperText: "${PinCodeInputCustomizationUtils.getPinCodeHelperText(state)}",');
+      lines.add(
+        ' helperText: "${PinCodeInputCustomizationUtils.getPinCodeHelperText(state)}",',
+      );
     }
 
     if (state.hasError) {
-      lines.add(' errorText: "${PinCodeInputCustomizationUtils.getPinCodeErrorText(state)}",');
+      lines.add(
+        ' errorText: "${PinCodeInputCustomizationUtils.getPinCodeErrorText(state)}",',
+      );
     }
 
-    final length = PinCodeInputCustomizationUtils.getLength(state.selectedPinCodeLength);
+    final length = PinCodeInputCustomizationUtils.getLength(
+      state.selectedPinCodeLength,
+    );
     lines.add(' length: $length,');
 
-    lines.add(' onEditingComplete: (value) {\n  //handle completed pin code\n},');
+    lines.add(
+      ' onEditingComplete: (value) {\n  //handle completed pin code\n},',
+    );
 
     lines.add(' onChange: (value) {\n  //handle change digit input\n},');
+    if (state.hasSkeleton) {
+      lines.add(' skeleton: OudsSkeleton(),');
+    }
 
     final String decoration = _digitDecorationCode(state);
 
@@ -49,7 +62,9 @@ class PinCodeInputCodeGenerator {
     List<String> props = [];
 
     if (state.pinCodePlaceholderText.isNotEmpty) {
-      final hint = PinCodeInputCustomizationUtils.getPinCodePlaceholderText(state);
+      final hint = PinCodeInputCustomizationUtils.getPinCodePlaceholderText(
+        state,
+      );
       props.add(' hintText: "$hint",');
     }
 
@@ -62,7 +77,9 @@ class PinCodeInputCodeGenerator {
     }
 
     if (state.selectedKeyboardType != PinCodeKeyboardTypeEnum.numeric) {
-      props.add(' keyboardType: OudsPinCodeInputKeyboardType.${state.selectedKeyboardType.name},');
+      props.add(
+        ' keyboardType: OudsPinCodeInputKeyboardType.${state.selectedKeyboardType.name},',
+      );
     }
 
     if (props.isEmpty) {
