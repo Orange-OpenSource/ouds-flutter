@@ -17,6 +17,7 @@ import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_phone_number_input.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_code_generator.dart';
@@ -236,6 +237,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               ? true
               : false,
         ),
+        skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
       ),
     );
   }
@@ -402,6 +404,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             setState(() {
               customizationState.hasAnnotatedHelper = value;
             });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
           },
         ),
       ],
