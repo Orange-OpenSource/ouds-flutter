@@ -15,10 +15,10 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
-// TODO[v0.4]: uncomment when flag is available
+// TODO[v1.0]: uncomment when flag is available
 // import 'package:ouds_core/components/flag/ouds_flag.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
-// TODO[v0.4]: uncomment when avatar is available
+// TODO[v1.0]: uncomment when avatar is available
 // import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
@@ -322,16 +322,12 @@ class ListItemCustomizationUtils {
           child: _buildDemoContent(context, state),
         ),
       ),
-      // TODO[v0.4]: uncomment avatar when available — also add ListItemLeadingEnum.avatar to the enum and restore the import
+      // TODO[v1.0]: uncomment avatar when available — also add ListItemLeadingEnum.avatar to the enum and restore the import
       // ListItemLeadingEnum.avatar => OudsListItemLeadingAvatar(
       //   OudsAvatar(image: assetPath),
       // ),
-      // TODO[v0.4]: uncomment flag when available — also add ListItemLeadingEnum.flag to the enum and restore the import
+      // TODO[v1.0]: uncomment flag when available — also add ListItemLeadingEnum.flag to the enum and restore the import
       // ListItemLeadingEnum.flag => OudsListItemLeadingFlag(OudsFlag('fr')),
-      // TODO[v0.4]: uncomment video when available — also add ListItemLeadingEnum.video to the enum
-      // ListItemLeadingEnum.video => OudsListItemLeadingVideo(
-      //   Uri.parse('https://example.com/video.mp4'),
-      // ),
     };
   }
 
@@ -392,16 +388,12 @@ class ListItemCustomizationUtils {
           child: _buildDemoContent(context, state),
         ),
       ),
-      // TODO[v0.4]: uncomment avatar when available — also add ListItemTrailingEnum.avatar to the enum and restore the import
+      // TODO[v1.0]: uncomment avatar when available — also add ListItemTrailingEnum.avatar to the enum and restore the import
       // ListItemTrailingEnum.avatar => OudsListItemTrailingAvatar(
       //   OudsAvatar(image: assetPath),
       // ),
-      // TODO[v0.4]: uncomment flag when available — also add ListItemTrailingEnum.flag to the enum and restore the import
+      // TODO[v1.0]: uncomment flag when available — also add ListItemTrailingEnum.flag to the enum and restore the import
       // ListItemTrailingEnum.flag => OudsListItemTrailingFlag(OudsFlag('fr')),
-      // TODO[v0.4]: uncomment video when available — also add ListItemTrailingEnum.video to the enum
-      // ListItemTrailingEnum.video => OudsListItemTrailingVideo(
-      //   Uri.parse('https://example.com/video.mp4'),
-      // ),
     };
   }
 

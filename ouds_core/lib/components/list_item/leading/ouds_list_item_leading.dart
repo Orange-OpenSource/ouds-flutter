@@ -15,9 +15,11 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/avatar/ouds_avatar.dart';
+// TODO[v1.0]: Uncomment when avatar support is implemented.
+// import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
-import 'package:ouds_core/components/flag/ouds_flag.dart';
+// TODO[v1.0]: Uncomment when flag support is implemented.
+// import 'package:ouds_core/components/flag/ouds_flag.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 
@@ -117,53 +119,40 @@ class OudsListItemLeadingImage extends OudsListItemLeading {
   });
 }
 
-/// Leading flag slot — renders an [OudsFlag] on the leading side of the row.
-///
-/// Pass an [OudsFlag] with the desired country code. The flag is resized to
-/// match the list item token dimensions, whatever its intrinsic size.
-///
-/// Example:
-/// ```dart
-/// OudsListItemLeadingFlag(OudsFlag('fr'))
-/// OudsListItemLeadingFlag(OudsFlag('us'))
-/// ```
-class OudsListItemLeadingFlag extends OudsListItemLeading {
-  /// The flag widget to display.
-  final OudsFlag flag;
-
-  /// Creates a leading flag configuration.
-  const OudsListItemLeadingFlag(this.flag);
-}
-
-// TODO[v0.4]: Uncomment when video support is implemented.
-// /// Leading video placeholder slot.
+// TODO[v1.0]: Uncomment when flag support is implemented.
+// /// Leading flag slot — renders an [OudsFlag] on the leading side of the row.
+// ///
+// /// Pass an [OudsFlag] with the desired country code. The flag is resized to
+// /// match the list item token dimensions, whatever its intrinsic size.
 // ///
 // /// Example:
 // /// ```dart
-// /// OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))
+// /// OudsListItemLeadingFlag(OudsFlag('fr'))
+// /// OudsListItemLeadingFlag(OudsFlag('us'))
 // /// ```
-// class OudsListItemLeadingVideo extends OudsListItemLeading {
-//   /// The video URL associated with the placeholder.
-//   final Uri url;
-
-//   /// Creates a leading video configuration.
-//   const OudsListItemLeadingVideo(this.url);
+// class OudsListItemLeadingFlag extends OudsListItemLeading {
+//   /// The flag widget to display.
+//   final OudsFlag flag;
+//
+//   /// Creates a leading flag configuration.
+//   const OudsListItemLeadingFlag(this.flag);
 // }
 
-/// Leading avatar slot.
-///
-/// Example:
-/// ```dart
-///
-/// OudsListItemLeadingAvatar(OudsAvatar(monogram: 'JD'))
-/// ```
-class OudsListItemLeadingAvatar extends OudsListItemLeading {
-  /// The avatar widget to display.
-  final OudsAvatar avatar;
-
-  /// Creates a leading avatar configuration.
-  const OudsListItemLeadingAvatar(this.avatar);
-}
+// TODO[v1.0]: Uncomment when avatar support is implemented.
+// /// Leading avatar slot.
+// ///
+// /// Example:
+// /// ```dart
+// ///
+// /// OudsListItemLeadingAvatar(OudsAvatar(monogram: 'JD'))
+// /// ```
+// class OudsListItemLeadingAvatar extends OudsListItemLeading {
+//   /// The avatar widget to display.
+//   final OudsAvatar avatar;
+//
+//   /// Creates a leading avatar configuration.
+//   const OudsListItemLeadingAvatar(this.avatar);
+// }
 
 /// Leading text slot — renders a label and an optional extra-label.
 ///
