@@ -20,6 +20,7 @@ import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dar
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
 /// Default values for [OudsCardItem].
 class OudsCardItemDefaults {
@@ -138,6 +139,9 @@ class OudsCardItem extends StatelessWidget {
   /// Navigation indicator shown when [onTap] is provided.
   final OudsListItemIndicator indicator;
 
+  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the card item will appear once fully loaded.
+  final OudsSkeleton? skeleton;
+
   /// Creates an OUDS card item.
   const OudsCardItem({
     super.key,
@@ -156,6 +160,7 @@ class OudsCardItem extends StatelessWidget {
     this.enable = true,
     this.onTap,
     this.indicator = OudsCardItemDefaults.indicator,
+    this.skeleton,
   }) : labelContent = null;
 
   /// Creates an OUDS card item with fully custom [labelContent] instead of a
@@ -177,6 +182,7 @@ class OudsCardItem extends StatelessWidget {
     this.enable = true,
     this.onTap,
     this.indicator = OudsCardItemDefaults.indicator,
+    this.skeleton,
   }) : label = null;
 
   @override
@@ -200,6 +206,7 @@ class OudsCardItem extends StatelessWidget {
         onTap: onTap,
         indicator: indicator,
         card: true,
+        skeleton: skeleton,
       );
     }
     return OudsListItem(
@@ -220,6 +227,7 @@ class OudsCardItem extends StatelessWidget {
       onTap: onTap,
       indicator: indicator,
       card: true,
+      skeleton: skeleton,
     );
   }
 }

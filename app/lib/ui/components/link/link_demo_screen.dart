@@ -243,6 +243,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           focusNode: labelFocus,
           fieldType: FieldType.label,
         ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
+          },
+        ),
       ],
     );
   }

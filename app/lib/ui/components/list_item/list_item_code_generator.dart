@@ -68,6 +68,7 @@ class ListItemCodeGenerator {
       if (state.clickable) '  onTap: () { /* navigate */ },',
       if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
       if (!state.edgeToEdge) '  edgeToEdge: false,',
+      if (state.hasSkeleton) '  skeleton: OudsSkeleton(),',
     ];
     final ctor = state.labelContentEnabled
         ? 'OudsListItem.labelContent'
@@ -97,6 +98,7 @@ class ListItemCodeGenerator {
       if (state.clickable) '  onTap: () { /* navigate */ },',
       if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
       if (!state.edgeToEdge) '  edgeToEdge: false,',
+      if (state.hasSkeleton) '  skeleton: OudsSkeleton(),',
     ];
     return 'OudsSmallListItem(\n${params.join('\n')}\n)';
   }
@@ -137,6 +139,7 @@ class ListItemCodeGenerator {
       if (!state.enable) '  enable: false,',
       if (state.clickable) '  onTap: () { /* navigate */ },',
       if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
+      if (state.hasSkeleton) '  skeleton: OudsSkeleton(),',
     ];
     final ctor = state.labelContentEnabled
         ? 'OudsCardItem.labelContent'
@@ -169,6 +172,7 @@ class ListItemCodeGenerator {
       if (!state.enable) '  enable: false,',
       if (state.clickable) '  onTap: () { /* navigate */ },',
       if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
+      if (state.hasSkeleton) '  skeleton: OudsSkeleton(),',
     ];
     return 'OudsSmallCardItem(\n${params.join('\n')}\n)';
   }

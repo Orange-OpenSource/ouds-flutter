@@ -25,6 +25,8 @@ import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dar
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
@@ -273,6 +275,9 @@ class OudsListItem extends StatefulWidget {
   /// with their own padding.
   final bool edgeToEdge;
 
+  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the list item will appear once fully loaded.
+  final OudsSkeleton? skeleton;
+
   /// Creates an OUDS list item with a plain text [label].
   const OudsListItem({
     super.key,
@@ -296,6 +301,7 @@ class OudsListItem extends StatefulWidget {
     this.indicator = OudsListItemDefaults.indicator,
     this.card = false,
     this.edgeToEdge = true,
+    this.skeleton,
   }) : labelContent = null;
 
   /// Creates an OUDS list item with fully custom [labelContent] instead of a
@@ -322,6 +328,7 @@ class OudsListItem extends StatefulWidget {
     this.indicator = OudsListItemDefaults.indicator,
     this.card = false,
     this.edgeToEdge = true,
+    this.skeleton,
   }) : label = null;
 
   @override
@@ -423,198 +430,209 @@ class _OudsListItemState extends State<OudsListItem> {
 
     final verticalPadding = _verticalPadding(tokens);
 
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minWidth: tokens.sizeMinWidth,
-        maxWidth: tokens.sizeMaxWidth,
+    return OudsSkeletonLayout(
+      visible: widget.skeleton != null,
+      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
+      animated: widget.skeleton?.animated ?? false,
+      shape: RoundedRectangleBorder(
+        borderRadius:
+            _resolveBorderRadius(tokens: tokens, decoration: decoration) ??
+            BorderRadius.zero,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Group the full row and helper text into one accessibility node,
-          // so screen readers announce the helper text when the item is focused.
-          MergeSemantics(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Semantics(
-                  // list item has a button role by default.
-                  button:
-                      widget.onTap != null &&
-                      widget.indicator is! OudsListItemIndicatorExternal,
-                  // Link role only when external indicator is activated.
-                  link:
-                      widget.onTap != null &&
-                      widget.indicator is OudsListItemIndicatorExternal,
-                  // TalkBack does not map the `link` flag to a spoken role
-                  // for whole-node elements (unlike VoiceOver on iOS). The
-                  // engine concatenates contentDescription as the announced
-                  // text, so the link trait is conveyed through a localized
-                  // hint instead.
-                  hint:
-                      widget.onTap != null &&
-                          widget.indicator is OudsListItemIndicatorExternal &&
-                          defaultTargetPlatform == TargetPlatform.android
-                      ? OudsLocalizations.of(context)?.core_link_trait_a11y
-                      : null,
-                  // Group all content (leading, labels, trailing) into single label
-                  enabled: widget.enable,
-                  child: Focus(
-                    focusNode: _focusNode,
-                    // Skip focus entirely for non-interactive items.
-                    canRequestFocus: _isInteractive,
-                    onKeyEvent: (_, event) {
-                      if (!_isInteractive) return KeyEventResult.ignored;
-                      if (event is KeyDownEvent &&
-                          (event.logicalKey == LogicalKeyboardKey.enter ||
-                              event.logicalKey == LogicalKeyboardKey.space)) {
-                        widget.onTap?.call();
-                        HapticFeedback.lightImpact();
-                        return KeyEventResult.handled;
-                      }
-                      return KeyEventResult.ignored;
-                    },
-                    child: MouseRegion(
-                      // Track hover only for interactive items — no cursor change on static items.
-                      cursor: _isInteractive
-                          ? SystemMouseCursors.click
-                          : MouseCursor.defer,
-                      onEnter: _isInteractive ? _onEnter : null,
-                      onExit: _isInteractive ? _onExit : null,
-                      child: GestureDetector(
-                        onTap: widget.enable ? widget.onTap : null,
-                        onTapDown: _isInteractive ? _onTapDown : null,
-                        onTapUp: _isInteractive ? _onTapUp : null,
-                        onTapCancel: _isInteractive ? _onTapCancel : null,
-                        child: Container(
-                          // Use BoxDecoration to support both the background color
-                          // and the focus ring (border) simultaneously.
-                          // The focus ring is drawn around the complete navigation
-                          // target as required by the OUDS spec.
-                          decoration: BoxDecoration(
-                            color: OudsListItemBackgroundModifier(
-                              context,
-                            ).getBackgroundColor(state, decoration),
-                            border: _resolveBorder(
-                              colorScheme: colorScheme,
-                              tokens: tokens,
-                              decoration: decoration,
-                              state: state,
+      content: (context) => ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: tokens.sizeMinWidth,
+          maxWidth: tokens.sizeMaxWidth,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Group the full row and helper text into one accessibility node,
+            // so screen readers announce the helper text when the item is focused.
+            MergeSemantics(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Semantics(
+                    // list item has a button role by default.
+                    button:
+                        widget.onTap != null &&
+                        widget.indicator is! OudsListItemIndicatorExternal,
+                    // Link role only when external indicator is activated.
+                    link:
+                        widget.onTap != null &&
+                        widget.indicator is OudsListItemIndicatorExternal,
+                    // TalkBack does not map the `link` flag to a spoken role
+                    // for whole-node elements (unlike VoiceOver on iOS). The
+                    // engine concatenates contentDescription as the announced
+                    // text, so the link trait is conveyed through a localized
+                    // hint instead.
+                    hint:
+                        widget.onTap != null &&
+                            widget.indicator is OudsListItemIndicatorExternal &&
+                            defaultTargetPlatform == TargetPlatform.android
+                        ? OudsLocalizations.of(context)?.core_link_trait_a11y
+                        : null,
+                    // Group all content (leading, labels, trailing) into single label
+                    enabled: widget.enable,
+                    child: Focus(
+                      focusNode: _focusNode,
+                      // Skip focus entirely for non-interactive items.
+                      canRequestFocus: _isInteractive,
+                      onKeyEvent: (_, event) {
+                        if (!_isInteractive) return KeyEventResult.ignored;
+                        if (event is KeyDownEvent &&
+                            (event.logicalKey == LogicalKeyboardKey.enter ||
+                                event.logicalKey == LogicalKeyboardKey.space)) {
+                          widget.onTap?.call();
+                          HapticFeedback.lightImpact();
+                          return KeyEventResult.handled;
+                        }
+                        return KeyEventResult.ignored;
+                      },
+                      child: MouseRegion(
+                        // Track hover only for interactive items — no cursor change on static items.
+                        cursor: _isInteractive
+                            ? SystemMouseCursors.click
+                            : MouseCursor.defer,
+                        onEnter: _isInteractive ? _onEnter : null,
+                        onExit: _isInteractive ? _onExit : null,
+                        child: GestureDetector(
+                          onTap: widget.enable ? widget.onTap : null,
+                          onTapDown: _isInteractive ? _onTapDown : null,
+                          onTapUp: _isInteractive ? _onTapUp : null,
+                          onTapCancel: _isInteractive ? _onTapCancel : null,
+                          child: Container(
+                            // Use BoxDecoration to support both the background color
+                            // and the focus ring (border) simultaneously.
+                            // The focus ring is drawn around the complete navigation
+                            // target as required by the OUDS spec.
+                            decoration: BoxDecoration(
+                              color: OudsListItemBackgroundModifier(
+                                context,
+                              ).getBackgroundColor(state, decoration),
+                              border: _resolveBorder(
+                                colorScheme: colorScheme,
+                                tokens: tokens,
+                                decoration: decoration,
+                                state: state,
+                              ),
+                              borderRadius: _resolveBorderRadius(
+                                tokens: tokens,
+                                decoration: decoration,
+                              ),
                             ),
-                            borderRadius: _resolveBorderRadius(
-                              tokens: tokens,
-                              decoration: decoration,
+                            foregroundDecoration: decoration.divider
+                                ? BoxDecoration(
+                                    borderRadius: _resolveBorderRadius(
+                                      tokens: tokens,
+                                      decoration: decoration,
+                                    ),
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: colorScheme.borderMuted,
+                                        width: oudsTheme
+                                            .componentsTokens(context)
+                                            .divider
+                                            .borderWidth,
+                                      ),
+                                    ),
+                                  )
+                                : null,
+                            constraints: BoxConstraints(
+                              minHeight: _minHeight(tokens),
+                              minWidth: tokens.sizeMinWidth,
                             ),
-                          ),
-                          foregroundDecoration: decoration.divider
-                              ? BoxDecoration(
-                                  borderRadius: _resolveBorderRadius(
-                                    tokens: tokens,
-                                    decoration: decoration,
-                                  ),
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: colorScheme.borderMuted,
-                                      width: oudsTheme
-                                          .componentsTokens(context)
-                                          .divider
-                                          .borderWidth,
+                            // With bottomContent, the bottom padding moves below the
+                            // bottom slot, so the row keeps its own
+                            // bottom padding as the gap above the slot.
+                            padding: EdgeInsets.only(
+                              top: verticalPadding.top,
+                              bottom: widget.bottomContent == null
+                                  ? verticalPadding.bottom
+                                  : 0,
+                              left: _horizontalPadding(tokens),
+                              right: _horizontalPadding(tokens),
+                            ),
+                            // Without bottomContent, the Align is a direct child of
+                            // the padded container so it fills the minHeight constraint
+                            // and can vertically center the row (contentAlignment.center).
+                            // With bottomContent, a Column stacks the row and the
+                            // full-width bottom content inside the background/border area.
+                            child: widget.bottomContent == null
+                                ? Align(
+                                    alignment: _rowAlignment(),
+                                    child: _buildRow(
+                                      context,
+                                      state,
+                                      typography,
+                                      contentColor,
+                                      mutedColor,
+                                      showPreviousIndicator,
+                                      showNextIndicator,
                                     ),
-                                  ),
-                                )
-                              : null,
-                          constraints: BoxConstraints(
-                            minHeight: _minHeight(tokens),
-                            minWidth: tokens.sizeMinWidth,
-                          ),
-                          // With bottomContent, the bottom padding moves below the
-                          // bottom slot, so the row keeps its own
-                          // bottom padding as the gap above the slot.
-                          padding: EdgeInsets.only(
-                            top: verticalPadding.top,
-                            bottom: widget.bottomContent == null
-                                ? verticalPadding.bottom
-                                : 0,
-                            left: _horizontalPadding(tokens),
-                            right: _horizontalPadding(tokens),
-                          ),
-                          // Without bottomContent, the Align is a direct child of
-                          // the padded container so it fills the minHeight constraint
-                          // and can vertically center the row (contentAlignment.center).
-                          // With bottomContent, a Column stacks the row and the
-                          // full-width bottom content inside the background/border area.
-                          child: widget.bottomContent == null
-                              ? Align(
-                                  alignment: _rowAlignment(),
-                                  child: _buildRow(
-                                    context,
-                                    state,
-                                    typography,
-                                    contentColor,
-                                    mutedColor,
-                                    showPreviousIndicator,
-                                    showNextIndicator,
-                                  ),
-                                )
-                              : Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Align(
-                                      alignment: _rowAlignment(),
-                                      child: _buildRow(
-                                        context,
-                                        state,
-                                        typography,
-                                        contentColor,
-                                        mutedColor,
-                                        showPreviousIndicator,
-                                        showNextIndicator,
+                                  )
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Align(
+                                        alignment: _rowAlignment(),
+                                        child: _buildRow(
+                                          context,
+                                          state,
+                                          typography,
+                                          contentColor,
+                                          mutedColor,
+                                          showPreviousIndicator,
+                                          showNextIndicator,
+                                        ),
                                       ),
-                                    ),
-                                    // Bottom content — full-width, below the row, still
-                                    // inside the background/border area. The
-                                    // horizontal padding comes from the container
-                                    // (same as the row); the gap above is the row's
-                                    // bottom padding and the slot padding sits below.
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        top: verticalPadding.bottom,
-                                        bottom: tokens
-                                            .spacePaddingBlockBottomSlotListItemContainer,
+                                      // Bottom content — full-width, below the row, still
+                                      // inside the background/border area. The
+                                      // horizontal padding comes from the container
+                                      // (same as the row); the gap above is the row's
+                                      // bottom padding and the slot padding sits below.
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          top: verticalPadding.bottom,
+                                          bottom: tokens
+                                              .spacePaddingBlockBottomSlotListItemContainer,
+                                        ),
+                                        child: widget.bottomContent!(
+                                          context,
+                                          state,
+                                        ),
                                       ),
-                                      child: widget.bottomContent!(
-                                        context,
-                                        state,
-                                      ),
-                                    ),
-                                  ],
-                                ), // Column
-                        ), // Container
-                      ), // GestureDetector
-                    ), // MouseRegion
-                  ), // Focus
-                ), // Semantics
-                // Helper text below the divider — included in MergeSemantics
-                // for screen reader accessibility.
-                if (widget.helperText != null && widget.helperText!.isNotEmpty)
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: tokens.spacePaddingBlockTopHelperText,
-                      left: _horizontalPadding(tokens),
-                      right: _horizontalPadding(tokens),
+                                    ],
+                                  ), // Column
+                          ), // Container
+                        ), // GestureDetector
+                      ), // MouseRegion
+                    ), // Focus
+                  ), // Semantics
+                  // Helper text below the divider — included in MergeSemantics
+                  // for screen reader accessibility.
+                  if (widget.helperText != null &&
+                      widget.helperText!.isNotEmpty)
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: tokens.spacePaddingBlockTopHelperText,
+                        left: _horizontalPadding(tokens),
+                        right: _horizontalPadding(tokens),
+                      ),
+                      child: Text(
+                        widget.helperText!,
+                        style: typography
+                            .typeLabelDefaultMedium(context)
+                            .copyWith(color: mutedColor),
+                      ),
                     ),
-                    child: Text(
-                      widget.helperText!,
-                      style: typography
-                          .typeLabelDefaultMedium(context)
-                          .copyWith(color: mutedColor),
-                    ),
-                  ),
-              ],
-            ),
-          ), // MergeSemantics
-        ],
+                ],
+              ),
+            ), // MergeSemantics
+          ],
+        ),
       ),
     );
   }
