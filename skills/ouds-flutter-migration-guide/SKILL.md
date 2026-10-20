@@ -681,7 +681,7 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
-| `v2.1.0 → v3.0.0` | No | Yes | Typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons with `tinted` support (breaking), `OudsButton.tinted`, `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
+| `v2.1.0 → v3.0.0` | No | Yes | Typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons with `tinted` support (breaking), `OudsButton.tinted`, `Link` v2.4.0, icon pack v2.3.0, `OudsListItem` (+ `labelContent`, `belowTextContent`/`bottomContent`, `Leading/TrailingContent`, small-item badge/tag trailing), typography tokens |
 | `v2.0.0 → v2.1.0` | Full | No | `OudsNavigationButton`, `OudsCircularProgressIndicator`, `OudsLinearProgressIndicator`, tokens v2.6.0 |
 | `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
 | `v1.3.0 → v1.3.1` | Full | No | Maintenance release, bug fixes, accessibility improvements |

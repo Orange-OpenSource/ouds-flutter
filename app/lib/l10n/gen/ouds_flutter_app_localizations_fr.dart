@@ -747,7 +747,35 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_listItem_background_tech => 'Background';
 
   @override
+  String get app_components_listItem_belowTextContent_tech =>
+      'Below text content';
+
+  @override
   String get app_components_listItem_boldLabel_tech => 'Bold label';
+
+  @override
+  String get app_components_listItem_labelContent_tech => 'Label content';
+
+  @override
+  String get app_components_listItem_content_tech => 'Content';
+
+  @override
+  String get app_components_listItem_customLabel_text =>
+      'Étiquette personnalisée';
+
+  @override
+  String get app_components_listItem_newTag_label => 'Nouveau';
+
+  @override
+  String get app_components_listItem_contentExampleAlert_label =>
+      'Exemple de contenu';
+
+  @override
+  String get app_components_listItem_contentExampleAlert_description =>
+      'Utilisez Content pour un contenu personnalisé qui ne peut pas être représenté par un autre élément existant.\nContent offre de la flexibilité pour des besoins produit spécifiques, mais il doit rester une exception et non la solution par défaut.';
+
+  @override
+  String get app_components_listItem_bottomContent_tech => 'Bottom content';
 
   @override
   String get app_components_listItem_cardType_tech => 'Card Item';
@@ -760,6 +788,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_listItem_iconSize_tech => 'Icon size';
+
+  @override
+  String get app_components_listItem_iconTint_tech => 'Icon tint';
 
   @override
   String get app_components_listItem_indicatorType_tech => 'Indicator Type';
@@ -782,9 +813,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_listItem_roundedMedia_tech => 'Rounded media';
-
-  @override
-  String get app_components_listItem_size_tech => 'Size';
 
   @override
   String get app_components_listItem_slot_tech => 'Slot';

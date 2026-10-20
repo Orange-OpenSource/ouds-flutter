@@ -88,11 +88,18 @@ class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
   /// Aspect-ratio format. Defaults to [OudsListItemImageFormat.square].
   final OudsListItemImageFormat format;
 
+  /// Whether the image is displayed with rounded corners. Defaults to `false`.
+  ///
+  /// - `false`: Displays the image with square corners.
+  /// - `true`: Displays the image with rounded corners.
+  final bool rounded;
+
   /// Creates a compact leading image configuration.
   const OudsSmallListItemLeadingImage({
     required this.asset,
     this.semanticsLabel,
     this.format = OudsListItemImageFormat.square,
+    this.rounded = false,
   });
 }
 
@@ -102,8 +109,9 @@ class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
 
 /// Base type for [OudsSmallListItem] trailing content.
 ///
-/// Only [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage] and
-/// [OudsSmallListItemTrailingText] are supported.
+/// Supported types: [OudsSmallListItemTrailingIcon],
+/// [OudsSmallListItemTrailingImage], [OudsSmallListItemTrailingText],
+/// [OudsSmallListItemTrailingBadge] and [OudsSmallListItemTrailingTag].
 sealed class OudsSmallListItemTrailing {
   /// Creates a compact trailing-slot configuration.
   const OudsSmallListItemTrailing();
@@ -153,11 +161,18 @@ class OudsSmallListItemTrailingImage extends OudsSmallListItemTrailing {
   /// Aspect-ratio format. Defaults to [OudsListItemImageFormat.square].
   final OudsListItemImageFormat format;
 
+  /// Whether the image is displayed with rounded corners. Defaults to `false`.
+  ///
+  /// - `false`: Displays the image with square corners.
+  /// - `true`: Displays the image with rounded corners.
+  final bool rounded;
+
   /// Creates a compact trailing image configuration.
   const OudsSmallListItemTrailingImage({
     required this.asset,
     this.semanticsLabel,
     this.format = OudsListItemImageFormat.square,
+    this.rounded = false,
   });
 }
 
@@ -182,6 +197,44 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
   });
 }
 
+/// Trailing badge slot for [OudsSmallListItem].
+///
+/// Accepts a `Widget Function(bool enable)` builder so the item can forward
+/// its own `enable` state into the badge's `enabled` parameter.
+///
+/// Example:
+/// ```dart
+/// OudsSmallListItemTrailingBadge(
+///   (enable) => OudsBadge.standard(status: Info(), semanticsLabel: 'badge', enabled: enable),
+/// )
+/// ```
+class OudsSmallListItemTrailingBadge extends OudsSmallListItemTrailing {
+  /// Builder used to render the badge with the current enabled state.
+  final Widget Function(bool enable) badge;
+
+  /// Creates a compact trailing badge configuration.
+  const OudsSmallListItemTrailingBadge(this.badge);
+}
+
+/// Trailing tag slot for [OudsSmallListItem].
+///
+/// Accepts a `Widget Function(bool enable)` builder so the item can forward
+/// its own `enable` state into the tag's `enabled` parameter.
+///
+/// Example:
+/// ```dart
+/// OudsSmallListItemTrailingTag(
+///   (enable) => OudsTag.text(label: 'Label', status: Positive(), enabled: enable),
+/// )
+/// ```
+class OudsSmallListItemTrailingTag extends OudsSmallListItemTrailing {
+  /// Builder used to render the tag with the current enabled state.
+  final Widget Function(bool enable) tag;
+
+  /// Creates a compact trailing tag configuration.
+  const OudsSmallListItemTrailingTag(this.tag);
+}
+
 // ---------------------------------------------------------------------------
 // Widget
 // ---------------------------------------------------------------------------
@@ -193,10 +246,11 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
 /// A compact variant of [OudsListItem] locked to [OudsListItemSize.smallSize].
 ///
 /// Compared to [OudsListItem], this variant:
-/// - Does **not** support [overline] or [extraLabel] — only [label] and [description].
+/// - Does **not** support `overline` or `extraLabel` — only [label] and [description].
 /// - Restricts leading content to [OudsSmallListItemLeadingIcon] and [OudsSmallListItemLeadingImage].
-/// - Restricts trailing content to [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage]
-///   and [OudsSmallListItemTrailingText].
+/// - Restricts trailing content to [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage],
+///   [OudsSmallListItemTrailingText], [OudsSmallListItemTrailingBadge] and
+///   [OudsSmallListItemTrailingTag].
 /// - Renders all icons and images at [OudsListItemAssetSize.small].
 ///
 /// ---
@@ -222,7 +276,8 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
 /// - [description]: Optional secondary text displayed below [label].
 /// - [leading]: Optional leading content. Accepts [OudsSmallListItemLeadingIcon] or [OudsSmallListItemLeadingImage].
 /// - [trailing]: Optional trailing content. Accepts [OudsSmallListItemTrailingIcon],
-///   [OudsSmallListItemTrailingImage] or [OudsSmallListItemTrailingText].
+///   [OudsSmallListItemTrailingImage], [OudsSmallListItemTrailingText],
+///   [OudsSmallListItemTrailingBadge] or [OudsSmallListItemTrailingTag].
 /// - [divider]: Whether a horizontal divider is drawn below the item. Defaults to `true`.
 /// - [background]: Whether the item has a persistent background color. Defaults to `false`.
 ///   This mirrors the constructor default and is delegated to [OudsListItem].
@@ -235,6 +290,8 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
 ///   a **navigation item** and displays an indicator.
 /// - [indicator]: Navigation indicator. Defaults to [OudsListItemDefaults.indicator].
 /// - [card]: Whether the item should use the card decoration and rounded shape. Defaults to `false`.
+/// - [edgeToEdge]: Whether the item spans the full width using the grid margin
+///   instead of the component inline padding. Defaults to `true`.
 ///
 /// ### Usage Example
 ///
@@ -278,8 +335,9 @@ class OudsSmallListItem extends StatelessWidget {
 
   /// Optional content at the end of the row.
   ///
-  /// Accepts [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage]
-  /// or [OudsSmallListItemTrailingText].
+  /// Accepts [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage],
+  /// [OudsSmallListItemTrailingText], [OudsSmallListItemTrailingBadge] or
+  /// [OudsSmallListItemTrailingTag].
   final OudsSmallListItemTrailing? trailing;
 
   /// Whether a horizontal divider is drawn below the item. Defaults to `true`.
@@ -402,8 +460,9 @@ class OudsSmallListItem extends StatelessWidget {
         :final asset,
         :final semanticsLabel,
         :final format,
+        :final rounded,
       ) =>
-        _buildSmallImage(context, asset, format, semanticsLabel),
+        _buildSmallImage(context, asset, format, semanticsLabel, rounded),
     };
   }
 
@@ -432,7 +491,7 @@ class OudsSmallListItem extends StatelessWidget {
 
   /// Converts a [OudsSmallListItemTrailing] data object into its rendered widget.
   ///
-  /// Only supports icon, image and text variants (restricted API) at small asset size.
+  /// Supports icon, image, text, badge and tag variants at small asset size.
   /// Respects the [enable] state for color opacity adjustments.
   static Widget _buildSmallTrailing(
     BuildContext context,
@@ -453,8 +512,9 @@ class OudsSmallListItem extends StatelessWidget {
         :final asset,
         :final semanticsLabel,
         :final format,
+        :final rounded,
       ) =>
-        _buildSmallImage(context, asset, format, semanticsLabel),
+        _buildSmallImage(context, asset, format, semanticsLabel, rounded),
       OudsSmallListItemTrailingText(:final label, :final style) =>
         _buildSmallTrailingText(
           context,
@@ -463,6 +523,8 @@ class OudsSmallListItem extends StatelessWidget {
           enable,
           contentAlignment: contentAlignment,
         ),
+      OudsSmallListItemTrailingBadge(:final badge) => badge(enable),
+      OudsSmallListItemTrailingTag(:final tag) => tag(enable),
     };
   }
 
@@ -514,13 +576,15 @@ class OudsSmallListItem extends StatelessWidget {
     BuildContext context,
     String asset,
     OudsListItemImageFormat format,
-    String? semanticsLabel,
-  ) {
+    String? semanticsLabel, [
+    bool rounded = false,
+  ]) {
     return OudsListItemAssetBuilder.buildImage(
       context,
       asset,
       _kSmallAssetSize,
       format,
+      rounded: rounded,
       semanticsLabel: semanticsLabel,
       backgroundColor: OudsTheme.of(
         context,

@@ -12,7 +12,9 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
@@ -47,6 +49,9 @@ class ListItemCustomizationState
   late final TextState extraLabelTextState;
   late final TextState descriptionTextState;
   late final TextState helperTextState;
+  late final BoolState belowTextContentEnabledState;
+  late final BoolState bottomContentEnabledState;
+  late final BoolState labelContentEnabledState;
   late final ContentAlignmentState contentAlignmentState;
   late final LeadingState leadingState;
   late final TrailingState trailingState;
@@ -64,11 +69,26 @@ class ListItemCustomizationState
   late final BoolState trailingImageRoundedState;
   late final IconSizeState leadingIconSizeState;
   late final IconSizeState trailingIconSizeState;
+  late final GenericEnumState<ListItemIconTintEnum> leadingIconTintState;
+  late final GenericEnumState<ListItemIconTintEnum> trailingIconTintState;
   late final TextState trailingTextLabelState;
   late final TextState trailingTextExtraLabelState;
   late final TrailingTextStyleState trailingTextStyleState;
   late final CardDecorationState cardDecorationState;
   late final BoolState clickableState;
+  late final GenericEnumState<BadgeEnumType> trailingBadgeTypeState;
+  late final GenericEnumState<BadgeEnumSize> trailingBadgeSizeState;
+  late final IconStatusState trailingBadgeStatusState;
+  late final TextState trailingBadgeCountTextState;
+  late final BoolState trailingBadgeEnabledState;
+  late final GenericEnumState<TagEnumAppearance> trailingTagAppearanceState;
+  late final GenericEnumState<TagEnumSize> trailingTagSizeState;
+  late final GenericEnumState<TagEnumLayout> trailingTagLayoutState;
+  late final IconStatusState trailingTagStatusState;
+  late final TextState trailingTagLabelTextState;
+  late final BoolState trailingTagLoaderState;
+  late final BoolState trailingTagRoundedCornersState;
+  late final BoolState trailingTagEnabledState;
 
   @override
   void initState() {
@@ -78,6 +98,9 @@ class ListItemCustomizationState
     extraLabelTextState = TextState(setState);
     descriptionTextState = TextState(setState);
     helperTextState = TextState(setState);
+    belowTextContentEnabledState = BoolState(setState);
+    bottomContentEnabledState = BoolState(setState);
+    labelContentEnabledState = BoolState(setState);
     contentAlignmentState = ContentAlignmentState(setState);
     leadingState = LeadingState(setState);
     trailingState = TrailingState(setState);
@@ -95,11 +118,57 @@ class ListItemCustomizationState
     trailingImageRoundedState = BoolState(setState);
     leadingIconSizeState = IconSizeState(setState);
     trailingIconSizeState = IconSizeState(setState);
+    leadingIconTintState = GenericEnumState<ListItemIconTintEnum>(
+      setState,
+      list: ListItemIconTintEnum.values,
+      initial: ListItemIconTintEnum.tinted,
+    );
+    trailingIconTintState = GenericEnumState<ListItemIconTintEnum>(
+      setState,
+      list: ListItemIconTintEnum.values,
+      initial: ListItemIconTintEnum.tinted,
+    );
     trailingTextLabelState = TextState(setState, initial: 'Label');
     trailingTextExtraLabelState = TextState(setState, initial: 'Extra label');
     trailingTextStyleState = TrailingTextStyleState(setState);
     cardDecorationState = CardDecorationState(setState);
     clickableState = BoolState(setState);
+    trailingBadgeTypeState = GenericEnumState<BadgeEnumType>(
+      setState,
+      list: BadgeEnumType.values,
+      initial: BadgeEnumType.standard,
+    );
+    trailingBadgeSizeState = GenericEnumState<BadgeEnumSize>(
+      setState,
+      list: BadgeEnumSize.values,
+      initial: BadgeEnumSize.medium,
+    );
+    trailingBadgeStatusState = IconStatusState(
+      setState,
+      initial: StatusEnum.negative,
+    );
+    trailingBadgeCountTextState = TextState(setState, initial: '1');
+    trailingBadgeEnabledState = BoolState(setState, initial: true);
+    trailingTagAppearanceState = GenericEnumState<TagEnumAppearance>(
+      setState,
+      list: TagEnumAppearance.values,
+      initial: TagEnumAppearance.emphasized,
+    );
+    trailingTagSizeState = GenericEnumState<TagEnumSize>(
+      setState,
+      list: TagEnumSize.values,
+      initial: TagEnumSize.defaultSize,
+    );
+    trailingTagLayoutState = GenericEnumState<TagEnumLayout>(
+      setState,
+      list: TagEnumLayout.values,
+      initial: TagEnumLayout.textOnly,
+    );
+    trailingTagStatusState = IconStatusState(setState);
+    trailingTagLabelTextState = TextState(setState, initial: 'Label');
+    trailingTagLoaderState = BoolState(setState);
+    trailingTagRoundedCornersState = BoolState(setState);
+    trailingTagEnabledState = BoolState(setState, initial: true);
   }
 
   String get label => labelTextState.value;
@@ -116,6 +185,17 @@ class ListItemCustomizationState
 
   String get helperText => helperTextState.value;
   set helperText(String value) => helperTextState.value = value;
+
+  bool get belowTextContentEnabled => belowTextContentEnabledState.value;
+  set belowTextContentEnabled(bool value) =>
+      belowTextContentEnabledState.value = value;
+
+  bool get bottomContentEnabled => bottomContentEnabledState.value;
+  set bottomContentEnabled(bool value) =>
+      bottomContentEnabledState.value = value;
+
+  bool get labelContentEnabled => labelContentEnabledState.value;
+  set labelContentEnabled(bool value) => labelContentEnabledState.value = value;
 
   ListItemContentAlignmentEnum get contentAlignment =>
       contentAlignmentState.selected;
@@ -195,6 +275,21 @@ class ListItemCustomizationState
     trailingIconSizeState.selected = value;
   }
 
+  ListItemIconTintEnum get leadingIconTint => leadingIconTintState.selected;
+  set leadingIconTint(ListItemIconTintEnum value) {
+    leadingIconTintState.selected = value;
+  }
+
+  bool get leadingIconTinted => leadingIconTint == ListItemIconTintEnum.tinted;
+
+  ListItemIconTintEnum get trailingIconTint => trailingIconTintState.selected;
+  set trailingIconTint(ListItemIconTintEnum value) {
+    trailingIconTintState.selected = value;
+  }
+
+  bool get trailingIconTinted =>
+      trailingIconTint == ListItemIconTintEnum.tinted;
+
   String get trailingTextLabel => trailingTextLabelState.value;
   set trailingTextLabel(String value) => trailingTextLabelState.value = value;
 
@@ -213,6 +308,58 @@ class ListItemCustomizationState
   ListItemCardDecorationEnum get cardDecoration => cardDecorationState.selected;
   set cardDecoration(ListItemCardDecorationEnum value) =>
       cardDecorationState.selected = value;
+
+  BadgeEnumType get trailingBadgeType => trailingBadgeTypeState.selected;
+  set trailingBadgeType(BadgeEnumType value) =>
+      trailingBadgeTypeState.selected = value;
+
+  BadgeEnumSize get trailingBadgeSize => trailingBadgeSizeState.selected;
+  set trailingBadgeSize(BadgeEnumSize value) =>
+      trailingBadgeSizeState.selected = value;
+
+  StatusEnum get trailingBadgeStatus => trailingBadgeStatusState.selected;
+  int get trailingBadgeStatusIndex => trailingBadgeStatusState.index;
+  set trailingBadgeStatus(StatusEnum value) =>
+      trailingBadgeStatusState.selected = value;
+
+  String get trailingBadgeCount => trailingBadgeCountTextState.value;
+  set trailingBadgeCount(String value) =>
+      trailingBadgeCountTextState.value = value;
+
+  bool get trailingBadgeEnabled => trailingBadgeEnabledState.value;
+  set trailingBadgeEnabled(bool value) =>
+      trailingBadgeEnabledState.value = value;
+
+  TagEnumAppearance get trailingTagAppearance =>
+      trailingTagAppearanceState.selected;
+  set trailingTagAppearance(TagEnumAppearance value) =>
+      trailingTagAppearanceState.selected = value;
+
+  TagEnumSize get trailingTagSize => trailingTagSizeState.selected;
+  set trailingTagSize(TagEnumSize value) =>
+      trailingTagSizeState.selected = value;
+
+  TagEnumLayout get trailingTagLayout => trailingTagLayoutState.selected;
+  set trailingTagLayout(TagEnumLayout value) =>
+      trailingTagLayoutState.selected = value;
+
+  StatusEnum get trailingTagStatus => trailingTagStatusState.selected;
+  int get trailingTagStatusIndex => trailingTagStatusState.index;
+  set trailingTagStatus(StatusEnum value) =>
+      trailingTagStatusState.selected = value;
+
+  String get trailingTagLabel => trailingTagLabelTextState.value;
+  set trailingTagLabel(String value) => trailingTagLabelTextState.value = value;
+
+  bool get trailingTagLoader => trailingTagLoaderState.value;
+  set trailingTagLoader(bool value) => trailingTagLoaderState.value = value;
+
+  bool get trailingTagRoundedCorners => trailingTagRoundedCornersState.value;
+  set trailingTagRoundedCorners(bool value) =>
+      trailingTagRoundedCornersState.value = value;
+
+  bool get trailingTagEnabled => trailingTagEnabledState.value;
+  set trailingTagEnabled(bool value) => trailingTagEnabledState.value = value;
 
   bool get enable => hasEnabled;
   set enable(bool value) => hasEnabled = value;
@@ -284,11 +431,13 @@ class TrailingState {
 }
 
 class IconStatusState {
-  IconStatusState(this._setState);
+  IconStatusState(this._setState, {StatusEnum initial = StatusEnum.neutral})
+    : _selected = initial,
+      _index = StatusEnum.values.indexOf(initial);
 
   final void Function(void Function()) _setState;
-  StatusEnum _selected = StatusEnum.neutral;
-  int _index = StatusEnum.values.indexOf(StatusEnum.neutral);
+  StatusEnum _selected;
+  int _index;
   final List<StatusEnum> list = StatusEnum.values;
 
   StatusEnum get selected => _selected;
@@ -402,6 +551,24 @@ class CardDecorationState {
 
   ListItemCardDecorationEnum get selected => _selected;
   set selected(ListItemCardDecorationEnum newValue) {
+    _setState(() {
+      _selected = newValue;
+    });
+  }
+}
+
+/// Generic selection state for a simple enum, used for list item trailing
+/// badge/tag customization (type, size, appearance, layout …).
+class GenericEnumState<T> {
+  GenericEnumState(this._setState, {required this.list, required T initial})
+    : _selected = initial;
+
+  final void Function(void Function()) _setState;
+  final List<T> list;
+  T _selected;
+
+  T get selected => _selected;
+  set selected(T newValue) {
     _setState(() {
       _selected = newValue;
     });

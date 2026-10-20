@@ -22,9 +22,10 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// indicator (chevron next, chevron previous, external link icon) based on
 /// the item's current [OudsListItemControlState].
 ///
-/// When [OudsListItemControlState.disabled] the indicator color is set to
-/// `actionDisabled` so it appears uniformly dimmed, consistent with the
-/// leading and trailing slot behaviour.
+/// When the item is disabled, callers render the indicator with
+/// `contentDisabled` (as for any dimmed content); [indicatorColor] itself
+/// maps [OudsListItemControlState.disabled] to `actionDisabled` as a
+/// fallback for state-driven callers.
 ///
 /// Example usage:
 /// ```dart
