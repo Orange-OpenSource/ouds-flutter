@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/flag/ouds_flag.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 
 /// Base sealed class for the trailing slot of an [OudsListItem].
@@ -238,12 +239,13 @@ class OudsListItemTrailingImage extends OudsListItemTrailing {
 
 /// Trailing flag slot — renders an [OudsFlag] on the trailing side of the row.
 ///
-/// Pass a pre-configured [OudsFlag] instance with the desired country code and size.
+/// Pass an [OudsFlag] with the desired country code. The flag is resized to
+/// match the list item token dimensions, whatever its intrinsic size.
 ///
 /// Example:
 /// ```dart
 /// OudsListItemTrailingFlag(OudsFlag('fr'))
-/// OudsListItemTrailingFlag(OudsFlag('gb', semanticsLabel: 'United Kingdom flag'))
+/// OudsListItemTrailingFlag(OudsFlag('gb'))
 /// ```
 class OudsListItemTrailingFlag extends OudsListItemTrailing {
   /// The flag widget to display.
@@ -294,4 +296,29 @@ class OudsListItemTrailingCustom extends OudsListItemTrailing {
 
   /// Creates a custom trailing configuration.
   const OudsListItemTrailingCustom(this.builder);
+}
+
+/// A fully custom trailing slot.
+///
+/// The [builder] receives the current [OudsListItemControlState] so the custom
+/// content can adapt its appearance (e.g. opacity, color) to the item's
+/// interaction state.
+///
+/// The rendered content is capped to the `sizeMaxSizeLeadingTrailingSlot`
+/// component token on both dimensions (96 dp on Orange, 72 dp on Orange
+/// Compact).
+///
+/// Example:
+/// ```dart
+/// OudsListItemTrailingContent(
+///   (context, state) => MyCustomTrailingWidget(enabled: state != OudsListItemControlState.disabled),
+/// )
+/// ```
+class OudsListItemTrailingContent extends OudsListItemTrailing {
+  /// Builder used to render the custom trailing content with the current [OudsListItemControlState].
+  final Widget Function(BuildContext context, OudsListItemControlState state)
+  builder;
+
+  /// Creates a trailing content configuration.
+  const OudsListItemTrailingContent(this.builder);
 }

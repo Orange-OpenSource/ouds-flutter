@@ -82,6 +82,7 @@ The OUDS icon library has been updated to version 2.3.0. Some icon names or asse
 |-----------|--------|
 | Button | Updated to v3.3.0 — added `tinted` parameter (defaults to `true`) to control whether the icon follows the theme color or keeps its original (multi-color) asset colors |
 | Link | Updated to v2.4.0 |
+| List Item | Added `OudsListItem.labelContent` constructor for a fully custom label widget, `belowTextContent`/`bottomContent` slots (Default size only), `OudsListItemLeadingContent`/`OudsListItemTrailingContent` for custom leading/trailing widgets receiving the current `OudsListItemControlState`, and `OudsSmallListItemTrailingBadge`/`OudsSmallListItemTrailingTag` trailing options on `OudsSmallListItem` |
 | Progress Indicator | Added `size` parameter to `OudsCircularProgressIndicator` for button integration |
 | Tab Bar | Fixed `Invalid value: Not in inclusive range 0..2: 3` crash |
 | Typography | Added typography tokens component |

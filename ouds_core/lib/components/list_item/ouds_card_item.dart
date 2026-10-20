@@ -15,6 +15,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
@@ -30,7 +31,7 @@ class OudsCardItemDefaults {
   /// Default navigation indicator.
   static const OudsListItemIndicator indicator = OudsListItemIndicatorNext();
 
-  /// Default decoration — card items always use a background.
+  /// Default decoration — a persistent background with a bottom divider.
   static const OudsListItemDecoration decoration =
       OudsListItemDecorationBackground();
 }
@@ -46,8 +47,8 @@ class OudsCardItemDefaults {
 /// the card decoration defaults. It is ideal for read-only summaries,
 /// grouped content and navigable cards with stronger visual emphasis.
 ///
-/// The component keeps the default list-item density and reuses the same
-/// horizontal padding as [OudsListItem].
+/// The component keeps the default list-item density and always uses the grid
+/// margin for its horizontal padding, like an edge-to-edge [OudsListItem].
 ///
 /// ### Usage Example
 ///
@@ -65,15 +66,32 @@ class OudsCardItemDefaults {
 ///   description: 'Ouvre une nouvelle page',
 ///   onTap: () {},
 /// )
+///
+/// OudsCardItem.labelContent(
+///   labelContent: (context, state) => Text('Custom label content'),
+///   description: 'Ouvre une nouvelle page',
+/// )
 /// ```
 class OudsCardItem extends StatelessWidget {
   /// The mandatory main label displayed in the center column.
-  final String label;
+  ///
+  /// Mutually exclusive with [labelContent] — use [OudsCardItem.labelContent]
+  /// to provide fully custom content instead of a plain text label.
+  final String? label;
+
+  /// Optional fully custom content replacing the plain text [label].
+  ///
+  /// The builder receives the current [OudsListItemControlState].
+  final Widget Function(BuildContext context, OudsListItemControlState state)?
+  labelContent;
 
   /// Vertical alignment of all slots.
   final OudsListItemContentAlignment contentAlignment;
 
-  /// Visual decoration of the card. Defaults to a persistent background.
+  /// Visual decoration of the card. Defaults to
+  /// [OudsCardItemDefaults.decoration] (persistent background with a bottom
+  /// divider). Pass `OudsListItemDecorationBackground(divider: false)` to keep
+  /// the background without the divider.
   final OudsListItemDecoration decoration;
 
   /// Optional text displayed above [label] in a smaller, muted style.
@@ -90,6 +108,20 @@ class OudsCardItem extends StatelessWidget {
 
   /// Optional content at the end of the row.
   final OudsListItemTrailing? trailing;
+
+  /// Optional fully custom content displayed right after [description], inside
+  /// the center text column.
+  ///
+  /// The builder receives the current [OudsListItemControlState].
+  final Widget Function(BuildContext context, OudsListItemControlState state)?
+  belowTextContent;
+
+  /// Optional fully custom content displayed below the main row, full-width,
+  /// but still inside the item's background/border area.
+  ///
+  /// The builder receives the current [OudsListItemControlState].
+  final Widget Function(BuildContext context, OudsListItemControlState state)?
+  bottomContent;
 
   /// Optional helper text displayed below the row.
   final String? helperText;
@@ -115,17 +147,61 @@ class OudsCardItem extends StatelessWidget {
     this.overline,
     this.extraLabel,
     this.description,
+    this.belowTextContent,
     this.leading,
     this.trailing,
+    this.bottomContent,
     this.helperText,
     this.boldLabel = false,
     this.enable = true,
     this.onTap,
     this.indicator = OudsCardItemDefaults.indicator,
-  });
+  }) : labelContent = null;
+
+  /// Creates an OUDS card item with fully custom [labelContent] instead of a
+  /// plain text label.
+  const OudsCardItem.labelContent({
+    super.key,
+    required this.labelContent,
+    this.contentAlignment = OudsCardItemDefaults.contentAlignment,
+    this.decoration = OudsCardItemDefaults.decoration,
+    this.overline,
+    this.extraLabel,
+    this.description,
+    this.belowTextContent,
+    this.leading,
+    this.trailing,
+    this.bottomContent,
+    this.helperText,
+    this.boldLabel = false,
+    this.enable = true,
+    this.onTap,
+    this.indicator = OudsCardItemDefaults.indicator,
+  }) : label = null;
 
   @override
   Widget build(BuildContext context) {
+    if (labelContent != null) {
+      return OudsListItem.labelContent(
+        labelContent: labelContent!,
+        size: OudsListItemSize.defaultSize,
+        contentAlignment: contentAlignment,
+        overline: overline,
+        extraLabel: extraLabel,
+        description: description,
+        belowTextContent: belowTextContent,
+        leading: leading,
+        trailing: trailing,
+        bottomContent: bottomContent,
+        decoration: decoration,
+        helperText: helperText,
+        boldLabel: boldLabel,
+        enable: enable,
+        onTap: onTap,
+        indicator: indicator,
+        card: true,
+      );
+    }
     return OudsListItem(
       label: label,
       size: OudsListItemSize.defaultSize,
@@ -133,8 +209,10 @@ class OudsCardItem extends StatelessWidget {
       overline: overline,
       extraLabel: extraLabel,
       description: description,
+      belowTextContent: belowTextContent,
       leading: leading,
       trailing: trailing,
+      bottomContent: bottomContent,
       decoration: decoration,
       helperText: helperText,
       boldLabel: boldLabel,

@@ -228,13 +228,16 @@ final class OudsListItemDecorationBackgroundOnInteraction
   const OudsListItemDecorationBackgroundOnInteraction({super.divider = true});
 }
 
-/// Persistent outlined border — no divider.
+/// Persistent outlined border — no divider. An interaction background fill is
+/// also drawn on hover, press and focus.
 final class OudsListItemDecorationOutlined extends OudsListItemDecoration {
   /// Creates a decoration with a persistent outline.
   const OudsListItemDecorationOutlined() : super(divider: false);
 }
 
-/// Outlined border shown only on interaction — no divider.
+/// Outlined border shown on hover and press (keyboard focus draws the standard
+/// focus ring instead) — no divider. An interaction background fill is also
+/// drawn on hover, press and focus.
 final class OudsListItemDecorationOutlinedOnInteraction
     extends OudsListItemDecoration {
   /// Creates a decoration that only shows an outline on interaction.

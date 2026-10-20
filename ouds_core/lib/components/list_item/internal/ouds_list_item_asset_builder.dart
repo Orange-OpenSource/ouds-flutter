@@ -22,6 +22,7 @@ import 'package:ouds_core/components/list_item/internal/ouds_list_item_indicator
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/utilities/asset_image_utils.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Shared widget builders for [OudsListItem] visual assets.
@@ -161,6 +162,10 @@ class OudsListItemAssetBuilder {
   /// - [tinted] — when `false`, no color filter is applied (useful for
   ///   multicolor icons). Defaults to `true`.
   ///
+  /// Functional statuses (Warning, Negative, Info) are wrapped in a
+  /// [Semantics] label so screen readers announce them; [Neutral] and
+  /// [Accent] expose their optional [OudsIconStatus.semanticsLabel] when set.
+  ///
   /// Example:
   /// ```dart
   /// OudsListItemAssetBuilder.buildIcon(
@@ -178,8 +183,21 @@ class OudsListItemAssetBuilder {
     OudsListItemAssetSize size = OudsListItemAssetSize.medium,
     bool tinted = true,
   }) {
-    return OudsListItemIconModifier(
+    final icon = OudsListItemIconModifier(
       context,
     ).buildIcon(iconStatus, enable: enable, size: size, tinted: tinted);
+
+    final l10n = OudsLocalizations.of(context);
+    final String? label = switch (iconStatus) {
+      Neutral() => iconStatus.semanticsLabel,
+      Accent() => iconStatus.semanticsLabel,
+      Warning() => l10n?.core_common_warning_a11y,
+      Negative() => l10n?.core_common_error_a11y,
+      Info() => l10n?.core_common_info_a11y,
+      _ => null,
+    };
+
+    if (label == null) return icon;
+    return Semantics(label: label, child: icon);
   }
 }

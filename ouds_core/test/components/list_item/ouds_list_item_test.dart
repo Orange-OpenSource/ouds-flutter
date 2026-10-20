@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
@@ -110,6 +111,143 @@ void main() {
       // takes over the start slot exclusively.
       expect(find.byType(SvgPicture), findsOneWidget);
     });
+
+    testWidgets('renders labelContent instead of label when provided', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsListItem.labelContent(
+            labelContent: (context, state) => const Text('Custom label'),
+          ),
+        ),
+      );
+
+      expect(find.text('Custom label'), findsOneWidget);
+
+      final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
+      expect(listItem.label, isNull);
+    });
+
+    testWidgets('renders belowTextContent after the description', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsListItem(
+            label: 'Main label',
+            description: 'Description',
+            belowTextContent: (context, state) =>
+                const Text('Below text content'),
+          ),
+        ),
+      );
+
+      expect(find.text('Below text content'), findsOneWidget);
+    });
+
+    testWidgets('renders bottomContent below the main row', (tester) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsListItem(
+            label: 'Main label',
+            bottomContent: (context, state) =>
+                const Text('Bottom content', key: Key('bottom-content')),
+          ),
+        ),
+      );
+
+      expect(find.byKey(const Key('bottom-content')), findsOneWidget);
+    });
+
+    testWidgets('renders OudsListItemTrailingContent with the control state', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsListItem(
+            label: 'Main label',
+            enable: false,
+            trailing: OudsListItemTrailingContent(
+              (context, state) => Text(state.name),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('disabled'), findsOneWidget);
+    });
+
+    testWidgets('renders OudsListItemLeadingContent with the control state', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsListItem(
+            label: 'Main label',
+            enable: false,
+            leading: OudsListItemLeadingContent(
+              (context, state) => Text(state.name),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('disabled'), findsOneWidget);
+    });
+
+    testWidgets(
+      'caps leading and trailing Content to sizeMaxSizeLeadingTrailingSlot',
+      (tester) async {
+        await tester.pumpWidget(
+          testableWidget(
+            OudsListItem(
+              label: 'Main label',
+              leading: OudsListItemLeadingContent(
+                (context, state) =>
+                    Container(color: Colors.red, width: 200, height: 200),
+              ),
+              trailing: OudsListItemTrailingContent(
+                (context, state) =>
+                    Container(color: Colors.blue, width: 200, height: 200),
+              ),
+            ),
+          ),
+        );
+
+        // Orange theme token value: dimension1200 = 96 dp.
+        final redBox = find.byWidgetPredicate(
+          (w) => w is Container && w.color == Colors.red,
+        );
+        final blueBox = find.byWidgetPredicate(
+          (w) => w is Container && w.color == Colors.blue,
+        );
+        expect(tester.getSize(redBox), const Size(96, 96));
+        expect(tester.getSize(blueBox), const Size(96, 96));
+      },
+    );
+
+    testWidgets(
+      'propagates the control state to labelContent, belowTextContent and '
+      'bottomContent builders',
+      (tester) async {
+        await tester.pumpWidget(
+          testableWidget(
+            OudsListItem.labelContent(
+              labelContent: (context, state) => Text('label-${state.name}'),
+              belowTextContent: (context, state) =>
+                  Text('below-${state.name}'),
+              bottomContent: (context, state) => Text('bottom-${state.name}'),
+              enable: false,
+            ),
+          ),
+        );
+
+        expect(find.text('label-disabled'), findsOneWidget);
+        expect(find.text('below-disabled'), findsOneWidget);
+        expect(find.text('bottom-disabled'), findsOneWidget);
+      },
+    );
   });
 
   group('OudsSmallListItem', () {
@@ -189,6 +327,85 @@ void main() {
           1,
           reason: 'leading and trailing icons must share the same fixed size',
         );
+      },
+    );
+
+    testWidgets(
+      'rounds small image slots when rounded is true',
+      (tester) async {
+        await tester.pumpWidget(
+          testableWidget(
+            const OudsSmallListItem(
+              label: 'Rounded image',
+              leading: OudsSmallListItemLeadingImage(
+                asset: 'assets/component/alert/tick-confirmation-fill.svg',
+                rounded: true,
+              ),
+              trailing: OudsSmallListItemTrailingImage(
+                asset: 'assets/component/alert/tick-confirmation-fill.svg',
+                rounded: true,
+              ),
+            ),
+          ),
+        );
+
+        // Each rounded image is wrapped in a ClipRRect applying the
+        // borderRadiusMediaRounded token.
+        final clipRects = find.byType(ClipRRect);
+        expect(clipRects, findsNWidgets(2));
+      },
+    );
+
+    testWidgets(
+      'keeps small image slots square when rounded is false',
+      (tester) async {
+        await tester.pumpWidget(
+          testableWidget(
+            const OudsSmallListItem(
+              label: 'Square image',
+              leading: OudsSmallListItemLeadingImage(
+                asset: 'assets/component/alert/tick-confirmation-fill.svg',
+              ),
+            ),
+          ),
+        );
+
+        final svg = find.byType(SvgPicture);
+        expect(svg, findsOneWidget);
+        expect(
+          find.ancestor(of: svg, matching: find.byType(ClipRRect)),
+          findsNothing,
+        );
+      },
+    );
+
+    testWidgets(
+      'forwards enable into OudsSmallListItemTrailingBadge and TrailingTag',
+      (tester) async {
+        await tester.pumpWidget(
+          testableWidget(
+            OudsSmallListItem(
+              label: 'Badge and tag',
+              enable: false,
+              trailing: OudsSmallListItemTrailingBadge(
+                (enable) => Text('badge-$enable'),
+              ),
+            ),
+          ),
+        );
+        expect(find.text('badge-false'), findsOneWidget);
+
+        await tester.pumpWidget(
+          testableWidget(
+            OudsSmallListItem(
+              label: 'Badge and tag',
+              trailing: OudsSmallListItemTrailingTag(
+                (enable) => Text('tag-$enable'),
+              ),
+            ),
+          ),
+        );
+        expect(find.text('tag-true'), findsOneWidget);
       },
     );
   });

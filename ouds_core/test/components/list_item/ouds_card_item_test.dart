@@ -57,6 +57,26 @@ void main() {
       },
     );
 
+    testWidgets('labelContent constructor delegates custom content to OudsListItem', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsCardItem.labelContent(
+            labelContent: (context, state) => const Text('Custom label'),
+            description: '5G incluse',
+          ),
+        ),
+      );
+
+      final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
+
+      expect(listItem.label, isNull);
+      expect(listItem.labelContent, isNotNull);
+      expect(listItem.card, isTrue);
+      expect(find.text('Custom label'), findsOneWidget);
+    });
+
     testWidgets('is tappable and announced as a button when interactive', (
       tester,
     ) async {
@@ -148,6 +168,41 @@ void main() {
       final roundedRadius = _listItemBorderRadius(tester).topLeft.x;
 
       expect(roundedRadius, greaterThan(defaultRadius));
+    });
+
+    testWidgets('passes belowTextContent to OudsListItem', (tester) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsCardItem(
+            label: 'Main label',
+            description: 'Description',
+            belowTextContent: (context, state) =>
+                const Text('Below text content'),
+          ),
+        ),
+      );
+
+      expect(find.text('Below text content'), findsOneWidget);
+
+      final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
+      expect(listItem.belowTextContent, isNotNull);
+    });
+
+    testWidgets('passes bottomContent to OudsListItem', (tester) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsCardItem(
+            label: 'Main label',
+            bottomContent: (context, state) =>
+                const Text('Bottom content', key: Key('bottom-content')),
+          ),
+        ),
+      );
+
+      expect(find.byKey(const Key('bottom-content')), findsOneWidget);
+
+      final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
+      expect(listItem.bottomContent, isNotNull);
     });
   });
 

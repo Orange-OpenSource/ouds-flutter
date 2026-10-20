@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/flag/ouds_flag.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 
 /// Base sealed class for the leading slot of an [OudsListItem].
@@ -123,14 +124,13 @@ class OudsListItemLeadingImage extends OudsListItemLeading {
 
 /// Leading flag slot — renders an [OudsFlag] on the leading side of the row.
 ///
-/// Pass a pre-configured [OudsFlag] instance with the desired country code and size.
-/// The flag size is automatically constrained to match the list item token dimensions,
-/// so prefer [OudsFlagSize.small] or [OudsFlagSize.medium] here.
+/// Pass an [OudsFlag] with the desired country code. The flag is resized to
+/// match the list item token dimensions, whatever its intrinsic size.
 ///
 /// Example:
 /// ```dart
 /// OudsListItemLeadingFlag(OudsFlag('fr'))
-/// OudsListItemLeadingFlag(OudsFlag('us', semanticsLabel: 'United States flag'))
+/// OudsListItemLeadingFlag(OudsFlag('us'))
 /// ```
 class OudsListItemLeadingFlag extends OudsListItemLeading {
   /// The flag widget to display.
@@ -203,4 +203,29 @@ class OudsListItemLeadingCustom extends OudsListItemLeading {
 
   /// Creates a custom leading configuration.
   const OudsListItemLeadingCustom(this.builder);
+}
+
+/// A fully custom leading slot.
+///
+/// The [builder] receives the current [OudsListItemControlState] so the custom
+/// content can adapt its appearance (e.g. opacity, color) to the item's
+/// interaction state.
+///
+/// The rendered content is capped to the `sizeMaxSizeLeadingTrailingSlot`
+/// component token on both dimensions (96 dp on Orange, 72 dp on Orange
+/// Compact).
+///
+/// Example:
+/// ```dart
+/// OudsListItemLeadingContent(
+///   (context, state) => MyCustomLeadingWidget(enabled: state != OudsListItemControlState.disabled),
+/// )
+/// ```
+class OudsListItemLeadingContent extends OudsListItemLeading {
+  /// Builder used to render the custom leading content with the current [OudsListItemControlState].
+  final Widget Function(BuildContext context, OudsListItemControlState state)
+  builder;
+
+  /// Creates a leading content configuration.
+  const OudsListItemLeadingContent(this.builder);
 }
