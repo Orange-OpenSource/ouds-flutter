@@ -245,6 +245,7 @@ class ListItemCustomizationUtils {
   static OudsIconStatus getIconStatus(
     BuildContext context,
     StatusEnum status,
+    bool tinted,
     ThemeController themeController,
   ) {
     return switch (status) {
@@ -253,12 +254,24 @@ class ListItemCustomizationUtils {
       StatusEnum.warning => Warning(),
       StatusEnum.negative => Negative(),
       StatusEnum.neutral => Neutral(
-        icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+        icon: tinted
+            ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+            : AppAssets.icons.icUntintedSquare,
         semanticsLabel: context.l10n.app_components_listItem_icon_a11y,
+        tinted: tinted,
+        backgroundColor: tinted
+            ? null
+            : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
       ),
       StatusEnum.accent => Accent(
-        icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+        icon: tinted
+            ? AppAssets.icons.assistanceTipsAndTricks(themeController)
+            : AppAssets.icons.icUntintedSquare,
         semanticsLabel: context.l10n.app_components_listItem_icon_a11y,
+        tinted: tinted,
+        backgroundColor: tinted
+            ? null
+            : OudsTheme.of(context).colorScheme(context).surfaceBrandPrimary,
       ),
     };
   }
@@ -278,7 +291,6 @@ class ListItemCustomizationUtils {
     BuildContext context,
     ListItemLeadingEnum leading,
     OudsIconStatus leadingIconStatus,
-    bool tinted,
     ListItemIconSizeEnum leadingIconSize,
     ListItemImageSizeEnum leadingImageSize,
     ListItemImageFormatEnum leadingImageFormat,
@@ -294,7 +306,6 @@ class ListItemCustomizationUtils {
       ListItemLeadingEnum.icon => OudsListItemLeadingIcon(
         leadingIconStatus,
         size: _convertIconSizeEnum(leadingIconSize),
-        tinted: tinted,
       ),
       ListItemLeadingEnum.image => OudsListItemLeadingImage(
         asset: assetPath,
@@ -331,7 +342,6 @@ class ListItemCustomizationUtils {
     BuildContext context,
     ListItemTrailingEnum trailing,
     OudsIconStatus trailingIconStatus,
-    bool tinted,
     ListItemIconSizeEnum trailingIconSize,
     ListItemImageSizeEnum trailingImageSize,
     ListItemImageFormatEnum trailingImageFormat,
@@ -366,7 +376,6 @@ class ListItemCustomizationUtils {
       ListItemTrailingEnum.icon => OudsListItemTrailingIcon(
         trailingIconStatus,
         size: _convertIconSizeEnum(trailingIconSize),
-        tinted: tinted,
       ),
       ListItemTrailingEnum.image => OudsListItemTrailingImage(
         asset: assetPath,
@@ -592,11 +601,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return _listItem(
@@ -612,7 +623,6 @@ class ListItemCustomizationUtils {
         context,
         state.leading,
         leadingIconStatus,
-        state.leadingIconTinted,
         state.leadingIconSize,
         state.leadingImageSize,
         state.leadingImageFormat,
@@ -622,7 +632,6 @@ class ListItemCustomizationUtils {
         context,
         state.trailing,
         trailingIconStatus,
-        state.trailingIconTinted,
         state.trailingIconSize,
         state.trailingImageSize,
         state.trailingImageFormat,
@@ -779,11 +788,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return OudsSmallListItem(
@@ -829,11 +840,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return _listItem(
@@ -849,7 +862,6 @@ class ListItemCustomizationUtils {
         context,
         state.leading,
         leadingIconStatus,
-        state.leadingIconTinted,
         state.leadingIconSize,
         state.leadingImageSize,
         state.leadingImageFormat,
@@ -859,7 +871,6 @@ class ListItemCustomizationUtils {
         context,
         state.trailing,
         trailingIconStatus,
-        state.trailingIconTinted,
         state.trailingIconSize,
         state.trailingImageSize,
         state.trailingImageFormat,
@@ -894,11 +905,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return OudsSmallListItem(
@@ -1090,11 +1103,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     final contentAlignment = getContentAlignment(state.contentAlignment);
@@ -1102,7 +1117,6 @@ class ListItemCustomizationUtils {
       context,
       state.leading,
       leadingIconStatus,
-      state.leadingIconTinted,
       state.leadingIconSize,
       state.leadingImageSize,
       state.leadingImageFormat,
@@ -1112,7 +1126,6 @@ class ListItemCustomizationUtils {
       context,
       state.trailing,
       trailingIconStatus,
-      state.trailingIconTinted,
       state.trailingIconSize,
       state.trailingImageSize,
       state.trailingImageFormat,
@@ -1183,11 +1196,13 @@ class ListItemCustomizationUtils {
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
+      state.leadingIconTinted,
       themeController,
     );
     final trailingIconStatus = getIconStatus(
       context,
       state.trailingIconStatus,
+      state.trailingIconTinted,
       themeController,
     );
     return OudsSmallCardItem(

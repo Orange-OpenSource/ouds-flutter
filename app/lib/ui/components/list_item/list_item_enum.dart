@@ -155,19 +155,6 @@ extension ListItemIconSizeLabel on ListItemIconSizeEnum {
   String stringValue(BuildContext context) => capitalizeEnumValue(this);
 }
 
-/// Demo enum for the `tinted` flag of leading and trailing icon slots.
-enum ListItemIconTintEnum {
-  tinted,
-  untinted;
-
-  static String enumName(BuildContext context) =>
-      context.l10n.app_components_listItem_iconTint_tech;
-}
-
-extension ListItemIconTintLabel on ListItemIconTintEnum {
-  String stringValue(BuildContext context) => capitalizeEnumValue(this);
-}
-
 /// Demo enum for [OudsListItemDecoration] applied to card item previews.
 enum ListItemCardDecorationEnum {
   background,

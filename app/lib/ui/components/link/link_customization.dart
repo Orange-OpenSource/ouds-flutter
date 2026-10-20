@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _LinkCustomization extends InheritedWidget {
@@ -35,7 +34,6 @@ class LinkCustomizationState
   late final LabelTextState labelTextState;
   late final SizeState sizeState;
   late final DensityState densityState;
-  late final TintedState tintedState;
 
   @override
   void initState() {
@@ -44,7 +42,6 @@ class LinkCustomizationState
     labelTextState = LabelTextState(setState);
     sizeState = SizeState(setState);
     densityState = DensityState(setState);
-    tintedState = TintedState(setState);
   }
 
   LinkEnumLayout get selectedLayout => layoutState.selected;
@@ -58,11 +55,6 @@ class LinkCustomizationState
 
   LinkEnumDensity get selectedDensity => densityState.selected;
   set selectedDensity(LinkEnumDensity value) => densityState.selected = value;
-
-  bool get isTinted => tintedState.selected == TintedEnum.tinted;
-
-  TintedEnum get selectedTinted => tintedState.selected;
-  set selectedTinted(TintedEnum value) => tintedState.selected = value;
 
   @override
   Widget build(BuildContext context) {
@@ -129,28 +121,6 @@ class SizeState {
   set selected(LinkEnumSize newValue) {
     _setState(() {
       _selectedSize = newValue;
-    });
-  }
-}
-
-/// Tinted State Management
-///
-/// Controls whether the icon displayed by [OudsLink.icon] should be tinted
-/// with the theme color, or shown with its original colors.
-class TintedState {
-  TintedState(this._setState);
-
-  final void Function(void Function()) _setState;
-
-  final List<TintedEnum> _tintedList = [TintedEnum.tinted, TintedEnum.untinted];
-  TintedEnum _selectedTinted = TintedEnum.tinted;
-
-  List<TintedEnum> get list => _tintedList;
-
-  TintedEnum get selected => _selectedTinted;
-  set selected(TintedEnum newValue) {
-    _setState(() {
-      _selectedTinted = newValue;
     });
   }
 }

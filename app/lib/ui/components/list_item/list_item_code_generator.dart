@@ -187,14 +187,26 @@ class ListItemCodeGenerator {
 
   /// Icon snippet: `tinted:` / `size:` arguments are omitted when they match
   /// the defaults; the call stays on one line when only the status remains.
+  ///
+  /// [tintedInStatus] selects where the untinted flag is expressed: inside
+  /// the [Neutral] status (large list item icons) or as a `tinted:` argument
+  /// of the slot configuration (small list item icons).
   static String _iconCode(
     String name, {
     required bool tinted,
     ListItemIconSizeEnum? size,
+    bool tintedInStatus = false,
   }) {
+    final status = tinted
+        ? "Neutral(icon: 'assets/ic_heart.svg')"
+        : "Neutral(icon: 'assets/ic_heart.svg', tinted: false)";
     final args = <String>[
-      "Neutral(icon: 'assets/ic_heart.svg'),",
-      if (!tinted) 'tinted: false,',
+      if (tintedInStatus)
+        '$status,'
+      else ...[
+        "Neutral(icon: 'assets/ic_heart.svg'),",
+        if (!tinted) 'tinted: false,',
+      ],
       if (size != null && size != ListItemIconSizeEnum.medium)
         'size: OudsListItemIconSize.${size.name},',
     ];
@@ -232,6 +244,7 @@ class ListItemCodeGenerator {
       'OudsListItemLeadingIcon',
       tinted: state.leadingIconTinted,
       size: state.leadingIconSize,
+      tintedInStatus: true,
     ),
     ListItemLeadingEnum.image => _imageCode(
       'OudsListItemLeadingImage',
@@ -292,6 +305,7 @@ class ListItemCodeGenerator {
       'OudsListItemTrailingIcon',
       tinted: state.trailingIconTinted,
       size: state.trailingIconSize,
+      tintedInStatus: true,
     ),
     ListItemTrailingEnum.image => _imageCode(
       'OudsListItemTrailingImage',

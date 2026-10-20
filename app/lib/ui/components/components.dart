@@ -90,11 +90,7 @@ List<Component> components(BuildContext context) {
     Component.withVariant(
       context.l10n.app_components_alert_tech,
       ComponentContainer(
-        child: OudsAlertMessage(
-          label: 'Label',
-          status: Positive(),
-          onClose: () {},
-        ),
+        child: OudsAlertMessage(label: 'Label', onClose: () {}),
       ),
       context.l10n.app_components_alert_description_text,
       [
@@ -441,7 +437,7 @@ List<Component> components(BuildContext context) {
       ComponentContainer(
         child: OudsCircularProgressIndicator(
           value: 0.75,
-          status: Accent(),
+          status: Neutral(),
           animated: false,
         ),
       ),

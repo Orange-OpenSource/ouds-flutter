@@ -142,9 +142,9 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
     final radioButton = OudsTheme.of(
       context,
     ).componentsTokens(context).radioButton;
-    final controlItem = OudsTheme.of(
+    final controlListItem = OudsTheme.of(
       context,
-    ).componentsTokens(context).controlItem;
+    ).componentsTokens(context).controlListItem;
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
@@ -192,14 +192,14 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(
                 radioButtonBorderModifier.getBorderRadius(
-                  controlItem.borderRadiusItemOnly,
+                  controlListItem.borderRadiusItemOnly,
                 ),
               ),
             ),
             child: Center(
               child: SizedBox(
-                width: controlItem.sizeControlIndicator,
-                height: controlItem.sizeControlIndicator,
+                width: controlListItem.sizeControlIndicator,
+                height: controlListItem.sizeControlIndicator,
                 child: Stack(
                   fit: StackFit.expand,
                   children: [

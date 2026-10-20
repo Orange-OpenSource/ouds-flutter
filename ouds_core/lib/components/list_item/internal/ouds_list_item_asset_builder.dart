@@ -22,7 +22,6 @@ import 'package:ouds_core/components/list_item/internal/ouds_list_item_indicator
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/utilities/asset_image_utils.dart';
-import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Shared widget builders for [OudsListItem] visual assets.
@@ -60,9 +59,10 @@ class OudsListItemAssetBuilder {
 
     final borderRadius = rounded
         ? BorderRadius.circular(
-            OudsTheme.of(
-              context,
-            ).componentsTokens(context).listItem.borderRadiusMediaRounded,
+            OudsTheme.of(context)
+                .componentsTokens(context)
+                .controlListItem
+                .borderRadiusMediaRounded,
           )
         : null;
 
@@ -89,7 +89,9 @@ class OudsListItemAssetBuilder {
     'This method will be removed together with countries.dart.',
   )
   static Widget buildFlag(BuildContext context, ImageProvider asset) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     return ClipRRect(
       borderRadius: BorderRadius.circular(2),
       child: Image(
@@ -159,12 +161,6 @@ class OudsListItemAssetBuilder {
   /// - [enable] — when `false`, the icon is rendered in its disabled appearance.
   /// - [size] — controls rendered dimensions using token values.
   ///   Defaults to [OudsListItemAssetSize.medium].
-  /// - [tinted] — when `false`, no color filter is applied (useful for
-  ///   multicolor icons). Defaults to `true`.
-  ///
-  /// Functional statuses (Warning, Negative, Info) are wrapped in a
-  /// [Semantics] label so screen readers announce them; [Neutral] and
-  /// [Accent] expose their optional [OudsIconStatus.semanticsLabel] when set.
   ///
   /// Example:
   /// ```dart
@@ -173,7 +169,6 @@ class OudsListItemAssetBuilder {
   ///   Neutral(icon: 'assets/icons/star.svg'),
   ///   enable: true,
   ///   size: OudsListItemAssetSize.medium,
-  ///   tinted: true,
   /// )
   /// ```
   static Widget buildIcon(
@@ -181,23 +176,9 @@ class OudsListItemAssetBuilder {
     OudsIconStatus iconStatus, {
     bool enable = true,
     OudsListItemAssetSize size = OudsListItemAssetSize.medium,
-    bool tinted = true,
   }) {
-    final icon = OudsListItemIconModifier(
+    return OudsListItemIconModifier(
       context,
-    ).buildIcon(iconStatus, enable: enable, size: size, tinted: tinted);
-
-    final l10n = OudsLocalizations.of(context);
-    final String? label = switch (iconStatus) {
-      Neutral() => iconStatus.semanticsLabel,
-      Accent() => iconStatus.semanticsLabel,
-      Warning() => l10n?.core_common_warning_a11y,
-      Negative() => l10n?.core_common_error_a11y,
-      Info() => l10n?.core_common_info_a11y,
-      _ => null,
-    };
-
-    if (label == null) return icon;
-    return Semantics(label: label, child: icon);
+    ).buildIcon(iconStatus, enable: enable, size: size);
   }
 }

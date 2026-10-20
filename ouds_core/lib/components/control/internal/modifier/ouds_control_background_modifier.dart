@@ -25,12 +25,14 @@ class OudsControlBackgroundModifier {
 
   /// Gets the background color based on the control state.
   Color? getBackgroundColor(dynamic state) {
-    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
+    final controlListItem = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     switch (state) {
       case OudsControlState.hovered:
-        return controlItem.colorBgHover;
+        return controlListItem.colorBgHover;
       case OudsControlState.pressed:
-        return controlItem.colorBgPressed;
+        return controlListItem.colorBgPressed;
       case OudsControlState.disabled:
         return Colors.transparent;
       case OudsControlState.enabled:
@@ -42,12 +44,14 @@ class OudsControlBackgroundModifier {
 
   /// Gets the background color based on the control state.
   Color? getBackgroundItemColor(dynamic state) {
-    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
+    final controlListItem = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     switch (state) {
       case OudsControlItemState.hovered:
-        return controlItem.colorBgHover;
+        return controlListItem.colorBgHover;
       case OudsControlItemState.pressed:
-        return controlItem.colorBgPressed;
+        return controlListItem.colorBgPressed;
       case OudsControlItemState.disabled:
         return Colors.transparent;
       case OudsControlItemState.enabled:

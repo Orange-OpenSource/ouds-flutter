@@ -23,23 +23,6 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 /// This class centralizes common formatting and mapping logic shared by
 /// circular and linear progress indicator implementations.
 class OudsProgressIndicatorUtils {
-  /// Returns the [Alignment] corresponding to the helper text alignment option.
-  ///
-  /// This is used by the linear progress indicator to position the helper text
-  /// below the component.
-  static Alignment getTextAlign(
-    OudsProgressIndicatorHelperTextAlignment alignment,
-  ) {
-    switch (alignment) {
-      case OudsProgressIndicatorHelperTextAlignment.left:
-        return Alignment.centerLeft;
-      case OudsProgressIndicatorHelperTextAlignment.center:
-        return Alignment.center;
-      case OudsProgressIndicatorHelperTextAlignment.right:
-        return Alignment.centerRight;
-    }
-  }
-
   /// Returns the raw progress value only when the indicator is determinate.
   ///
   /// For indeterminate indicators, returns `null` so that the underlying
@@ -56,29 +39,21 @@ class OudsProgressIndicatorUtils {
         : null;
   }
 
-  /// Builds the helper text displayed below a linear progress indicator.
+  /// Formats a progress value as a whole-number percentage string
+  /// (e.g. `75%`).
   ///
-  /// - When [percentage] is `true`, the text is derived from [progress] and
-  ///   formatted as a percentage (e.g. `75%` or `75 %` when
-  ///   [spaceBeforePercentage] is `true`).
-  /// - When [percentage] is `false`, [helperText] is returned as-is.
-  /// - Returns `null` when neither condition produces content.
-  static String? buildHelperText(
-    bool percentage,
-    bool spaceBeforePercentage,
-    double? progress,
-    String? helperText,
-  ) {
-    final progressValue = progress != null ? (progress * 100).round() : 0;
-    if (percentage) {
-      return spaceBeforePercentage ? '$progressValue %' : '$progressValue%';
-    }
-
-    if (helperText != null) {
-      return helperText;
-    }
-
-    return null;
+  /// Returns `0%` when [progressValue] is `null`.
+  ///
+  /// In [TextDirection.rtl] contexts, the `%` symbol is placed before the
+  /// number (e.g. `%75`) to match the reading convention used in RTL
+  /// languages, instead of relying on the Unicode bidi algorithm to reorder
+  /// the neutral `%` character.
+  static String buildPercentageText(
+    double? progressValue, {
+    TextDirection textDirection = TextDirection.ltr,
+  }) {
+    final value = progressValue != null ? (progressValue * 100).round() : 0;
+    return textDirection == TextDirection.rtl ? '%$value' : '$value%';
   }
 
   /// Builds the accessibility status text associated with an [OudsIconStatus].
@@ -96,6 +71,25 @@ class OudsProgressIndicatorUtils {
         : status is Info
         ? localizations?.core_common_info_a11y
         : null;
+  }
+
+  /// Combines the caller-provided [semanticsLabel] and the localized
+  /// [statusLabel] (from [buildStatusSemanticsLabel]) into a single
+  /// accessibility label, joined with a comma when both are present.
+  ///
+  /// Returns `null` when neither is present, instead of a stray `","` or a
+  /// trailing comma, so that assistive technologies don't announce an empty
+  /// or parasitic separator on the common case where no [semanticsLabel] and
+  /// no status are set.
+  static String? buildSemanticsLabel(
+    String? semanticsLabel,
+    String? statusLabel,
+  ) {
+    final parts = [
+      if (semanticsLabel != null && semanticsLabel.isNotEmpty) semanticsLabel,
+      if (statusLabel != null && statusLabel.isNotEmpty) statusLabel,
+    ];
+    return parts.isEmpty ? null : parts.join(', ');
   }
 
   /// Returns `true` when the progress indicator should animate its value change.
