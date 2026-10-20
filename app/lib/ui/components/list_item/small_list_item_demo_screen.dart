@@ -25,6 +25,7 @@ import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
+import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:provider/provider.dart';
 
 /// Screen for the [OudsSmallListItem] component demo.
@@ -68,6 +69,7 @@ class _Body extends StatelessWidget {
       context,
       listen: false,
     );
+    final customizationState = ListItemCustomization.of(context)!;
     return DetailScreenDescription(
       description:
           context.l10n.app_components_listItem_smallListItem_description_text,
@@ -80,7 +82,11 @@ class _Body extends StatelessWidget {
                 .fixedMedium,
           ),
           Code(code: ListItemCodeGenerator.updateCode(context, isSmall: true)),
-          const ReferenceDesignVersionComponent(version: '0.1.0'),
+          ReferenceDesignVersionComponent(
+            version: customizationState.clickable
+                ? OudsComponentVersion.navigationListItem
+                : OudsComponentVersion.staticListItem,
+          ),
         ],
       ),
     );

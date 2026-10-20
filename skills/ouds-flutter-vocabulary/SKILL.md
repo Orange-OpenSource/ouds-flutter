@@ -25,6 +25,8 @@ This skill applies to the OUDS Flutter repository and terminology. Use it for Fl
 | **theme config** | Lightweight component-specific tuning injected with `OudsThemeConfigModel`, e.g. rounded button or text input configuration |
 | **token provider** | Grouping of semantic or component tokens made accessible by the active theme |
 | **component** | Reusable Flutter widget shipped by OUDS, usually under `ouds_core/lib/components/<name>/` and prefixed with `Ouds` |
+| **module** | Reusable module screen shipped by OUDS under `ouds_core/lib/modules/<name>/` (e.g. `module-about`, `module-more`), distinct from a component — it is a full screen, not a widget to compose |
+| **OudsIcon** | Shared icon configuration class (`package:ouds_core/components/common/ouds_icon.dart`) unifying asset path, `tinted` state, `backgroundColor` and `semanticsLabel` across multiple components (button, link, chips, text inputs, control items) instead of a raw `String` icon path |
 | **demo app** | The `app/` package, also called "Design System Toolbox", used to showcase themes, tokens and components interactively |
 | **direct package import** | Repository convention of importing components by their package path such as `package:ouds_core/components/button/ouds_button.dart` instead of a root barrel file |
 

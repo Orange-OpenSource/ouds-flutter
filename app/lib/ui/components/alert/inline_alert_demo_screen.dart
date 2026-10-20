@@ -21,9 +21,11 @@ import 'package:ouds_flutter_demo/ui/components/alert/alert_customization_utils.
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
@@ -176,6 +178,18 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             );
           }).toList(),
         ),
+        if (AlertCustomizationUtils.isNonFunctionalStatus(customizationState))
+          CustomizableChips<TintedEnum>(
+            title: TintedEnum.enumName(context),
+            options: customizationState.tintedState.list,
+            selectedOption: customizationState.selectedTinted,
+            getText: (option) => option.stringValue(context),
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.selectedTinted = selectedOption;
+              });
+            },
+          ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
           text: customizationState.label,

@@ -453,10 +453,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       focusNode: effectiveFocusNode,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelDefaultMedium(context)
-          .copyWith(
-            color: inputTextTextModifier.getTextLabelColor(state, isError),
-          ),
+          .typeLabelModerateLarge(context)
+          .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
       inputFormatters: [
@@ -516,7 +514,10 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                 style: theme.typographyTokens
                     .typeLabelDefaultLarge(context)
                     .copyWith(
-                      color: inputTextTextModifier.getTextColor(state, isError),
+                      color: inputTextTextModifier.getTextLabelColor(
+                        state,
+                        isError,
+                      ),
                     ),
               )
             : null,
@@ -801,7 +802,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         if (widget.decoration.prefixIcon != null) ...[
           OudsPhoneNumberInput.buildIcon(
             context,
-            widget.decoration.prefixIcon!.icon,
+            widget.decoration.prefixIcon!.assetsName,
             state,
             false,
           ),
@@ -840,7 +841,6 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     OudsFormFieldsControlState state,
   ) {
     final theme = OudsTheme.of(context);
-    final textInput = theme.componentsTokens(context).textInput;
     final buttonTokens = theme.componentsTokens(context).button;
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
       context,

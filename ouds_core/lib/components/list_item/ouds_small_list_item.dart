@@ -448,13 +448,12 @@ class OudsSmallListItem extends StatelessWidget {
     required bool enable,
   }) {
     return switch (leading) {
-      OudsSmallListItemLeadingIcon(:final iconStatus, :final tinted) =>
+      OudsSmallListItemLeadingIcon(:final iconStatus) =>
         OudsListItemAssetBuilder.buildIcon(
           context,
           iconStatus,
           enable: enable,
           size: _kSmallAssetSize,
-          tinted: tinted,
         ),
       OudsSmallListItemLeadingImage(
         :final asset,
@@ -500,13 +499,12 @@ class OudsSmallListItem extends StatelessWidget {
     required OudsListItemContentAlignment contentAlignment,
   }) {
     return switch (trailing) {
-      OudsSmallListItemTrailingIcon(:final icon, :final tinted) =>
+      OudsSmallListItemTrailingIcon(:final icon) =>
         OudsListItemAssetBuilder.buildIcon(
           context,
           icon,
           enable: enable,
           size: _kSmallAssetSize,
-          tinted: tinted,
         ),
       OudsSmallListItemTrailingImage(
         :final asset,
@@ -543,7 +541,9 @@ class OudsSmallListItem extends StatelessWidget {
     bool enable, {
     required OudsListItemContentAlignment contentAlignment,
   }) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
 

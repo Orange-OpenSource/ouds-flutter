@@ -17,6 +17,7 @@ library;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_asset_builder.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_background_modifier.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_foreground_modifier.dart';
@@ -378,7 +379,7 @@ class _OudsListItemState extends State<OudsListItem> {
   @override
   Widget build(BuildContext context) {
     final oudsTheme = OudsTheme.of(context);
-    final tokens = oudsTheme.componentsTokens(context).listItem;
+    final tokens = oudsTheme.componentsTokens(context).controlListItem;
     final typography = oudsTheme.typographyTokens;
     final colorScheme = oudsTheme.colorScheme(context);
 
@@ -641,7 +642,9 @@ class _OudsListItemState extends State<OudsListItem> {
     bool showPreviousIndicator,
     bool showNextIndicator,
   ) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     return Row(
       crossAxisAlignment: _rowCrossAxisAlignment(),
       children: [
@@ -836,7 +839,7 @@ class _OudsListItemState extends State<OudsListItem> {
   static Widget _buildContentSlot(BuildContext context, Widget content) {
     final maxSize = OudsTheme.of(
       context,
-    ).componentsTokens(context).listItem.sizeMaxSizeLeadingTrailingSlot;
+    ).componentsTokens(context).controlListItem.sizeMaxSizeLeadingTrailingSlot;
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: maxSize, maxHeight: maxSize),
       child: content,
@@ -865,17 +868,20 @@ class _OudsListItemState extends State<OudsListItem> {
         context,
         builder(context, state),
       ),
-      OudsListItemLeadingIcon(:final iconStatus, :final size, :final tinted) =>
+      OudsListItemLeadingIcon(:final iconStatus, :final size) =>
         // Icon container: dynamic size based on icon size.
-        // buildIcon vocalizes functional status (Warning, Negative, Info).
+        // Wrap in Semantics to vocalize functional status (Warning, Negative, Info).
         _buildIconContainer(
           context,
-          OudsListItemAssetBuilder.buildIcon(
+          _wrapWithStatusSemantics(
             context,
+            OudsListItemAssetBuilder.buildIcon(
+              context,
+              iconStatus,
+              enable: enable,
+              size: size.assetSize,
+            ),
             iconStatus,
-            enable: enable,
-            size: size.assetSize,
-            tinted: tinted,
           ),
           size.assetSize,
         ),
@@ -973,7 +979,7 @@ class _OudsListItemState extends State<OudsListItem> {
       width: _kFlagWidth,
       height: OudsTheme.of(
         context,
-      ).componentsTokens(context).listItem.sizeFlagHeight,
+      ).componentsTokens(context).controlListItem.sizeFlagHeight,
       child: flag,
     );
   }
@@ -1014,7 +1020,9 @@ class _OudsListItemState extends State<OudsListItem> {
     required OudsListItemContentAlignment contentAlignment,
     required OudsListItemSize size,
   }) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
 
@@ -1093,17 +1101,20 @@ class _OudsListItemState extends State<OudsListItem> {
       ),
       OudsListItemTrailingBadge(:final badge) => badge(enable),
       OudsListItemTrailingTag(:final tag) => tag(enable),
-      OudsListItemTrailingIcon(:final iconStatus, :final size, :final tinted) =>
+      OudsListItemTrailingIcon(:final iconStatus, :final size) =>
         // Icon container: dynamic size based on icon size.
-        // buildIcon vocalizes functional status (Warning, Negative, Info).
+        // Wrap in Semantics to vocalize functional status (Warning, Negative, Info).
         _buildIconContainer(
           context,
-          OudsListItemAssetBuilder.buildIcon(
+          _wrapWithStatusSemantics(
             context,
+            OudsListItemAssetBuilder.buildIcon(
+              context,
+              iconStatus,
+              enable: enable,
+              size: size.assetSize,
+            ),
             iconStatus,
-            enable: enable,
-            size: size.assetSize,
-            tinted: tinted,
           ),
           size.assetSize,
         ),
@@ -1163,7 +1174,9 @@ class _OudsListItemState extends State<OudsListItem> {
     required OudsListItemContentAlignment contentAlignment,
     required OudsListItemSize size,
   }) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
     final contentColor = foreground.contentColor(enable);
@@ -1252,11 +1265,11 @@ class _OudsListItemState extends State<OudsListItem> {
         ? (size == OudsListItemSize.defaultSize
               ? OudsTheme.of(context)
                     .componentsTokens(context)
-                    .listItem
+                    .controlListItem
                     .spacePaddingBlockTopAlignmentTopTextContainerDefault
               : OudsTheme.of(context)
                     .componentsTokens(context)
-                    .listItem
+                    .controlListItem
                     .spacePaddingBlockTopAlignmentTopTextContainerSmall)
         : 0.0;
 
@@ -1294,6 +1307,31 @@ class _OudsListItemState extends State<OudsListItem> {
     );
   }
 
+  /// Wraps [child] in a [Semantics] widget when [iconStatus] carries an
+  /// accessibility label.
+  ///
+  /// When the icon status is Warning, Negative, or Info, adds a semantic label
+  /// so screen readers announce the status.
+  static Widget _wrapWithStatusSemantics(
+    BuildContext context,
+    Widget child,
+    OudsIconStatus iconStatus,
+  ) {
+    final l10n = OudsLocalizations.of(context);
+    final String? label = switch (iconStatus) {
+      Neutral() => iconStatus.semanticsLabel,
+      Accent() => iconStatus.semanticsLabel,
+      Warning() => l10n?.core_common_warning_a11y,
+      Negative() => l10n?.core_common_error_a11y,
+      Info() => l10n?.core_common_info_a11y,
+      _ => null,
+    };
+
+    if (label == null) return child;
+
+    return Semantics(label: label, child: child);
+  }
+
   // -------------------------------------------------------------------------
   // Content column
   // -------------------------------------------------------------------------
@@ -1315,7 +1353,9 @@ class _OudsListItemState extends State<OudsListItem> {
     Color mutedColor,
     OudsListItemControlState state,
   ) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
     final topPadding =
         widget.contentAlignment == OudsListItemContentAlignment.top
         ? switch (widget.size) {

@@ -55,9 +55,9 @@ class BadgeCodeGenerator {
 
     switch (customizationState.selectedStatus) {
       case StatusEnum.neutral:
-        return """status: Neutral(${withIcon ? "icon: 'assets/heart-recommend.svg'" : ""})""";
+        return """status: Neutral(${withIcon ? "icon: ${customizationState.isTinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}" : ""})""";
       case StatusEnum.accent:
-        return """status: Accent(${withIcon ? "icon: 'assets/heart-recommend.svg'" : ""})""";
+        return """status: Accent(${withIcon ? "icon: ${customizationState.isTinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}" : ""})""";
       case StatusEnum.positive:
         return """status: Positive()""";
       case StatusEnum.info:

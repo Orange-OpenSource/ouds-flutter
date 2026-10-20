@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_background_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_border_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
@@ -376,10 +377,8 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelDefaultLarge(context)
-          .copyWith(
-            color: inputTextTextModifier.getTextLabelColor(state, isError),
-          ),
+          .typeLabelModerateLarge(context)
+          .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
       onChanged: (value) {
@@ -417,7 +416,10 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                 style: theme.typographyTokens
                     .typeLabelDefaultLarge(context)
                     .copyWith(
-                      color: inputTextTextModifier.getTextColor(state, isError),
+                      color: inputTextTextModifier.getTextLabelColor(
+                        state,
+                        isError,
+                      ),
                     ),
               )
             : null,
@@ -633,9 +635,11 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           child: ExcludeSemantics(
             child: OudsButton(
               appearance: OudsButtonAppearance.minimal,
-              icon: _isPasswordHidden
-                  ? AppAssets.icons.accessibilityAccessibilityVision
-                  : AppAssets.icons.settingsAndToolsAccessibilityHide,
+              icon: OudsIcon(
+                _isPasswordHidden
+                    ? AppAssets.icons.accessibilityAccessibilityVision
+                    : AppAssets.icons.settingsAndToolsAccessibilityHide,
+              ),
               onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false))
                   ? _toggleIcon
                   : null,

@@ -179,8 +179,6 @@ class _TextInputDemoState extends State<_TextInputDemo> {
             ///
           },
         ),
-        trailingIconContentDescription:
-            context.l10n.app_components_textInput_trailingAction_a11y,
         decoration: OudsInputDecoration(
           labelText: customizationState.labelText.isNotEmpty
               ? FormFieldsCustomizationUtils.getLabelText(customizationState)

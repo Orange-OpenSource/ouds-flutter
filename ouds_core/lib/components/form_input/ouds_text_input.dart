@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_background_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_border_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
@@ -55,7 +56,6 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [onEditingComplete]: Callback invoked when editing is complete.
 /// - [decoration]: An [OudsInputDecoration] object to configure label,
 /// - [helperLink]: An [OudsLink] object to display a helper link.
-/// - [trailingIconContentDescription]: A semantic label for accessibility trailing icon.
 ///
 /// ### You can use [OudsTextField] component in your project, customizing parameters as needed :
 ///
@@ -82,7 +82,6 @@ class OudsTextField extends StatefulWidget {
   final void Function(String)? onEditingComplete;
   final OudsInputDecoration decoration;
   final OudsLink? helperLink;
-  final String? trailingIconContentDescription;
 
   OudsTextField({
     super.key,
@@ -94,7 +93,6 @@ class OudsTextField extends StatefulWidget {
     this.onEditingComplete,
     required this.decoration,
     this.helperLink,
-    this.trailingIconContentDescription,
   }) : assert(
          !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
@@ -102,22 +100,21 @@ class OudsTextField extends StatefulWidget {
 
   static Widget buildIcon(
     BuildContext context,
-    String assetName,
+    OudsIcon icon,
     OudsFormFieldsControlState controlTextInputState,
-    bool isError, {
-    bool tinted = true,
-  }) {
+    bool isError,
+  ) {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
       context,
     );
     final theme = OudsTheme.of(context);
     final Widget iconWidget = SvgPicture.asset(
       excludeFromSemantics: true,
-      assetName,
+      icon.assetsName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
       width: theme.componentsTokens(context).textInput.sizeLeadingIcon,
-      colorFilter: tinted
+      colorFilter: icon.tinted
           ? ColorFilter.mode(
               inputTextForegroundModifier.getIconColor(controlTextInputState),
               BlendMode.srcIn,
@@ -129,9 +126,9 @@ class OudsTextField extends StatefulWidget {
     // When untinted, the icon asset is expected to be a plain white shape
     // (no embedded background), so it needs a brand-colored background to
     // remain visible — matching the behavior of OudsButton and OudsLink.
-    if (tinted) return iconWidget;
+    if (icon.tinted) return iconWidget;
     return Container(
-      color: theme.colorScheme(context).surfaceBrandPrimary,
+      color: icon.tinted ? null : icon.backgroundColor,
       child: iconWidget,
     );
   }
@@ -348,32 +345,6 @@ class _OudsTextInputState extends State<OudsTextField> {
                       /// Left block: prefix icon container
                       ExcludeSemantics(child: _buildPrefixIcon(context, state)),
 
-                      /// Center-left: prefix text displayed even without label
-                      /// Set a flexible to prevent text overflow
-                      if (widget.decoration.prefix != null &&
-                          widget.decoration.labelText == null &&
-                          (widget.decoration.hintText != null ||
-                              _isTyping)) ...[
-                        /// Wrap the prefix Text in Flexible to limit its width and prevent overflow errors
-                        Flexible(
-                          flex: 1, // Allocates 1 part of the available space
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              right: textInput.spaceColumnGapInlineText,
-                            ),
-                            child: Text(
-                              widget.decoration.prefix!,
-                              style: theme.typographyTokens
-                                  .typeLabelDefaultLarge(context)
-                                  .copyWith(
-                                    color: inputTextTextModifier
-                                        .getSuffixPrefixTextColor(state),
-                                  ),
-                            ),
-                          ),
-                        ),
-                      ],
-
                       /// Center block: main text input
                       /// Wrap the TextField in Flexible to control its width
                       Flexible(
@@ -408,38 +379,12 @@ class _OudsTextInputState extends State<OudsTextField> {
                         ),
                       ),
 
-                      /// Center-left: prefix text displayed even without label
-                      /// Set a flexible to prevent text overflow
-                      if (widget.decoration.suffix != null &&
-                          widget.decoration.labelText == null &&
-                          (widget.decoration.hintText != null ||
-                              _isTyping)) ...[
-                        /// Wrap the suffix Text in Flexible to limit its width and prevent overflow errors
-                        Flexible(
-                          flex: 1, // Allocates 1 part of the available space
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: textInput.spaceColumnGapDefault,
-                            ),
-                            child: Text(
-                              widget.decoration.suffix!,
-                              style: theme.typographyTokens
-                                  .typeLabelDefaultLarge(context)
-                                  .copyWith(
-                                    color: inputTextTextModifier
-                                        .getSuffixPrefixTextColor(state),
-                                  ),
-                            ),
-                          ),
-                        ),
-                      ],
-
                       /// Right block: suffix icon container
                       Semantics(
                         label:
                             widget.decoration.suffixIcon != null &&
                                 widget.decoration.loader == null
-                            ? widget.trailingIconContentDescription
+                            ? widget.decoration.suffixIcon?.icon.semanticsLabel
                             : null,
                         container: true,
                         button: true,
@@ -512,7 +457,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelDefaultLarge(context)
+          .typeLabelModerateLarge(context)
           .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
@@ -558,7 +503,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                   style: theme.typographyTokens
                       .typeLabelDefaultLarge(context)
                       .copyWith(
-                        color: inputTextTextModifier.getTextColor(
+                        color: inputTextTextModifier.getTextLabelColor(
                           state,
                           isError,
                         ),
@@ -581,7 +526,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                 overflow: TextOverflow.ellipsis,
                 widget.decoration.hintText!,
                 style: theme.typographyTokens
-                    .typeLabelModerateLarge(context)
+                    .typeLabelDefaultLarge(context)
                     .copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
                     ),
@@ -590,9 +535,7 @@ class _OudsTextInputState extends State<OudsTextField> {
 
         // Prefix widget displayed when prefix and labelText are both set
         // Set a maximum width to prevent text overflow
-        prefix:
-            widget.decoration.prefix != null &&
-                widget.decoration.labelText != null
+        prefix: widget.decoration.prefix != null
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -617,9 +560,7 @@ class _OudsTextInputState extends State<OudsTextField> {
 
         // Suffix widget displayed when suffix and labelText are both set
         // Set a maximum width to prevent text overflow
-        suffix:
-            widget.decoration.suffix != null &&
-                widget.decoration.labelText != null
+        suffix: widget.decoration.suffix != null
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -635,7 +576,12 @@ class _OudsTextInputState extends State<OudsTextField> {
                           ),
                     ),
                   ),
-                  SizedBox(width: textInput.spacePaddingInlineDefault),
+                  if (widget.decoration.suffixIcon != null &&
+                      widget.decoration.errorText == null)
+                    SizedBox(width: textInput.spaceColumnGapDefault),
+                  if (widget.decoration.errorText != null &&
+                      widget.decoration.suffixIcon == null)
+                    SizedBox(width: textInput.spaceColumnGapDefault),
                 ],
               )
             : null,
@@ -812,7 +758,6 @@ class _OudsTextInputState extends State<OudsTextField> {
               child: OudsButton(
                 appearance: OudsButtonAppearance.minimal,
                 icon: suffixIcon.icon,
-                tinted: suffixIcon.tinted,
                 onPressed:
                     ((widget.enabled ?? true) && !(widget.readOnly ?? false))
                     ? suffixIcon.onPressed
@@ -872,10 +817,9 @@ class _OudsTextInputState extends State<OudsTextField> {
         if (widget.decoration.prefixIcon != null) ...[
           OudsTextField.buildIcon(
             context,
-            widget.decoration.prefixIcon!.icon,
+            widget.decoration.prefixIcon!,
             state,
             false,
-            tinted: widget.decoration.prefixIcon!.tinted,
           ),
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],

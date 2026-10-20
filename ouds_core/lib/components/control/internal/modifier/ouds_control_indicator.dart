@@ -39,12 +39,12 @@ class OudsControlIndicatorModifier {
       // Return the size of the radio button indicator
       return OudsTheme.of(
         context,
-      ).componentsTokens(context).controlItem.sizeControlIndicator;
+      ).componentsTokens(context).controlListItem.sizeControlIndicator;
     } else {
       // Return the size of the checkbox indicator
       return OudsTheme.of(
         context,
-      ).componentsTokens(context).controlItem.sizeControlIndicator;
+      ).componentsTokens(context).controlListItem.sizeControlIndicator;
     }
   }
 }

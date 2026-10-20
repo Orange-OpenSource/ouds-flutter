@@ -31,6 +31,7 @@ import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a button demo and allows customization of button properties
@@ -105,14 +106,20 @@ class _ButtonDemoState extends State<_ButtonDemo> {
 
   /// Builds the demo [OudsButton], using the [OudsButton.small] constructor when the
   /// small size is selected, and the default [OudsButton] constructor otherwise.
-  Widget _buildButton() {
+  Widget _buildButton(BuildContext context) {
+    final semanticsLabel = context.l10n.app_components_common_icon_a11y;
     final size = ButtonCustomizationUtils.getSize(
       customizationState?.selectedSize as Object,
     );
+    final brandSecondaryColor = OudsTheme.of(
+      context,
+    ).colorScheme(context).surfaceBrandPrimary;
     final label = ButtonCustomizationUtils.getText(customizationState);
     final icon = ButtonCustomizationUtils.getIcon(
       customizationState,
       themeController!,
+      brandSecondaryColor,
+      semanticsLabel,
     );
     final appearance = ButtonCustomizationUtils.getAppearance(
       customizationState?.selectedAppearance as Object,
@@ -129,7 +136,6 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             isLoading: loader,
             onPressed: onPressed,
             isFullWidth: isFullWidth,
-            tinted: customizationState?.isTinted ?? true,
           )
         : OudsButton(
             label: label,
@@ -138,7 +144,6 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             isLoading: loader,
             onPressed: onPressed,
             isFullWidth: isFullWidth,
-            tinted: customizationState?.isTinted ?? true,
           );
   }
 
@@ -155,10 +160,10 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     if (customizationState?.hasOnColoredBox == true) {
       return ComponentDemoBox(
         colored: customizationState?.hasOnColoredBox == true,
-        child: _buildButton(),
+        child: _buildButton(context),
       );
     } else {
-      return LightDarkBox(child: _buildButton());
+      return LightDarkBox(child: _buildButton(context));
     }
   }
 }

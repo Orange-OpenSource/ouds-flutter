@@ -29,6 +29,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_accordion_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_alertMessage_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_alert_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_badge_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_bar_tokens.dart';
@@ -37,7 +38,6 @@ import 'package:ouds_theme_wireframe/components/wireframe_buttonMono_tokens.dart
 import 'package:ouds_theme_wireframe/components/wireframe_button_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_checkbox_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_chip_tokens.dart';
-import 'package:ouds_theme_wireframe/components/wireframe_controlItem_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_divider_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_icon_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_inputTag_tokens.dart';
@@ -63,6 +63,7 @@ import 'package:ouds_theme_wireframe/semantic/wireframe_grid_semantic_tokens.dar
 import 'package:ouds_theme_wireframe/semantic/wireframe_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_size_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_space_semantic_tokens.dart';
+import 'package:ouds_theme_wireframe/wireframe_typography.dart';
 
 /// [WireframeTheme] implements the [OudsThemeContract] and defines the theme for the "White label" version of the application.
 /// This theme provides configurations for both light and dark modes, with customizable color schemes, typography,
@@ -218,7 +219,7 @@ class WireframeTheme implements OudsThemeContract {
   }
 
   @override
-  OudsTypography get typographyTokens => OudsTypography();
+  OudsTypography get typographyTokens => WireframeTypography();
   @override
   OudsProvidersTokens providersTokens(BuildContext context) {
     return OudsProvidersTokens(
@@ -238,6 +239,7 @@ class WireframeTheme implements OudsThemeContract {
     return OudsComponentsTokens(
       accordion: WireframeAccordionTokens(providersTokens(context)),
       alert: WireframeAlertTokens(providersTokens(context)),
+      alertMessage: WireframeAlertMessageTokens(providersTokens(context)),
       badge: WireframeBadgeTokens(providersTokens(context)),
       bar: WireframeBarTokens(providersTokens(context)),
       bulletList: WireframeBulletListTokens(providersTokens(context)),
@@ -245,13 +247,12 @@ class WireframeTheme implements OudsThemeContract {
       buttonMono: WireframeButtonMonoTokens(providersTokens(context)),
       checkbox: WireframeCheckboxTokens(providersTokens(context)),
       chip: WireframeChipTokens(providersTokens(context)),
-      controlItem: WireframeControlItemTokens(providersTokens(context)),
       divider: WireframeDividerTokens(providersTokens(context)),
       icon: WireframeIconTokens(providersTokens(context)),
       inputTag: WireframeInputTagTokens(providersTokens(context)),
       link: WireframeLinkTokens(providersTokens(context)),
       linkMono: WireframeLinkMonoTokens(providersTokens(context)),
-      listItem: WireframeListItemTokens(providersTokens(context)),
+      controlListItem: WireframeListItemTokens(providersTokens(context)),
       pinCodeInput: WireframePinCodeInputTokens(providersTokens(context)),
       progressIndicator: WireframeProgressIndicatorTokens(
         providersTokens(context),

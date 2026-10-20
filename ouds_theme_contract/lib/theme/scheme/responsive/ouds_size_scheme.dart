@@ -290,6 +290,12 @@ class OudsSizeScheme {
     tablet: sizeTokens.maxWidthLabelXlargeTablet,
   );
 
+  double get maxWidthBoxedText => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthBoxedTextMobile,
+    tablet: sizeTokens.maxWidthBoxedTextTablet,
+  );
+
   /// Non-responsive tokens (direct mapping)
 
   /// iconDecorative

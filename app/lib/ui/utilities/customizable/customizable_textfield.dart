@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';
@@ -229,75 +230,34 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         padding: EdgeInsets.all(
           themeController.currentTheme.spaceScheme(context).paddingInlineLarge,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: themeController.currentTheme
-                  .spaceScheme(context)
-                  .scaledExtraSmall,
-            ),
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                      fontSize: themeController
-                          .currentTheme
-                          .fontTokens
-                          .sizeBodyLargeMobile,
-                      fontWeight: themeController
-                          .currentTheme
-                          .fontTokens
-                          .weightLabelStrong,
-                      letterSpacing: themeController
-                          .currentTheme
-                          .fontTokens
-                          .letterSpacingBodyLargeMobile,
-                    ),
+        child: ValueListenableBuilder<TextEditingValue>(
+          valueListenable: _textController,
+          builder: (context, value, _) {
+            return OudsTextField(
+              enabled: widget.fieldEnable,
+              controller: _textController,
+              focusNode: widget.focusNode,
+              decoration: OudsInputDecoration(
+                labelText: widget.title,
+                suffixIcon: OudsTextInputSuffixIconButton(
+                  icon: OudsIcon(
+                    AppAssets.icons.functionalActionsDelete(themeController),
                   ),
-                  SizedBox(
-                    height: themeController.currentTheme
-                        .spaceScheme(context)
-                        .scaledExtraSmall,
-                  ),
-                  ValueListenableBuilder<TextEditingValue>(
-                    valueListenable: _textController,
-                    builder: (context, value, _) {
-                      return OudsTextField(
-                        enabled: widget.fieldEnable,
-                        controller: _textController,
-                        focusNode: widget.focusNode,
-                        decoration: OudsInputDecoration(
-                          hintText: '',
-                          labelText: widget.title,
-                          suffixIcon: OudsTextInputSuffixIconButton(
-                            icon: AppAssets.icons.functionalActionsDelete(
-                              themeController,
-                            ),
-                            onPressed: () {
-                              _textController.clear();
-                              if (!widget.focusNode.hasFocus) {
-                                widget.focusNode.unfocus();
-                              }
-                              setState(() {});
-                            },
-                          ),
-                          suffix: widget.suffixText,
-                          helperText: widget.helperText,
-                          errorText: widget.errorText,
-                        ),
-                        keyboardType: widget.keyboardType,
-                      );
-                    },
-                  ),
-                ],
+                  onPressed: () {
+                    _textController.clear();
+                    if (!widget.focusNode.hasFocus) {
+                      widget.focusNode.unfocus();
+                    }
+                    setState(() {});
+                  },
+                ),
+                suffix: widget.suffixText,
+                helperText: widget.helperText,
+                errorText: widget.errorText,
               ),
-            ),
-          ],
+              keyboardType: widget.keyboardType,
+            );
+          },
         ),
       ),
     );

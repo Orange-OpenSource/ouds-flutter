@@ -17,6 +17,7 @@ import 'package:ouds_flutter_demo/ui/components/list_item/list_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/tinted_enum.dart';
 
 class _ListItemCustomization extends InheritedWidget {
   const _ListItemCustomization({required super.child, required this.data});
@@ -69,8 +70,6 @@ class ListItemCustomizationState
   late final BoolState trailingImageRoundedState;
   late final IconSizeState leadingIconSizeState;
   late final IconSizeState trailingIconSizeState;
-  late final GenericEnumState<ListItemIconTintEnum> leadingIconTintState;
-  late final GenericEnumState<ListItemIconTintEnum> trailingIconTintState;
   late final TextState trailingTextLabelState;
   late final TextState trailingTextExtraLabelState;
   late final TrailingTextStyleState trailingTextStyleState;
@@ -89,6 +88,8 @@ class ListItemCustomizationState
   late final BoolState trailingTagLoaderState;
   late final BoolState trailingTagRoundedCornersState;
   late final BoolState trailingTagEnabledState;
+  late final TintedState leadingIconTintedState;
+  late final TintedState trailingIconTintedState;
 
   @override
   void initState() {
@@ -118,16 +119,6 @@ class ListItemCustomizationState
     trailingImageRoundedState = BoolState(setState);
     leadingIconSizeState = IconSizeState(setState);
     trailingIconSizeState = IconSizeState(setState);
-    leadingIconTintState = GenericEnumState<ListItemIconTintEnum>(
-      setState,
-      list: ListItemIconTintEnum.values,
-      initial: ListItemIconTintEnum.tinted,
-    );
-    trailingIconTintState = GenericEnumState<ListItemIconTintEnum>(
-      setState,
-      list: ListItemIconTintEnum.values,
-      initial: ListItemIconTintEnum.tinted,
-    );
     trailingTextLabelState = TextState(setState, initial: 'Label');
     trailingTextExtraLabelState = TextState(setState, initial: 'Extra label');
     trailingTextStyleState = TrailingTextStyleState(setState);
@@ -169,6 +160,8 @@ class ListItemCustomizationState
     trailingTagLoaderState = BoolState(setState);
     trailingTagRoundedCornersState = BoolState(setState);
     trailingTagEnabledState = BoolState(setState, initial: true);
+    leadingIconTintedState = TintedState(setState);
+    trailingIconTintedState = TintedState(setState);
   }
 
   String get label => labelTextState.value;
@@ -275,21 +268,6 @@ class ListItemCustomizationState
     trailingIconSizeState.selected = value;
   }
 
-  ListItemIconTintEnum get leadingIconTint => leadingIconTintState.selected;
-  set leadingIconTint(ListItemIconTintEnum value) {
-    leadingIconTintState.selected = value;
-  }
-
-  bool get leadingIconTinted => leadingIconTint == ListItemIconTintEnum.tinted;
-
-  ListItemIconTintEnum get trailingIconTint => trailingIconTintState.selected;
-  set trailingIconTint(ListItemIconTintEnum value) {
-    trailingIconTintState.selected = value;
-  }
-
-  bool get trailingIconTinted =>
-      trailingIconTint == ListItemIconTintEnum.tinted;
-
   String get trailingTextLabel => trailingTextLabelState.value;
   set trailingTextLabel(String value) => trailingTextLabelState.value = value;
 
@@ -363,6 +341,20 @@ class ListItemCustomizationState
 
   bool get enable => hasEnabled;
   set enable(bool value) => hasEnabled = value;
+
+  bool get leadingIconTinted =>
+      leadingIconTintedState.selected == TintedEnum.tinted;
+
+  TintedEnum get selectedLeadingTinted => leadingIconTintedState.selected;
+  set selectedLeadingTinted(TintedEnum value) =>
+      leadingIconTintedState.selected = value;
+
+  bool get trailingIconTinted =>
+      trailingIconTintedState.selected == TintedEnum.tinted;
+
+  TintedEnum get selectedTrailingTinted => trailingIconTintedState.selected;
+  set selectedTrailingTinted(TintedEnum value) =>
+      trailingIconTintedState.selected = value;
 
   @override
   Widget build(BuildContext context) {
