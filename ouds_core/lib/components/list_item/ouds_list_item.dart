@@ -37,8 +37,9 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_listItem_tokens
 // Size & alignment
 // ---------------------------------------------------------------------------
 
+// TODO[v1.0]: Uncomment when flag support is implemented.
 // Flag width is fixed until a dedicated size token is available.
-const _kFlagWidth = 26.8;
+// const _kFlagWidth = 26.8;
 
 /// Represents the size of an [OudsListItem].
 enum OudsListItemSize {
@@ -909,17 +910,15 @@ class _OudsListItemState extends State<OudsListItem> {
           size,
           format,
         ),
+      // TODO[v1.0]: Uncomment when flag support is implemented.
       // Flag container: width is hardcoded (no sizeFlagWidth token available),
-      OudsListItemLeadingFlag(:final flag) => _buildFlagContainer(
-        context,
-        flag,
-      ),
-      // TODO[v0.4]: Uncomment when video support is implemented.
-      // OudsListItemLeadingVideo() =>
-      //   // Video container: dimensions from sizeAssetSmall token.
-      //   _buildVideoContainer(context, enable: enable),
-      // Avatar, text, custom: flexible container
-      OudsListItemLeadingAvatar(:final avatar) => avatar,
+      // OudsListItemLeadingFlag(:final flag) => _buildFlagContainer(
+      //   context,
+      //   flag,
+      // ),
+      // TODO[v1.0]: Uncomment when avatar support is implemented.
+      // OudsListItemLeadingAvatar(:final avatar) => avatar,
+      // Text, custom: flexible container
       OudsListItemLeadingText(:final label, :final extraLabel, :final style) =>
         _buildLeadingText(
           context,
@@ -969,38 +968,19 @@ class _OudsListItemState extends State<OudsListItem> {
     return SizedBox(width: dimension, height: dimension, child: icon);
   }
 
-  /// Builds a flag container.
-  ///
-  /// Width is hardcoded ([_kFlagWidth], no dedicated size token available),
-  /// height comes from the [OudsListItemTokens.sizeFlagHeight] token.
-  /// Shared by both leading and trailing flag slots.
-  static Widget _buildFlagContainer(BuildContext context, Widget flag) {
-    return SizedBox(
-      width: _kFlagWidth,
-      height: OudsTheme.of(
-        context,
-      ).componentsTokens(context).controlListItem.sizeFlagHeight,
-      child: flag,
-    );
-  }
-
-  // TODO[v0.4]: Uncomment when video support is implemented.
-  // /// Builds the video placeholder container.
+  // TODO[v1.0]: Uncomment when flag support is implemented.
+  // /// Builds a flag container.
   // ///
-  // /// Uses [OudsListItemAssetSize.small] token to size the container — consistent
-  // /// with how other small assets are sized inside list items.
-  // static Widget _buildVideoContainer(
-  //   BuildContext context, {
-  //   required bool enable,
-  // }) {
-  //   final dimension = OudsListItemAssetSize.small.value(context);
+  // /// Width is hardcoded ([_kFlagWidth], no dedicated size token available),
+  // /// height comes from the [OudsListItemTokens.sizeFlagHeight] token.
+  // /// Shared by both leading and trailing flag slots.
+  // static Widget _buildFlagContainer(BuildContext context, Widget flag) {
   //   return SizedBox(
-  //     width: dimension,
-  //     height: dimension,
-  //     child: OudsListItemAssetBuilder.buildVideoPlaceholder(
+  //     width: _kFlagWidth,
+  //     height: OudsTheme.of(
   //       context,
-  //       enable: enable,
-  //     ),
+  //     ).componentsTokens(context).controlListItem.sizeFlagHeight,
+  //     child: flag,
   //   );
   // }
 
@@ -1142,16 +1122,13 @@ class _OudsListItemState extends State<OudsListItem> {
           size,
           format,
         ),
-      OudsListItemTrailingFlag(:final flag) => _buildFlagContainer(
-        context,
-        flag,
-      ),
-      // TODO[v0.4]: Uncomment when video support is implemented.
-      // OudsListItemTrailingVideo() => _buildVideoContainer(
+      // TODO[v1.0]: Uncomment when flag support is implemented.
+      // OudsListItemTrailingFlag(:final flag) => _buildFlagContainer(
       //   context,
-      //   enable: enable,
+      //   flag,
       // ),
-      OudsListItemTrailingAvatar(:final avatar) => avatar,
+      // TODO[v1.0]: Uncomment when avatar support is implemented.
+      // OudsListItemTrailingAvatar(:final avatar) => avatar,
       OudsListItemTrailingCustom(:final builder) => builder(
         context,
         enable: enable,

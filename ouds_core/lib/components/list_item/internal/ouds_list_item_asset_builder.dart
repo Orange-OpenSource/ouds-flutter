@@ -103,16 +103,6 @@ class OudsListItemAssetBuilder {
     );
   }
 
-  // TODO[v0.4]: Uncomment when video support is implemented.
-  // /// Builds a video placeholder icon using token-defined size.
-  // ///
-  // /// - [size] — defaults to [OudsListItemAssetSize.medium].
-  // /// - [enable] — when `false`, the icon is rendered in its disabled appearance.
-  // static Widget buildVideoPlaceholder(
-  //   BuildContext context, {
-  //   OudsListItemAssetSize size = OudsListItemAssetSize.medium,
-  //   bool enable = true,
-  // }) {
   //   final resolvedSize = size.value(context);
   //   return SizedBox(
   //     width: resolvedSize,

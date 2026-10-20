@@ -254,15 +254,12 @@ class ListItemCodeGenerator {
     ),
     ListItemLeadingEnum.content =>
       "OudsListItemLeadingContent((context, state) => /* custom widget */)",
-    // TODO[v0.4]: uncomment avatar when available
+    // TODO[v1.0]: uncomment avatar when available
     // ListItemLeadingEnum.avatar =>
     //   "OudsListItemLeadingAvatar(OudsAvatar(monogram: 'AB'))",
-    // TODO[v0.4]: uncomment flag when available
+    // TODO[v1.0]: uncomment flag when available
     // ListItemLeadingEnum.flag =>
     //   "OudsListItemLeadingFlag(asset: AssetImage('assets/flag.png'))",
-    // TODO[v0.4]: uncomment video when available
-    // ListItemLeadingEnum.video =>
-    //   "OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))",
   };
 
   static String _smallLeadingCode(
@@ -315,9 +312,8 @@ class ListItemCodeGenerator {
     ),
     ListItemTrailingEnum.content =>
       "OudsListItemTrailingContent((context, state) => /* custom widget */)",
-    // TODO[v0.4]: uncomment avatar when available
-    // TODO[v0.4]: uncomment flag when available
-    // TODO[v0.4]: uncomment video when available
+    // TODO[v1.0]: uncomment avatar when available
+    // TODO[v1.0]: uncomment flag when available
   };
 
   /// Generates the badge trailing code snippet, from the current badge

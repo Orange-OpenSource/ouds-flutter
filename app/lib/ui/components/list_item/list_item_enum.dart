@@ -33,7 +33,7 @@ enum ListItemLeadingEnum {
   none,
   icon,
   image,
-  content; // TODO[v0.4]: add avatar, flag — TODO[v0.4]: add video
+  content; // TODO[v1.0]: add avatar, flag
 
   static String enumName(BuildContext context) =>
       context.l10n.app_components_listItem_leading_tech;
@@ -58,7 +58,7 @@ enum ListItemTrailingEnum {
   tag,
   icon,
   image,
-  content; // TODO[v0.4]: add avatar, flag, video
+  content; // TODO[v1.0]: add avatar, flag
 
   static String enumName(BuildContext context) =>
       context.l10n.app_components_listItem_trailing_tech;

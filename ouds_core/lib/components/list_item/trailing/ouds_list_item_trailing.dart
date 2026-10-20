@@ -15,9 +15,11 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/avatar/ouds_avatar.dart';
+// TODO[v1.0]: Uncomment when avatar support is implemented.
+// import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
-import 'package:ouds_core/components/flag/ouds_flag.dart';
+// TODO[v1.0]: Uncomment when flag support is implemented.
+// import 'package:ouds_core/components/flag/ouds_flag.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 
@@ -232,51 +234,43 @@ class OudsListItemTrailingImage extends OudsListItemTrailing {
   });
 }
 
-/// Trailing flag slot — renders an [OudsFlag] on the trailing side of the row.
-///
-/// Pass an [OudsFlag] with the desired country code. The flag is resized to
-/// match the list item token dimensions, whatever its intrinsic size.
-///
-/// Example:
-/// ```dart
-/// OudsListItemTrailingFlag(OudsFlag('fr'))
-/// OudsListItemTrailingFlag(OudsFlag('gb'))
-/// ```
-class OudsListItemTrailingFlag extends OudsListItemTrailing {
-  /// The flag widget to display.
-  final OudsFlag flag;
-
-  /// Creates a trailing flag configuration.
-  const OudsListItemTrailingFlag(this.flag);
-}
-
-// TODO[v0.4]: Uncomment when video support is implemented.
-// /// Trailing video slot — renders a play-icon placeholder using token-defined size.
-// class OudsListItemTrailingVideo extends OudsListItemTrailing {
-//   /// The video URL associated with the placeholder.
-//   final Uri url;
-
-//   /// Creates a trailing video configuration.
-//   const OudsListItemTrailingVideo(this.url);
+// TODO[v1.0]: Uncomment when flag support is implemented.
+// /// Trailing flag slot — renders an [OudsFlag] on the trailing side of the row.
+// ///
+// /// Pass an [OudsFlag] with the desired country code. The flag is resized to
+// /// match the list item token dimensions, whatever its intrinsic size.
+// ///
+// /// Example:
+// /// ```dart
+// /// OudsListItemTrailingFlag(OudsFlag('fr'))
+// /// OudsListItemTrailingFlag(OudsFlag('gb'))
+// /// ```
+// class OudsListItemTrailingFlag extends OudsListItemTrailing {
+//   /// The flag widget to display.
+//   final OudsFlag flag;
+//
+//   /// Creates a trailing flag configuration.
+//   const OudsListItemTrailingFlag(this.flag);
 // }
 
 // ---------------------------------------------------------------------------
 // Avatar
 // ---------------------------------------------------------------------------
 
-/// Trailing avatar slot.
-///
-/// Example:
-/// ```dart
-/// OudsListItemTrailingAvatar(OudsAvatar(monogram: 'JD'))
-/// ```
-class OudsListItemTrailingAvatar extends OudsListItemTrailing {
-  /// The avatar widget to display.
-  final OudsAvatar avatar;
-
-  /// Creates a trailing avatar configuration.
-  const OudsListItemTrailingAvatar(this.avatar);
-}
+// TODO[v1.0]: Uncomment when avatar support is implemented.
+// /// Trailing avatar slot.
+// ///
+// /// Example:
+// /// ```dart
+// /// OudsListItemTrailingAvatar(OudsAvatar(monogram: 'JD'))
+// /// ```
+// class OudsListItemTrailingAvatar extends OudsListItemTrailing {
+//   /// The avatar widget to display.
+//   final OudsAvatar avatar;
+//
+//   /// Creates a trailing avatar configuration.
+//   const OudsListItemTrailingAvatar(this.avatar);
+// }
 
 // ---------------------------------------------------------------------------
 // Custom
