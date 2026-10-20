@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
@@ -31,9 +32,9 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 /// If you want to use a standalone switch please use [OudsSwitch].
 ///
 /// Parameters:
-/// - [value] The value represented by this switch. Used to determine selection.
-/// - [onChanged] Callback triggered when the user selects this switch. If `null`, the switch is disabled and non-interactive.
-/// - [isError] Indicates whether the switch is in an error state.
+/// - [value]: The value represented by this switch. Used to determine selection.
+/// - [onChanged]: Callback triggered when the user selects this switch. If `null`, the switch is disabled and non-interactive.
+/// - [isError]: Indicates whether the switch is in an error state.
 /// - [title]: The main label of the switch item.
 /// - [helperTitle]: Optional text displayed below the label.
 /// - [icon]: Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
@@ -48,8 +49,9 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 ///   Defaults to `false`.
 /// - [errorText]: Text shown below the switch item indicating an error state. Supports only strong text formatting using `**bold**`.
 ///   Rich text is supported only for error messages.
-/// - [edgeToEdge] Controls the horizontal layout of the checkbox item. When `true`, the checkbox item is designed to span the full width of the screen or container. When `false`,
+/// - [edgeToEdge]: Controls the horizontal layout of the checkbox item. When `true`, the checkbox item is designed to span the full width of the screen or container. When `false`,
 ///   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the radio button item will appear once fully loaded.
 ///
 ///
 /// ### You can use [OudsSwitchItem] component in your project, customizing parameters as needed :
@@ -72,7 +74,8 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 ///     icon: null,
 ///     isError: false,
 ///     divider: true,
-///     edgeToEdge: true
+///     edgeToEdge: true,
+///     skeleton: OudsSkeleton(),
 ///     );
 /// ```
 ///
@@ -91,6 +94,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
   final bool divider;
   final bool constrainedMaxWidth;
   final bool edgeToEdge;
+  final OudsSkeleton? skeleton;
 
   const OudsSwitchButtonItem({
     super.key,
@@ -107,6 +111,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
     this.divider = false,
     this.constrainedMaxWidth = false,
     this.edgeToEdge = true,
+    this.skeleton,
   });
 
   @override
@@ -131,6 +136,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
         edgeToEdge: edgeToEdge,
         constrainedMaxWidth: constrainedMaxWidth,
         reversed: reversed,
+        skeleton: skeleton,
         onTap: onChanged != null
             ? () {
                 bool? newValue;

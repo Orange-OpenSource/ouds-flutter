@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_code_generator.dart';
@@ -127,6 +128,9 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     final loader = ButtonCustomizationUtils.getLoader(customizationState);
     final onPressed = customizationState?.hasEnabled == true ? () {} : null;
     final isFullWidth = customizationState?.hasFullWidth;
+    final skeleton = customizationState?.hasSkeleton == true
+        ? OudsSkeleton()
+        : null;
 
     return size == OudsButtonSize.small
         ? OudsButton.small(
@@ -136,6 +140,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             isLoading: loader,
             onPressed: onPressed,
             isFullWidth: isFullWidth,
+            skeleton: skeleton,
           )
         : OudsButton(
             label: label,
@@ -144,6 +149,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             isLoading: loader,
             onPressed: onPressed,
             isFullWidth: isFullWidth,
+            skeleton: skeleton,
           );
   }
 
@@ -287,6 +293,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.textValue,
           focusNode: labelFocus,
           fieldType: FieldType.label,
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
+          },
         ),
       ],
     );

@@ -705,3 +705,42 @@ Semantics(
 
 ---
 
+### 10.6 OudsSkeleton — isolated vs. mass loading announcements
+
+**Context:** `OudsSkeleton` announces a "loading" live region by default (one announcement per
+instance). This is correct for a single, isolated skeleton, but becomes noisy when several
+skeletons are shown at once on the same screen (list, dashboard, grid of cards).
+
+**Isolated skeleton (default) — keep per-element announcement:**
+
+```dart
+OudsSkeleton() // announces "loading" on this element; rest of screen stays navigable
+```
+
+**Mass skeleton (several `OudsSkeleton` on the same screen) — exclude each one from semantics
+and make a single screen-level announcement instead:**
+
+```dart
+Column(
+  children: [
+    ExcludeSemantics(child: OudsSkeleton()),
+    ExcludeSemantics(child: OudsSkeleton()),
+    ExcludeSemantics(child: OudsSkeleton()),
+  ],
+)
+
+// Once for the whole screen:
+Semantics(
+  liveRegion: true,
+  label: OudsLocalizations.of(context)?.core_common_loading_a11y,
+  child: screenContent,
+)
+```
+
+> Note: iOS (native VoiceOver guidance) intentionally never exposes skeletons individually to
+> VoiceOver, relying only on a single screen-level announcement. Flutter exposes each
+> `OudsSkeleton` individually by default — apply the mass-loading pattern above when several
+> skeletons appear together to avoid repeated announcements.
+
+---
+

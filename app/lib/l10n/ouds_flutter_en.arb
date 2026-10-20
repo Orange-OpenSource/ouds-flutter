@@ -142,6 +142,7 @@
   "app_components_common_icon_tech": "Icon",
   "app_components_common_tinted_tech": "Tinted",
   "app_components_common_untinted_tech": "Untinted",
+  "app_components_common_skeleton_tech": "Skeleton",
 
   "@_components_alert": {},
   "app_components_alert_tech": "Alert",
@@ -219,6 +220,12 @@
   "app_components_radioButton_radioButton_label": "Radio button",
   "app_components_radioButton_radioButtonItem_label": "Radio Button Item",
   "app_components_radioButton_radioButtonItem_extraLabel_label": "Extra label",
+
+  "@_components_skeleton": {},
+  "app_components_skeleton_label": "Skeleton",
+  "app_components_skeleton_description_text": "Skeleton is a UI element that displays an animated placeholder shape while content is loading.",
+  "app_components_skeleton_animated_tech": "Animated",
+  "app_components_skeleton_hasSecurityMargin_tech": "Security Margin",
 
   "@_components_switch": {},
   "app_components_switch_label": "Switch",

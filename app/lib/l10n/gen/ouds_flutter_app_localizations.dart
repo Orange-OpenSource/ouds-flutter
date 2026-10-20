@@ -655,6 +655,12 @@ abstract class AppLocalizations {
   /// **'Untinted'**
   String get app_components_common_untinted_tech;
 
+  /// No description provided for @app_components_common_skeleton_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Skeleton'**
+  String get app_components_common_skeleton_tech;
+
   /// No description provided for @app_components_alert_tech.
   ///
   /// In en, this message translates to:
@@ -989,6 +995,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Extra label'**
   String get app_components_radioButton_radioButtonItem_extraLabel_label;
+
+  /// No description provided for @app_components_skeleton_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Skeleton'**
+  String get app_components_skeleton_label;
+
+  /// No description provided for @app_components_skeleton_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Skeleton is a UI element that displays an animated placeholder shape while content is loading.'**
+  String get app_components_skeleton_description_text;
+
+  /// No description provided for @app_components_skeleton_animated_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Animated'**
+  String get app_components_skeleton_animated_tech;
+
+  /// No description provided for @app_components_skeleton_hasSecurityMargin_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Security Margin'**
+  String get app_components_skeleton_hasSecurityMargin_tech;
 
   /// No description provided for @app_components_switch_label.
   ///
