@@ -14,6 +14,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/switch/ouds_switch_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -172,6 +173,7 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
             constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                 ? true
                 : false,
+            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
           ),
         ],
       ),
@@ -328,6 +330,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             setState(() {
               customizationState.hasConstrainedMaxWidth = value;
             });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
           },
         ),
       ],

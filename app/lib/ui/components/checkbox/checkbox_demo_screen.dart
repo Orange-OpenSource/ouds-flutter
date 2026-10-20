@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_code_generator.dart';
@@ -119,17 +120,17 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
   bool? isCheckedFirst = false;
   bool? isCheckedSecond = false;
 
-  CheckboxCustomizationState? customizationState;
-  ThemeController? themeController;
-
   @override
   Widget build(BuildContext context) {
-    customizationState = CheckboxCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: false);
+    final customizationState = CheckboxCustomization.of(context)!;
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+      themeController.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
 
     return LightDarkBox(
@@ -138,29 +139,36 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
         children: [
           OudsCheckbox(
             value: isCheckedFirst,
-            onChanged: customizationState?.hasEnabled == true
+            onChanged: customizationState.hasEnabled == true
                 ? (bool? newValue) {
                     setState(() {
                       isCheckedFirst = newValue;
                     });
                   }
                 : null,
-            isError: customizationState!.hasError,
+            isError: customizationState.hasError,
             tristate: widget.indeterminate,
-            readOnly: customizationState!.hasReadOnly ? true : false,
+            readOnly: customizationState.hasReadOnly ? true : false,
+            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+          ),
+          SizedBox(
+            width: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedExtraSmall,
           ),
           OudsCheckbox(
             value: isCheckedSecond,
-            onChanged: customizationState?.hasEnabled == true
+            onChanged: customizationState.hasEnabled == true
                 ? (bool? newValue) {
                     setState(() {
                       isCheckedSecond = newValue;
                     });
                   }
                 : null,
-            isError: customizationState!.hasError ? true : false,
+            isError: customizationState.hasError ? true : false,
             tristate: widget.indeterminate,
-            readOnly: customizationState!.hasReadOnly ? true : false,
+            readOnly: customizationState.hasReadOnly ? true : false,
+            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
           ),
         ],
       ),
@@ -222,6 +230,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                     customizationState.hasReadOnly = value;
                   });
                 },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
+          },
         ),
       ],
     );

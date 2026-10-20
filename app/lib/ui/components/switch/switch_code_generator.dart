@@ -24,7 +24,9 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_customization.dart
 class SwitchCodeGenerator {
   /// Static method to generate the code based on switch customization state.
   static String updateCode(BuildContext context) {
-    final SwitchCustomizationState? customizationState = SwitchCustomization.of(context);
+    final SwitchCustomizationState? customizationState = SwitchCustomization.of(
+      context,
+    );
 
     // Base list for building the switch code dynamically.
     final List<String> code = [];
@@ -50,6 +52,11 @@ class SwitchCodeGenerator {
     // Add the readOnly property only when true.
     if (customizationState?.hasReadOnly == true) {
       code.add('  readOnly: true,');
+    }
+
+    // Add the skeleton property only when true.
+    if (customizationState?.hasSkeleton == true) {
+      code.add('  skeleton: OudsSkeleton(),');
     }
 
     // End of the widget declaration.

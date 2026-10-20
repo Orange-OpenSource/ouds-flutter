@@ -13,6 +13,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/alert/ouds_alert_message.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_code_generator.dart';
@@ -137,6 +138,7 @@ class _AlertMessageDemoState extends State<_AlertMessageDemo> {
         onDescriptionLinkTapped: (link) async {
           await launchUrl(Uri.parse(link));
         },
+        skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
       ),
     );
   }
@@ -312,6 +314,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             focusNode: bulletThreeFocus,
             fieldType: FieldType.bulletThree,
           ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
+          },
+        ),
       ],
     );
   }

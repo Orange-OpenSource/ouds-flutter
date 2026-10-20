@@ -6,6 +6,8 @@ import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_theme_contract/config/component/ouds_card_item_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import '../../helpers/testable_widget_helper.dart';
@@ -57,25 +59,26 @@ void main() {
       },
     );
 
-    testWidgets('labelContent constructor delegates custom content to OudsListItem', (
-      tester,
-    ) async {
-      await tester.pumpWidget(
-        testableWidget(
-          OudsCardItem.labelContent(
-            labelContent: (context, state) => const Text('Custom label'),
-            description: '5G incluse',
+    testWidgets(
+      'labelContent constructor delegates custom content to OudsListItem',
+      (tester) async {
+        await tester.pumpWidget(
+          testableWidget(
+            OudsCardItem.labelContent(
+              labelContent: (context, state) => const Text('Custom label'),
+              description: '5G incluse',
+            ),
           ),
-        ),
-      );
+        );
 
-      final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
+        final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
 
-      expect(listItem.label, isNull);
-      expect(listItem.labelContent, isNotNull);
-      expect(listItem.card, isTrue);
-      expect(find.text('Custom label'), findsOneWidget);
-    });
+        expect(listItem.label, isNull);
+        expect(listItem.labelContent, isNotNull);
+        expect(listItem.card, isTrue);
+        expect(find.text('Custom label'), findsOneWidget);
+      },
+    );
 
     testWidgets('is tappable and announced as a button when interactive', (
       tester,
@@ -283,6 +286,26 @@ void main() {
       final roundedRadius = _listItemBorderRadius(tester).topLeft.x;
 
       expect(roundedRadius, greaterThan(defaultRadius));
+    });
+  });
+
+  group('skeleton', () {
+    testWidgets('forwards the skeleton to the underlying list item', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          const OudsCardItem(
+            label: 'Skeleton card',
+            skeleton: OudsSkeleton(animated: false),
+          ),
+        ),
+      );
+
+      final layout = tester.widget<OudsSkeletonLayout>(
+        find.byType(OudsSkeletonLayout),
+      );
+      expect(layout.visible, isTrue);
     });
   });
 }

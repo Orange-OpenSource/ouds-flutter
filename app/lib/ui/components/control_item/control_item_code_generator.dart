@@ -51,8 +51,6 @@ class ControlItemCodeGenerator {
     bool indeterminate,
     ControlItemType control,
   ) {
-    final customizationState = ControlItemCustomization.of(context);
-
     String value = 'isChecked';
     String itemCode;
 
@@ -74,7 +72,7 @@ class ControlItemCodeGenerator {
     // Build the code string with conditional inclusion
     String code =
         """$itemCode(
-value: $value,${control == ControlItemType.radioButton ? groupValueCode(context) : ''}
+ value: $value,${control == ControlItemType.radioButton ? groupValueCode(context) : ''}
 ${control == ControlItemType.radioButton ? disableCodeRadio(context) : disableCode(context)}
 ${_includedElements.contains('titleCode') ? titleCode(context) : ''}
 ${_includedElements.contains('extraLabelTextCode') ? extraLabelTextCode(context) : ''}
@@ -84,7 +82,7 @@ ${_includedElements.contains('readOnlyCode') ? readOnlyCode(context) : ''}
 ${_includedElements.contains('iconCode') ? iconCode(context) : ''}
 ${_includedElements.contains('errorCode') ? errorCode(context) : ''}
 ${_includedElements.contains('errorMessageCode') ? errorMessageCode(context) : ''}
-${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_includedElements.contains('outlinedCode') ? outlinedCode(context) : ''}${tristateCode(context, indeterminate)}${_includedElements.contains('constrainedMaxWidthCode') ? constrainedMaxWidthCode(context) : ''}\nedgeToEdge: ${customizationState?.edgeToEdge},
+${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_includedElements.contains('outlinedCode') ? outlinedCode(context) : ''}${tristateCode(context, indeterminate)}${_includedElements.contains('constrainedMaxWidthCode') ? constrainedMaxWidthCode(context) : ''}${edgeToEdgeCode(context)}${skeletonCode(context)}
 );""";
 
     return code;
@@ -94,112 +92,123 @@ ${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_inclu
   static String disableCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
 
-    return "onChanged: ${customizationState?.hasEnabled == true ? "(bool? value) { \n"
-              "setState(() {\n "
-              "isChecked = value;\n "
-              "});\n}" : 'null'},";
+    return " onChanged: ${customizationState?.hasEnabled == true ? "(bool? value) { \n"
+              "  setState(() {\n "
+              "   isChecked = value;\n "
+              " });\n}" : 'null'},";
   }
 
   static String disableCodeRadio(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
 
-    return "onChanged: ${customizationState?.hasEnabled == true ? "(RadioOption? value) { \n"
-              "setState(() {\n "
-              "selectedOption = value;\n "
-              "});\n}" : 'null'},";
+    return " onChanged: ${customizationState?.hasEnabled == true ? "(RadioOption? value) { \n"
+              " setState(() {\n "
+              " selectedOption = value;\n "
+              " });\n}" : 'null'},";
   }
 
   // Method to generate the group value code for radio buttons
   static String groupValueCode(BuildContext context) {
-    return '\ngroupValue: selectedOption,';
+    return '\n groupValue: selectedOption,';
   }
 
   // Method to generate the error code for the control item
   static String errorCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return 'isError: ${customizationState?.hasError == true ? 'true' : 'false'},';
+    return ' isError: ${customizationState?.hasError == true ? 'true' : 'false'},';
   }
 
   // Method to generate the error message code for the control item
   static String errorMessageCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return """errorText: '${customizationState?.errorMessageLabel}',""";
+    return """ errorText: '${customizationState?.errorMessageLabel}',""";
   }
 
   // Method to generate the title code for the control item
   static String titleCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return """title: '${customizationState?.labelText}',""";
+    return """ title: '${customizationState?.labelText}',""";
   }
 
   // Method to generate the extra label text code for the control item
   static String extraLabelTextCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
     return customizationState!.extraLabelText.isEmpty
-        ? 'extraLabelText: null,'
-        : """extraLabelText: '${customizationState.extraLabelText}',""";
+        ? ' extraLabelText: null,'
+        : """ extraLabelText: '${customizationState.extraLabelText}',""";
   }
 
   // Method to generate the helperTitle code for the control item
   static String helperTitleCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
     return customizationState!.descriptionLabel.isEmpty
-        ? 'helperTitle: null,'
-        : """helperTitle: '${customizationState.descriptionLabel}',""";
+        ? ' helperTitle: null,'
+        : """ helperTitle: '${customizationState.descriptionLabel}',""";
   }
 
   // Method to generate the reversed code for the control item
   static String reversedCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return "reversed: ${customizationState?.hasReversed},";
+    return " reversed: ${customizationState?.hasReversed},";
   }
 
   // Method to generate the readOnly code for the control item
   static String readOnlyCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return "readOnly: ${customizationState?.hasReadOnly},";
+    return " readOnly: ${customizationState?.hasReadOnly},";
   }
 
   // Method to generate the icon code for the control item
   static String iconCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
     if (customizationState == null) {
-      return "icon: null,";
+      return " icon: null,";
     }
 
     if (customizationState.isReadOnlyWhenError) {
-      return "icon: null,";
+      return " icon: null,";
     }
 
-    return "icon: ${customizationState.hasIcon == true ? "OudsIcon(${customizationState.isTinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: ${customizationState.isTinted})" : 'null'},";
+    return " icon: ${customizationState.hasIcon == true ? " OudsIcon(${customizationState.isTinted ? 'AppAssets.icons.assistanceTipsAndTricks' : 'AppAssets.icons.icUntintedSquare'}, tinted: ${customizationState.isTinted})" : 'null'},";
   }
 
   // Method to generate the divider code for the control item
   static String dividerCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return "divider: ${customizationState?.hasDivider},";
+    return " divider: ${customizationState?.hasDivider},";
   }
 
   // Method to generate the Constrained Max Width code for the control item
   static String constrainedMaxWidthCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return "\nconstrainedMaxWidth: ${customizationState?.hasConstrainedMaxWidth},";
+    return "\n constrainedMaxWidth: ${customizationState?.hasConstrainedMaxWidth},";
   }
 
   // Method to generate the outlined code for the control item
   static String outlinedCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return "\noutlined: ${customizationState?.hasOutlined},";
+    return "\n outlined: ${customizationState?.hasOutlined},";
   }
 
   // Method to generate the tristate code for the control item
   static String tristateCode(BuildContext context, bool indeterminate) {
-    return indeterminate ? "\ntristate: $indeterminate," : '';
+    return indeterminate ? "\n tristate: $indeterminate," : '';
   }
 
   // Method to generate the edgeToEdge code for the control item
   static String edgeToEdgeCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return "\nedgeToEdge: ${customizationState?.edgeToEdge},";
+    return "\n edgeToEdge: ${customizationState?.edgeToEdge},";
+  }
+
+  // Method to generate the skeleton code for the control item
+  static String skeletonCode(BuildContext context) {
+    final customizationState = ControlItemCustomization.of(context)!;
+    // Add the skeleton property only when true.
+    if (customizationState.hasSkeleton == true) {
+      return '\n skeleton: OudsSkeleton(),';
+    } else {
+      return '';
+    }
   }
 }

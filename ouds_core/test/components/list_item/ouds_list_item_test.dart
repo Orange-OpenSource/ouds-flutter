@@ -7,6 +7,8 @@ import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.da
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
 import '../../helpers/testable_widget_helper.dart';
 
@@ -235,8 +237,7 @@ void main() {
           testableWidget(
             OudsListItem.labelContent(
               labelContent: (context, state) => Text('label-${state.name}'),
-              belowTextContent: (context, state) =>
-                  Text('below-${state.name}'),
+              belowTextContent: (context, state) => Text('below-${state.name}'),
               bottomContent: (context, state) => Text('bottom-${state.name}'),
               enable: false,
             ),
@@ -330,54 +331,52 @@ void main() {
       },
     );
 
-    testWidgets(
-      'rounds small image slots when rounded is true',
-      (tester) async {
-        await tester.pumpWidget(
-          testableWidget(
-            const OudsSmallListItem(
-              label: 'Rounded image',
-              leading: OudsSmallListItemLeadingImage(
-                asset: 'assets/component/alert/tick-confirmation-fill.svg',
-                rounded: true,
-              ),
-              trailing: OudsSmallListItemTrailingImage(
-                asset: 'assets/component/alert/tick-confirmation-fill.svg',
-                rounded: true,
-              ),
+    testWidgets('rounds small image slots when rounded is true', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          const OudsSmallListItem(
+            label: 'Rounded image',
+            leading: OudsSmallListItemLeadingImage(
+              asset: 'assets/component/alert/tick-confirmation-fill.svg',
+              rounded: true,
+            ),
+            trailing: OudsSmallListItemTrailingImage(
+              asset: 'assets/component/alert/tick-confirmation-fill.svg',
+              rounded: true,
             ),
           ),
-        );
+        ),
+      );
 
-        // Each rounded image is wrapped in a ClipRRect applying the
-        // borderRadiusMediaRounded token.
-        final clipRects = find.byType(ClipRRect);
-        expect(clipRects, findsNWidgets(2));
-      },
-    );
+      // Each rounded image is wrapped in a ClipRRect applying the
+      // borderRadiusMediaRounded token.
+      final clipRects = find.byType(ClipRRect);
+      expect(clipRects, findsNWidgets(2));
+    });
 
-    testWidgets(
-      'keeps small image slots square when rounded is false',
-      (tester) async {
-        await tester.pumpWidget(
-          testableWidget(
-            const OudsSmallListItem(
-              label: 'Square image',
-              leading: OudsSmallListItemLeadingImage(
-                asset: 'assets/component/alert/tick-confirmation-fill.svg',
-              ),
+    testWidgets('keeps small image slots square when rounded is false', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          const OudsSmallListItem(
+            label: 'Square image',
+            leading: OudsSmallListItemLeadingImage(
+              asset: 'assets/component/alert/tick-confirmation-fill.svg',
             ),
           ),
-        );
+        ),
+      );
 
-        final svg = find.byType(SvgPicture);
-        expect(svg, findsOneWidget);
-        expect(
-          find.ancestor(of: svg, matching: find.byType(ClipRRect)),
-          findsNothing,
-        );
-      },
-    );
+      final svg = find.byType(SvgPicture);
+      expect(svg, findsOneWidget);
+      expect(
+        find.ancestor(of: svg, matching: find.byType(ClipRRect)),
+        findsNothing,
+      );
+    });
 
     testWidgets(
       'forwards enable into OudsSmallListItemTrailingBadge and TrailingTag',
@@ -408,5 +407,36 @@ void main() {
         expect(find.text('tag-true'), findsOneWidget);
       },
     );
+  });
+
+  group('skeleton', () {
+    testWidgets('shows the skeleton layout when a skeleton is provided', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          const OudsListItem(
+            label: 'Skeleton item',
+            skeleton: OudsSkeleton(animated: false),
+          ),
+        ),
+      );
+
+      final layout = tester.widget<OudsSkeletonLayout>(
+        find.byType(OudsSkeletonLayout),
+      );
+      expect(layout.visible, isTrue);
+    });
+
+    testWidgets('keeps the skeleton layout hidden by default', (tester) async {
+      await tester.pumpWidget(
+        testableWidget(const OudsListItem(label: 'Plain item')),
+      );
+
+      final layout = tester.widget<OudsSkeletonLayout>(
+        find.byType(OudsSkeletonLayout),
+      );
+      expect(layout.visible, isFalse);
+    });
   });
 }

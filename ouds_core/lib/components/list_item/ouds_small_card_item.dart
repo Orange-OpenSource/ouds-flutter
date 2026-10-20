@@ -19,6 +19,7 @@ import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dar
 import 'package:ouds_core/components/list_item/ouds_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
 /// [OUDS Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
 ///
@@ -91,6 +92,9 @@ class OudsSmallCardItem extends StatelessWidget {
   /// Navigation indicator shown when [onTap] is provided.
   final OudsListItemIndicator indicator;
 
+  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the card item will appear once fully loaded.
+  final OudsSkeleton? skeleton;
+
   /// Creates a compact OUDS card item.
   const OudsSmallCardItem({
     super.key,
@@ -105,6 +109,7 @@ class OudsSmallCardItem extends StatelessWidget {
     this.enable = true,
     this.onTap,
     this.indicator = OudsCardItemDefaults.indicator,
+    this.skeleton,
   });
 
   @override
@@ -122,6 +127,7 @@ class OudsSmallCardItem extends StatelessWidget {
       onTap: onTap,
       indicator: indicator,
       card: true,
+      skeleton: skeleton,
     );
   }
 }

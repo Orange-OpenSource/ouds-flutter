@@ -252,6 +252,15 @@ class _ListItemCustomizationPanelState
             });
           },
         ),
+      CustomizableSwitch(
+        title: context.l10n.app_components_common_skeleton_tech,
+        value: customizationState.hasSkeleton,
+        onChanged: (value) {
+          setState(() {
+            customizationState.hasSkeleton = value;
+          });
+        },
+      ),
     ];
   }
 

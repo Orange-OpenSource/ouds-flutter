@@ -27,6 +27,7 @@ import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization_utils.dart';
@@ -642,6 +643,7 @@ class ListItemCustomizationUtils {
       onTap: () {},
       indicator: getIndicator(state.indicator),
       edgeToEdge: state.edgeToEdge,
+      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
       belowTextContent: state.belowTextContentEnabled
           ? (context, state) => _buildBelowTextContent(context, state)
           : null,
@@ -671,6 +673,7 @@ class ListItemCustomizationUtils {
     VoidCallback? onTap,
     OudsListItemIndicator indicator = OudsListItemDefaults.indicator,
     required bool edgeToEdge,
+    OudsSkeleton? skeleton,
     Widget Function(BuildContext context, OudsListItemControlState state)?
     belowTextContent,
     Widget Function(BuildContext context, OudsListItemControlState state)?
@@ -693,6 +696,7 @@ class ListItemCustomizationUtils {
         onTap: onTap,
         indicator: indicator,
         edgeToEdge: edgeToEdge,
+        skeleton: skeleton,
         belowTextContent: belowTextContent,
         bottomContent: bottomContent,
       );
@@ -713,6 +717,7 @@ class ListItemCustomizationUtils {
       onTap: onTap,
       indicator: indicator,
       edgeToEdge: edgeToEdge,
+      skeleton: skeleton,
       belowTextContent: belowTextContent,
       bottomContent: bottomContent,
     );
@@ -820,6 +825,7 @@ class ListItemCustomizationUtils {
       onTap: () {},
       indicator: getIndicator(state.indicator),
       edgeToEdge: state.edgeToEdge,
+      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
     );
   }
 
@@ -879,6 +885,7 @@ class ListItemCustomizationUtils {
       boldLabel: state.boldLabel,
       enable: state.enable,
       edgeToEdge: state.edgeToEdge,
+      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
       belowTextContent: state.belowTextContentEnabled
           ? (context, state) => _buildBelowTextContent(context, state)
           : null,
@@ -935,6 +942,7 @@ class ListItemCustomizationUtils {
       boldLabel: state.boldLabel,
       enable: state.enable,
       edgeToEdge: state.edgeToEdge,
+      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
     );
   }
 
@@ -1158,6 +1166,7 @@ class ListItemCustomizationUtils {
         enable: state.enable,
         onTap: state.clickable ? () {} : null,
         indicator: getIndicator(state.indicator),
+        skeleton: state.hasSkeleton ? OudsSkeleton() : null,
       );
     }
     return OudsCardItem(
@@ -1176,6 +1185,7 @@ class ListItemCustomizationUtils {
       enable: state.enable,
       onTap: state.clickable ? () {} : null,
       indicator: getIndicator(state.indicator),
+      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
     );
   }
 
@@ -1226,6 +1236,7 @@ class ListItemCustomizationUtils {
       onTap: state.clickable ? () {} : null,
       indicator: getIndicator(state.indicator),
       decoration: _convertCardDecoration(state.cardDecoration, state.divider),
+      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
     );
   }
 }
