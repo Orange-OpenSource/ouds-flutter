@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
@@ -131,6 +132,9 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
         return OudsSuggestionChip(
           label: ChipCustomizationUtils.getText(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          skeleton: customizationState?.hasSkeleton == true
+              ? OudsSkeleton()
+              : null,
         );
       case ChipEnumLayout.iconAndText:
         return OudsSuggestionChip.icon(
@@ -141,7 +145,10 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
             colorSurfaceBrandPrimary,
             null,
           ),
-          onPressed: customizationState!.hasEnabled == true ? () {} : null,
+          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          skeleton: customizationState?.hasSkeleton == true
+              ? OudsSkeleton()
+              : null,
         );
       case ChipEnumLayout.iconOnly:
         return OudsSuggestionChip.icon(
@@ -151,13 +158,19 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
             colorSurfaceBrandPrimary,
             context.l10n.app_components_common_icon_a11y,
           ),
-          onPressed: customizationState!.hasEnabled == true ? () {} : null,
+          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          skeleton: customizationState?.hasSkeleton == true
+              ? OudsSkeleton()
+              : null,
         );
 
       default:
         return OudsSuggestionChip(
           label: ChipCustomizationUtils.getText(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          skeleton: customizationState?.hasSkeleton == true
+              ? OudsSkeleton()
+              : null,
         );
     }
   }
@@ -235,6 +248,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
+          },
         ),
       ],
     );
