@@ -123,17 +123,6 @@ enum OudsPinCodeInputKeyboardType {
 /// Underlined text must not be applied manually (e.g. in helper text), as it
 /// is commonly associated with hyperlinks and may mislead users.
 ///
-/// ## Rich text in [helperText] and [errorText]
-///
-/// Both [helperText] and [errorText] accept simple rich text: wrap the words
-/// to emphasize with `**` on each side (e.g. `'**Strong** text'`) and they
-/// will be rendered using the "Strong" token matching the current text style.
-///
-/// ### ⚠️ Underline text
-///
-/// Underlined text must not be applied manually (e.g. in helper text), as it
-/// is commonly associated with hyperlinks and may mislead users.
-///
 class OudsPinCodeInput extends StatefulWidget {
   final OudsPinCodeInputLength length;
   final String? helperText;
