@@ -777,13 +777,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_listItem_content_tech => 'Content';
 
   @override
-  String get app_components_listItem_customLabel_text =>
-      'Étiquette personnalisée';
-
-  @override
-  String get app_components_listItem_newTag_label => 'Nouveau';
-
-  @override
   String get app_components_listItem_contentExampleAlert_label =>
       'Exemple de contenu';
 

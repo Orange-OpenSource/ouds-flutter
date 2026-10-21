@@ -131,8 +131,6 @@
   "app_components_listItem_image_a11y": "Description de l'image",
   "app_components_listItem_avatarBadge_label": "Badge sur l'avatar",
   "app_components_listItem_iconBadge_label": "Badge sur l'icône",
-  "app_components_listItem_customLabel_text": "Étiquette personnalisée",
-  "app_components_listItem_newTag_label": "Nouveau",
   "app_components_listItem_contentExampleAlert_label": "Exemple de contenu",
   "app_components_listItem_contentExampleAlert_description": "Utilisez Content pour un contenu personnalisé qui ne peut pas être représenté par un autre élément existant.\nContent offre de la flexibilité pour des besoins produit spécifiques, mais il doit rester une exception et non la solution par défaut.",
   "app_components_listItem_contentConfiguration_label": "Contenu",

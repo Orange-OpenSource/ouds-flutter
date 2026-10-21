@@ -127,12 +127,12 @@ class ListItemCustomizationState
     trailingBadgeTypeState = GenericEnumState<BadgeEnumType>(
       setState,
       list: BadgeEnumType.values,
-      initial: BadgeEnumType.standard,
+      initial: BadgeEnumType.count,
     );
     trailingBadgeSizeState = GenericEnumState<BadgeEnumSize>(
       setState,
       list: BadgeEnumSize.values,
-      initial: BadgeEnumSize.medium,
+      initial: BadgeEnumSize.large,
     );
     trailingBadgeStatusState = IconStatusState(
       setState,
@@ -148,7 +148,7 @@ class ListItemCustomizationState
     trailingTagSizeState = GenericEnumState<TagEnumSize>(
       setState,
       list: TagEnumSize.values,
-      initial: TagEnumSize.defaultSize,
+      initial: TagEnumSize.small,
     );
     trailingTagLayoutState = GenericEnumState<TagEnumLayout>(
       setState,
@@ -158,7 +158,7 @@ class ListItemCustomizationState
     trailingTagStatusState = IconStatusState(setState);
     trailingTagLabelTextState = TextState(setState, initial: 'Label');
     trailingTagLoaderState = BoolState(setState);
-    trailingTagRoundedCornersState = BoolState(setState);
+    trailingTagRoundedCornersState = BoolState(setState, initial: true);
     trailingTagEnabledState = BoolState(setState, initial: true);
     leadingIconTintedState = TintedState(setState);
     trailingIconTintedState = TintedState(setState);
