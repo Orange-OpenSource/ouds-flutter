@@ -154,30 +154,6 @@ class OudsListItemLeadingImage extends OudsListItemLeading {
 //   const OudsListItemLeadingAvatar(this.avatar);
 // }
 
-/// Leading text slot — renders a label and an optional extra-label.
-///
-/// Example:
-/// ```dart
-/// OudsListItemLeadingText('99€', extraLabel: 'TTC', style: OudsListItemTextStyle.labelStrong)
-/// ```
-class OudsListItemLeadingText extends OudsListItemLeading {
-  /// The primary text displayed in the leading slot.
-  final String label;
-
-  /// Optional extra text displayed below [label].
-  final String? extraLabel;
-
-  /// Style of the text. Defaults to [OudsListItemTextStyle.label].
-  final OudsListItemTextStyle style;
-
-  /// Creates a leading text configuration.
-  const OudsListItemLeadingText(
-    this.label, {
-    this.extraLabel,
-    this.style = OudsListItemTextStyle.label,
-  });
-}
-
 /// A custom leading slot with a widget builder function.
 ///
 /// Used internally by [OudsSmallListItem] to adapt its own leading types.

@@ -1482,18 +1482,6 @@ abstract class AppLocalizations {
   /// **'Content'**
   String get app_components_listItem_content_tech;
 
-  /// No description provided for @app_components_listItem_customLabel_text.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom label'**
-  String get app_components_listItem_customLabel_text;
-
-  /// No description provided for @app_components_listItem_newTag_label.
-  ///
-  /// In en, this message translates to:
-  /// **'New'**
-  String get app_components_listItem_newTag_label;
-
   /// No description provided for @app_components_listItem_contentExampleAlert_label.
   ///
   /// In en, this message translates to:

@@ -728,27 +728,10 @@ class ListItemCustomizationUtils {
     BuildContext context,
     OudsListItemControlState state,
   ) {
-    final theme = OudsTheme.of(context);
-    final colorScheme = theme.colorScheme(context);
-    final color = state == OudsListItemControlState.disabled
-        ? colorScheme.contentDisabled
-        : colorScheme.contentDefault;
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          context.l10n.app_components_listItem_customLabel_text,
-          style: theme.typographyTokens
-              .typeLabelStrongMedium(context)
-              .copyWith(color: color),
-        ),
-        SizedBox(width: theme.spaceScheme(context).fixedSmall),
-        OudsTag.bullet(
-          label: context.l10n.app_components_listItem_newTag_label,
-          size: OudsTagSize.small,
-          status: Accent(),
-        ),
-      ],
+    // Mirrors Android baseLabelContent: generic content box stretched to the text column width.
+    return SizedBox(
+      width: double.infinity,
+      child: _buildDemoContent(context, state),
     );
   }
 

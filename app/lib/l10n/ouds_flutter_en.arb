@@ -320,8 +320,6 @@
   "app_components_listItem_boldLabel_tech": "Bold label",
   "app_components_listItem_labelContent_tech": "Label content",
   "app_components_listItem_content_tech": "Content",
-  "app_components_listItem_customLabel_text": "Custom label",
-  "app_components_listItem_newTag_label": "New",
   "app_components_listItem_contentExampleAlert_label": "Content example",
   "app_components_listItem_contentExampleAlert_description": "Use Content for custom content that cannot be represented by another existing element.\nContent provides flexibility for specific product requirements, but it should be used as an exception rather than the default solution.",
   "app_components_listItem_bottomContent_tech": "Bottom content",

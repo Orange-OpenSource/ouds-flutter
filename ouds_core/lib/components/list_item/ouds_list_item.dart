@@ -936,17 +936,7 @@ class _OudsListItemState extends State<OudsListItem> {
       // ),
       // TODO[v1.0]: Uncomment when avatar support is implemented.
       // OudsListItemLeadingAvatar(:final avatar) => avatar,
-      // Text, custom: flexible container
-      OudsListItemLeadingText(:final label, :final extraLabel, :final style) =>
-        _buildLeadingText(
-          context,
-          label,
-          extraLabel,
-          style,
-          enable,
-          contentAlignment: contentAlignment,
-          size: size,
-        ),
+      // Custom: flexible container
       OudsListItemLeadingCustom(:final builder) => builder(
         context,
         enable: enable,
@@ -1001,72 +991,6 @@ class _OudsListItemState extends State<OudsListItem> {
   //     child: flag,
   //   );
   // }
-
-  /// Renders the text-leading variant (label + optional extra-label).
-  ///
-  /// Applies muted color for [OudsListItemTextStyle.labelMuted], else uses
-  /// the primary content color. Respects the [enable] state.
-  ///
-  /// When [contentAlignment] is [OudsListItemContentAlignment.top], applies the
-  /// top-alignment counterweight token to the text-leading slot.
-  static Widget _buildLeadingText(
-    BuildContext context,
-    String label,
-    String? extraLabel,
-    OudsListItemTextStyle style,
-    bool enable, {
-    required OudsListItemContentAlignment contentAlignment,
-    required OudsListItemSize size,
-  }) {
-    final tokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
-    final typography = OudsTheme.of(context).typographyTokens;
-    final foreground = OudsListItemForegroundModifier(context);
-
-    // Muted style uses a secondary color; all others use the primary content color.
-    final color = switch (style) {
-      OudsListItemTextStyle.labelMuted => foreground.mutedColor(enable),
-      OudsListItemTextStyle.label ||
-      OudsListItemTextStyle.labelStrong => foreground.contentColor(enable),
-    };
-
-    final textStyle = switch (style) {
-      OudsListItemTextStyle.label || OudsListItemTextStyle.labelMuted =>
-        typography.typeLabelDefaultLarge(context),
-      OudsListItemTextStyle.labelStrong => typography.typeLabelStrongLarge(
-        context,
-      ),
-    };
-
-    // Apply the top-alignment counterweight token to the text-leading slot,
-    // matching the token variant for the item's own [size].
-    final topPadding = contentAlignment == OudsListItemContentAlignment.top
-        ? switch (size) {
-            OudsListItemSize.defaultSize =>
-              tokens.spacePaddingBlockTopAlignmentTopTextContainerDefault,
-            OudsListItemSize.smallSize =>
-              tokens.spacePaddingBlockTopAlignmentTopTextContainerSmall,
-          }
-        : 0.0;
-
-    return Padding(
-      padding: EdgeInsets.only(top: topPadding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(label, style: textStyle.copyWith(color: color)),
-          if (extraLabel != null)
-            Text(
-              extraLabel,
-              style: typography
-                  .typeLabelStrongMedium(context)
-                  .copyWith(color: foreground.contentColor(enable)),
-            ),
-        ],
-      ),
-    );
-  }
 
   // -------------------------------------------------------------------------
   // Trailing builder
