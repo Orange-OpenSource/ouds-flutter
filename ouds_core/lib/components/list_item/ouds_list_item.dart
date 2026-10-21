@@ -117,11 +117,16 @@ class OudsListItemDefaults {
 /// - [extraLabel]: Optional strong label displayed between [label] and [description].
 /// - [description]: Optional secondary text displayed below [label] / [extraLabel].
 /// - [labelContent]: Optional fully custom label widget replacing [label],
-///   available through the [OudsListItem.labelContent] constructor.
+///   available through the [OudsListItem.labelContent] constructor. Use it for
+///   custom primary content not supported by the standard text properties;
+///   no default padding is applied.
 /// - [belowTextContent]: Optional fully custom content displayed right after
-///   [description] inside the center text column.
+///   [description] inside the center text column; no default padding is
+///   applied.
 /// - [bottomContent]: Optional fully custom content displayed below the main
-///   row, full-width, inside the item's background/border area.
+///   row, full-width, inside the item's background/border area. Use it when
+///   the information cannot be clearly represented by [description] or
+///   [helperText].
 /// - [leading]: Optional content at the start of the row (icon, image, avatar, flag …).
 /// - [trailing]: Optional content at the end of the row (icon, image, text, badge, tag …).
 /// - [divider]: Whether a horizontal divider is drawn below the item. Defaults to `true`.
@@ -186,6 +191,12 @@ class OudsListItem extends StatefulWidget {
   /// Fully custom content rendered in place of [label], available only via
   /// the [OudsListItem.labelContent] constructor.
   ///
+  /// Use it for custom primary content such as: a product-specific text
+  /// arrangement, or a combination of text elements not supported by the
+  /// standard text properties.
+  ///
+  /// No default padding is applied; provide your own padding if needed.
+  ///
   /// The builder receives the current [OudsListItemControlState].
   final Widget Function(BuildContext context, OudsListItemControlState state)?
   labelContent;
@@ -206,7 +217,9 @@ class OudsListItem extends StatefulWidget {
   final String? description;
 
   /// Optional fully custom content displayed right after [description], inside
-  /// the center text column.
+  /// the center text column, between [leading] and [trailing].
+  ///
+  /// No default padding is applied; provide your own padding if needed.
   ///
   /// The builder receives the current [OudsListItemControlState].
   final Widget Function(BuildContext context, OudsListItemControlState state)?
@@ -220,6 +233,9 @@ class OudsListItem extends StatefulWidget {
 
   /// Optional fully custom content displayed below the main row, full-width,
   /// but still inside the item's background/border area.
+  ///
+  /// Use it when the information cannot be clearly represented by the standard
+  /// [description] or [helperText] parameters.
   ///
   /// The builder receives the current [OudsListItemControlState].
   final Widget Function(BuildContext context, OudsListItemControlState state)?

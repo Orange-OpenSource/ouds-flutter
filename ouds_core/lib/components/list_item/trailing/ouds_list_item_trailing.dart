@@ -43,6 +43,9 @@ sealed class OudsListItemTrailingTextType {
 }
 
 /// Default label style on the trailing side.
+///
+/// Use for standard secondary information that should remain clearly readable
+/// without drawing more attention than the primary label.
 class OudsListItemTrailingLabel extends OudsListItemTrailingTextType {
   /// The trailing text to render.
   final String text;
@@ -52,6 +55,9 @@ class OudsListItemTrailingLabel extends OudsListItemTrailingTextType {
 }
 
 /// Muted (secondary) label style on the trailing side.
+///
+/// Use for low-priority metadata that supports the item but is not essential
+/// to its immediate understanding.
 class OudsListItemTrailingLabelMuted extends OudsListItemTrailingTextType {
   /// The trailing text to render.
   final String text;
@@ -61,6 +67,10 @@ class OudsListItemTrailingLabelMuted extends OudsListItemTrailingTextType {
 }
 
 /// Bold (strong) label style on the trailing side.
+///
+/// Use when the trailing value requires additional visual emphasis, for
+/// example when users need to compare important values across a navigation
+/// list.
 class OudsListItemTrailingLabelStrong extends OudsListItemTrailingTextType {
   /// The trailing text to render.
   final String text;
@@ -288,6 +298,11 @@ class OudsListItemTrailingCustom extends OudsListItemTrailing {
 }
 
 /// A fully custom trailing slot.
+///
+/// Use it for custom trailing content that cannot be represented by the other
+/// available trailing types. It provides flexibility for specific product
+/// requirements, but it should be used as an exception rather than the default
+/// solution.
 ///
 /// The [builder] receives the current [OudsListItemControlState] so the custom
 /// content can adapt its appearance (e.g. opacity, color) to the item's
