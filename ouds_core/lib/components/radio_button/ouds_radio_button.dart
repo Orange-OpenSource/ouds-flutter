@@ -14,6 +14,7 @@
 /// {@category Radio button}
 library;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -153,20 +154,33 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
       context,
     ).componentsTokens(context).controlListItem;
     final l10n = OudsLocalizations.of(context);
+    final isItemEnabled = widget.onChanged != null && !(widget.readOnly);
+
+    final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
 
     return OudsSkeletonLayout(
       visible: widget.skeleton != null,
       hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
       animated: widget.skeleton?.animated ?? false,
       content: (context) => Semantics(
-        enabled: widget.onChanged != null && !(widget.readOnly),
-        label:
-            "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_unselected_a11y} "
-            "${l10n?.core_radioButton_radioButton_a11y}",
-        value: widget.isError ? l10n?.core_common_error_a11y : null,
+        inMutuallyExclusiveGroup: true,
+        // Use checked with inMutuallyExclusiveGroup on Android for native radio-button announcements.
+        // On iOS, use selected to announce the selected state without adding an unwanted button trait.
+        checked: isIOS ? null : _selected,
+        selected: isIOS ? _selected : null,
+        hint: (isIOS && isItemEnabled) ? l10n?.core_checkbox_hint_a11y : null,
+        enabled: isItemEnabled,
+        // VoiceOver has no native "radio button" trait (unlike TalkBack, which infers it
+        // from inMutuallyExclusiveGroup), so the trait is announced explicitly in value on iOS.
+        value: isIOS
+            ? (widget.isError
+                  ? '${l10n?.core_radioButton_radioButton_a11y}. ${l10n?.core_common_error_a11y}'
+                  : l10n?.core_radioButton_radioButton_a11y)
+            : (widget.isError ? l10n?.core_common_error_a11y : null),
         child: SizedBox(
           width: radioButton.sizeMinWidth,
           child: InkWell(
+            excludeFromSemantics: true,
             onTap: (!isReadOnly && widget.onChanged != null)
                 ? () {
                     _isPressed = true;

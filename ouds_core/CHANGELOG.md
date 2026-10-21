@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] For typography heading component, update to v1.1.0 ([#921](https://github.com/Orange-OpenSource/ouds-flutter/issues/921))
 - [Library] Update `link` to display trailing icon after the last character ([#930](https://github.com/Orange-OpenSource/ouds-flutter/issues/930))
 ### Fixed
+- [Library] For `radio` components in Sosh and Wireframe themes, the color of the indicator in unselected state is not good ([#966](https://github.com/Orange-OpenSource/ouds-flutter/issues/966))
+- [Library] Bug A11Y `Radio button` Role (trait) and state should not be in the Label property ([#516](https://github.com/Orange-OpenSource/ouds-flutter/issues/516))
 
 ## [3.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...3.0.0) - 2026-10-07
 ### Added

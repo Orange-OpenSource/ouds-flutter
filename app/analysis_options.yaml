@@ -12,9 +12,6 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
     - bin/**
-    - build/**
-    - android/**
-    - ios/**
 
 linter:
   # The lint rules applied to this project can be customized in the
