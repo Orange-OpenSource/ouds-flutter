@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/typography/ouds_code_text.dart';
+import 'package:ouds_theme_contract/theme/scheme/typography/ouds_system_monospace_font.dart';
 
 import '../../helpers/testable_widget_helper.dart';
 
@@ -38,13 +39,15 @@ void main() {
       expect(textWidget.style?.color, Colors.red);
     });
 
-    testWidgets('uses a menlo font family', (tester) async {
+    testWidgets('uses the platform-native monospace font family', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         testableWidget(const OudsCodeText(text: 'const x = 1;')),
       );
 
       final textWidget = tester.widget<Text>(find.text('const x = 1;'));
-      expect(textWidget.style?.fontFamily, 'menlo');
+      expect(textWidget.style?.fontFamily, oudsSystemMonospaceFontFamily);
     });
 
     testWidgets('.rich colors only the span wrapped in withColor', (

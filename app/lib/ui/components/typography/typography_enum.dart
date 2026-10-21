@@ -116,7 +116,7 @@ Color? resolveAnnotatedTextSegmentColor(
     case 'contentStatusInfo':
       return colorScheme.contentStatusInfo;
     default:
-      return throw UnimplementedError("Annotated text color is not relevant");
+      return null;
   }
 }
 

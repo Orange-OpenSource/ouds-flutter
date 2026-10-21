@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_window_size_class.dart';
+import 'package:ouds_theme_contract/theme/scheme/typography/ouds_system_monospace_font.dart';
 
 /// Provides responsive text styles based on the OUDS design system.
 ///
@@ -869,7 +870,7 @@ class OudsTypography {
     final theme = OudsTheme.of(context);
 
     return TextStyle(
-      fontFamily: 'menlo',
+      fontFamily: oudsSystemMonospaceFontFamily,
       fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
         mobile: theme.fontTokens.sizeCodeMedium,

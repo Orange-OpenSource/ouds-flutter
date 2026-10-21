@@ -17,7 +17,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:ouds_theme_orange/orange_font_family.dart';
-import 'package:ouds_theme_orange/orange_font_helper.dart';
 import 'package:path_provider/path_provider.dart';
 
 /// Provider for loading Orange brand fonts (Helvetica Neue).
@@ -78,10 +77,11 @@ class OrangeFontProvider {
   /// - Arabic locale (`ar`): Helvetica Neue Arabic (Light, Regular, Bold)
   /// - Other locales: Helvetica Neue Latin (Regular, Medium, Bold)
   ///
-  /// Returns the fonts family name or fallback font if loading fails.
-  static Future<List<String>> loadFromCdn() async {
-    String arabicFont = await _loadFromCdn(_OrangeFontVariant.arabicVariants);
-    String latinFont = await _loadFromCdn(_OrangeFontVariant.latinVariants);
+  /// Returns the fonts family names, or `null` entries where loading failed so the
+  /// theme falls back to the platform's native font (Roboto on Android, SF Pro on iOS).
+  static Future<List<String?>> loadFromCdn() async {
+    String? arabicFont = await _loadFromCdn(_OrangeFontVariant.arabicVariants);
+    String? latinFont = await _loadFromCdn(_OrangeFontVariant.latinVariants);
 
     return [arabicFont, latinFont];
   }
@@ -108,14 +108,15 @@ class OrangeFontProvider {
   /// final fontFamily = await OrangeFontProvider.loadFromAssets(orangeFontFamily);
   /// ```
   ///
-  /// Returns the font family name or fallback font if loading fails.
-  static Future<String> loadFromAssets(OrangeFontFamily fontFamily) async {
+  /// Returns the font family name, or `null` if loading failed so the theme falls back
+  /// to the platform's native font (Roboto on Android, SF Pro on iOS).
+  static Future<String?> loadFromAssets(OrangeFontFamily fontFamily) async {
     final isArabic = PlatformDispatcher.instance.locale.languageCode == 'ar';
     return await _loadFromAssets(fontFamily, isArabic);
   }
 
   /// CDN Loading Logic: Uses private fileName with automatic weight management.
-  static Future<String> _loadFromCdn(List<_OrangeFontVariant> variants) async {
+  static Future<String?> _loadFromCdn(List<_OrangeFontVariant> variants) async {
     try {
       for (final variant in variants) {
         final loader = FontLoader(variant.familyName);
@@ -129,7 +130,9 @@ class OrangeFontProvider {
       }
 
       final isArabic = PlatformDispatcher.instance.locale.languageCode == 'ar';
-      return OrangeFontHelper.getDefaultFontFamily(isArabic: isArabic);
+      // Inlined here (instead of OrangeFontHelper.getDefaultFontFamily) to avoid a circular
+      // import: OrangeFontHelper depends on OrangeFontService, which depends on this provider.
+      return isArabic ? "HelveticaNeue-Arabic" : "HelveticaNeue";
     } catch (e) {
       /* if (kDebugMode) {
         print('❌ Failed to load fonts from CDN: $e');
@@ -139,7 +142,7 @@ class OrangeFontProvider {
   }
 
   /// Assets Loading Logic: Uses user-specified asset paths.
-  static Future<String> _loadFromAssets(
+  static Future<String?> _loadFromAssets(
     OrangeFontFamily fontFamily,
     bool isArabic,
   ) async {
@@ -167,7 +170,7 @@ class OrangeFontProvider {
             FontWeight.w700,
           );
         }
-        return OrangeFontHelper.getDefaultFontFamily(isArabic: true);
+        return "HelveticaNeue-Arabic";
       } else {
         // Load Latin fonts
         if (fontFamily.latin.regularFontRes != null) {
@@ -191,7 +194,7 @@ class OrangeFontProvider {
             FontWeight.w700,
           );
         }
-        return OrangeFontHelper.getDefaultFontFamily(isArabic: false);
+        return "HelveticaNeue";
       }
     } catch (e) {
       /*if (kDebugMode) {
@@ -253,7 +256,7 @@ class OrangeFontProvider {
   static String _getFallbackFont() {
     return defaultTargetPlatform == TargetPlatform.android
         ? "Roboto"
-        : "SFProDisplay";
+        : "SF Pro";
   }
 }
 

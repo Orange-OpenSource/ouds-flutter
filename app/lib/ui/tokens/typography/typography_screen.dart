@@ -18,6 +18,7 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
+import 'package:ouds_theme_contract/theme/scheme/typography/ouds_system_monospace_font.dart';
 import 'package:provider/provider.dart';
 
 class TypographyScreen extends StatelessWidget {
@@ -100,10 +101,23 @@ class TypographyScreen extends StatelessWidget {
       String? familyOverride,
     }) {
       final style = tokenGetter(context);
+      // typeCodeMedium disables text-style inheritance to preserve the platform’s native monospace font,
+      // so its color must be set explicitly.
+      final resolvedStyle = style.inherit
+          ? style
+          : style.copyWith(
+              color:
+                  style.color ??
+                  currentTheme.colorScheme(context).contentDefault,
+            );
+      debugPrint("typo : ${style.fontFamily ?? ''}");
+      debugPrint("typo1 : ${currentTheme.fontFamily ?? ''}");
       return FontTokenItem(
         tokenName: _tokenDisplayName(tokenGetter),
-        style: style,
-        family: familyOverride ?? style.fontFamily ?? currentTheme.fontFamily,
+        style: resolvedStyle,
+        // currentTheme.fontFamily is null when the theme defers to the platform's native font
+        // (e.g. Roboto/SF Pro); fall back to an empty label rather than crash in that case.
+        family: familyOverride ?? currentTheme.fontFamily ?? '',
         weight: style.fontWeight!,
         size: style.fontSize!,
         lineHeight: roundToOneDecimal(style.height!),
@@ -140,7 +154,10 @@ class TypographyScreen extends StatelessWidget {
       buildItem(tokens.typeLabelStrongLarge),
       buildItem(tokens.typeLabelStrongMedium),
       buildItem(tokens.typeLabelStrongSmall),
-      buildItem(tokens.typeCodeMedium, familyOverride: 'Menlo'),
+      buildItem(
+        tokens.typeCodeMedium,
+        familyOverride: oudsSystemMonospaceFontFamily,
+      ),
     ];
   }
 
