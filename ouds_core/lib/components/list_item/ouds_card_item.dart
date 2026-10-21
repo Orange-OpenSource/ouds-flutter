@@ -39,7 +39,7 @@ class OudsCardItemDefaults {
 
 /// [OUDS Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
 ///
-/// **Reference design version : 1.0.0**
+/// **Reference design version : 0.3.0**
 ///
 /// A card-formatted variant of [OudsListItem].
 ///
