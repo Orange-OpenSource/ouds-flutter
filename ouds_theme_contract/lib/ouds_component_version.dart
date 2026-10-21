@@ -35,7 +35,7 @@ class OudsComponentVersion {
   static const navigationListItem = '1.2.0';
   static const passwordInput = '1.3.1';
   static const phoneNumberInput = '1.3.1';
-  static const pinCodeInput = '1.3.0';
+  static const pinCodeInput = '1.4.0';
   static const radioButton = '1.4.0';
   static const skeleton = '1.0.0';
   static const staticCardItem = '1.2.0';
