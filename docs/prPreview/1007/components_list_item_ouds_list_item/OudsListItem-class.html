@@ -88,11 +88,16 @@ to the entire navigation target.</li>
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/extraLabel.html">extraLabel</a>: Optional strong label displayed between <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> and <a href="../components_list_item_ouds_list_item/OudsListItem/description.html">description</a>.</li>
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/description.html">description</a>: Optional secondary text displayed below <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> / <a href="../components_list_item_ouds_list_item/OudsListItem/extraLabel.html">extraLabel</a>.</li>
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/labelContent.html">labelContent</a>: Optional fully custom label widget replacing <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a>,
-available through the <a href="../components_list_item_ouds_list_item/OudsListItem/labelContent.html">OudsListItem.labelContent</a> constructor.</li>
+available through the <a href="../components_list_item_ouds_list_item/OudsListItem/labelContent.html">OudsListItem.labelContent</a> constructor. Use it for
+custom primary content not supported by the standard text properties;
+no default padding is applied.</li>
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/belowTextContent.html">belowTextContent</a>: Optional fully custom content displayed right after
-<a href="../components_list_item_ouds_list_item/OudsListItem/description.html">description</a> inside the center text column.</li>
+<a href="../components_list_item_ouds_list_item/OudsListItem/description.html">description</a> inside the center text column; no default padding is
+applied.</li>
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/bottomContent.html">bottomContent</a>: Optional fully custom content displayed below the main
-row, full-width, inside the item's background/border area.</li>
+row, full-width, inside the item's background/border area. Use it when
+the information cannot be clearly represented by <a href="../components_list_item_ouds_list_item/OudsListItem/description.html">description</a> or
+<a href="../components_list_item_ouds_list_item/OudsListItem/helperText.html">helperText</a>.</li>
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/leading.html">leading</a>: Optional content at the start of the row (icon, image, avatar, flag …).</li>
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/trailing.html">trailing</a>: Optional content at the end of the row (icon, image, text, badge, tag …).</li>
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/divider.html">divider</a>: Whether a horizontal divider is drawn below the item. Defaults to <code>true</code>.</li>
@@ -220,7 +225,7 @@ plain text label.
 </dt>
 <dd>
   Optional fully custom content displayed right after <a href="../components_list_item_ouds_list_item/OudsListItem/description.html">description</a>, inside
-the center text column.
+the center text column, between <a href="../components_list_item_ouds_list_item/OudsListItem/leading.html">leading</a> and <a href="../components_list_item_ouds_list_item/OudsListItem/trailing.html">trailing</a>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
