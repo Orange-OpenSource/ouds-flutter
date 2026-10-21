@@ -167,6 +167,11 @@ class OudsListItemLeadingCustom extends OudsListItemLeading {
 
 /// A fully custom leading slot.
 ///
+/// Use it for custom leading content that cannot be represented by the other
+/// available leading types. It provides flexibility for specific product
+/// requirements, but it should be used as an exception rather than the default
+/// solution.
+///
 /// The [builder] receives the current [OudsListItemControlState] so the custom
 /// content can adapt its appearance (e.g. opacity, color) to the item's
 /// interaction state.
