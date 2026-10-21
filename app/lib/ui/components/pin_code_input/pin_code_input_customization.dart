@@ -4,10 +4,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _PinCodeInputCustomization extends InheritedWidget {
-  const _PinCodeInputCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _PinCodeInputCustomization({required super.child, required this.data});
 
   final PinCodeInputCustomizationState data;
 
@@ -17,32 +14,40 @@ class _PinCodeInputCustomization extends InheritedWidget {
 
 /// Main Widget class for PinCodeInput customization
 class PinCodeInputCustomization extends StatefulWidget {
-  const PinCodeInputCustomization({
-    super.key,
-    required this.child,
-  });
+  const PinCodeInputCustomization({super.key, required this.child});
 
   final Widget child;
 
   @override
-  PinCodeInputCustomizationState createState() => PinCodeInputCustomizationState();
+  PinCodeInputCustomizationState createState() =>
+      PinCodeInputCustomizationState();
 
   static PinCodeInputCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_PinCodeInputCustomization>())?.data;
+    return (context
+            .dependOnInheritedWidgetOfExactType<_PinCodeInputCustomization>())
+        ?.data;
   }
 }
 
 /// TextInput customization state management
-class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInputCustomization> {
+class PinCodeInputCustomizationState
+    extends CustomizationWidgetState<PinCodeInputCustomization> {
   // Initialize states that don't need context immediately (inline)
   late final ErrorState errorState = ErrorState(setState);
-  late final HiddenPasswordState hiddenPasswordState = HiddenPasswordState(setState);
-  late final PinCodeHasHelperTextState pinCodeHasHelperTextState = PinCodeHasHelperTextState(setState);
-  late final PinCodeErrorTextState pinCodeErrorTextState = PinCodeErrorTextState(setState);
-  late final PinCodePlaceholderTextState pinCodePlaceholderTextState = PinCodePlaceholderTextState(setState);
+  late final HiddenCharacterState hiddenCharacterState = HiddenCharacterState(
+    setState,
+  );
+  late final PinCodeHasHelperTextState pinCodeHasHelperTextState =
+      PinCodeHasHelperTextState(setState);
+  late final PinCodeErrorTextState pinCodeErrorTextState =
+      PinCodeErrorTextState(setState);
+  late final PinCodePlaceholderTextState pinCodePlaceholderTextState =
+      PinCodePlaceholderTextState(setState);
   late final OutlinedState outlinedState = OutlinedState(setState);
-  late final ConstrainedMaxWidthState constrainedMaxWidthState = ConstrainedMaxWidthState(setState);
-  late final PinCodeKeyboardTypeState pinCodeKeyboardTypeState = PinCodeKeyboardTypeState(setState);
+  late final ConstrainedMaxWidthState constrainedMaxWidthState =
+      ConstrainedMaxWidthState(setState);
+  late final PinCodeKeyboardTypeState pinCodeKeyboardTypeState =
+      PinCodeKeyboardTypeState(setState);
 
   // These need context, so they stay as late fields
   late final PinCodeHelperTextState pinCodeHelperTextState;
@@ -55,11 +60,7 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
     // To resolve this, we first create PinCodeLengthState with a temporary null helper reference,
     // then create PinCodeHelperTextState, and finally link the helper back to the length state.
     // This ensures both instances are properly initialized without breaking the cycle.
-    pinCodeLengthState = PinCodeLengthState(
-      setState,
-      context,
-      null,
-    );
+    pinCodeLengthState = PinCodeLengthState(setState, context, null);
     pinCodeHelperTextState = PinCodeHelperTextState(
       setState,
       context,
@@ -70,18 +71,20 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
 
   // Proxy getters and setters to expose the 'constrainedMaxWidthState' value directly.
   bool get hasConstrainedMaxWidth => constrainedMaxWidthState.value;
-  set hasConstrainedMaxWidth(bool value) => constrainedMaxWidthState.value = value;
+  set hasConstrainedMaxWidth(bool value) =>
+      constrainedMaxWidthState.value = value;
 
   // Proxy getters and setters to expose state values directly
   bool get hasError => errorState.value;
   set hasError(bool value) => errorState.value = value;
 
   // Proxy getters and setters to expose state values directly
-  bool get hasHiddenPassword => hiddenPasswordState.value;
-  set hasHiddenPassword(bool value) => hiddenPasswordState.value = value;
+  bool get hasHiddenCharacter => hiddenCharacterState.value;
+  set hasHiddenCharacter(bool value) => hiddenCharacterState.value = value;
 
   PinCodeLengthEnum get selectedPinCodeLength => pinCodeLengthState.selected;
-  set selectedPinCodeLength(PinCodeLengthEnum value) => pinCodeLengthState.selected = value;
+  set selectedPinCodeLength(PinCodeLengthEnum value) =>
+      pinCodeLengthState.selected = value;
 
   // Proxy getters and setters to expose the 'helperText' for pin code input value directly.
   String get pinCodeHelperText => pinCodeHelperTextState.value;
@@ -97,22 +100,22 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
 
   // Proxy getters and setters to expose the 'pinCodePlaceholderText' value directly.
   String get pinCodePlaceholderText => pinCodePlaceholderTextState.value;
-  set pinCodePlaceholderText(String value) => pinCodePlaceholderTextState.value = value;
+  set pinCodePlaceholderText(String value) =>
+      pinCodePlaceholderTextState.value = value;
 
   // Proxy getters and setters to expose state values directly
   bool get hasOutlined => outlinedState.value;
   set hasOutlined(bool value) => outlinedState.value = value;
 
   // Proxy getters and setters to expose the keyboard type selection.
-  PinCodeKeyboardTypeEnum get selectedKeyboardType => pinCodeKeyboardTypeState.selected;
-  set selectedKeyboardType(PinCodeKeyboardTypeEnum value) => pinCodeKeyboardTypeState.selected = value;
+  PinCodeKeyboardTypeEnum get selectedKeyboardType =>
+      pinCodeKeyboardTypeState.selected;
+  set selectedKeyboardType(PinCodeKeyboardTypeEnum value) =>
+      pinCodeKeyboardTypeState.selected = value;
 
   @override
   Widget build(BuildContext context) {
-    return _PinCodeInputCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _PinCodeInputCustomization(data: this, child: widget.child);
   }
 }
 
@@ -147,30 +150,38 @@ class ErrorState {
   }
 }
 
-/// hidden password State Management
-class HiddenPasswordState {
-  HiddenPasswordState(this._setState);
+/// hidden character State Management
+class HiddenCharacterState {
+  HiddenCharacterState(this._setState);
 
   final void Function(void Function()) _setState;
-  bool _hiddenPassword = true;
+  bool _hiddenCharacter = true;
 
-  bool get value => _hiddenPassword;
+  bool get value => _hiddenCharacter;
   set value(bool newValue) {
     _setState(() {
-      _hiddenPassword = newValue;
+      _hiddenCharacter = newValue;
     });
   }
 }
 
 /// Length of Pin Code Input State Management
 class PinCodeLengthState {
-  PinCodeLengthState(this._setState, this._context, this.pinCodeHelperTextState);
+  PinCodeLengthState(
+    this._setState,
+    this._context,
+    this.pinCodeHelperTextState,
+  );
 
   final void Function(void Function()) _setState;
   final BuildContext _context;
   PinCodeHelperTextState? pinCodeHelperTextState;
 
-  final List<PinCodeLengthEnum> _length = [PinCodeLengthEnum.four, PinCodeLengthEnum.six, PinCodeLengthEnum.eight];
+  final List<PinCodeLengthEnum> _length = [
+    PinCodeLengthEnum.four,
+    PinCodeLengthEnum.six,
+    PinCodeLengthEnum.eight,
+  ];
 
   List<PinCodeLengthEnum> get list => _length;
 
@@ -179,7 +190,10 @@ class PinCodeLengthState {
   set selected(PinCodeLengthEnum newValue) {
     _setState(() {
       _selected = newValue;
-      pinCodeHelperTextState?.value = PinCodeLengthEnum.getHelperText(_context, _selected);
+      pinCodeHelperTextState?.value = PinCodeLengthEnum.getHelperText(
+        _context,
+        _selected,
+      );
     });
   }
 }
@@ -193,8 +207,15 @@ class PinCodeHelperTextState {
   late final String _helperText;
   late String _helperTextValue;
 
-  PinCodeHelperTextState(this._setState, this._context, this.pinCodeLengthState) {
-    _helperText = PinCodeLengthEnum.getHelperText(_context, pinCodeLengthState.selected);
+  PinCodeHelperTextState(
+    this._setState,
+    this._context,
+    this.pinCodeLengthState,
+  ) {
+    _helperText = PinCodeLengthEnum.getHelperText(
+      _context,
+      pinCodeLengthState.selected,
+    );
     _helperTextValue = _helperText;
   }
 

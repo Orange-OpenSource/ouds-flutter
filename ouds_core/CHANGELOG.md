@@ -8,8 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Library] In library, add component `skeleton` ([#867](https://github.com/Orange-OpenSource/ouds-flutter/issues/867))
 ### Changed
+- [Library] For `PIN Code input` component, update to version 1.4 ([#967](https://github.com/Orange-OpenSource/ouds-flutter/issues/967))
 - [Library] Update `link` to display trailing icon after the last character ([#930](https://github.com/Orange-OpenSource/ouds-flutter/issues/930))
 ### Fixed
+- [Library] Bug A11Y `PIN code` Error message not read ([#853](https://github.com/Orange-OpenSource/ouds-flutter/issues/853))
 - [Library] For `radio` components in Sosh and Wireframe themes, the color of the indicator in unselected state is not good ([#966](https://github.com/Orange-OpenSource/ouds-flutter/issues/966))
 - [Library] Bug A11Y `Radio button` Role (trait) and state should not be in the Label property ([#516](https://github.com/Orange-OpenSource/ouds-flutter/issues/516))
 
