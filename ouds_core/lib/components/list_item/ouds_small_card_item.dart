@@ -23,7 +23,7 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
 /// [OUDS Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
 ///
-/// **Reference design version : 1.0.0**
+/// **Reference design version : 0.3.0**
 ///
 /// A compact card-formatted variant of [OudsCardItem].
 ///

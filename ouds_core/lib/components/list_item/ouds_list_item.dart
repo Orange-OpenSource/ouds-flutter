@@ -84,7 +84,7 @@ class OudsListItemDefaults {
 
 /// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
 ///
-/// **Reference design version : 1.0.0**
+/// **Reference design version : 0.3.0**
 ///
 /// List item is a UI element that displays a row of information within a list.
 /// It mirrors Flutter's [ListTile] spirit — leading / label / trailing — but uses
