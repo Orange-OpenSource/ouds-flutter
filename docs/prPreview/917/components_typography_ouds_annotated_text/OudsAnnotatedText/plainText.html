@@ -67,13 +67,13 @@
     </section>
     
 <section class="desc markdown">
-  <p>The plain, uncolored concatenation of every span's text.</p>
+  <p>The plain, uncolored concatenation of every segment's text.</p>
 </section>
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">String get plainText =&gt; spans.map((span) =&gt; span.toPlainText()).join();</code></pre>
+  <pre class="language-dart"><code class="language-dart">String get plainText =&gt; _segments.map((segment) =&gt; segment.text).join();</code></pre>
 </section>
 
   </section>

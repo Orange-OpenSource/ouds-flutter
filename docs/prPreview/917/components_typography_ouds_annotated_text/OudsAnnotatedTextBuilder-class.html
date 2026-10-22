@@ -58,8 +58,8 @@
 (<a href="../components_typography_ouds_display_text/OudsDisplayText/OudsDisplayText.rich.html">OudsDisplayText.rich</a>, <a href="../components_typography_ouds_heading_text/OudsHeadingText/OudsHeadingText.rich.html">OudsHeadingText.rich</a>, <a href="../components_typography_ouds_body_text/OudsBodyText/OudsBodyText.rich.html">OudsBodyText.rich</a>, <a href="../components_typography_ouds_label_text/OudsLabelText/OudsLabelText.rich.html">OudsLabelText.rich</a>),
 letting you color only part of the text.</p>
 <p>This is the recommended way to color part of a block of text, as it automatically manages the
-color scoping through a stack: <a href="../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder/withColor.html">withColor</a> pushes a color before running its callback and pops
-it once the callback returns, so nested colored blocks are restored correctly.</p>
+color scoping through a stack: <a href="../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder/withColor.html">withColor</a> pushes a color resolver before running its callback
+and pops it once the callback returns, so nested colored blocks are restored correctly.</p>
 <p>Use <a href="../components_typography_ouds_annotated_text/buildOudsAnnotatedText.html">buildOudsAnnotatedText</a> to create an <a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a> from a builder block; see its
 documentation for a usage example.</p>
 </section>
@@ -125,7 +125,7 @@ documentation for a usage example.</p>
 
 </dt>
 <dd>
-  Appends <code>text</code>, using the color currently on top of the color stack (if any).
+  Appends <code>text</code>, applying the current color resolver if present.
   
 
 </dd>
@@ -157,15 +157,14 @@ documentation for a usage example.</p>
 </dd>
 
         <dt id="withColor" class="callable">
-  <span class="name"><a href="../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder/withColor.html">withColor</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="withColor-param-color"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">color</span>, </span><span class="parameter" id="withColor-param-block"><span class="type-annotation">R</span> <span class="parameter-name">block</span>()</span>)
+  <span class="name"><a href="../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder/withColor.html">withColor</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="withColor-param-colorResolver"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">colorResolver</span>(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>), </span><span class="parameter" id="withColor-param-block"><span class="type-annotation">R</span> <span class="parameter-name">block</span>()</span>)
     <span class="returntype parameter">&#8594; R</span>
   </span>
   
 
 </dt>
 <dd>
-  Pushes <code>color</code>, runs <code>block</code>, then restores the previous color once <code>block</code> completes (even
-if it throws) — scoping <code>color</code> to every <a href="../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder/append.html">append</a> call made inside <code>block</code>.
+  Applies <code>colorResolver</code> to text appended in <code>block</code>, then restores the previous resolver.
   
 
 </dd>
