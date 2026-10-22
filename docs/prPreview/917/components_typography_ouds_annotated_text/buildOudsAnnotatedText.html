@@ -64,13 +64,16 @@
     </section>
     
 <section class="desc markdown">
-  <p>Builds an <a href="../components_typography_ouds_annotated_text/OudsAnnotatedText-class.html">OudsAnnotatedText</a> value that can be passed as the <code>text</code> parameter of any
-typography <code>.rich</code> constructor (e.g. <a href="../components_typography_ouds_heading_text/OudsHeadingText/OudsHeadingText.rich.html">OudsHeadingText.rich</a>) to color part of the text.</p>
+  <p>Builds annotated text for use with a typography <code>.rich</code> constructor.</p>
+<p>Colors are resolved from the consuming widget's context, so they follow the active theme.</p>
 <p>Example:</p>
 <pre class="language-dart"><code class="language-dart">OudsHeadingText.rich(
   text: buildOudsAnnotatedText((builder) {
     builder.append('Heading with ');
-    builder.withColor(color, () =&gt; builder.append('colored text'));
+    builder.withColor(
+      (context) =&gt; OudsTheme.of(context).colorScheme(context).contentBrandPrimary,
+      () =&gt; builder.append('colored text'),
+    );
   }),
 )
 </code></pre>
@@ -85,7 +88,7 @@ typography <code>.rich</code> constructor (e.g. <a href="../components_typograph
 ) {
   final builder = OudsAnnotatedTextBuilder();
   block(builder);
-  return OudsAnnotatedText._(builder._spans);
+  return OudsAnnotatedText._(builder._segments);
 }</code></pre>
 </section>
 

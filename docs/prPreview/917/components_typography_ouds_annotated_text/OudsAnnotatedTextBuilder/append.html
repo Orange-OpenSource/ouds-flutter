@@ -63,9 +63,8 @@
     </section>
     
 <section class="desc markdown">
-  <p>Appends <code>text</code>, using the color currently on top of the color stack (if any).</p>
-<p><code>text</code> also supports the lightweight markdown syntax handled by every typography widget:
-<code>**bold**</code>, <code>__**underline bold**__</code> and <code>[link](https://example.com)</code>.</p>
+  <p>Appends <code>text</code>, applying the current color resolver if present.</p>
+<p>Supports <code>**bold**</code> and <code>[link](https://example.com)</code> syntax.</p>
 </section>
 
 
@@ -73,13 +72,10 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">void append(String text) {
-  final color = _colorStack.isEmpty ? null : _colorStack.last;
-  _spans.add(
-    TextSpan(
-      text: text,
-      style: color == null ? null : TextStyle(color: color),
-    ),
-  );
+  final colorResolver = _colorResolverStack.isEmpty
+      ? null
+      : _colorResolverStack.last;
+  _segments.add(OudsAnnotatedTextSegment(text, colorResolver));
 }</code></pre>
 </section>
 

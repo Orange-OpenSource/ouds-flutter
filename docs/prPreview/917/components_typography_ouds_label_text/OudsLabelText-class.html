@@ -82,7 +82,7 @@ and that the colors align with the brand’s and its entity’s visual identity.
 <pre class="language-dart"><code class="language-dart">OudsLabelText.rich(
   text: buildOudsAnnotatedText((builder) {
     builder.append('Submit ');
-    builder.withColor(color, () =&gt; builder.append('now'));
+    builder.withColor((context) =&gt; color, () =&gt; builder.append('now'));
   }),
 )
 </code></pre>

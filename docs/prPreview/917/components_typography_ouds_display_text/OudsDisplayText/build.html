@@ -118,7 +118,7 @@ Widget build(BuildContext context) {
   &#47;&#47; bold and links are always supported, whether the text is plain or annotated with colors.
   final List&lt;InlineSpan&gt; children;
   if (annotatedText != null) {
-    children = annotatedText.spans.map((span) {
+    children = annotatedText.resolveSpans(context).map((span) {
       final segmentColor = span.style?.color ?? resolvedColor;
       return MarkdownSpanBuilder.buildRichText(
         context,

@@ -85,7 +85,7 @@ and that the colors align with the brand’s and its entity’s visual identity.
 <pre class="language-dart"><code class="language-dart">OudsHeadingText.rich(
   text: buildOudsAnnotatedText((builder) {
     builder.append('Heading with ');
-    builder.withColor(color, () =&gt; builder.append('colored text'));
+    builder.withColor((context) =&gt; color, () =&gt; builder.append('colored text'));
   }),
 )
 </code></pre>

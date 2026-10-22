@@ -55,7 +55,8 @@
     <section class="multi-line-signature">
       
 <span class="returntype">R</span>
-<span class="name ">withColor</span>&lt;<wbr><span class="type-parameter">R</span>&gt;(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="withColor-param-color"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">color</span>, </span></li>
+<span class="name ">withColor</span>&lt;<wbr><span class="type-parameter">R</span>&gt;(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="withColor-param-colorResolver"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">colorResolver</span>(<ol class="parameter-list single-line"> <li><span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
+</ol>), </span></li>
 <li><span class="parameter" id="withColor-param-block"><span class="type-annotation">R</span> <span class="parameter-name">block</span>()</span></li>
 </ol>)
 
@@ -64,20 +65,23 @@
     </section>
     
 <section class="desc markdown">
-  <p>Pushes <code>color</code>, runs <code>block</code>, then restores the previous color once <code>block</code> completes (even
-if it throws) — scoping <code>color</code> to every <a href="../../components_typography_ouds_annotated_text/OudsAnnotatedTextBuilder/append.html">append</a> call made inside <code>block</code>.</p>
+  <p>Applies <code>colorResolver</code> to text appended in <code>block</code>, then restores the previous resolver.</p>
+<p>The resolver runs when the text is rendered, using the consuming widget's context.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">R withColor&lt;R&gt;(Color color, R Function() block) {
-  _colorStack.add(color);
+  <pre class="language-dart"><code class="language-dart">R withColor&lt;R&gt;(
+  Color? Function(BuildContext context) colorResolver,
+  R Function() block,
+) {
+  _colorResolverStack.add(colorResolver);
   try {
     return block();
   } finally {
-    _colorStack.removeLast();
+    _colorResolverStack.removeLast();
   }
 }</code></pre>
 </section>
