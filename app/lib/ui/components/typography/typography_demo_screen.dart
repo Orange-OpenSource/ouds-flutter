@@ -35,7 +35,6 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/customize_bottom_sheet.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -198,11 +197,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title:
               context.l10n.app_components_typography_annotatedTextExample_tech,
           value: customizationState.hasAnnotatedText,
-          onChanged: (value) {
-            setState(() {
-              customizationState.hasAnnotatedText = value;
-            });
-          },
+          onChanged:
+              customizationState.hasMarker &&
+                  customizationState.selectedSize == OudsHeadingTextSize.large
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasAnnotatedText = value;
+                  });
+                },
         ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
@@ -295,13 +298,11 @@ class _TypographyDemoState extends State<_TypographyDemo> {
     });
 
     if (customizationState.hasAnnotatedText) {
-      final colorScheme = OudsTheme.of(context).colorScheme(context);
-
       return LightDarkBox(
         child: buildOudsAnnotatedTypography(
+          context,
           widget.variant,
           customizationState.selectedSize,
-          colorScheme,
           marker: customizationState.hasMarker,
           weight: customizationState.selectedWeight,
         ),
@@ -310,6 +311,7 @@ class _TypographyDemoState extends State<_TypographyDemo> {
 
     return LightDarkBox(
       child: buildOudsTypography(
+        context,
         widget.variant,
         customizationState.selectedSize,
         customizationState.labelText,
@@ -321,25 +323,30 @@ class _TypographyDemoState extends State<_TypographyDemo> {
 
   /// Builds the `.rich` typography widget matching [variant], with a sample text showcasing a
   /// per-variant sentence (see [annotatedTextSegmentsFor]) where some words are colored via
-  /// [buildOudsAnnotatedText], resolving each segment's color token from [colorScheme]. [size] is
-  /// cast to the enum type expected by that variant's widget.
+  /// [buildOudsAnnotatedText]. Each segment's color is resolved lazily from the widget's own
+  /// [BuildContext] (see [OudsAnnotatedText.resolveSpans]), so it reflects the active theme even
+  /// when the same text is reused across different theme contexts (e.g. the light/dark demo
+  /// boxes). [size] is cast to the enum type expected by that variant's widget.
   Widget buildOudsAnnotatedTypography(
+    BuildContext context,
     TypographyVariant variant,
-    Object? size,
-    OudsColorScheme colorScheme, {
+    Object? size, {
     bool marker = true,
     OudsTextWeight weight = OudsTextWeight.defaultWeight,
   }) {
     final text = buildOudsAnnotatedText((builder) {
-      for (final segment in annotatedTextSegmentsFor(variant)) {
-        final color = resolveAnnotatedTextSegmentColor(
-          colorScheme,
-          segment.colorTokenName,
-        );
-        if (color == null) {
+      for (final segment in annotatedTextSegmentsFor(context, variant)) {
+        final colorTokenName = segment.colorTokenName;
+        if (colorTokenName == null) {
           builder.append(segment.text);
         } else {
-          builder.withColor(color, () => builder.append(segment.text));
+          builder.withColor(
+            (ctx) => resolveAnnotatedTextSegmentColor(
+              OudsTheme.of(ctx).colorScheme(ctx),
+              colorTokenName,
+            ),
+            () => builder.append(segment.text),
+          );
         }
       }
     });
@@ -377,8 +384,11 @@ class _TypographyDemoState extends State<_TypographyDemo> {
   }
 
   /// Builds the typography widget matching [variant], casting [size] to the enum type expected
-  /// by that variant's widget.
+  /// by that variant's widget. Any theme-dependent value (e.g. [OudsBodyText]'s `color` override)
+  /// is resolved from [context], which must be the widget's own build context — see
+  /// [LightDarkBox.builder] for why this matters (light/dark demo boxes).
   Widget buildOudsTypography(
+    BuildContext context,
     TypographyVariant variant,
     Object? size,
     String text, {

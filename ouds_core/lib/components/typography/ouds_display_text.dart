@@ -22,7 +22,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// The available sizes for [OudsDisplayText].
 enum OudsDisplayTextSize { large, medium, small }
 
-// TODO Add design guideline link when available
+///
+/// [OUDS Display Design Guidelines](https://unified-design-system.orange.com/472794e18/p/950a91-display)
+///
 /// **Reference design version : 1.0.0**
 ///
 /// Display styles are intended for high-impact content such as landing pages, marketing campaigns, and key messages. Their large type sizes help capture
@@ -62,7 +64,7 @@ enum OudsDisplayTextSize { large, medium, small }
 /// OudsDisplayText.rich(
 ///   text: buildOudsAnnotatedText((builder) {
 ///     builder.append('Welcome ');
-///     builder.withColor(color, () => builder.append('back'));
+///     builder.withColor((context) => color, () => builder.append('back'));
 ///   }),
 /// )
 /// ```
@@ -149,7 +151,7 @@ class OudsDisplayText extends StatelessWidget {
     // bold and links are always supported, whether the text is plain or annotated with colors.
     final List<InlineSpan> children;
     if (annotatedText != null) {
-      children = annotatedText.spans.map((span) {
+      children = annotatedText.resolveSpans(context).map((span) {
         final segmentColor = span.style?.color ?? resolvedColor;
         return MarkdownSpanBuilder.buildRichText(
           context,

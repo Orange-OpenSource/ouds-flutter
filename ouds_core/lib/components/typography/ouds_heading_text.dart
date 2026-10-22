@@ -24,7 +24,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// The available sizes for [OudsHeadingText].
 enum OudsHeadingTextSize { xLarge, large, medium, small }
 
-// TODO Add design guideline link when available
+///
+/// [OUDS Heading Design Guidelines](https://unified-design-system.orange.com/472794e18/p/33ae42-heading)
+///
 /// **Reference design version : 1.1.0**
 ///
 /// Heading styles are used to structure content and define the hierarchy of information within an interface.
@@ -67,7 +69,7 @@ enum OudsHeadingTextSize { xLarge, large, medium, small }
 /// OudsHeadingText.rich(
 ///   text: buildOudsAnnotatedText((builder) {
 ///     builder.append('Heading with ');
-///     builder.withColor(color, () => builder.append('colored text'));
+///     builder.withColor((context) => color, () => builder.append('colored text'));
 ///   }),
 /// )
 /// ```
@@ -165,7 +167,7 @@ class OudsHeadingText extends StatelessWidget {
     // Every span (or the plain text) is run through the markdown span builder so bold, underline
     // bold and links are always supported, whether the text is plain or annotated with colors.
     if (annotatedText != null) {
-      children = annotatedText.spans.map((span) {
+      children = annotatedText.resolveSpans(context).map((span) {
         final segmentColor = span.style?.color ?? resolvedColor;
         return MarkdownSpanBuilder.buildRichText(
           context,

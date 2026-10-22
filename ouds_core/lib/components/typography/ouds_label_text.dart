@@ -22,7 +22,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// The available sizes for [OudsLabelText].
 enum OudsLabelTextSize { xLarge, large, medium, small }
 
-// TODO Add design guideline link when available
+///
+/// [OUDS Label Design Guidelines](https://unified-design-system.orange.com/472794e18/p/10161f-label)
+///
 /// **Reference design version : 1.0.0**
 ///
 /// Label styles are intended for compact interface elements such as buttons, form fields, badges, and other small components.
@@ -62,7 +64,7 @@ enum OudsLabelTextSize { xLarge, large, medium, small }
 /// OudsLabelText.rich(
 ///   text: buildOudsAnnotatedText((builder) {
 ///     builder.append('Submit ');
-///     builder.withColor(color, () => builder.append('now'));
+///     builder.withColor((context) => color, () => builder.append('now'));
 ///   }),
 /// )
 /// ```
@@ -198,7 +200,7 @@ class OudsLabelText extends StatelessWidget {
     // Every span (or the plain text) is run through the markdown span builder so bold, underline
     // bold and links are always supported, whether the text is plain or annotated with colors.
     if (annotatedText != null) {
-      children = annotatedText.spans.map((span) {
+      children = annotatedText.resolveSpans(context).map((span) {
         final segmentColor = span.style?.color ?? resolvedColor;
         return MarkdownSpanBuilder.buildRichText(
           context,

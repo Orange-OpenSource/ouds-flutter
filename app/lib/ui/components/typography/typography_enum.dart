@@ -15,6 +15,7 @@ import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_core/components/typography/ouds_display_text.dart';
 import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 import 'package:ouds_core/components/typography/ouds_label_text.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 
@@ -58,34 +59,53 @@ class AnnotatedTextSegment {
   final String? colorTokenName;
 }
 
+/// Parses an annotated text string in format: "text [colored:token] text"
+/// Returns a list of AnnotatedTextSegment with plain text and colored segments.
+List<AnnotatedTextSegment> _parseAnnotatedText(String text) {
+  final segments = <AnnotatedTextSegment>[];
+  final pattern = RegExp(r'\[([^\]:]+):([^\]]+)\]');
+  int lastEnd = 0;
+
+  for (final match in pattern.allMatches(text)) {
+    // Add plain text before the match
+    if (match.start > lastEnd) {
+      segments.add(AnnotatedTextSegment(text.substring(lastEnd, match.start)));
+    }
+    // Add colored segment
+    segments.add(AnnotatedTextSegment(match.group(1)!, match.group(2)));
+    lastEnd = match.end;
+  }
+
+  // Add remaining text after last match
+  if (lastEnd < text.length) {
+    segments.add(AnnotatedTextSegment(text.substring(lastEnd)));
+  }
+
+  return segments;
+}
+
 /// Returns the sample sentence (as a list of colored/plain [AnnotatedTextSegment]) showcased by
 /// the "annotated text" demo toggle for the given [variant].
-List<AnnotatedTextSegment> annotatedTextSegmentsFor(TypographyVariant variant) {
+List<AnnotatedTextSegment> annotatedTextSegmentsFor(
+  BuildContext context,
+  TypographyVariant variant,
+) {
+  final l10n = context.l10n;
   switch (variant) {
     case TypographyVariant.display:
-      return const [
-        AnnotatedTextSegment('Welcome', 'contentBrandPrimary'),
-        AnnotatedTextSegment(' Home !'),
-      ];
     case TypographyVariant.heading:
-      return const [
-        AnnotatedTextSegment('Here is the '),
-        AnnotatedTextSegment('new Livebox', 'contentBrandPrimary'),
-      ];
+      final text = variant == TypographyVariant.display
+          ? l10n.app_components_typography_headingAndDisplayText_annotatedText_text
+          : l10n.app_components_typography_headingAndDisplayText_annotatedText_text;
+      return _parseAnnotatedText(text);
     case TypographyVariant.body:
-      return const [
-        AnnotatedTextSegment('Your option has been '),
-        AnnotatedTextSegment('removed', 'contentStatusNegative'),
-      ];
     case TypographyVariant.label:
-      return const [
-        AnnotatedTextSegment('Your order has been '),
-        AnnotatedTextSegment('successfully confirmed', 'contentStatusPositive'),
-        AnnotatedTextSegment('.'),
-      ];
+      return _parseAnnotatedText(
+        l10n.app_components_typography_bodyAndLabelText_annotatedText_text,
+      );
     case TypographyVariant.code:
       return const [
-        AnnotatedTextSegment('import ', 'contentBrandPrimary'),
+        AnnotatedTextSegment('import ', 'contentStatusPositive'),
         AnnotatedTextSegment(
           "'package:flutter/material.dart'",
           'contentStatusPositive',
@@ -109,8 +129,6 @@ Color? resolveAnnotatedTextSegmentColor(
   switch (colorTokenName) {
     case 'contentBrandPrimary':
       return colorScheme.contentBrandPrimary;
-    case 'contentStatusNegative':
-      return colorScheme.contentStatusNegative;
     case 'contentStatusPositive':
       return colorScheme.contentStatusPositive;
     case 'contentStatusInfo':

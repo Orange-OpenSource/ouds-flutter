@@ -18,7 +18,9 @@ import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-// TODO Add design guideline link when available
+///
+/// [OUDS Code Design Guidelines](https://unified-design-system.orange.com/472794e18/p/961c20-code)
+///
 /// **Reference design version : 1.0.0**
 ///
 ///  The Code style is dedicated to technical content such as code snippets, commands, system values, and identifiers. It uses a monospace typeface to preserve character alignment and improve readability of structured content.
@@ -51,7 +53,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// OudsCodeText.rich(
 ///   text: buildOudsAnnotatedText((builder) {
 ///     builder.append('const x = ');
-///     builder.withColor(color, () => builder.append('1;'));
+///     builder.withColor((context) => color, () => builder.append('1;'));
 ///   }),
 /// )
 /// ```
@@ -122,7 +124,7 @@ class OudsCodeText extends StatelessWidget {
     // Every span (or the plain text) is run through the markdown span builder so bold, underline
     // bold and links are always supported, whether the text is plain or annotated with colors.
     if (annotatedText != null) {
-      children = annotatedText.spans.map((span) {
+      children = annotatedText.resolveSpans(context).map((span) {
         final segmentColor = span.style?.color ?? resolvedColor;
         return MarkdownSpanBuilder.buildRichText(
           context,

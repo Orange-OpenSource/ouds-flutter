@@ -1171,6 +1171,15 @@ class AppLocalizationsAr extends AppLocalizations {
       'Annotated text example';
 
   @override
+  String
+  get app_components_typography_headingAndDisplayText_annotatedText_text =>
+      'نص العرض مع [اللون:contentBrandPrimary]';
+
+  @override
+  String get app_components_typography_bodyAndLabelText_annotatedText_text =>
+      'الحساب [بنجاح:contentStatusPositive] تم الإنشاء ';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override

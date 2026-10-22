@@ -22,7 +22,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// The available sizes for [OudsBodyText].
 enum OudsBodyTextSize { large, medium, small }
 
-// TODO Add design guideline link when available
+///
+/// [OUDS Body Design Guidelines](https://unified-design-system.orange.com/472794e18/p/0545f0-body)
+///
 /// **Reference design version : 1.0.0**
 ///
 /// Body styles are designed for everyday text content such as paragraphs, descriptions, and informational messages. They prioritize readability and provide
@@ -62,7 +64,7 @@ enum OudsBodyTextSize { large, medium, small }
 /// OudsBodyText.rich(
 ///   text: buildOudsAnnotatedText((builder) {
 ///     builder.append('Body with ');
-///     builder.withColor(color, () => builder.append('colored text'));
+///     builder.withColor((context) => color, () => builder.append('colored text'));
 ///   }),
 /// )
 /// ```
@@ -191,7 +193,7 @@ class OudsBodyText extends StatelessWidget {
     // Every span (or the plain text) is run through the markdown span builder so bold, line Through
     // and links are always supported, whether the text is plain or annotated with colors.
     if (annotatedText != null) {
-      children = annotatedText.spans.map((span) {
+      children = annotatedText.resolveSpans(context).map((span) {
         final segmentColor = span.style?.color ?? resolvedColor;
         return MarkdownSpanBuilder.buildRichText(
           context,

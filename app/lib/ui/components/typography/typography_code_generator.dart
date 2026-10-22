@@ -43,7 +43,7 @@ class TypographyCodeGenerator {
         ? "size: ${sizeEnumNameFor(variant)}.${(size as Enum).name},"
         : "";
     if (hasAnnotatedText) {
-      final appendLines = annotatedTextSegmentsFor(variant)
+      final appendLines = annotatedTextSegmentsFor(context, variant)
           .map((segment) {
             final escapedText = segment.text
                 .replaceAll('\\', r'\\')
@@ -51,7 +51,7 @@ class TypographyCodeGenerator {
                 .replaceAll('\n', r'\n');
             return segment.colorTokenName == null
                 ? "    builder.append('$escapedText');"
-                : "    builder.withColor(colorScheme.${segment.colorTokenName}, () => builder.append('$escapedText'));";
+                : "    builder.withColor((context) => colorScheme.${segment.colorTokenName}, () => builder.append('$escapedText'));";
           })
           .join('\n');
       return """

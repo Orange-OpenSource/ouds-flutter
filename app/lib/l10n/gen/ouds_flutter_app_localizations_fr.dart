@@ -1171,6 +1171,15 @@ class AppLocalizationsFr extends AppLocalizations {
       'Annotated text example';
 
   @override
+  String
+  get app_components_typography_headingAndDisplayText_annotatedText_text =>
+      'Texte affiché avec [couleur:contentBrandPrimary]';
+
+  @override
+  String get app_components_typography_bodyAndLabelText_annotatedText_text =>
+      'Compte [créé avec succès:contentStatusPositive] créé ';
+
+  @override
   String get app_about_name_label => 'Boîte à outils du système de conception';
 
   @override
