@@ -57,7 +57,7 @@
       <span class="name ">OudsListItem.labelContent</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="labelContent-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
 <li><span class="parameter" id="labelContent-param-labelContent"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">labelContent</span>(<ol class="parameter-list single-line"> <li><span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
 <li><span class="parameter" id="param-state"><span class="type-annotation">OudsListItemControlState</span> <span class="parameter-name">state</span></span></li>
-</ol>)?, </span></li>
+</ol>), </span></li>
 <li><span class="parameter" id="labelContent-param-size"><span class="type-annotation"><a href="../../components_list_item_ouds_list_item/OudsListItemSize.html">OudsListItemSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsListItemSize.defaultSize</span>, </span></li>
 <li><span class="parameter" id="labelContent-param-contentAlignment"><span class="type-annotation"><a href="../../components_list_item_ouds_list_item/OudsListItemContentAlignment.html">OudsListItemContentAlignment</a></span> <span class="parameter-name">contentAlignment</span> = <span class="default-value">OudsListItemDefaults.contentAlignment</span>, </span></li>
 <li><span class="parameter" id="labelContent-param-overline"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">overline</span>, </span></li>
@@ -96,7 +96,11 @@ plain text label.</p>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">const OudsListItem.labelContent({
   super.key,
-  required this.labelContent,
+  required Widget Function(
+    BuildContext context,
+    OudsListItemControlState state,
+  )
+  labelContent,
   this.size = OudsListItemSize.defaultSize,
   this.contentAlignment = OudsListItemDefaults.contentAlignment,
   this.overline,
@@ -117,7 +121,11 @@ plain text label.</p>
   this.card = false,
   this.edgeToEdge = true,
   this.skeleton,
-}) : label = null;</code></pre>
+}) : label = null,
+     &#47;&#47; Field is nullable for the default constructor; the parameter stays
+     &#47;&#47; non-nullable so that `labelContent: null` is a compile-time error.
+     &#47;&#47; ignore: prefer_initializing_formals
+     labelContent = labelContent;</code></pre>
 </section>
 
 
