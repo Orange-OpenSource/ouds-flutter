@@ -54,7 +54,8 @@ class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
   /// The icon status that drives both the icon asset and its color.
   ///
   /// Functional statuses ([Positive], [Info], [Warning], [Negative]) use fixed icons.
-  /// Contextual statuses ([Neutral], [Accent]) accept a custom icon asset path.
+  /// The contextual status ([Neutral]) accepts a custom icon asset path.
+  /// [Accent] is not supported in list item icon slots.
   final OudsIconStatus iconStatus;
 
   /// Whether the icon is tinted with the theme color.
@@ -62,7 +63,14 @@ class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
   final bool tinted;
 
   /// Creates a compact leading icon configuration.
-  const OudsSmallListItemLeadingIcon(this.iconStatus, {this.tinted = true});
+  ///
+  /// Throws an [AssertionError] if [iconStatus] is [Accent].
+  const OudsSmallListItemLeadingIcon(this.iconStatus, {this.tinted = true})
+    : assert(
+        iconStatus is! Accent,
+        'Accent is not supported in list item icon slots. '
+        'Use Neutral with a custom icon instead.',
+      );
 }
 
 /// Leading image slot for [OudsSmallListItem].
@@ -131,7 +139,8 @@ class OudsSmallListItemTrailingIcon extends OudsSmallListItemTrailing {
   /// The icon status that drives both the icon asset and its color.
   ///
   /// Functional statuses ([Positive], [Info], [Warning], [Negative]) use fixed icons.
-  /// Contextual statuses ([Neutral], [Accent]) accept a custom icon asset path.
+  /// The contextual status ([Neutral]) accepts a custom icon asset path.
+  /// [Accent] is not supported in list item icon slots.
   final OudsIconStatus icon;
 
   /// Whether the icon is tinted with the theme color.
@@ -139,7 +148,14 @@ class OudsSmallListItemTrailingIcon extends OudsSmallListItemTrailing {
   final bool tinted;
 
   /// Creates a compact trailing icon configuration.
-  const OudsSmallListItemTrailingIcon(this.icon, {this.tinted = true});
+  ///
+  /// Throws an [AssertionError] if [icon] is [Accent].
+  const OudsSmallListItemTrailingIcon(this.icon, {this.tinted = true})
+    : assert(
+        icon is! Accent,
+        'Accent is not supported in list item icon slots. '
+        'Use Neutral with a custom icon instead.',
+      );
 }
 
 /// Trailing image slot for [OudsSmallListItem].
