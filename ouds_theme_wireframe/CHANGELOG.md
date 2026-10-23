@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...develop)
 ### Added
+- [Library] Create components - `typography` ([#829](https://github.com/Orange-OpenSource/ouds-flutter/issues/829))
 ### Changed
+- [Library] Use system fonts instead of bundled font files ([#1006](https://github.com/Orange-OpenSource/ouds-flutter/issues/1006))
 ### Fixed
 
 ## [3.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.1.0...3.0.0) - 2026-10-07
