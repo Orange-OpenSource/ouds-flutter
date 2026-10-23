@@ -482,7 +482,7 @@
   "app_components_typography_heading_marker_tech": "Marker",
   "app_components_typography_weight_tech": "Weight",
   "app_components_typography_annotatedTextExample_tech": "Annotated text example",
-  "app_components_typography_headingAndDisplayText_annotatedText_text": "Display text with [color:contentBrandPrimary]",
+  "app_components_typography_headingAndDisplayText_annotatedText_text": "Text with [color:contentBrandPrimary]",
   "app_components_typography_bodyAndLabelText_annotatedText_text": "Account [successfully:contentStatusPositive] created ",
 
   "@_about_screen": {},

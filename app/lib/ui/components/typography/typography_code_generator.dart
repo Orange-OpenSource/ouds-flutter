@@ -51,11 +51,14 @@ class TypographyCodeGenerator {
                 .replaceAll('\n', r'\n');
             return segment.colorTokenName == null
                 ? "    builder.append('$escapedText');"
-                : "    builder.withColor((context) => colorScheme.${segment.colorTokenName}, () => builder.append('$escapedText'));";
+                : "    builder.withColor(\n"
+                      "      (context) => OudsTheme.of(context).colorScheme(context).${segment.colorTokenName},\n"
+                      "      () => builder.append('$escapedText'),\n"
+                      "    );";
           })
           .join('\n');
       return """
-${variant != TypographyVariant.code ? '${classNameFor(variant)}.rich($sizeLine$weightLine$markerLine' : '${classNameFor(variant)}.rich('}
+${variant != TypographyVariant.code ? '${classNameFor(variant)}.rich(\n  $sizeLine$weightLine$markerLine' : '${classNameFor(variant)}.rich('}
   text: buildOudsAnnotatedText((builder) {
 $appendLines
   }),

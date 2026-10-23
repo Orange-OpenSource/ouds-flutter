@@ -19,7 +19,7 @@ import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///
-/// [OUDS Code Design Guidelines](https://unified-design-system.orange.com/472794e18/p/961c20-code)
+/// [OUDS Code Design Guidelines](https://r.orange.fr/r/S-ouds-doc-typography-code)
 ///
 /// **Reference design version : 1.0.0**
 ///
@@ -116,7 +116,7 @@ class OudsCodeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = textStyle(context);
-    final resolvedColor =
+    final definedColor =
         color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
     final annotatedText = _annotatedText;
 
@@ -125,7 +125,7 @@ class OudsCodeText extends StatelessWidget {
     // bold and links are always supported, whether the text is plain or annotated with colors.
     if (annotatedText != null) {
       children = annotatedText.resolveSpans(context).map((span) {
-        final segmentColor = span.style?.color ?? resolvedColor;
+        final segmentColor = span.style?.color ?? definedColor;
         return MarkdownSpanBuilder.buildRichText(
           context,
           span.toPlainText(),
@@ -135,7 +135,7 @@ class OudsCodeText extends StatelessWidget {
 
       return Text.rich(
         TextSpan(
-          style: style.copyWith(color: resolvedColor),
+          style: style.copyWith(color: definedColor),
           children: children,
         ),
         textAlign: textAlign,
@@ -146,7 +146,7 @@ class OudsCodeText extends StatelessWidget {
     } else {
       return Text(
         text,
-        style: style.copyWith(color: resolvedColor),
+        style: style.copyWith(color: definedColor),
         textAlign: textAlign,
         maxLines: maxLines,
         overflow: overflow,

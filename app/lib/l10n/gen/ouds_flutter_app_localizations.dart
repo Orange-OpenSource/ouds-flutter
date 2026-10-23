@@ -2130,7 +2130,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_typography_headingAndDisplayText_annotatedText_text.
   ///
   /// In en, this message translates to:
-  /// **'Display text with [color:contentBrandPrimary]'**
+  /// **'Text with [color:contentBrandPrimary]'**
   String get app_components_typography_headingAndDisplayText_annotatedText_text;
 
   /// No description provided for @app_components_typography_bodyAndLabelText_annotatedText_text.

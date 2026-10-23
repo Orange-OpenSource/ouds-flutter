@@ -23,7 +23,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 enum OudsLabelTextSize { xLarge, large, medium, small }
 
 ///
-/// [OUDS Label Design Guidelines](https://unified-design-system.orange.com/472794e18/p/10161f-label)
+/// [OUDS Label Design Guidelines](https://r.orange.fr/r/S-ouds-doc-typography-label)
 ///
 /// **Reference design version : 1.0.0**
 ///
@@ -95,8 +95,7 @@ class OudsLabelText extends StatelessWidget {
   final OudsTextWeight weight;
 
   /// An optional maximum number of lines for the text to span, wrapping if necessary.
-  /// If the text exceeds the given number of lines, it will be truncated according to [overflow] and
-  /// [softWrap].
+  /// If the text exceeds the given number of lines, it will be truncated according to [overflow] and [softWrap].
   final int? maxLines;
 
   /// Alignment of the text within the lines of the paragraph. See [TextAlign].
@@ -110,8 +109,7 @@ class OudsLabelText extends StatelessWidget {
   /// [overflow] and [TextAlign] may have unexpected effects.
   final bool? softWrap;
 
-  /// When set (via [OudsLabelText.rich]), builds the content from these annotated spans instead
-  /// of the plain [text].
+  /// When set (via [OudsLabelText.rich]), builds the content from these annotated spans instead of the plain [text].
   final OudsAnnotatedText? _annotatedText;
 
   /// Callback invoked when a `[link](url)` inside [text] or the annotated text is tapped.
@@ -192,7 +190,7 @@ class OudsLabelText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = textStyle(context);
-    final resolvedColor =
+    final definedColor =
         color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
     final annotatedText = _annotatedText;
 
@@ -201,7 +199,7 @@ class OudsLabelText extends StatelessWidget {
     // bold and links are always supported, whether the text is plain or annotated with colors.
     if (annotatedText != null) {
       children = annotatedText.resolveSpans(context).map((span) {
-        final segmentColor = span.style?.color ?? resolvedColor;
+        final segmentColor = span.style?.color ?? definedColor;
         return MarkdownSpanBuilder.buildRichText(
           context,
           span.toPlainText(),
@@ -214,7 +212,7 @@ class OudsLabelText extends StatelessWidget {
         MarkdownSpanBuilder.buildRichText(
           context,
           text,
-          baseStyle: style.copyWith(color: resolvedColor),
+          baseStyle: style.copyWith(color: definedColor),
           onLinkTap: onLinkTap,
         ),
       ];
@@ -222,7 +220,7 @@ class OudsLabelText extends StatelessWidget {
 
     final textWidget = Text.rich(
       TextSpan(
-        style: style.copyWith(color: resolvedColor),
+        style: style.copyWith(color: definedColor),
         children: children,
       ),
       textAlign: textAlign,

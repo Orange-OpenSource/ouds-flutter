@@ -1168,7 +1168,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String
   get app_components_typography_headingAndDisplayText_annotatedText_text =>
-      'Display text with [color:contentBrandPrimary]';
+      'Text with [color:contentBrandPrimary]';
 
   @override
   String get app_components_typography_bodyAndLabelText_annotatedText_text =>

@@ -1173,7 +1173,7 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String
   get app_components_typography_headingAndDisplayText_annotatedText_text =>
-      'نص العرض مع [اللون:contentBrandPrimary]';
+      'نص مع [اللون:contentBrandPrimary]';
 
   @override
   String get app_components_typography_bodyAndLabelText_annotatedText_text =>

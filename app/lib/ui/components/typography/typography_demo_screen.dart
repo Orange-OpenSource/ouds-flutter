@@ -138,6 +138,36 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     super.dispose();
   }
 
+  /// Clears [TypographyCustomizationState.hasAnnotatedText] when the heading configuration
+  /// is incompatible with the active theme's marker support.
+  void _enforceAnnotatedTextMarkerExclusivity(BuildContext context) {
+    final customizationState = TypographyCustomization.of(context)!;
+    final isHeadingLarge =
+        widget.variant == TypographyVariant.heading &&
+        customizationState.selectedSize == OudsHeadingTextSize.large;
+    // The marker is only supported by themes exposing `headingLargeMarker` (Orange, Orange
+    // Compact, Wireframe);
+    final supportsHeadingMarker = OudsTheme.of(
+      context,
+    ).componentsTokens(context).typography.headingLargeMarker;
+    if (supportsHeadingMarker &&
+        customizationState.hasMarker &&
+        isHeadingLarge &&
+        customizationState.hasAnnotatedText) {
+      customizationState.hasAnnotatedText = false;
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _enforceAnnotatedTextMarkerExclusivity(context);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final customizationState = TypographyCustomization.of(context)!;
@@ -165,6 +195,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             onSelected: (size) {
               setState(() {
                 customizationState.selectedSize = size;
+                _enforceAnnotatedTextMarkerExclusivity(context);
               });
             },
           ),
@@ -189,6 +220,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 ? (value) {
                     setState(() {
                       customizationState.hasMarker = value;
+                      _enforceAnnotatedTextMarkerExclusivity(context);
                     });
                   }
                 : null,
@@ -198,8 +230,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               context.l10n.app_components_typography_annotatedTextExample_tech,
           value: customizationState.hasAnnotatedText,
           onChanged:
-              customizationState.hasMarker &&
-                  customizationState.selectedSize == OudsHeadingTextSize.large
+              supportsHeadingMarker &&
+                  isHeadingLarge &&
+                  customizationState.hasMarker
               ? null
               : (value) {
                   setState(() {
