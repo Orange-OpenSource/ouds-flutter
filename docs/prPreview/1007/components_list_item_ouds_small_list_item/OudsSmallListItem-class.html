@@ -128,6 +128,17 @@ OudsSmallListItem(
   label: 'Item with price',
   trailing: OudsSmallListItemTrailingText('99€'),
 );
+
+// Compact item with an image loaded from the network and a custom
+// placeholder shown while loading (and if loading fails)
+OudsSmallListItem(
+  label: 'Product',
+  leading: OudsSmallListItemLeadingImage.provider(
+    provider: NetworkImage('https://example.com/photo.jpg'),
+    semanticsLabel: 'Product photo',
+    placeholder: Image.asset('assets/placeholder.jpg'),
+  ),
+);
 </code></pre>
 </section>
 

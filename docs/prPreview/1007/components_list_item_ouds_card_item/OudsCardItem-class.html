@@ -82,6 +82,17 @@ OudsCardItem.labelContent(
   labelContent: (context, state) =&gt; Text('Custom label content'),
   description: 'Ouvre une nouvelle page',
 )
+
+// Card with an image loaded from the network and a custom
+// placeholder shown while loading (and if loading fails)
+OudsCardItem(
+  label: 'Product',
+  leading: OudsListItemLeadingImage.provider(
+    provider: NetworkImage('https://example.com/photo.jpg'),
+    semanticsLabel: 'Product photo',
+    placeholder: Image.asset('assets/placeholder.jpg'),
+  ),
+)
 </code></pre>
 </section>
 
