@@ -110,7 +110,7 @@ and</li>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
   final style = textStyle(context);
-  final resolvedColor =
+  final definedColor =
       color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
   final annotatedText = _annotatedText;
 
@@ -119,7 +119,7 @@ Widget build(BuildContext context) {
   &#47;&#47; bold and links are always supported, whether the text is plain or annotated with colors.
   if (annotatedText != null) {
     children = annotatedText.resolveSpans(context).map((span) {
-      final segmentColor = span.style?.color ?? resolvedColor;
+      final segmentColor = span.style?.color ?? definedColor;
       return MarkdownSpanBuilder.buildRichText(
         context,
         span.toPlainText(),
@@ -129,7 +129,7 @@ Widget build(BuildContext context) {
 
     return Text.rich(
       TextSpan(
-        style: style.copyWith(color: resolvedColor),
+        style: style.copyWith(color: definedColor),
         children: children,
       ),
       textAlign: textAlign,
@@ -140,7 +140,7 @@ Widget build(BuildContext context) {
   } else {
     return Text(
       text,
-      style: style.copyWith(color: resolvedColor),
+      style: style.copyWith(color: definedColor),
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
