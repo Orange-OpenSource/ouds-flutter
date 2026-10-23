@@ -11,6 +11,7 @@
  *
  */
 
+/// @nodoc
 library;
 
 /// Represents the interaction state of an [OudsListItem] or [OudsSmallListItem].

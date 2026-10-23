@@ -82,7 +82,10 @@ class OudsListItemDefaults {
 // Widget
 // ---------------------------------------------------------------------------
 
-/// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
+/// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-static-list-item)
+///
+/// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-navigation-list-item)
+///
 ///
 /// **Reference design version : 0.3.0**
 ///
