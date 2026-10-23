@@ -104,21 +104,17 @@ class _ListItemDemo extends StatelessWidget {
 
     return LightDarkBox(
       isEdgeToEdge: customizationState.edgeToEdge,
-      child: Column(
-        children: [
-          customizationState.clickable
-              ? ListItemCustomizationUtils.buildNavigationListItem(
-                  context,
-                  customizationState,
-                  themeController,
-                )
-              : ListItemCustomizationUtils.buildListItem(
-                  context,
-                  customizationState,
-                  themeController,
-                ),
-        ],
-      ),
+      child: customizationState.clickable
+          ? ListItemCustomizationUtils.buildNavigationListItem(
+              context,
+              customizationState,
+              themeController,
+            )
+          : ListItemCustomizationUtils.buildListItem(
+              context,
+              customizationState,
+              themeController,
+            ),
     );
   }
 }

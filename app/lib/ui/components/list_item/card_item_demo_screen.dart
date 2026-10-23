@@ -103,14 +103,10 @@ class _CardItemDemo extends StatelessWidget {
     );
 
     return LightDarkBox(
-      child: Column(
-        children: [
-          ListItemCustomizationUtils.buildCardItem(
-            context,
-            customizationState,
-            themeController,
-          ),
-        ],
+      child: ListItemCustomizationUtils.buildCardItem(
+        context,
+        customizationState,
+        themeController,
       ),
     );
   }
