@@ -77,6 +77,11 @@ class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
 ///
 /// Always rendered at [OudsListItemAssetSize.small].
 ///
+/// The image comes either from a local [asset] or from an asynchronous
+/// source ([NetworkImage], [MemoryImage] or any custom [ImageProvider])
+/// via the `provider` named constructor — the Flutter counterpart of passing
+/// an async `Painter` on Android.
+///
 /// Example:
 /// ```dart
 /// OudsSmallListItemLeadingImage(asset: 'assets/photo.jpg')
@@ -84,10 +89,36 @@ class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
 ///   asset: 'assets/wide.jpg',
 ///   format: OudsListItemImageFormat.widescreen,
 /// )
+/// // Asynchronous image from the network, with a placeholder shown while
+/// // loading (and if loading fails)
+/// OudsSmallListItemLeadingImage.provider(
+///   provider: NetworkImage('https://example.com/photo.jpg'),
+///   placeholder: Image.asset('assets/placeholder.jpg'),
+/// )
+/// // Or from any other ImageProvider (memory, file, app-provided caching
+/// // library), with a custom placeholder
+/// OudsSmallListItemLeadingImage.provider(
+///   provider: MemoryImage(bytes),
+///   placeholder: const ColoredBox(color: Color(0xFFEFEFEF)),
+/// )
 /// ```
 class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
   /// Path to the image asset (raster or SVG).
-  final String asset;
+  ///
+  /// Mutually exclusive with [provider] — set by the default constructor.
+  final String? asset;
+
+  /// Image provider for an image loaded asynchronously or from a non-asset
+  /// source ([NetworkImage], [MemoryImage] or any custom provider).
+  ///
+  /// Mutually exclusive with [asset] — set by the `provider` named constructor.
+  final ImageProvider? provider;
+
+  /// Widget displayed in place of the image while [provider] is loading and
+  /// if loading fails. Ignored for asset images.
+  ///
+  /// When `null`, the image background color is shown as a plain placeholder.
+  final Widget? placeholder;
 
   /// Accessibility description of the image for screen readers.
   ///
@@ -103,13 +134,35 @@ class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
   /// - `true`: Displays the image with rounded corners.
   final bool rounded;
 
-  /// Creates a compact leading image configuration.
+  /// Creates a compact leading image configuration from a local asset.
   const OudsSmallListItemLeadingImage({
-    required this.asset,
+    required String this.asset,
     this.semanticsLabel,
     this.format = OudsListItemImageFormat.square,
     this.rounded = false,
-  });
+  }) : provider = null,
+       placeholder = null;
+
+  /// Creates a compact leading image configuration from any [ImageProvider]
+  /// ([NetworkImage], [MemoryImage] or a provider supplied by the app).
+  ///
+  /// [placeholder] is shown while the image is loading and if loading fails;
+  /// when `null`, the image background color shows through instead.
+  ///
+  /// ```dart
+  /// OudsSmallListItemLeadingImage.provider(
+  ///   provider: NetworkImage('https://example.com/photo.jpg'),
+  ///   semanticsLabel: 'Product photo',
+  ///   placeholder: Image.asset('assets/placeholder.jpg'),
+  /// )
+  /// ```
+  const OudsSmallListItemLeadingImage.provider({
+    required this.provider,
+    this.semanticsLabel,
+    this.format = OudsListItemImageFormat.square,
+    this.rounded = false,
+    this.placeholder,
+  }) : asset = null;
 }
 
 // ---------------------------------------------------------------------------
@@ -162,13 +215,44 @@ class OudsSmallListItemTrailingIcon extends OudsSmallListItemTrailing {
 ///
 /// Always rendered at [OudsListItemAssetSize.small].
 ///
+/// The image comes either from a local [asset] or from an asynchronous
+/// source ([NetworkImage], [MemoryImage] or any custom [ImageProvider])
+/// via the `provider` named constructor — the Flutter counterpart of passing
+/// an async `Painter` on Android.
+///
 /// Example:
 /// ```dart
 /// OudsSmallListItemTrailingImage(asset: 'assets/photo.jpg')
+/// // Asynchronous image from the network, with a placeholder shown while
+/// // loading (and if loading fails)
+/// OudsSmallListItemTrailingImage.provider(
+///   provider: NetworkImage('https://example.com/photo.jpg'),
+///   placeholder: Image.asset('assets/placeholder.jpg'),
+/// )
+/// // Or from any other ImageProvider (memory, file, app-provided caching
+/// // library), with a custom placeholder
+/// OudsSmallListItemTrailingImage.provider(
+///   provider: MemoryImage(bytes),
+///   placeholder: const ColoredBox(color: Color(0xFFEFEFEF)),
+/// )
 /// ```
 class OudsSmallListItemTrailingImage extends OudsSmallListItemTrailing {
   /// Path to the image asset (raster or SVG).
-  final String asset;
+  ///
+  /// Mutually exclusive with [provider] — set by the default constructor.
+  final String? asset;
+
+  /// Image provider for an image loaded asynchronously or from a non-asset
+  /// source ([NetworkImage], [MemoryImage] or any custom provider).
+  ///
+  /// Mutually exclusive with [asset] — set by the `provider` named constructor.
+  final ImageProvider? provider;
+
+  /// Widget displayed in place of the image while [provider] is loading and
+  /// if loading fails. Ignored for asset images.
+  ///
+  /// When `null`, the image background color is shown as a plain placeholder.
+  final Widget? placeholder;
 
   /// Accessibility description of the image for screen readers.
   ///
@@ -184,13 +268,35 @@ class OudsSmallListItemTrailingImage extends OudsSmallListItemTrailing {
   /// - `true`: Displays the image with rounded corners.
   final bool rounded;
 
-  /// Creates a compact trailing image configuration.
+  /// Creates a compact trailing image configuration from a local asset.
   const OudsSmallListItemTrailingImage({
-    required this.asset,
+    required String this.asset,
     this.semanticsLabel,
     this.format = OudsListItemImageFormat.square,
     this.rounded = false,
-  });
+  }) : provider = null,
+       placeholder = null;
+
+  /// Creates a compact trailing image configuration from any [ImageProvider]
+  /// ([NetworkImage], [MemoryImage] or a provider supplied by the app).
+  ///
+  /// [placeholder] is shown while the image is loading and if loading fails;
+  /// when `null`, the image background color shows through instead.
+  ///
+  /// ```dart
+  /// OudsSmallListItemTrailingImage.provider(
+  ///   provider: NetworkImage('https://example.com/photo.jpg'),
+  ///   semanticsLabel: 'Product photo',
+  ///   placeholder: Image.asset('assets/placeholder.jpg'),
+  /// )
+  /// ```
+  const OudsSmallListItemTrailingImage.provider({
+    required this.provider,
+    this.semanticsLabel,
+    this.format = OudsListItemImageFormat.square,
+    this.rounded = false,
+    this.placeholder,
+  }) : asset = null;
 }
 
 /// Trailing text slot for [OudsSmallListItem].
@@ -330,6 +436,17 @@ class OudsSmallListItemTrailingTag extends OudsSmallListItemTrailing {
 /// OudsSmallListItem(
 ///   label: 'Item with price',
 ///   trailing: OudsSmallListItemTrailingText('99€'),
+/// );
+///
+/// // Compact item with an image loaded from the network and a custom
+/// // placeholder shown while loading (and if loading fails)
+/// OudsSmallListItem(
+///   label: 'Product',
+///   leading: OudsSmallListItemLeadingImage.provider(
+///     provider: NetworkImage('https://example.com/photo.jpg'),
+///     semanticsLabel: 'Product photo',
+///     placeholder: Image.asset('assets/placeholder.jpg'),
+///   ),
 /// );
 /// ```
 class OudsSmallListItem extends StatelessWidget {
@@ -479,11 +596,21 @@ class OudsSmallListItem extends StatelessWidget {
         ),
       OudsSmallListItemLeadingImage(
         :final asset,
+        :final provider,
+        :final placeholder,
         :final semanticsLabel,
         :final format,
         :final rounded,
       ) =>
-        _buildSmallImage(context, asset, format, semanticsLabel, rounded),
+        _buildSmallImage(
+          context,
+          asset: asset,
+          provider: provider,
+          placeholder: placeholder,
+          format: format,
+          semanticsLabel: semanticsLabel,
+          rounded: rounded,
+        ),
     };
   }
 
@@ -530,11 +657,21 @@ class OudsSmallListItem extends StatelessWidget {
         ),
       OudsSmallListItemTrailingImage(
         :final asset,
+        :final provider,
+        :final placeholder,
         :final semanticsLabel,
         :final format,
         :final rounded,
       ) =>
-        _buildSmallImage(context, asset, format, semanticsLabel, rounded),
+        _buildSmallImage(
+          context,
+          asset: asset,
+          provider: provider,
+          placeholder: placeholder,
+          format: format,
+          semanticsLabel: semanticsLabel,
+          rounded: rounded,
+        ),
       OudsSmallListItemTrailingText(:final label, :final style) =>
         _buildSmallTrailingText(
           context,
@@ -593,24 +730,27 @@ class OudsSmallListItem extends StatelessWidget {
   }
 
   // Small list items always reuse the brand-primary surface behind images so
-  // transparent assets keep the same contrast in both leading and trailing slots.
+  // transparent assets keep the same contrast in both leading and trailing
+  // slots; the shared slot builder also handles asynchronous images with the
+  // same token size, background and rounded style.
   static Widget _buildSmallImage(
-    BuildContext context,
-    String asset,
-    OudsListItemImageFormat format,
-    String? semanticsLabel, [
+    BuildContext context, {
+    String? asset,
+    ImageProvider? provider,
+    Widget? placeholder,
+    required OudsListItemImageFormat format,
+    String? semanticsLabel,
     bool rounded = false,
-  ]) {
-    return OudsListItemAssetBuilder.buildImage(
+  }) {
+    return OudsListItemAssetBuilder.buildImageSlot(
       context,
-      asset,
-      _kSmallAssetSize,
-      format,
-      rounded: rounded,
+      asset: asset,
+      provider: provider,
+      placeholder: placeholder,
       semanticsLabel: semanticsLabel,
-      backgroundColor: OudsTheme.of(
-        context,
-      ).colorScheme(context).surfaceBrandPrimary,
+      size: _kSmallAssetSize,
+      format: format,
+      rounded: rounded,
     );
   }
 }

@@ -180,6 +180,17 @@ class OudsListItemDefaults {
 ///   label: 'Unavailable',
 ///   enable: false,
 /// );
+///
+/// // List item with an image loaded from the network and a custom
+/// // placeholder shown while loading (and if loading fails)
+/// OudsListItem(
+///   label: 'Product',
+///   leading: OudsListItemLeadingImage.provider(
+///     provider: NetworkImage('https://example.com/photo.jpg'),
+///     semanticsLabel: 'Product photo',
+///     placeholder: Image.asset('assets/placeholder.jpg'),
+///   ),
+/// );
 /// ```
 class OudsListItem extends StatefulWidget {
   /// The main label displayed in the center column.
@@ -922,6 +933,8 @@ class _OudsListItemState extends State<OudsListItem> {
         ),
       OudsListItemLeadingImage(
         :final asset,
+        :final provider,
+        :final placeholder,
         :final semanticsLabel,
         :final size,
         :final format,
@@ -930,16 +943,15 @@ class _OudsListItemState extends State<OudsListItem> {
         // Image container: dynamic dimensions based on size and format
         _buildImageContainer(
           context,
-          OudsListItemAssetBuilder.buildImage(
+          OudsListItemAssetBuilder.buildImageSlot(
             context,
-            asset,
-            size.assetSize,
-            format,
-            rounded: rounded,
+            asset: asset,
+            provider: provider,
+            placeholder: placeholder,
             semanticsLabel: semanticsLabel,
-            backgroundColor: OudsTheme.of(
-              context,
-            ).colorScheme(context).surfaceBrandPrimary,
+            size: size.assetSize,
+            format: format,
+            rounded: rounded,
           ),
           size,
           format,
@@ -1058,6 +1070,8 @@ class _OudsListItemState extends State<OudsListItem> {
         ),
       OudsListItemTrailingImage(
         :final asset,
+        :final provider,
+        :final placeholder,
         :final semanticsLabel,
         :final size,
         :final format,
@@ -1066,16 +1080,15 @@ class _OudsListItemState extends State<OudsListItem> {
         // Image container: dynamic dimensions based on size and format
         _buildImageContainer(
           context,
-          OudsListItemAssetBuilder.buildImage(
+          OudsListItemAssetBuilder.buildImageSlot(
             context,
-            asset,
-            size.assetSize,
-            format,
-            rounded: rounded,
+            asset: asset,
+            provider: provider,
+            placeholder: placeholder,
             semanticsLabel: semanticsLabel,
-            backgroundColor: OudsTheme.of(
-              context,
-            ).colorScheme(context).surfaceBrandPrimary,
+            size: size.assetSize,
+            format: format,
+            rounded: rounded,
           ),
           size,
           format,

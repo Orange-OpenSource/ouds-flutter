@@ -73,6 +73,11 @@ class OudsListItemLeadingIcon extends OudsListItemLeading {
 
 /// Leading image slot.
 ///
+/// The image comes either from a local [asset] or from an asynchronous
+/// source ([NetworkImage], [MemoryImage] or any custom [ImageProvider])
+/// via the `provider` named constructor — the Flutter counterpart of passing
+/// an async `Painter` on Android.
+///
 /// Example:
 /// ```dart
 /// OudsListItemLeadingImage(
@@ -82,10 +87,37 @@ class OudsListItemLeadingIcon extends OudsListItemLeading {
 ///   format: OudsListItemImageFormat.widescreen,
 ///   rounded: true,
 /// )
+/// // Asynchronous image from the network, with a placeholder shown while
+/// // loading (and if loading fails)
+/// OudsListItemLeadingImage.provider(
+///   provider: NetworkImage('https://example.com/photo.jpg'),
+///   semanticsLabel: 'Product photo',
+///   placeholder: Image.asset('assets/placeholder.jpg'),
+/// )
+/// // Or from any other ImageProvider (memory, file, app-provided caching
+/// // library), with a custom placeholder
+/// OudsListItemLeadingImage.provider(
+///   provider: MemoryImage(bytes),
+///   placeholder: const ColoredBox(color: Color(0xFFEFEFEF)),
+/// )
 /// ```
 class OudsListItemLeadingImage extends OudsListItemLeading {
   /// Path to the image asset (raster or SVG).
-  final String asset;
+  ///
+  /// Mutually exclusive with [provider] — set by the default constructor.
+  final String? asset;
+
+  /// Image provider for an image loaded asynchronously or from a non-asset
+  /// source ([NetworkImage], [MemoryImage] or any custom provider).
+  ///
+  /// Mutually exclusive with [asset] — set by the `provider` named constructor.
+  final ImageProvider? provider;
+
+  /// Widget displayed in place of the image while [provider] is loading and
+  /// if loading fails. Ignored for asset images.
+  ///
+  /// When `null`, the image background color is shown as a plain placeholder.
+  final Widget? placeholder;
 
   /// Accessibility description of the image for screen readers.
   ///
@@ -119,14 +151,37 @@ class OudsListItemLeadingImage extends OudsListItemLeading {
   /// - `true`: Displays the image with rounded corners.
   final bool rounded;
 
-  /// Creates a leading image configuration.
+  /// Creates a leading image configuration from a local asset.
   const OudsListItemLeadingImage({
-    required this.asset,
+    required String this.asset,
     this.semanticsLabel,
     this.size = OudsListItemImageSize.medium,
     this.format = OudsListItemImageFormat.square,
     this.rounded = false,
-  });
+  }) : provider = null,
+       placeholder = null;
+
+  /// Creates a leading image configuration from any [ImageProvider]
+  /// ([NetworkImage], [MemoryImage] or a provider supplied by the app).
+  ///
+  /// [placeholder] is shown while the image is loading and if loading fails;
+  /// when `null`, the image background color shows through instead.
+  ///
+  /// ```dart
+  /// OudsListItemLeadingImage.provider(
+  ///   provider: NetworkImage('https://example.com/photo.jpg'),
+  ///   semanticsLabel: 'Product photo',
+  ///   placeholder: Image.asset('assets/placeholder.jpg'),
+  /// )
+  /// ```
+  const OudsListItemLeadingImage.provider({
+    required this.provider,
+    this.semanticsLabel,
+    this.size = OudsListItemImageSize.medium,
+    this.format = OudsListItemImageFormat.square,
+    this.rounded = false,
+    this.placeholder,
+  }) : asset = null;
 }
 
 // TODO[v1.0]: Uncomment when flag support is implemented.

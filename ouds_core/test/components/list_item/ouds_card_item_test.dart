@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
+import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/ouds_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_card_item.dart';
@@ -10,6 +11,7 @@ import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_theme_contract/config/component/ouds_card_item_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
+import '../../helpers/async_image_test_helpers.dart';
 import '../../helpers/testable_widget_helper.dart';
 
 BorderRadius _listItemBorderRadius(WidgetTester tester) {
@@ -306,6 +308,54 @@ void main() {
         find.byType(OudsSkeletonLayout),
       );
       expect(layout.visible, isTrue);
+    });
+  });
+
+  group('async image', () {
+    testWidgets('OudsCardItem shows the placeholder while loading', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsCardItem(
+            label: 'Async card',
+            leading: OudsListItemLeadingImage.provider(
+              provider: NeverCompletingImageProvider(),
+              placeholder: const SizedBox(
+                key: Key('placeholder'),
+                width: 10,
+                height: 10,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.byKey(const Key('placeholder')), findsOneWidget);
+    });
+
+    testWidgets('OudsSmallCardItem shows the placeholder while loading', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsSmallCardItem(
+            label: 'Async small card',
+            trailing: OudsSmallListItemTrailingImage.provider(
+              provider: NeverCompletingImageProvider(),
+              placeholder: const SizedBox(
+                key: Key('placeholder'),
+                width: 10,
+                height: 10,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.byKey(const Key('placeholder')), findsOneWidget);
     });
   });
 }
