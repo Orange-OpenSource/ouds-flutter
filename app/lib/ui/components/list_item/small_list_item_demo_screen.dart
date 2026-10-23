@@ -105,21 +105,17 @@ class _SmallListItemDemo extends StatelessWidget {
 
     return LightDarkBox(
       isEdgeToEdge: customizationState.edgeToEdge,
-      child: Column(
-        children: [
-          customizationState.clickable
-              ? ListItemCustomizationUtils.buildNavigationSmallListItem(
-                  context,
-                  customizationState,
-                  themeController,
-                )
-              : ListItemCustomizationUtils.buildSmallListItem(
-                  context,
-                  customizationState,
-                  themeController,
-                ),
-        ],
-      ),
+      child: customizationState.clickable
+          ? ListItemCustomizationUtils.buildNavigationSmallListItem(
+              context,
+              customizationState,
+              themeController,
+            )
+          : ListItemCustomizationUtils.buildSmallListItem(
+              context,
+              customizationState,
+              themeController,
+            ),
     );
   }
 }
