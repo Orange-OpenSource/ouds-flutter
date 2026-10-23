@@ -311,7 +311,7 @@ class OudsListItem extends StatefulWidget {
   /// Creates an OUDS list item with a plain text [label].
   const OudsListItem({
     super.key,
-    required this.label,
+    required String label,
     this.size = OudsListItemSize.defaultSize,
     this.contentAlignment = OudsListItemDefaults.contentAlignment,
     this.overline,
@@ -332,13 +332,21 @@ class OudsListItem extends StatefulWidget {
     this.card = false,
     this.edgeToEdge = true,
     this.skeleton,
-  }) : labelContent = null;
+    // Field is nullable for the .labelContent constructor; the parameter stays
+    // non-nullable so that `label: null` is a compile-time error.
+    // ignore: prefer_initializing_formals
+  }) : label = label,
+       labelContent = null;
 
   /// Creates an OUDS list item with fully custom [labelContent] instead of a
   /// plain text label.
   const OudsListItem.labelContent({
     super.key,
-    required this.labelContent,
+    required Widget Function(
+      BuildContext context,
+      OudsListItemControlState state,
+    )
+    labelContent,
     this.size = OudsListItemSize.defaultSize,
     this.contentAlignment = OudsListItemDefaults.contentAlignment,
     this.overline,
@@ -359,7 +367,11 @@ class OudsListItem extends StatefulWidget {
     this.card = false,
     this.edgeToEdge = true,
     this.skeleton,
-  }) : label = null;
+  }) : label = null,
+       // Field is nullable for the default constructor; the parameter stays
+       // non-nullable so that `labelContent: null` is a compile-time error.
+       // ignore: prefer_initializing_formals
+       labelContent = labelContent;
 
   @override
   State<OudsListItem> createState() => _OudsListItemState();
@@ -378,13 +390,6 @@ class _OudsListItemState extends State<OudsListItem> {
   @override
   void initState() {
     super.initState();
-    // The const constructors cannot carry body asserts; enforce the
-    // label / labelContent invariant here instead.
-    assert(
-      widget.label != null || widget.labelContent != null,
-      'Either label or labelContent must be provided; use OudsListItem.labelContent '
-      'for a custom label widget.',
-    );
     _focusNode = FocusNode();
     _focusNode.addListener(_onFocusChange);
   }
