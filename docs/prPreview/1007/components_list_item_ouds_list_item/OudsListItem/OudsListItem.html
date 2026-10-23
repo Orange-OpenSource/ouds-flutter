@@ -55,7 +55,7 @@
     <section class="multi-line-signature">
       const
       <span class="name ">OudsListItem</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
-<li><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span></li>
+<li><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span></li>
 <li><span class="parameter" id="param-size"><span class="type-annotation"><a href="../../components_list_item_ouds_list_item/OudsListItemSize.html">OudsListItemSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsListItemSize.defaultSize</span>, </span></li>
 <li><span class="parameter" id="param-contentAlignment"><span class="type-annotation"><a href="../../components_list_item_ouds_list_item/OudsListItemContentAlignment.html">OudsListItemContentAlignment</a></span> <span class="parameter-name">contentAlignment</span> = <span class="default-value">OudsListItemDefaults.contentAlignment</span>, </span></li>
 <li><span class="parameter" id="param-overline"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">overline</span>, </span></li>
@@ -93,7 +93,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">const OudsListItem({
   super.key,
-  required this.label,
+  required String label,
   this.size = OudsListItemSize.defaultSize,
   this.contentAlignment = OudsListItemDefaults.contentAlignment,
   this.overline,
@@ -114,7 +114,11 @@
   this.card = false,
   this.edgeToEdge = true,
   this.skeleton,
-}) : labelContent = null;</code></pre>
+  &#47;&#47; Field is nullable for the .labelContent constructor; the parameter stays
+  &#47;&#47; non-nullable so that `label: null` is a compile-time error.
+  &#47;&#47; ignore: prefer_initializing_formals
+}) : label = label,
+     labelContent = null;</code></pre>
 </section>
 
 

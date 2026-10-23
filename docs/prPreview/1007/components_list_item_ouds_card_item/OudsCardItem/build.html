@@ -132,7 +132,8 @@ Widget build(BuildContext context) {
     );
   }
   return OudsListItem(
-    label: label,
+    &#47;&#47; Safe: the constructors guarantee label != null when labelContent == null.
+    label: label!,
     size: OudsListItemSize.defaultSize,
     contentAlignment: contentAlignment,
     overline: overline,
