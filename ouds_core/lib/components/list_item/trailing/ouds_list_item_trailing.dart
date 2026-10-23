@@ -165,6 +165,10 @@ class OudsListItemTrailingTag extends OudsListItemTrailing {
 /// ```
 class OudsListItemTrailingIcon extends OudsListItemTrailing {
   /// The icon status that drives both the asset and its color.
+  ///
+  /// Functional statuses ([Positive], [Info], [Warning], [Negative]) use fixed
+  /// icons. The contextual status ([Neutral]) accepts a custom icon asset
+  /// path. [Accent] is not supported in list item icon slots.
   final OudsIconStatus iconStatus;
 
   /// Size of the icon. Defaults to [OudsListItemIconSize.medium].
@@ -176,10 +180,16 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
   final OudsListItemIconSize size;
 
   /// Creates a trailing icon configuration.
+  ///
+  /// Throws an [AssertionError] if [iconStatus] is [Accent].
   const OudsListItemTrailingIcon(
     this.iconStatus, {
     this.size = OudsListItemIconSize.medium,
-  });
+  }) : assert(
+         iconStatus is! Accent,
+         'Accent is not supported in list item icon slots. '
+         'Use Neutral with a custom icon instead.',
+       );
 }
 
 // ---------------------------------------------------------------------------

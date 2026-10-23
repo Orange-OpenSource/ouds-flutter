@@ -18,7 +18,6 @@ import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customizatio
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_tabs.dart';
@@ -75,21 +74,6 @@ class _ListItemCustomizationPanelState
   bool get _isSmall =>
       widget.variant == ListItemDemoVariant.smallListItem ||
       widget.variant == ListItemDemoVariant.smallCardItem;
-
-  CustomizationDropdownMenu<StatusEnum> _buildStatusDropdown({
-    required List<StatusEnum> options,
-    required int selectedItemIndex,
-    required StatusEnum selectedOption,
-    required void Function(StatusEnum) onChanged,
-  }) {
-    return ListItemCustomizationUtils.buildStatusDropdown(
-      context: context,
-      options: options,
-      selectedItemIndex: selectedItemIndex,
-      selectedOption: selectedOption,
-      onChanged: (value) => setState(() => onChanged(value)),
-    );
-  }
 
   @override
   void initState() {
@@ -299,17 +283,19 @@ class _ListItemCustomizationPanelState
           },
         ),
       if (customizationState.leading == ListItemLeadingEnum.icon)
-        _buildStatusDropdown(
+        CustomizableChips<StatusEnum>(
+          title: StatusEnum.enumName(context),
           options: customizationState.leadingIconStatusState.list,
-          selectedItemIndex: customizationState.leadingIconStatusIndex,
           selectedOption: customizationState.leadingIconStatus,
-          onChanged: (value) {
-            customizationState.leadingIconStatus = value;
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.leadingIconStatus = selectedOption;
+            });
           },
         ),
       if (customizationState.leading == ListItemLeadingEnum.icon &&
-          (customizationState.leadingIconStatus == StatusEnum.neutral ||
-              customizationState.leadingIconStatus == StatusEnum.accent))
+          customizationState.leadingIconStatus == StatusEnum.neutral)
         CustomizableChips<TintedEnum>(
           title: TintedEnum.enumName(context),
           options: customizationState.tintedState.list,
@@ -462,17 +448,19 @@ class _ListItemCustomizationPanelState
           },
         ),
       if (customizationState.trailing == ListItemTrailingEnum.icon)
-        _buildStatusDropdown(
+        CustomizableChips<StatusEnum>(
+          title: StatusEnum.enumName(context),
           options: customizationState.trailingIconStatusState.list,
-          selectedItemIndex: customizationState.trailingIconStatusIndex,
           selectedOption: customizationState.trailingIconStatus,
-          onChanged: (value) {
-            customizationState.trailingIconStatus = value;
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.trailingIconStatus = selectedOption;
+            });
           },
         ),
       if (customizationState.trailing == ListItemTrailingEnum.icon &&
-          (customizationState.trailingIconStatus == StatusEnum.neutral ||
-              customizationState.trailingIconStatus == StatusEnum.accent))
+          customizationState.trailingIconStatus == StatusEnum.neutral)
         CustomizableChips<TintedEnum>(
           title: TintedEnum.enumName(context),
           options: customizationState.tintedState.list,

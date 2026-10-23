@@ -40,7 +40,6 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -48,51 +47,6 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// Helpers used to build and configure the list item demo previews.
 class ListItemCustomizationUtils {
   const ListItemCustomizationUtils._();
-
-  /// Returns the background color for the icon status dropdown chip.
-  static Color getIconStatusColor(BuildContext context, StatusEnum status) {
-    final theme = OudsTheme.of(context).colorScheme(context);
-    return switch (status) {
-      StatusEnum.neutral => theme.surfaceSecondary,
-      StatusEnum.accent => theme.surfaceStatusAccentMuted,
-      StatusEnum.positive => theme.surfaceStatusPositiveMuted,
-      StatusEnum.info => theme.surfaceStatusInfoMuted,
-      StatusEnum.warning => theme.surfaceStatusWarningMuted,
-      StatusEnum.negative => theme.surfaceStatusNegativeMuted,
-    };
-  }
-
-  /// Status dropdown shared by the four list item demo screens.
-  ///
-  /// Each entry is prefixed by a color chip using [getIconStatusColor].
-  /// Callers are expected to wrap [onChanged] in `setState`.
-  static CustomizationDropdownMenu<StatusEnum> buildStatusDropdown({
-    required BuildContext context,
-    required List<StatusEnum> options,
-    required int selectedItemIndex,
-    required StatusEnum selectedOption,
-    required void Function(StatusEnum) onChanged,
-  }) {
-    final chipSize = OudsTheme.of(context).spaceScheme(context).fixedMedium;
-    return CustomizationDropdownMenu<StatusEnum>(
-      label: StatusEnum.enumName(context),
-      options: options,
-      selectedItemIndex: selectedItemIndex,
-      selectedOption: selectedOption,
-      getText: (option) => option.stringValue(context),
-      onSelectionChange: (value, index) => onChanged(value),
-      itemLeadingIcons: options.map((status) {
-        return () => Container(
-          width: chipSize,
-          height: chipSize,
-          decoration: BoxDecoration(
-            color: getIconStatusColor(context, status),
-            shape: BoxShape.rectangle,
-          ),
-        );
-      }).toList(),
-    );
-  }
 
   /// Badge customization controls for the trailing "badge" option, shared by
   /// the four list item demo screens.
@@ -102,6 +56,13 @@ class ListItemCustomizationUtils {
     required FocusNode countFocus,
   }) {
     return [
+      CustomizableSwitch(
+        title: context.l10n.app_common_enabled_label,
+        value: state.trailingBadgeEnabled,
+        onChanged: (value) {
+          state.trailingBadgeEnabled = value;
+        },
+      ),
       CustomizableChips<BadgeEnumType>(
         title: BadgeEnumType.enumName(context),
         options: const [BadgeEnumType.standard, BadgeEnumType.count],
@@ -142,20 +103,13 @@ class ListItemCustomizationUtils {
           }
         },
       ),
-      buildStatusDropdown(
-        context: context,
+      CustomizableChips<StatusEnum>(
+        title: StatusEnum.enumName(context),
         options: state.trailingBadgeStatusState.list,
-        selectedItemIndex: state.trailingBadgeStatusIndex,
         selectedOption: state.trailingBadgeStatus,
-        onChanged: (value) {
-          state.trailingBadgeStatus = value;
-        },
-      ),
-      CustomizableSwitch(
-        title: context.l10n.app_common_enabled_label,
-        value: state.trailingBadgeEnabled,
-        onChanged: (value) {
-          state.trailingBadgeEnabled = value;
+        getText: (option) => option.stringValue(context),
+        onSelected: (selectedOption) {
+          state.trailingBadgeStatus = selectedOption;
         },
       ),
     ];
@@ -187,13 +141,13 @@ class ListItemCustomizationUtils {
           state.trailingTagAppearance = selectedOption;
         },
       ),
-      buildStatusDropdown(
-        context: context,
+      CustomizableChips<StatusEnum>(
+        title: StatusEnum.enumName(context),
         options: state.trailingTagStatusState.list,
-        selectedItemIndex: state.trailingTagStatusIndex,
         selectedOption: state.trailingTagStatus,
-        onChanged: (value) {
-          state.trailingTagStatus = value;
+        getText: (option) => option.stringValue(context),
+        onSelected: (selectedOption) {
+          state.trailingTagStatus = selectedOption;
         },
       ),
       CustomizableChips<TagEnumLayout>(
@@ -489,6 +443,7 @@ class ListItemCustomizationUtils {
     final theme = OudsTheme.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
+        horizontal: theme.spaceScheme(context).fixedSmall,
         vertical: theme.spaceScheme(context).fixedSmall,
       ),
       child: OudsAlertMessage(

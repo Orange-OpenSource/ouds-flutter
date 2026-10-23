@@ -439,4 +439,48 @@ void main() {
       expect(layout.visible, isFalse);
     });
   });
+
+  group('icon status Accent rejection', () {
+    test('rejects Accent in leading and trailing icon slots', () {
+      expect(
+        () => OudsListItemLeadingIcon(Accent()),
+        throwsAssertionError,
+        reason: 'OudsListItemLeadingIcon must reject Accent',
+      );
+      expect(
+        () => OudsListItemTrailingIcon(Accent()),
+        throwsAssertionError,
+        reason: 'OudsListItemTrailingIcon must reject Accent',
+      );
+      expect(
+        () => OudsSmallListItemLeadingIcon(Accent()),
+        throwsAssertionError,
+        reason: 'OudsSmallListItemLeadingIcon must reject Accent',
+      );
+      expect(
+        () => OudsSmallListItemTrailingIcon(Accent()),
+        throwsAssertionError,
+        reason: 'OudsSmallListItemTrailingIcon must reject Accent',
+      );
+    });
+
+    test('accepts Neutral and functional statuses', () {
+      expect(
+        OudsListItemLeadingIcon(Neutral(icon: 'assets/star.svg')),
+        isA<OudsListItemLeadingIcon>(),
+      );
+      expect(
+        OudsListItemTrailingIcon(Positive()),
+        isA<OudsListItemTrailingIcon>(),
+      );
+      expect(
+        OudsSmallListItemLeadingIcon(Info()),
+        isA<OudsSmallListItemLeadingIcon>(),
+      );
+      expect(
+        OudsSmallListItemTrailingIcon(Negative()),
+        isA<OudsSmallListItemTrailingIcon>(),
+      );
+    });
+  });
 }

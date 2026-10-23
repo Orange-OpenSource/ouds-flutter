@@ -1,4 +1,5 @@
 # Migration Guide
+- [v3.0.0 → v3.1.0](#v300--v310)
 - [v2.1.0 → v3.0.0](#v210--v300)
 - [v2.0.0 → v2.1.0](#v200--v210)
 - [v1.3.1 → v2.0.0](#v131--v200)
@@ -7,6 +8,85 @@
 - [v1.1.x → v1.2.0](#v11x--v120)
 - [v1.0.0 → v1.1.1](#v100--v111)
 - [Support](#support)
+
+## v3.0.0 → v3.1.0
+
+### Overview
+
+This release refines the `List item` component family (`OudsListItem`, `OudsSmallListItem`, `OudsCardItem`, `OudsSmallCardItem`).
+
+### Before You Begin
+
+#### Prerequisites
+
+- Use version 3.0.0
+
+### Breaking Changes
+
+#### 1. List item icon slots — `Accent` status no longer supported
+
+The leading and trailing icon slots of the list item family no longer accept the `Accent` icon status, in line with the OUDS Android list item icon statuses. Passing `Accent` now throws an `AssertionError` in debug builds. Use `Neutral` with a custom icon asset instead.
+
+Affected classes: `OudsListItemLeadingIcon`, `OudsListItemTrailingIcon`, `OudsSmallListItemLeadingIcon`, `OudsSmallListItemTrailingIcon`.
+
+**Before:**
+
+```dart
+OudsListItemLeadingIcon(Accent(icon: 'assets/icons/star.svg'))
+OudsSmallListItemTrailingIcon(Accent(icon: 'assets/icons/star.svg'))
+```
+
+**After:**
+
+```dart
+OudsListItemLeadingIcon(Neutral(icon: 'assets/icons/star.svg'))
+OudsSmallListItemTrailingIcon(Neutral(icon: 'assets/icons/star.svg'))
+```
+
+**Required actions:**
+
+- Replace `Accent(icon: ...)` with `Neutral(icon: ...)` in all list item leading and trailing icon slots.
+
+#### 2. List item — `Text`, `Flag` and `Avatar` leading/trailing slots removed
+
+The `OudsListItemLeadingText`, `OudsListItemLeadingFlag`, `OudsListItemLeadingAvatar`, `OudsListItemTrailingFlag` and `OudsListItemTrailingAvatar` slots have been removed. Use the new generic content slots `OudsListItemLeadingContent` and `OudsListItemTrailingContent` instead: they accept a builder receiving the current `OudsListItemControlState`, so any widget (text, flag, avatar, …) can be rendered with knowledge of the list item enabled state.
+
+**Before:**
+
+```dart
+OudsListItem(
+  leading: OudsListItemLeadingText('99€', extraLabel: 'TTC', style: OudsListItemTextStyle.labelStrong),
+  trailing: OudsListItemTrailingFlag(OudsFlag('fr')),
+)
+OudsListItem(
+  leading: OudsListItemLeadingAvatar(OudsAvatar(monogram: 'JD')),
+)
+```
+
+**After:**
+
+```dart
+OudsListItem(
+  leading: OudsListItemLeadingContent((context, state) => Text('99€')),
+  trailing: OudsListItemTrailingContent((context, state) => OudsFlag('fr')),
+)
+OudsListItem(
+  leading: OudsListItemLeadingContent((context, state) => OudsAvatar(monogram: 'JD')),
+)
+```
+
+**Required actions:**
+
+- Replace `OudsListItemLeadingText` / `OudsListItemLeadingFlag` / `OudsListItemLeadingAvatar` with `OudsListItemLeadingContent((context, state) => ...)`.
+- Replace `OudsListItemTrailingFlag` / `OudsListItemTrailingAvatar` with `OudsListItemTrailingContent((context, state) => ...)`.
+
+### Component Updates (Non-breaking)
+
+| Component | Change |
+|-----------|--------|
+| List Item | Added `OudsListItem.labelContent` / `OudsCardItem.labelContent` constructors for a fully custom label widget, `belowTextContent`/`bottomContent` slots (Default size only), `OudsListItemLeadingContent`/`OudsListItemTrailingContent` for custom leading/trailing widgets receiving the current `OudsListItemControlState`, `OudsSmallListItemTrailingBadge`/`OudsSmallListItemTrailingTag` trailing options on `OudsSmallListItem` and `OudsSmallCardItem`, and a `skeleton` parameter on `OudsListItem`, `OudsCardItem`, `OudsSmallListItem` and `OudsSmallCardItem` |
+
+---
 
 ## v2.1.0 → v3.0.0
 
@@ -290,7 +370,6 @@ The OUDS icon library has been updated to version 2.3.0. Some icon names or asse
 | Alert Message                    | Updated to v1.2.0 — default vocalization on "info" status |
 | Filter Chip / Suggestion Chip    | Updated to v1.5.0 |
 | Alert / Badge / Tag / List items | `OudsIconStatus.Neutral` and `OudsIconStatus.Accent` gained `tinted`, `backgroundColor` and `semanticsLabel` parameters to control custom icon tinting, background and accessibility label |
-| List Item                          | Added `OudsListItem.labelContent` constructor for a fully custom label widget, `belowTextContent`/`bottomContent` slots (Default size only), `OudsListItemLeadingContent`/`OudsListItemTrailingContent` for custom leading/trailing widgets receiving the current `OudsListItemControlState`, and `OudsSmallListItemTrailingBadge`/`OudsSmallListItemTrailingTag` trailing options on `OudsSmallListItem` |
 | Progress Indicator               | Updated to v1.2.0 — added `size` parameter to `OudsCircularProgressIndicator` for button integration; `semanticLabel` renamed to `semanticsLabel`; `OudsLinearProgressIndicator` helper text refactored into a single `OudsLinearProgressIndicatorHelperText` object; `OudsCircularProgressIndicator` gains optional `helperText` |
 | Text Input                       | Updated to v1.4.1 |
 | Password Input                   | Updated to v1.3.1 |

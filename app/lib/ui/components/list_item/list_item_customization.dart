@@ -105,8 +105,8 @@ class ListItemCustomizationState
     contentAlignmentState = ContentAlignmentState(setState);
     leadingState = LeadingState(setState);
     trailingState = TrailingState(setState);
-    leadingIconStatusState = IconStatusState(setState);
-    trailingIconStatusState = IconStatusState(setState);
+    leadingIconStatusState = IconStatusState(setState, excludeAccent: true);
+    trailingIconStatusState = IconStatusState(setState, excludeAccent: true);
     dividerState = BoolState(setState, initial: true);
     backgroundState = BoolState(setState);
     boldLabelState = BoolState(setState);
@@ -202,13 +202,11 @@ class ListItemCustomizationState
   set trailing(ListItemTrailingEnum value) => trailingState.selected = value;
 
   StatusEnum get leadingIconStatus => leadingIconStatusState.selected;
-  int get leadingIconStatusIndex => leadingIconStatusState.index;
   set leadingIconStatus(StatusEnum value) {
     leadingIconStatusState.selected = value;
   }
 
   StatusEnum get trailingIconStatus => trailingIconStatusState.selected;
-  int get trailingIconStatusIndex => trailingIconStatusState.index;
   set trailingIconStatus(StatusEnum value) {
     trailingIconStatusState.selected = value;
   }
@@ -296,7 +294,6 @@ class ListItemCustomizationState
       trailingBadgeSizeState.selected = value;
 
   StatusEnum get trailingBadgeStatus => trailingBadgeStatusState.selected;
-  int get trailingBadgeStatusIndex => trailingBadgeStatusState.index;
   set trailingBadgeStatus(StatusEnum value) =>
       trailingBadgeStatusState.selected = value;
 
@@ -322,7 +319,6 @@ class ListItemCustomizationState
       trailingTagLayoutState.selected = value;
 
   StatusEnum get trailingTagStatus => trailingTagStatusState.selected;
-  int get trailingTagStatusIndex => trailingTagStatusState.index;
   set trailingTagStatus(StatusEnum value) =>
       trailingTagStatusState.selected = value;
 
@@ -423,22 +419,27 @@ class TrailingState {
 }
 
 class IconStatusState {
-  IconStatusState(this._setState, {StatusEnum initial = StatusEnum.neutral})
-    : _selected = initial,
-      _index = StatusEnum.values.indexOf(initial);
+  IconStatusState(
+    this._setState, {
+    StatusEnum initial = StatusEnum.neutral,
+    // Accent is not supported by list item icon slots, but is by badge and tag.
+    bool excludeAccent = false,
+  }) : _selected = initial,
+       list = List.unmodifiable(
+         excludeAccent
+             ? StatusEnum.values.where((status) => status != StatusEnum.accent)
+             : StatusEnum.values,
+       );
 
   final void Function(void Function()) _setState;
   StatusEnum _selected;
-  int _index;
-  final List<StatusEnum> list = StatusEnum.values;
+  final List<StatusEnum> list;
 
   StatusEnum get selected => _selected;
-  int get index => _index;
 
   set selected(StatusEnum newValue) {
     _setState(() {
       _selected = newValue;
-      _index = list.indexOf(newValue);
     });
   }
 }
