@@ -159,7 +159,7 @@ class OudsCardItem extends StatelessWidget {
   /// Creates an OUDS card item.
   const OudsCardItem({
     super.key,
-    required this.label,
+    required String label,
     this.contentAlignment = OudsCardItemDefaults.contentAlignment,
     this.decoration = OudsCardItemDefaults.decoration,
     this.overline,
@@ -175,13 +175,21 @@ class OudsCardItem extends StatelessWidget {
     this.onTap,
     this.indicator = OudsCardItemDefaults.indicator,
     this.skeleton,
-  }) : labelContent = null;
+    // Field is nullable for the .labelContent constructor; the parameter stays
+    // non-nullable so that `label: null` is a compile-time error.
+    // ignore: prefer_initializing_formals
+  }) : label = label,
+       labelContent = null;
 
   /// Creates an OUDS card item with fully custom [labelContent] instead of a
   /// plain text label.
   const OudsCardItem.labelContent({
     super.key,
-    required this.labelContent,
+    required Widget Function(
+      BuildContext context,
+      OudsListItemControlState state,
+    )
+    labelContent,
     this.contentAlignment = OudsCardItemDefaults.contentAlignment,
     this.decoration = OudsCardItemDefaults.decoration,
     this.overline,
@@ -197,7 +205,11 @@ class OudsCardItem extends StatelessWidget {
     this.onTap,
     this.indicator = OudsCardItemDefaults.indicator,
     this.skeleton,
-  }) : label = null;
+  }) : label = null,
+       // Field is nullable for the default constructor; the parameter stays
+       // non-nullable so that `labelContent: null` is a compile-time error.
+       // ignore: prefer_initializing_formals
+       labelContent = labelContent;
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +236,8 @@ class OudsCardItem extends StatelessWidget {
       );
     }
     return OudsListItem(
-      label: label,
+      // Safe: the constructors guarantee label != null when labelContent == null.
+      label: label!,
       size: OudsListItemSize.defaultSize,
       contentAlignment: contentAlignment,
       overline: overline,
