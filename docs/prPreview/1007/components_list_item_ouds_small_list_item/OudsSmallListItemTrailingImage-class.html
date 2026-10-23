@@ -56,8 +56,24 @@
 <section class="desc markdown">
   <p>Trailing image slot for <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem-class.html">OudsSmallListItem</a>.</p>
 <p>Always rendered at <code>OudsListItemAssetSize.small</code>.</p>
+<p>The image comes either from a local <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage/asset.html">asset</a> or from an asynchronous
+source (<a href="https://api.flutter.dev/flutter/painting/NetworkImage-class.html">NetworkImage</a>, <a href="https://api.flutter.dev/flutter/painting/MemoryImage-class.html">MemoryImage</a> or any custom <a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a>)
+via the <code>provider</code> named constructor — the Flutter counterpart of passing
+an async <code>Painter</code> on Android.</p>
 <p>Example:</p>
 <pre class="language-dart"><code class="language-dart">OudsSmallListItemTrailingImage(asset: 'assets/photo.jpg')
+// Asynchronous image from the network, with a placeholder shown while
+// loading (and if loading fails)
+OudsSmallListItemTrailingImage.provider(
+  provider: NetworkImage('https://example.com/photo.jpg'),
+  placeholder: Image.asset('assets/placeholder.jpg'),
+)
+// Or from any other ImageProvider (memory, file, app-provided caching
+// library), with a custom placeholder
+OudsSmallListItemTrailingImage.provider(
+  provider: MemoryImage(bytes),
+  placeholder: const ColoredBox(color: Color(0xFFEFEFEF)),
+)
 </code></pre>
 </section>
 
@@ -93,7 +109,15 @@
           <span class="name"><a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage/OudsSmallListItemTrailingImage.html">OudsSmallListItemTrailingImage</a></span><span class="signature">({<span class="parameter" id="param-asset"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">asset</span>, </span><span class="parameter" id="param-semanticsLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticsLabel</span>, </span><span class="parameter" id="param-format"><span class="type-annotation">OudsListItemImageFormat</span> <span class="parameter-name">format</span> = <span class="default-value">OudsListItemImageFormat.square</span>, </span><span class="parameter" id="param-rounded"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">rounded</span> = <span class="default-value">false</span></span>})</span>
         </dt>
         <dd>
-          Creates a compact trailing image configuration.
+          Creates a compact trailing image configuration from a local asset.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="OudsSmallListItemTrailingImage.provider" class="callable">
+          <span class="name"><a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage/OudsSmallListItemTrailingImage.provider.html">OudsSmallListItemTrailingImage.provider</a></span><span class="signature">({<span class="parameter" id="provider-param-provider"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span>?</span> <span class="parameter-name">provider</span>, </span><span class="parameter" id="provider-param-semanticsLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticsLabel</span>, </span><span class="parameter" id="provider-param-format"><span class="type-annotation">OudsListItemImageFormat</span> <span class="parameter-name">format</span> = <span class="default-value">OudsListItemImageFormat.square</span>, </span><span class="parameter" id="provider-param-rounded"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">rounded</span> = <span class="default-value">false</span>, </span><span class="parameter" id="provider-param-placeholder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">placeholder</span></span>})</span>
+        </dt>
+        <dd>
+          Creates a compact trailing image configuration from any <a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a>
+(<a href="https://api.flutter.dev/flutter/painting/NetworkImage-class.html">NetworkImage</a>, <a href="https://api.flutter.dev/flutter/painting/MemoryImage-class.html">MemoryImage</a> or a provider supplied by the app).
             <div class="constructor-modifier features">const</div>
         </dd>
     </dl>
@@ -106,7 +130,7 @@
     <dl class="properties">
         <dt id="asset" class="property">
   <span class="name"><a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage/asset.html">asset</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
   
 
 </dt>
@@ -137,6 +161,32 @@
 <dd class="inherited">
   The hash code for this object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="placeholder" class="property">
+  <span class="name"><a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage/placeholder.html">placeholder</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span>
+  
+
+</dt>
+<dd>
+  Widget displayed in place of the image while <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage/provider.html">provider</a> is loading and
+if loading fails. Ignored for asset images.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="provider" class="property">
+  <span class="name"><a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage/provider.html">provider</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span>?</span>
+  
+
+</dt>
+<dd>
+  Image provider for an image loaded asynchronously or from a non-asset
+source (<a href="https://api.flutter.dev/flutter/painting/NetworkImage-class.html">NetworkImage</a>, <a href="https://api.flutter.dev/flutter/painting/MemoryImage-class.html">MemoryImage</a> or any custom provider).
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 

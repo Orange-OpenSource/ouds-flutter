@@ -149,6 +149,17 @@ OudsListItem(
   label: 'Unavailable',
   enable: false,
 );
+
+// List item with an image loaded from the network and a custom
+// placeholder shown while loading (and if loading fails)
+OudsListItem(
+  label: 'Product',
+  leading: OudsListItemLeadingImage.provider(
+    provider: NetworkImage('https://example.com/photo.jpg'),
+    semanticsLabel: 'Product photo',
+    placeholder: Image.asset('assets/placeholder.jpg'),
+  ),
+);
 </code></pre>
 </section>
 

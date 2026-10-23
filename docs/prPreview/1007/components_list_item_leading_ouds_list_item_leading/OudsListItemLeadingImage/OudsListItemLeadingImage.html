@@ -63,7 +63,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Creates a leading image configuration.</p>
+  <p>Creates a leading image configuration from a local asset.</p>
 </section>
 
 
@@ -71,12 +71,13 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">const OudsListItemLeadingImage({
-  required this.asset,
+  required String this.asset,
   this.semanticsLabel,
   this.size = OudsListItemImageSize.medium,
   this.format = OudsListItemImageFormat.square,
   this.rounded = false,
-});</code></pre>
+}) : provider = null,
+     placeholder = null;</code></pre>
 </section>
 
 
