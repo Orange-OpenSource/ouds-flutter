@@ -54,6 +54,17 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 ///   trailing: OudsSmallListItemTrailingText('99€'),
 ///   onTap: () {},
 /// )
+///
+/// // Small card with an image loaded from the network and a custom
+/// // placeholder shown while loading (and if loading fails)
+/// OudsSmallCardItem(
+///   label: 'Product',
+///   leading: OudsSmallListItemLeadingImage.provider(
+///     provider: NetworkImage('https://example.com/photo.jpg'),
+///     semanticsLabel: 'Product photo',
+///     placeholder: Image.asset('assets/placeholder.jpg'),
+///   ),
+/// )
 /// ```
 class OudsSmallCardItem extends StatelessWidget {
   /// The mandatory main label displayed in the center column.

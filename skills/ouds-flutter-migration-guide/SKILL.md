@@ -681,7 +681,7 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
-| `v3.0.0 → v3.1.0` | Partial | Yes | List item icon slots (`OudsListItemLeadingIcon`, `OudsListItemTrailingIcon`, `OudsSmallListItemLeadingIcon`, `OudsSmallListItemTrailingIcon`) no longer accept the `Accent` status (breaking, use `Neutral` with a custom icon); `OudsListItemLeadingText`/`LeadingFlag`/`LeadingAvatar`/`TrailingFlag`/`TrailingAvatar` slots removed in favor of `OudsListItemLeadingContent`/`OudsListItemTrailingContent` (breaking); non-breaking list item additions: `labelContent`, `belowTextContent`/`bottomContent`, small-item badge/tag trailing, `skeleton` parameter |
+| `v3.0.0 → v3.1.0` | Partial | Yes | List item icon slots (`OudsListItemLeadingIcon`, `OudsListItemTrailingIcon`, `OudsSmallListItemLeadingIcon`, `OudsSmallListItemTrailingIcon`) no longer accept the `Accent` status (breaking, use `Neutral` with a custom icon); `OudsListItemLeadingText`/`LeadingFlag`/`LeadingAvatar`/`TrailingFlag`/`TrailingAvatar` slots removed in favor of `OudsListItemLeadingContent`/`OudsListItemTrailingContent` (breaking, flag/avatar back in v1.0); non-breaking list item additions: `labelContent`, `belowTextContent`/`bottomContent`, small-item badge/tag trailing, `skeleton` parameter, async image slot `.provider` with `placeholder` |
 | `v2.1.0 → v3.0.0` | No | Yes | Shared `OudsIcon` type replacing `OudsLinkIcon`/`OudsChipIcon`/`OudsTextInputPrefixIcon`/`OudsControlItemIcon` (breaking) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsCheckboxItem`, `OudsRadioButtonItem`, `OudsSwitchButtonItem`, typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons; `OudsProgressIndicator` — `semanticLabel` → `semanticsLabel`, helper text API refactored, `left`/`right` → `start`/`end` (breaking); `OudsIconStatus.Neutral`/`Accent` gained `tinted`/`backgroundColor`/`semanticsLabel` (non-breaking); `Link` v2.4.0, icon pack v2.3.0, `OudsListItem` (new component), typography tokens |
 | `v2.0.0 → v2.1.0` | Full | No | `OudsNavigationButton`, `OudsCircularProgressIndicator`, `OudsLinearProgressIndicator`, tokens v2.6.0 |
 | `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
@@ -938,7 +938,7 @@ OudsSmallListItemTrailingIcon(Neutral(icon: 'assets/icons/star.svg'))
 
 #### 3.3.0septies List item — `Text`, `Flag` and `Avatar` leading/trailing slots removed (`v3.0.0 → v3.1.0`, breaking)
 
-The `OudsListItemLeadingText`, `OudsListItemLeadingFlag`, `OudsListItemLeadingAvatar`, `OudsListItemTrailingFlag` and `OudsListItemTrailingAvatar` slots have been removed. Use the new generic content slots `OudsListItemLeadingContent` and `OudsListItemTrailingContent` instead: they accept a builder receiving the current `OudsListItemControlState`, so any widget (text, flag, avatar, …) can be rendered with knowledge of the list item enabled state.
+The `OudsListItemLeadingText`, `OudsListItemLeadingFlag`, `OudsListItemLeadingAvatar`, `OudsListItemTrailingFlag` and `OudsListItemTrailingAvatar` slots have been removed. Use the new generic content slots `OudsListItemLeadingContent` and `OudsListItemTrailingContent` instead: they accept a builder receiving the current `OudsListItemControlState`, so any widget (text, flag, avatar, …) can be rendered with knowledge of the list item enabled state. The `flag` and `avatar` slots are temporarily removed and will be reintroduced in v1.0 alongside the `OudsFlag`/`OudsAvatar` components.
 
 **Before:**
 
@@ -970,6 +970,45 @@ OudsListItem(
 - Replace `OudsListItemTrailingFlag` / `OudsListItemTrailingAvatar` with `OudsListItemTrailingContent((context, state) => ...)`.
 
 Non-breaking list item additions in `v3.0.0 → v3.1.0` (no migration needed): `OudsListItem.labelContent`/`OudsCardItem.labelContent` constructors, `belowTextContent`/`bottomContent` slots (Default size only), `OudsSmallListItemTrailingBadge`/`OudsSmallListItemTrailingTag` on `OudsSmallListItem` and `OudsSmallCardItem`, and a `skeleton` parameter on the four list item widgets.
+
+---
+
+#### 3.3.0octies List item — asynchronous image support (`v3.0.0 → v3.1.0`, non-breaking)
+
+The image slots of `OudsListItem`, `OudsSmallListItem`, `OudsCardItem` and `OudsSmallCardItem` (`OudsListItemLeadingImage`/`OudsListItemTrailingImage`, `OudsSmallListItemLeadingImage`/`OudsSmallListItemTrailingImage`) now accept images loaded asynchronously. A new named constructor is available on each slot class, alongside the existing asset constructor:
+
+- `.provider(provider: ...)` — accepts any `ImageProvider` (`NetworkImage`, `MemoryImage`, or a provider supplied by the app, e.g. from a caching library) — the Flutter counterpart of passing an async `Painter` on Android
+
+It accepts an optional `placeholder` widget, displayed while the image is loading **and** if loading fails. When `placeholder` is `null`, the image background color (brand-primary surface) shows through as a plain placeholder. Token sizes, format ratio and rounded style apply exactly as for asset images. This is additive and non-breaking — existing `asset:` usages keep working unchanged.
+
+```dart
+// Before — local asset only
+OudsListItem(
+  label: 'Product',
+  leading: OudsListItemLeadingImage(asset: 'assets/photo.jpg'),
+);
+
+// After — image from the network, with a custom placeholder
+OudsListItem(
+  label: 'Product',
+  leading: OudsListItemLeadingImage.provider(
+    provider: NetworkImage('https://example.com/photo.jpg'),
+    semanticsLabel: 'Product photo',
+    placeholder: Image.asset('assets/placeholder.jpg'),
+  ),
+);
+
+// Or from any other ImageProvider (memory, file, app-provided caching library)
+OudsListItem(
+  label: 'Product',
+  leading: OudsListItemLeadingImage.provider(
+    provider: MemoryImage(bytes),
+    placeholder: const ColoredBox(color: Color(0xFFEFEFEF)),
+  ),
+);
+**Required actions:**
+
+- None — this is optional. Use `.provider` when you need to display images loaded from outside the app, and `placeholder` to customize what is shown while loading or on error.
 
 ---
 

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [DemoApp][Library] In library, add component `skeleton` ([#867](https://github.com/Orange-OpenSource/ouds-flutter/issues/867))
 ### Changed
+- [Library] For `list item` components, support asynchronous images with customizable placeholder ([#900](https://github.com/Orange-OpenSource/ouds-flutter/issues/900))
 - [DemoApp][Library] In library, add `list item` component v0.3  ([#957](https://github.com/Orange-OpenSource/ouds-flutter/issues/957))
 - [DemoApp][Library] In library, add `list item` component v0.2  ([#956](https://github.com/Orange-OpenSource/ouds-flutter/issues/956))
 - [DemoApp][Library] For `PIN Code input` component, update to version 1.4 ([#967](https://github.com/Orange-OpenSource/ouds-flutter/issues/967))

@@ -13,7 +13,7 @@
 
 ### Overview
 
-This release refines the `List item` component family (`OudsListItem`, `OudsSmallListItem`, `OudsCardItem`, `OudsSmallCardItem`).
+This release refines the `List item` component family (`OudsListItem`, `OudsSmallListItem`, `OudsCardItem`, `OudsSmallCardItem`) with the v0.2 and v0.3 iterations ([#956](https://github.com/Orange-OpenSource/ouds-flutter/issues/956), [#957](https://github.com/Orange-OpenSource/ouds-flutter/issues/957)): new `labelContent` constructors, `belowTextContent`/`bottomContent` slots, custom `Leading`/`TrailingContent` slots receiving the current control state, small-item badge/tag trailing options, a `skeleton` parameter, and asynchronous image support with customizable placeholders ([#900](https://github.com/Orange-OpenSource/ouds-flutter/issues/900)). It also removes the `Accent` icon status and the leading text, flag and avatar slots from the list item family.
 
 ### Before You Begin
 
@@ -49,7 +49,7 @@ OudsSmallListItemTrailingIcon(Neutral(icon: 'assets/icons/star.svg'))
 
 #### 2. List item — `Text`, `Flag` and `Avatar` leading/trailing slots removed
 
-The `OudsListItemLeadingText`, `OudsListItemLeadingFlag`, `OudsListItemLeadingAvatar`, `OudsListItemTrailingFlag` and `OudsListItemTrailingAvatar` slots have been removed. Use the new generic content slots `OudsListItemLeadingContent` and `OudsListItemTrailingContent` instead: they accept a builder receiving the current `OudsListItemControlState`, so any widget (text, flag, avatar, …) can be rendered with knowledge of the list item enabled state.
+The `OudsListItemLeadingText`, `OudsListItemLeadingFlag`, `OudsListItemLeadingAvatar`, `OudsListItemTrailingFlag` and `OudsListItemTrailingAvatar` slots have been removed. Use the new generic content slots `OudsListItemLeadingContent` and `OudsListItemTrailingContent` instead: they accept a builder receiving the current `OudsListItemControlState`, so any widget (text, flag, avatar, …) can be rendered with knowledge of the list item enabled state. The `flag` and `avatar` slots are temporarily removed and will be reintroduced in v1.0 alongside the `OudsFlag`/`OudsAvatar` components.
 
 **Before:**
 
@@ -84,7 +84,7 @@ OudsListItem(
 
 | Component | Change |
 |-----------|--------|
-| List Item | Added `OudsListItem.labelContent` / `OudsCardItem.labelContent` constructors for a fully custom label widget, `belowTextContent`/`bottomContent` slots (Default size only), `OudsListItemLeadingContent`/`OudsListItemTrailingContent` for custom leading/trailing widgets receiving the current `OudsListItemControlState`, `OudsSmallListItemTrailingBadge`/`OudsSmallListItemTrailingTag` trailing options on `OudsSmallListItem` and `OudsSmallCardItem`, and a `skeleton` parameter on `OudsListItem`, `OudsCardItem`, `OudsSmallListItem` and `OudsSmallCardItem` |
+| List Item | Added `OudsListItem.labelContent` / `OudsCardItem.labelContent` constructors for a fully custom label widget, `belowTextContent`/`bottomContent` slots (Default size only), `OudsListItemLeadingContent`/`OudsListItemTrailingContent` for custom leading/trailing widgets receiving the current `OudsListItemControlState`, `OudsSmallListItemTrailingBadge`/`OudsSmallListItemTrailingTag` trailing options on `OudsSmallListItem` and `OudsSmallCardItem`, a `skeleton` parameter on `OudsListItem`, `OudsCardItem`, `OudsSmallListItem` and `OudsSmallCardItem`, and asynchronous image support on the image slots (`OudsListItemLeadingImage`/`TrailingImage`, `OudsSmallListItemLeadingImage`/`TrailingImage`) via the new `.provider(ImageProvider)` constructor with an optional custom `placeholder` shown while loading and on error |
 
 ---
 

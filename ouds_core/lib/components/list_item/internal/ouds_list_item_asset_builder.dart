@@ -44,7 +44,7 @@ class OudsListItemAssetBuilder {
   ///   consuming app, pass the package name so it resolves correctly. Leave
   ///   `null` for assets declared by the app itself (the common case for
   ///   user-supplied list item leading/trailing images).
-  static Widget buildImage(
+  static Widget _buildImage(
     BuildContext context,
     String asset,
     OudsListItemAssetSize size,
@@ -54,19 +54,14 @@ class OudsListItemAssetBuilder {
     Color? backgroundColor,
     String? package,
   }) {
-    final height = size.value(context);
-    final width = height * format.ratio;
+    final (:width, :height, :borderRadius) = _imageLayout(
+      context,
+      size,
+      format,
+      rounded: rounded,
+    );
 
-    final borderRadius = rounded
-        ? BorderRadius.circular(
-            OudsTheme.of(context)
-                .componentsTokens(context)
-                .controlListItem
-                .borderRadiusMediaRounded,
-          )
-        : null;
-
-    // Shared image/background rendering logic — reused by other components.
+    // Shared image/background rendering logic (see OudsAssetImageUtils).
     return Semantics(
       label: semanticsLabel,
       child: OudsAssetImageUtils.buildImageWithBackground(
@@ -77,6 +72,134 @@ class OudsListItemAssetBuilder {
         borderRadius: borderRadius,
         package: package,
       ),
+    );
+  }
+
+  /// Token-based image layout shared by asset and asynchronous images:
+  /// height from the [size] token, width from height × [format] ratio, and
+  /// the token-defined rounded media radius when [rounded] is set.
+  static ({double width, double height, BorderRadius? borderRadius})
+  _imageLayout(
+    BuildContext context,
+    OudsListItemAssetSize size,
+    OudsListItemImageFormat format, {
+    bool rounded = false,
+  }) {
+    final height = size.value(context);
+    return (
+      width: height * format.ratio,
+      height: height,
+      borderRadius: rounded
+          ? BorderRadius.circular(
+              OudsTheme.of(context)
+                  .componentsTokens(context)
+                  .controlListItem
+                  .borderRadiusMediaRounded,
+            )
+          : null,
+    );
+  }
+
+  /// Builds an asynchronous image using list-item token sizes and [format]
+  /// ratio.
+  ///
+  /// Accepts any [ImageProvider] ([NetworkImage], [MemoryImage] or a provider
+  /// supplied by the application) — the Flutter counterpart of the Android
+  /// `Painter` resolved by the app (e.g. with Coil).
+  ///
+  /// While the image is loading, and if loading fails, [placeholder] is
+  /// displayed instead. When [placeholder] is `null`, [backgroundColor]
+  /// (if provided) simply shows through as a plain placeholder.
+  ///
+  /// - [rounded] — when `true`, applies rounded corners using token-defined radius.
+  /// - [semanticsLabel] — when provided, exposed to the accessibility tree;
+  ///   when `null`, the image is excluded from semantics (decorative).
+  /// - [backgroundColor] — optional background color shown behind the image;
+  ///   also acts as the default placeholder when [placeholder] is `null`.
+  static Widget _buildAsyncImage(
+    BuildContext context,
+    ImageProvider provider,
+    OudsListItemAssetSize size,
+    OudsListItemImageFormat format, {
+    bool rounded = false,
+    String? semanticsLabel,
+    Color? backgroundColor,
+    Widget? placeholder,
+  }) {
+    final (:width, :height, :borderRadius) = _imageLayout(
+      context,
+      size,
+      format,
+      rounded: rounded,
+    );
+
+    // Without a custom placeholder, keep the image footprint so the
+    // background color (if any) shows through while loading.
+    Widget placeholderWidget() =>
+        placeholder ?? SizedBox(width: width, height: height);
+
+    return Semantics(
+      label: semanticsLabel,
+      child: OudsAssetImageUtils.buildWidgetWithBackground(
+        width: width,
+        height: height,
+        backgroundColor: backgroundColor,
+        borderRadius: borderRadius,
+        image: Image(
+          image: provider,
+          width: width,
+          height: height,
+          fit: BoxFit.cover,
+          excludeFromSemantics: true,
+          // Show the placeholder until the first frame is ready…
+          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) =>
+              (wasSynchronouslyLoaded || frame != null)
+              ? child
+              : placeholderWidget(),
+          // …and keep it visible when loading failed.
+          errorBuilder: (context, error, stackTrace) => placeholderWidget(),
+        ),
+      ),
+    );
+  }
+
+  /// Builds a leading or trailing image slot: asynchronous rendering when a
+  /// [provider] is given, local [asset] rendering otherwise. Both share the
+  /// same token sizes, brand-primary background and rounded style.
+  static Widget buildImageSlot(
+    BuildContext context, {
+    String? asset,
+    ImageProvider? provider,
+    Widget? placeholder,
+    String? semanticsLabel,
+    required OudsListItemAssetSize size,
+    required OudsListItemImageFormat format,
+    required bool rounded,
+  }) {
+    final backgroundColor = OudsTheme.of(
+      context,
+    ).colorScheme(context).surfaceBrandPrimary;
+
+    if (provider != null) {
+      return _buildAsyncImage(
+        context,
+        provider,
+        size,
+        format,
+        rounded: rounded,
+        semanticsLabel: semanticsLabel,
+        backgroundColor: backgroundColor,
+        placeholder: placeholder,
+      );
+    }
+    return _buildImage(
+      context,
+      asset!,
+      size,
+      format,
+      rounded: rounded,
+      semanticsLabel: semanticsLabel,
+      backgroundColor: backgroundColor,
     );
   }
 

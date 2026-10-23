@@ -61,14 +61,34 @@ class OudsAssetImageUtils {
             excludeFromSemantics: true,
           );
 
+    return buildWidgetWithBackground(
+      image: imageWidget,
+      width: width,
+      height: height,
+      backgroundColor: backgroundColor,
+      borderRadius: borderRadius,
+    );
+  }
+
+  /// Wraps an already-built [image] widget with the same optional
+  /// [backgroundColor] and [borderRadius] rendering as
+  /// [buildImageWithBackground], for any image source (asset, network,
+  /// custom widget).
+  static Widget buildWidgetWithBackground({
+    required Widget image,
+    required double width,
+    required double height,
+    Color? backgroundColor,
+    BorderRadius? borderRadius,
+  }) {
     final Widget result = backgroundColor != null
         ? Container(
             color: backgroundColor,
             width: width,
             height: height,
-            child: imageWidget,
+            child: image,
           )
-        : imageWidget;
+        : image;
 
     if (borderRadius == null) return result;
 

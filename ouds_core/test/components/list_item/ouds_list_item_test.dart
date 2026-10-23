@@ -10,6 +10,7 @@ import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
+import '../../helpers/async_image_test_helpers.dart';
 import '../../helpers/testable_widget_helper.dart';
 
 void main() {
@@ -481,6 +482,135 @@ void main() {
         OudsSmallListItemTrailingIcon(Negative()),
         isA<OudsSmallListItemTrailingIcon>(),
       );
+    });
+  });
+
+  group('async image', () {
+    test('provider constructors keep the provider and no asset', () {
+      const leading = OudsListItemLeadingImage.provider(
+        provider: NetworkImage('https://example.test/a.png'),
+      );
+      const trailing = OudsListItemTrailingImage.provider(
+        provider: NetworkImage('https://example.test/b.png'),
+      );
+
+      expect(leading.asset, isNull);
+      expect(leading.provider, isA<NetworkImage>());
+      expect(trailing.asset, isNull);
+      expect(trailing.provider, isA<NetworkImage>());
+    });
+
+    testWidgets('shows the placeholder while the image is loading', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsListItem(
+            label: 'Async item',
+            leading: OudsListItemLeadingImage.provider(
+              provider: NeverCompletingImageProvider(),
+              placeholder: const SizedBox(
+                key: Key('placeholder'),
+                width: 10,
+                height: 10,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.byKey(const Key('placeholder')), findsOneWidget);
+    });
+
+    testWidgets('shows the resolved image once loading succeeds', (
+      tester,
+    ) async {
+      final image = createTestImageSync();
+
+      await tester.pumpWidget(
+        testableWidget(
+          OudsListItem(
+            label: 'Async item',
+            leading: OudsListItemLeadingImage.provider(
+              provider: SucceedingImageProvider(image),
+              placeholder: const SizedBox(
+                key: Key('placeholder'),
+                width: 10,
+                height: 10,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(const Key('placeholder')), findsNothing);
+    });
+
+    testWidgets('keeps the placeholder when loading fails', (tester) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsListItem(
+            label: 'Async item',
+            leading: OudsListItemLeadingImage.provider(
+              provider: FailingImageProvider(),
+              placeholder: const SizedBox(
+                key: Key('placeholder'),
+                width: 10,
+                height: 10,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.byKey(const Key('placeholder')), findsOneWidget);
+    });
+
+    testWidgets('exposes the semantics label of an async image', (
+      tester,
+    ) async {
+      final handle = tester.ensureSemantics();
+      await tester.pumpWidget(
+        testableWidget(
+          OudsListItem(
+            label: 'Async item',
+            leading: OudsListItemLeadingImage.provider(
+              provider: NeverCompletingImageProvider(),
+              semanticsLabel: 'Product photo',
+            ),
+          ),
+        ),
+      );
+
+      // The label is merged into the item node by MergeSemantics, so read
+      // the merged semantics instead of searching for a standalone label.
+      final semantics = tester.getSemantics(find.text('Async item'));
+      expect(semantics.label, contains('Product photo'));
+      handle.dispose();
+    });
+
+    testWidgets('small list item supports async images', (tester) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsSmallListItem(
+            label: 'Async small item',
+            leading: OudsSmallListItemLeadingImage.provider(
+              provider: NeverCompletingImageProvider(),
+              placeholder: const SizedBox(
+                key: Key('placeholder'),
+                width: 10,
+                height: 10,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.byKey(const Key('placeholder')), findsOneWidget);
     });
   });
 }

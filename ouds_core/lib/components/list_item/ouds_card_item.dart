@@ -72,6 +72,17 @@ class OudsCardItemDefaults {
 ///   labelContent: (context, state) => Text('Custom label content'),
 ///   description: 'Ouvre une nouvelle page',
 /// )
+///
+/// // Card with an image loaded from the network and a custom
+/// // placeholder shown while loading (and if loading fails)
+/// OudsCardItem(
+///   label: 'Product',
+///   leading: OudsListItemLeadingImage.provider(
+///     provider: NetworkImage('https://example.com/photo.jpg'),
+///     semanticsLabel: 'Product photo',
+///     placeholder: Image.asset('assets/placeholder.jpg'),
+///   ),
+/// )
 /// ```
 class OudsCardItem extends StatelessWidget {
   /// The mandatory main label displayed in the center column.
