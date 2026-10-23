@@ -39,8 +39,9 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_listItem_tokens
 // Size & alignment
 // ---------------------------------------------------------------------------
 
+// TODO[v1.0]: Uncomment when flag support is implemented.
 // Flag width is fixed until a dedicated size token is available.
-const _kFlagWidth = 26.8;
+// const _kFlagWidth = 26.8;
 
 /// Represents the size of an [OudsListItem].
 enum OudsListItemSize {
@@ -81,9 +82,12 @@ class OudsListItemDefaults {
 // Widget
 // ---------------------------------------------------------------------------
 
-/// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
+/// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-static-list-item)
 ///
-/// **Reference design version : 1.0.0**
+/// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-navigation-list-item)
+///
+///
+/// **Reference design version : 0.3.0**
 ///
 /// List item is a UI element that displays a row of information within a list.
 /// It mirrors Flutter's [ListTile] spirit — leading / label / trailing — but uses
@@ -115,6 +119,17 @@ class OudsListItemDefaults {
 /// - [overline]: Optional text displayed above [label] in a smaller, muted style.
 /// - [extraLabel]: Optional strong label displayed between [label] and [description].
 /// - [description]: Optional secondary text displayed below [label] / [extraLabel].
+/// - [labelContent]: Optional fully custom label widget replacing [label],
+///   available through the [OudsListItem.labelContent] constructor. Use it for
+///   custom primary content not supported by the standard text properties;
+///   no default padding is applied.
+/// - [belowTextContent]: Optional fully custom content displayed right after
+///   [description] inside the center text column; no default padding is
+///   applied.
+/// - [bottomContent]: Optional fully custom content displayed below the main
+///   row, full-width, inside the item's background/border area. Use it when
+///   the information cannot be clearly represented by [description] or
+///   [helperText].
 /// - [leading]: Optional content at the start of the row (icon, image, avatar, flag …).
 /// - [trailing]: Optional content at the end of the row (icon, image, text, badge, tag …).
 /// - [divider]: Whether a horizontal divider is drawn below the item. Defaults to `true`.
@@ -132,6 +147,8 @@ class OudsListItemDefaults {
 ///   Defaults to [OudsListItemDefaults.indicator] (chevron pointing right).
 /// - [card]: Whether the item should use the card decoration and rounded shape.
 ///   Defaults to `false`.
+/// - [edgeToEdge]: Whether the item spans the full width using the grid margin
+///   instead of the component inline padding. Defaults to `true`.
 ///
 /// ### Usage Example
 ///
@@ -166,10 +183,37 @@ class OudsListItemDefaults {
 ///   label: 'Unavailable',
 ///   enable: false,
 /// );
+///
+/// // List item with an image loaded from the network and a custom
+/// // placeholder shown while loading (and if loading fails)
+/// OudsListItem(
+///   label: 'Product',
+///   leading: OudsListItemLeadingImage.provider(
+///     provider: NetworkImage('https://example.com/photo.jpg'),
+///     semanticsLabel: 'Product photo',
+///     placeholder: Image.asset('assets/placeholder.jpg'),
+///   ),
+/// );
 /// ```
 class OudsListItem extends StatefulWidget {
-  /// The mandatory main label displayed in the center column.
-  final String label;
+  /// The main label displayed in the center column.
+  ///
+  /// Mutually exclusive with [labelContent] — use [OudsListItem.labelContent]
+  /// to render fully custom content instead of a plain text label.
+  final String? label;
+
+  /// Fully custom content rendered in place of [label], available only via
+  /// the [OudsListItem.labelContent] constructor.
+  ///
+  /// Use it for custom primary content such as: a product-specific text
+  /// arrangement, or a combination of text elements not supported by the
+  /// standard text properties.
+  ///
+  /// No default padding is applied; provide your own padding if needed.
+  ///
+  /// The builder receives the current [OudsListItemControlState].
+  final Widget Function(BuildContext context, OudsListItemControlState state)?
+  labelContent;
 
   /// Size variant. Defaults to [OudsListItemSize.defaultSize].
   final OudsListItemSize size;
@@ -186,11 +230,30 @@ class OudsListItem extends StatefulWidget {
   /// Optional secondary text displayed below [label] / [extraLabel].
   final String? description;
 
+  /// Optional fully custom content displayed right after [description], inside
+  /// the center text column, between [leading] and [trailing].
+  ///
+  /// No default padding is applied; provide your own padding if needed.
+  ///
+  /// The builder receives the current [OudsListItemControlState].
+  final Widget Function(BuildContext context, OudsListItemControlState state)?
+  belowTextContent;
+
   /// Optional content at the start of the row (icon, image, avatar, flag …).
   final OudsListItemLeading? leading;
 
   /// Optional content at the end of the row (icon, image, text, badge, tag …).
   final OudsListItemTrailing? trailing;
+
+  /// Optional fully custom content displayed below the main row, full-width,
+  /// but still inside the item's background/border area.
+  ///
+  /// Use it when the information cannot be clearly represented by the standard
+  /// [description] or [helperText] parameters.
+  ///
+  /// The builder receives the current [OudsListItemControlState].
+  final Widget Function(BuildContext context, OudsListItemControlState state)?
+  bottomContent;
 
   /// Whether a horizontal divider is drawn below the item. Defaults to `true`.
   final bool divider;
@@ -245,17 +308,19 @@ class OudsListItem extends StatefulWidget {
   /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the list item will appear once fully loaded.
   final OudsSkeleton? skeleton;
 
-  /// Creates an OUDS list item.
+  /// Creates an OUDS list item with a plain text [label].
   const OudsListItem({
     super.key,
-    required this.label,
+    required String label,
     this.size = OudsListItemSize.defaultSize,
     this.contentAlignment = OudsListItemDefaults.contentAlignment,
     this.overline,
     this.extraLabel,
     this.description,
+    this.belowTextContent,
     this.leading,
     this.trailing,
+    this.bottomContent,
     this.divider = true,
     this.background = false,
     this.decoration,
@@ -267,7 +332,46 @@ class OudsListItem extends StatefulWidget {
     this.card = false,
     this.edgeToEdge = true,
     this.skeleton,
-  });
+    // Field is nullable for the .labelContent constructor; the parameter stays
+    // non-nullable so that `label: null` is a compile-time error.
+    // ignore: prefer_initializing_formals
+  }) : label = label,
+       labelContent = null;
+
+  /// Creates an OUDS list item with fully custom [labelContent] instead of a
+  /// plain text label.
+  const OudsListItem.labelContent({
+    super.key,
+    required Widget Function(
+      BuildContext context,
+      OudsListItemControlState state,
+    )
+    labelContent,
+    this.size = OudsListItemSize.defaultSize,
+    this.contentAlignment = OudsListItemDefaults.contentAlignment,
+    this.overline,
+    this.extraLabel,
+    this.description,
+    this.belowTextContent,
+    this.leading,
+    this.trailing,
+    this.bottomContent,
+    this.divider = true,
+    this.background = false,
+    this.decoration,
+    this.helperText,
+    this.boldLabel = false,
+    this.enable = true,
+    this.onTap,
+    this.indicator = OudsListItemDefaults.indicator,
+    this.card = false,
+    this.edgeToEdge = true,
+    this.skeleton,
+  }) : label = null,
+       // Field is nullable for the default constructor; the parameter stays
+       // non-nullable so that `labelContent: null` is a compile-time error.
+       // ignore: prefer_initializing_formals
+       labelContent = labelContent;
 
   @override
   State<OudsListItem> createState() => _OudsListItemState();
@@ -395,7 +499,9 @@ class _OudsListItemState extends State<OudsListItem> {
                         widget.indicator is OudsListItemIndicatorExternal,
                     // TalkBack does not map the `link` flag to a spoken role
                     // for whole-node elements (unlike VoiceOver on iOS). The
-                    // engine concatenates contentDescription as
+                    // engine concatenates contentDescription as the announced
+                    // text, so the link trait is conveyed through a localized
+                    // hint instead.
                     hint:
                         widget.onTap != null &&
                             widget.indicator is OudsListItemIndicatorExternal &&
@@ -472,96 +578,69 @@ class _OudsListItemState extends State<OudsListItem> {
                               minHeight: _minHeight(tokens),
                               minWidth: tokens.sizeMinWidth,
                             ),
+                            // With bottomContent, the bottom padding moves below the
+                            // bottom slot, so the row keeps its own
+                            // bottom padding as the gap above the slot.
                             padding: EdgeInsets.only(
                               top: verticalPadding.top,
-                              bottom: verticalPadding.bottom,
+                              bottom: widget.bottomContent == null
+                                  ? verticalPadding.bottom
+                                  : 0,
                               left: _horizontalPadding(tokens),
                               right: _horizontalPadding(tokens),
                             ),
-                            child: Align(
-                              alignment: _rowAlignment(),
-                              child: Row(
-                                crossAxisAlignment: _rowCrossAxisAlignment(),
-                                children: [
-                                  // Previous indicator — chevron at the start of the row.
-                                  if (showPreviousIndicator) ...[
-                                    _buildIndicator(
+                            // Without bottomContent, the Align is a direct child of
+                            // the padded container so it fills the minHeight constraint
+                            // and can vertically center the row (contentAlignment.center).
+                            // With bottomContent, a Column stacks the row and the
+                            // full-width bottom content inside the background/border area.
+                            child: widget.bottomContent == null
+                                ? Align(
+                                    alignment: _rowAlignment(),
+                                    child: _buildRow(
                                       context,
                                       state,
-                                      oudsTheme.packageName,
-                                      contentAlignment: widget.contentAlignment,
-                                      size: widget.size,
-                                    ),
-                                    SizedBox(width: tokens.spaceColumnGap),
-                                  ],
-
-                                  // Leading slot — constrained by sizeMaxSizeLeadingTrailingSlot.
-                                  // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
-                                  // the 96px sizeMaxSizeLeadingTrailingSlot token).
-                                  if (widget.leading != null &&
-                                      !showPreviousIndicator) ...[
-                                    ConstrainedBox(
-                                      constraints: BoxConstraints(
-                                        // maxWidth:tokens.sizeMaxSizeLeadingTrailingSlot,
-                                        // maxHeight:tokens.sizeMaxSizeLeadingTrailingSlot,
-                                      ),
-                                      child: _buildLeading(
-                                        context,
-                                        widget.leading!,
-                                        enable: widget.enable,
-                                        contentAlignment:
-                                            widget.contentAlignment,
-                                        size: widget.size,
-                                      ),
-                                    ),
-                                    SizedBox(width: tokens.spaceColumnGap),
-                                  ],
-
-                                  // Content column — expands to fill remaining space.
-                                  Expanded(
-                                    child: _buildContent(
-                                      context,
                                       typography,
                                       contentColor,
                                       mutedColor,
+                                      showPreviousIndicator,
+                                      showNextIndicator,
                                     ),
-                                  ),
-
-                                  // Trailing slot — unconstrained to allow widescreen extra-large images
-                                  // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
-                                  // the 96px sizeMaxSizeLeadingTrailingSlot token).
-                                  if (widget.trailing != null) ...[
-                                    SizedBox(width: tokens.spaceColumnGap),
-                                    ConstrainedBox(
-                                      constraints: BoxConstraints(
-                                        //maxWidth: tokens.sizeMaxSizeLeadingTrailingSlot,
-                                        //maxHeight: tokens.sizeMaxSizeLeadingTrailingSlot,
+                                  )
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Align(
+                                        alignment: _rowAlignment(),
+                                        child: _buildRow(
+                                          context,
+                                          state,
+                                          typography,
+                                          contentColor,
+                                          mutedColor,
+                                          showPreviousIndicator,
+                                          showNextIndicator,
+                                        ),
                                       ),
-                                      child: _buildTrailing(
-                                        context,
-                                        widget.trailing!,
-                                        enable: widget.enable,
-                                        contentAlignment:
-                                            widget.contentAlignment,
-                                        size: widget.size,
+                                      // Bottom content — full-width, below the row, still
+                                      // inside the background/border area. The
+                                      // horizontal padding comes from the container
+                                      // (same as the row); the gap above is the row's
+                                      // bottom padding and the slot padding sits below.
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          top: verticalPadding.bottom,
+                                          bottom: tokens
+                                              .spacePaddingBlockBottomSlotListItemContainer,
+                                        ),
+                                        child: widget.bottomContent!(
+                                          context,
+                                          state,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-
-                                  // Next / External indicator — icon at the end of the row.
-                                  if (showNextIndicator) ...[
-                                    SizedBox(width: tokens.spaceColumnGap),
-                                    _buildIndicator(
-                                      context,
-                                      state,
-                                      oudsTheme.packageName,
-                                      contentAlignment: widget.contentAlignment,
-                                      size: widget.size,
-                                    ),
-                                  ],
-                                ],
-                              ),
-                            ), // Row
+                                    ],
+                                  ), // Column
                           ), // Container
                         ), // GestureDetector
                       ), // MouseRegion
@@ -605,6 +684,95 @@ class _OudsListItemState extends State<OudsListItem> {
         OudsListItemContentAlignment.center => CrossAxisAlignment.center,
         OudsListItemContentAlignment.top => CrossAxisAlignment.start,
       };
+
+  /// Main horizontal row: indicator, leading slot, content column,
+  /// trailing slot and next indicator.
+  Widget _buildRow(
+    BuildContext context,
+    OudsListItemControlState state,
+    OudsTypography typography,
+    Color contentColor,
+    Color mutedColor,
+    bool showPreviousIndicator,
+    bool showNextIndicator,
+  ) {
+    final tokens = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem;
+    return Row(
+      crossAxisAlignment: _rowCrossAxisAlignment(),
+      children: [
+        // Previous indicator — chevron at the start of the row.
+        if (showPreviousIndicator) ...[
+          _buildIndicator(
+            context,
+            state,
+            OudsTheme.of(context).packageName,
+            contentAlignment: widget.contentAlignment,
+            size: widget.size,
+          ),
+          SizedBox(width: tokens.spaceColumnGap),
+        ],
+
+        // Leading slot — only the Content variant is capped by
+        // sizeMaxSizeLeadingTrailingSlot (see _buildContentSlot); typed slots
+        // stay unconstrained so widescreen extra-large images fit
+        // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
+        // the 96px sizeMaxSizeLeadingTrailingSlot token).
+        if (widget.leading != null && !showPreviousIndicator) ...[
+          _buildLeading(
+            context,
+            widget.leading!,
+            enable: widget.enable,
+            state: state,
+            contentAlignment: widget.contentAlignment,
+            size: widget.size,
+          ),
+          SizedBox(width: tokens.spaceColumnGap),
+        ],
+
+        // Content column — expands to fill remaining space.
+        Expanded(
+          child: _buildContent(
+            context,
+            typography,
+            contentColor,
+            mutedColor,
+            state,
+          ),
+        ),
+
+        // Trailing slot — only the Content variant is capped by
+        // sizeMaxSizeLeadingTrailingSlot (see _buildContentSlot); typed slots
+        // stay unconstrained so widescreen extra-large images fit
+        // (e.g., 56px height × 16/9 ratio = 100px width, which exceeds
+        // the 96px sizeMaxSizeLeadingTrailingSlot token).
+        if (widget.trailing != null) ...[
+          SizedBox(width: tokens.spaceColumnGap),
+          _buildTrailing(
+            context,
+            widget.trailing!,
+            enable: widget.enable,
+            state: state,
+            contentAlignment: widget.contentAlignment,
+            size: widget.size,
+          ),
+        ],
+
+        // Next / External indicator — icon at the end of the row.
+        if (showNextIndicator) ...[
+          SizedBox(width: tokens.spaceColumnGap),
+          _buildIndicator(
+            context,
+            state,
+            OudsTheme.of(context).packageName,
+            contentAlignment: widget.contentAlignment,
+            size: widget.size,
+          ),
+        ],
+      ],
+    );
+  }
 
   Alignment _rowAlignment() => switch (widget.contentAlignment) {
     OudsListItemContentAlignment.center => Alignment.centerLeft,
@@ -717,6 +885,21 @@ class _OudsListItemState extends State<OudsListItem> {
     return BorderRadius.circular(radius);
   }
 
+  /// Caps a custom Content slot to [OudsListItemTokens.sizeMaxSizeLeadingTrailingSlot]
+  /// on both dimensions.
+  ///
+  /// Shared by the leading and trailing Content variants; typed slots
+  /// (icon, image, flag, avatar…) keep their own token-based sizing.
+  static Widget _buildContentSlot(BuildContext context, Widget content) {
+    final maxSize = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlListItem.sizeMaxSizeLeadingTrailingSlot;
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: maxSize, maxHeight: maxSize),
+      child: content,
+    );
+  }
+
   // -------------------------------------------------------------------------
   // Leading builder
   // -------------------------------------------------------------------------
@@ -730,10 +913,15 @@ class _OudsListItemState extends State<OudsListItem> {
     BuildContext context,
     OudsListItemLeading leading, {
     required bool enable,
+    required OudsListItemControlState state,
     required OudsListItemContentAlignment contentAlignment,
     required OudsListItemSize size,
   }) {
     return switch (leading) {
+      OudsListItemLeadingContent(:final builder) => _buildContentSlot(
+        context,
+        builder(context, state),
+      ),
       OudsListItemLeadingIcon(:final iconStatus, :final size) =>
         // Icon container: dynamic size based on icon size.
         // Wrap in Semantics to vocalize functional status (Warning, Negative, Info).
@@ -753,6 +941,8 @@ class _OudsListItemState extends State<OudsListItem> {
         ),
       OudsListItemLeadingImage(
         :final asset,
+        :final provider,
+        :final placeholder,
         :final semanticsLabel,
         :final size,
         :final format,
@@ -761,41 +951,28 @@ class _OudsListItemState extends State<OudsListItem> {
         // Image container: dynamic dimensions based on size and format
         _buildImageContainer(
           context,
-          OudsListItemAssetBuilder.buildImage(
+          OudsListItemAssetBuilder.buildImageSlot(
             context,
-            asset,
-            size.assetSize,
-            format,
-            rounded: rounded,
+            asset: asset,
+            provider: provider,
+            placeholder: placeholder,
             semanticsLabel: semanticsLabel,
-            backgroundColor: OudsTheme.of(
-              context,
-            ).colorScheme(context).surfaceBrandPrimary,
+            size: size.assetSize,
+            format: format,
+            rounded: rounded,
           ),
           size,
           format,
         ),
+      // TODO[v1.0]: Uncomment when flag support is implemented.
       // Flag container: width is hardcoded (no sizeFlagWidth token available),
-      OudsListItemLeadingFlag(:final flag) => _buildFlagContainer(
-        context,
-        flag,
-      ),
-      // TODO[v0.4]: Uncomment when video support is implemented.
-      // OudsListItemLeadingVideo() =>
-      //   // Video container: dimensions from sizeAssetSmall token.
-      //   _buildVideoContainer(context, enable: enable),
-      // Avatar, text, custom: flexible container
-      OudsListItemLeadingAvatar(:final avatar) => avatar,
-      OudsListItemLeadingText(:final label, :final extraLabel, :final style) =>
-        _buildLeadingText(
-          context,
-          label,
-          extraLabel,
-          style,
-          enable,
-          contentAlignment: contentAlignment,
-          size: size,
-        ),
+      // OudsListItemLeadingFlag(:final flag) => _buildFlagContainer(
+      //   context,
+      //   flag,
+      // ),
+      // TODO[v1.0]: Uncomment when avatar support is implemented.
+      // OudsListItemLeadingAvatar(:final avatar) => avatar,
+      // Custom: flexible container
       OudsListItemLeadingCustom(:final builder) => builder(
         context,
         enable: enable,
@@ -835,106 +1012,21 @@ class _OudsListItemState extends State<OudsListItem> {
     return SizedBox(width: dimension, height: dimension, child: icon);
   }
 
-  /// Builds a flag container.
-  ///
-  /// Width is hardcoded ([_kFlagWidth], no dedicated size token available),
-  /// height comes from the [OudsListItemTokens.sizeFlagHeight] token.
-  /// Shared by both leading and trailing flag slots.
-  static Widget _buildFlagContainer(BuildContext context, Widget flag) {
-    return SizedBox(
-      width: _kFlagWidth,
-      height: OudsTheme.of(
-        context,
-      ).componentsTokens(context).controlListItem.sizeFlagHeight,
-      child: flag,
-    );
-  }
-
-  // TODO[v0.4]: Uncomment when video support is implemented.
-  // /// Builds the video placeholder container.
+  // TODO[v1.0]: Uncomment when flag support is implemented.
+  // /// Builds a flag container.
   // ///
-  // /// Uses [OudsListItemAssetSize.small] token to size the container — consistent
-  // /// with how other small assets are sized inside list items.
-  // static Widget _buildVideoContainer(
-  //   BuildContext context, {
-  //   required bool enable,
-  // }) {
-  //   final dimension = OudsListItemAssetSize.small.value(context);
+  // /// Width is hardcoded ([_kFlagWidth], no dedicated size token available),
+  // /// height comes from the [OudsListItemTokens.sizeFlagHeight] token.
+  // /// Shared by both leading and trailing flag slots.
+  // static Widget _buildFlagContainer(BuildContext context, Widget flag) {
   //   return SizedBox(
-  //     width: dimension,
-  //     height: dimension,
-  //     child: OudsListItemAssetBuilder.buildVideoPlaceholder(
+  //     width: _kFlagWidth,
+  //     height: OudsTheme.of(
   //       context,
-  //       enable: enable,
-  //     ),
+  //     ).componentsTokens(context).controlListItem.sizeFlagHeight,
+  //     child: flag,
   //   );
   // }
-
-  /// Renders the text-leading variant (label + optional extra-label).
-  ///
-  /// Applies muted color for [OudsListItemTextStyle.labelMuted], else uses
-  /// the primary content color. Respects the [enable] state.
-  ///
-  /// When [contentAlignment] is [OudsListItemContentAlignment.top], applies the
-  /// top-alignment counterweight token to the text-leading slot.
-  static Widget _buildLeadingText(
-    BuildContext context,
-    String label,
-    String? extraLabel,
-    OudsListItemTextStyle style,
-    bool enable, {
-    required OudsListItemContentAlignment contentAlignment,
-    required OudsListItemSize size,
-  }) {
-    final tokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
-    final typography = OudsTheme.of(context).typographyTokens;
-    final foreground = OudsListItemForegroundModifier(context);
-
-    // Muted style uses a secondary color; all others use the primary content color.
-    final color = switch (style) {
-      OudsListItemTextStyle.labelMuted => foreground.mutedColor(enable),
-      OudsListItemTextStyle.label ||
-      OudsListItemTextStyle.labelStrong => foreground.contentColor(enable),
-    };
-
-    final textStyle = switch (style) {
-      OudsListItemTextStyle.label || OudsListItemTextStyle.labelMuted =>
-        typography.typeLabelDefaultLarge(context),
-      OudsListItemTextStyle.labelStrong => typography.typeLabelStrongLarge(
-        context,
-      ),
-    };
-
-    // Apply the top-alignment counterweight token to the text-leading slot,
-    // matching the token variant for the item's own [size].
-    final topPadding = contentAlignment == OudsListItemContentAlignment.top
-        ? switch (size) {
-            OudsListItemSize.defaultSize =>
-              tokens.spacePaddingBlockTopAlignmentTopTextContainerDefault,
-            OudsListItemSize.smallSize =>
-              tokens.spacePaddingBlockTopAlignmentTopTextContainerSmall,
-          }
-        : 0.0;
-
-    return Padding(
-      padding: EdgeInsets.only(top: topPadding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(label, style: textStyle.copyWith(color: color)),
-          if (extraLabel != null)
-            Text(
-              extraLabel,
-              style: typography
-                  .typeLabelStrongMedium(context)
-                  .copyWith(color: foreground.contentColor(enable)),
-            ),
-        ],
-      ),
-    );
-  }
 
   // -------------------------------------------------------------------------
   // Trailing builder
@@ -949,10 +1041,15 @@ class _OudsListItemState extends State<OudsListItem> {
     BuildContext context,
     OudsListItemTrailing trailing, {
     required bool enable,
+    required OudsListItemControlState state,
     required OudsListItemContentAlignment contentAlignment,
     required OudsListItemSize size,
   }) {
     return switch (trailing) {
+      OudsListItemTrailingContent(:final builder) => _buildContentSlot(
+        context,
+        builder(context, state),
+      ),
       OudsListItemTrailingText(:final textType) => _buildTrailingText(
         context,
         textType,
@@ -963,7 +1060,6 @@ class _OudsListItemState extends State<OudsListItem> {
       OudsListItemTrailingBadge(:final badge) => badge(enable),
       OudsListItemTrailingTag(:final tag) => tag(enable),
       OudsListItemTrailingIcon(:final iconStatus, :final size) =>
-        // Icon container: dynamic size based on icon size
         // Icon container: dynamic size based on icon size.
         // Wrap in Semantics to vocalize functional status (Warning, Negative, Info).
         _buildIconContainer(
@@ -980,19 +1076,10 @@ class _OudsListItemState extends State<OudsListItem> {
           ),
           size.assetSize,
         ),
-      /* _buildIconContainer(
-          context,
-          OudsListItemAssetBuilder.buildIcon(
-            context,
-            iconStatus,
-            enable: enable,
-            size: size.assetSize,
-            tinted: tinted,
-          ),
-          size.assetSize,
-        ),*/
       OudsListItemTrailingImage(
         :final asset,
+        :final provider,
+        :final placeholder,
         :final semanticsLabel,
         :final size,
         :final format,
@@ -1001,30 +1088,26 @@ class _OudsListItemState extends State<OudsListItem> {
         // Image container: dynamic dimensions based on size and format
         _buildImageContainer(
           context,
-          OudsListItemAssetBuilder.buildImage(
+          OudsListItemAssetBuilder.buildImageSlot(
             context,
-            asset,
-            size.assetSize,
-            format,
-            rounded: rounded,
+            asset: asset,
+            provider: provider,
+            placeholder: placeholder,
             semanticsLabel: semanticsLabel,
-            backgroundColor: OudsTheme.of(
-              context,
-            ).colorScheme(context).surfaceBrandPrimary,
+            size: size.assetSize,
+            format: format,
+            rounded: rounded,
           ),
           size,
           format,
         ),
-      OudsListItemTrailingFlag(:final flag) => _buildFlagContainer(
-        context,
-        flag,
-      ),
-      // TODO[v0.4]: Uncomment when video support is implemented.
-      // OudsListItemTrailingVideo() => _buildVideoContainer(
+      // TODO[v1.0]: Uncomment when flag support is implemented.
+      // OudsListItemTrailingFlag(:final flag) => _buildFlagContainer(
       //   context,
-      //   enable: enable,
+      //   flag,
       // ),
-      OudsListItemTrailingAvatar(:final avatar) => avatar,
+      // TODO[v1.0]: Uncomment when avatar support is implemented.
+      // OudsListItemTrailingAvatar(:final avatar) => avatar,
       OudsListItemTrailingCustom(:final builder) => builder(
         context,
         enable: enable,
@@ -1180,7 +1263,8 @@ class _OudsListItemState extends State<OudsListItem> {
     );
   }
 
-  /// Wraps a widget with Semantics to vocalize functional icon status.
+  /// Wraps [child] in a [Semantics] widget when [iconStatus] carries an
+  /// accessibility label.
   ///
   /// When the icon status is Warning, Negative, or Info, adds a semantic label
   /// so screen readers announce the status.
@@ -1223,6 +1307,7 @@ class _OudsListItemState extends State<OudsListItem> {
     OudsTypography typography,
     Color contentColor,
     Color mutedColor,
+    OudsListItemControlState state,
   ) {
     final tokens = OudsTheme.of(
       context,
@@ -1250,14 +1335,17 @@ class _OudsListItemState extends State<OudsListItem> {
                   .typeLabelModerateSmall(context)
                   .copyWith(color: mutedColor),
             ),
-          Text(
-            widget.label,
-            style:
-                (widget.boldLabel
-                        ? typography.typeLabelStrongLarge(context)
-                        : typography.typeLabelDefaultLarge(context))
-                    .copyWith(color: contentColor),
-          ),
+          if (widget.labelContent != null)
+            widget.labelContent!(context, state)
+          else
+            Text(
+              widget.label!,
+              style:
+                  (widget.boldLabel
+                          ? typography.typeLabelStrongLarge(context)
+                          : typography.typeLabelDefaultLarge(context))
+                      .copyWith(color: contentColor),
+            ),
           if (widget.extraLabel != null && widget.extraLabel!.isNotEmpty)
             Text(
               widget.extraLabel!,
@@ -1272,6 +1360,8 @@ class _OudsListItemState extends State<OudsListItem> {
                   .typeLabelDefaultMedium(context)
                   .copyWith(color: mutedColor),
             ),
+          if (widget.belowTextContent != null)
+            widget.belowTextContent!(context, state),
         ],
       ),
     );

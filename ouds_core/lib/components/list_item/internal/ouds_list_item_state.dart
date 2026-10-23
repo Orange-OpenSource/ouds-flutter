@@ -14,8 +14,27 @@
 /// @nodoc
 library;
 
-/// Enum representing the interaction state of an [OudsListItem].
-enum OudsListItemControlState { enabled, hovered, pressed, disabled, focused }
+/// Represents the interaction state of an [OudsListItem] or [OudsSmallListItem].
+///
+/// Exposed to custom content builders (`labelContent`, `belowTextContent`,
+/// `bottomContent`, leading/trailing `Content` slots) so they can adapt their
+/// appearance to the current interaction state.
+enum OudsListItemControlState {
+  /// Default interactive state.
+  enabled,
+
+  /// A pointer is hovering over the item.
+  hovered,
+
+  /// The item is being pressed.
+  pressed,
+
+  /// The item is disabled (`enable = false`).
+  disabled,
+
+  /// The item has keyboard focus.
+  focused,
+}
 
 /// A class that determines the current state of an [OudsListItem].
 class OudsListItemControlStateDeterminer {

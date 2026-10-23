@@ -124,11 +124,11 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Navigation card item</td>
-      <td>0.1.0</td>
+      <td>0.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Navigation list item</td>
-      <td>0.1.0</td>
+      <td>0.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Password Input</td>
@@ -148,11 +148,11 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Static card item</td>
-      <td>0.1.0</td>
+      <td>0.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Static list item</td>
-      <td>0.1.0</td>
+      <td>0.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Suggestion chip</td>

@@ -50,6 +50,8 @@ enum FieldType {
   listItemOverline,
   listItemTrailingText,
   listItemTrailingExtraText,
+  listItemTrailingBadgeCount,
+  listItemTrailingTagLabel,
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -199,6 +201,12 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.listItemTrailingExtraText:
         listItemState?.trailingTextExtraLabel = value;
+        break;
+      case FieldType.listItemTrailingBadgeCount:
+        listItemState?.trailingBadgeCount = value;
+        break;
+      case FieldType.listItemTrailingTagLabel:
+        listItemState?.trailingTagLabel = value;
         break;
     }
   }

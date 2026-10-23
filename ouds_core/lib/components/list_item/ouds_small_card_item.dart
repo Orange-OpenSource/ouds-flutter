@@ -23,20 +23,22 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
 /// [OUDS Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
 ///
-/// **Reference design version : 1.0.0**
+/// **Reference design version : 0.3.0**
 ///
 /// A compact card-formatted variant of [OudsCardItem].
 ///
-/// Compared to [OudsCardItem], this variant omits [overline] and [extraLabel]
+/// Compared to [OudsCardItem], this variant omits `overline` and `extraLabel`
 /// and reuses the restricted leading / trailing model from [OudsSmallListItem],
 /// while applying the card decoration defaults.
 ///
-/// It reuses the same horizontal padding as [OudsSmallListItem].
+/// It always uses the grid margin for its horizontal padding, like an
+/// edge-to-edge [OudsSmallListItem].
 ///
 /// - [leading] accepts [OudsSmallListItemLeadingIcon] or
 ///   [OudsSmallListItemLeadingImage].
 /// - [trailing] accepts [OudsSmallListItemTrailingIcon],
-///   [OudsSmallListItemTrailingImage] or [OudsSmallListItemTrailingText].
+///   [OudsSmallListItemTrailingImage], [OudsSmallListItemTrailingText],
+///   [OudsSmallListItemTrailingBadge] or [OudsSmallListItemTrailingTag].
 ///
 /// ### Usage Example
 ///
@@ -52,6 +54,17 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 ///   trailing: OudsSmallListItemTrailingText('99€'),
 ///   onTap: () {},
 /// )
+///
+/// // Small card with an image loaded from the network and a custom
+/// // placeholder shown while loading (and if loading fails)
+/// OudsSmallCardItem(
+///   label: 'Product',
+///   leading: OudsSmallListItemLeadingImage.provider(
+///     provider: NetworkImage('https://example.com/photo.jpg'),
+///     semanticsLabel: 'Product photo',
+///     placeholder: Image.asset('assets/placeholder.jpg'),
+///   ),
+/// )
 /// ```
 class OudsSmallCardItem extends StatelessWidget {
   /// The mandatory main label displayed in the center column.
@@ -60,7 +73,10 @@ class OudsSmallCardItem extends StatelessWidget {
   /// Vertical alignment of all slots.
   final OudsListItemContentAlignment contentAlignment;
 
-  /// Visual decoration of the card. Defaults to a persistent background.
+  /// Visual decoration of the card. Defaults to
+  /// [OudsCardItemDefaults.decoration] (persistent background with a bottom
+  /// divider). Pass `OudsListItemDecorationBackground(divider: false)` to keep
+  /// the background without the divider.
   final OudsListItemDecoration decoration;
 
   /// Optional secondary text displayed below [label].
