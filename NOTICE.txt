@@ -133,18 +133,7 @@ ouds_theme_orange/assets/component/list-item/external-link.svg
 ouds_theme_orange/assets/component/list-item/next.svg
 ouds_theme_orange/assets/component/list-item/previous.svg
 ouds_theme_orange/assets/component/list-item/select.svg
-
-
-ouds_theme_orange/fonts/Roboto-Black.ttf
-ouds_theme_orange/fonts/Roboto-Bold.ttf
-ouds_theme_orange/fonts/Roboto-Medium.ttf
-ouds_theme_orange/fonts/Roboto-Regular.ttf
-ouds_theme_orange/fonts/Roboto-Thin.ttf
-ouds_theme_orange/fonts/SF-Pro-Display-Black-Black.ttf
-ouds_theme_orange/fonts/SF-Pro-Display-Black-Bold.ttf
-ouds_theme_orange/fonts/SF-Pro-Display-Black-Medium.ttf
-ouds_theme_orange/fonts/SF-Pro-Display-Black-Regular.ttf
-ouds_theme_orange/fonts/SF-Pro-Display-Black-Thin.ttf
+ouds_theme_orange/assets/component/typography/ic_heading_text_marker.svg
 
 ## OUDS / Themes / Orange Compact
 ouds_theme_orange_compact/assets/communication/accessibility/accessibility-vision.svg
@@ -183,18 +172,7 @@ ouds_theme_orange_compact/assets/component/list-item/external-link.svg
 ouds_theme_orange_compact/assets/component/list-item/next.svg
 ouds_theme_orange_compact/assets/component/list-item/previous.svg
 ouds_theme_orange_compact/assets/component/list-item/select.svg
-
-
-ouds_theme_orange_compact/fonts/Roboto-Black.ttf
-ouds_theme_orange_compact/fonts/Roboto-Bold.ttf
-ouds_theme_orange_compact/fonts/Roboto-Medium.ttf
-ouds_theme_orange_compact/fonts/Roboto-Regular.ttf
-ouds_theme_orange_compact/fonts/Roboto-Thin.ttf
-ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Black.ttf
-ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Bold.ttf
-ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Medium.ttf
-ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Regular.ttf
-ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Thin.ttf
+ouds_theme_orange/assets/component/typography/ic_heading_text_marker.svg
 
 ## OUDS / Themes / Sosh
 ouds_theme_sosh/assets/communication/accessibility/accessibility-vision.svg
@@ -281,6 +259,7 @@ ouds_theme_wireframe/assets/component/list-item/external-link.svg
 ouds_theme_wireframe/assets/component/list-item/next.svg
 ouds_theme_wireframe/assets/component/list-item/previous.svg
 ouds_theme_wireframe/assets/component/list-item/select.svg
+ouds_theme_wireframe/assets/component/typography/ic_heading_text_marker.svg
 
 
 ouds_theme_wireframe/fonts/ShantellSans-Bold.ttf
