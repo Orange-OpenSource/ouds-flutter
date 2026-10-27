@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
+import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
+import 'package:ouds_core/components/typography/ouds_label_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -28,10 +30,10 @@ class ReferenceDesignVersionComponent extends StatelessWidget {
         runSpacing: paddingLarge / 2,
         children: [
           // Text wraps naturally without overflow
-          Text(
-            context.l10n.app_components_common_version_label,
-            style: themeController.currentTheme.typographyTokens
-                .typeLabelStrongLarge(context),
+          OudsLabelText(
+            text: context.l10n.app_components_common_version_label,
+            size: OudsLabelTextSize.large,
+            weight: OudsTextWeight.strong,
             softWrap: true,
           ),
           // Tag stays compact and moves to next line if needed

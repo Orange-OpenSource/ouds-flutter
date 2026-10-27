@@ -6,8 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...develop)
 ### Added
+- [DemoApp][Library] Create components - `typography` ([#829](https://github.com/Orange-OpenSource/ouds-flutter/issues/829))
 - [DemoApp][Library] In library, add component `skeleton` ([#867](https://github.com/Orange-OpenSource/ouds-flutter/issues/867))
 ### Changed
+- [DemoApp][Library] Use system fonts instead of bundled font files ([#1006](https://github.com/Orange-OpenSource/ouds-flutter/issues/1006))
+- [Library] For typography heading component, update to v1.1.0 ([#921](https://github.com/Orange-OpenSource/ouds-flutter/issues/921))
 - [DemoApp][Library] For `PIN Code input` component, update to version 1.4 ([#967](https://github.com/Orange-OpenSource/ouds-flutter/issues/967))
 - [Library] Update `link` to display trailing icon after the last character ([#930](https://github.com/Orange-OpenSource/ouds-flutter/issues/930))
 ### Fixed
