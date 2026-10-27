@@ -147,11 +147,6 @@ flutter:
     - assets/wireframe/communication/device/
     - assets/wireframe/communication/assistance/
 
-  fonts:
-    - family: RobotoMono
-      fonts:
-        - asset: fonts/RobotoMono.ttf
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

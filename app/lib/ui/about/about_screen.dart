@@ -14,6 +14,9 @@ import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
+import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
+import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui//utilities/settings_helper.dart';
 import 'package:ouds_flutter_demo/ui/about/detail/about_file_screen.dart';
@@ -72,14 +75,7 @@ class _AboutScreenState extends State<AboutScreen> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Text(
-                text,
-                style: currentTheme.typographyTokens.typeBodyDefaultMedium(
-                  context,
-                ),
-              ),
-            ),
+            Expanded(child: OudsBodyText(text: text)),
             SizedBox(width: currentTheme.spaceScheme(context).rowGapSmall),
             OudsTag.text(
               label: version,
@@ -127,20 +123,18 @@ class _AboutScreenState extends State<AboutScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    context.l10n.app_about_name_label,
-                    style: currentTheme.typographyTokens.typeHeadingXLarge(
-                      context,
-                    ),
+                  OudsHeadingText(
+                    text: context.l10n.app_about_name_label,
+                    size: OudsHeadingTextSize.xLarge,
                   ),
                   SizedBox(
                     height: currentTheme.spaceScheme(context).rowGapSmall,
                   ),
-                  Text(
-                    '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
-                    style: currentTheme.typographyTokens.typeBodyStrongLarge(
-                      context,
-                    ),
+                  OudsBodyText(
+                    text:
+                        '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
+                    size: OudsBodyTextSize.large,
+                    weight: OudsTextWeight.strong,
                   ),
                   SizedBox(
                     height: currentTheme.spaceScheme(context).rowGapLarge,
@@ -152,11 +146,10 @@ class _AboutScreenState extends State<AboutScreen> {
               ),
             ),
             ListTile(
-              title: Text(
-                context.l10n.app_about_legalInformation_label,
-                style: currentTheme.typographyTokens.typeBodyStrongLarge(
-                  context,
-                ),
+              title: OudsBodyText(
+                text: context.l10n.app_about_legalInformation_label,
+                size: OudsBodyTextSize.large,
+                weight: OudsTextWeight.strong,
               ),
               onTap: () {
                 Get.to(
@@ -171,11 +164,10 @@ class _AboutScreenState extends State<AboutScreen> {
               },
             ),
             ListTile(
-              title: Text(
-                context.l10n.app_about_privacyPolicy_label,
-                style: currentTheme.typographyTokens.typeBodyStrongLarge(
-                  context,
-                ),
+              title: OudsBodyText(
+                text: context.l10n.app_about_privacyPolicy_label,
+                size: OudsBodyTextSize.large,
+                weight: OudsTextWeight.strong,
               ),
               onTap: () {
                 Get.to(
@@ -190,11 +182,10 @@ class _AboutScreenState extends State<AboutScreen> {
               },
             ),
             ListTile(
-              title: Text(
-                context.l10n.app_about_changelog_label,
-                style: currentTheme.typographyTokens.typeBodyStrongLarge(
-                  context,
-                ),
+              title: OudsBodyText(
+                text: context.l10n.app_about_changelog_label,
+                size: OudsBodyTextSize.large,
+                weight: OudsTextWeight.strong,
               ),
               onTap: () {
                 Get.to(
@@ -209,11 +200,10 @@ class _AboutScreenState extends State<AboutScreen> {
               },
             ),
             ListTile(
-              title: Text(
-                context.l10n.app_about_materialComponents_label,
-                style: currentTheme.typographyTokens.typeBodyStrongLarge(
-                  context,
-                ),
+              title: OudsBodyText(
+                text: context.l10n.app_about_materialComponents_label,
+                size: OudsBodyTextSize.large,
+                weight: OudsTextWeight.strong,
               ),
               onTap: () {
                 Get.to(
@@ -226,15 +216,10 @@ class _AboutScreenState extends State<AboutScreen> {
               },
             ),
             ListTile(
-              title: Text(
-                context.l10n.app_about_appSettings_label,
-                style: currentTheme.typographyTokens
-                    .typeBodyDefaultLarge(context)
-                    .copyWith(
-                      color: currentTheme
-                          .colorScheme(context)
-                          .contentBrandPrimary,
-                    ),
+              title: OudsBodyText(
+                text: context.l10n.app_about_appSettings_label,
+                size: OudsBodyTextSize.large,
+                weight: OudsTextWeight.strong,
               ),
               onTap: () {
                 Get.to(SettingsHelper.openAppropriateSettings());

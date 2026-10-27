@@ -12,6 +12,7 @@
  */
 
 import 'package:material_ui/material_ui.dart';
+import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsIllustrationComponentCard extends StatelessWidget {
@@ -67,9 +68,9 @@ class OudsIllustrationComponentCard extends StatelessWidget {
                       .paddingInlineExtraLarge,
                   vertical: theme.spaceScheme(context).paddingBlockLarge,
                 ),
-                child: Text(
-                  title,
-                  style: theme.typographyTokens.typeHeadingMedium(context),
+                child: OudsHeadingText(
+                  text: title,
+                  size: OudsHeadingTextSize.medium,
                 ),
               ),
               if (child != null) child!,

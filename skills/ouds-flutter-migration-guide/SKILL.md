@@ -452,15 +452,15 @@ Text('Title', style: typography.typeHeadingMediumLarge(context))
 
 **Typography token families:**
 
-| Role | Token example |
-|------|---------------|
-| Hero / display | `typeDisplayLarge(context)` |
+| Role                    | Token example |
+|-------------------------|---------------|
+| Hero / display          | `typeDisplayLarge(context)` |
 | Section heading (large) | `typeHeadingMediumLarge(context)` |
 | Section heading (small) | `typeHeadingMediumSmall(context)` |
-| Label / button text | `typeLabelDefaultMedium(context)` |
-| Body paragraph | `typeBodyDefaultMedium(context)` |
-| Caption / hint | `typeBodyDefaultSmall(context)` |
-| Monospace / code | `typeCodeMedium(context)` |
+| Label / button text     | `typeLabelDefaultMedium(context)` |
+| Body paragraph          | `typeBodyDefaultMedium(context)` |
+| Caption / hint          | `typeBodyDefaultSmall(context)` |
+| Menlo / code            | `typeCodeMedium(context)` |
 
 > All tokens automatically respect the system font scale — never override `MediaQuery.textScalerOf`.
 

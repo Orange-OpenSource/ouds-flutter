@@ -91,6 +91,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.2.0</td>
     </tr>
     <tr>
+      <td style="padding:10px;">Circular progress indicator</td>
+      <td>1.2.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Divider</td>
       <td>1.0.0</td>
     </tr>
@@ -105,6 +109,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     <tr>
       <td style="padding:10px;">Input tag</td>
       <td>1.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Linear progress indicator</td>
+      <td>1.1.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Linear progress indicator</td>
@@ -140,7 +148,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Pin Code Input</td>
-      <td>1.3.0</td>
+      <td>1.4.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Radio Button</td>
@@ -169,6 +177,26 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     <tr>
       <td style="padding:10px;">Text Input</td>
       <td>1.4.1</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Body</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Code</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Display</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Heading</td>
+      <td>1.1.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Label</td>
+      <td>1.0.0</td>
     </tr>
   </tbody>
 </table>

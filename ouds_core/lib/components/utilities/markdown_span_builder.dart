@@ -120,6 +120,7 @@ class MarkdownSpanBuilder {
     final regex = RegExp(
       r'(__\*\*.*?\*\*__)|' // underline bold
       r'(\*\*.*?\*\*)|' // bold
+      r'(~~.*?~~)|' // line through
       r'(\[.*?\]\(.*?\))', // link
     );
 
@@ -145,6 +146,19 @@ class MarkdownSpanBuilder {
             style: baseStyle.copyWith(
               fontWeight: FontWeight.bold,
               decoration: TextDecoration.underline,
+              decorationColor: baseStyle.color,
+            ),
+          ),
+        );
+      }
+      // line through
+      if (matchText.startsWith('~~')) {
+        spans.add(
+          TextSpan(
+            text: matchText.substring(2, matchText.length - 2),
+            style: baseStyle.copyWith(
+              decoration: TextDecoration.lineThrough,
+              decorationColor: baseStyle.color,
             ),
           ),
         );

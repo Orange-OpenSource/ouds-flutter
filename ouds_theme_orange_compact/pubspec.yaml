@@ -34,24 +34,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: fonts/Roboto-Black.ttf
-        - asset: fonts/Roboto-Bold.ttf
-        - asset: fonts/Roboto-Medium.ttf
-        - asset: fonts/Roboto-Regular.ttf
-        - asset: fonts/Roboto-Thin.ttf
-    - family: SFProDisplay
-      fonts:
-        - asset: fonts/SF-Pro-Display-Black.otf
-        - asset: fonts/SF-Pro-Display-Bold.otf
-        - asset: fonts/SF-Pro-Display-Medium.otf
-        - asset: fonts/SF-Pro-Display-Regular.otf
-        - asset: fonts/SF-Pro-Display-Thin.otf
-    - family: RobotoMono
-      fonts:
-        - asset: fonts/RobotoMono.ttf
 
   # To add assets to your package, add an assets section, like this:
   assets:
@@ -66,6 +48,7 @@ flutter:
     - assets/component/radio-button/
     - assets/component/switch/
     - assets/component/tag/
+    - assets/component/typography/
     - assets/component/list-item/
     - assets/communication/accessibility/
     - assets/communication/security-and-safety/
