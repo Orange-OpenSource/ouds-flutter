@@ -5,8 +5,8 @@ homepage: https://flutter.unified-design-system.orange.com
 version: 3.1.0
 
 environment:
-  sdk: ^3.9.0
-  flutter: '>=3.35.0'
+  sdk: ^3.13.0
+  flutter: '>=3.47.0'
 
 resolution: workspace
 
@@ -25,6 +25,8 @@ dependencies:
   ouds_accessibility_plugin: ^0.2.0
   # phone number handling
   dlibphonenumber: ^1.1.51
+  material_ui: ^1.8.0
+  cupertino_ui: any
 dev_dependencies:
   # dartdoc
   dartdoc: ^8.3.4

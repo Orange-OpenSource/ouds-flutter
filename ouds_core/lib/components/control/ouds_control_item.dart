@@ -11,11 +11,11 @@
 
 /// @nodoc
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
-import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_border.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
@@ -175,8 +175,6 @@ class OudsControlItemState extends State<OudsControlItem> {
             children: [
               Stack(
                 children: [
-                  //   Column(
-                  //    children: [
                   Container(
                     decoration: BoxDecoration(
                       color: controlItemBackgroundModifier.getBackgroundColor(
@@ -239,8 +237,6 @@ class OudsControlItemState extends State<OudsControlItem> {
                       ),
                     ),
                   ),
-                  //  ],
-                  //),
                   if (widget.outlined ||
                       (widget.selected && interactionState.isPressed))
                     Positioned.fill(
@@ -268,15 +264,15 @@ class OudsControlItemState extends State<OudsControlItem> {
                     // and to prevent a common 1-pixel rendering offset that can occur
                     // when using standard layout widgets, ensuring pixel-perfect alignment.
                     Positioned(
-                      bottom: OudsTheme.of(
-                        context,
-                      ).spaceScheme(context).fixedNone,
-                      left: OudsTheme.of(
-                        context,
-                      ).spaceScheme(context).fixedNone,
-                      right: OudsTheme.of(
-                        context,
-                      ).spaceScheme(context).fixedNone,
+                      bottom: OudsTheme.of(context)
+                          .spaceScheme(context)
+                          .fixedNone,
+                      left: OudsTheme.of(context)
+                          .spaceScheme(context)
+                          .fixedNone,
+                      right: OudsTheme.of(context)
+                          .spaceScheme(context)
+                          .fixedNone,
                       child: controlItemDivider(context),
                     ),
                 ],
@@ -317,9 +313,10 @@ class OudsControlItemState extends State<OudsControlItem> {
   }
 
   Widget controlItemDivider(BuildContext context) {
-    final actualThickness = OudsTheme.of(
-      context,
-    ).componentsTokens(context).divider.borderWidth;
+    final actualThickness = OudsTheme.of(context)
+        .componentsTokens(context)
+        .divider
+        .borderWidth;
     final divider = OudsDivider.horizontal(thickness: actualThickness);
 
     return Padding(
@@ -343,16 +340,15 @@ class OudsControlItemState extends State<OudsControlItem> {
         alignment: Alignment.center,
         child: SizedBox(
           height: widget.componentType != OudsControlItemType.switchButton
-              ? OudsControlIndicatorModifier(
-                  context,
-                ).getSizeIndicator(widget.componentType, context)
-              : OudsTheme.of(
-                  context,
-                ).componentsTokens(context).switchButton.sizeHeightTrack,
+              ? OudsControlIndicatorModifier(context)
+                    .getSizeIndicator(widget.componentType, context)
+              : OudsTheme.of(context)
+                    .componentsTokens(context)
+                    .switchButton
+                    .sizeHeightTrack,
           width: widget.componentType != OudsControlItemType.switchButton
-              ? OudsControlIndicatorModifier(
-                  context,
-                ).getSizeIndicator(widget.componentType, context)
+              ? OudsControlIndicatorModifier(context)
+                    .getSizeIndicator(widget.componentType, context)
               : null,
           child: widget.indicator(),
         ),
@@ -396,9 +392,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             AppAssets.icons.componentAlertImportantFill,
             package: OudsTheme.of(context).packageName,
             colorFilter: ColorFilter.mode(
-              OudsControlTickModifier(
-                context,
-              ).getIconErrorColor(controlItemState),
+              OudsControlTickModifier(context)
+                  .getIconErrorColor(controlItemState),
               BlendMode.srcIn,
             ),
           ),
@@ -442,9 +437,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             AppAssets.icons.componentAlertImportantFill,
             package: OudsTheme.of(context).packageName,
             colorFilter: ColorFilter.mode(
-              OudsControlTickModifier(
-                context,
-              ).getIconErrorColor(controlItemState),
+              OudsControlTickModifier(context)
+                  .getIconErrorColor(controlItemState),
               BlendMode.srcIn,
             ),
           ),
@@ -464,9 +458,10 @@ class OudsControlItemState extends State<OudsControlItem> {
         child: SizedBox(
           height: widget.componentType != OudsControlItemType.switchButton
               ? controlListItem.sizeLoader
-              : OudsTheme.of(
-                  context,
-                ).componentsTokens(context).switchButton.sizeHeightTrack,
+              : OudsTheme.of(context)
+                    .componentsTokens(context)
+                    .switchButton
+                    .sizeHeightTrack,
           width: widget.componentType != OudsControlItemType.switchButton
               ? controlListItem.sizeLoader
               : null,

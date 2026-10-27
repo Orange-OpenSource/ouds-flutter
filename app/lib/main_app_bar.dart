@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -40,62 +40,75 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     final currentTheme = themeController.currentTheme;
     final themeMode = themeController.themeMode;
 
-    return  OudsTopBar(
+    return OudsTopBar(
       title: title,
       translucent: true,
       materialConfig: OudsTopAppBarConfig(centerTitle: false),
       leadingActions: [
         showBackButton
-          ? OudsTopBarActionConfig.back(
-        previousPageTitle: previousPageTitle,
-        onActionPressed: () {
-            Navigator.pop(context);
-          },
-        )
-         : OudsTopBarActionConfig.none()
+            ? OudsTopBarActionConfig.back(
+                previousPageTitle: previousPageTitle,
+                onActionPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            : OudsTopBarActionConfig.none(),
       ],
       trailingActions: [
         /// Button to show the dialog to change the config of rounded corners
         /// only for Orange and Orange Compact themes.
-        if(currentTheme.runtimeType == OrangeTheme
-            || currentTheme.runtimeType == OrangeCompactTheme)
-        OudsTopBarActionConfig.icon(
-            contentDescription: context.l10n.app_topBar_themeSettings_button_a11y,
-            icon:  AppAssets.icons.functionalNavigationFilters(themeController),
+        if (currentTheme.runtimeType == OrangeTheme ||
+            currentTheme.runtimeType == OrangeCompactTheme)
+          OudsTopBarActionConfig.icon(
+            contentDescription:
+                context.l10n.app_topBar_themeSettings_button_a11y,
+            icon: AppAssets.icons.functionalNavigationFilters(themeController),
             onActionPressed: () {
-              ThemeSettingsDialog.show(context,themeController);
-            }
-        ),
+              ThemeSettingsDialog.show(context, themeController);
+            },
+          ),
         OudsTopBarActionConfig.icon(
-            contentDescription:  context.l10n.app_topBar_theme_button_a11y,
-            icon: AppAssets.icons.designTheme(themeController),
-            onActionPressed: (){
-              ThemeSelectorDialog.show(context);
-            }
+          contentDescription: context.l10n.app_topBar_theme_button_a11y,
+          icon: AppAssets.icons.designTheme(themeController),
+          onActionPressed: () {
+            ThemeSelectorDialog.show(context);
+          },
         ),
+
         /// IconButton to change theme mode (Light/Dark/Auto)
         OudsTopBarActionConfig.icon(
-          contentDescription:  _getAccessibilityLabelByThemeMode(context, themeMode),
-            icon: _getIconByThemeMode(themeController,themeMode),
+          contentDescription: _getAccessibilityLabelByThemeMode(
+            context,
+            themeMode,
+          ),
+          icon: _getIconByThemeMode(themeController, themeMode),
           onActionPressed: () {
             // Toggle between light, dark, and system (auto) modes
             if (themeMode == ThemeMode.light) {
-              themeController.setThemeMode(ThemeMode.dark); // Switch to dark mode
+              themeController.setThemeMode(
+                ThemeMode.dark,
+              ); // Switch to dark mode
             } else if (themeMode == ThemeMode.dark) {
-              themeController.setThemeMode(ThemeMode.system); // Switch to system mode (Auto)
+              themeController.setThemeMode(
+                ThemeMode.system,
+              ); // Switch to system mode (Auto)
             } else {
-              themeController.setThemeMode(ThemeMode.light); // Switch to light mode
+              themeController.setThemeMode(
+                ThemeMode.light,
+              ); // Switch to light mode
             }
-          }
-
-        )
+          },
+        ),
       ],
     );
   }
 
   /// Returns the accessibility (a11y) label for the theme button
   /// based on the current [themeMode].
-  String _getAccessibilityLabelByThemeMode(BuildContext context, ThemeMode themeMode){
+  String _getAccessibilityLabelByThemeMode(
+    BuildContext context,
+    ThemeMode themeMode,
+  ) {
     return themeMode == ThemeMode.light
         ? context.l10n.app_topBar_darkMode_button_a11y
         : themeMode == ThemeMode.dark
@@ -105,11 +118,14 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   /// Returns the appropriate icon path for the theme toggle button
   /// based on the current [themeMode].
-  String _getIconByThemeMode(ThemeController themeController, ThemeMode themeMode){
+  String _getIconByThemeMode(
+    ThemeController themeController,
+    ThemeMode themeMode,
+  ) {
     return themeMode == ThemeMode.system
         ? AppAssets.icons.functionalSettingsAndToolsThemeSystem(themeController)
         : themeMode == ThemeMode.light
-        ?  AppAssets.icons.functionalSettingsAndToolsUiLightMode(themeController)
+        ? AppAssets.icons.functionalSettingsAndToolsUiLightMode(themeController)
         : AppAssets.icons.functionalSettingsAndToolsUiDarkMode(themeController);
   }
 

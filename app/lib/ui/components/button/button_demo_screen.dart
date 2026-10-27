@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -112,9 +112,9 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     final size = ButtonCustomizationUtils.getSize(
       customizationState?.selectedSize as Object,
     );
-    final brandSecondaryColor = OudsTheme.of(
-      context,
-    ).colorScheme(context).surfaceBrandPrimary;
+    final brandSecondaryColor = OudsTheme.of(context)
+        .colorScheme(context)
+        .surfaceBrandPrimary;
     final label = ButtonCustomizationUtils.getText(customizationState);
     final icon = ButtonCustomizationUtils.getIcon(
       customizationState,

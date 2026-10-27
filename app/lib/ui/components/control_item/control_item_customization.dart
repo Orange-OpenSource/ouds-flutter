@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_controller.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.dart';
@@ -6,10 +6,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _ControlItemCustomization extends InheritedWidget {
-  const _ControlItemCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _ControlItemCustomization({required super.child, required this.data});
 
   final ControlItemCustomizationState data;
 
@@ -19,23 +16,24 @@ class _ControlItemCustomization extends InheritedWidget {
 
 /// Main Widget class for button customization
 class ControlItemCustomization extends StatefulWidget {
-  const ControlItemCustomization({
-    super.key,
-    required this.child,
-  });
+  const ControlItemCustomization({super.key, required this.child});
 
   final Widget child;
 
   @override
-  ControlItemCustomizationState createState() => ControlItemCustomizationState();
+  ControlItemCustomizationState createState() =>
+      ControlItemCustomizationState();
 
   static ControlItemCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_ControlItemCustomization>())?.data;
+    return (context
+            .dependOnInheritedWidgetOfExactType<_ControlItemCustomization>())
+        ?.data;
   }
 }
 
 /// Button customization state management
-class ControlItemCustomizationState extends CustomizationWidgetState<ControlItemCustomization> {
+class ControlItemCustomizationState
+    extends CustomizationWidgetState<ControlItemCustomization> {
   late final ErrorState errorState;
   late final IconState iconState;
   late final DividerState dividerState;
@@ -76,7 +74,8 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
 
   // Proxy getters and setters to expose the 'constrainedMaxWidthState' value directly.
   bool get hasConstrainedMaxWidth => constrainedMaxWidthState.value;
-  set hasConstrainedMaxWidth(bool value) => constrainedMaxWidthState.value = value;
+  set hasConstrainedMaxWidth(bool value) =>
+      constrainedMaxWidthState.value = value;
 
   // Proxy getters and setters to expose the 'outlinedState' value directly.
   bool get hasOutlined => outlinedState.value;
@@ -100,7 +99,8 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
 
   // Proxy getters and setters to expose the 'helperLabelTextState' value directly.
   String get errorMessageLabel => errorMessageTextLabelState.value;
-  set errorMessageLabel(String value) => errorMessageTextLabelState.value = value;
+  set errorMessageLabel(String value) =>
+      errorMessageTextLabelState.value = value;
 
   // Getter to determine if the 'Enabled' state should be disabled based on the current 'Error' state.
   bool get isEnabledWhenError {
@@ -139,10 +139,7 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
 
   @override
   Widget build(BuildContext context) {
-    return _ControlItemCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _ControlItemCustomization(data: this, child: widget.child);
   }
 }
 

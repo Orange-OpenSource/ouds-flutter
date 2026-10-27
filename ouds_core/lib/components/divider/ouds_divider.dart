@@ -13,7 +13,7 @@
 /// {@category Divider}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// [OUDS Divider design guidelines](https://r.orange.fr/r/S-ouds-doc-divider)

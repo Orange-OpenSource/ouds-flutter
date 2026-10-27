@@ -15,7 +15,7 @@
 /// {@category TopBar}
 library;
 
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:ouds_core/components/top_bar/internal/ouds_toolbar_top_action_modifier.dart';
 import 'package:ouds_core/components/top_bar/internal/ouds_top_bar_style_modifier.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';

@@ -13,7 +13,7 @@
 /// {@category Theme}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Defines adjustments that can be applied to the current [OudsTheme] via the [OudsThemeTweak] widget.

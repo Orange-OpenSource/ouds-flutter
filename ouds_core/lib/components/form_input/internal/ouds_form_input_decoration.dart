@@ -14,7 +14,7 @@
 /// {@category Phone number input}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 
 /// Configuration for a trailing (suffix) icon button in a text input.

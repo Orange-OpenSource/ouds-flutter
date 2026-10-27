@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/navigation/ouds_bottom_bar.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/navigation/navigation_items.dart';
@@ -45,11 +45,7 @@ class _MainScreenState extends State<MainScreen> {
         destinations: navigationItems.getBottomNavigationBarItems(),
       ),
       body: Row(
-        children: [
-          Expanded(
-            child: navigationItems.getScreens(_selectedIndex),
-          ),
-        ],
+        children: [Expanded(child: navigationItems.getScreens(_selectedIndex))],
       ),
     );
   }

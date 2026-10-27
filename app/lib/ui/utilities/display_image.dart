@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 ///
@@ -20,10 +20,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 /// * [semanticsLabel] optional label
 Widget displayImage(String imagePath, double? width, {String? semanticsLabel}) {
   if (imagePath.contains('svg')) {
-    return SvgPicture.asset(imagePath,
-        semanticsLabel: semanticsLabel, fit: BoxFit.cover, width: width);
+    return SvgPicture.asset(
+      imagePath,
+      semanticsLabel: semanticsLabel,
+      fit: BoxFit.cover,
+      width: width,
+    );
   } else {
-    return Image.asset(imagePath,
-        semanticLabel: semanticsLabel, fit: BoxFit.cover, width: width);
+    return Image.asset(
+      imagePath,
+      semanticLabel: semanticsLabel,
+      fit: BoxFit.cover,
+      width: width,
+    );
   }
 }

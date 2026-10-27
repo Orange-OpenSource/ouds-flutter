@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -23,77 +23,96 @@ import 'package:provider/provider.dart';
 class ColorScreen extends StatelessWidget {
   final String illustration;
   final String? previousPageTitle;
-  const ColorScreen({super.key, required this.illustration,this.previousPageTitle});
+  const ColorScreen({
+    super.key,
+    required this.illustration,
+    this.previousPageTitle,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     final currentTheme = themeController.currentTheme;
     final tokenGroups = ColorTokensModel.fromTheme(context, currentTheme).all;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(
-          showBackButton: true,
-          title: context.l10n.app_tokens_color_label,
+        showBackButton: true,
+        title: context.l10n.app_tokens_color_label,
         previousPageTitle: previousPageTitle,
       ),
       body: ListView(
-          children: [
-            SvgPicture.asset(
-              AdaptiveImageHelper.getImage(context, illustration),
-              fit: BoxFit.fitWidth,
+        children: [
+          SvgPicture.asset(
+            AdaptiveImageHelper.getImage(context, illustration),
+            fit: BoxFit.fitWidth,
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.all(
+              currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
-              child: Column(
-                children: [
-                  Text(
-                    context.l10n.app_tokens_color_description_text,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
-              ),
-            ),
-            Code(
-              titleText: context.l10n.app_tokens_viewCodeExample_label,
-              code: 'OudsTheme.of(context).colorScheme(context).actionDisabled',
-            ),
-            ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsetsDirectional.only(
-                top: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
-                bottom: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
-              ),
+            child: Column(
               children: [
-                for (var entry in tokenGroups.entries) ...[
-                  Padding(
-                    padding: EdgeInsetsDirectional.symmetric(
-                      vertical: currentTheme.spaceScheme(context).rowGapLarge,
-                      horizontal: currentTheme.spaceScheme(context).rowGapLarge,
-                    ),
-                    child: Semantics(
-                      header: true,
-                      child: Text(
-                        entry.key,
-                        style: currentTheme.typographyTokens.typeBodyStrongLarge(context).copyWith(color: currentTheme.colorScheme(context).contentDefault),
-                      ),
-                    ),
-                  ),
-                  ...entry.value.map(
-                    (item) => Padding(
-                      padding: EdgeInsetsDirectional.symmetric(
-                        horizontal: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
-                      ),
-                      child: ColorWidget(colorTokenItem: item),
-                    ),
-                  ),
-                ],
+                Text(
+                  context.l10n.app_tokens_color_description_text,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+          Code(
+            titleText: context.l10n.app_tokens_viewCodeExample_label,
+            code: 'OudsTheme.of(context).colorScheme(context).actionDisabled',
+          ),
+          ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsetsDirectional.only(
+              top: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+              bottom: currentTheme
+                  .spaceScheme(context)
+                  .paddingInlineTwoExtraLarge,
+            ),
+            children: [
+              for (var entry in tokenGroups.entries) ...[
+                Padding(
+                  padding: EdgeInsetsDirectional.symmetric(
+                    vertical: currentTheme.spaceScheme(context).rowGapLarge,
+                    horizontal: currentTheme.spaceScheme(context).rowGapLarge,
+                  ),
+                  child: Semantics(
+                    header: true,
+                    child: Text(
+                      entry.key,
+                      style: currentTheme.typographyTokens
+                          .typeBodyStrongLarge(context)
+                          .copyWith(
+                            color: currentTheme
+                                .colorScheme(context)
+                                .contentDefault,
+                          ),
+                    ),
+                  ),
+                ),
+                ...entry.value.map(
+                  (item) => Padding(
+                    padding: EdgeInsetsDirectional.symmetric(
+                      horizontal: currentTheme
+                          .spaceScheme(context)
+                          .paddingInlineTwoExtraLarge,
+                    ),
+                    child: ColorWidget(colorTokenItem: item),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -105,11 +124,16 @@ class ColorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     final currentTheme = themeController.currentTheme;
 
     return Padding(
-      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceScheme(context).rowGapSmall),
+      padding: EdgeInsetsDirectional.symmetric(
+        vertical: currentTheme.spaceScheme(context).rowGapSmall,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -121,7 +145,9 @@ class ColorWidget extends StatelessWidget {
                 height: 64,
                 decoration: BoxDecoration(
                   color: colorTokenItem.value,
-                  border: Border.all(color: currentTheme.colorScheme(context).borderEmphasized),
+                  border: Border.all(
+                    color: currentTheme.colorScheme(context).borderEmphasized,
+                  ),
                 ),
               ),
               // Diagonal line overlay.
@@ -129,14 +155,18 @@ class ColorWidget extends StatelessWidget {
                 Positioned.fill(
                   child: CustomPaint(
                     painter: DiagonalBarUnspecifiedColor(
-                      color: currentTheme.colorScheme(context).borderStatusNegative,
+                      color: currentTheme
+                          .colorScheme(context)
+                          .borderStatusNegative,
                       thickness: 1,
                     ),
                   ),
                 ),
             ],
           ),
-          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
+          SizedBox(
+            width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,13 +176,20 @@ class ColorWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: currentTheme.fontTokens.letterSpacingBodyLargeMobile,
+                    letterSpacing:
+                        currentTheme.fontTokens.letterSpacingBodyLargeMobile,
                     color: currentTheme.colorScheme(context).contentDefault,
                   ),
                 ),
                 SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
-                Text(colorTokenItem.colorToHex(colorTokenItem.value!),
-                    style: currentTheme.typographyTokens.typeBodyDefaultMedium(context).copyWith(color: currentTheme.colorScheme(context).contentMuted)),
+                Text(
+                  colorTokenItem.colorToHex(colorTokenItem.value!),
+                  style: currentTheme.typographyTokens
+                      .typeBodyDefaultMedium(context)
+                      .copyWith(
+                        color: currentTheme.colorScheme(context).contentMuted,
+                      ),
+                ),
               ],
             ),
           ),
@@ -170,7 +207,8 @@ class ColorTokenItem {
 
   String colorToHex(Color color) {
     // Convert the individual RGBA components (Red, Green, Blue) from double to int
-    String hex = '#${(color.r * 255).toInt().toRadixString(16).padLeft(2, '0')}' // Red
+    String hex =
+        '#${(color.r * 255).toInt().toRadixString(16).padLeft(2, '0')}' // Red
         '${(color.g * 255).toInt().toRadixString(16).padLeft(2, '0')}' // Green
         '${(color.b * 255).toInt().toRadixString(16).padLeft(2, '0')}'; // Blue
     return hex.toUpperCase();
@@ -214,5 +252,6 @@ class DiagonalBarUnspecifiedColor extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant DiagonalBarUnspecifiedColor old) => old.color != color || old.thickness != thickness;
+  bool shouldRepaint(covariant DiagonalBarUnspecifiedColor old) =>
+      old.color != color || old.thickness != thickness;
 }

@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_core/components/alert/ouds_inline_alert.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';

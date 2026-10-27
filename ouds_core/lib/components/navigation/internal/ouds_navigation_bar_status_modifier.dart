@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/utilities/theme_utils.dart';
@@ -65,7 +65,6 @@ class OudsNavigationBarStatusModifier {
     bool isSelected = false,
   ]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
-    final oudsTheme = OudsTheme.of(context);
     switch (state) {
       case OudsNavigationBarControlState.enabled:
         return isSelected

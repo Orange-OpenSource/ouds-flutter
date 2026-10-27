@@ -14,7 +14,7 @@
 /// {@category Badge}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';

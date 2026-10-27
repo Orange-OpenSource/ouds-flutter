@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/about/about_screen.dart';
@@ -28,7 +28,8 @@ class NavigationItems {
   late List<OudsNavigationBarItem> _destinationsStatic;
   late List<Widget> _screens;
 
-  NavigationItems(this.context) : themeController = Provider.of<ThemeController>(context, listen: false) {
+  NavigationItems(this.context)
+    : themeController = Provider.of<ThemeController>(context, listen: false) {
     _destinationsStatic = [
       OudsNavigationBarItem(
         label: context.l10n.app_bottomBar_tokens_label,
@@ -40,18 +41,16 @@ class NavigationItems {
       ),
       OudsNavigationBarItem(
         label: context.l10n.app_bottomBar_about_label,
-        icon: AppAssets.icons.functionalStatusAndIndicatorsInfo(themeController),
+        icon: AppAssets.icons.functionalStatusAndIndicatorsInfo(
+          themeController,
+        ),
       ),
     ];
 
     _screens = [
-      TokensScreen(
-        oudsTokens: tokens(context),
-      ),
-      ComponentsScreen(
-        oudsComponents: components(context),
-      ),
-      const AboutScreen()
+      TokensScreen(oudsTokens: tokens(context)),
+      ComponentsScreen(oudsComponents: components(context)),
+      const AboutScreen(),
     ];
   }
 

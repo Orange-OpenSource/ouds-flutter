@@ -14,7 +14,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:markdown/markdown.dart' as md;
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -27,7 +27,13 @@ class AboutFileScreen extends StatefulWidget {
   final bool darkModeEnabled;
   final String? previousPageTitle;
 
-  const AboutFileScreen({super.key, required this.title, required this.fileMenuItem, required this.darkModeEnabled, this.previousPageTitle});
+  const AboutFileScreen({
+    super.key,
+    required this.title,
+    required this.fileMenuItem,
+    required this.darkModeEnabled,
+    this.previousPageTitle,
+  });
 
   @override
   AboutFileScreenState createState() => AboutFileScreenState();
@@ -144,7 +150,8 @@ a:link {
 
     String themeStyle = darkModeEnabled ? lightStyle : darkStyle;
 
-    String cssApple = '''<style ="text/css">
+    String cssApple =
+        '''<style ="text/css">
        html {
            font: -apple-system-body;
        }
@@ -196,7 +203,8 @@ a:link {
         color: #527EDB;
       }
         </style>''';
-    String cssAndroid = '''<style ="text/css">
+    String cssAndroid =
+        '''<style ="text/css">
 body {
     padding: 0;
     -webkit-text-size-adjust: none;
@@ -282,12 +290,19 @@ a:link {
 
         </style>''';
 
-    String cssAndroidThemeStyle = cssAndroid.replaceFirst('</style>', '$themeStyle</style>');
+    String cssAndroidThemeStyle = cssAndroid.replaceFirst(
+      '</style>',
+      '$themeStyle</style>',
+    );
 
     return convertToHtml(fileContent, cssApple, cssAndroidThemeStyle);
   }
 
-  String convertToHtml(String partialHTMLText, String cssApple, String cssAndroid) {
+  String convertToHtml(
+    String partialHTMLText,
+    String cssApple,
+    String cssAndroid,
+  ) {
     String head = """
     <!doctype html>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
@@ -327,13 +342,11 @@ a:link {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(
-          title: widget.title,
-          showBackButton: true,
-          previousPageTitle: widget.previousPageTitle,
+        title: widget.title,
+        showBackButton: true,
+        previousPageTitle: widget.previousPageTitle,
       ),
-      body: WebViewWidget(
-            controller: _webViewController,
-        ),
+      body: WebViewWidget(controller: _webViewController),
     );
   }
 }

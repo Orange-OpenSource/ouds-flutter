@@ -13,9 +13,9 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
-import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_border.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A class that provides the border color for the OudsChip based on its state and selection

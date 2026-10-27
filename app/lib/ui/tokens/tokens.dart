@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/tokens/border/border_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/color/color_screen.dart';
@@ -27,31 +27,46 @@ List<Token> tokens(BuildContext context) {
       context.l10n.app_tokens_border_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokenBorder),
       context.l10n.app_tokens_border_description_text,
-      BorderScreen(illustration: AppAssets.images.ilTokenBorder,previousPageTitle: context.l10n.app_bottomBar_tokens_label),
+      BorderScreen(
+        illustration: AppAssets.images.ilTokenBorder,
+        previousPageTitle: context.l10n.app_bottomBar_tokens_label,
+      ),
     ),
     Token(
       context.l10n.app_tokens_color_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensColor),
       context.l10n.app_tokens_color_description_text,
-      ColorScreen(illustration: AppAssets.images.ilTokensColor,previousPageTitle: context.l10n.app_bottomBar_tokens_label),
+      ColorScreen(
+        illustration: AppAssets.images.ilTokensColor,
+        previousPageTitle: context.l10n.app_bottomBar_tokens_label,
+      ),
     ),
     Token(
       context.l10n.app_tokens_elevation_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensElevation),
       context.l10n.app_tokens_elevation_description_text,
-      ElevationScreen(illustration: AppAssets.images.ilTokensElevation,previousPageTitle: context.l10n.app_bottomBar_tokens_label),
+      ElevationScreen(
+        illustration: AppAssets.images.ilTokensElevation,
+        previousPageTitle: context.l10n.app_bottomBar_tokens_label,
+      ),
     ),
     Token(
       context.l10n.app_tokens_opacity_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensOpacity),
       context.l10n.app_tokens_opacity_description_text,
-      OpacityScreen(illustration: AppAssets.images.ilTokensOpacity,previousPageTitle: context.l10n.app_bottomBar_tokens_label),
+      OpacityScreen(
+        illustration: AppAssets.images.ilTokensOpacity,
+        previousPageTitle: context.l10n.app_bottomBar_tokens_label,
+      ),
     ),
     Token(
       context.l10n.app_tokens_typography_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTypography),
       context.l10n.app_tokens_typography_description_text,
-      TypographyScreen(illustration: AppAssets.images.ilTypography,previousPageTitle: context.l10n.app_bottomBar_tokens_label),
+      TypographyScreen(
+        illustration: AppAssets.images.ilTypography,
+        previousPageTitle: context.l10n.app_bottomBar_tokens_label,
+      ),
     ),
   ];
 }

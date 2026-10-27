@@ -13,7 +13,7 @@
 library;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/progress_indicator/internal/ouds_progress_indicator_status_modifier.dart';
 import 'package:ouds_core/components/progress_indicator/internal/ouds_progress_indicator_style_modifier.dart';
@@ -130,7 +130,7 @@ class OudsCircularProgressIndicator extends OudsProgressIndicator {
     this.helperText,
   }) : _color = null;
 
-  /// Creates an [OudsCircularProgressIndicator] with an explicit [color], bypassing the
+  /// Creates an [OudsCircularProgressIndicator] with an explicit [_color], bypassing the
   /// [status]-based color resolution.
   ///
   /// This constructor is **internal** and reserved for other OUDS components (e.g. [OudsButton])
@@ -148,9 +148,8 @@ class OudsCircularProgressIndicator extends OudsProgressIndicator {
     super.gapSize = OudsProgressIndicatorGapSize.defaultSize,
     super.track = true,
     super.semanticsLabel,
-    Color? color,
-  }) : _color = color,
-       helperText = null;
+    this._color,
+  }) : helperText = null;
 
   /// Explicit color override used instead of resolving [OudsProgressIndicator.status].
   ///
@@ -252,9 +251,10 @@ class _OudsCircularProgressIndicatorState
     return MergeSemantics(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        spacing: OudsTheme.of(
-          context,
-        ).componentsTokens(context).progressIndicator.spacePaddingBlock,
+        spacing: OudsTheme.of(context)
+            .componentsTokens(context)
+            .progressIndicator
+            .spacePaddingBlock,
         children: [indicator, helperTextWidget],
       ),
     );
@@ -314,9 +314,10 @@ class _OudsCircularProgressIndicatorState
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: OudsTheme.of(
-        context,
-      ).componentsTokens(context).progressIndicator.spaceColumnGap,
+      spacing: OudsTheme.of(context)
+          .componentsTokens(context)
+          .progressIndicator
+          .spaceColumnGap,
       children: [
         ?progressWidget,
         if (labelWidget != null) Flexible(child: labelWidget),
@@ -385,21 +386,28 @@ class _OudsCircularProgressIndicatorState
             : LayoutBuilder(
                 builder: (context, constraints) {
                   final strokeWidth = constraints.maxWidth * 0.125;
-                  return CircularProgressIndicator(
-                    padding: EdgeInsets.zero,
-                    semanticsLabel: semanticsLabel,
-                    semanticsValue: semanticsValue,
-                    year2023: false,
-                    constraints: BoxConstraints(
-                      minWidth: defaultSize,
-                      minHeight: defaultSize,
+                  // With TalkBack on Android, “0.0” is always announced before
+                  // the semantic value. As a temporary workaround, we’ve added custom
+                  // semantics to the progress indicator.
+                  return Semantics(
+                    value: semanticsValue,
+                    label: semanticsLabel,
+                    child: ExcludeSemantics(
+                      child: CircularProgressIndicator(
+                        padding: EdgeInsets.zero,
+                        year2023: false,
+                        constraints: BoxConstraints(
+                          minWidth: defaultSize,
+                          minHeight: defaultSize,
+                        ),
+                        value: value,
+                        valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+                        backgroundColor: backgroundColor,
+                        trackGap: gapSize,
+                        strokeWidth: strokeWidth,
+                        strokeCap: strokeCap,
+                      ),
                     ),
-                    value: value,
-                    valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-                    backgroundColor: backgroundColor,
-                    trackGap: gapSize,
-                    strokeWidth: strokeWidth,
-                    strokeCap: strokeCap,
                   );
                 },
               ),
@@ -534,9 +542,10 @@ class _OudsLinearProgressIndicatorState
 
     return MergeSemantics(
       child: Column(
-        spacing: OudsTheme.of(
-          context,
-        ).componentsTokens(context).progressIndicator.spacePaddingBlock,
+        spacing: OudsTheme.of(context)
+            .componentsTokens(context)
+            .progressIndicator
+            .spacePaddingBlock,
         children: [
           _buildLinearProgressIndicator(),
           // Only add the helper text child when there is actual content to
@@ -724,9 +733,9 @@ class _OudsLinearProgressIndicatorState
   /// If the indicator is determinate and animated, it uses a
   /// [TweenAnimationBuilder] to animate progress changes.
   Widget _buildLinearProgressIndicator() {
-    final progressIndicatorTokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).progressIndicator;
+    final progressIndicatorTokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .progressIndicator;
     // Retrieve style and status modifiers
     final progressIndicatorStyleModifier = OudsProgressIndicatorStyleModifier(
       context,
@@ -859,18 +868,20 @@ class _OudsLinearProgressIndicatorState
     Stack(
       alignment: Alignment.centerRight,
       children: [
-        LinearProgressIndicator(
-          minHeight: minHeight,
-          semanticsLabel: semanticsLabel,
-          semanticsValue: semanticsValue,
-          year2023: false,
-          value: value,
-          valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-          backgroundColor: backgroundColor,
-          trackGap: gapSize,
-          stopIndicatorColor: indicatorColor,
-          borderRadius: borderRadius,
-          stopIndicatorRadius: 0,
+        Semantics(
+          label: semanticsLabel,
+          value: semanticsValue,
+          child: LinearProgressIndicator(
+            minHeight: minHeight,
+            year2023: false,
+            value: value,
+            valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+            backgroundColor: backgroundColor,
+            trackGap: gapSize,
+            stopIndicatorColor: indicatorColor,
+            borderRadius: borderRadius,
+            stopIndicatorRadius: 0,
+          ),
         ),
         if (widget.stopIndicator && !isRounded)
           Container(
