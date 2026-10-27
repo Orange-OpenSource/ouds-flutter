@@ -17,7 +17,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_theme_contract/theme/utilities/theme_utils.dart';
 
 /// Used to apply the right style(background, border, blur) associated to the theme mode
 class OudsTopBarStyleModifier {

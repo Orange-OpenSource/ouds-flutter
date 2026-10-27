@@ -65,7 +65,6 @@ class OudsNavigationBarStatusModifier {
     bool isSelected = false,
   ]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
-    final oudsTheme = OudsTheme.of(context);
     switch (state) {
       case OudsNavigationBarControlState.enabled:
         return isSelected
