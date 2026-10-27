@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -122,9 +122,9 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
       listen: true,
     );
 
-    final colorSurfaceBrandPrimary = OudsTheme.of(
-      context,
-    ).colorScheme(context).surfaceBrandPrimary;
+    final colorSurfaceBrandPrimary = OudsTheme.of(context)
+        .colorScheme(context)
+        .surfaceBrandPrimary;
 
     switch (customizationState.selectedLayout) {
       case ChipEnumLayout.textOnly:

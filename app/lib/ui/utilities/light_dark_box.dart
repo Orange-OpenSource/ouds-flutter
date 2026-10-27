@@ -10,7 +10,7 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/theme/ouds_theme_tweak.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';

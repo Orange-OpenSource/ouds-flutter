@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/switch/ouds_switch_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 

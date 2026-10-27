@@ -15,7 +15,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});

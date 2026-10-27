@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
@@ -62,8 +62,12 @@ class _AboutScreenState extends State<AboutScreen> {
     setState(() {});
   }
 
-  Widget _buildLabeledTag(OudsThemeContract currentTheme, String text, String version){
-    return  Column(
+  Widget _buildLabeledTag(
+    OudsThemeContract currentTheme,
+    String text,
+    String version,
+  ) {
+    return Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,11 +75,18 @@ class _AboutScreenState extends State<AboutScreen> {
             Expanded(
               child: Text(
                 text,
-                style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                style: currentTheme.typographyTokens.typeBodyDefaultMedium(
+                  context,
+                ),
               ),
             ),
             SizedBox(width: currentTheme.spaceScheme(context).rowGapSmall),
-            OudsTag.text(label: version, status: Info(), appearance: OudsTagAppearance.muted, size: OudsTagSize.small)
+            OudsTag.text(
+              label: version,
+              status: Info(),
+              appearance: OudsTagAppearance.muted,
+              size: OudsTagSize.small,
+            ),
           ],
         ),
         SizedBox(height: currentTheme.spaceScheme(context).rowGapMedium),
@@ -95,117 +106,143 @@ class _AboutScreenState extends State<AboutScreen> {
       l10n.app_about_details_androidSystemVersion: Environment.androidSystem,
       l10n.app_about_details_themeOrangeCoreVersion: Environment.orangeCore,
       l10n.app_about_details_themeOrangeBrandVersion: Environment.orangeBrand,
-      l10n.app_about_details_themeOrangeCompactBrandVersion: Environment.orangeCompactBrand,
+      l10n.app_about_details_themeOrangeCompactBrandVersion:
+          Environment.orangeCompactBrand,
       l10n.app_about_details_themeCoreVersion: Environment.oudsCore,
       l10n.app_about_details_themeSoshCoreVersion: Environment.soshCore,
       l10n.app_about_details_themeSoshBrandVersion: Environment.soshBrand,
-      l10n.app_about_details_themeWireframeCoreVersion: Environment.wireframeCore,
-      l10n.app_about_details_themeWireframeBrandVersion: Environment.wireframeBrand,
+      l10n.app_about_details_themeWireframeCoreVersion:
+          Environment.wireframeCore,
+      l10n.app_about_details_themeWireframeBrandVersion:
+          Environment.wireframeBrand,
     };
     return ListView(
+      children: [
+        Column(
           children: [
-            Column(
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.all(
-                      currentTheme.spaceScheme(context).scaledMedium,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        context.l10n.app_about_name_label,
-                        style: currentTheme.typographyTokens.typeHeadingXLarge(context),
-                      ),
-                      SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                      Text(
-                        '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
-                        style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-                      ),
-                      SizedBox(height: currentTheme.spaceScheme(context).rowGapLarge),
-                      ...versionMap.entries.map((e) => _buildLabeledTag(currentTheme, e.key, e.value)),
-                    ],
-                  ),
-                ),
-                ListTile(
-                  title: Text(
-                    context.l10n.app_about_legalInformation_label,
-                    style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-                  ),
-                  onTap: () {
-                    Get.to(
-                      AboutFileScreen(
-                        title: context.l10n.app_about_legalInformation_label,
-                        fileMenuItem: 'assets/about_legal_information.md',
-                        darkModeEnabled: Theme.of(context).brightness == Brightness.light,
-                        previousPageTitle: context.l10n.app_bottomBar_about_label,
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
-                  title: Text(
-                    context.l10n.app_about_privacyPolicy_label,
-                    style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-                  ),
-                  onTap: () {
-                    Get.to(
-                      AboutFileScreen(
-                        title: context.l10n.app_about_privacyPolicy_label,
-                        fileMenuItem: 'assets/about_privacy_policy.md',
-                        darkModeEnabled: Theme.of(context).brightness == Brightness.light,
-                        previousPageTitle: context.l10n.app_bottomBar_about_label,
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
-                  title: Text(
-                    context.l10n.app_about_changelog_label,
-                    style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-                  ),
-                  onTap: () {
-                    Get.to(
-                      AboutFileScreen(
-                        title: context.l10n.app_about_changelog_label,
-                        fileMenuItem: 'CHANGELOG.md',
-                        darkModeEnabled: Theme.of(context).brightness == Brightness.light,
-                        previousPageTitle: context.l10n.app_bottomBar_about_label,
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
-                  title: Text(
-                    context.l10n.app_about_materialComponents_label,
-                    style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-                  ),
-                  onTap: () {
-                    Get.to(
-                      MaterialComponentScreen(
-                        scaffoldKey: scaffoldKey,
-                        title: context.l10n.app_about_materialComponents_label,
-                        previousPageTitle: context.l10n.app_bottomBar_about_label,
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
-                  title: Text(
-                    context.l10n.app_about_appSettings_label,
-                    style: currentTheme.typographyTokens.typeBodyDefaultLarge(context).copyWith(
-                      color: currentTheme.colorScheme(context).contentBrandPrimary,
+            Padding(
+              padding: EdgeInsetsDirectional.all(
+                currentTheme.spaceScheme(context).scaledMedium,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    context.l10n.app_about_name_label,
+                    style: currentTheme.typographyTokens.typeHeadingXLarge(
+                      context,
                     ),
                   ),
-                  onTap: () {
-                    Get.to(
-                      SettingsHelper.openAppropriateSettings(),
-                    );
-                  },
+                  SizedBox(
+                    height: currentTheme.spaceScheme(context).rowGapSmall,
+                  ),
+                  Text(
+                    '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
+                    style: currentTheme.typographyTokens.typeBodyStrongLarge(
+                      context,
+                    ),
+                  ),
+                  SizedBox(
+                    height: currentTheme.spaceScheme(context).rowGapLarge,
+                  ),
+                  ...versionMap.entries.map(
+                    (e) => _buildLabeledTag(currentTheme, e.key, e.value),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              title: Text(
+                context.l10n.app_about_legalInformation_label,
+                style: currentTheme.typographyTokens.typeBodyStrongLarge(
+                  context,
                 ),
-              ],
-            )
-          ] ,
+              ),
+              onTap: () {
+                Get.to(
+                  AboutFileScreen(
+                    title: context.l10n.app_about_legalInformation_label,
+                    fileMenuItem: 'assets/about_legal_information.md',
+                    darkModeEnabled:
+                        Theme.of(context).brightness == Brightness.light,
+                    previousPageTitle: context.l10n.app_bottomBar_about_label,
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text(
+                context.l10n.app_about_privacyPolicy_label,
+                style: currentTheme.typographyTokens.typeBodyStrongLarge(
+                  context,
+                ),
+              ),
+              onTap: () {
+                Get.to(
+                  AboutFileScreen(
+                    title: context.l10n.app_about_privacyPolicy_label,
+                    fileMenuItem: 'assets/about_privacy_policy.md',
+                    darkModeEnabled:
+                        Theme.of(context).brightness == Brightness.light,
+                    previousPageTitle: context.l10n.app_bottomBar_about_label,
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text(
+                context.l10n.app_about_changelog_label,
+                style: currentTheme.typographyTokens.typeBodyStrongLarge(
+                  context,
+                ),
+              ),
+              onTap: () {
+                Get.to(
+                  AboutFileScreen(
+                    title: context.l10n.app_about_changelog_label,
+                    fileMenuItem: 'CHANGELOG.md',
+                    darkModeEnabled:
+                        Theme.of(context).brightness == Brightness.light,
+                    previousPageTitle: context.l10n.app_bottomBar_about_label,
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text(
+                context.l10n.app_about_materialComponents_label,
+                style: currentTheme.typographyTokens.typeBodyStrongLarge(
+                  context,
+                ),
+              ),
+              onTap: () {
+                Get.to(
+                  MaterialComponentScreen(
+                    scaffoldKey: scaffoldKey,
+                    title: context.l10n.app_about_materialComponents_label,
+                    previousPageTitle: context.l10n.app_bottomBar_about_label,
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text(
+                context.l10n.app_about_appSettings_label,
+                style: currentTheme.typographyTokens
+                    .typeBodyDefaultLarge(context)
+                    .copyWith(
+                      color: currentTheme
+                          .colorScheme(context)
+                          .contentBrandPrimary,
+                    ),
+              ),
+              onTap: () {
+                Get.to(SettingsHelper.openAppropriateSettings());
+              },
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

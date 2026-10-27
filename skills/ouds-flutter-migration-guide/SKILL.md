@@ -681,6 +681,7 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
+| `v3.0.0 → v3.1.0` | No | Yes, for apps targeting older OS versions or mixing `flutter/material.dart`/`flutter/cupertino.dart` with OUDS | Flutter SDK bumped to `>=3.47.0`; minimum supported OS raised to Android API 24 (7.0) and iOS 15.0; OUDS packages migrated from `flutter/material.dart`/`flutter/cupertino.dart` to the standalone `material_ui`/`cupertino_ui` packages |
 | `v2.1.0 → v3.0.0` | No | Yes | Shared `OudsIcon` type replacing `OudsLinkIcon`/`OudsChipIcon`/`OudsTextInputPrefixIcon`/`OudsControlItemIcon` (breaking) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsCheckboxItem`, `OudsRadioButtonItem`, `OudsSwitchButtonItem`, typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons; `OudsProgressIndicator` — `semanticLabel` → `semanticsLabel`, helper text API refactored, `left`/`right` → `start`/`end` (breaking); `OudsIconStatus.Neutral`/`Accent` gained `tinted`/`backgroundColor`/`semanticsLabel` (non-breaking); `Link` v2.4.0, icon pack v2.3.0, `OudsListItem`, typography tokens |
 | `v2.0.0 → v2.1.0` | Full | No | `OudsNavigationButton`, `OudsCircularProgressIndicator`, `OudsLinearProgressIndicator`, tokens v2.6.0 |
 | `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
@@ -692,6 +693,37 @@ Before proposing changes:
 ---
 
 ### 3.3 High-impact migrations
+
+#### 3.3.-1 Flutter SDK bumped to `>=3.47.0` — minimum OS raised (`v3.0.0 → v3.1.0`)
+
+The Flutter SDK requirement moves from `>=3.35.0` to `>=3.47.0`. Flutter 3.47's Gradle plugin defaults `minSdkVersion` to API 24 (Android 7.0) instead of API 21 (Android 5.0), and its iOS tooling migrates the Xcode project's `IPHONEOS_DEPLOYMENT_TARGET` to 15.0 instead of 13.0.
+
+**Impact**: High (breaking for end users on devices running Android 5.0–6.0 or iOS 13–14 — the app will no longer be installable on these OS versions)
+
+**Required actions:**
+
+- Upgrade the local Flutter SDK to `>=3.47.0`.
+- Align any explicit `minSdk` override in `android/app/build.gradle` to at least `24`.
+- Align any explicit `IPHONEOS_DEPLOYMENT_TARGET` override in Xcode to at least `15.0`.
+- Update store listings (Play Store / App Store) if the app's own minimums were lower than these new floors.
+- Re-run accessibility and functional testing on the lowest OS versions now supported (Android 7.0+, iOS 15.0+).
+
+---
+
+#### 3.3.-0.5 `package:flutter/material.dart` + `package:flutter/cupertino.dart` → `package:material_ui` + `package:cupertino_ui` (`v3.0.0 → v3.1.0`)
+
+Flutter 3.47 decouples Material (and Cupertino) from the core SDK into standalone pub.dev packages (`material_ui`, `cupertino_ui`); `package:flutter/material.dart` is scheduled for formal deprecation in the Fall stable release. All OUDS Flutter packages now import `package:material_ui/material_ui.dart`. Public getters such as `OudsThemeContract.themeData`/`darkThemeData` now return `material_ui`'s `ThemeData`, a distinct type from Flutter SDK's `ThemeData`.
+
+**Impact**: High (breaking — any app passing `themeData`/`darkThemeData` to a `flutter/material.dart`-based `MaterialApp`, or mixing OUDS widgets with `flutter/material.dart` types, fails to compile)
+
+**Required actions:**
+
+- Run `dart fix --apply --code=migrate_design_widgets` in your app (after `flutter pub add material_ui`, and `flutter pub add cupertino_ui` if you use Cupertino).
+- Replace `GlobalMaterialLocalizations.delegate` / `GlobalCupertinoLocalizations.delegate` / `GlobalWidgetsLocalizations.delegate` (from `flutter_localizations`) with `...GlobalMaterialLocalizations.delegates` from `material_ui` — `flutter_localizations` still depends on the legacy `flutter/material.dart` and causes an ambiguous `GlobalMaterialLocalizations` import otherwise.
+- Replace `GetMaterialApp` (GetX) or any other third-party app-root widget still tied to `flutter/material.dart` with the plain `MaterialApp` from `material_ui`, restoring GetX's imperative navigation via `navigatorKey: Get.key` and `navigatorObservers: [GetObserver()]`. There is no compatibility bridge for a legacy app root hosting modern `material_ui` children — `MaterialUiCompatibilityBridge` only supports the reverse (modern root, legacy child subtree).
+- For other unmigrated third-party packages, wrap only their specific widget subtrees with `MaterialUiCompatibilityBridge` instead of replacing your whole app root.
+
+---
 
 #### 3.3.0 `OudsLink` → dedicated named constructors (`v1.3.1 → v2.0.0`)
 

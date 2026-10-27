@@ -13,7 +13,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
@@ -73,9 +73,9 @@ Widget buildIconBadgeButton(
 Widget _buildIconWithBadge(
   BuildContext context,
   String assetName,
-  final OudsButtonAppearance appearance,
-  final OudsButtonLayout layout,
-  final OudsButtonControlState buttonState,
+  OudsButtonAppearance appearance,
+  OudsButtonLayout layout,
+  OudsButtonControlState buttonState,
   OudsTopBarActionBadge? badge,
   String? package,
 ) {

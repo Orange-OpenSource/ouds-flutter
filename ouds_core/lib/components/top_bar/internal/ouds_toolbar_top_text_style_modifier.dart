@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A utility class that provides text styling for the `OudsToolbarTop` component.

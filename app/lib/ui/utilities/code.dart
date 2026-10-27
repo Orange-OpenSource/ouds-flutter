@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -33,11 +33,7 @@ class Code extends StatefulWidget {
   final String code;
   final String? titleText;
 
-  const Code({
-    super.key,
-    required this.code,
-    this.titleText,
-  });
+  const Code({super.key, required this.code, this.titleText});
 
   @override
   CodeState createState() => CodeState();
@@ -115,15 +111,23 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
             Flexible(
               child: Text(
                 widget.titleText!,
-                style: theme.currentTheme.typographyTokens.typeBodyStrongLarge(context),
+                style: theme.currentTheme.typographyTokens.typeBodyStrongLarge(
+                  context,
+                ),
               ),
             ),
-            SizedBox(width: theme.currentTheme.spaceScheme(context).columnGapExtraSmall),
+            SizedBox(
+              width: theme.currentTheme
+                  .spaceScheme(context)
+                  .columnGapExtraSmall,
+            ),
             RotationTransition(
               turns: Tween(begin: 0.0, end: 0.5).animate(_animationController),
               child: Icon(
                 Icons.expand_more,
-                color: theme.currentTheme.colorScheme(context).contentBrandPrimary,
+                color: theme.currentTheme
+                    .colorScheme(context)
+                    .contentBrandPrimary,
               ),
             ),
           ],
@@ -133,7 +137,10 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
   }
 
   Widget _codeTokenDisplayCodeSection(ThemeController theme) {
-    ThemeController themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: EdgeInsetsDirectional.only(
         start: theme.currentTheme.spaceScheme(context).paddingBlockLarge,
@@ -144,11 +151,15 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
       child: Container(
         padding: EdgeInsetsDirectional.symmetric(
           vertical: theme.currentTheme.spaceScheme(context).paddingInlineSmall,
-          horizontal: theme.currentTheme.spaceScheme(context).paddingInlineMedium,
+          horizontal: theme.currentTheme
+              .spaceScheme(context)
+              .paddingInlineMedium,
         ),
         decoration: BoxDecoration(
           color: theme.currentTheme.colorScheme(context).bgSecondary,
-          borderRadius: BorderRadius.circular(theme.currentTheme.borderTokens.radiusDefault),
+          borderRadius: BorderRadius.circular(
+            theme.currentTheme.borderTokens.radiusDefault,
+          ),
           border: Border.all(
             color: theme.currentTheme.colorScheme(context).borderDefault,
             width: theme.currentTheme.borderTokens.widthDefault,
@@ -159,13 +170,24 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.only(top: theme.currentTheme.spaceScheme(context).paddingInlineSmall, bottom: theme.currentTheme.spaceScheme(context).paddingInlineSmall),
+                padding: EdgeInsetsDirectional.only(
+                  top: theme.currentTheme
+                      .spaceScheme(context)
+                      .paddingInlineSmall,
+                  bottom: theme.currentTheme
+                      .spaceScheme(context)
+                      .paddingInlineSmall,
+                ),
                 child: Text(
                   textDirection: TextDirection.ltr,
                   widget.code,
                   style: TextStyle(
-                    fontSize: theme.currentTheme.fontTokens.sizeBodyMediumMobile,
-                    letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
+                    fontSize:
+                        theme.currentTheme.fontTokens.sizeBodyMediumMobile,
+                    letterSpacing: theme
+                        .currentTheme
+                        .fontTokens
+                        .letterSpacingBodyMediumMobile,
                     fontFamily: 'RobotoMono',
                     package: theme.currentTheme.packageName,
                   ),
@@ -173,7 +195,11 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.only(start: theme.currentTheme.spaceScheme(context).paddingInlineMedium),
+              padding: EdgeInsetsDirectional.only(
+                start: theme.currentTheme
+                    .spaceScheme(context)
+                    .paddingInlineMedium,
+              ),
               child: SizedBox(
                 width: 38,
                 height: 38,
@@ -187,7 +213,9 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                       ),
                       child: ExcludeSemantics(
                         child: SvgPicture.asset(
-                          AppAssets.icons.functionalActionsCopy(themeController),
+                          AppAssets.icons.functionalActionsCopy(
+                            themeController,
+                          ),
                           width: 44,
                           height: 44,
                         ),

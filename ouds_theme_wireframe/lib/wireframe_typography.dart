@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart';
 
 /// Lightweight wrapper for OudsTypography that qualifies the "ShantellSans" font family with

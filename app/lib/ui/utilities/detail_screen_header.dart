@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/constants_sheets_bottom.dart';
 import 'package:provider/provider.dart';
@@ -19,34 +19,39 @@ class DetailScreenDescription extends StatelessWidget {
   final String? description;
   final Widget? widget;
 
-  const DetailScreenDescription({
-    super.key,
-    this.description,
-    this.widget,
-  });
+  const DetailScreenDescription({super.key, this.description, this.widget});
 
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     final currentTheme = themeController.currentTheme;
 
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsetsDirectional.only(
-            top: MediaQuery.of(context).padding.top ,
-            bottom: MediaQuery.of(context).padding.bottom + ConstantSheetBottom.collapsedHeight
+          top: MediaQuery.of(context).padding.top,
+          bottom:
+              MediaQuery.of(context).padding.bottom +
+              ConstantSheetBottom.collapsedHeight,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (description != null)
               Padding(
-                padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceScheme(context).insetLarge),
+                padding: EdgeInsetsDirectional.all(
+                  themeController.currentTheme.spaceScheme(context).insetLarge,
+                ),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     description!,
-                    style: currentTheme.typographyTokens.typeBodyDefaultLarge(context),
+                    style: currentTheme.typographyTokens.typeBodyDefaultLarge(
+                      context,
+                    ),
                   ),
                 ),
               ),

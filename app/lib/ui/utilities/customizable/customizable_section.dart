@@ -10,29 +10,29 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
 
 class CustomizableSection extends StatelessWidget {
   final List<Widget> children;
 
-  const CustomizableSection({
-    super.key,
-    required this.children,
-  });
+  const CustomizableSection({super.key, required this.children});
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
 
     return Padding(
-      padding: EdgeInsetsDirectional.symmetric(horizontal: themeController.currentTheme.spaceScheme(context).paddingInlineNone),
-      child: Column(
-        children: [
-          ...children,
-        ],
+      padding: EdgeInsetsDirectional.symmetric(
+        horizontal: themeController.currentTheme
+            .spaceScheme(context)
+            .paddingInlineNone,
       ),
+      child: Column(children: [...children]),
     );
   }
 }

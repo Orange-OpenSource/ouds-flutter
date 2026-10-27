@@ -14,7 +14,7 @@
 library;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';
 import 'package:ouds_core/components/navigation/ouds_tab_bar.dart';

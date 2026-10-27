@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
@@ -148,9 +148,9 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
       themeController.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
 
-    final surfaceBrandPrimaryColor = OudsTheme.of(
-      context,
-    ).colorScheme(context).surfaceBrandPrimary;
+    final surfaceBrandPrimaryColor = OudsTheme.of(context)
+        .colorScheme(context)
+        .surfaceBrandPrimary;
 
     return LightDarkBox(
       isEdgeToEdge: customizationState.edgeToEdge,

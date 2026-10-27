@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsIllustrationComponentCard extends StatelessWidget {
@@ -61,7 +61,12 @@ class OudsIllustrationComponentCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.symmetric(horizontal: theme.spaceScheme(context).paddingInlineExtraLarge, vertical: theme.spaceScheme(context).paddingBlockLarge),
+                padding: EdgeInsetsDirectional.symmetric(
+                  horizontal: theme
+                      .spaceScheme(context)
+                      .paddingInlineExtraLarge,
+                  vertical: theme.spaceScheme(context).paddingBlockLarge,
+                ),
                 child: Text(
                   title,
                   style: theme.typographyTokens.typeHeadingMedium(context),

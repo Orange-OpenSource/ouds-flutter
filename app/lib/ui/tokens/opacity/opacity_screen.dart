@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -24,68 +24,102 @@ import 'package:provider/provider.dart';
 class OpacityScreen extends StatelessWidget {
   final String illustration;
   final String? previousPageTitle;
-  const OpacityScreen({super.key, required this.illustration,this.previousPageTitle});
+  const OpacityScreen({
+    super.key,
+    required this.illustration,
+    this.previousPageTitle,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     final currentTheme = themeController.currentTheme;
     final opacityTokenItems = _getOpacityTokenItems(currentTheme);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(
-          showBackButton:true,
-          title: context.l10n.app_tokens_opacity_label,
-          previousPageTitle: previousPageTitle,
+        showBackButton: true,
+        title: context.l10n.app_tokens_opacity_label,
+        previousPageTitle: previousPageTitle,
       ),
       body: ListView(
-          children: [
-            SvgPicture.asset(
-              AdaptiveImageHelper.getImage(context, illustration),
-              fit: BoxFit.fitWidth,
+        children: [
+          SvgPicture.asset(
+            AdaptiveImageHelper.getImage(context, illustration),
+            fit: BoxFit.fitWidth,
+          ),
+          Padding(
+            padding: EdgeInsets.all(
+              currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
             ),
-            Padding(
-              padding: EdgeInsets.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
-              child: Column(
-                children: [
-                  Text(
-                    context.l10n.app_tokens_opacity_description_text,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
-              ),
+            child: Column(
+              children: [
+                Text(
+                  context.l10n.app_tokens_opacity_description_text,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
             ),
-            Code(
-              titleText: context.l10n.app_tokens_viewCodeExample_label,
-              code: 'OudsTheme.of(context).opacityTokens.invisible',
+          ),
+          Code(
+            titleText: context.l10n.app_tokens_viewCodeExample_label,
+            code: 'OudsTheme.of(context).opacityTokens.invisible',
+          ),
+          Padding(
+            padding: EdgeInsets.all(
+              currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
             ),
-            Padding(
-              padding: EdgeInsets.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: opacityTokenItems.length,
-                itemBuilder: (context, index) {
-                  return OpacityWidget(opacityTokenItem: opacityTokenItems[index]);
-                },
-              ),
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: opacityTokenItems.length,
+              itemBuilder: (context, index) {
+                return OpacityWidget(
+                  opacityTokenItem: opacityTokenItems[index],
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 
   List<OpacityTokenItem> _getOpacityTokenItems(OudsThemeContract currentTheme) {
     return [
-      OpacityTokenItem(name: 'invisible', value: currentTheme.opacityTokens.invisible),
-      OpacityTokenItem(name: 'weakest', value: currentTheme.opacityTokens.weakest),
-      OpacityTokenItem(name: 'weaker', value: currentTheme.opacityTokens.weaker),
+      OpacityTokenItem(
+        name: 'invisible',
+        value: currentTheme.opacityTokens.invisible,
+      ),
+      OpacityTokenItem(
+        name: 'weakest',
+        value: currentTheme.opacityTokens.weakest,
+      ),
+      OpacityTokenItem(
+        name: 'weaker',
+        value: currentTheme.opacityTokens.weaker,
+      ),
       OpacityTokenItem(name: 'weak', value: currentTheme.opacityTokens.weak),
-      OpacityTokenItem(name: 'medium', value: currentTheme.opacityTokens.medium),
-      OpacityTokenItem(name: 'strong', value: currentTheme.opacityTokens.strong),
-      OpacityTokenItem(name: 'opaque', value: currentTheme.opacityTokens.opaque),
-      OpacityTokenItem(name: 'disables', value: currentTheme.opacityTokens.disabled)
+      OpacityTokenItem(
+        name: 'medium',
+        value: currentTheme.opacityTokens.medium,
+      ),
+      OpacityTokenItem(
+        name: 'strong',
+        value: currentTheme.opacityTokens.strong,
+      ),
+      OpacityTokenItem(
+        name: 'opaque',
+        value: currentTheme.opacityTokens.opaque,
+      ),
+      OpacityTokenItem(
+        name: 'disables',
+        value: currentTheme.opacityTokens.disabled,
+      ),
     ];
   }
 }
@@ -97,11 +131,16 @@ class OpacityWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     final currentTheme = themeController.currentTheme;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: currentTheme.spaceScheme(context).rowGapSmall),
+      padding: EdgeInsets.symmetric(
+        vertical: currentTheme.spaceScheme(context).rowGapSmall,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -116,7 +155,10 @@ class OpacityWidget extends StatelessWidget {
                     top: currentTheme.spaceScheme(context).insetNone,
                     left: currentTheme.spaceScheme(context).insetNone,
                     child: SvgPicture.asset(
-                      AdaptiveImageHelper.getImage(context, AppAssets.images.ilUnion),
+                      AdaptiveImageHelper.getImage(
+                        context,
+                        AppAssets.images.ilUnion,
+                      ),
                       fit: BoxFit.fitWidth,
                       width: 48,
                       height: 48,
@@ -129,17 +171,25 @@ class OpacityWidget extends StatelessWidget {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: currentTheme.colorScheme(context).contentDefault.withValues(
-                              alpha: opacityTokenItem.value,
-                            ),
-                        border: Border.all(color: currentTheme.colorScheme(context).borderDefault, width: currentTheme.borderTokens.widthDefault),
+                        color: currentTheme
+                            .colorScheme(context)
+                            .contentDefault
+                            .withValues(alpha: opacityTokenItem.value),
+                        border: Border.all(
+                          color: currentTheme
+                              .colorScheme(context)
+                              .borderDefault,
+                          width: currentTheme.borderTokens.widthDefault,
+                        ),
                       ),
                       // Make content invisible, but border stays visible
                       child: Opacity(
                         opacity: currentTheme.opacityTokens.invisible,
                         // Invisible content
                         child: Container(
-                          color: currentTheme.colorScheme(context).contentDefault, // Invisible background
+                          color: currentTheme
+                              .colorScheme(context)
+                              .contentDefault, // Invisible background
                         ),
                       ),
                     ),
@@ -148,7 +198,9 @@ class OpacityWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
+          SizedBox(
+            width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,14 +210,17 @@ class OpacityWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                     fontWeight: currentTheme.fontTokens.weightBodyStrong,
-                    letterSpacing: currentTheme.fontTokens.letterSpacingBodyLargeMobile,
+                    letterSpacing:
+                        currentTheme.fontTokens.letterSpacingBodyLargeMobile,
                     color: currentTheme.colorScheme(context).contentDefault,
                   ),
                 ),
                 SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
                 Text(
                   opacityTokenItem.value.toStringAsFixed(2),
-                  style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                  style: currentTheme.typographyTokens.typeBodyDefaultMedium(
+                    context,
+                  ),
                 ),
               ],
             ),

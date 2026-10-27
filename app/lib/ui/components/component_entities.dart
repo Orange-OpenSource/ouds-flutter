@@ -12,7 +12,7 @@
 
 import 'dart:core';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class Component {
   String title;
@@ -23,7 +23,12 @@ class Component {
 
   Component(this.title, this.customComponent, this.description, this.screen);
 
-  Component.withVariant(this.title, this.customComponent, this.description, this.variants);
+  Component.withVariant(
+    this.title,
+    this.customComponent,
+    this.description,
+    this.variants,
+  );
 }
 
 class VariantComponent {

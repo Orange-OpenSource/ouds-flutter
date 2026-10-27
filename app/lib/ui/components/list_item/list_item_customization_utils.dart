@@ -11,7 +11,7 @@
  *
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 // TODO[v0.4]: uncomment when avatar is available
 // import 'package:ouds_core/components/avatar/ouds_avatar.dart';

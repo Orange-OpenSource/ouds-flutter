@@ -47,11 +47,11 @@
 [![Code size](https://img.shields.io/github/languages/code-size/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter)
 [![Opened issues](https://img.shields.io/github/issues-raw/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues)
 
-[![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.35.0-FF2D95?style=for-the-badge)](https://flutter.dev)
-[![Dart SDK version](https://img.shields.io/badge/SDK-%5E3.9.0-D32F2F?style=for-the-badge)](https://dart.dev)
+[![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.47.0-FF2D95?style=for-the-badge)](https://flutter.dev)
+[![Dart SDK version](https://img.shields.io/badge/SDK-%5E3.13.0-D32F2F?style=for-the-badge)](https://dart.dev)
 
-[![iOS minimum](https://img.shields.io/badge/iOS-%3E%3D%2013.0-lightgrey?style=for-the-badge&logo=apple)](https://developer.apple.com/ios/)
-[![Android minimum](https://img.shields.io/badge/Android-%3E%3D%205.0%20(API%2021)-3DDC84?style=for-the-badge&logo=android)](https://developer.android.com)
+[![iOS minimum](https://img.shields.io/badge/iOS-%3E%3D%2015.0-lightgrey?style=for-the-badge&logo=apple)](https://developer.apple.com/ios/)
+[![Android minimum](https://img.shields.io/badge/Android-%3E%3D%207.0%20(API%2024)-3DDC84?style=for-the-badge&logo=android)](https://developer.android.com)
 
 
 

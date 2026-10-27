@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
@@ -26,7 +26,10 @@ class ComponentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
 
     return ListView.builder(
       itemCount: oudsComponents.length,
@@ -34,7 +37,13 @@ class ComponentsScreen extends StatelessWidget {
         var component = oudsComponents[index];
         return Padding(
           padding: EdgeInsetsDirectional.symmetric(
-              vertical: themeController.currentTheme.spaceScheme(context).scaledExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
+            vertical: themeController.currentTheme
+                .spaceScheme(context)
+                .scaledExtraSmall,
+            horizontal: themeController.currentTheme
+                .spaceScheme(context)
+                .scaledSmall,
+          ),
           child: Column(
             children: [
               OudsIllustrationComponentCard(
@@ -50,7 +59,8 @@ class ComponentsScreen extends StatelessWidget {
                     Get.to(
                       ComponentVariantsScreen(
                         component: component,
-                        previousPageTitle: context.l10n.app_bottomBar_components_label,
+                        previousPageTitle:
+                            context.l10n.app_bottomBar_components_label,
                       ),
                     );
                   }
