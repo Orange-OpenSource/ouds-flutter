@@ -56,7 +56,7 @@
 <section class="desc markdown">
   <p>A purely visual widget that renders a single digit cell of a PIN code input.</p>
 <p>Keyboard input is handled entirely by the parent <a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput-class.html">OudsPinCodeInput</a> via a
-single hidden <a href="https://api.flutter.dev/flutter/material/TextField-class.html">TextField</a>; <a href="../components_pin_code_input_digit_input_ouds_digit_input/OudsDigitInput/displayValue.html">displayValue</a> is simply passed down for rendering.</p>
+single hidden <a href="https://pub.dev/documentation/material_ui/1.8.0/material_ui/TextField-class.html">TextField</a>; <a href="../components_pin_code_input_digit_input_ouds_digit_input/OudsDigitInput/displayValue.html">displayValue</a> is simply passed down for rendering.</p>
 <h2 id="visual-states">Visual states</h2>
 <table>
 <thead>
@@ -72,7 +72,7 @@ single hidden <a href="https://api.flutter.dev/flutter/material/TextField-class.
 </tr>
 <tr>
 <td>Not focused, filled</td>
-<td>Value (<code>●</code> when <code>hiddenPassword</code> is <code>true</code>)</td>
+<td>Value (<code>●</code> when <code>hiddenCharacter</code> is <code>true</code>)</td>
 </tr>
 <tr>
 <td>Focused, empty</td>
@@ -100,7 +100,7 @@ OudsDigitInput(
   isAccessibilityActive: false,
   digitInputDecoration: OudsDigitInputDecoration(
     hintText: '-',
-    hiddenPassword: true,
+    hiddenCharacter: true,
   ),
 )
 </code></pre>

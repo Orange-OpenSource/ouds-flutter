@@ -55,11 +55,11 @@
     
 <section class="desc markdown">
   <p><a href="https://r.orange.fr/r/S-ouds-doc-pin-code-input">OUDS PIN Code Input Design Guidelines</a></p>
-<p><strong>Reference design version : 1.3.0</strong></p>
+<p><strong>Reference design version : 1.4.0</strong></p>
 <p>A fixed-length PIN code input composed of individual digit cells, typically
 used for authentication or confirmation flows.</p>
 <h2 id="architecture">Architecture</h2>
-<p>A single invisible <a href="https://api.flutter.dev/flutter/material/TextField-class.html">TextField</a> captures all keyboard input and holds the
+<p>A single invisible <a href="https://pub.dev/documentation/material_ui/1.8.0/material_ui/TextField-class.html">TextField</a> captures all keyboard input and holds the
 full PIN string, keeping the soft keyboard open and stable across all cell
 transitions. The visual cells (<a href="../components_pin_code_input_digit_input_ouds_digit_input/OudsDigitInput-class.html">OudsDigitInput</a>) are purely decorative.</p>
 <h2 id="accessibility">Accessibility</h2>
@@ -78,7 +78,7 @@ cells whose content changed after a keystroke.</li>
   helperText: 'Enter your 6-digit code',
   digitInputDecoration: OudsDigitInputDecoration(
     hintText: '-',
-    hiddenPassword: true,
+    hiddenCharacter: true,
   ),
   onChanged: (value) =&gt; print('Current PIN: $value'),
   onEditingComplete: (value) =&gt; print('PIN complete: $value'),
