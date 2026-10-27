@@ -175,6 +175,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             children: [
               Stack(
                 children: [
+                  //   Column(
+                  //    children: [
                   Container(
                     decoration: BoxDecoration(
                       color: controlItemBackgroundModifier.getBackgroundColor(
@@ -237,6 +239,8 @@ class OudsControlItemState extends State<OudsControlItem> {
                       ),
                     ),
                   ),
+                  //  ],
+                  //),
                   if (widget.outlined ||
                       (widget.selected && interactionState.isPressed))
                     Positioned.fill(
@@ -264,15 +268,15 @@ class OudsControlItemState extends State<OudsControlItem> {
                     // and to prevent a common 1-pixel rendering offset that can occur
                     // when using standard layout widgets, ensuring pixel-perfect alignment.
                     Positioned(
-                      bottom: OudsTheme.of(context)
-                          .spaceScheme(context)
-                          .fixedNone,
-                      left: OudsTheme.of(context)
-                          .spaceScheme(context)
-                          .fixedNone,
-                      right: OudsTheme.of(context)
-                          .spaceScheme(context)
-                          .fixedNone,
+                      bottom: OudsTheme.of(
+                        context,
+                      ).spaceScheme(context).fixedNone,
+                      left: OudsTheme.of(
+                        context,
+                      ).spaceScheme(context).fixedNone,
+                      right: OudsTheme.of(
+                        context,
+                      ).spaceScheme(context).fixedNone,
                       child: controlItemDivider(context),
                     ),
                 ],

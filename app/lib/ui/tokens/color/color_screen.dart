@@ -18,6 +18,7 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/tokens/color/color_tokens_model.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/colors_utils.dart';
 import 'package:provider/provider.dart';
 
 class ColorScreen extends StatelessWidget {
@@ -151,7 +152,8 @@ class ColorWidget extends StatelessWidget {
                 ),
               ),
               // Diagonal line overlay.
-              if (colorTokenItem.colorToHex(colorTokenItem.value!) == "#FF0000")
+              if (colorTokenItem.colorToHex(colorTokenItem.value!) ==
+                  colorUnspecified)
                 Positioned.fill(
                   child: CustomPaint(
                     painter: DiagonalBarUnspecifiedColor(
@@ -183,7 +185,7 @@ class ColorWidget extends StatelessWidget {
                 ),
                 SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
                 Text(
-                  colorTokenItem.colorToHex(colorTokenItem.value!),
+                  colorTokenItem.colorToHex(colorTokenItem.value) ?? "",
                   style: currentTheme.typographyTokens
                       .typeBodyDefaultMedium(context)
                       .copyWith(
@@ -196,22 +198,6 @@ class ColorWidget extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class ColorTokenItem {
-  const ColorTokenItem({required this.name, required this.value});
-
-  final String name;
-  final Color? value;
-
-  String colorToHex(Color color) {
-    // Convert the individual RGBA components (Red, Green, Blue) from double to int
-    String hex =
-        '#${(color.r * 255).toInt().toRadixString(16).padLeft(2, '0')}' // Red
-        '${(color.g * 255).toInt().toRadixString(16).padLeft(2, '0')}' // Green
-        '${(color.b * 255).toInt().toRadixString(16).padLeft(2, '0')}'; // Blue
-    return hex.toUpperCase();
   }
 }
 

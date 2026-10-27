@@ -326,11 +326,11 @@ Every new component needs a demo screen in `app/lib/ui/components/<name>/` and m
 
 ## 7. Components
 
-**Index:** [Alert](#alert) [Avatar](#avatar) [Badge](#badge) [Bottom Sheet](#bottom-sheet) [Button](#button) [Checkbox / Switch / Radio](#checkbox--switch--radio-button) [Checkbox / Switch / Radio item](#checkbox--switch--radio-item) [Chips](#filter-chip--suggestion-chip) [Divider](#divider) [Flag](#flag) [Link](#link) [List item](#list-item) [Navigation Bar](#navigation-bar) [Progress indicator](#progress-indicator) [Tag](#tag) [Text inputs](#text-input--password--phone--pin-code) [Top bar](#top-bar--app-bar)
+**Index:** [Alert](#alert) [Avatar](#avatar) [Badge](#badge) [Bottom Sheet](#bottom-sheet) [Button](#button) [Checkbox / Switch / Radio](#checkbox--switch--radio-button) [Checkbox / Switch / Radio item](#checkbox--switch--radio-item) [Chips](#filter-chip--suggestion-chip) [Divider](#divider) [Flag](#flag) [Link](#link) [List item](#list-item) [Navigation Bar](#navigation-bar) [Progress indicator](#progress-indicator) [Tag](#tag) [Text inputs](#text-input--password--phone--pin-code) [Top bar](#top-bar--app-bar) [Typography](#typography)
 
 The repository currently exposes component families under:
 
-`alert/` · `avatar/` · `badge/` · `bottom_sheet/` · `button/` · `checkbox/` · `chip/` · `control/` · `country_selector/` · `divider/` · `flag/` · `form_input/` · `link/` · `list_item/` · `navigation/` · `pin_code_input/` · `progress_indicator/` · `radio_button/` · `switch/` · `tag/` · `top_bar/`
+`alert/` · `avatar/` · `badge/` · `bottom_sheet/` · `button/` · `checkbox/` · `chip/` · `control/` · `country_selector/` · `divider/` · `flag/` · `form_input/` · `link/` · `list_item/` · `navigation/` · `pin_code_input/` · `progress_indicator/` · `radio_button/` · `switch/` · `tag/` · `top_bar/` · `typography/`
 
 The shared `OudsIcon` class (`package:ouds_core/components/common/ouds_icon.dart`) unifies icon configuration (asset path, `tinted`, `backgroundColor`, `semanticsLabel`) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsTextInput`, `OudsPhoneNumberInput`, `OudsCheckboxItem`, `OudsRadioButtonItem` and `OudsSwitchButtonItem` — always prefer it over a raw `String` icon path.
 
@@ -821,6 +821,76 @@ OudsTopBar(
 ```
 
 Use `OudsTopAppBar` when you need the full Material top app bar implementation (search, actions overflow, etc.).
+
+---
+
+### Typography
+
+Five typography widgets — `OudsDisplayText`, `OudsHeadingText`, `OudsBodyText`, `OudsLabelText`, `OudsCodeText` — render text using OUDS typography tokens. Each exposes a plain constructor (`text: String`) and a `.rich` constructor (`text: OudsAnnotatedText`) for coloring or styling part of the text. All support `color` (override the default content color), `maxLines`, `textAlign`, `overflow` and `softWrap`.
+
+| Widget | Size enum | Extra params |
+|---|---|---|
+| `OudsDisplayText` | `OudsDisplayTextSize` (`large` default, `medium`, `small`) | — |
+| `OudsHeadingText` | `OudsHeadingTextSize` (`xLarge`, `large` default, `medium`, `small`) | `marker: bool` (default `true`) — shows the heading underline marker, only on `large` size for themes exposing `headingLargeMarker` |
+| `OudsBodyText` | `OudsBodyTextSize` (`large`, `medium` default, `small`) | `weight: OudsTextWeight` (`defaultWeight`, `moderate`, `strong`), `onLinkTap: Function(String url)` for `[text](url)` markdown links |
+| `OudsLabelText` | `OudsLabelTextSize` (`xLarge`, `large`, `medium` default, `small`) | `weight: OudsTextWeight`, `onLinkTap` |
+| `OudsCodeText` | — (single size) | — |
+
+```dart
+import 'package:ouds_core/components/typography/ouds_display_text.dart';
+import 'package:ouds_core/components/typography/ouds_heading_text.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
+import 'package:ouds_core/components/typography/ouds_label_text.dart';
+import 'package:ouds_core/components/typography/ouds_code_text.dart';
+
+// Plain text
+OudsDisplayText(text: 'Page title', size: OudsDisplayTextSize.large)
+OudsHeadingText(text: 'Section title', size: OudsHeadingTextSize.medium)
+OudsBodyText(text: 'Body copy', weight: OudsTextWeight.moderate)
+OudsLabelText(text: 'Field label', size: OudsLabelTextSize.small)
+OudsCodeText(text: "final x = 42;")
+
+// Body text with a tappable markdown link
+OudsBodyText(
+  text: 'Read our [privacy policy](https://example.com/privacy).',
+  onLinkTap: (url) async => launchUrl(Uri.parse(url)),
+)
+```
+
+Only `OudsBodyText` and `OudsLabelText` support lightweight markdown inline: `**bold**`, `~~line through~~` and `[link](https://example.com)` (the latter tappable via `onLinkTap`). `OudsDisplayText`, `OudsHeadingText` and `OudsCodeText` do not expose this syntax.
+
+#### Coloring part of the text — `OudsAnnotatedText`
+
+Use `buildOudsAnnotatedText` with the `.rich` constructor to color only part of a sentence. `OudsAnnotatedTextBuilder.withColor` scopes a color to every `append` call inside its callback and restores the previous color afterward (nested colors are supported).
+
+```dart
+import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
+
+final colors = OudsTheme.of(context).colorScheme(context);
+
+OudsHeadingText.rich(
+  size: OudsHeadingTextSize.medium,
+  text: buildOudsAnnotatedText((builder) {
+    builder.append('Here is the ');
+    builder.withColor(
+      colors.contentBrandPrimary,
+      () => builder.append('new Livebox'),
+    );
+  }),
+)
+
+OudsBodyText.rich(
+  text: buildOudsAnnotatedText((builder) {
+    builder.append('Your option has been ');
+    builder.withColor(
+      colors.contentStatusNegative,
+      () => builder.append('removed'),
+    );
+  }),
+)
+```
+
+> Never hardcode the `Color` passed to `withColor` — always resolve it from `OudsTheme.of(context).colorScheme(context)` (e.g. `contentBrandPrimary`, `contentStatusPositive`, `contentStatusNegative`, `contentStatusInfo`, `contentStatusWarning`).
 
 ---
 

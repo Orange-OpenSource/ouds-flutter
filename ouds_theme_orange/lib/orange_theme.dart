@@ -332,11 +332,7 @@ class OrangeTheme implements OudsThemeContract {
 
   /// Gets the font family name to be used in the application.
   @override
-  String get fontFamily =>
-      orangeFontFamily ??
-      (defaultTargetPlatform == TargetPlatform.android
-          ? 'Roboto'
-          : 'SFProDisplay');
+  String? get fontFamily => orangeFontFamily;
 
   @override
   String get packageName => 'ouds_theme_orange';

@@ -70,10 +70,9 @@ class OudsVerticalImageFirstCard extends StatelessWidget {
                   vertical: theme.spaceScheme(context).paddingBlockLarge,
                 ),
 
-                child: Text(
-                  title,
-                  style: OudsTheme.of(context).typographyTokens
-                      .typeHeadingMedium(context),
+                child: OudsHeadingText(
+                  text: title,
+                  size: OudsHeadingTextSize.medium,
                 ),
               ),
             ],

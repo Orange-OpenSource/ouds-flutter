@@ -167,6 +167,31 @@ class AppLocalizationsAr extends AppLocalizations {
       'الخط هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.';
 
   @override
+  String app_tokens_typography_family_tech(String family) {
+    return 'Family: ($family)';
+  }
+
+  @override
+  String app_tokens_typography_size_tech(String size) {
+    return 'Size: ($size)';
+  }
+
+  @override
+  String app_tokens_typography_weight_tech(String weight) {
+    return 'Weight: ($weight)';
+  }
+
+  @override
+  String app_tokens_typography_letterSpacing_tech(String letterSpacing) {
+    return 'Letter spacing: ($letterSpacing)';
+  }
+
+  @override
+  String app_tokens_typography_lineHeight_tech(String lineHeight) {
+    return 'Line height: ($lineHeight)';
+  }
+
+  @override
   String get app_tokens_border_label => 'Border';
 
   @override
@@ -874,15 +899,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_4 =>
-      'Enter the 4-digit code sent to your phone.';
+      'Enter the **4-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_6 =>
-      'Enter the 6-digit code sent to your phone.';
+      'Enter the **6-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_8 =>
-      'Enter the 8-digit code sent to your phone.';
+      'Enter the **8-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_error_label =>
@@ -893,8 +918,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'Verification failed. Check and enter the correct code.';
 
   @override
-  String get app_components_pinCodeInput_hidden_password_label =>
-      'Hidden Password';
+  String get app_components_pinCodeInput_hidden_character_tech =>
+      'Hidden character';
 
   @override
   String get app_components_pinCodeInput_keyboardType_label => 'Keyboard type';
@@ -1093,6 +1118,67 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';
+
+  @override
+  String get app_components_typography_tech => 'Typography';
+
+  @override
+  String get app_components_typography_description_text =>
+      'توفر Typography نظاماً شاملاً لأنماط النصوص، مما يتيح إنشاء تسلسلات هرمية واضحة وواجهات سهلة القراءة.';
+
+  @override
+  String get app_components_typography_display_tech => 'Display';
+
+  @override
+  String get app_components_typography_display_description_text =>
+      'أنماط Display هو عنصر واجهة المستخدم الذي ينسق الطباعة لتقديم محتوى مؤثر مثل صفحات الهبوط، الحملات التسويقية، والرسائل الرئيسية.';
+
+  @override
+  String get app_components_typography_heading_tech => 'Heading';
+
+  @override
+  String get app_components_typography_heading_description_text =>
+      'أنماط Heading هو عنصر واجهة المستخدم الذي ينسق الطباعة لتنظيم المحتوى وتحديد تسلسل المعلومات داخل الواجهة.';
+
+  @override
+  String get app_components_typography_body_tech => 'Body';
+
+  @override
+  String get app_components_typography_body_description_text =>
+      'أنماط Body هو عنصر واجهة المستخدم الذي ينسق الطباعة للمحتوى النصي الشائع مثل الفقرات، الوصف، والرسائل المعلوماتية.';
+
+  @override
+  String get app_components_typography_label_tech => 'Label';
+
+  @override
+  String get app_components_typography_label_description_text =>
+      'أنماط Label ههو عنصر واجهة المستخدم الذي ينسق الطباعة لمكونات الواجهة المدمجة مثل الأزرار، حقول النموذج، الشارات، وغيرها من العناصر الصغيرة';
+
+  @override
+  String get app_components_typography_code_tech => 'Code';
+
+  @override
+  String get app_components_typography_code_description_text =>
+      'أنماط Code هو عنصر واجهة المستخدم الذي ينسق الطباعة للمحتوى الفني مثل مقتطفات الكود، الأوامر، القيم النظامية، والمعرفات.';
+
+  @override
+  String get app_components_typography_heading_marker_tech => 'Marker';
+
+  @override
+  String get app_components_typography_weight_tech => 'Weight';
+
+  @override
+  String get app_components_typography_annotatedTextExample_tech =>
+      'Annotated text example';
+
+  @override
+  String
+  get app_components_typography_headingAndDisplayText_annotatedText_text =>
+      'نص مع [اللون:contentBrandPrimary]';
+
+  @override
+  String get app_components_typography_bodyAndLabelText_annotatedText_text =>
+      'الحساب [بنجاح:contentStatusPositive] تم الإنشاء ';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

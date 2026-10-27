@@ -391,6 +391,36 @@ abstract class AppLocalizations {
   /// **'Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.'**
   String get app_tokens_typography_description_text;
 
+  /// No description provided for @app_tokens_typography_family_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Family: ({family})'**
+  String app_tokens_typography_family_tech(String family);
+
+  /// No description provided for @app_tokens_typography_size_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Size: ({size})'**
+  String app_tokens_typography_size_tech(String size);
+
+  /// No description provided for @app_tokens_typography_weight_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight: ({weight})'**
+  String app_tokens_typography_weight_tech(String weight);
+
+  /// No description provided for @app_tokens_typography_letterSpacing_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Letter spacing: ({letterSpacing})'**
+  String app_tokens_typography_letterSpacing_tech(String letterSpacing);
+
+  /// No description provided for @app_tokens_typography_lineHeight_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Line height: ({lineHeight})'**
+  String app_tokens_typography_lineHeight_tech(String lineHeight);
+
   /// No description provided for @app_tokens_border_label.
   ///
   /// In en, this message translates to:
@@ -1665,19 +1695,19 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_pinCodeInput_helperText_description_text_4.
   ///
   /// In en, this message translates to:
-  /// **'Enter the 4-digit code sent to your phone.'**
+  /// **'Enter the **4-digit code** sent to your phone.'**
   String get app_components_pinCodeInput_helperText_description_text_4;
 
   /// No description provided for @app_components_pinCodeInput_helperText_description_text_6.
   ///
   /// In en, this message translates to:
-  /// **'Enter the 6-digit code sent to your phone.'**
+  /// **'Enter the **6-digit code** sent to your phone.'**
   String get app_components_pinCodeInput_helperText_description_text_6;
 
   /// No description provided for @app_components_pinCodeInput_helperText_description_text_8.
   ///
   /// In en, this message translates to:
-  /// **'Enter the 8-digit code sent to your phone.'**
+  /// **'Enter the **8-digit code** sent to your phone.'**
   String get app_components_pinCodeInput_helperText_description_text_8;
 
   /// No description provided for @app_components_pinCodeInput_error_label.
@@ -1692,11 +1722,11 @@ abstract class AppLocalizations {
   /// **'Verification failed. Check and enter the correct code.'**
   String get app_components_pinCodeInput_verification_error_label;
 
-  /// No description provided for @app_components_pinCodeInput_hidden_password_label.
+  /// No description provided for @app_components_pinCodeInput_hidden_character_tech.
   ///
   /// In en, this message translates to:
-  /// **'Hidden Password'**
-  String get app_components_pinCodeInput_hidden_password_label;
+  /// **'Hidden character'**
+  String get app_components_pinCodeInput_hidden_character_tech;
 
   /// No description provided for @app_components_pinCodeInput_keyboardType_label.
   ///
@@ -2006,6 +2036,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Action enabled'**
   String get app_components_toolbarTop_actionEnabled_label;
+
+  /// No description provided for @app_components_typography_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Typography'**
+  String get app_components_typography_tech;
+
+  /// No description provided for @app_components_typography_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Typography components provide a comprehensive system of text styles for creating clear hierarchies and readable interfaces.'**
+  String get app_components_typography_description_text;
+
+  /// No description provided for @app_components_typography_display_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Display'**
+  String get app_components_typography_display_tech;
+
+  /// No description provided for @app_components_typography_display_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Display is a UI element that styles typography for impactful content like landing pages, marketing campaigns, and key messages.'**
+  String get app_components_typography_display_description_text;
+
+  /// No description provided for @app_components_typography_heading_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Heading'**
+  String get app_components_typography_heading_tech;
+
+  /// No description provided for @app_components_typography_heading_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Heading is a UI element that styles typography to structure content and define the hierarchy of information within an interface.'**
+  String get app_components_typography_heading_description_text;
+
+  /// No description provided for @app_components_typography_body_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Body'**
+  String get app_components_typography_body_tech;
+
+  /// No description provided for @app_components_typography_body_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Body is a UI element that styles typography for common text content like paragraphs, descriptions, and informational messages.'**
+  String get app_components_typography_body_description_text;
+
+  /// No description provided for @app_components_typography_label_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Label'**
+  String get app_components_typography_label_tech;
+
+  /// No description provided for @app_components_typography_label_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Label is a UI element that styles typography for compact interface components such as buttons, form fields, badges, and other small elements.'**
+  String get app_components_typography_label_description_text;
+
+  /// No description provided for @app_components_typography_code_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Code'**
+  String get app_components_typography_code_tech;
+
+  /// No description provided for @app_components_typography_code_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Code element is a UI element that styles typography for technical content like code snippets, commands, system values, and identifiers.'**
+  String get app_components_typography_code_description_text;
+
+  /// No description provided for @app_components_typography_heading_marker_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Marker'**
+  String get app_components_typography_heading_marker_tech;
+
+  /// No description provided for @app_components_typography_weight_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get app_components_typography_weight_tech;
+
+  /// No description provided for @app_components_typography_annotatedTextExample_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Annotated text example'**
+  String get app_components_typography_annotatedTextExample_tech;
+
+  /// No description provided for @app_components_typography_headingAndDisplayText_annotatedText_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Text with [color:contentBrandPrimary]'**
+  String get app_components_typography_headingAndDisplayText_annotatedText_text;
+
+  /// No description provided for @app_components_typography_bodyAndLabelText_annotatedText_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Account [successfully:contentStatusPositive] created '**
+  String get app_components_typography_bodyAndLabelText_annotatedText_text;
 
   /// No description provided for @app_about_name_label.
   ///

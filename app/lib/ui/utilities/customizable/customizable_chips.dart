@@ -12,6 +12,7 @@
 
 import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -66,23 +67,10 @@ class CustomizableChips<T> extends StatelessWidget {
                     .scaledSmall,
               ),
               child: ExcludeSemantics(
-                child: Text(
-                  title!,
+                child: OudsBodyText(
+                  text: title ?? "",
                   textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: themeController
-                        .currentTheme
-                        .fontTokens
-                        .sizeBodyLargeMobile,
-                    fontWeight: themeController
-                        .currentTheme
-                        .fontTokens
-                        .weightLabelStrong,
-                    letterSpacing: themeController
-                        .currentTheme
-                        .fontTokens
-                        .letterSpacingBodyLargeMobile,
-                  ),
+                  size: OudsBodyTextSize.large,
                 ),
               ),
             ),

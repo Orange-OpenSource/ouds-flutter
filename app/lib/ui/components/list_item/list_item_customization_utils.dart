@@ -125,7 +125,6 @@ class ListItemCustomizationUtils {
             OudsListItemImageFormat.widescreen
         ? AppAssets.icons.icUntintedWidescreen
         : AppAssets.icons.icUntintedSquare;
-    final imageLabel = context.l10n.app_components_listItem_image_a11y;
     return switch (leading) {
       ListItemLeadingEnum.none => null,
       ListItemLeadingEnum.icon => OudsListItemLeadingIcon(

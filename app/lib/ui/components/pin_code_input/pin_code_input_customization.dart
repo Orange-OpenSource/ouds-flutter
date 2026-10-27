@@ -34,7 +34,7 @@ class PinCodeInputCustomizationState
     extends CustomizationWidgetState<PinCodeInputCustomization> {
   // Initialize states that don't need context immediately (inline)
   late final ErrorState errorState = ErrorState(setState);
-  late final HiddenPasswordState hiddenPasswordState = HiddenPasswordState(
+  late final HiddenCharacterState hiddenCharacterState = HiddenCharacterState(
     setState,
   );
   late final PinCodeHasHelperTextState pinCodeHasHelperTextState =
@@ -79,8 +79,8 @@ class PinCodeInputCustomizationState
   set hasError(bool value) => errorState.value = value;
 
   // Proxy getters and setters to expose state values directly
-  bool get hasHiddenPassword => hiddenPasswordState.value;
-  set hasHiddenPassword(bool value) => hiddenPasswordState.value = value;
+  bool get hasHiddenCharacter => hiddenCharacterState.value;
+  set hasHiddenCharacter(bool value) => hiddenCharacterState.value = value;
 
   PinCodeLengthEnum get selectedPinCodeLength => pinCodeLengthState.selected;
   set selectedPinCodeLength(PinCodeLengthEnum value) =>
@@ -150,17 +150,17 @@ class ErrorState {
   }
 }
 
-/// hidden password State Management
-class HiddenPasswordState {
-  HiddenPasswordState(this._setState);
+/// hidden character State Management
+class HiddenCharacterState {
+  HiddenCharacterState(this._setState);
 
   final void Function(void Function()) _setState;
-  bool _hiddenPassword = true;
+  bool _hiddenCharacter = true;
 
-  bool get value => _hiddenPassword;
+  bool get value => _hiddenCharacter;
   set value(bool newValue) {
     _setState(() {
-      _hiddenPassword = newValue;
+      _hiddenCharacter = newValue;
     });
   }
 }

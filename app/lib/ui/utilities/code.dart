@@ -13,6 +13,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_core/components/typography/ouds_code_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
@@ -110,7 +111,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
           children: [
             Flexible(
               child: Text(
-                widget.titleText!,
+                widget.titleText ?? "",
                 style: theme.currentTheme.typographyTokens.typeBodyStrongLarge(
                   context,
                 ),
@@ -178,20 +179,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                       .spaceScheme(context)
                       .paddingInlineSmall,
                 ),
-                child: Text(
-                  textDirection: TextDirection.ltr,
-                  widget.code,
-                  style: TextStyle(
-                    fontSize:
-                        theme.currentTheme.fontTokens.sizeBodyMediumMobile,
-                    letterSpacing: theme
-                        .currentTheme
-                        .fontTokens
-                        .letterSpacingBodyMediumMobile,
-                    fontFamily: 'RobotoMono',
-                    package: theme.currentTheme.packageName,
-                  ),
-                ),
+                child: OudsCodeText(text: widget.code),
               ),
             ),
             Padding(

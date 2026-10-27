@@ -12,6 +12,7 @@
  */
 
 import 'package:material_ui/material_ui.dart';
+import 'package:ouds_theme_contract/theme/scheme/typography/ouds_system_monospace_font.dart';
 import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart';
 import 'package:ouds_theme_orange/orange_font_helper.dart';
 
@@ -160,4 +161,9 @@ class OrangeCompactTypography extends OudsTypography {
   TextStyle typeLabelStrongSmall(BuildContext context) {
     return super.typeLabelStrongSmall(context).withOrangeFont();
   }
+
+  @override
+  TextStyle typeCodeMedium(BuildContext context) => super
+      .typeCodeMedium(context)
+      .copyWith(fontFamily: oudsSystemMonospaceFontFamily);
 }

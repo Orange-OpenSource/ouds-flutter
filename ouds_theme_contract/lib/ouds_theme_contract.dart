@@ -67,7 +67,7 @@ abstract interface class OudsThemeContract {
 
   /// Font family used in the theme
   /// You can provide your own theme font family `fontFamily: 'Oswald'`
-  String get fontFamily;
+  String? get fontFamily;
 
   /// Package name used in the theme: Ex : 'ouds_theme_white_label'.
   /// This refers to the package containing the theme resources

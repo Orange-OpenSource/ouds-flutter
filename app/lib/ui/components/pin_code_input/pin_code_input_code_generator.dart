@@ -68,8 +68,8 @@ class PinCodeInputCodeGenerator {
       props.add(' hintText: "$hint",');
     }
 
-    if (state.hasHiddenPassword) {
-      props.add(' hiddenPassword: ${state.hasHiddenPassword},');
+    if (state.hasHiddenCharacter) {
+      props.add(' hiddenCharacter: ${state.hasHiddenCharacter},');
     }
 
     if (state.hasOutlined) {
