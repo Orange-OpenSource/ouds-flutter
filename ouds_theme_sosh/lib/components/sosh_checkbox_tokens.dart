@@ -30,22 +30,32 @@ class SoshCheckboxTokens extends OudsCheckboxTokens {
   @override
   double get borderWidthSelectedHover => providersTokens.borderTokens.widthNone;
   @override
-  double get borderWidthSelectedPressed => providersTokens.borderTokens.widthNone;
+  double get borderWidthSelectedPressed =>
+      providersTokens.borderTokens.widthNone;
   @override
   double get borderWidthUnselected => providersTokens.borderTokens.widthThin;
   @override
-  double get borderWidthUnselectedFocus => providersTokens.borderTokens.widthMedium;
+  double get borderWidthUnselectedFocus =>
+      providersTokens.borderTokens.widthMedium;
   @override
-  double get borderWidthUnselectedHover => providersTokens.borderTokens.widthMedium;
+  double get borderWidthUnselectedHover =>
+      providersTokens.borderTokens.widthMedium;
   @override
-  double get borderWidthUnselectedPressed => providersTokens.borderTokens.widthMedium;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  double get borderWidthUnselectedPressed =>
+      providersTokens.borderTokens.widthMedium;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get sizeIndicator => providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
+  double get sizeIndicator =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
   @override
-  double get sizeMaxHeight => providersTokens.sizeTokens.minInteractiveAreaDefault;
+  double get sizeMaxHeight =>
+      providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
-  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveAreaDefault;
+  double get sizeMinHeight =>
+      providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
-  double get sizeMinWidth => providersTokens.sizeTokens.minInteractiveAreaDefault;
+  double get sizeMinWidth =>
+      providersTokens.sizeTokens.minInteractiveAreaDefault;
 }
