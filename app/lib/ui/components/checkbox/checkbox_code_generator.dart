@@ -22,7 +22,8 @@ import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_customization.
 class CheckboxCodeGenerator {
   /// Static method to generate the code based on checkbox customization state.
   static String updateCode(BuildContext context, bool indeterminate) {
-    final CheckboxCustomizationState? customizationState = CheckboxCustomization.of(context);
+    final CheckboxCustomizationState? customizationState =
+        CheckboxCustomization.of(context);
 
     // Base list for building the checkbox code dynamically.
     final List<String> code = [];
@@ -53,6 +54,11 @@ class CheckboxCodeGenerator {
     // Add tristate only when indeterminate is true.
     if (indeterminate) {
       code.add('  tristate: true,');
+    }
+
+    // Add the skeleton property only when true.
+    if (customizationState?.hasSkeleton == true) {
+      code.add('  skeleton: OudsSkeleton(),');
     }
 
     // End of the widget declaration.

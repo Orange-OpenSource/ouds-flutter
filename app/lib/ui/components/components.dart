@@ -35,10 +35,12 @@ import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
+import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_message_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/inline_alert_demo_screen.dart';
@@ -69,11 +71,14 @@ import 'package:ouds_flutter_demo/ui/components/progress_indicator/circular_prog
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/linear_progress_indicator_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/skeleton/skeleton_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/typography/typography_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/typography/typography_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -498,6 +503,16 @@ List<Component> components(BuildContext context) {
         ),
       ],
     ),
+    Component(
+      context.l10n.app_components_skeleton_label,
+      ComponentContainer(
+        child: SizedBox(width: 200, height: 62, child: const OudsSkeleton()),
+      ),
+      context.l10n.app_components_skeleton_description_text,
+      SkeletonDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
+    ),
     Component.withVariant(
       context.l10n.app_components_switch_label,
       ComponentContainer(
@@ -594,6 +609,54 @@ List<Component> components(BuildContext context) {
       TopBarDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
+    ),
+    Component.withVariant(
+      context.l10n.app_components_typography_tech,
+      ComponentContainer(
+        child: OudsHeadingText(
+          text: context.l10n.app_components_common_label_label,
+          size: OudsHeadingTextSize.large,
+        ),
+      ),
+      context.l10n.app_components_typography_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_typography_body_tech,
+          TypographyDemoScreen(
+            variant: TypographyVariant.body,
+            previousPageTitle: context.l10n.app_components_typography_tech,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_typography_code_tech,
+          TypographyDemoScreen(
+            variant: TypographyVariant.code,
+            previousPageTitle: context.l10n.app_components_typography_tech,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_typography_display_tech,
+          TypographyDemoScreen(
+            variant: TypographyVariant.display,
+            previousPageTitle: context.l10n.app_components_typography_tech,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_typography_heading_tech,
+          TypographyDemoScreen(
+            variant: TypographyVariant.heading,
+            previousPageTitle: context.l10n.app_components_typography_tech,
+          ),
+        ),
+
+        VariantComponent(
+          context.l10n.app_components_typography_label_tech,
+          TypographyDemoScreen(
+            variant: TypographyVariant.label,
+            previousPageTitle: context.l10n.app_components_typography_tech,
+          ),
+        ),
+      ],
     ),
   ];
 }

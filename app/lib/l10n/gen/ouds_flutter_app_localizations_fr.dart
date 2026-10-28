@@ -168,6 +168,31 @@ class AppLocalizationsFr extends AppLocalizations {
       'La typographie est notre système de polices et de styles de texte. Elle améliore la communication et renforce l\'identité de la marque.';
 
   @override
+  String app_tokens_typography_family_tech(String family) {
+    return 'Family: ($family)';
+  }
+
+  @override
+  String app_tokens_typography_size_tech(String size) {
+    return 'Size: ($size)';
+  }
+
+  @override
+  String app_tokens_typography_weight_tech(String weight) {
+    return 'Weight: ($weight)';
+  }
+
+  @override
+  String app_tokens_typography_letterSpacing_tech(String letterSpacing) {
+    return 'Letter spacing: ($letterSpacing)';
+  }
+
+  @override
+  String app_tokens_typography_lineHeight_tech(String lineHeight) {
+    return 'Line height: ($lineHeight)';
+  }
+
+  @override
   String get app_tokens_border_label => 'Border';
 
   @override
@@ -303,6 +328,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_common_untinted_tech => 'Untinted';
+
+  @override
+  String get app_components_common_skeleton_tech => 'Skeleton';
 
   @override
   String get app_components_alert_tech => 'Alert';
@@ -508,6 +536,20 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get app_components_radioButton_radioButtonItem_extraLabel_label =>
       'Extra label';
+
+  @override
+  String get app_components_skeleton_label => 'Skeleton';
+
+  @override
+  String get app_components_skeleton_description_text =>
+      'Un Skeleton (ou squelette) est un élément d\'interface utilisateur qui affiche une forme animée servant de repère visuel pendant le chargement du contenu.';
+
+  @override
+  String get app_components_skeleton_animated_tech => 'Animated';
+
+  @override
+  String get app_components_skeleton_hasSecurityMargin_tech =>
+      'Security Margin';
 
   @override
   String get app_components_switch_label => 'Switch';
@@ -859,15 +901,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_4 =>
-      'Enter the 4-digit code sent to your phone.';
+      'Enter the **4-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_6 =>
-      'Enter the 6-digit code sent to your phone.';
+      'Enter the **6-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_8 =>
-      'Enter the 8-digit code sent to your phone.';
+      'Enter the **8-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_error_label =>
@@ -878,8 +920,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'Verification failed. Check and enter the correct code.';
 
   @override
-  String get app_components_pinCodeInput_hidden_password_label =>
-      'Hidden Password';
+  String get app_components_pinCodeInput_hidden_character_tech =>
+      'Hidden character';
 
   @override
   String get app_components_pinCodeInput_keyboardType_label => 'Keyboard type';
@@ -1075,6 +1117,67 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';
+
+  @override
+  String get app_components_typography_tech => 'Typography';
+
+  @override
+  String get app_components_typography_description_text =>
+      'Les composants de typographie offrent un système complet de styles de texte pour créer des hiérarchies claires et des interfaces lisibles.';
+
+  @override
+  String get app_components_typography_display_tech => 'Display';
+
+  @override
+  String get app_components_typography_display_description_text =>
+      'Display (ou l\'affichage) est un élément d\'interface utilisateur qui stylise la typographie pour un contenu percutant comme les pages de destination, les campagnes marketing et les messages clés.';
+
+  @override
+  String get app_components_typography_heading_tech => 'Heading';
+
+  @override
+  String get app_components_typography_heading_description_text =>
+      'Heading (ou le titre) est un élément d\'interface utilisateur qui stylise la typographie pour structurer le contenu et définir la hiérarchie de l\'information au sein d\'une interface.';
+
+  @override
+  String get app_components_typography_body_tech => 'Body';
+
+  @override
+  String get app_components_typography_body_description_text =>
+      'Body (ou le corps) du texte est un élément d\'interface utilisateur qui stylise la typographie pour le contenu textuel courant comme les paragraphes, descriptions et messages informatifs.';
+
+  @override
+  String get app_components_typography_label_tech => 'Label';
+
+  @override
+  String get app_components_typography_label_description_text =>
+      'Label (ou l\'étiquette) est un élément d\'interface utilisateur qui stylise la typographie pour des composants d\'interface compacts tels que les boutons, les champs de formulaire, les badges et autres petits éléments.';
+
+  @override
+  String get app_components_typography_code_tech => 'Code';
+
+  @override
+  String get app_components_typography_code_description_text =>
+      'Code (ou l\'élément de code) est un élément d\'interface utilisateur qui stylise la typographie pour le contenu technique comme les extraits de code, commandes, valeurs système et identifiants.';
+
+  @override
+  String get app_components_typography_heading_marker_tech => 'Marker';
+
+  @override
+  String get app_components_typography_weight_tech => 'Weight';
+
+  @override
+  String get app_components_typography_annotatedTextExample_tech =>
+      'Annotated text example';
+
+  @override
+  String
+  get app_components_typography_headingAndDisplayText_annotatedText_text =>
+      'Texte affiché avec [couleur:contentBrandPrimary]';
+
+  @override
+  String get app_components_typography_bodyAndLabelText_annotatedText_text =>
+      'Compte [créé avec succès:contentStatusPositive] créé ';
 
   @override
   String get app_about_name_label => 'Boîte à outils du système de conception';

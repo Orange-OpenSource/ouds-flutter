@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
 ///
 /// [OUDS Checkbox design guidelines](https://r.orange.fr/r/S-ouds-doc-checkbox)
@@ -58,6 +59,7 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///   Rich text is supported only for error messages.
 /// - [edgeToEdge] Controls the horizontal layout of the checkbox item. When `true`, the checkbox item is designed to span the full width of the screen or container. When `false`,
 ///   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the checkbox item will appear once fully loaded.
 ///
 ///
 /// ### You can use [OudsCheckboxItem] component in your project, customizing parameters as needed :
@@ -79,6 +81,7 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///   isError: false,
 ///   divider: true,
 ///   edgeToEdge: true,
+///   skeleton: OudsSkeleton(),
 ///   onChanged: (bool? value) {
 ///      setState(() {
 ///         isChecked = value;
@@ -104,6 +107,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final bool tristate;
   final bool constrainedMaxWidth;
   final bool edgeToEdge;
+  final OudsSkeleton? skeleton;
 
   const OudsCheckboxItem({
     super.key,
@@ -121,21 +125,11 @@ class OudsCheckboxItem extends StatelessWidget {
     this.tristate = false,
     this.constrainedMaxWidth = false,
     this.edgeToEdge = true,
+    this.skeleton,
   });
 
   @override
   Widget build(BuildContext context) {
-    /*final l10n = OudsLocalizations.of(context);
-
-    String? semanticValue = value == true
-        ? l10n?.core_checkbox_checked_a11y
-        : value == null
-            ? l10n?.core_checkbox_indeterminate_a11y
-            : l10n?.core_checkbox_unchecked_a11y;
-
-    // add “double tap to toggle”
-    String toggleActionLabel = (onChanged != null && !readOnly) ? '${l10n?.core_checkbox_hint_a11y}' : '';
-*/
     return OudsControlItem(
       text: title,
       description: helperTitle,
@@ -149,6 +143,7 @@ class OudsCheckboxItem extends StatelessWidget {
       constrainedMaxWidth: constrainedMaxWidth,
       reversed: reversed,
       edgeToEdge: edgeToEdge,
+      skeleton: skeleton,
       onTap: onChanged != null
           ? () {
               bool? newValue;

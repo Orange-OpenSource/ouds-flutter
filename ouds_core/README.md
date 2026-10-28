@@ -91,6 +91,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.2.0</td>
     </tr>
     <tr>
+      <td style="padding:10px;">Circular progress indicator</td>
+      <td>1.2.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Divider</td>
       <td>1.0.0</td>
     </tr>
@@ -105,6 +109,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     <tr>
       <td style="padding:10px;">Input tag</td>
       <td>1.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Linear progress indicator</td>
+      <td>1.1.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Linear progress indicator</td>
@@ -140,7 +148,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Pin Code Input</td>
-      <td>1.3.0</td>
+      <td>1.4.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Radio Button</td>
@@ -170,6 +178,26 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td style="padding:10px;">Text Input</td>
       <td>1.4.1</td>
     </tr>
+    <tr>
+      <td style="padding:10px;">Body</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Code</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Display</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Heading</td>
+      <td>1.1.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Label</td>
+      <td>1.0.0</td>
+    </tr>
   </tbody>
 </table>
 
@@ -198,17 +226,17 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```yaml
   # Core
-  ouds_core: ^3.0.0
+  ouds_core: ^3.1.0
   # Orange Theme contract
-  ouds_theme_contract: ^3.0.0
+  ouds_theme_contract: ^3.1.0
   # Orange Theme
-  ouds_theme_orange: ^3.0.0
+  ouds_theme_orange: ^3.1.0
   # Orange Theme Compact
-  ouds_theme_orange_compact: ^3.0.0
+  ouds_theme_orange_compact: ^3.1.0
   # Sosh Theme
-  ouds_theme_sosh: ^3.0.0
+  ouds_theme_sosh: ^3.1.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^3.0.0
+  ouds_theme_wireframe: ^3.1.0
   
 dependency_overrides:
   intl: ^0.20.2

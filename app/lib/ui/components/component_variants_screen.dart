@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -50,11 +51,9 @@ class ComponentVariantsScreen extends StatelessWidget {
                 padding: EdgeInsetsDirectional.all(
                   currentTheme.spaceScheme(context).insetMedium,
                 ),
-                child: Text(
-                  component.description,
-                  style: currentTheme.typographyTokens.typeBodyDefaultLarge(
-                    context,
-                  ),
+                child: OudsBodyText(
+                  text: component.description,
+                  size: OudsBodyTextSize.large,
                 ),
               ),
               ListView.builder(

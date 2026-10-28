@@ -81,6 +81,9 @@
   "@_components_radio_button": {},
   "app_components_radioButton_description_text": "Un Radio button (ou bouton radio) est un élément d'interface utilisateur qui permet de sélectionner une seule option parmi un ensemble de choix mutuellement exclusifs.",
 
+  "@_components_skeleton": {},
+  "app_components_skeleton_description_text": "Un Skeleton (ou squelette) est un élément d'interface utilisateur qui affiche une forme animée servant de repère visuel pendant le chargement du contenu.",
+
   "@_components_switch": {},
   "app_components_switch_description_text": "Un Switch (ou interrupteur) est un élément d'interface utilisateur qui permet de basculer entre deux états, généralement « Marche » et « Arrêt », et qui sert à activer ou désactiver des fonctionnalités, des options ou des paramètres.",
   "app_components_switch_switch_a11y": "Description du contenu de l'interrupteur",
@@ -159,6 +162,16 @@
 
   "@_components_topAppBar": {},
   "app_components_topAppBar_description_text": "L'app bar (ou barre d'application) est un composant situé en haut de l'ecran qui affiche le titre et donne accès aux actions principales et aux éléments de navigation.",
+
+  "@_components_typography": {},
+  "app_components_typography_description_text": "Les composants de typographie offrent un système complet de styles de texte pour créer des hiérarchies claires et des interfaces lisibles.",
+  "app_components_typography_display_description_text": "Display (ou l'affichage) est un élément d'interface utilisateur qui stylise la typographie pour un contenu percutant comme les pages de destination, les campagnes marketing et les messages clés.",
+  "app_components_typography_heading_description_text": "Heading (ou le titre) est un élément d'interface utilisateur qui stylise la typographie pour structurer le contenu et définir la hiérarchie de l'information au sein d'une interface.",
+  "app_components_typography_body_description_text": "Body (ou le corps) du texte est un élément d'interface utilisateur qui stylise la typographie pour le contenu textuel courant comme les paragraphes, descriptions et messages informatifs.",
+  "app_components_typography_label_description_text": "Label (ou l'étiquette) est un élément d'interface utilisateur qui stylise la typographie pour des composants d'interface compacts tels que les boutons, les champs de formulaire, les badges et autres petits éléments.",
+  "app_components_typography_code_description_text": "Code (ou l'élément de code) est un élément d'interface utilisateur qui stylise la typographie pour le contenu technique comme les extraits de code, commandes, valeurs système et identifiants.",
+  "app_components_typography_headingAndDisplayText_annotatedText_text": "Texte affiché avec [couleur:contentBrandPrimary]",
+  "app_components_typography_bodyAndLabelText_annotatedText_text": "Compte [créé avec succès:contentStatusPositive] créé ",
 
   "@_about_screen": {},
   "app_about_name_label": "Boîte à outils du système de conception",
