@@ -89,6 +89,9 @@
   "@_components_radio_button": {},
   "app_components_radioButton_description_text": "Radio button هو عنصر واجهة مستخدم يسمح باختيار خيار واحد فقط من مجموعة من الخيارات المتعارضة.",
 
+  "@_components_skeleton": {},
+  "app_components_skeleton_description_text": "Skeleton هو عنصر واجهة مستخدم يعرض شكلاً متحركًا مؤقتًا أثناء تحميل المحتوى.",
+
   "@_components_switch": {},
   "app_components_switch_description_text": "Switch هو عنصر واجهة مستخدم يسمح بالتبديل بين حالتين، عادةً \"تشغيل\" و \"إيقاف\"، ويستخدم لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات.",
   "app_components_switch_switch_a11y": "وصف محتوى المفتاح",
@@ -166,6 +169,16 @@
   "app_components_topAppBar_mediumErrorMessage_label": "يجب أن تكون القيمة على الأقل 112.",
   "app_components_topAppBar_largeErrorMessage_label": "يجب أن تكون القيمة على الأقل 152.",
   "app_components_topAppBar_titleMaxLineHelperText_label": "حدد الحد الأقصى لعدد الأسطر للعنوان، القيمة الأولية 1.",
+
+  "@_components_typography": {},
+  "app_components_typography_description_text":"توفر Typography نظاماً شاملاً لأنماط النصوص، مما يتيح إنشاء تسلسلات هرمية واضحة وواجهات سهلة القراءة.",
+  "app_components_typography_display_description_text": "أنماط Display هو عنصر واجهة المستخدم الذي ينسق الطباعة لتقديم محتوى مؤثر مثل صفحات الهبوط، الحملات التسويقية، والرسائل الرئيسية.",
+  "app_components_typography_heading_description_text": "أنماط Heading هو عنصر واجهة المستخدم الذي ينسق الطباعة لتنظيم المحتوى وتحديد تسلسل المعلومات داخل الواجهة.",
+  "app_components_typography_body_description_text": "أنماط Body هو عنصر واجهة المستخدم الذي ينسق الطباعة للمحتوى النصي الشائع مثل الفقرات، الوصف، والرسائل المعلوماتية.",
+  "app_components_typography_label_description_text": "أنماط Label ههو عنصر واجهة المستخدم الذي ينسق الطباعة لمكونات الواجهة المدمجة مثل الأزرار، حقول النموذج، الشارات، وغيرها من العناصر الصغيرة",
+  "app_components_typography_code_description_text": "أنماط Code هو عنصر واجهة المستخدم الذي ينسق الطباعة للمحتوى الفني مثل مقتطفات الكود، الأوامر، القيم النظامية، والمعرفات.",
+  "app_components_typography_headingAndDisplayText_annotatedText_text": "نص مع [اللون:contentBrandPrimary]",
+  "app_components_typography_bodyAndLabelText_annotatedText_text": "الحساب [بنجاح:contentStatusPositive] تم الإنشاء ",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

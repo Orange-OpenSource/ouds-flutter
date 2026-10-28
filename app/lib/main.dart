@@ -31,7 +31,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Load fonts from local assets in background (non-blocking).
-  // The app starts immediately with fallback fonts (Roboto/SF Pro),
+  // The app starts immediately with system fonts (Roboto/SF Pro),
   // then automatically switches to Helvetica Neue once loaded.
   OrangeFontService.instance.loadFromCdn();
   runApp(OudsApplication());

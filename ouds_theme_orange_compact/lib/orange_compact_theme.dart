@@ -10,7 +10,6 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
@@ -260,11 +259,7 @@ class OrangeCompactTheme implements OudsThemeContract {
   OudsFontSemanticTokens get fontTokens => OrangeCompactFontSemanticTokens();
 
   @override
-  String get fontFamily =>
-      orangeFontFamily ??
-      (defaultTargetPlatform == TargetPlatform.android
-          ? 'Roboto'
-          : 'SFProDisplay');
+  String? get fontFamily => orangeFontFamily;
 
   @override
   String get packageName => 'ouds_theme_orange_compact';

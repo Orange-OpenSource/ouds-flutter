@@ -12,6 +12,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -101,15 +102,11 @@ class _SwitchDemo extends StatefulWidget {
 }
 
 class _SwitchDemoState extends State<_SwitchDemo> {
-  ThemeController? themeController;
-
-  SwitchCustomizationState? customizationState;
   bool isSwitchOn = true;
 
   @override
   Widget build(BuildContext context) {
-    customizationState = SwitchCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: true);
+    final customizationState = SwitchCustomization.of(context)!;
 
     return Column(
       children: [
@@ -119,14 +116,17 @@ class _SwitchDemoState extends State<_SwitchDemo> {
             children: [
               OudsSwitch(
                 value: isSwitchOn,
-                onChanged: customizationState?.hasEnabled == true
+                onChanged: customizationState.hasEnabled == true
                     ? (newValue) {
                         setState(() {
                           isSwitchOn = newValue;
                         });
                       }
                     : null,
-                readOnly: customizationState!.hasReadOnly ? true : false,
+                readOnly: customizationState.hasReadOnly ? true : false,
+                skeleton: customizationState.hasSkeleton
+                    ? OudsSkeleton()
+                    : null,
               ),
             ],
           ),
@@ -179,6 +179,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                     customizationState.hasReadOnly = value;
                   });
                 },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_skeleton_tech,
+          value: customizationState.hasSkeleton,
+          onChanged: (value) {
+            customizationState.hasSkeleton = value;
+          },
         ),
       ],
     );

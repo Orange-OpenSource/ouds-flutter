@@ -47,7 +47,8 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
   /// [context] The BuildContext from which to retrieve the theme.
   /// returns The [OudsThemeContract] associated with the current context.
   static OudsThemeContract of(BuildContext context) {
-    final OudsTheme? result = context.dependOnInheritedWidgetOfExactType<OudsTheme>();
+    final OudsTheme? result = context
+        .dependOnInheritedWidgetOfExactType<OudsTheme>();
     assert(result != null, 'No OudsTheme found in context!');
     return result!.themeContract;
   }
@@ -57,7 +58,10 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
   /// [context] The BuildContext from which to retrieve the theme.
   /// returns The [ThemeMode] associated with the current context.
   static ThemeMode? modeOf(BuildContext context) {
-    return InheritedModel.inheritFrom<OudsTheme>(context, aspect: OudsThemeAspect.themeMode)?.themeMode;
+    return InheritedModel.inheritFrom<OudsTheme>(
+      context,
+      aspect: OudsThemeAspect.themeMode,
+    )?.themeMode;
   }
 
   /// Retrieves the bool from the widget tree.
@@ -65,7 +69,11 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
   /// [context] The BuildContext from which to retrieve the theme.
   /// returns The [bool] associated with the current context.
   static bool isOnColoredSurfaceOf(BuildContext context) {
-    return InheritedModel.inheritFrom<OudsTheme>(context, aspect: OudsThemeAspect.onColoredSurface)?.onColoredSurface ?? false;
+    return InheritedModel.inheritFrom<OudsTheme>(
+          context,
+          aspect: OudsThemeAspect.onColoredSurface,
+        )?.onColoredSurface ??
+        false;
   }
 
   /// Determines if the OUDS theme is currently in dark mode.
@@ -90,13 +98,16 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
   static bool isOudsInDarkTheme(BuildContext context) {
     // Try to find a theme tweak scope (requires ouds_core package)
     // Using dynamic type to avoid hard dependency on ouds_core
-    final tweakScope = context.dependOnInheritedWidgetOfExactType<InheritedWidget>();
+    final tweakScope = context
+        .dependOnInheritedWidgetOfExactType<InheritedWidget>();
 
     // Check if it's actually an OudsThemeTweakScope (duck typing)
-    if (tweakScope != null && tweakScope.runtimeType.toString() == 'OudsThemeTweakScope') {
+    if (tweakScope != null &&
+        tweakScope.runtimeType.toString() == 'OudsThemeTweakScope') {
       try {
         // Access effectiveThemeMode via reflection-like approach
-        final effectiveMode = (tweakScope as dynamic).effectiveThemeMode as ThemeMode;
+        final effectiveMode =
+            (tweakScope as dynamic).effectiveThemeMode as ThemeMode;
         return effectiveMode == ThemeMode.dark;
       } catch (_) {
         // Fallback if reflection fails
@@ -113,7 +124,10 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
 
   @override
   bool updateShouldNotify(covariant InheritedModel<OudsThemeAspect> oldWidget) {
-    return oldWidget is OudsTheme && (oldWidget.themeMode != themeMode || oldWidget.themeContract != themeContract || oldWidget.onColoredSurface != onColoredSurface);
+    return oldWidget is OudsTheme &&
+        (oldWidget.themeMode != themeMode ||
+            oldWidget.themeContract != themeContract ||
+            oldWidget.onColoredSurface != onColoredSurface);
   }
 
   @override
@@ -122,10 +136,12 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
     Set<OudsThemeAspect> dependencies,
   ) {
     if (oldWidget is OudsTheme) {
-      if (themeMode != oldWidget.themeMode && dependencies.contains(OudsThemeAspect.themeMode)) {
+      if (themeMode != oldWidget.themeMode &&
+          dependencies.contains(OudsThemeAspect.themeMode)) {
         return true;
       }
-      if (onColoredSurface != oldWidget.onColoredSurface && dependencies.contains(OudsThemeAspect.onColoredSurface)) {
+      if (onColoredSurface != oldWidget.onColoredSurface &&
+          dependencies.contains(OudsThemeAspect.onColoredSurface)) {
         return true;
       }
     }

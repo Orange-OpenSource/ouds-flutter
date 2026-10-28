@@ -166,6 +166,31 @@ class AppLocalizationsEn extends AppLocalizations {
       'Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.';
 
   @override
+  String app_tokens_typography_family_tech(String family) {
+    return 'Family: ($family)';
+  }
+
+  @override
+  String app_tokens_typography_size_tech(String size) {
+    return 'Size: ($size)';
+  }
+
+  @override
+  String app_tokens_typography_weight_tech(String weight) {
+    return 'Weight: ($weight)';
+  }
+
+  @override
+  String app_tokens_typography_letterSpacing_tech(String letterSpacing) {
+    return 'Letter spacing: ($letterSpacing)';
+  }
+
+  @override
+  String app_tokens_typography_lineHeight_tech(String lineHeight) {
+    return 'Line height: ($lineHeight)';
+  }
+
+  @override
   String get app_tokens_border_label => 'Border';
 
   @override
@@ -301,6 +326,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_common_untinted_tech => 'Untinted';
+
+  @override
+  String get app_components_common_skeleton_tech => 'Skeleton';
 
   @override
   String get app_components_alert_tech => 'Alert';
@@ -505,6 +533,20 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_radioButton_radioButtonItem_extraLabel_label =>
       'Extra label';
+
+  @override
+  String get app_components_skeleton_label => 'Skeleton';
+
+  @override
+  String get app_components_skeleton_description_text =>
+      'Skeleton is a UI element that displays an animated placeholder shape while content is loading.';
+
+  @override
+  String get app_components_skeleton_animated_tech => 'Animated';
+
+  @override
+  String get app_components_skeleton_hasSecurityMargin_tech =>
+      'Security Margin';
 
   @override
   String get app_components_switch_label => 'Switch';
@@ -855,15 +897,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_4 =>
-      'Enter the 4-digit code sent to your phone.';
+      'Enter the **4-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_6 =>
-      'Enter the 6-digit code sent to your phone.';
+      'Enter the **6-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_8 =>
-      'Enter the 8-digit code sent to your phone.';
+      'Enter the **8-digit code** sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_error_label =>
@@ -874,8 +916,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Verification failed. Check and enter the correct code.';
 
   @override
-  String get app_components_pinCodeInput_hidden_password_label =>
-      'Hidden Password';
+  String get app_components_pinCodeInput_hidden_character_tech =>
+      'Hidden character';
 
   @override
   String get app_components_pinCodeInput_keyboardType_label => 'Keyboard type';
@@ -1070,6 +1112,67 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';
+
+  @override
+  String get app_components_typography_tech => 'Typography';
+
+  @override
+  String get app_components_typography_description_text =>
+      'Typography components provide a comprehensive system of text styles for creating clear hierarchies and readable interfaces.';
+
+  @override
+  String get app_components_typography_display_tech => 'Display';
+
+  @override
+  String get app_components_typography_display_description_text =>
+      'Display is a UI element that styles typography for impactful content like landing pages, marketing campaigns, and key messages.';
+
+  @override
+  String get app_components_typography_heading_tech => 'Heading';
+
+  @override
+  String get app_components_typography_heading_description_text =>
+      'Heading is a UI element that styles typography to structure content and define the hierarchy of information within an interface.';
+
+  @override
+  String get app_components_typography_body_tech => 'Body';
+
+  @override
+  String get app_components_typography_body_description_text =>
+      'Body is a UI element that styles typography for common text content like paragraphs, descriptions, and informational messages.';
+
+  @override
+  String get app_components_typography_label_tech => 'Label';
+
+  @override
+  String get app_components_typography_label_description_text =>
+      'Label is a UI element that styles typography for compact interface components such as buttons, form fields, badges, and other small elements.';
+
+  @override
+  String get app_components_typography_code_tech => 'Code';
+
+  @override
+  String get app_components_typography_code_description_text =>
+      'Code element is a UI element that styles typography for technical content like code snippets, commands, system values, and identifiers.';
+
+  @override
+  String get app_components_typography_heading_marker_tech => 'Marker';
+
+  @override
+  String get app_components_typography_weight_tech => 'Weight';
+
+  @override
+  String get app_components_typography_annotatedTextExample_tech =>
+      'Annotated text example';
+
+  @override
+  String
+  get app_components_typography_headingAndDisplayText_annotatedText_text =>
+      'Text with [color:contentBrandPrimary]';
+
+  @override
+  String get app_components_typography_bodyAndLabelText_annotatedText_text =>
+      'Account [successfully:contentStatusPositive] created ';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';
