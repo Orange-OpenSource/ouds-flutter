@@ -17,7 +17,8 @@ import 'package:ouds_theme_orange/raw/orange_color_raw_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_action_semantic_tokens.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class OrangeCompactColorActionSemanticTokens extends OudsColorActionSemanticTokens {
+class OrangeCompactColorActionSemanticTokens
+    extends OudsColorActionSemanticTokens {
   const OrangeCompactColorActionSemanticTokens({
     super.actionDisabledDark = ColorRawTokens.colorOpacityWhite200,
     super.actionDisabledLight = ColorRawTokens.colorOpacityBlack200,

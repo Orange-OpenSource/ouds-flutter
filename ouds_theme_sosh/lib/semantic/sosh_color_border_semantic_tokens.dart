@@ -50,7 +50,8 @@ class SoshColorBorderSemanticTokens extends OudsColorBorderSemanticTokens {
     super.borderStatusNegativeDark = ColorRawTokens.colorFunctionalScarlet300,
     super.borderStatusNegativeLight = ColorRawTokens.colorFunctionalScarlet600,
     super.borderStatusPositiveDark = ColorRawTokens.colorFunctionalMalachite300,
-    super.borderStatusPositiveLight = ColorRawTokens.colorFunctionalMalachite750,
+    super.borderStatusPositiveLight =
+        ColorRawTokens.colorFunctionalMalachite750,
     super.borderStatusWarningDark = SoshColorRawTokens.colorTurbo300,
     super.borderStatusWarningLight = SoshColorRawTokens.colorTurbo500,
   });

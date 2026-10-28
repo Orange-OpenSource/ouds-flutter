@@ -27,5 +27,6 @@ class OrangeSkeletonTokens extends OudsSkeletonTokens {
   @override
   Color get colorGradientMiddle => providersTokens.colorScheme.opacityLower;
   @override
-  Color get colorGradientStartEnd => providersTokens.colorScheme.opacityTransparent;
+  Color get colorGradientStartEnd =>
+      providersTokens.colorScheme.opacityTransparent;
 }

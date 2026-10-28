@@ -19,10 +19,13 @@ import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
 class WireframeColorBgSemanticTokens extends OudsColorBgSemanticTokens {
   const WireframeColorBgSemanticTokens({
-    super.bgInverseHighDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.bgInverseHighLight = WireframeColorRawTokens.colorFunctionalGrayDark800,
+    super.bgInverseHighDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.bgInverseHighLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark800,
     super.bgInverseLowDark = WireframeColorRawTokens.colorFunctionalGrayDark720,
-    super.bgInverseLowLight = WireframeColorRawTokens.colorFunctionalGrayDark800,
+    super.bgInverseLowLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark800,
     super.bgPrimaryDark = WireframeColorRawTokens.colorFunctionalGrayDark880,
     super.bgPrimaryLight = ColorRawTokens.colorFunctionalWhite,
     super.bgSecondaryDark = WireframeColorRawTokens.colorFunctionalGrayDark800,

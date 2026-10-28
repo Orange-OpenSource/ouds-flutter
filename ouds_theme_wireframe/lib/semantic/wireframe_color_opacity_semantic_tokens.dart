@@ -16,15 +16,18 @@
 import 'package:ouds_theme_wireframe/raw/wireframe_color_raw_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_opacity_semantic_tokens.dart';
 
-class WireframeColorOpacitySemanticTokens extends OudsColorOpacitySemanticTokens {
+class WireframeColorOpacitySemanticTokens
+    extends OudsColorOpacitySemanticTokens {
   const WireframeColorOpacitySemanticTokens({
     super.opacityLowerDark = WireframeColorRawTokens.colorOpacityWhite80,
     super.opacityLowerLight = WireframeColorRawTokens.colorOpacityBlack80,
     super.opacityLowestDark = WireframeColorRawTokens.colorOpacityWhite40,
     super.opacityLowestLight = WireframeColorRawTokens.colorOpacityBlack40,
     super.opacityTransparentDark = WireframeColorRawTokens.colorOpacityWhite0,
-    super.opacityTransparentInverseDark = WireframeColorRawTokens.colorOpacityBlack0,
-    super.opacityTransparentInverseLight = WireframeColorRawTokens.colorOpacityWhite0,
+    super.opacityTransparentInverseDark =
+        WireframeColorRawTokens.colorOpacityBlack0,
+    super.opacityTransparentInverseLight =
+        WireframeColorRawTokens.colorOpacityWhite0,
     super.opacityTransparentLight = WireframeColorRawTokens.colorOpacityBlack0,
   });
 }

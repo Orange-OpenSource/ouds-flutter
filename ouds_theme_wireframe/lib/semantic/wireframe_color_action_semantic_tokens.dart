@@ -25,7 +25,8 @@ class WireframeColorActionSemanticTokens extends OudsColorActionSemanticTokens {
     super.actionEnabledLight = WireframeColorRawTokens.colorRoyalBlue600,
     super.actionFocusDark = WireframeColorRawTokens.colorRoyalBlue200,
     super.actionFocusLight = WireframeColorRawTokens.colorRoyalBlue800,
-    super.actionHighlightedDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.actionHighlightedDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
     super.actionHighlightedLight = WireframeColorRawTokens.colorRoyalBlue800,
     super.actionHoverDark = WireframeColorRawTokens.colorRoyalBlue200,
     super.actionHoverLight = WireframeColorRawTokens.colorRoyalBlue800,
@@ -44,23 +45,34 @@ class WireframeColorActionSemanticTokens extends OudsColorActionSemanticTokens {
     super.actionPressedDark = WireframeColorRawTokens.colorRoyalBlue100,
     super.actionPressedLight = WireframeColorRawTokens.colorRoyalBlue900,
     super.actionReadOnlyPrimaryDark = WireframeColorRawTokens.colorRoyalBlue200,
-    super.actionReadOnlyPrimaryLight = WireframeColorRawTokens.colorRoyalBlue800,
-    super.actionReadOnlySecondaryDark = WireframeColorRawTokens.colorOpacityWhite200,
-    super.actionReadOnlySecondaryLight = WireframeColorRawTokens.colorOpacityBlack200,
+    super.actionReadOnlyPrimaryLight =
+        WireframeColorRawTokens.colorRoyalBlue800,
+    super.actionReadOnlySecondaryDark =
+        WireframeColorRawTokens.colorOpacityWhite200,
+    super.actionReadOnlySecondaryLight =
+        WireframeColorRawTokens.colorOpacityBlack200,
     super.actionSelectedDark = WireframeColorRawTokens.colorRoyalBlue300,
     super.actionSelectedLight = WireframeColorRawTokens.colorRoyalBlue600,
-    super.actionSupportDisabledDark = WireframeColorRawTokens.colorOpacityWhite40,
-    super.actionSupportDisabledLight = WireframeColorRawTokens.colorOpacityBlack40,
-    super.actionSupportEnabledDark = WireframeColorRawTokens.colorOpacityWhite40,
-    super.actionSupportEnabledLight = WireframeColorRawTokens.colorOpacityBlack40,
+    super.actionSupportDisabledDark =
+        WireframeColorRawTokens.colorOpacityWhite40,
+    super.actionSupportDisabledLight =
+        WireframeColorRawTokens.colorOpacityBlack40,
+    super.actionSupportEnabledDark =
+        WireframeColorRawTokens.colorOpacityWhite40,
+    super.actionSupportEnabledLight =
+        WireframeColorRawTokens.colorOpacityBlack40,
     super.actionSupportFocusDark = WireframeColorRawTokens.colorOpacityWhite80,
     super.actionSupportFocusLight = WireframeColorRawTokens.colorOpacityBlack80,
     super.actionSupportHoverDark = WireframeColorRawTokens.colorOpacityWhite80,
     super.actionSupportHoverLight = WireframeColorRawTokens.colorOpacityBlack80,
-    super.actionSupportLoadingDark = WireframeColorRawTokens.colorOpacityWhite120,
-    super.actionSupportLoadingLight = WireframeColorRawTokens.colorOpacityBlack120,
-    super.actionSupportPressedDark = WireframeColorRawTokens.colorOpacityWhite120,
-    super.actionSupportPressedLight = WireframeColorRawTokens.colorOpacityBlack120,
+    super.actionSupportLoadingDark =
+        WireframeColorRawTokens.colorOpacityWhite120,
+    super.actionSupportLoadingLight =
+        WireframeColorRawTokens.colorOpacityBlack120,
+    super.actionSupportPressedDark =
+        WireframeColorRawTokens.colorOpacityWhite120,
+    super.actionSupportPressedLight =
+        WireframeColorRawTokens.colorOpacityBlack120,
     super.actionVisitedDark = ColorRawTokens.colorFunctionalAmethyst400,
     super.actionVisitedLight = ColorRawTokens.colorFunctionalAmethyst600,
   });

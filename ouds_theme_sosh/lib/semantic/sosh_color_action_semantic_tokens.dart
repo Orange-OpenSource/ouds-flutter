@@ -25,7 +25,8 @@ class SoshColorActionSemanticTokens extends OudsColorActionSemanticTokens {
     super.actionEnabledLight = SoshColorRawTokens.colorRaspberry500,
     super.actionFocusDark = SoshColorRawTokens.colorFunctionalGrayLight160,
     super.actionFocusLight = ColorRawTokens.colorFunctionalBlack,
-    super.actionHighlightedDark = SoshColorRawTokens.colorFunctionalGrayLight160,
+    super.actionHighlightedDark =
+        SoshColorRawTokens.colorFunctionalGrayLight160,
     super.actionHighlightedLight = SoshColorRawTokens.colorLochmaraDark240,
     super.actionHoverDark = SoshColorRawTokens.colorFunctionalGrayLight160,
     super.actionHoverLight = ColorRawTokens.colorFunctionalBlack,
@@ -43,10 +44,12 @@ class SoshColorActionSemanticTokens extends OudsColorActionSemanticTokens {
     super.actionNegativePressedLight = ColorRawTokens.colorFunctionalScarlet800,
     super.actionPressedDark = SoshColorRawTokens.colorTurbo300,
     super.actionPressedLight = SoshColorRawTokens.colorLochmaraDark240,
-    super.actionReadOnlyPrimaryDark = SoshColorRawTokens.colorFunctionalGrayLight160,
+    super.actionReadOnlyPrimaryDark =
+        SoshColorRawTokens.colorFunctionalGrayLight160,
     super.actionReadOnlyPrimaryLight = ColorRawTokens.colorFunctionalBlack,
     super.actionReadOnlySecondaryDark = SoshColorRawTokens.colorOpacityWhite200,
-    super.actionReadOnlySecondaryLight = SoshColorRawTokens.colorOpacityBlack200,
+    super.actionReadOnlySecondaryLight =
+        SoshColorRawTokens.colorOpacityBlack200,
     super.actionSelectedDark = SoshColorRawTokens.colorLochmaraLight640,
     super.actionSelectedLight = SoshColorRawTokens.colorRaspberry500,
     super.actionSupportDisabledDark = SoshColorRawTokens.colorOpacityWhite40,

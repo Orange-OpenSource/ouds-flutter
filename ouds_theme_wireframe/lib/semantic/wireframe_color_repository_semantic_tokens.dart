@@ -18,7 +18,8 @@ import 'package:ouds_theme_wireframe/raw/wireframe_color_raw_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_repository_semantic_tokens.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class WireframeColorRepositorySemanticTokens extends OudsColorRepositorySemanticTokens {
+class WireframeColorRepositorySemanticTokens
+    extends OudsColorRepositorySemanticTokens {
   const WireframeColorRepositorySemanticTokens({
     super.repositoryAccentHigh = const Color(0x00ff0000),
     super.repositoryAccentHigher = WireframeColorRawTokens.colorRustyRed900,
@@ -41,59 +42,98 @@ class WireframeColorRepositorySemanticTokens extends OudsColorRepositorySemantic
     super.repositoryNegativeLower = ColorRawTokens.colorFunctionalScarlet200,
     super.repositoryNegativeLowest = ColorRawTokens.colorFunctionalScarlet100,
     super.repositoryNegativeMedium = ColorRawTokens.colorFunctionalScarlet600,
-    super.repositoryNeutralEmphasizedBlack = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.repositoryNeutralEmphasizedHigh = WireframeColorRawTokens.colorFunctionalGrayDark720,
-    super.repositoryNeutralEmphasizedHigher = WireframeColorRawTokens.colorFunctionalGrayDark800,
-    super.repositoryNeutralEmphasizedHighest = WireframeColorRawTokens.colorFunctionalGrayDark880,
-    super.repositoryNeutralEmphasizedLow = WireframeColorRawTokens.colorFunctionalGrayDark560,
+    super.repositoryNeutralEmphasizedBlack =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.repositoryNeutralEmphasizedHigh =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.repositoryNeutralEmphasizedHigher =
+        WireframeColorRawTokens.colorFunctionalGrayDark800,
+    super.repositoryNeutralEmphasizedHighest =
+        WireframeColorRawTokens.colorFunctionalGrayDark880,
+    super.repositoryNeutralEmphasizedLow =
+        WireframeColorRawTokens.colorFunctionalGrayDark560,
     super.repositoryNeutralEmphasizedLower = const Color(0x00ff0000),
     super.repositoryNeutralEmphasizedLowest = const Color(0x00ff0000),
-    super.repositoryNeutralEmphasizedMedium = WireframeColorRawTokens.colorFunctionalGrayDark640,
+    super.repositoryNeutralEmphasizedMedium =
+        WireframeColorRawTokens.colorFunctionalGrayDark640,
     super.repositoryNeutralMutedHigh = const Color(0x00ff0000),
     super.repositoryNeutralMutedHigher = const Color(0x00ff0000),
     super.repositoryNeutralMutedHighest = const Color(0x00ff0000),
     super.repositoryNeutralMutedLow = const Color(0x00ff0000),
-    super.repositoryNeutralMutedLower = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.repositoryNeutralMutedLowest = WireframeColorRawTokens.colorFunctionalGrayLight80,
+    super.repositoryNeutralMutedLower =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.repositoryNeutralMutedLowest =
+        WireframeColorRawTokens.colorFunctionalGrayLight80,
     super.repositoryNeutralMutedMedium = const Color(0x00ff0000),
     super.repositoryNeutralMutedWhite = ColorRawTokens.colorFunctionalWhite,
-    super.repositoryOpacityAccentLow = WireframeColorRawTokens.colorOpacityRustyRed80,
-    super.repositoryOpacityAccentMedium = WireframeColorRawTokens.colorOpacityRustyRed680,
-    super.repositoryOpacityBlackHigh = WireframeColorRawTokens.colorOpacityBlack520,
-    super.repositoryOpacityBlackHigher = WireframeColorRawTokens.colorOpacityBlack680,
-    super.repositoryOpacityBlackHighest = WireframeColorRawTokens.colorOpacityBlack920,
-    super.repositoryOpacityBlackLow = WireframeColorRawTokens.colorOpacityBlack120,
-    super.repositoryOpacityBlackLower = WireframeColorRawTokens.colorOpacityBlack80,
-    super.repositoryOpacityBlackLowest = WireframeColorRawTokens.colorOpacityBlack40,
-    super.repositoryOpacityBlackMedium = WireframeColorRawTokens.colorOpacityBlack280,
-    super.repositoryOpacityBlackMediumHigh = WireframeColorRawTokens.colorOpacityBlack440,
-    super.repositoryOpacityBlackMediumLow = WireframeColorRawTokens.colorOpacityBlack200,
-    super.repositoryOpacityBlackTransparent = WireframeColorRawTokens.colorOpacityBlack0,
+    super.repositoryOpacityAccentLow =
+        WireframeColorRawTokens.colorOpacityRustyRed80,
+    super.repositoryOpacityAccentMedium =
+        WireframeColorRawTokens.colorOpacityRustyRed680,
+    super.repositoryOpacityBlackHigh =
+        WireframeColorRawTokens.colorOpacityBlack520,
+    super.repositoryOpacityBlackHigher =
+        WireframeColorRawTokens.colorOpacityBlack680,
+    super.repositoryOpacityBlackHighest =
+        WireframeColorRawTokens.colorOpacityBlack920,
+    super.repositoryOpacityBlackLow =
+        WireframeColorRawTokens.colorOpacityBlack120,
+    super.repositoryOpacityBlackLower =
+        WireframeColorRawTokens.colorOpacityBlack80,
+    super.repositoryOpacityBlackLowest =
+        WireframeColorRawTokens.colorOpacityBlack40,
+    super.repositoryOpacityBlackMedium =
+        WireframeColorRawTokens.colorOpacityBlack280,
+    super.repositoryOpacityBlackMediumHigh =
+        WireframeColorRawTokens.colorOpacityBlack440,
+    super.repositoryOpacityBlackMediumLow =
+        WireframeColorRawTokens.colorOpacityBlack200,
+    super.repositoryOpacityBlackTransparent =
+        WireframeColorRawTokens.colorOpacityBlack0,
     super.repositoryOpacityInfoLow = ColorRawTokens.colorOpacityDodgerBlue80,
-    super.repositoryOpacityInfoMedium = ColorRawTokens.colorOpacityDodgerBlue520,
+    super.repositoryOpacityInfoMedium =
+        ColorRawTokens.colorOpacityDodgerBlue520,
     super.repositoryOpacityNegativeLow = ColorRawTokens.colorOpacityScarlet80,
-    super.repositoryOpacityNegativeMedium = ColorRawTokens.colorOpacityScarlet320,
-    super.repositoryOpacityPositiveLow = ColorRawTokens.colorOpacityMalachite120,
-    super.repositoryOpacityPositiveMedium = ColorRawTokens.colorOpacityMalachite640,
-    super.repositoryOpacityPrimaryHigh = WireframeColorRawTokens.colorOpacityRoyalBlue560,
-    super.repositoryOpacityPrimaryHigher = WireframeColorRawTokens.colorOpacityRoyalBlue680,
+    super.repositoryOpacityNegativeMedium =
+        ColorRawTokens.colorOpacityScarlet320,
+    super.repositoryOpacityPositiveLow =
+        ColorRawTokens.colorOpacityMalachite120,
+    super.repositoryOpacityPositiveMedium =
+        ColorRawTokens.colorOpacityMalachite640,
+    super.repositoryOpacityPrimaryHigh =
+        WireframeColorRawTokens.colorOpacityRoyalBlue560,
+    super.repositoryOpacityPrimaryHigher =
+        WireframeColorRawTokens.colorOpacityRoyalBlue680,
     super.repositoryOpacityPrimaryHighest = const Color(0x00ff0000),
-    super.repositoryOpacityPrimaryLow = WireframeColorRawTokens.colorOpacityRoyalBlue360,
-    super.repositoryOpacityPrimaryLower = WireframeColorRawTokens.colorOpacityRoyalBlue200,
-    super.repositoryOpacityPrimaryLowest = WireframeColorRawTokens.colorOpacityRoyalBlue80,
-    super.repositoryOpacityPrimaryMedium = WireframeColorRawTokens.colorOpacityRoyalBlue400,
+    super.repositoryOpacityPrimaryLow =
+        WireframeColorRawTokens.colorOpacityRoyalBlue360,
+    super.repositoryOpacityPrimaryLower =
+        WireframeColorRawTokens.colorOpacityRoyalBlue200,
+    super.repositoryOpacityPrimaryLowest =
+        WireframeColorRawTokens.colorOpacityRoyalBlue80,
+    super.repositoryOpacityPrimaryMedium =
+        WireframeColorRawTokens.colorOpacityRoyalBlue400,
     super.repositoryOpacityPrimaryTransparent = const Color(0x00ff0000),
     super.repositoryOpacityWarningLow = ColorRawTokens.colorOpacitySun160,
     super.repositoryOpacityWarningMedium = ColorRawTokens.colorOpacitySun480,
-    super.repositoryOpacityWhiteHigh = WireframeColorRawTokens.colorOpacityWhite640,
-    super.repositoryOpacityWhiteHigher = WireframeColorRawTokens.colorOpacityWhite800,
-    super.repositoryOpacityWhiteHighest = WireframeColorRawTokens.colorOpacityWhite920,
-    super.repositoryOpacityWhiteLow = WireframeColorRawTokens.colorOpacityWhite120,
-    super.repositoryOpacityWhiteLower = WireframeColorRawTokens.colorOpacityWhite80,
-    super.repositoryOpacityWhiteLowest = WireframeColorRawTokens.colorOpacityWhite40,
-    super.repositoryOpacityWhiteMedium = WireframeColorRawTokens.colorOpacityWhite440,
-    super.repositoryOpacityWhiteMediumLow = WireframeColorRawTokens.colorOpacityWhite200,
-    super.repositoryOpacityWhiteTransparent = WireframeColorRawTokens.colorOpacityWhite0,
+    super.repositoryOpacityWhiteHigh =
+        WireframeColorRawTokens.colorOpacityWhite640,
+    super.repositoryOpacityWhiteHigher =
+        WireframeColorRawTokens.colorOpacityWhite800,
+    super.repositoryOpacityWhiteHighest =
+        WireframeColorRawTokens.colorOpacityWhite920,
+    super.repositoryOpacityWhiteLow =
+        WireframeColorRawTokens.colorOpacityWhite120,
+    super.repositoryOpacityWhiteLower =
+        WireframeColorRawTokens.colorOpacityWhite80,
+    super.repositoryOpacityWhiteLowest =
+        WireframeColorRawTokens.colorOpacityWhite40,
+    super.repositoryOpacityWhiteMedium =
+        WireframeColorRawTokens.colorOpacityWhite440,
+    super.repositoryOpacityWhiteMediumLow =
+        WireframeColorRawTokens.colorOpacityWhite200,
+    super.repositoryOpacityWhiteTransparent =
+        WireframeColorRawTokens.colorOpacityWhite0,
     super.repositoryPositiveHigh = ColorRawTokens.colorFunctionalMalachite700,
     super.repositoryPositiveHigher = ColorRawTokens.colorFunctionalMalachite750,
     super.repositoryPositiveHighest = const Color(0x00ff0000),
@@ -109,8 +149,10 @@ class WireframeColorRepositorySemanticTokens extends OudsColorRepositorySemantic
     super.repositoryPrimaryLowest = WireframeColorRawTokens.colorRoyalBlue100,
     super.repositoryPrimaryMedium = WireframeColorRawTokens.colorRoyalBlue600,
     super.repositorySecondaryHigh = WireframeColorRawTokens.colorRustyRed700,
-    super.repositorySecondaryHigherHigh = WireframeColorRawTokens.colorRustyRed800,
-    super.repositorySecondaryHigherLow = WireframeColorRawTokens.colorRustyRed800,
+    super.repositorySecondaryHigherHigh =
+        WireframeColorRawTokens.colorRustyRed800,
+    super.repositorySecondaryHigherLow =
+        WireframeColorRawTokens.colorRustyRed800,
     super.repositorySecondaryHighest = const Color(0x00ff0000),
     super.repositorySecondaryLow = WireframeColorRawTokens.colorRustyRed400,
     super.repositorySecondaryLower = WireframeColorRawTokens.colorRustyRed300,

@@ -35,11 +35,16 @@ class GridRawTokens {
   static const gridMinWidthMedium = 600;
   static const gridColumnGap10 = DimensionRawTokens.dimensionBase * 0.25; // 1px
   static const gridColumnGap100 = DimensionRawTokens.dimensionBase * 2.0; // 8px
-  static const gridColumnGap200 = DimensionRawTokens.dimensionBase * 4.0; // 16px
-  static const gridColumnGap300 = DimensionRawTokens.dimensionBase * 5.0; // 20px
-  static const gridColumnGap400 = DimensionRawTokens.dimensionBase * 6.0; // 24px
-  static const gridColumnGap600 = DimensionRawTokens.dimensionBase * 8.0; // 32px
-  static const gridColumnGap800 = DimensionRawTokens.dimensionBase * 10.0; // 40px
+  static const gridColumnGap200 =
+      DimensionRawTokens.dimensionBase * 4.0; // 16px
+  static const gridColumnGap300 =
+      DimensionRawTokens.dimensionBase * 5.0; // 20px
+  static const gridColumnGap400 =
+      DimensionRawTokens.dimensionBase * 6.0; // 24px
+  static const gridColumnGap600 =
+      DimensionRawTokens.dimensionBase * 8.0; // 32px
+  static const gridColumnGap800 =
+      DimensionRawTokens.dimensionBase * 10.0; // 40px
   static const gridMargin100 = DimensionRawTokens.dimensionBase * 4.0; // 16px
   static const gridMargin300 = DimensionRawTokens.dimensionBase * 6.0; // 24px
   static const gridMargin400 = DimensionRawTokens.dimensionBase * 7.0; // 28px
@@ -49,5 +54,6 @@ class GridRawTokens {
   static const gridMargin1000 = DimensionRawTokens.dimensionBase * 13.0; // 52px
   static const gridMargin1100 = DimensionRawTokens.dimensionBase * 14.0; // 56px
   static const gridMargin1700 = DimensionRawTokens.dimensionBase * 20.0; // 80px
-  static const gridMargin2500 = DimensionRawTokens.dimensionBase * 28.0; // 112px
+  static const gridMargin2500 =
+      DimensionRawTokens.dimensionBase * 28.0; // 112px
 }

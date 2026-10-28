@@ -23,7 +23,8 @@ class OrangeColorAiSemanticTokens extends OudsColorAiSemanticTokens {
     super.aiQuaternaryDark = OrangeColorRawTokens.colorDecorativeSky400,
     super.aiQuaternaryLight = OrangeColorRawTokens.colorDecorativeSky400,
     super.aiSecondaryDark = OrangeColorRawTokens.colorDecorativeShockingPink200,
-    super.aiSecondaryLight = OrangeColorRawTokens.colorDecorativeShockingPink200,
+    super.aiSecondaryLight =
+        OrangeColorRawTokens.colorDecorativeShockingPink200,
     super.aiTertiaryDark = OrangeColorRawTokens.colorDecorativeAmethyst400,
     super.aiTertiaryLight = OrangeColorRawTokens.colorDecorativeAmethyst400,
   });

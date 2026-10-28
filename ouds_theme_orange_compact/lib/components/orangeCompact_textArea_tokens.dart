@@ -31,11 +31,15 @@ class OrangeCompactTextAreaTokens extends OudsTextAreaTokens {
   @override
   double get sizeMinHeightInput => DimensionRawTokens.dimension750;
   @override
-  double get spacePaddingBlock => providersTokens.spaceTokens.paddingBlockXsmall;
+  double get spacePaddingBlock =>
+      providersTokens.spaceTokens.paddingBlockXsmall;
   @override
-  double get spacePaddingBlockEmptyTrailingContainer => providersTokens.spaceTokens.paddingBlock3xsmall;
+  double get spacePaddingBlockEmptyTrailingContainer =>
+      providersTokens.spaceTokens.paddingBlock3xsmall;
   @override
-  double get spacePaddingBlockTopEmpty => providersTokens.spaceTokens.paddingBlockLarge;
+  double get spacePaddingBlockTopEmpty =>
+      providersTokens.spaceTokens.paddingBlockLarge;
   @override
-  double get spacePaddingBlockTrailingContainer => providersTokens.spaceTokens.paddingBlockXsmall;
+  double get spacePaddingBlockTrailingContainer =>
+      providersTokens.spaceTokens.paddingBlockXsmall;
 }

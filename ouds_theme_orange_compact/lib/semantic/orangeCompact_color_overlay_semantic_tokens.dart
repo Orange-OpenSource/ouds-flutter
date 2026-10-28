@@ -16,7 +16,8 @@
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_overlay_semantic_tokens.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class OrangeCompactColorOverlaySemanticTokens extends OudsColorOverlaySemanticTokens {
+class OrangeCompactColorOverlaySemanticTokens
+    extends OudsColorOverlaySemanticTokens {
   const OrangeCompactColorOverlaySemanticTokens({
     super.overlayBackdropDark = ColorRawTokens.colorOpacityBlack680,
     super.overlayBackdropLight = ColorRawTokens.colorOpacityBlack680,

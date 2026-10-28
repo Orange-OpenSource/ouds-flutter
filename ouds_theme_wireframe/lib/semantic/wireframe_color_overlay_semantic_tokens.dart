@@ -17,19 +17,25 @@ import 'package:ouds_theme_wireframe/raw/wireframe_color_raw_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_overlay_semantic_tokens.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class WireframeColorOverlaySemanticTokens extends OudsColorOverlaySemanticTokens {
+class WireframeColorOverlaySemanticTokens
+    extends OudsColorOverlaySemanticTokens {
   const WireframeColorOverlaySemanticTokens({
     super.overlayBackdropDark = WireframeColorRawTokens.colorOpacityBlack680,
     super.overlayBackdropLight = WireframeColorRawTokens.colorOpacityBlack680,
     super.overlayDragDark = WireframeColorRawTokens.colorOpacityWhite80,
     super.overlayDragLight = WireframeColorRawTokens.colorOpacityBlack40,
-    super.overlayDropdownDark = WireframeColorRawTokens.colorFunctionalGrayDark560,
+    super.overlayDropdownDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark560,
     super.overlayDropdownLight = ColorRawTokens.colorFunctionalWhite,
-    super.overlayFloatingDark = WireframeColorRawTokens.colorFunctionalGrayDark560,
+    super.overlayFloatingDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark560,
     super.overlayFloatingLight = ColorRawTokens.colorFunctionalWhite,
-    super.overlayModalSheetDark = WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.overlayModalSheetDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
     super.overlayModalSheetLight = ColorRawTokens.colorFunctionalWhite,
-    super.overlayTooltipDark = WireframeColorRawTokens.colorFunctionalGrayDark560,
-    super.overlayTooltipLight = WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.overlayTooltipDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark560,
+    super.overlayTooltipLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
   });
 }

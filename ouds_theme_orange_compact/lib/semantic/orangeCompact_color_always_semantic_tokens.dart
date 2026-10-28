@@ -16,7 +16,8 @@
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_always_semantic_tokens.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class OrangeCompactColorAlwaysSemanticTokens extends OudsColorAlwaysSemanticTokens {
+class OrangeCompactColorAlwaysSemanticTokens
+    extends OudsColorAlwaysSemanticTokens {
   const OrangeCompactColorAlwaysSemanticTokens({
     super.alwaysBlack = ColorRawTokens.colorFunctionalBlack,
     super.alwaysOnBlack = ColorRawTokens.colorFunctionalGrayLight160,

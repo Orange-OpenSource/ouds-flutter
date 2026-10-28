@@ -25,7 +25,8 @@ class SoshInputTagTokens extends OudsInputTagTokens {
   @override
   double get borderWidthDefault => providersTokens.borderTokens.widthThin;
   @override
-  double get borderWidthDefaultInteraction => providersTokens.borderTokens.widthDefault;
+  double get borderWidthDefaultInteraction =>
+      providersTokens.borderTokens.widthDefault;
   @override
   Color get colorBgEnabled => providersTokens.colorScheme.actionSupportEnabled;
   @override

@@ -25,13 +25,16 @@ class OrangeTagTokens extends OudsTagTokens {
   @override
   double get borderRadius => providersTokens.borderTokens.radiusPill;
   @override
-  double get sizeAssetDefault => providersTokens.sizeTokens.iconWithLabelMediumSizeSmall;
+  double get sizeAssetDefault =>
+      providersTokens.sizeTokens.iconWithLabelMediumSizeSmall;
   @override
-  double get sizeAssetSmall => providersTokens.sizeTokens.iconWithLabelSmallSizeSmall;
+  double get sizeAssetSmall =>
+      providersTokens.sizeTokens.iconWithLabelSmallSizeSmall;
   @override
   double get sizeMinHeightDefault => DimensionRawTokens.dimension400;
   @override
-  double get sizeMinHeightInteractiveArea => providersTokens.sizeTokens.minInteractiveAreaDefault;
+  double get sizeMinHeightInteractiveArea =>
+      providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
   double get sizeMinHeightSmall => DimensionRawTokens.dimension300;
   @override
@@ -39,11 +42,14 @@ class OrangeTagTokens extends OudsTagTokens {
   @override
   double get sizeMinWidthSmall => DimensionRawTokens.dimension300;
   @override
-  double get spaceColumnGapDefault => providersTokens.spaceTokens.columnGap2xsmall;
+  double get spaceColumnGapDefault =>
+      providersTokens.spaceTokens.columnGap2xsmall;
   @override
-  double get spaceColumnGapSmall => providersTokens.spaceTokens.columnGap2xsmall;
+  double get spaceColumnGapSmall =>
+      providersTokens.spaceTokens.columnGap2xsmall;
   @override
-  double get spaceInsetBulletDefault => DimensionRawTokens.dimensionOutOfSystem75;
+  double get spaceInsetBulletDefault =>
+      DimensionRawTokens.dimensionOutOfSystem75;
   @override
   double get spaceInsetBulletSmall => providersTokens.spaceTokens.inset4xsmall;
   @override
@@ -51,19 +57,27 @@ class OrangeTagTokens extends OudsTagTokens {
   @override
   double get spaceInsetIconSmall => providersTokens.spaceTokens.insetNone;
   @override
-  double get spaceInsetProgressIndicatorDefault => providersTokens.spaceTokens.inset4xsmall;
+  double get spaceInsetProgressIndicatorDefault =>
+      providersTokens.spaceTokens.inset4xsmall;
   @override
-  double get spaceInsetProgressIndicatorSmall => providersTokens.spaceTokens.inset5xsmall;
+  double get spaceInsetProgressIndicatorSmall =>
+      providersTokens.spaceTokens.inset5xsmall;
   @override
-  double get spacePaddingBlockDefault => providersTokens.spaceTokens.paddingBlock2xsmall;
+  double get spacePaddingBlockDefault =>
+      providersTokens.spaceTokens.paddingBlock2xsmall;
   @override
-  double get spacePaddingBlockSmall => providersTokens.spaceTokens.paddingBlock3xsmall;
+  double get spacePaddingBlockSmall =>
+      providersTokens.spaceTokens.paddingBlock3xsmall;
   @override
-  double get spacePaddingInlineAssetDefault => providersTokens.spaceTokens.paddingInlineXsmall;
+  double get spacePaddingInlineAssetDefault =>
+      providersTokens.spaceTokens.paddingInlineXsmall;
   @override
-  double get spacePaddingInlineAssetSmall => providersTokens.spaceTokens.paddingInline2xsmall;
+  double get spacePaddingInlineAssetSmall =>
+      providersTokens.spaceTokens.paddingInline2xsmall;
   @override
-  double get spacePaddingInlineDefault => providersTokens.spaceTokens.paddingInlineMedium;
+  double get spacePaddingInlineDefault =>
+      providersTokens.spaceTokens.paddingInlineMedium;
   @override
-  double get spacePaddingInlineSmall => providersTokens.spaceTokens.paddingInlineSmall;
+  double get spacePaddingInlineSmall =>
+      providersTokens.spaceTokens.paddingInlineSmall;
 }

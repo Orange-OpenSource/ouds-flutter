@@ -23,13 +23,28 @@ class WireframeLinkMonoTokens extends OudsLinkMonoTokens {
   WireframeLinkMonoTokens(this.providersTokens);
 
   @override
-  Color get colorContentDisabled => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackMedium, providersTokens.colorScheme.repositoryOpacityWhiteMedium);
+  Color get colorContentDisabled => providersTokens.colorScheme.lightDark(
+    providersTokens.colorScheme.repositoryOpacityBlackMedium,
+    providersTokens.colorScheme.repositoryOpacityWhiteMedium,
+  );
   @override
-  Color get colorContentEnabled => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite);
+  Color get colorContentEnabled => providersTokens.colorScheme.lightDark(
+    providersTokens.colorScheme.repositoryNeutralEmphasizedBlack,
+    providersTokens.colorScheme.repositoryNeutralMutedWhite,
+  );
   @override
-  Color get colorContentFocus => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite);
+  Color get colorContentFocus => providersTokens.colorScheme.lightDark(
+    providersTokens.colorScheme.repositoryNeutralEmphasizedBlack,
+    providersTokens.colorScheme.repositoryNeutralMutedWhite,
+  );
   @override
-  Color get colorContentHover => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite);
+  Color get colorContentHover => providersTokens.colorScheme.lightDark(
+    providersTokens.colorScheme.repositoryNeutralEmphasizedBlack,
+    providersTokens.colorScheme.repositoryNeutralMutedWhite,
+  );
   @override
-  Color get colorContentPressed => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigh, providersTokens.colorScheme.repositoryOpacityWhiteHigher);
+  Color get colorContentPressed => providersTokens.colorScheme.lightDark(
+    providersTokens.colorScheme.repositoryOpacityBlackHigh,
+    providersTokens.colorScheme.repositoryOpacityWhiteHigher,
+  );
 }

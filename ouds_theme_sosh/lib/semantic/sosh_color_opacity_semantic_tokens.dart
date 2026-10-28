@@ -24,7 +24,8 @@ class SoshColorOpacitySemanticTokens extends OudsColorOpacitySemanticTokens {
     super.opacityLowestLight = SoshColorRawTokens.colorOpacityBlack40,
     super.opacityTransparentDark = SoshColorRawTokens.colorOpacityWhite0,
     super.opacityTransparentInverseDark = SoshColorRawTokens.colorOpacityBlack0,
-    super.opacityTransparentInverseLight = SoshColorRawTokens.colorOpacityWhite0,
+    super.opacityTransparentInverseLight =
+        SoshColorRawTokens.colorOpacityWhite0,
     super.opacityTransparentLight = SoshColorRawTokens.colorOpacityBlack0,
   });
 }
