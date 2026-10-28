@@ -258,8 +258,10 @@ class Containment extends StatelessWidget {
       children: [
         BottomSheetSection(),
         Cards(),
+        DataTables(),
         Dialogs(),
         Dividers(),
+        ExpansionTiles(),
         ListTile(),
         // TODO: Add Side sheets, https://github.com/flutter/flutter/issues/119328
       ],
@@ -1633,6 +1635,55 @@ class SnackBarSection extends StatelessWidget {
   }
 }
 
+
+class ExpansionTiles extends StatelessWidget {
+  const ExpansionTiles({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const ComponentDecoration(
+      label: 'ExpansionTile',
+      tooltipMessage: 'Use ExpansionTile to show/hide nested content',
+      child: SizedBox(
+        width: widthConstraint,
+        child: ExpansionTile(
+          title: Text('Expansion tile'),
+          subtitle: Text('Tap to expand'),
+          children: <Widget>[
+            ListTile(title: Text('Nested item 1')),
+            ListTile(title: Text('Nested item 2')),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DataTables extends StatelessWidget {
+  const DataTables({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ComponentDecoration(
+      label: 'DataTable',
+      tooltipMessage: 'Use DataTable to display tabular data',
+      child: SizedBox(
+        width: widthConstraint,
+        child: DataTable(
+          columns: const <DataColumn>[
+            DataColumn(label: Text('Name')),
+            DataColumn(label: Text('Age'), numeric: true),
+          ],
+          rows: const <DataRow>[
+            DataRow(cells: <DataCell>[DataCell(Text('Alice')), DataCell(Text('28'))]),
+            DataRow(cells: <DataCell>[DataCell(Text('Bob')), DataCell(Text('34'))]),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class BottomSheetSection extends StatefulWidget {
   const BottomSheetSection({super.key});
 
@@ -2063,9 +2114,10 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
       label: 'Tabs',
       tooltipMessage: 'Use TabBar',
       child: SizedBox(
-        height: 80,
+        height: 300,
         child: Scaffold(
           appBar: AppBar(
+            title: const Text('Tabs'),
             bottom: TabBar(
               controller: _tabController,
               tabs: const <Widget>[

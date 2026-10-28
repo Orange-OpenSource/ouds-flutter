@@ -312,7 +312,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
 
         final nextIndex = _activeIndex + 1;
 
-        SemanticsService.announce(
+        SemanticsService.sendAnnouncement(
+            View.of(context),
           OudsLocalizations.of(
                 context,
               )?.core_pinCodeInput_digitPosition_a11y(nextIndex, totalDigits) ??
