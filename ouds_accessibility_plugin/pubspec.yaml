@@ -39,6 +39,8 @@ flutter:
       android:
         package: com.orange.ouds_accessibility_plugin
         pluginClass: OudsAccessibilityPlugin
+      ios:
+        pluginClass: OudsAccessibilityPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
