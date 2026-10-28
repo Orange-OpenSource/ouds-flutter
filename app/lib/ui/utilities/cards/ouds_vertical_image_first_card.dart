@@ -11,6 +11,7 @@
 //
 
 import 'package:material_ui/material_ui.dart';
+import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_cards_common.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
