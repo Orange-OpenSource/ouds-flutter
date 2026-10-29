@@ -173,7 +173,9 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
             constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                 ? true
                 : false,
-            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+            skeleton: customizationState.hasSkeleton
+                ? OudsSkeleton(hasSecurityMargin: true)
+                : null,
           ),
         ],
       ),

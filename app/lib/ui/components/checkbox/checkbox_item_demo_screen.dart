@@ -186,7 +186,9 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
             ? true
             : false,
         tristate: widget.indeterminate,
-        skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+        skeleton: customizationState.hasSkeleton
+            ? OudsSkeleton(hasSecurityMargin: true)
+            : null,
       ),
     );
   }
