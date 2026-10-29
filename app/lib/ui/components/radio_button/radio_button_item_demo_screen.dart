@@ -197,7 +197,9 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
               constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                   ? true
                   : false,
-              skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+              skeleton: customizationState.hasSkeleton
+                  ? OudsSkeleton(hasSecurityMargin: true)
+                  : null,
             ),
             SizedBox(
               height: themeController.currentTheme.gridScheme(context).margin,
