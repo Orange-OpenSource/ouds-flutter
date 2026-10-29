@@ -203,12 +203,12 @@ Widget build(BuildContext context) {
     context,
   );
   final radioButtonTickModifier = OudsControlTickModifier(context);
-  final radioButton = OudsTheme.of(
-    context,
-  ).componentsTokens(context).radioButton;
-  final controlListItem = OudsTheme.of(
-    context,
-  ).componentsTokens(context).controlListItem;
+  final radioButton = OudsTheme.of(context)
+      .componentsTokens(context)
+      .radioButton;
+  final controlListItem = OudsTheme.of(context)
+      .componentsTokens(context)
+      .controlListItem;
   final l10n = OudsLocalizations.of(context);
   final isItemEnabled = widget.onChanged != null &amp;&amp; !(widget.readOnly);
 
