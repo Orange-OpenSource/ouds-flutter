@@ -27,9 +27,9 @@ class OudsLinkStatusModifier {
   /// Returns the text a nd icon color based on the link status.
   Color getTextAndIconColor(OudsLinkControlState state) {
     final linkTheme = OudsTheme.of(context).componentsTokens(context).link;
-    final linkMonoTheme = OudsTheme.of(
-      context,
-    ).componentsTokens(context).linkMono;
+    final linkMonoTheme = OudsTheme.of(context)
+        .componentsTokens(context)
+        .linkMono;
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
 
     switch (state) {
@@ -59,9 +59,9 @@ class OudsLinkStatusModifier {
   /// Return the arrow color based on link status
   Color getArrowColor(OudsLinkControlState state) {
     final linkTheme = OudsTheme.of(context).componentsTokens(context).link;
-    final linkMonoTheme = OudsTheme.of(
-      context,
-    ).componentsTokens(context).linkMono;
+    final linkMonoTheme = OudsTheme.of(context)
+        .componentsTokens(context)
+        .linkMono;
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
 
     switch (state) {

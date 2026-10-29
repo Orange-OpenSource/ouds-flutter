@@ -165,9 +165,9 @@ class _OudsToolbarTopState extends State<OudsToolbarTop> {
               textAlign: TextAlign.center,
               widget.title ?? "",
               style: TextStyle(
-                color: OudsTheme.of(
-                  context,
-                ).colorScheme(context).contentDefault,
+                color: OudsTheme.of(context)
+                    .colorScheme(context)
+                    .contentDefault,
                 overflow: TextOverflow.ellipsis,
                 fontFamily: OudsTheme.of(context).fontFamily,
               ).copyWith(letterSpacing: -0.43, fontSize: 17),

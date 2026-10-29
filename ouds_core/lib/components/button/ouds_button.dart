@@ -290,17 +290,14 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
-    OudsButtonSize size = OudsButtonSize.defaultSize,
     this.loader,
     this.isLoading = false,
-    required OudsNavigationButtonLayout navigationLayout,
-    String? semanticsLabel,
+    required OudsNavigationButtonLayout this._navigationLayout,
+    this._semanticsLabel,
     this.skeleton,
-  }) : _size = size,
-       _component = OudsButtonComponent.navigationButton,
-       _navigationLayout = navigationLayout,
-       _semanticsLabel = semanticsLabel,
+  }) : _component = OudsButtonComponent.navigationButton,
        tinted = true,
+       _size = OudsButtonSize.defaultSize,
        _badge = null;
 
   @override
@@ -347,16 +344,13 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
-    OudsButtonSize size = OudsButtonSize.defaultSize,
-    String? semanticsLabel,
-    OudsTopBarActionBadge? badge,
+    this._size = OudsButtonSize.defaultSize,
+    this._semanticsLabel,
+    this._badge,
     required OudsButtonControlState buttonState,
   }) : label = null,
-       _size = size,
        _component = OudsButtonComponent.defaultButton,
        _navigationLayout = null,
-       _semanticsLabel = semanticsLabel,
-       _badge = badge,
        tinted = true,
        isLoading = false,
        loader = null,
@@ -1237,7 +1231,6 @@ class OudsNavigationButton extends StatelessWidget {
   final String? package;
   final bool? isFullWidth;
   final String? semanticsLabel;
-  final OudsButtonSize size;
   final OudsSkeleton? skeleton;
 
   const OudsNavigationButton({
@@ -1251,7 +1244,6 @@ class OudsNavigationButton extends StatelessWidget {
     this.isLoading = false,
     this.isFullWidth,
     this.semanticsLabel,
-    this.size = OudsButtonSize.defaultSize,
     this.skeleton,
   });
 
@@ -1279,7 +1271,6 @@ class OudsNavigationButton extends StatelessWidget {
       loader: loader,
       isLoading: isLoading,
       semanticsLabel: semanticsLabel,
-      size: size,
       skeleton: skeleton,
     );
   }

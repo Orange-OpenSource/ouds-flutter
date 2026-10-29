@@ -351,13 +351,13 @@ class _OudsTagState extends State<OudsTag> {
             child: Semantics(
               child: CircularProgressIndicator(
                 padding: tagSizeModifier.getLoadingAssetsPadding(widget.size),
-                color: OudsTheme.of(
-                  context,
-                ).colorScheme(context).contentDefault,
+                color: OudsTheme.of(context)
+                    .colorScheme(context)
+                    .contentDefault,
                 strokeWidth: MediaQuery.textScalerOf(context).scale(
-                  OudsTheme.of(
-                    context,
-                  ).spaceScheme(context).scaledThreeExtraSmall,
+                  OudsTheme.of(context)
+                      .spaceScheme(context)
+                      .scaledThreeExtraSmall,
                 ),
               ),
             ),

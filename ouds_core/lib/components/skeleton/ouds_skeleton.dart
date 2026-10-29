@@ -127,18 +127,18 @@ class _OudsSkeletonState extends State<OudsSkeleton>
     if (MediaQuery.disableAnimationsOf(context)) {
       return true;
     }
-    final accessibilityFeatures = View.of(
-      context,
-    ).platformDispatcher.accessibilityFeatures;
+    final accessibilityFeatures = View.of(context)
+        .platformDispatcher
+        .accessibilityFeatures;
     return accessibilityFeatures.reduceMotion;
   }
 
   @override
   Widget build(BuildContext context) {
     final tokens = OudsTheme.of(context).componentsTokens(context).skeleton;
-    final padding = OudsTheme.of(
-      context,
-    ).spaceScheme(context).paddingBlockThreeExtraSmall;
+    final padding = OudsTheme.of(context)
+        .spaceScheme(context)
+        .paddingBlockThreeExtraSmall;
     final shouldAnimate = widget.animated && !_shouldDisableAnimations(context);
 
     // The shimmer is a dedicated gradient layer drawn on top of the background and translated

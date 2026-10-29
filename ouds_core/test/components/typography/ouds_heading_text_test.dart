@@ -83,7 +83,10 @@ void main() {
           OudsHeadingText.rich(
             text: buildOudsAnnotatedText((builder) {
               builder.append('Plain ');
-              builder.withColor((context) => Colors.red, () => builder.append('Colored'));
+              builder.withColor(
+                (context) => Colors.red,
+                () => builder.append('Colored'),
+              );
             }),
           ),
         ),
@@ -123,7 +126,10 @@ void main() {
           OudsHeadingText.rich(
             text: buildOudsAnnotatedText((builder) {
               builder.append('Plain ');
-              builder.withColor((context) => Colors.red, () => builder.append('Colored'));
+              builder.withColor(
+                (context) => Colors.red,
+                () => builder.append('Colored'),
+              );
             }),
           ),
         ),
@@ -142,7 +148,10 @@ void main() {
         testableWidget(
           OudsHeadingText.rich(
             text: buildOudsAnnotatedText((builder) {
-              builder.withColor((context) => Colors.red, () => builder.append('Red'));
+              builder.withColor(
+                (context) => Colors.red,
+                () => builder.append('Red'),
+              );
               builder.append('Default again');
             }),
           ),

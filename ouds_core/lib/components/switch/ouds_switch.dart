@@ -126,9 +126,9 @@ class _OudsSwitchState extends State<OudsSwitch> {
     );
     final switchState = switchStateDeterminer.determineControlState();
     final switchTickModifier = OudsControlTickModifier(context);
-    final switchButton = OudsTheme.of(
-      context,
-    ).componentsTokens(context).switchButton;
+    final switchButton = OudsTheme.of(context)
+        .componentsTokens(context)
+        .switchButton;
 
     return MergeSemantics(
       child: Semantics(
@@ -222,9 +222,9 @@ class _OudsSwitchState extends State<OudsSwitch> {
     bool isHovered,
     bool isHighContrast,
   ) {
-    final switchButton = OudsTheme.of(
-      context,
-    ).componentsTokens(context).switchButton;
+    final switchButton = OudsTheme.of(context)
+        .componentsTokens(context)
+        .switchButton;
     const animationDuration = Duration(milliseconds: 150);
     const customCurve = Cubic(0.2, 0.0, 0.0, 1.0);
     final switchTickModifier = OudsControlTickModifier(context);

@@ -24,7 +24,11 @@ class OudsFormFieldsBorderModifier {
   OudsFormFieldsBorderModifier(this.context);
 
   /// Gets the borderSide based on the text input state and whether it is selected
-  Border getBorder(OudsFormFieldsControlState state, [bool isError = false, bool? outlined]) {
+  Border getBorder(
+    OudsFormFieldsControlState state, [
+    bool isError = false,
+    bool? outlined,
+  ]) {
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
     final theme = OudsTheme.of(context);
     final defaultStyle = outlined == false;
@@ -33,34 +37,94 @@ class OudsFormFieldsBorderModifier {
       switch (state) {
         case OudsFormFieldsControlState.enabled:
           return Border(
-            bottom: BorderSide(color: theme.colorScheme(context).actionNegativeEnabled, width: textInput.borderWidthDefault),
-            top: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionNegativeEnabled, width: textInput.borderWidthDefault),
-            left: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionNegativeEnabled, width: textInput.borderWidthDefault),
-            right: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionNegativeEnabled, width: textInput.borderWidthDefault),
+            bottom: BorderSide(
+              color: theme.colorScheme(context).actionNegativeEnabled,
+              width: textInput.borderWidthDefault,
+            ),
+            top: defaultStyle
+                ? BorderSide.none
+                : BorderSide(
+                    color: theme.colorScheme(context).actionNegativeEnabled,
+                    width: textInput.borderWidthDefault,
+                  ),
+            left: defaultStyle
+                ? BorderSide.none
+                : BorderSide(
+                    color: theme.colorScheme(context).actionNegativeEnabled,
+                    width: textInput.borderWidthDefault,
+                  ),
+            right: defaultStyle
+                ? BorderSide.none
+                : BorderSide(
+                    color: theme.colorScheme(context).actionNegativeEnabled,
+                    width: textInput.borderWidthDefault,
+                  ),
           );
         case OudsFormFieldsControlState.disabled:
-          throw UnimplementedError("Error status for Disabled state is not relevant");
+          throw UnimplementedError(
+            "Error status for Disabled state is not relevant",
+          );
         case OudsFormFieldsControlState.hovered:
           return Border(
-            bottom: BorderSide(color: theme.colorScheme(context).actionNegativeHover, width: textInput.borderWidthDefault),
-            top: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionNegativeHover, width: textInput.borderWidthDefault),
-            left: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionNegativeHover, width: textInput.borderWidthDefault),
-            right: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionNegativeHover, width: textInput.borderWidthDefault),
+            bottom: BorderSide(
+              color: theme.colorScheme(context).actionNegativeHover,
+              width: textInput.borderWidthDefault,
+            ),
+            top: defaultStyle
+                ? BorderSide.none
+                : BorderSide(
+                    color: theme.colorScheme(context).actionNegativeHover,
+                    width: textInput.borderWidthDefault,
+                  ),
+            left: defaultStyle
+                ? BorderSide.none
+                : BorderSide(
+                    color: theme.colorScheme(context).actionNegativeHover,
+                    width: textInput.borderWidthDefault,
+                  ),
+            right: defaultStyle
+                ? BorderSide.none
+                : BorderSide(
+                    color: theme.colorScheme(context).actionNegativeHover,
+                    width: textInput.borderWidthDefault,
+                  ),
           );
         case OudsFormFieldsControlState.pressed:
           // TODO: Handle this case.
           throw UnimplementedError();
         case OudsFormFieldsControlState.focused:
           return Border(
-            bottom: BorderSide(color: theme.colorScheme(context).actionNegativePressed, width: textInput.borderWidthFocus),
-            top: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionNegativePressed, width: textInput.borderWidthFocus),
-            left: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionNegativePressed, width: textInput.borderWidthFocus),
-            right: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionNegativePressed, width: textInput.borderWidthFocus),
+            bottom: BorderSide(
+              color: theme.colorScheme(context).actionNegativePressed,
+              width: textInput.borderWidthFocus,
+            ),
+            top: defaultStyle
+                ? BorderSide.none
+                : BorderSide(
+                    color: theme.colorScheme(context).actionNegativePressed,
+                    width: textInput.borderWidthFocus,
+                  ),
+            left: defaultStyle
+                ? BorderSide.none
+                : BorderSide(
+                    color: theme.colorScheme(context).actionNegativePressed,
+                    width: textInput.borderWidthFocus,
+                  ),
+            right: defaultStyle
+                ? BorderSide.none
+                : BorderSide(
+                    color: theme.colorScheme(context).actionNegativePressed,
+                    width: textInput.borderWidthFocus,
+                  ),
           );
         case OudsFormFieldsControlState.readOnly:
-          throw UnimplementedError("Error status for Read only state is not relevant");
+          throw UnimplementedError(
+            "Error status for Read only state is not relevant",
+          );
         case OudsFormFieldsControlState.loading:
-          throw UnimplementedError("Error status for Loading state is not relevant");
+          throw UnimplementedError(
+            "Error status for Loading state is not relevant",
+          );
       }
     } else {
       switch (state) {
@@ -97,7 +161,9 @@ class OudsFormFieldsBorderModifier {
           );
         case OudsFormFieldsControlState.readOnly:
           return Border(
-            bottom: defaultStyle ? getBorderSideByState(state) : BorderSide.none,
+            bottom: defaultStyle
+                ? getBorderSideByState(state)
+                : BorderSide.none,
             top: defaultStyle ? getBorderSideByState(state) : BorderSide.none,
             left: defaultStyle ? getBorderSideByState(state) : BorderSide.none,
             right: defaultStyle ? getBorderSideByState(state) : BorderSide.none,
@@ -129,20 +195,38 @@ class OudsFormFieldsBorderModifier {
 
     switch (state) {
       case OudsFormFieldsControlState.enabled:
-        return BorderSide(color: textInput.colorBorderEnabled, width: textInput.borderWidthDefault);
+        return BorderSide(
+          color: textInput.colorBorderEnabled,
+          width: textInput.borderWidthDefault,
+        );
       case OudsFormFieldsControlState.disabled:
-        return BorderSide(color: theme.colorScheme(context).actionDisabled, width: textInput.borderWidthDefault);
+        return BorderSide(
+          color: theme.colorScheme(context).actionDisabled,
+          width: textInput.borderWidthDefault,
+        );
       case OudsFormFieldsControlState.hovered:
-        return BorderSide(color: textInput.colorBorderHover, width: textInput.borderWidthDefault);
+        return BorderSide(
+          color: textInput.colorBorderHover,
+          width: textInput.borderWidthDefault,
+        );
       case OudsFormFieldsControlState.pressed:
         // TODO: Handle this case.
         throw UnimplementedError();
       case OudsFormFieldsControlState.focused:
-        return BorderSide(color: textInput.colorBorderFocus, width: textInput.borderWidthFocus);
+        return BorderSide(
+          color: textInput.colorBorderFocus,
+          width: textInput.borderWidthFocus,
+        );
       case OudsFormFieldsControlState.readOnly:
-        return BorderSide(color: theme.colorScheme(context).borderMuted, width: textInput.borderWidthDefault);
+        return BorderSide(
+          color: theme.colorScheme(context).borderMuted,
+          width: textInput.borderWidthDefault,
+        );
       case OudsFormFieldsControlState.loading:
-        return BorderSide(color: textInput.colorBorderLoading, width: textInput.borderWidthDefault);
+        return BorderSide(
+          color: textInput.colorBorderLoading,
+          width: textInput.borderWidthDefault,
+        );
     }
   }
 
@@ -151,7 +235,8 @@ class OudsFormFieldsBorderModifier {
   BorderRadius getBorderRadius(BuildContext context) {
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
     // Check if rounded borders are enabled in the theme config
-    final rounded = OudsThemeConfigModel.of(context)?.textInput?.rounded ?? false;
+    final rounded =
+        OudsThemeConfigModel.of(context)?.textInput?.rounded ?? false;
 
     switch (rounded) {
       case true:

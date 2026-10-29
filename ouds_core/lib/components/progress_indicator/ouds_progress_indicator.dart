@@ -365,7 +365,7 @@ class _OudsCircularProgressIndicatorState
 
                       return CircularProgressIndicator(
                         padding: EdgeInsets.zero,
-                        year2023: false,
+                        year2023: false, // ignore: deprecated_member_use — required until Flutter flips the default to false; removing it causes a visual regression to the legacy style
                         constraints: BoxConstraints(
                           minWidth: defaultSize,
                           minHeight: defaultSize,
@@ -395,13 +395,15 @@ class _OudsCircularProgressIndicatorState
                     child: ExcludeSemantics(
                       child: CircularProgressIndicator(
                         padding: EdgeInsets.zero,
-                        year2023: false,
+                        year2023: false, // ignore: deprecated_member_use — required until Flutter flips the default to false; removing it causes a visual regression to the legacy style
                         constraints: BoxConstraints(
                           minWidth: defaultSize,
                           minHeight: defaultSize,
                         ),
                         value: value,
-                        valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          indicatorColor,
+                        ),
                         backgroundColor: backgroundColor,
                         trackGap: gapSize,
                         strokeWidth: strokeWidth,
@@ -873,7 +875,7 @@ class _OudsLinearProgressIndicatorState
           value: semanticsValue,
           child: LinearProgressIndicator(
             minHeight: minHeight,
-            year2023: false,
+            year2023: false, // ignore: deprecated_member_use — required until Flutter flips the default to false; removing it causes a visual regression to the legacy style
             value: value,
             valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
             backgroundColor: backgroundColor,

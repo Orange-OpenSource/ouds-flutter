@@ -174,8 +174,7 @@ void main() {
         expect(
           box.size.height,
           greaterThan(0),
-          reason:
-              'height > 0 prevents Flutter from marking the node invisible — TalkBack would skip a 0-height node.',
+          reason: 'height > 0 prevents Flutter from marking the node invisible — TalkBack would skip a 0-height node.',
         );
       },
     );
@@ -218,8 +217,7 @@ void main() {
         expect(
           find.bySemanticsLabel('1 notification'),
           findsAtLeastNWidgets(1),
-          reason:
-              'Badge Semantics node must appear in the semantic tree for TalkBack to announce it.',
+          reason: 'Badge Semantics node must appear in the semantic tree for TalkBack to announce it.',
         );
 
         handle.dispose();
@@ -274,8 +272,7 @@ void main() {
         expect(
           find.bySemanticsLabel('1 notification'),
           findsAtLeastNWidgets(1),
-          reason:
-              'A height-0 SizedBox would make the rect empty and prune this node — use SizedBox(height: 1).',
+          reason: 'A height-0 SizedBox would make the rect empty and prune this node — use SizedBox(height: 1).',
         );
 
         final labelRect = tester.getRect(

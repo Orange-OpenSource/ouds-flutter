@@ -485,9 +485,9 @@ class OudsSmallListItem extends StatelessWidget {
     bool enable, {
     required OudsListItemContentAlignment contentAlignment,
   }) {
-    final tokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
+    final tokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
 
@@ -528,9 +528,9 @@ class OudsSmallListItem extends StatelessWidget {
       _kSmallAssetSize,
       format,
       semanticsLabel: semanticsLabel,
-      backgroundColor: OudsTheme.of(
-        context,
-      ).colorScheme(context).surfaceBrandPrimary,
+      backgroundColor: OudsTheme.of(context)
+          .colorScheme(context)
+          .surfaceBrandPrimary,
     );
   }
 }

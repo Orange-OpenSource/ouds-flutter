@@ -158,12 +158,12 @@ class _OudsDigitInputState extends State<OudsDigitInput>
 
   @override
   Widget build(BuildContext context) {
-    final pinCodeToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).pinCodeInput;
-    final textInputToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).textInput;
+    final pinCodeToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .pinCodeInput;
+    final textInputToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .textInput;
     final backgroundModifier = OudsPinCodeInputBackgroundColorModifier(context);
     final borderModifier = OudsPinCodeInputBorderModifier(context);
     final formBorderModifier = OudsFormFieldsBorderModifier(context);

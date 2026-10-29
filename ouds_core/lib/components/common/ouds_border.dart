@@ -23,8 +23,7 @@ extension DpExtension on double {
   }
 }
 
-class OudsBorder  {
-
+class OudsBorder {
   /// use:
   /// ```dart
   /// OudsBorder().borderAll(width, color)

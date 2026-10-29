@@ -134,8 +134,7 @@ class ButtonCodeGenerator {
 
     // If the button should have a colored surface, wrap the button in OudsColoredBox
     if (customizationState?.hasOnColoredBox == true) {
-      code =
-          '''OudsColoredBox(\n color: OudsColoredBoxColor.brandPrimary,\n child: ''';
+      code = '''OudsColoredBox(\n color: OudsColoredBoxColor.brandPrimary,\n child: ''';
     }
 
     return code;

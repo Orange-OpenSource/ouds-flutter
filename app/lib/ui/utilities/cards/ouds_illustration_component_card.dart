@@ -73,7 +73,7 @@ class OudsIllustrationComponentCard extends StatelessWidget {
                   size: OudsHeadingTextSize.medium,
                 ),
               ),
-              if (child != null) child!,
+              ?child,
             ],
           ),
         ),

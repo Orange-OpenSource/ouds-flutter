@@ -50,17 +50,14 @@ class OudsTopAppBarNavigationIconModifier {
   ) {
     switch (type) {
       case OudsTopBarActionType.back:
-        return OudsLocalizations.of(
-          context,
-        )?.core_topAppBar_backNavigationIcon_a11y;
+        return OudsLocalizations.of(context)
+            ?.core_topAppBar_backNavigationIcon_a11y;
       case OudsTopBarActionType.close:
-        return OudsLocalizations.of(
-          context,
-        )?.core_topAppBar_closeNavigationIcon_a11y;
+        return OudsLocalizations.of(context)
+            ?.core_topAppBar_closeNavigationIcon_a11y;
       case OudsTopBarActionType.menu:
-        return OudsLocalizations.of(
-          context,
-        )?.core_topAppBar_menuNavigationIcon_a11y;
+        return OudsLocalizations.of(context)
+            ?.core_topAppBar_menuNavigationIcon_a11y;
       case OudsTopBarActionType.custom:
         return semanticLabel;
       default:

@@ -27,7 +27,7 @@ class OudsControlBorderModifier {
     OudsControlState state,
     bool error,
     bool selected,
-    bool _isHighContrast,
+    bool isHighContrast,
   ) {
     final colorScheme = OudsTheme.of(context).colorScheme;
     if (error) {
@@ -56,7 +56,7 @@ class OudsControlBorderModifier {
         case OudsControlState.enabled:
           if (selected) {
             // In order to reach the a11y AAA level, the selected checkbox is black
-            return _isHighContrast
+            return isHighContrast
                 ? colorScheme(context).contentDefault
                 : colorScheme(context).actionSelected;
           } else {
@@ -68,7 +68,7 @@ class OudsControlBorderModifier {
           return colorScheme(context).actionHover;
         case OudsControlState.pressed:
           // In order to reach the a11y AAA level, the pressed checkbox is black
-          return _isHighContrast
+          return isHighContrast
               ? colorScheme(context).contentDefault
               : colorScheme(context).actionPressed;
         case OudsControlState.focused:
@@ -80,7 +80,7 @@ class OudsControlBorderModifier {
   }
 
   /// Gets the border width based on the checkbox state.
-  double getBorderWidth(OudsControlState state, bool selected, token) {
+  double getBorderWidth(OudsControlState state, bool selected, dynamic token) {
     switch (state) {
       case OudsControlState.enabled:
         return selected

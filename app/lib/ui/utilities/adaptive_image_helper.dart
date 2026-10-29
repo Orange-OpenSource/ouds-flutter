@@ -16,8 +16,10 @@ import 'package:provider/provider.dart';
 
 class AdaptiveImageHelper {
   static String getImage(BuildContext context, String imagePath) {
-    final themeController =
-        Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
 
     if (themeController.isDarkTheme) {
       final fileExtension = imagePath.substring(imagePath.lastIndexOf('.'));

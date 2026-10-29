@@ -1635,7 +1635,6 @@ class SnackBarSection extends StatelessWidget {
   }
 }
 
-
 class ExpansionTiles extends StatelessWidget {
   const ExpansionTiles({super.key});
 
@@ -1675,8 +1674,12 @@ class DataTables extends StatelessWidget {
             DataColumn(label: Text('Age'), numeric: true),
           ],
           rows: const <DataRow>[
-            DataRow(cells: <DataCell>[DataCell(Text('Alice')), DataCell(Text('28'))]),
-            DataRow(cells: <DataCell>[DataCell(Text('Bob')), DataCell(Text('34'))]),
+            DataRow(
+              cells: <DataCell>[DataCell(Text('Alice')), DataCell(Text('28'))],
+            ),
+            DataRow(
+              cells: <DataCell>[DataCell(Text('Bob')), DataCell(Text('34'))],
+            ),
           ],
         ),
       ),

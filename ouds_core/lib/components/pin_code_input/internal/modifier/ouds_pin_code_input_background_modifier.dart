@@ -23,7 +23,11 @@ class OudsPinCodeInputBackgroundColorModifier {
 
   OudsPinCodeInputBackgroundColorModifier(this.context);
 
-  Color? getPinCodeBackgroundColor(OudsPinCodeInputControlState state, [bool isError = false, bool? isOutlined]) {
+  Color? getPinCodeBackgroundColor(
+    OudsPinCodeInputControlState state, [
+    bool isError = false,
+    bool? isOutlined,
+  ]) {
     final theme = OudsTheme.of(context);
     final error = isError == true;
 
@@ -33,17 +37,22 @@ class OudsPinCodeInputBackgroundColorModifier {
         case OudsPinCodeInputControlState.enabled:
         case OudsPinCodeInputControlState.hovered:
         case OudsPinCodeInputControlState.focused:
-          return !isOutlined! ? theme.colorScheme(context).surfaceStatusNegativeMuted : null;
+          return !isOutlined!
+              ? theme.colorScheme(context).surfaceStatusNegativeMuted
+              : null;
       }
     } else {
       switch (state) {
         case OudsPinCodeInputControlState.enabled:
-          return !isOutlined! ? theme.colorScheme(context).actionSupportEnabled : null;
+          return !isOutlined!
+              ? theme.colorScheme(context).actionSupportEnabled
+              : null;
         case OudsPinCodeInputControlState.hovered:
           return theme.colorScheme(context).actionSupportHover;
         case OudsPinCodeInputControlState.focused:
-          return !isOutlined! ? theme.colorScheme(context).actionSupportPressed : null;
-
+          return !isOutlined!
+              ? theme.colorScheme(context).actionSupportPressed
+              : null;
       }
     }
   }

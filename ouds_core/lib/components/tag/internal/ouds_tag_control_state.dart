@@ -13,13 +13,7 @@
 library;
 
 /// Enum representing the state of the tag control.
-enum OudsTagControlState {
-  enabled,
-  hovered,
-  pressed,
-  disabled,
-  focused,
-}
+enum OudsTagControlState { enabled, hovered, pressed, disabled, focused }
 
 /// A class that determines the state of the OudsTag
 class OudsTagControlStateDeterminer {

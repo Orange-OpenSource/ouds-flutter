@@ -89,9 +89,9 @@ class OudsListItemAssetBuilder {
     'This method will be removed together with countries.dart.',
   )
   static Widget buildFlag(BuildContext context, ImageProvider asset) {
-    final tokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
+    final tokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .controlListItem;
     return ClipRRect(
       borderRadius: BorderRadius.circular(2),
       child: Image(
@@ -179,8 +179,7 @@ class OudsListItemAssetBuilder {
     bool enable = true,
     OudsListItemAssetSize size = OudsListItemAssetSize.medium,
   }) {
-    return OudsListItemIconModifier(
-      context,
-    ).buildIcon(iconStatus, enable: enable, size: size);
+    return OudsListItemIconModifier(context)
+        .buildIcon(iconStatus, enable: enable, size: size);
   }
 }

@@ -198,9 +198,9 @@ class OudsHeadingText extends StatelessWidget {
     }
 
     final typographySizeModifier = OudsTypographySizeModifier(context);
-    final typographyTokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).typography;
+    final typographyTokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .typography;
 
     final textWidget = Container(
       constraints: BoxConstraints(

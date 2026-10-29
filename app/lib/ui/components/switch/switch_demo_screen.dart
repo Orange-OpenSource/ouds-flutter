@@ -13,7 +13,6 @@
 
 import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';

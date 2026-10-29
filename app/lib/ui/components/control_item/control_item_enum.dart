@@ -10,8 +10,4 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-enum ControlItemType {
-  checkbox,
-  switchButton,
-  radioButton,
-}
+enum ControlItemType { checkbox, switchButton, radioButton }

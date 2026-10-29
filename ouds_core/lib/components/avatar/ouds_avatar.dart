@@ -93,9 +93,9 @@ class _OudsAvatarState extends State<OudsAvatar> {
                   style: TextStyle(
                     color:
                         widget.monogramColor ??
-                        OudsTheme.of(
-                          context,
-                        ).colorScheme(context).contentInverse,
+                        OudsTheme.of(context)
+                            .colorScheme(context)
+                            .contentInverse,
                     fontFamily: OudsTheme.of(context).fontFamily,
                   ),
                 ),

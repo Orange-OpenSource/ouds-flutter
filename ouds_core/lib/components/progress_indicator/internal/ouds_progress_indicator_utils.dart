@@ -133,9 +133,9 @@ class OudsProgressIndicatorUtils {
 
     // iOS "Reduce Motion" — read from the platform dispatcher directly because
     // MediaQuery.disableAnimationsOf does not reliably reflect this flag on iOS.
-    final accessibilityFeatures = View.of(
-      context,
-    ).platformDispatcher.accessibilityFeatures;
+    final accessibilityFeatures = View.of(context)
+        .platformDispatcher
+        .accessibilityFeatures;
     return accessibilityFeatures.reduceMotion;
   }
 

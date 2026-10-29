@@ -29,32 +29,46 @@ class OudsControlTextModifier {
     if (error) {
       switch (state) {
         case OudsControlState.enabled:
-          return colorsScheme(context).actionNegativeEnabled; // Color for enabled state with error
+          return colorsScheme(context)
+              .actionNegativeEnabled; // Color for enabled state with error
         case OudsControlState.disabled:
-          throw StateError("Color not allowed for disabled state when error is true"); // Handle disabled state
+          throw StateError(
+            "Color not allowed for disabled state when error is true",
+          ); // Handle disabled state
         case OudsControlState.hovered:
-          return colorsScheme(context).actionNegativeHover; // Color for hovered state with error
+          return colorsScheme(context)
+              .actionNegativeHover; // Color for hovered state with error
         case OudsControlState.pressed:
-          return colorsScheme(context).actionNegativePressed; // Color for pressed state with error
+          return colorsScheme(context)
+              .actionNegativePressed; // Color for pressed state with error
         case OudsControlState.focused:
-          return colorsScheme(context).actionNegativeFocus; // Color for focused state with error
+          return colorsScheme(context)
+              .actionNegativeFocus; // Color for focused state with error
         case OudsControlState.readOnly:
-          throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
+          throw StateError(
+            "Color not allowed for readOnly state when error is true",
+          ); // Handle readOnly state
       }
     } else {
       switch (state) {
         case OudsControlState.enabled:
-          return colorsScheme(context).contentDefault; // Color for selected state
+          return colorsScheme(context)
+              .contentDefault; // Color for selected state
         case OudsControlState.disabled:
-          return colorsScheme(context).contentDisabled; // Color for disabled state
+          return colorsScheme(context)
+              .contentDisabled; // Color for disabled state
         case OudsControlState.hovered:
-          return colorsScheme(context).contentDefault; // Color for hovered state
+          return colorsScheme(context)
+              .contentDefault; // Color for hovered state
         case OudsControlState.pressed:
-          return colorsScheme(context).contentDefault; // Color for pressed state
+          return colorsScheme(context)
+              .contentDefault; // Color for pressed state
         case OudsControlState.focused:
-          return colorsScheme(context).contentDefault; // Color for focused state
+          return colorsScheme(context)
+              .contentDefault; // Color for focused state
         case OudsControlState.readOnly:
-          return colorsScheme(context).contentDefault; // Color for readOnly state
+          return colorsScheme(context)
+              .contentDefault; // Color for readOnly state
       }
     }
   }
@@ -67,7 +81,8 @@ class OudsControlTextModifier {
       case OudsControlState.enabled:
         return colorsScheme(context).contentMuted; // Color for selected state
       case OudsControlState.disabled:
-        return colorsScheme(context).contentDisabled; // Color for disabled state
+        return colorsScheme(context)
+            .contentDisabled; // Color for disabled state
       case OudsControlState.hovered:
         return colorsScheme(context).contentMuted; // Color for hovered state
       case OudsControlState.pressed:
@@ -87,7 +102,8 @@ class OudsControlTextModifier {
       case OudsControlState.enabled:
         return colorsScheme(context).contentDefault; // Color for selected state
       case OudsControlState.disabled:
-        return colorsScheme(context).contentDisabled; // Color for disabled state
+        return colorsScheme(context)
+            .contentDisabled; // Color for disabled state
       case OudsControlState.hovered:
         return colorsScheme(context).contentDefault; // Color for hovered state
       case OudsControlState.pressed:
@@ -105,17 +121,25 @@ class OudsControlTextModifier {
 
     switch (state) {
       case OudsControlState.enabled:
-        return colorsScheme(context).contentStatusNegative; // Color for enabled state with error
+        return colorsScheme(context)
+            .contentStatusNegative; // Color for enabled state with error
       case OudsControlState.disabled:
-        throw StateError("Color not allowed for disabled state when error is true"); // Handle disabled state
+        throw StateError(
+          "Color not allowed for disabled state when error is true",
+        ); // Handle disabled state
       case OudsControlState.hovered:
-        return colorsScheme(context).contentStatusNegative; // Color for hovered state with error
+        return colorsScheme(context)
+            .contentStatusNegative; // Color for hovered state with error
       case OudsControlState.pressed:
-        return colorsScheme(context).contentStatusNegative; // Color for pressed state with error
+        return colorsScheme(context)
+            .contentStatusNegative; // Color for pressed state with error
       case OudsControlState.focused:
-        return colorsScheme(context).contentStatusNegative; // Color for focused state with error
+        return colorsScheme(context)
+            .contentStatusNegative; // Color for focused state with error
       case OudsControlState.readOnly:
-        throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
+        throw StateError(
+          "Color not allowed for readOnly state when error is true",
+        ); // Handle readOnly state
     }
   }
 }

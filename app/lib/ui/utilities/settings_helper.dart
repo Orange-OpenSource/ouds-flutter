@@ -15,7 +15,9 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter/services.dart';
 
 class SettingsHelper {
-  static const MethodChannel _channel = MethodChannel('app.channel.shared.data');
+  static const MethodChannel _channel = MethodChannel(
+    'app.channel.shared.data',
+  );
 
   static Future<void> openAppropriateSettings() async {
     if (defaultTargetPlatform == TargetPlatform.iOS) {
