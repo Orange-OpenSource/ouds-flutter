@@ -135,9 +135,7 @@ class ToolbarTopCustomizationUtils {
     switch (actionType) {
       case ToolbarTopActionTypeEnum.text:
         return OudsTopBarActionConfig.text(
-          actionLabel: context
-              .l10n
-              .app_components_common_label_label, // Provide only the relevant parameter.
+          actionLabel: context.l10n.app_components_common_label_label, // Provide only the relevant parameter.
           onActionPressed: customizationState.hasEnabled == true ? () {} : null,
         );
 

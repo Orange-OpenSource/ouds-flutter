@@ -329,9 +329,9 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                         child: Container(
                           decoration: BoxDecoration(
                             border: OudsBorder().borderAll(
-                              color: OudsTheme.of(
-                                context,
-                              ).colorScheme(context).borderFocus,
+                              color: OudsTheme.of(context)
+                                  .colorScheme(context)
+                                  .borderFocus,
                               width: borderTokens.widthFocus,
                             ),
                             borderRadius: BorderRadius.circular(
@@ -349,15 +349,16 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                       Container(
                         decoration: BoxDecoration(
                           border: OudsBorder().borderAll(
-                            color: OudsTheme.of(
-                              context,
-                            ).colorScheme(context).borderFocusInset,
+                            color: OudsTheme.of(context)
+                                .colorScheme(context)
+                                .borderFocusInset,
                             width: borderTokens.widthFocusInset,
                           ),
                           borderRadius: BorderRadius.circular(
-                            OudsTheme.of(
-                              context,
-                            ).componentsTokens(context).chip.borderRadius,
+                            OudsTheme.of(context)
+                                .componentsTokens(context)
+                                .chip
+                                .borderRadius,
                           ),
                         ),
                         child: _buildLayout(
@@ -384,17 +385,19 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                         animated: widget.skeleton?.animated ?? false,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
-                            OudsTheme.of(
-                              context,
-                            ).componentsTokens(context).chip.borderRadius,
+                            OudsTheme.of(context)
+                                .componentsTokens(context)
+                                .chip
+                                .borderRadius,
                           ),
                         ),
                         content: (context) => Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
-                              OudsTheme.of(
-                                context,
-                              ).componentsTokens(context).chip.borderRadius,
+                              OudsTheme.of(context)
+                                  .componentsTokens(context)
+                                  .chip
+                                  .borderRadius,
                             ),
                           ),
                           child: _buildLayout(
@@ -442,9 +445,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 widget.selected,
               ),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(
-                  context,
-                ).componentsTokens(context).chip.borderRadius,
+                OudsTheme.of(context)
+                    .componentsTokens(context)
+                    .chip
+                    .borderRadius,
               ),
             ),
           ),
@@ -482,12 +486,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                       AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
-                      width: MediaQuery.textScalerOf(
-                        context,
-                      ).scale(chipToken.sizeIcon),
-                      height: MediaQuery.textScalerOf(
-                        context,
-                      ).scale(chipToken.sizeIcon),
+                      width: MediaQuery.textScalerOf(context)
+                          .scale(chipToken.sizeIcon),
+                      height: MediaQuery.textScalerOf(context)
+                          .scale(chipToken.sizeIcon),
                       colorFilter: ColorFilter.mode(
                         chipIconColorModifier.getTickColor(
                           chipState,
@@ -540,9 +542,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 widget.selected,
               ),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(
-                  context,
-                ).componentsTokens(context).chip.borderRadius,
+                OudsTheme.of(context)
+                    .componentsTokens(context)
+                    .chip
+                    .borderRadius,
               ),
             ),
           ),
@@ -577,12 +580,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     child: SvgPicture.asset(
                       AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
-                      width: MediaQuery.textScalerOf(
-                        context,
-                      ).scale(chipToken.sizeIcon),
-                      height: MediaQuery.textScalerOf(
-                        context,
-                      ).scale(chipToken.sizeIcon),
+                      width: MediaQuery.textScalerOf(context)
+                          .scale(chipToken.sizeIcon),
+                      height: MediaQuery.textScalerOf(context)
+                          .scale(chipToken.sizeIcon),
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
                         chipIconColorModifier.getTickColor(
@@ -655,9 +656,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 widget.selected,
               ),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(
-                  context,
-                ).componentsTokens(context).chip.borderRadius,
+                OudsTheme.of(context)
+                    .componentsTokens(context)
+                    .chip
+                    .borderRadius,
               ),
             ),
           ),
@@ -689,12 +691,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 if (widget.selected) ...[
                   ExcludeSemantics(
                     child: SvgPicture.asset(
-                      width: MediaQuery.textScalerOf(
-                        context,
-                      ).scale(chipToken.sizeIcon),
-                      height: MediaQuery.textScalerOf(
-                        context,
-                      ).scale(chipToken.sizeIcon),
+                      width: MediaQuery.textScalerOf(context)
+                          .scale(chipToken.sizeIcon),
+                      height: MediaQuery.textScalerOf(context)
+                          .scale(chipToken.sizeIcon),
                       AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
@@ -795,9 +795,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     bool selected,
   ) {
     final controlIconModifier = OudsChipControlIconColorModifier(context);
-    final sizeIcon = OudsTheme.of(
-      context,
-    ).componentsTokens(context).chip.sizeIcon;
+    final sizeIcon = OudsTheme.of(context)
+        .componentsTokens(context)
+        .chip
+        .sizeIcon;
     final notTinted = widget.icon != null && !widget.icon!.tinted;
 
     return Container(

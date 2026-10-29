@@ -10,6 +10,7 @@
 //
 
 /// @nodoc
+library;
 
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/scheduler.dart';
@@ -268,15 +269,15 @@ class OudsControlItemState extends State<OudsControlItem> {
                     // and to prevent a common 1-pixel rendering offset that can occur
                     // when using standard layout widgets, ensuring pixel-perfect alignment.
                     Positioned(
-                      bottom: OudsTheme.of(
-                        context,
-                      ).spaceScheme(context).fixedNone,
-                      left: OudsTheme.of(
-                        context,
-                      ).spaceScheme(context).fixedNone,
-                      right: OudsTheme.of(
-                        context,
-                      ).spaceScheme(context).fixedNone,
+                      bottom: OudsTheme.of(context)
+                          .spaceScheme(context)
+                          .fixedNone,
+                      left: OudsTheme.of(context)
+                          .spaceScheme(context)
+                          .fixedNone,
+                      right: OudsTheme.of(context)
+                          .spaceScheme(context)
+                          .fixedNone,
                       child: controlItemDivider(context),
                     ),
                 ],

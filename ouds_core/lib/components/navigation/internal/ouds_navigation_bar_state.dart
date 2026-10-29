@@ -15,12 +15,7 @@
 library;
 
 /// Enum representing the state of the Navigation Bar control.
-enum OudsNavigationBarControlState {
-  enabled,
-  hovered,
-  pressed,
-  focused,
-}
+enum OudsNavigationBarControlState { enabled, hovered, pressed, focused }
 
 /// Determines the current [OudsNavigationBarControlState] from interaction inputs.
 class OudsNavigationBarControlStateDeterminer {

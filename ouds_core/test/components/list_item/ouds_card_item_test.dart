@@ -8,6 +8,7 @@ import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 import 'package:ouds_theme_contract/config/component/ouds_card_item_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
+
 import '../../helpers/testable_widget_helper.dart';
 
 BorderRadius _listItemBorderRadius(WidgetTester tester) {

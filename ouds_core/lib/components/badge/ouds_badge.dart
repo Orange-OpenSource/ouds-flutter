@@ -158,9 +158,8 @@ class OudsBadge extends StatefulWidget {
     this.enabled = true,
     this.semanticsLabel,
     this.status = const Negative(),
-    bool withIcon = true,
-  }) : label = null,
-       _withIcon = withIcon;
+    this._withIcon = true,
+  }) : label = null;
 
   const OudsBadge.standard({
     super.key,
@@ -373,9 +372,9 @@ class _OudsBadgeState extends State<OudsBadge> {
                 fit: BoxFit.contain,
                 package: OudsTheme.of(context).packageName,
                 colorFilter: ColorFilter.mode(
-                  OudsTheme.of(
-                    context,
-                  ).colorScheme(context).contentOnActionDisabled,
+                  OudsTheme.of(context)
+                      .colorScheme(context)
+                      .contentOnActionDisabled,
                   BlendMode.srcIn,
                 ),
               ),

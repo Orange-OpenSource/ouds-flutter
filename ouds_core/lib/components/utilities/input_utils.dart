@@ -38,6 +38,10 @@ class InputUtils {
     required bool isFocused,
     TextEditingController? controller,
   }) {
-    return (hintText != null || isFocused || (controller != null && controller.text.isNotEmpty)) ? 1 : 2;
+    return (hintText != null ||
+            isFocused ||
+            (controller != null && controller.text.isNotEmpty))
+        ? 1
+        : 2;
   }
 }

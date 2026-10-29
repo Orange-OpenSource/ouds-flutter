@@ -70,15 +70,17 @@ class OudsToolbarTopActionModifier {
   }
 
   Widget buildActionIcon(String? customIcon, bool enabled, bool isPressed) {
-    final enabledColorToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).button.colorContentMinimalEnabled;
-    final disabledColorToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).button.colorContentMinimalDisabled;
-    final pressedColor = OudsTheme.of(
-      context,
-    ).colorScheme(context).actionPressed;
+    final enabledColorToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .button
+        .colorContentMinimalEnabled;
+    final disabledColorToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .button
+        .colorContentMinimalDisabled;
+    final pressedColor = OudsTheme.of(context)
+        .colorScheme(context)
+        .actionPressed;
 
     return SvgPicture.asset(
       alignment: AlignmentDirectional.center,
@@ -100,15 +102,17 @@ class OudsToolbarTopActionModifier {
   }
 
   Widget buildBackIcon(bool enabled, bool isPressed) {
-    final enabledColorToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).button.colorContentMinimalEnabled;
-    final disabledColorToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).button.colorContentMinimalDisabled;
-    final pressedColor = OudsTheme.of(
-      context,
-    ).colorScheme(context).actionPressed;
+    final enabledColorToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .button
+        .colorContentMinimalEnabled;
+    final disabledColorToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .button
+        .colorContentMinimalDisabled;
+    final pressedColor = OudsTheme.of(context)
+        .colorScheme(context)
+        .actionPressed;
 
     return SvgPicture.asset(
       width: 28,

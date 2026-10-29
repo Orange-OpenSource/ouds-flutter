@@ -147,9 +147,9 @@ class _OudsInputTagState extends State<OudsInputTag> {
     bool isDisabled,
   ) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
-    final inputTagToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).inputTag;
+    final inputTagToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .inputTag;
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
 
@@ -169,9 +169,9 @@ class _OudsInputTagState extends State<OudsInputTag> {
                 if (widget.onPressed != null) {
                   widget.onPressed!.call();
                   SemanticsService.sendAnnouncement(
-                      View.of(context),
-                      l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '',
-                      TextDirection.ltr
+                    View.of(context),
+                    l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '',
+                    TextDirection.ltr,
                   );
                 }
               },
@@ -212,9 +212,9 @@ class _OudsInputTagState extends State<OudsInputTag> {
                       child: Container(
                         decoration: BoxDecoration(
                           border: OudsBorder().borderAll(
-                            color: OudsTheme.of(
-                              context,
-                            ).colorScheme(context).borderFocus,
+                            color: OudsTheme.of(context)
+                                .colorScheme(context)
+                                .borderFocus,
                             width: borderTokens.widthFocus,
                           ),
                           borderRadius: BorderRadius.circular(
@@ -227,9 +227,9 @@ class _OudsInputTagState extends State<OudsInputTag> {
                     decoration: BoxDecoration(
                       border: OudsBorder().borderAll(
                         color: _isFocused
-                            ? OudsTheme.of(
-                                context,
-                              ).colorScheme(context).borderFocusInset
+                            ? OudsTheme.of(context)
+                                  .colorScheme(context)
+                                  .borderFocusInset
                             : Colors.transparent,
                         width: inputTagToken.borderWidthDefaultInteraction,
                       ),
@@ -318,9 +318,8 @@ class _OudsInputTagState extends State<OudsInputTag> {
                 SizedBox(width: tagToken.spaceColumnGapDefault),
                 Semantics(
                   container: true,
-                  label: OudsLocalizations.of(
-                    context,
-                  )?.core_inputTag_delete_a11y,
+                  label: OudsLocalizations.of(context)
+                      ?.core_inputTag_delete_a11y,
                   button: true,
                   child: SvgPicture.asset(
                     excludeFromSemantics: true,
@@ -330,9 +329,8 @@ class _OudsInputTagState extends State<OudsInputTag> {
                     package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
-                      OudsInputTagControlIconColorModifier(
-                        context,
-                      ).getIconColor(tagState)!,
+                      OudsInputTagControlIconColorModifier(context)
+                          .getIconColor(tagState)!,
                       BlendMode.srcIn,
                     ),
                   ),

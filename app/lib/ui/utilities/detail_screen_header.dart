@@ -53,7 +53,7 @@ class DetailScreenDescription extends StatelessWidget {
                   ),
                 ),
               ),
-            if (widget != null) widget!,
+            ?widget,
           ],
         ),
       ),

@@ -15,7 +15,15 @@
 library;
 
 /// Enum representing the state of the control.
-enum OudsFormFieldsControlState { enabled, hovered, pressed, disabled, focused, readOnly, loading }
+enum OudsFormFieldsControlState {
+  enabled,
+  hovered,
+  pressed,
+  disabled,
+  focused,
+  readOnly,
+  loading,
+}
 
 /// A class that determines the state of the OudsTextInput.
 class OudsFormFieldsControlStateDeterminer {

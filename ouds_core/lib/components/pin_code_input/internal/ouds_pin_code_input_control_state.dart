@@ -25,7 +25,7 @@ class OudsPinCodeInputControlStateDeterminer {
   OudsPinCodeInputControlStateDeterminer({
     this.isHovered = false,
     this.isFocused = false,
-    this.isEnabled = true
+    this.isEnabled = true,
   });
 
   /// Determines the current material state of the control.

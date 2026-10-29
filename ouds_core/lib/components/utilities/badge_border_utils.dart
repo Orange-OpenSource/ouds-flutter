@@ -47,9 +47,8 @@ class _BadgeBorderWrapper extends StatelessWidget {
     final badgeTokens = OudsTheme.of(context).componentsTokens(context).badge;
 
     final badgeRadius =
-        MediaQuery.textScalerOf(
-          context,
-        ).scale(hasCount ? badgeTokens.sizeMedium : badgeTokens.sizeXsmall) /
+        MediaQuery.textScalerOf(context)
+            .scale(hasCount ? badgeTokens.sizeMedium : badgeTokens.sizeXsmall) /
         2;
     //with MergeSemantics we grouped the widget with the badge
     // to be ready together with Talkback/Voice Over

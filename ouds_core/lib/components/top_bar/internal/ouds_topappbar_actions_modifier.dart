@@ -1,4 +1,3 @@
-
 /*
  * // Software Name: OUDS Flutter
  * // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -23,7 +22,6 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 
 class OudsTopAppBarActionsModifier {
-
   /// Retrieves and reorders the trailing action widgets to ensure avatar is positioned last.
   ///
   /// Parameters:
@@ -37,13 +35,15 @@ class OudsTopAppBarActionsModifier {
   /// - The original [actions] list if no avatar is found
   ///
   List<Widget>? getTrailingActionList(
-      BuildContext context,
-      List<OudsTopBarActionConfig>? actionsList,
-      List<Widget> actions) {
+    BuildContext context,
+    List<OudsTopBarActionConfig>? actionsList,
+    List<Widget> actions,
+  ) {
     if (actionsList == null) return null;
 
-    final avatarIndex = actionsList
-        .indexWhere((a) => a.type == OudsTopBarActionType.avatar);
+    final avatarIndex = actionsList.indexWhere(
+      (a) => a.type == OudsTopBarActionType.avatar,
+    );
 
     final orderedList = List<Widget>.from(actions);
 
@@ -58,9 +58,9 @@ class OudsTopAppBarActionsModifier {
   ///
   /// Returns `null` if [action] is null or has type [OudsTopBarActionType.none].
   Widget? getLeadingIconButton(
-      BuildContext context,
-      OudsTopBarActionConfig? action,
-      ) {
+    BuildContext context,
+    OudsTopBarActionConfig? action,
+  ) {
     if (action == null || action.type == OudsTopBarActionType.none) return null;
 
     final modifier = OudsTopAppBarNavigationIconModifier();
@@ -79,15 +79,15 @@ class OudsTopAppBarActionsModifier {
       child: isCustom
           ? button
           : Semantics(
-        label: modifier.getNavigationIconLabel(
-          context,
-          action.type,
-          action.contentDescription,
-        ),
-        button: true,
-        onTap: action.onActionPressed,
-        child: ExcludeSemantics(child: button),
-      ),
+              label: modifier.getNavigationIconLabel(
+                context,
+                action.type,
+                action.contentDescription,
+              ),
+              button: true,
+              onTap: action.onActionPressed,
+              child: ExcludeSemantics(child: button),
+            ),
     );
   }
 }

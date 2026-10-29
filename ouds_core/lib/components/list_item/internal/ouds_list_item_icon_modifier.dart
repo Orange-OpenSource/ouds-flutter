@@ -83,9 +83,8 @@ class OudsListItemIconModifier {
         ? _statusIconColor(status, colorScheme)
         : colorScheme.contentDisabled;
 
-    final double scaledSize = MediaQuery.textScalerOf(
-      context,
-    ).scale(size.value(context));
+    final double scaledSize = MediaQuery.textScalerOf(context)
+        .scale(size.value(context));
 
     if (status is Warning && enable) {
       return Stack(

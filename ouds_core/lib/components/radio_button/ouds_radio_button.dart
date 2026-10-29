@@ -147,12 +147,12 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
       context,
     );
     final radioButtonTickModifier = OudsControlTickModifier(context);
-    final radioButton = OudsTheme.of(
-      context,
-    ).componentsTokens(context).radioButton;
-    final controlListItem = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
+    final radioButton = OudsTheme.of(context)
+        .componentsTokens(context)
+        .radioButton;
+    final controlListItem = OudsTheme.of(context)
+        .componentsTokens(context)
+        .controlListItem;
     final l10n = OudsLocalizations.of(context);
     final isItemEnabled = widget.onChanged != null && !(widget.readOnly);
 

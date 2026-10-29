@@ -260,9 +260,8 @@ class _OudsTabBarState extends State<OudsTabBar> with TickerProviderStateMixin {
     // Cap text scale at 160 % to prevent icon / label / badge overlap at very
     // large accessibility text sizes on iOS.
     return MediaQuery(
-      data: MediaQuery.of(
-        context,
-      ).copyWith(textScaler: clampNavBarTextScaler(context)),
+      data: MediaQuery.of(context)
+          .copyWith(textScaler: clampNavBarTextScaler(context)),
       child: CupertinoTheme(
         data: existingCupertinoTheme.copyWith(
           textTheme: existingCupertinoTheme.textTheme.copyWith(

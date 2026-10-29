@@ -24,17 +24,14 @@ void main() {
   });
 
   group('OudsListItemImageSize', () {
-    test(
-      'exposes exactly the medium, large and extraLarge sizes for default-size items',
-      () {
-        // Default-size list/card items support three image sizes only.
-        expect(OudsListItemImageSize.values, [
-          OudsListItemImageSize.medium,
-          OudsListItemImageSize.large,
-          OudsListItemImageSize.extraLarge,
-        ]);
-      },
-    );
+    test('exposes exactly the medium, large and extraLarge sizes for default-size items', () {
+      // Default-size list/card items support three image sizes only.
+      expect(OudsListItemImageSize.values, [
+        OudsListItemImageSize.medium,
+        OudsListItemImageSize.large,
+        OudsListItemImageSize.extraLarge,
+      ]);
+    });
   });
 
   group('OudsListItem', () {

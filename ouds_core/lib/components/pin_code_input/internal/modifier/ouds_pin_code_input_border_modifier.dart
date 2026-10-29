@@ -25,28 +25,50 @@ class OudsPinCodeInputBorderModifier {
   OudsPinCodeInputBorderModifier(this.context);
 
   /// Gets the borderSide based on the pin code input state and whether it is selected
-  Border getPinCodeBorder(OudsPinCodeInputControlState state, [bool isError = false, bool? isOutlined]) {
+  Border getPinCodeBorder(
+    OudsPinCodeInputControlState state, [
+    bool isError = false,
+    bool? isOutlined,
+  ]) {
     switch (state) {
       case OudsPinCodeInputControlState.enabled:
         return Border(
           bottom: getPinCodeBorderSideByState(state, isError),
-          top: !isOutlined! ? BorderSide.none : getPinCodeBorderSideByState(state, isError),
-          left: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state, isError),
-          right: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state, isError),
+          top: !isOutlined!
+              ? BorderSide.none
+              : getPinCodeBorderSideByState(state, isError),
+          left: !isOutlined
+              ? BorderSide.none
+              : getPinCodeBorderSideByState(state, isError),
+          right: !isOutlined
+              ? BorderSide.none
+              : getPinCodeBorderSideByState(state, isError),
         );
       case OudsPinCodeInputControlState.hovered:
         return Border(
           bottom: getPinCodeBorderSideByState(state, isError),
-          top: !isOutlined! ? BorderSide.none : getPinCodeBorderSideByState(state, isError),
-          left: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state, isError),
-          right: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state, isError),
+          top: !isOutlined!
+              ? BorderSide.none
+              : getPinCodeBorderSideByState(state, isError),
+          left: !isOutlined
+              ? BorderSide.none
+              : getPinCodeBorderSideByState(state, isError),
+          right: !isOutlined
+              ? BorderSide.none
+              : getPinCodeBorderSideByState(state, isError),
         );
       case OudsPinCodeInputControlState.focused:
         return Border(
           bottom: getPinCodeBorderSideByState(state, isError),
-          top: !isOutlined! ? BorderSide.none : getPinCodeBorderSideByState(state, isError),
-          left: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state, isError),
-          right: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state, isError),
+          top: !isOutlined!
+              ? BorderSide.none
+              : getPinCodeBorderSideByState(state, isError),
+          left: !isOutlined
+              ? BorderSide.none
+              : getPinCodeBorderSideByState(state, isError),
+          right: !isOutlined
+              ? BorderSide.none
+              : getPinCodeBorderSideByState(state, isError),
         );
     }
   }
@@ -54,23 +76,46 @@ class OudsPinCodeInputBorderModifier {
   /// Returns a [BorderSide] based on the given [OudsPinCodeInputControlState].
   ///
   /// Uses [OudsTheme] to pick the border color and width for each state for PinCodeInput
-  BorderSide getPinCodeBorderSideByState(OudsPinCodeInputControlState state, bool isError) {
-    final textInputToken = OudsTheme.of(context).componentsTokens(context).textInput;
+  BorderSide getPinCodeBorderSideByState(
+    OudsPinCodeInputControlState state,
+    bool isError,
+  ) {
+    final textInputToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .textInput;
     final colorToken = OudsTheme.of(context).colorScheme(context);
 
     switch (state) {
       case OudsPinCodeInputControlState.enabled:
         return isError
-            ? BorderSide(color: colorToken.actionNegativeEnabled, width: textInputToken.borderWidthDefault)
-            : BorderSide(color: textInputToken.colorBorderEnabled, width: textInputToken.borderWidthDefault);
+            ? BorderSide(
+                color: colorToken.actionNegativeEnabled,
+                width: textInputToken.borderWidthDefault,
+              )
+            : BorderSide(
+                color: textInputToken.colorBorderEnabled,
+                width: textInputToken.borderWidthDefault,
+              );
       case OudsPinCodeInputControlState.hovered:
         return isError
-            ? BorderSide(color: colorToken.actionNegativeEnabled, width: textInputToken.borderWidthDefault)
-            : BorderSide(color: textInputToken.colorBorderHover, width: textInputToken.borderWidthDefault);
+            ? BorderSide(
+                color: colorToken.actionNegativeEnabled,
+                width: textInputToken.borderWidthDefault,
+              )
+            : BorderSide(
+                color: textInputToken.colorBorderHover,
+                width: textInputToken.borderWidthDefault,
+              );
       case OudsPinCodeInputControlState.focused:
         return isError
-            ? BorderSide(color: colorToken.actionNegativeEnabled, width: textInputToken.borderWidthDefault)
-            : BorderSide(color: textInputToken.colorBorderFocus, width: textInputToken.borderWidthFocus);
+            ? BorderSide(
+                color: colorToken.actionNegativeEnabled,
+                width: textInputToken.borderWidthDefault,
+              )
+            : BorderSide(
+                color: textInputToken.colorBorderFocus,
+                width: textInputToken.borderWidthFocus,
+              );
     }
   }
 }

@@ -437,9 +437,8 @@ class _OudsListItemState extends State<OudsListItem> {
                             // The focus ring is drawn around the complete navigation
                             // target as required by the OUDS spec.
                             decoration: BoxDecoration(
-                              color: OudsListItemBackgroundModifier(
-                                context,
-                              ).getBackgroundColor(state, decoration),
+                              color: OudsListItemBackgroundModifier(context)
+                                  .getBackgroundColor(state, decoration),
                               border: _resolveBorder(
                                 colorScheme: colorScheme,
                                 tokens: tokens,
@@ -768,9 +767,9 @@ class _OudsListItemState extends State<OudsListItem> {
             format,
             rounded: rounded,
             semanticsLabel: semanticsLabel,
-            backgroundColor: OudsTheme.of(
-              context,
-            ).colorScheme(context).surfaceBrandPrimary,
+            backgroundColor: OudsTheme.of(context)
+                .colorScheme(context)
+                .surfaceBrandPrimary,
           ),
           size,
           format,
@@ -843,9 +842,10 @@ class _OudsListItemState extends State<OudsListItem> {
   static Widget _buildFlagContainer(BuildContext context, Widget flag) {
     return SizedBox(
       width: _kFlagWidth,
-      height: OudsTheme.of(
-        context,
-      ).componentsTokens(context).controlListItem.sizeFlagHeight,
+      height: OudsTheme.of(context)
+          .componentsTokens(context)
+          .controlListItem
+          .sizeFlagHeight,
       child: flag,
     );
   }
@@ -886,9 +886,9 @@ class _OudsListItemState extends State<OudsListItem> {
     required OudsListItemContentAlignment contentAlignment,
     required OudsListItemSize size,
   }) {
-    final tokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
+    final tokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
 
@@ -1008,9 +1008,9 @@ class _OudsListItemState extends State<OudsListItem> {
             format,
             rounded: rounded,
             semanticsLabel: semanticsLabel,
-            backgroundColor: OudsTheme.of(
-              context,
-            ).colorScheme(context).surfaceBrandPrimary,
+            backgroundColor: OudsTheme.of(context)
+                .colorScheme(context)
+                .surfaceBrandPrimary,
           ),
           size,
           format,
@@ -1047,9 +1047,9 @@ class _OudsListItemState extends State<OudsListItem> {
     required OudsListItemContentAlignment contentAlignment,
     required OudsListItemSize size,
   }) {
-    final tokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
+    final tokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
     final contentColor = foreground.contentColor(enable);
@@ -1224,9 +1224,9 @@ class _OudsListItemState extends State<OudsListItem> {
     Color contentColor,
     Color mutedColor,
   ) {
-    final tokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
+    final tokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .controlListItem;
     final topPadding =
         widget.contentAlignment == OudsListItemContentAlignment.top
         ? switch (widget.size) {

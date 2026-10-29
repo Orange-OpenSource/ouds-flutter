@@ -25,25 +25,33 @@ class FormFieldsCustomizationUtils {
   }
 
   /// Retrieves the suffix text to display based on the current customization state.
-  static String? getSuffixText(FormFieldsCustomizationState customizationState) {
+  static String? getSuffixText(
+    FormFieldsCustomizationState customizationState,
+  ) {
     final label = customizationState.suffixText;
     return label.isEmpty ? null : label;
   }
 
   /// Retrieves the prefix text to display based on the current customization state.
-  static String? getPrefixText(FormFieldsCustomizationState customizationState) {
+  static String? getPrefixText(
+    FormFieldsCustomizationState customizationState,
+  ) {
     final label = customizationState.prefixText;
     return label.isEmpty ? null : label;
   }
 
   /// Retrieves the placeholder text to display based on the current customization state.
-  static String? getPlaceholderText(FormFieldsCustomizationState customizationState) {
+  static String? getPlaceholderText(
+    FormFieldsCustomizationState customizationState,
+  ) {
     final label = customizationState.placeholderText;
     return label.isEmpty ? null : label;
   }
 
   /// Retrieves the helper text to display based on the current customization state.
-  static String? getHelperText(FormFieldsCustomizationState customizationState) {
+  static String? getHelperText(
+    FormFieldsCustomizationState customizationState,
+  ) {
     final label = customizationState.helperText;
     return label.isEmpty ? null : label;
   }

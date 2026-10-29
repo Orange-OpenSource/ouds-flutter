@@ -58,7 +58,10 @@ void main() {
           OudsCodeText.rich(
             text: buildOudsAnnotatedText((builder) {
               builder.append('Plain ');
-              builder.withColor((context) => Colors.red, () => builder.append('Colored'));
+              builder.withColor(
+                (context) => Colors.red,
+                () => builder.append('Colored'),
+              );
             }),
           ),
         ),

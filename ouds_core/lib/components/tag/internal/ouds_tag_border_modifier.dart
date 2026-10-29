@@ -23,13 +23,18 @@ class OudsTagControlBorderModifier {
 
   /// Static method to get the border radius for a tag based on the border parameter.
   /// Returns a [BorderRadius] object with the appropriate radius value.
-  static BorderRadius getBorderRadius(BuildContext context, bool roundedCorners) {
+  static BorderRadius getBorderRadius(
+    BuildContext context,
+    bool roundedCorners,
+  ) {
     final tag = OudsTheme.of(context).componentsTokens(context).tag;
     switch (roundedCorners) {
       case true:
         return BorderRadius.circular(tag.borderRadius);
       case false:
-        return BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone);
+        return BorderRadius.circular(
+          OudsTheme.of(context).borderTokens.radiusNone,
+        );
     }
   }
 }

@@ -296,15 +296,16 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                     child: Container(
                       decoration: BoxDecoration(
                         border: OudsBorder().borderAll(
-                          color: OudsTheme.of(
-                            context,
-                          ).colorScheme(context).borderFocus,
+                          color: OudsTheme.of(context)
+                              .colorScheme(context)
+                              .borderFocus,
                           width: OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                         borderRadius: BorderRadius.circular(
-                          OudsTheme.of(
-                                context,
-                              ).componentsTokens(context).chip.borderRadius +
+                          OudsTheme.of(context)
+                                  .componentsTokens(context)
+                                  .chip
+                                  .borderRadius +
                               OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                       ),
@@ -318,25 +319,27 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                   animated: widget.skeleton?.animated ?? false,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
-                      OudsTheme.of(
-                        context,
-                      ).componentsTokens(context).chip.borderRadius,
+                      OudsTheme.of(context)
+                          .componentsTokens(context)
+                          .chip
+                          .borderRadius,
                     ),
                   ),
                   content: (context) => Container(
                     decoration: BoxDecoration(
                       border: OudsBorder().borderAll(
                         color: _isFocused
-                            ? OudsTheme.of(
-                                context,
-                              ).colorScheme(context).borderFocusInset
+                            ? OudsTheme.of(context)
+                                  .colorScheme(context)
+                                  .borderFocusInset
                             : Colors.transparent,
                         width: borderTokens.widthFocusInset,
                       ),
                       borderRadius: BorderRadius.circular(
-                        OudsTheme.of(
-                          context,
-                        ).componentsTokens(context).chip.borderRadius,
+                        OudsTheme.of(context)
+                            .componentsTokens(context)
+                            .chip
+                            .borderRadius,
                       ),
                     ),
                     child: _buildLayout(
@@ -436,9 +439,10 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                   _isHighContrast,
                 ),
                 borderRadius: BorderRadius.circular(
-                  OudsTheme.of(
-                    context,
-                  ).componentsTokens(context).chip.borderRadius,
+                  OudsTheme.of(context)
+                      .componentsTokens(context)
+                      .chip
+                      .borderRadius,
                 ),
               ),
             ),
@@ -504,9 +508,10 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                   _isHighContrast,
                 ),
                 borderRadius: BorderRadius.circular(
-                  OudsTheme.of(
-                    context,
-                  ).componentsTokens(context).chip.borderRadius,
+                  OudsTheme.of(context)
+                      .componentsTokens(context)
+                      .chip
+                      .borderRadius,
                 ),
               ),
             ),
@@ -587,9 +592,10 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                   _isHighContrast,
                 ),
                 borderRadius: BorderRadius.circular(
-                  OudsTheme.of(
-                    context,
-                  ).componentsTokens(context).chip.borderRadius,
+                  OudsTheme.of(context)
+                      .componentsTokens(context)
+                      .chip
+                      .borderRadius,
                 ),
               ),
             ),
@@ -641,9 +647,10 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
     OudsChipControlState controlItemState,
   ) {
     final controlIconModifier = OudsChipControlIconColorModifier(context);
-    final sizeIcon = OudsTheme.of(
-      context,
-    ).componentsTokens(context).chip.sizeIcon;
+    final sizeIcon = OudsTheme.of(context)
+        .componentsTokens(context)
+        .chip
+        .sizeIcon;
 
     final isTinted = widget.icon != null && widget.icon!.tinted;
 

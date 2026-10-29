@@ -21,7 +21,12 @@ class Token {
 
   Token(this.title, this.imageResourceName, this.description, this.screen);
 
-  Token.withVariant(this.title, this.imageResourceName, this.description, this.variants);
+  Token.withVariant(
+    this.title,
+    this.imageResourceName,
+    this.description,
+    this.variants,
+  );
 }
 
 class Variant {

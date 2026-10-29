@@ -37,14 +37,16 @@ class OudsControlIndicatorModifier {
     if (type != OudsControlItemType.switchButton &&
         type == OudsControlItemType.radio) {
       // Return the size of the radio button indicator
-      return OudsTheme.of(
-        context,
-      ).componentsTokens(context).controlListItem.sizeControlIndicator;
+      return OudsTheme.of(context)
+          .componentsTokens(context)
+          .controlListItem
+          .sizeControlIndicator;
     } else {
       // Return the size of the checkbox indicator
-      return OudsTheme.of(
-        context,
-      ).componentsTokens(context).controlListItem.sizeControlIndicator;
+      return OudsTheme.of(context)
+          .componentsTokens(context)
+          .controlListItem
+          .sizeControlIndicator;
     }
   }
 }

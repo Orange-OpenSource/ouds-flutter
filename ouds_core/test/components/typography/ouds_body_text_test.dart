@@ -46,11 +46,9 @@ void main() {
       final textWidget = tester.widget<Text>(find.byType(Text));
       final wrapper =
           (textWidget.textSpan! as TextSpan).children!.single as TextSpan;
-      final boldSpan =
-          wrapper.children!.firstWhere(
-                (span) => (span as TextSpan).text == 'bold',
-              )
-              as TextSpan;
+      final boldSpan = wrapper.children!.firstWhere(
+        (span) => (span as TextSpan).text == 'bold',
+      ) as TextSpan;
       expect(boldSpan.style?.fontWeight, FontWeight.bold);
     });
   });
