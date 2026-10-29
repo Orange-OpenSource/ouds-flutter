@@ -13,7 +13,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
 /// Lays out [content] as usual so it keeps dictating the natural width/height/shape a component

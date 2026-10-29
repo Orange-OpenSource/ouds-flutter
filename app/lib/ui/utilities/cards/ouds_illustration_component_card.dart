@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 

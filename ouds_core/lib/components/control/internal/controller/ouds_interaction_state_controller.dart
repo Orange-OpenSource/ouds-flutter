@@ -11,7 +11,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 ///
 /// The [OudsInteractionStateController] class is a controller that manages the interaction states

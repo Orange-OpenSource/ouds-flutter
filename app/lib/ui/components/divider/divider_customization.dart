@@ -1,13 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _DividerCustomization extends InheritedWidget {
-  const _DividerCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _DividerCustomization({required super.child, required this.data});
 
   final DividerCustomizationState data;
 
@@ -17,10 +14,7 @@ class _DividerCustomization extends InheritedWidget {
 
 /// Main Widget class for Divider customization
 class DividerCustomization extends StatefulWidget {
-  const DividerCustomization({
-    super.key,
-    required this.child,
-  });
+  const DividerCustomization({super.key, required this.child});
 
   final Widget child;
 
@@ -28,12 +22,14 @@ class DividerCustomization extends StatefulWidget {
   DividerCustomizationState createState() => DividerCustomizationState();
 
   static DividerCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_DividerCustomization>())?.data;
+    return (context.dependOnInheritedWidgetOfExactType<_DividerCustomization>())
+        ?.data;
   }
 }
 
 /// Divider customization state management
-class DividerCustomizationState extends CustomizationWidgetState<DividerCustomization> {
+class DividerCustomizationState
+    extends CustomizationWidgetState<DividerCustomization> {
   late final ColorState colorState;
 
   @override
@@ -51,10 +47,7 @@ class DividerCustomizationState extends CustomizationWidgetState<DividerCustomiz
 
   @override
   Widget build(BuildContext context) {
-    return _DividerCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _DividerCustomization(data: this, child: widget.child);
   }
 }
 

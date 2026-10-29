@@ -12,9 +12,9 @@
  */
 
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_border.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -27,22 +27,32 @@ class BorderScreen extends StatelessWidget {
   final String illustration;
   final String? previousPageTitle;
 
-  const BorderScreen({super.key, required this.illustration,this.previousPageTitle});
+  const BorderScreen({
+    super.key,
+    required this.illustration,
+    this.previousPageTitle,
+  });
 
   @override
   Widget build(BuildContext context) {
-
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     final currentTheme = themeController.currentTheme;
-    final List<BorderTokenItem> borderItems = _getBorderTokenItems(currentTheme);
-    final Map<String, List<BorderTokenItem>> tokenGroups = BorderTokenGrouper(borderItems).groupBySection();
+    final List<BorderTokenItem> borderItems = _getBorderTokenItems(
+      currentTheme,
+    );
+    final Map<String, List<BorderTokenItem>> tokenGroups = BorderTokenGrouper(
+      borderItems,
+    ).groupBySection();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(
-          showBackButton: true,
-          title: context.l10n.app_tokens_border_label,
-          previousPageTitle: previousPageTitle,
+        showBackButton: true,
+        title: context.l10n.app_tokens_border_label,
+        previousPageTitle: previousPageTitle,
       ),
       body: ListView(
         children: [
@@ -51,7 +61,9 @@ class BorderScreen extends StatelessWidget {
             fit: BoxFit.fitWidth,
           ),
           Padding(
-            padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
+            padding: EdgeInsetsDirectional.all(
+              currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+            ),
             child: Column(
               children: [
                 Text(
@@ -70,7 +82,9 @@ class BorderScreen extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsetsDirectional.only(
               top: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
-              bottom: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+              bottom: currentTheme
+                  .spaceScheme(context)
+                  .paddingInlineTwoExtraLarge,
             ),
             children: [
               for (var entry in tokenGroups.entries) ...[
@@ -83,21 +97,29 @@ class BorderScreen extends StatelessWidget {
                     header: true,
                     child: Text(
                       entry.key,
-                      style: currentTheme.typographyTokens.typeHeadingSmall(context).copyWith(color: currentTheme.colorScheme(context).contentDefault),
+                      style: currentTheme.typographyTokens
+                          .typeHeadingSmall(context)
+                          .copyWith(
+                            color: currentTheme
+                                .colorScheme(context)
+                                .contentDefault,
+                          ),
                     ),
                   ),
                 ),
                 ...entry.value.map(
-                      (item) => Padding(
+                  (item) => Padding(
                     padding: EdgeInsetsDirectional.symmetric(
-                      horizontal: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+                      horizontal: currentTheme
+                          .spaceScheme(context)
+                          .paddingInlineTwoExtraLarge,
                     ),
                     child: BorderWidget(borderTokenItem: item),
                   ),
                 ),
               ],
             ],
-          )
+          ),
         ],
       ),
     );
@@ -111,25 +133,33 @@ class BorderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     final currentTheme = themeController.currentTheme;
 
     final color = currentTheme.colorScheme(context).borderFocus;
     final bgColor = currentTheme.colorScheme(context).bgSecondary;
-    final width = borderTokenItem.sectionName == BorderSection.width ? borderTokenItem.value as double : 1.0;
-    final radius = borderTokenItem.sectionName == BorderSection.radius ? borderTokenItem.value as double : 1.0;
-    final isDashed = borderTokenItem.sectionName == BorderSection.style && borderTokenItem.value == "dashed";
-    final isSolid = borderTokenItem.sectionName == BorderSection.style && borderTokenItem.value == "solid";
+    final width = borderTokenItem.sectionName == BorderSection.width
+        ? borderTokenItem.value as double
+        : 1.0;
+    final radius = borderTokenItem.sectionName == BorderSection.radius
+        ? borderTokenItem.value as double
+        : 1.0;
+    final isDashed =
+        borderTokenItem.sectionName == BorderSection.style &&
+        borderTokenItem.value == "dashed";
+    final isSolid =
+        borderTokenItem.sectionName == BorderSection.style &&
+        borderTokenItem.value == "solid";
 
     final borderRadius = BorderRadius.circular(radius);
 
     final content = Container(
       width: 61,
       height: 61,
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: borderRadius,
-      ),
+      decoration: BoxDecoration(color: bgColor, borderRadius: borderRadius),
     );
 
     return Padding(
@@ -155,27 +185,33 @@ class BorderWidget extends StatelessWidget {
                     color: bgColor,
                     borderRadius: borderRadius,
                     border: OudsBorder().borderAll(
-                         width: width,
-                        color: color,
-                        style: isSolid ? BorderStyle.solid : BorderStyle.solid
+                      width: width,
+                      color: color,
+                      style: isSolid ? BorderStyle.solid : BorderStyle.solid,
                     ),
                   ),
                 ),
-          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
+          SizedBox(
+            width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   borderTokenItem.tokenName,
-                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context).copyWith(
+                  style: currentTheme.typographyTokens
+                      .typeBodyStrongLarge(context)
+                      .copyWith(
                         color: currentTheme.colorScheme(context).contentDefault,
                       ),
                 ),
                 SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
                 Text(
                   borderTokenItem.value.toString(),
-                  style: currentTheme.typographyTokens.typeBodyDefaultMedium(context).copyWith(
+                  style: currentTheme.typographyTokens
+                      .typeBodyDefaultMedium(context)
+                      .copyWith(
                         color: currentTheme.colorScheme(context).contentMuted,
                       ),
                 ),
@@ -189,11 +225,7 @@ class BorderWidget extends StatelessWidget {
 }
 
 /// Enum representing different sections of border properties.
-enum BorderSection {
-  width,
-  radius,
-  style,
-}
+enum BorderSection { width, radius, style }
 
 extension BorderSectionExtension on BorderSection {
   String stringValue(BuildContext context) {
@@ -241,24 +273,88 @@ class BorderTokenGrouper {
 /// Creates a list of border items based on the current theme, including widths, radii, and styles.
 List<BorderTokenItem> _getBorderTokenItems(OudsThemeContract currentTheme) {
   return [
-    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthNone', value: currentTheme.borderTokens.widthNone),
-    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthDefault', value: currentTheme.borderTokens.widthDefault),
-    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthThin', value: currentTheme.borderTokens.widthThin),
-    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthMedium', value: currentTheme.borderTokens.widthMedium),
-    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthThick', value: currentTheme.borderTokens.widthThick),
-    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthThicker', value: currentTheme.borderTokens.widthThicker),
-    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthFocus', value: currentTheme.borderTokens.widthFocus),
-    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthFocusInset', value: currentTheme.borderTokens.widthFocusInset),
+    BorderTokenItem(
+      sectionName: BorderSection.width,
+      tokenName: 'borderWidthNone',
+      value: currentTheme.borderTokens.widthNone,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.width,
+      tokenName: 'borderWidthDefault',
+      value: currentTheme.borderTokens.widthDefault,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.width,
+      tokenName: 'borderWidthThin',
+      value: currentTheme.borderTokens.widthThin,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.width,
+      tokenName: 'borderWidthMedium',
+      value: currentTheme.borderTokens.widthMedium,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.width,
+      tokenName: 'borderWidthThick',
+      value: currentTheme.borderTokens.widthThick,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.width,
+      tokenName: 'borderWidthThicker',
+      value: currentTheme.borderTokens.widthThicker,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.width,
+      tokenName: 'borderWidthFocus',
+      value: currentTheme.borderTokens.widthFocus,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.width,
+      tokenName: 'borderWidthFocusInset',
+      value: currentTheme.borderTokens.widthFocusInset,
+    ),
 
     // Section Radius
-    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusNone', value: currentTheme.borderTokens.radiusNone),
-    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusDefault', value: currentTheme.borderTokens.radiusDefault),
-    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusSmall', value: currentTheme.borderTokens.radiusSmall),
-    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusMedium', value: currentTheme.borderTokens.radiusMedium),
-    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusLarge', value: currentTheme.borderTokens.radiusLarge),
-    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusPill', value: currentTheme.borderTokens.radiusPill),
+    BorderTokenItem(
+      sectionName: BorderSection.radius,
+      tokenName: 'borderRadiusNone',
+      value: currentTheme.borderTokens.radiusNone,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.radius,
+      tokenName: 'borderRadiusDefault',
+      value: currentTheme.borderTokens.radiusDefault,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.radius,
+      tokenName: 'borderRadiusSmall',
+      value: currentTheme.borderTokens.radiusSmall,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.radius,
+      tokenName: 'borderRadiusMedium',
+      value: currentTheme.borderTokens.radiusMedium,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.radius,
+      tokenName: 'borderRadiusLarge',
+      value: currentTheme.borderTokens.radiusLarge,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.radius,
+      tokenName: 'borderRadiusPill',
+      value: currentTheme.borderTokens.radiusPill,
+    ),
     // Section Style
-    BorderTokenItem(sectionName: BorderSection.style, tokenName: 'borderStyleDefault', value: currentTheme.borderTokens.styleDefault),
-    BorderTokenItem(sectionName: BorderSection.style, tokenName: 'borderStyleDrag', value: currentTheme.borderTokens.styleDrag),
+    BorderTokenItem(
+      sectionName: BorderSection.style,
+      tokenName: 'borderStyleDefault',
+      value: currentTheme.borderTokens.styleDefault,
+    ),
+    BorderTokenItem(
+      sectionName: BorderSection.style,
+      tokenName: 'borderStyleDrag',
+      value: currentTheme.borderTokens.styleDrag,
+    ),
   ];
 }

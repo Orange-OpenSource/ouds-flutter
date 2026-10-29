@@ -156,10 +156,10 @@ Everything is available on [Orange accessibility guidelines](https://a11y-guidel
 
 ## 6. Development requirements
 
-- **Flutter**: `>= 3.35.0`
-- **Dart**: `>= 3.9.0`
-- **Minimum Android SDK**: API 21 (Android 5.0)
-- **Minimum iOS**: 13.0
+- **Flutter**: `>= 3.47.0`
+- **Dart**: `>= 3.13.0`
+- **Minimum Android SDK**: API 24 (Android 7.0)
+- **Minimum iOS**: 15.0
 - **Android Studio** or **Xcode** for platform builds
 - A physical device or simulator/emulator for full accessibility testing (TalkBack on Android, VoiceOver on iOS)
 

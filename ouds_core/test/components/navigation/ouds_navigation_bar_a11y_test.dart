@@ -32,7 +32,7 @@
 // ⚠ The badge Semantics child MUST have a non-zero rect — SizedBox.shrink() (0×0)
 //   causes Flutter to mark the node invisible and TalkBack silently skips it.
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_a11y.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';

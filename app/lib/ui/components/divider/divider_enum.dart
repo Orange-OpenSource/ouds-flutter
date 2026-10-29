@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 
 /// Represents the color of an OUDS divider.
