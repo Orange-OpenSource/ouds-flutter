@@ -28,17 +28,21 @@ class WireframeColorBorderSemanticTokens extends OudsColorBorderSemanticTokens {
     super.borderBrandTertiaryLight = const Color(0x00ff0000),
     super.borderDefaultDark = WireframeColorRawTokens.colorOpacityWhite200,
     super.borderDefaultLight = WireframeColorRawTokens.colorOpacityBlack200,
-    super.borderEmphasizedDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.borderEmphasizedLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.borderEmphasizedDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.borderEmphasizedLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.borderFocusDark = WireframeColorRawTokens.colorRoyalBlue100,
-    super.borderFocusInsetDark = WireframeColorRawTokens.colorFunctionalGrayDark880,
+    super.borderFocusInsetDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark880,
     super.borderFocusInsetLight = ColorRawTokens.colorFunctionalWhite,
     super.borderFocusLight = WireframeColorRawTokens.colorRoyalBlue900,
     super.borderMinimalDark = WireframeColorRawTokens.colorOpacityWhite40,
     super.borderMinimalLight = WireframeColorRawTokens.colorOpacityBlack40,
     super.borderMutedDark = WireframeColorRawTokens.colorOpacityWhite120,
     super.borderMutedLight = WireframeColorRawTokens.colorOpacityBlack120,
-    super.borderOnBrandPrimaryDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.borderOnBrandPrimaryDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.borderOnBrandPrimaryLight = ColorRawTokens.colorFunctionalWhite,
     super.borderOnBrandSecondaryDark = const Color(0x00ff0000),
     super.borderOnBrandSecondaryLight = const Color(0x00ff0000),
@@ -51,7 +55,8 @@ class WireframeColorBorderSemanticTokens extends OudsColorBorderSemanticTokens {
     super.borderStatusNegativeDark = ColorRawTokens.colorFunctionalScarlet300,
     super.borderStatusNegativeLight = ColorRawTokens.colorFunctionalScarlet600,
     super.borderStatusPositiveDark = ColorRawTokens.colorFunctionalMalachite300,
-    super.borderStatusPositiveLight = ColorRawTokens.colorFunctionalMalachite750,
+    super.borderStatusPositiveLight =
+        ColorRawTokens.colorFunctionalMalachite750,
     super.borderStatusWarningDark = ColorRawTokens.colorFunctionalSun300,
     super.borderStatusWarningLight = ColorRawTokens.colorFunctionalSun500,
   });

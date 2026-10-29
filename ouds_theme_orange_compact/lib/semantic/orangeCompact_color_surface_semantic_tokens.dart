@@ -18,7 +18,8 @@ import 'package:ouds_theme_orange/raw/orange_color_raw_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_surface_semantic_tokens.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class OrangeCompactColorSurfaceSemanticTokens extends OudsColorSurfaceSemanticTokens {
+class OrangeCompactColorSurfaceSemanticTokens
+    extends OudsColorSurfaceSemanticTokens {
   const OrangeCompactColorSurfaceSemanticTokens({
     super.surfaceBrandPrimaryDark = OrangeColorRawTokens.colorOrange500,
     super.surfaceBrandPrimaryLight = OrangeColorRawTokens.colorOrange500,
@@ -34,24 +35,40 @@ class OrangeCompactColorSurfaceSemanticTokens extends OudsColorSurfaceSemanticTo
     super.surfacePrimaryLight = ColorRawTokens.colorFunctionalWhite,
     super.surfaceSecondaryDark = ColorRawTokens.colorOpacityWhite80,
     super.surfaceSecondaryLight = ColorRawTokens.colorOpacityBlack40,
-    super.surfaceStatusAccentEmphasizedDark = OrangeColorRawTokens.colorOrange500,
-    super.surfaceStatusAccentEmphasizedLight = OrangeColorRawTokens.colorOrange550,
-    super.surfaceStatusAccentMutedDark = OrangeColorRawTokens.colorOpacityWarmGray400,
-    super.surfaceStatusAccentMutedLight = OrangeColorRawTokens.colorOpacityWarmGray80,
-    super.surfaceStatusInfoEmphasizedDark = ColorRawTokens.colorFunctionalDodgerBlue300,
-    super.surfaceStatusInfoEmphasizedLight = ColorRawTokens.colorFunctionalDodgerBlue700,
+    super.surfaceStatusAccentEmphasizedDark =
+        OrangeColorRawTokens.colorOrange500,
+    super.surfaceStatusAccentEmphasizedLight =
+        OrangeColorRawTokens.colorOrange550,
+    super.surfaceStatusAccentMutedDark =
+        OrangeColorRawTokens.colorOpacityWarmGray400,
+    super.surfaceStatusAccentMutedLight =
+        OrangeColorRawTokens.colorOpacityWarmGray80,
+    super.surfaceStatusInfoEmphasizedDark =
+        ColorRawTokens.colorFunctionalDodgerBlue300,
+    super.surfaceStatusInfoEmphasizedLight =
+        ColorRawTokens.colorFunctionalDodgerBlue700,
     super.surfaceStatusInfoMutedDark = ColorRawTokens.colorOpacityDodgerBlue520,
     super.surfaceStatusInfoMutedLight = ColorRawTokens.colorOpacityDodgerBlue80,
-    super.surfaceStatusNegativeEmphasizedDark = ColorRawTokens.colorFunctionalScarlet300,
-    super.surfaceStatusNegativeEmphasizedLight = ColorRawTokens.colorFunctionalScarlet600,
-    super.surfaceStatusNegativeMutedDark = ColorRawTokens.colorOpacityScarlet320,
-    super.surfaceStatusNegativeMutedLight = ColorRawTokens.colorOpacityScarlet80,
-    super.surfaceStatusPositiveEmphasizedDark = ColorRawTokens.colorFunctionalMalachite300,
-    super.surfaceStatusPositiveEmphasizedLight = ColorRawTokens.colorFunctionalMalachite750,
-    super.surfaceStatusPositiveMutedDark = ColorRawTokens.colorOpacityMalachite640,
-    super.surfaceStatusPositiveMutedLight = ColorRawTokens.colorOpacityMalachite120,
-    super.surfaceStatusWarningEmphasizedDark = ColorRawTokens.colorFunctionalSun300,
-    super.surfaceStatusWarningEmphasizedLight = ColorRawTokens.colorFunctionalSun500,
+    super.surfaceStatusNegativeEmphasizedDark =
+        ColorRawTokens.colorFunctionalScarlet300,
+    super.surfaceStatusNegativeEmphasizedLight =
+        ColorRawTokens.colorFunctionalScarlet600,
+    super.surfaceStatusNegativeMutedDark =
+        ColorRawTokens.colorOpacityScarlet320,
+    super.surfaceStatusNegativeMutedLight =
+        ColorRawTokens.colorOpacityScarlet80,
+    super.surfaceStatusPositiveEmphasizedDark =
+        ColorRawTokens.colorFunctionalMalachite300,
+    super.surfaceStatusPositiveEmphasizedLight =
+        ColorRawTokens.colorFunctionalMalachite750,
+    super.surfaceStatusPositiveMutedDark =
+        ColorRawTokens.colorOpacityMalachite640,
+    super.surfaceStatusPositiveMutedLight =
+        ColorRawTokens.colorOpacityMalachite120,
+    super.surfaceStatusWarningEmphasizedDark =
+        ColorRawTokens.colorFunctionalSun300,
+    super.surfaceStatusWarningEmphasizedLight =
+        ColorRawTokens.colorFunctionalSun500,
     super.surfaceStatusWarningMutedDark = ColorRawTokens.colorOpacitySun480,
     super.surfaceStatusWarningMutedLight = ColorRawTokens.colorOpacitySun160,
     super.surfaceTertiaryDark = OrangeColorRawTokens.colorOpacityWarmGray400,

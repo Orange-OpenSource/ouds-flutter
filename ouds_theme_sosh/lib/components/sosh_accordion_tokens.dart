@@ -22,9 +22,12 @@ class SoshAccordionTokens extends OudsAccordionTokens {
   SoshAccordionTokens(this.providersTokens);
 
   @override
-  double get spacePaddingBlockBottomExpandContainerDefault => providersTokens.spaceTokens.paddingBlock3xlarge;
+  double get spacePaddingBlockBottomExpandContainerDefault =>
+      providersTokens.spaceTokens.paddingBlock3xlarge;
   @override
-  double get spacePaddingBlockBottomExpandContainerSmall => providersTokens.spaceTokens.paddingBlock2xlarge;
+  double get spacePaddingBlockBottomExpandContainerSmall =>
+      providersTokens.spaceTokens.paddingBlock2xlarge;
   @override
-  double get spacePaddingBlockTopExpandContainer => providersTokens.spaceTokens.paddingBlockXsmall;
+  double get spacePaddingBlockTopExpandContainer =>
+      providersTokens.spaceTokens.paddingBlockXsmall;
 }

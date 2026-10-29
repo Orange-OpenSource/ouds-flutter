@@ -26,69 +26,101 @@ class WireframeMaterialColorTokens extends OudsMaterialColorTokens {
     super.errorContainerLight = ColorRawTokens.colorFunctionalScarlet100,
     super.errorDark = ColorRawTokens.colorFunctionalScarlet300,
     super.errorLight = ColorRawTokens.colorFunctionalScarlet600,
-    super.inverseOnSurfaceDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.inverseOnSurfaceDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.inverseOnSurfaceLight = ColorRawTokens.colorFunctionalWhite,
-    super.inversePrimaryDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.inversePrimaryDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.inversePrimaryLight = ColorRawTokens.colorFunctionalWhite,
-    super.inverseSurfaceDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.inverseSurfaceLight = WireframeColorRawTokens.colorFunctionalGrayDark720,
-    super.onBackgroundDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.onBackgroundLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.onErrorContainerDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.onErrorContainerLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.inverseSurfaceDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.inverseSurfaceLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.onBackgroundDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.onBackgroundLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.onErrorContainerDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.onErrorContainerLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.onErrorDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.onErrorLight = ColorRawTokens.colorFunctionalWhite,
-    super.onPrimaryContainerDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.onPrimaryContainerDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.onPrimaryContainerLight = ColorRawTokens.colorFunctionalWhite,
     super.onPrimaryDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.onPrimaryFixedDark = ColorRawTokens.colorFunctionalWhite,
     super.onPrimaryFixedLight = ColorRawTokens.colorFunctionalWhite,
-    super.onPrimaryFixedVariantDark = WireframeColorRawTokens.colorOpacityWhite640,
-    super.onPrimaryFixedVariantLight = WireframeColorRawTokens.colorOpacityWhite640,
+    super.onPrimaryFixedVariantDark =
+        WireframeColorRawTokens.colorOpacityWhite640,
+    super.onPrimaryFixedVariantLight =
+        WireframeColorRawTokens.colorOpacityWhite640,
     super.onPrimaryLight = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.onSecondaryContainerDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.onSecondaryContainerLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.onSecondaryContainerDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.onSecondaryContainerLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.onSecondaryDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.onSecondaryFixedDark = ColorRawTokens.colorFunctionalWhite,
     super.onSecondaryFixedLight = ColorRawTokens.colorFunctionalWhite,
-    super.onSecondaryFixedVariantDark = WireframeColorRawTokens.colorOpacityWhite640,
-    super.onSecondaryFixedVariantLight = WireframeColorRawTokens.colorOpacityWhite640,
-    super.onSecondaryLight = WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.onSecondaryFixedVariantDark =
+        WireframeColorRawTokens.colorOpacityWhite640,
+    super.onSecondaryFixedVariantLight =
+        WireframeColorRawTokens.colorOpacityWhite640,
+    super.onSecondaryLight =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
     super.onSurfaceDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
     super.onSurfaceLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.onSurfaceVariantDark = WireframeColorRawTokens.colorOpacityWhite640,
     super.onSurfaceVariantLight = WireframeColorRawTokens.colorOpacityBlack680,
-    super.onTertiaryContainerDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.onTertiaryContainerLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.onTertiaryContainerDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.onTertiaryContainerLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.onTertiaryDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.onTertiaryFixedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.onTertiaryFixedLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.onTertiaryFixedVariantDark = WireframeColorRawTokens.colorOpacityBlack680,
-    super.onTertiaryFixedVariantLight = WireframeColorRawTokens.colorOpacityBlack680,
+    super.onTertiaryFixedDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.onTertiaryFixedLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.onTertiaryFixedVariantDark =
+        WireframeColorRawTokens.colorOpacityBlack680,
+    super.onTertiaryFixedVariantLight =
+        WireframeColorRawTokens.colorOpacityBlack680,
     super.onTertiaryLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.outlineDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
     super.outlineLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.outlineVariantDark = WireframeColorRawTokens.colorOpacityWhite200,
     super.outlineVariantLight = WireframeColorRawTokens.colorOpacityBlack200,
-    super.primaryContainerDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.primaryContainerLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.primaryContainerDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.primaryContainerLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.primaryDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
     super.primaryFixedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.primaryFixedDimDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.primaryFixedDimLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.primaryFixedLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.primaryFixedDimDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.primaryFixedDimLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.primaryFixedLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.primaryLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.scrimDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.scrimLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.secondaryContainerDark = WireframeColorRawTokens.colorOpacityWhite80,
     super.secondaryContainerLight = WireframeColorRawTokens.colorOpacityBlack40,
     super.secondaryDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.secondaryFixedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.secondaryFixedDimDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.secondaryFixedDimLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.secondaryFixedLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.secondaryFixedDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.secondaryFixedDimDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.secondaryFixedDimLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.secondaryFixedLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.secondaryLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.surfaceBrightDark = WireframeColorRawTokens.colorFunctionalGrayDark640,
+    super.surfaceBrightDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark640,
     super.surfaceBrightLight = ColorRawTokens.colorFunctionalWhite,
     super.surfaceDark = WireframeColorRawTokens.colorFunctionalGrayDark880,
     super.surfaceDimDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
@@ -96,24 +128,37 @@ class WireframeMaterialColorTokens extends OudsMaterialColorTokens {
     super.surfaceLight = ColorRawTokens.colorFunctionalWhite,
     super.surfaceTintDark = WireframeColorRawTokens.colorFunctionalGrayDark720,
     super.surfaceTintLight = WireframeColorRawTokens.colorFunctionalGrayLight80,
-    super.surfaceVariantDark = WireframeColorRawTokens.colorFunctionalGrayDark720,
-    super.surfaceVariantLight = WireframeColorRawTokens.colorFunctionalGrayLight80,
-    super.surfContainerDark = WireframeColorRawTokens.colorFunctionalGrayDark720,
-    super.surfContainerHighDark = WireframeColorRawTokens.colorFunctionalGrayDark720,
-    super.surfContainerHighestDark = WireframeColorRawTokens.colorFunctionalGrayDark720,
-    super.surfContainerHighestLight = WireframeColorRawTokens.colorFunctionalGrayLight80,
-    super.surfContainerHighLight = WireframeColorRawTokens.colorFunctionalGrayLight80,
-    super.surfContainerLight = WireframeColorRawTokens.colorFunctionalGrayLight80,
-    super.surfContainerLowDark = WireframeColorRawTokens.colorFunctionalGrayDark720,
-    super.surfContainerLowestDark = WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.surfaceVariantDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.surfaceVariantLight =
+        WireframeColorRawTokens.colorFunctionalGrayLight80,
+    super.surfContainerDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.surfContainerHighDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.surfContainerHighestDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.surfContainerHighestLight =
+        WireframeColorRawTokens.colorFunctionalGrayLight80,
+    super.surfContainerHighLight =
+        WireframeColorRawTokens.colorFunctionalGrayLight80,
+    super.surfContainerLight =
+        WireframeColorRawTokens.colorFunctionalGrayLight80,
+    super.surfContainerLowDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.surfContainerLowestDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
     super.surfContainerLowestLight = ColorRawTokens.colorFunctionalWhite,
     super.surfContainerLowLight = ColorRawTokens.colorFunctionalWhite,
-    super.tertiaryContainerDark = WireframeColorRawTokens.colorFunctionalGrayDark880,
+    super.tertiaryContainerDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark880,
     super.tertiaryContainerLight = ColorRawTokens.colorFunctionalWhite,
     super.tertiaryDark = WireframeColorRawTokens.colorFunctionalGrayDark880,
     super.tertiaryFixedDark = ColorRawTokens.colorFunctionalWhite,
-    super.tertiaryFixedDimDark = WireframeColorRawTokens.colorFunctionalGrayLight80,
-    super.tertiaryFixedDimLight = WireframeColorRawTokens.colorFunctionalGrayLight80,
+    super.tertiaryFixedDimDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight80,
+    super.tertiaryFixedDimLight =
+        WireframeColorRawTokens.colorFunctionalGrayLight80,
     super.tertiaryFixedLight = ColorRawTokens.colorFunctionalWhite,
     super.tertiaryLight = ColorRawTokens.colorFunctionalWhite,
   });

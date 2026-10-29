@@ -18,7 +18,8 @@ import 'package:ouds_theme_wireframe/raw/wireframe_color_raw_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_content_semantic_tokens.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class WireframeColorContentSemanticTokens extends OudsColorContentSemanticTokens {
+class WireframeColorContentSemanticTokens
+    extends OudsColorContentSemanticTokens {
   const WireframeColorContentSemanticTokens({
     super.contentBrandPrimaryDark = WireframeColorRawTokens.colorRoyalBlue300,
     super.contentBrandPrimaryLight = WireframeColorRawTokens.colorRoyalBlue600,
@@ -26,72 +27,115 @@ class WireframeColorContentSemanticTokens extends OudsColorContentSemanticTokens
     super.contentBrandSecondaryLight = WireframeColorRawTokens.colorRustyRed600,
     super.contentBrandTertiaryDark = const Color(0x00ff0000),
     super.contentBrandTertiaryLight = const Color(0x00ff0000),
-    super.contentDefaultDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.contentDefaultLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentDefaultDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.contentDefaultLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentDisabledDark = WireframeColorRawTokens.colorOpacityWhite200,
     super.contentDisabledLight = WireframeColorRawTokens.colorOpacityBlack200,
-    super.contentInverseDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentInverseDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentInverseLight = ColorRawTokens.colorFunctionalWhite,
     super.contentMutedDark = WireframeColorRawTokens.colorOpacityWhite640,
     super.contentMutedLight = WireframeColorRawTokens.colorOpacityBlack680,
-    super.contentOnActionDisabledDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnActionDisabledDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentOnActionDisabledLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnActionEnabledDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnActionEnabledDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentOnActionEnabledLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnActionFocusDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnActionFocusDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentOnActionFocusLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnActionHighlightedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnActionHighlightedDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentOnActionHighlightedLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnActionHoverDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnActionHoverDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentOnActionHoverLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnActionLoadingDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnActionLoadingDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentOnActionLoadingLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnActionPressedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnActionPressedDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentOnActionPressedLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnActionSelectedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnActionSelectedDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentOnActionSelectedLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnBrandPrimaryDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnBrandPrimaryDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentOnBrandPrimaryLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnBrandSecondaryDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnBrandSecondaryDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentOnBrandSecondaryLight = ColorRawTokens.colorFunctionalWhite,
     super.contentOnBrandTertiaryDark = const Color(0x00ff0000),
     super.contentOnBrandTertiaryLight = const Color(0x00ff0000),
-    super.contentOnStatusAccentEmphasizedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.contentOnStatusAccentEmphasizedLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnStatusAccentMutedDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.contentOnStatusAccentMutedLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.contentOnStatusInfoEmphasizedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.contentOnStatusInfoEmphasizedLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnStatusInfoMutedDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.contentOnStatusInfoMutedLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.contentOnStatusNegativeEmphasizedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.contentOnStatusNegativeEmphasizedLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnStatusNegativeMutedDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.contentOnStatusNegativeMutedLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.contentOnStatusPositiveEmphasizedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.contentOnStatusPositiveEmphasizedLight = ColorRawTokens.colorFunctionalWhite,
-    super.contentOnStatusPositiveMutedDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.contentOnStatusPositiveMutedLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.contentOnStatusWarningEmphasizedDark = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.contentOnStatusWarningEmphasizedLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
-    super.contentOnStatusWarningMutedDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.contentOnStatusWarningMutedLight = WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusAccentEmphasizedDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusAccentEmphasizedLight =
+        ColorRawTokens.colorFunctionalWhite,
+    super.contentOnStatusAccentMutedDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.contentOnStatusAccentMutedLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusInfoEmphasizedDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusInfoEmphasizedLight =
+        ColorRawTokens.colorFunctionalWhite,
+    super.contentOnStatusInfoMutedDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.contentOnStatusInfoMutedLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusNegativeEmphasizedDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusNegativeEmphasizedLight =
+        ColorRawTokens.colorFunctionalWhite,
+    super.contentOnStatusNegativeMutedDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.contentOnStatusNegativeMutedLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusPositiveEmphasizedDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusPositiveEmphasizedLight =
+        ColorRawTokens.colorFunctionalWhite,
+    super.contentOnStatusPositiveMutedDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.contentOnStatusPositiveMutedLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusWarningEmphasizedDark =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusWarningEmphasizedLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
+    super.contentOnStatusWarningMutedDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.contentOnStatusWarningMutedLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark960,
     super.contentStatusAccentDark = WireframeColorRawTokens.colorRustyRed300,
     super.contentStatusAccentLight = WireframeColorRawTokens.colorRustyRed600,
     super.contentStatusInfoDark = ColorRawTokens.colorFunctionalDodgerBlue300,
     super.contentStatusInfoLight = ColorRawTokens.colorFunctionalDodgerBlue700,
-    super.contentStatusInverseInfoDark = ColorRawTokens.colorFunctionalDodgerBlue700,
-    super.contentStatusInverseInfoLight = ColorRawTokens.colorFunctionalDodgerBlue300,
-    super.contentStatusInverseNegativeDark = ColorRawTokens.colorFunctionalScarlet600,
-    super.contentStatusInverseNegativeLight = ColorRawTokens.colorFunctionalScarlet300,
-    super.contentStatusInversePositiveDark = ColorRawTokens.colorFunctionalMalachite750,
-    super.contentStatusInversePositiveLight = ColorRawTokens.colorFunctionalMalachite300,
-    super.contentStatusInverseWarningDark = ColorRawTokens.colorFunctionalSun750,
-    super.contentStatusInverseWarningLight = ColorRawTokens.colorFunctionalSun300,
+    super.contentStatusInverseInfoDark =
+        ColorRawTokens.colorFunctionalDodgerBlue700,
+    super.contentStatusInverseInfoLight =
+        ColorRawTokens.colorFunctionalDodgerBlue300,
+    super.contentStatusInverseNegativeDark =
+        ColorRawTokens.colorFunctionalScarlet600,
+    super.contentStatusInverseNegativeLight =
+        ColorRawTokens.colorFunctionalScarlet300,
+    super.contentStatusInversePositiveDark =
+        ColorRawTokens.colorFunctionalMalachite750,
+    super.contentStatusInversePositiveLight =
+        ColorRawTokens.colorFunctionalMalachite300,
+    super.contentStatusInverseWarningDark =
+        ColorRawTokens.colorFunctionalSun750,
+    super.contentStatusInverseWarningLight =
+        ColorRawTokens.colorFunctionalSun300,
     super.contentStatusNegativeDark = ColorRawTokens.colorFunctionalScarlet300,
     super.contentStatusNegativeLight = ColorRawTokens.colorFunctionalScarlet600,
-    super.contentStatusPositiveDark = ColorRawTokens.colorFunctionalMalachite300,
-    super.contentStatusPositiveLight = ColorRawTokens.colorFunctionalMalachite750,
+    super.contentStatusPositiveDark =
+        ColorRawTokens.colorFunctionalMalachite300,
+    super.contentStatusPositiveLight =
+        ColorRawTokens.colorFunctionalMalachite750,
     super.contentStatusWarningDark = ColorRawTokens.colorFunctionalSun300,
     super.contentStatusWarningLight = ColorRawTokens.colorFunctionalSun750,
   });

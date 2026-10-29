@@ -27,5 +27,6 @@ class SoshPinCodeInputTokens extends OudsPinCodeInputTokens {
   @override
   double get sizeMinWidth => DimensionRawTokens.dimension550;
   @override
-  double get spaceColumnGapDigitInput => providersTokens.spaceTokens.columnGapMedium;
+  double get spaceColumnGapDigitInput =>
+      providersTokens.spaceTokens.columnGapMedium;
 }

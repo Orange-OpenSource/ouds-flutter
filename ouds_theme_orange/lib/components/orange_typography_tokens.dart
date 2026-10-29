@@ -23,13 +23,20 @@ class OrangeTypographyTokens extends OudsTypographyTokens {
   OrangeTypographyTokens(this.providersTokens);
 
   @override
-  Color get colorContentMarker => providersTokens.colorScheme.contentBrandPrimary;
+  Color get colorContentMarker =>
+      providersTokens.colorScheme.contentBrandPrimary;
   @override
   bool get headingLargeMarker => true;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get spacePaddingBlockBottomHeadingLargeMarker => providersTokens.spaceTokens.paddingBlock4xsmall;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  double get spacePaddingBlockBottomHeadingLargeMarker =>
+      providersTokens.spaceTokens.paddingBlock4xsmall;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get spacePaddingBlockTopHeadingLargeMarker => providersTokens.spaceTokens.paddingBlock3xsmall;
+  double get spacePaddingBlockTopHeadingLargeMarker =>
+      providersTokens.spaceTokens.paddingBlock3xsmall;
 }

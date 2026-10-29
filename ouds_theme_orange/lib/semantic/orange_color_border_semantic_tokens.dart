@@ -51,7 +51,8 @@ class OrangeColorBorderSemanticTokens extends OudsColorBorderSemanticTokens {
     super.borderStatusNegativeDark = ColorRawTokens.colorFunctionalScarlet300,
     super.borderStatusNegativeLight = ColorRawTokens.colorFunctionalScarlet600,
     super.borderStatusPositiveDark = ColorRawTokens.colorFunctionalMalachite300,
-    super.borderStatusPositiveLight = ColorRawTokens.colorFunctionalMalachite750,
+    super.borderStatusPositiveLight =
+        ColorRawTokens.colorFunctionalMalachite750,
     super.borderStatusWarningDark = ColorRawTokens.colorFunctionalSun300,
     super.borderStatusWarningLight = ColorRawTokens.colorFunctionalSun500,
   });

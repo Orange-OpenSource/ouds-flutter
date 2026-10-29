@@ -25,7 +25,8 @@ class OrangeInputTagTokens extends OudsInputTagTokens {
   @override
   double get borderWidthDefault => providersTokens.borderTokens.widthDefault;
   @override
-  double get borderWidthDefaultInteraction => providersTokens.borderTokens.widthMedium;
+  double get borderWidthDefaultInteraction =>
+      providersTokens.borderTokens.widthMedium;
   @override
   Color get colorBgEnabled => providersTokens.colorScheme.actionSupportEnabled;
   @override

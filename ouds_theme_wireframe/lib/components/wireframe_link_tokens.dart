@@ -25,13 +25,19 @@ class WireframeLinkTokens extends OudsLinkTokens {
 
   @override
   Color get colorChevronEnabled => providersTokens.colorScheme.actionEnabled;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   Color get colorChevronFocus => providersTokens.colorScheme.actionFocus;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   Color get colorChevronHover => providersTokens.colorScheme.actionHover;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   Color get colorChevronPressed => providersTokens.colorScheme.actionPressed;
   @override
@@ -43,36 +49,52 @@ class WireframeLinkTokens extends OudsLinkTokens {
   @override
   Color get colorContentPressed => providersTokens.colorScheme.actionPressed;
   @override
-  double get sizeIconDefault => providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
+  double get sizeIconDefault =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
   @override
-  double get sizeIconSmall => providersTokens.sizeTokens.iconWithLabelMediumSizeSmall;
+  double get sizeIconSmall =>
+      providersTokens.sizeTokens.iconWithLabelMediumSizeSmall;
   @override
   double get sizeMinHeightCompactDensity => DimensionRawTokens.dimension400;
   @override
-  double get sizeMinHeightDefault => providersTokens.sizeTokens.minInteractiveAreaDefault;
+  double get sizeMinHeightDefault =>
+      providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
-  double get sizeMinHeightSmall => providersTokens.sizeTokens.minInteractiveAreaSmall;
+  double get sizeMinHeightSmall =>
+      providersTokens.sizeTokens.minInteractiveAreaSmall;
   @override
   double get sizeMinWidth => DimensionRawTokens.dimension400;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get sizeMinWidthSmall => providersTokens.sizeTokens.minInteractiveAreaSmall;
+  double get sizeMinWidthSmall =>
+      providersTokens.sizeTokens.minInteractiveAreaSmall;
   @override
-  double get spaceColumnGapChevronDefault => providersTokens.spaceTokens.columnGap2xsmall;
+  double get spaceColumnGapChevronDefault =>
+      providersTokens.spaceTokens.columnGap2xsmall;
   @override
-  double get spaceColumnGapChevronSmall => providersTokens.spaceTokens.columnGap2xsmall;
+  double get spaceColumnGapChevronSmall =>
+      providersTokens.spaceTokens.columnGap2xsmall;
   @override
-  double get spaceColumnGapIconDefault => providersTokens.spaceTokens.columnGapSmall;
+  double get spaceColumnGapIconDefault =>
+      providersTokens.spaceTokens.columnGapSmall;
   @override
-  double get spaceColumnGapIconSmall => providersTokens.spaceTokens.columnGapXsmall;
+  double get spaceColumnGapIconSmall =>
+      providersTokens.spaceTokens.columnGapXsmall;
   @override
-  double get spacePaddingBlockCompactDensityDefault => providersTokens.spaceTokens.paddingBlock3xsmall;
+  double get spacePaddingBlockCompactDensityDefault =>
+      providersTokens.spaceTokens.paddingBlock3xsmall;
   @override
-  double get spacePaddingBlockCompactDensitySmall => providersTokens.spaceTokens.paddingBlock2xsmall;
+  double get spacePaddingBlockCompactDensitySmall =>
+      providersTokens.spaceTokens.paddingBlock2xsmall;
   @override
-  double get spacePaddingBlockDefault => providersTokens.spaceTokens.paddingBlockMedium;
+  double get spacePaddingBlockDefault =>
+      providersTokens.spaceTokens.paddingBlockMedium;
   @override
-  double get spacePaddingBlockSmall => providersTokens.spaceTokens.paddingBlockSmall;
+  double get spacePaddingBlockSmall =>
+      providersTokens.spaceTokens.paddingBlockSmall;
   @override
-  double get spacePaddingInline => providersTokens.spaceTokens.paddingInlineNone;
+  double get spacePaddingInline =>
+      providersTokens.spaceTokens.paddingInlineNone;
 }

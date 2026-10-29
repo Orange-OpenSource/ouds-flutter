@@ -23,13 +23,17 @@ class OrangeCompactBulletListTokens extends OudsBulletListTokens {
   OrangeCompactBulletListTokens(this.providersTokens);
 
   @override
-  double get spaceColumnGapBodyLarge => providersTokens.spaceTokens.columnGapSmall;
+  double get spaceColumnGapBodyLarge =>
+      providersTokens.spaceTokens.columnGapSmall;
   @override
-  double get spaceColumnGapBodyMedium => providersTokens.spaceTokens.columnGapSmall;
+  double get spaceColumnGapBodyMedium =>
+      providersTokens.spaceTokens.columnGapSmall;
   @override
-  double get spacePaddingBlockBodyLarge => providersTokens.spaceTokens.paddingBlock2xsmall;
+  double get spacePaddingBlockBodyLarge =>
+      providersTokens.spaceTokens.paddingBlock2xsmall;
   @override
-  double get spacePaddingBlockBodyMedium => providersTokens.spaceTokens.paddingBlock2xsmall;
+  double get spacePaddingBlockBodyMedium =>
+      providersTokens.spaceTokens.paddingBlock2xsmall;
   @override
   double get spacePaddingInlineLevel0 => DimensionRawTokens.dimension50;
   @override

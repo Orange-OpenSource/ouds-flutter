@@ -18,7 +18,8 @@ import 'package:ouds_theme_orange/raw/orange_color_raw_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_repository_semantic_tokens.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class OrangeColorRepositorySemanticTokens extends OudsColorRepositorySemanticTokens {
+class OrangeColorRepositorySemanticTokens
+    extends OudsColorRepositorySemanticTokens {
   const OrangeColorRepositorySemanticTokens({
     super.repositoryAccentHigh = const Color(0x00ff0000),
     super.repositoryAccentHigher = OrangeColorRawTokens.colorWarmGray900,
@@ -41,24 +42,34 @@ class OrangeColorRepositorySemanticTokens extends OudsColorRepositorySemanticTok
     super.repositoryNegativeLower = ColorRawTokens.colorFunctionalScarlet200,
     super.repositoryNegativeLowest = ColorRawTokens.colorFunctionalScarlet100,
     super.repositoryNegativeMedium = ColorRawTokens.colorFunctionalScarlet600,
-    super.repositoryNeutralEmphasizedBlack = ColorRawTokens.colorFunctionalBlack,
-    super.repositoryNeutralEmphasizedHigh = ColorRawTokens.colorFunctionalGrayDark720,
-    super.repositoryNeutralEmphasizedHigher = ColorRawTokens.colorFunctionalGrayDark800,
-    super.repositoryNeutralEmphasizedHighest = ColorRawTokens.colorFunctionalGrayDark880,
-    super.repositoryNeutralEmphasizedLow = ColorRawTokens.colorFunctionalGrayDark560,
+    super.repositoryNeutralEmphasizedBlack =
+        ColorRawTokens.colorFunctionalBlack,
+    super.repositoryNeutralEmphasizedHigh =
+        ColorRawTokens.colorFunctionalGrayDark720,
+    super.repositoryNeutralEmphasizedHigher =
+        ColorRawTokens.colorFunctionalGrayDark800,
+    super.repositoryNeutralEmphasizedHighest =
+        ColorRawTokens.colorFunctionalGrayDark880,
+    super.repositoryNeutralEmphasizedLow =
+        ColorRawTokens.colorFunctionalGrayDark560,
     super.repositoryNeutralEmphasizedLower = const Color(0x00ff0000),
     super.repositoryNeutralEmphasizedLowest = const Color(0x00ff0000),
-    super.repositoryNeutralEmphasizedMedium = ColorRawTokens.colorFunctionalGrayDark640,
+    super.repositoryNeutralEmphasizedMedium =
+        ColorRawTokens.colorFunctionalGrayDark640,
     super.repositoryNeutralMutedHigh = const Color(0x00ff0000),
     super.repositoryNeutralMutedHigher = const Color(0x00ff0000),
     super.repositoryNeutralMutedHighest = const Color(0x00ff0000),
     super.repositoryNeutralMutedLow = const Color(0x00ff0000),
-    super.repositoryNeutralMutedLower = ColorRawTokens.colorFunctionalGrayLight160,
-    super.repositoryNeutralMutedLowest = ColorRawTokens.colorFunctionalGrayLight80,
+    super.repositoryNeutralMutedLower =
+        ColorRawTokens.colorFunctionalGrayLight160,
+    super.repositoryNeutralMutedLowest =
+        ColorRawTokens.colorFunctionalGrayLight80,
     super.repositoryNeutralMutedMedium = const Color(0x00ff0000),
     super.repositoryNeutralMutedWhite = ColorRawTokens.colorFunctionalWhite,
-    super.repositoryOpacityAccentLow = OrangeColorRawTokens.colorOpacityWarmGray80,
-    super.repositoryOpacityAccentMedium = OrangeColorRawTokens.colorOpacityWarmGray400,
+    super.repositoryOpacityAccentLow =
+        OrangeColorRawTokens.colorOpacityWarmGray80,
+    super.repositoryOpacityAccentMedium =
+        OrangeColorRawTokens.colorOpacityWarmGray400,
     super.repositoryOpacityBlackHigh = ColorRawTokens.colorOpacityBlack520,
     super.repositoryOpacityBlackHigher = ColorRawTokens.colorOpacityBlack680,
     super.repositoryOpacityBlackHighest = ColorRawTokens.colorOpacityBlack840,
@@ -66,15 +77,20 @@ class OrangeColorRepositorySemanticTokens extends OudsColorRepositorySemanticTok
     super.repositoryOpacityBlackLower = ColorRawTokens.colorOpacityBlack80,
     super.repositoryOpacityBlackLowest = ColorRawTokens.colorOpacityBlack40,
     super.repositoryOpacityBlackMedium = ColorRawTokens.colorOpacityBlack280,
-    super.repositoryOpacityBlackMediumHigh = ColorRawTokens.colorOpacityBlack440,
+    super.repositoryOpacityBlackMediumHigh =
+        ColorRawTokens.colorOpacityBlack440,
     super.repositoryOpacityBlackMediumLow = ColorRawTokens.colorOpacityBlack200,
     super.repositoryOpacityBlackTransparent = ColorRawTokens.colorOpacityBlack0,
     super.repositoryOpacityInfoLow = ColorRawTokens.colorOpacityDodgerBlue80,
-    super.repositoryOpacityInfoMedium = ColorRawTokens.colorOpacityDodgerBlue520,
+    super.repositoryOpacityInfoMedium =
+        ColorRawTokens.colorOpacityDodgerBlue520,
     super.repositoryOpacityNegativeLow = ColorRawTokens.colorOpacityScarlet80,
-    super.repositoryOpacityNegativeMedium = ColorRawTokens.colorOpacityScarlet320,
-    super.repositoryOpacityPositiveLow = ColorRawTokens.colorOpacityMalachite120,
-    super.repositoryOpacityPositiveMedium = ColorRawTokens.colorOpacityMalachite640,
+    super.repositoryOpacityNegativeMedium =
+        ColorRawTokens.colorOpacityScarlet320,
+    super.repositoryOpacityPositiveLow =
+        ColorRawTokens.colorOpacityMalachite120,
+    super.repositoryOpacityPositiveMedium =
+        ColorRawTokens.colorOpacityMalachite640,
     super.repositoryOpacityPrimaryHigh = const Color(0x00ff0000),
     super.repositoryOpacityPrimaryHigher = const Color(0x00ff0000),
     super.repositoryOpacityPrimaryHighest = const Color(0x00ff0000),
