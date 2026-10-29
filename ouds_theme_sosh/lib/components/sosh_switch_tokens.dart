@@ -32,15 +32,32 @@ class SoshSwitchTokens extends OudsSwitchTokens {
   @override
   Color get colorCheckInteraction => providersTokens.colorScheme.contentDefault;
   @override
-  Color get colorCursor => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedHighest);
+  Color get colorCursor => providersTokens.colorScheme.lightDark(
+    providersTokens.colorScheme.repositoryNeutralMutedWhite,
+    providersTokens.colorScheme.repositoryNeutralEmphasizedHighest,
+  );
   @override
-  Color get colorTrackSelected => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositorySecondaryLow, providersTokens.colorScheme.repositorySecondaryLower);
+  Color get colorTrackSelected => providersTokens.colorScheme.lightDark(
+    providersTokens.colorScheme.repositorySecondaryLow,
+    providersTokens.colorScheme.repositorySecondaryLower,
+  );
   @override
-  Color get colorTrackSelectedInteraction => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositorySecondaryMedium, providersTokens.colorScheme.repositorySecondaryLowest);
+  Color get colorTrackSelectedInteraction =>
+      providersTokens.colorScheme.lightDark(
+        providersTokens.colorScheme.repositorySecondaryMedium,
+        providersTokens.colorScheme.repositorySecondaryLowest,
+      );
   @override
-  Color get colorTrackUnselected => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackMediumHigh, providersTokens.colorScheme.repositoryOpacityWhiteHigh);
+  Color get colorTrackUnselected => providersTokens.colorScheme.lightDark(
+    providersTokens.colorScheme.repositoryOpacityBlackMediumHigh,
+    providersTokens.colorScheme.repositoryOpacityWhiteHigh,
+  );
   @override
-  Color get colorTrackUnselectedInteraction => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigh, providersTokens.colorScheme.repositoryOpacityWhiteHigher);
+  Color get colorTrackUnselectedInteraction =>
+      providersTokens.colorScheme.lightDark(
+        providersTokens.colorScheme.repositoryOpacityBlackHigh,
+        providersTokens.colorScheme.repositoryOpacityWhiteHigher,
+      );
   @override
   double get opacityCheck => providersTokens.opacityTokens.opaque;
   @override
@@ -54,7 +71,8 @@ class SoshSwitchTokens extends OudsSwitchTokens {
   @override
   double get sizeMinHeight => DimensionRawTokens.dimension400;
   @override
-  double get sizeMinHeightInteractiveArea => providersTokens.sizeTokens.minInteractiveAreaDefault;
+  double get sizeMinHeightInteractiveArea =>
+      providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
   double get sizeMinWidth => DimensionRawTokens.dimension700;
   @override
@@ -64,11 +82,14 @@ class SoshSwitchTokens extends OudsSwitchTokens {
   @override
   double get sizeWidthCursorUnselected => DimensionRawTokens.dimension200;
   @override
-  double get sizeWidthCursorUnselectedPressed => DimensionRawTokens.dimension300;
+  double get sizeWidthCursorUnselectedPressed =>
+      DimensionRawTokens.dimension300;
   @override
   double get sizeWidthTrack => DimensionRawTokens.dimension700;
   @override
-  double get spacePaddingInlineSelected => providersTokens.spaceTokens.paddingInline3xsmall;
+  double get spacePaddingInlineSelected =>
+      providersTokens.spaceTokens.paddingInline3xsmall;
   @override
-  double get spacePaddingInlineUnselected => providersTokens.spaceTokens.paddingInlineXsmall;
+  double get spacePaddingInlineUnselected =>
+      providersTokens.spaceTokens.paddingInlineXsmall;
 }

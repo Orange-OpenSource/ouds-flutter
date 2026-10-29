@@ -46,19 +46,22 @@ class SoshMaterialColorTokens extends OudsMaterialColorTokens {
     super.onPrimaryFixedVariantDark = SoshColorRawTokens.colorOpacityWhite640,
     super.onPrimaryFixedVariantLight = SoshColorRawTokens.colorOpacityWhite640,
     super.onPrimaryLight = SoshColorRawTokens.colorFunctionalGrayLight160,
-    super.onSecondaryContainerDark = SoshColorRawTokens.colorFunctionalGrayLight160,
+    super.onSecondaryContainerDark =
+        SoshColorRawTokens.colorFunctionalGrayLight160,
     super.onSecondaryContainerLight = ColorRawTokens.colorFunctionalBlack,
     super.onSecondaryDark = ColorRawTokens.colorFunctionalBlack,
     super.onSecondaryFixedDark = ColorRawTokens.colorFunctionalWhite,
     super.onSecondaryFixedLight = ColorRawTokens.colorFunctionalWhite,
     super.onSecondaryFixedVariantDark = SoshColorRawTokens.colorOpacityWhite640,
-    super.onSecondaryFixedVariantLight = SoshColorRawTokens.colorOpacityWhite640,
+    super.onSecondaryFixedVariantLight =
+        SoshColorRawTokens.colorOpacityWhite640,
     super.onSecondaryLight = SoshColorRawTokens.colorFunctionalGrayLight160,
     super.onSurfaceDark = SoshColorRawTokens.colorFunctionalGrayLight160,
     super.onSurfaceLight = ColorRawTokens.colorFunctionalBlack,
     super.onSurfaceVariantDark = SoshColorRawTokens.colorOpacityWhite640,
     super.onSurfaceVariantLight = SoshColorRawTokens.colorOpacityBlack720,
-    super.onTertiaryContainerDark = SoshColorRawTokens.colorFunctionalGrayLight160,
+    super.onTertiaryContainerDark =
+        SoshColorRawTokens.colorFunctionalGrayLight160,
     super.onTertiaryContainerLight = ColorRawTokens.colorFunctionalBlack,
     super.onTertiaryDark = SoshColorRawTokens.colorFunctionalGrayLight160,
     super.onTertiaryFixedDark = ColorRawTokens.colorFunctionalBlack,
@@ -100,12 +103,16 @@ class SoshMaterialColorTokens extends OudsMaterialColorTokens {
     super.surfaceVariantLight = SoshColorRawTokens.colorFunctionalGrayLight80,
     super.surfContainerDark = SoshColorRawTokens.colorFunctionalGrayDark720,
     super.surfContainerHighDark = SoshColorRawTokens.colorFunctionalGrayDark720,
-    super.surfContainerHighestDark = SoshColorRawTokens.colorFunctionalGrayDark720,
-    super.surfContainerHighestLight = SoshColorRawTokens.colorFunctionalGrayLight80,
-    super.surfContainerHighLight = SoshColorRawTokens.colorFunctionalGrayLight80,
+    super.surfContainerHighestDark =
+        SoshColorRawTokens.colorFunctionalGrayDark720,
+    super.surfContainerHighestLight =
+        SoshColorRawTokens.colorFunctionalGrayLight80,
+    super.surfContainerHighLight =
+        SoshColorRawTokens.colorFunctionalGrayLight80,
     super.surfContainerLight = SoshColorRawTokens.colorFunctionalGrayLight80,
     super.surfContainerLowDark = SoshColorRawTokens.colorFunctionalGrayDark720,
-    super.surfContainerLowestDark = SoshColorRawTokens.colorFunctionalGrayDark720,
+    super.surfContainerLowestDark =
+        SoshColorRawTokens.colorFunctionalGrayDark720,
     super.surfContainerLowestLight = ColorRawTokens.colorFunctionalWhite,
     super.surfContainerLowLight = ColorRawTokens.colorFunctionalWhite,
     super.tertiaryContainerDark = SoshColorRawTokens.colorFunctionalGrayDark880,

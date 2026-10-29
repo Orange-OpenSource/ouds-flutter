@@ -25,16 +25,20 @@ class SoshListItemTokens extends OudsListItemTokens {
   SoshListItemTokens(this.providersTokens);
 
   @override
-  double get borderRadiusCurrentIndicator => providersTokens.borderTokens.radiusDefault;
+  double get borderRadiusCurrentIndicator =>
+      providersTokens.borderTokens.radiusDefault;
   @override
   double get borderRadiusDefault => providersTokens.borderTokens.radiusDefault;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   double get borderRadiusItemOnly => providersTokens.borderTokens.radiusDefault;
   @override
   double get borderRadiusMedia => providersTokens.borderTokens.radiusNone;
   @override
-  double get borderRadiusMediaRounded => providersTokens.borderTokens.radiusDefault;
+  double get borderRadiusMediaRounded =>
+      providersTokens.borderTokens.radiusDefault;
   @override
   double get borderRadiusRounded => providersTokens.borderTokens.radiusDefault;
   @override
@@ -44,44 +48,66 @@ class SoshListItemTokens extends OudsListItemTokens {
   @override
   Color get colorBgBadgeSafetyArea => providersTokens.colorScheme.bgPrimary;
   @override
-  Color get colorBgCurrentDisabled => providersTokens.colorScheme.actionSupportDisabled;
+  Color get colorBgCurrentDisabled =>
+      providersTokens.colorScheme.actionSupportDisabled;
   @override
-  Color get colorBgCurrentEnabled => providersTokens.colorScheme.actionSupportEnabled;
+  Color get colorBgCurrentEnabled =>
+      providersTokens.colorScheme.actionSupportEnabled;
   @override
-  Color get colorBgCurrentFocus => providersTokens.colorScheme.actionSupportFocus;
+  Color get colorBgCurrentFocus =>
+      providersTokens.colorScheme.actionSupportFocus;
   @override
-  Color get colorBgCurrentHover => providersTokens.colorScheme.actionSupportHover;
+  Color get colorBgCurrentHover =>
+      providersTokens.colorScheme.actionSupportHover;
   @override
-  Color get colorBgCurrentPressed => providersTokens.colorScheme.actionSupportPressed;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  Color get colorBgCurrentPressed =>
+      providersTokens.colorScheme.actionSupportPressed;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   Color get colorBgFocus => providersTokens.colorScheme.actionSupportFocus;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   Color get colorBgHover => providersTokens.colorScheme.actionSupportHover;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   Color get colorBgLoading => providersTokens.colorScheme.actionSupportLoading;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   Color get colorBgPressed => providersTokens.colorScheme.actionSupportPressed;
   @override
-  Color get colorContentCurrentDisabled => providersTokens.colorScheme.contentDefault;
+  Color get colorContentCurrentDisabled =>
+      providersTokens.colorScheme.contentDefault;
   @override
-  Color get colorContentCurrentEnabled => providersTokens.colorScheme.contentDefault;
+  Color get colorContentCurrentEnabled =>
+      providersTokens.colorScheme.contentDefault;
   @override
-  Color get colorContentCurrentFocus => providersTokens.colorScheme.contentDefault;
+  Color get colorContentCurrentFocus =>
+      providersTokens.colorScheme.contentDefault;
   @override
-  Color get colorContentCurrentHover => providersTokens.colorScheme.contentDefault;
+  Color get colorContentCurrentHover =>
+      providersTokens.colorScheme.contentDefault;
   @override
-  Color get colorContentCurrentPressed => providersTokens.colorScheme.contentDefault;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  Color get colorContentCurrentPressed =>
+      providersTokens.colorScheme.contentDefault;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   Color get colorContentLoader => providersTokens.colorScheme.contentDefault;
   @override
-  double get fontLetterSpacingAvatarInitialXlarge => FontRawTokens.fontLetterSpacing450;
+  double get fontLetterSpacingAvatarInitialXlarge =>
+      FontRawTokens.fontLetterSpacing450;
   @override
-  double get fontLineHeightAvatarInitialXlarge => FontRawTokens.fontLineHeight650;
+  double get fontLineHeightAvatarInitialXlarge =>
+      FontRawTokens.fontLineHeight650;
   @override
   double get fontSizeAvatarInitialXlarge => FontRawTokens.fontSize450;
   @override
@@ -91,28 +117,45 @@ class SoshListItemTokens extends OudsListItemTokens {
   @override
   double get sizeAssetLarge => DimensionRawTokens.dimension500;
   @override
-  double get sizeAssetMedium => providersTokens.sizeTokens.iconWithLabelLargeSizeMedium;
+  double get sizeAssetMedium =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeMedium;
   @override
-  double get sizeAssetSmall => providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
+  double get sizeAssetSmall =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
   @override
   double get sizeAssetXlarge => DimensionRawTokens.dimension700;
   @override
-  double get sizeControlIndicator => providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
+  double get sizeControlIndicator =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
   @override
   double get sizeCurrentIndicatorWidth => DimensionRawTokens.dimension50;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get sizeErrorIcon => providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  double get sizeErrorIcon =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get sizeFlagHeight => providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  double get sizeFlagHeight =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get sizeIcon => providersTokens.sizeTokens.iconWithLabelLargeSizeMedium;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  double get sizeIcon =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeMedium;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get sizeLoader => providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  double get sizeLoader =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   double get sizeMaxHeightAssetsContainer => DimensionRawTokens.dimension1200;
   @override
@@ -122,34 +165,48 @@ class SoshListItemTokens extends OudsListItemTokens {
   @override
   double get sizeMinHeightDefault => DimensionRawTokens.dimension750;
   @override
-  double get sizeMinHeightSmall => providersTokens.sizeTokens.minInteractiveAreaDefault;
+  double get sizeMinHeightSmall =>
+      providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
   double get sizeMinWidth => DimensionRawTokens.dimension2000;
   @override
   double get spaceColumnGap => providersTokens.spaceTokens.columnGapMedium;
   @override
-  double get spacePaddingBlockBottomSlotListItemContainer => providersTokens.spaceTokens.paddingBlockLarge;
+  double get spacePaddingBlockBottomSlotListItemContainer =>
+      providersTokens.spaceTokens.paddingBlockLarge;
   @override
-  double get spacePaddingBlockDefault => providersTokens.spaceTokens.paddingBlockMedium;
+  double get spacePaddingBlockDefault =>
+      providersTokens.spaceTokens.paddingBlockMedium;
   @override
-  double get spacePaddingBlockSlotTextContainer => providersTokens.spaceTokens.paddingBlock3xsmall;
+  double get spacePaddingBlockSlotTextContainer =>
+      providersTokens.spaceTokens.paddingBlock3xsmall;
   @override
-  double get spacePaddingBlockSmall => providersTokens.spaceTokens.paddingBlockXsmall;
+  double get spacePaddingBlockSmall =>
+      providersTokens.spaceTokens.paddingBlockXsmall;
   @override
-  double get spacePaddingBlockTopAlignmentTopCounterweightDefault => providersTokens.spaceTokens.paddingBlockSmall;
+  double get spacePaddingBlockTopAlignmentTopCounterweightDefault =>
+      providersTokens.spaceTokens.paddingBlockSmall;
   @override
-  double get spacePaddingBlockTopAlignmentTopCounterweightSmall => providersTokens.spaceTokens.paddingBlockXsmall;
+  double get spacePaddingBlockTopAlignmentTopCounterweightSmall =>
+      providersTokens.spaceTokens.paddingBlockXsmall;
   @override
-  double get spacePaddingBlockTopAlignmentTopTextContainerDefault => providersTokens.spaceTokens.paddingBlock4xsmall;
+  double get spacePaddingBlockTopAlignmentTopTextContainerDefault =>
+      providersTokens.spaceTokens.paddingBlock4xsmall;
   @override
-  double get spacePaddingBlockTopAlignmentTopTextContainerSmall => providersTokens.spaceTokens.paddingBlockNone;
+  double get spacePaddingBlockTopAlignmentTopTextContainerSmall =>
+      providersTokens.spaceTokens.paddingBlockNone;
   @override
-  double get spacePaddingBlockTopHelperText => providersTokens.spaceTokens.paddingBlockXsmall;
+  double get spacePaddingBlockTopHelperText =>
+      providersTokens.spaceTokens.paddingBlockXsmall;
   @override
-  double get spacePaddingInline => providersTokens.spaceTokens.paddingInlineLarge;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  double get spacePaddingInline =>
+      providersTokens.spaceTokens.paddingInlineLarge;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
-  double get spacePaddingInlineErrorIcon => providersTokens.spaceTokens.paddingInline4xsmall;
+  double get spacePaddingInlineErrorIcon =>
+      providersTokens.spaceTokens.paddingInline4xsmall;
   @override
   double get spaceRowGap => providersTokens.spaceTokens.rowGapNone;
 }

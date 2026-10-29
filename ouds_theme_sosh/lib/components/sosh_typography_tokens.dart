@@ -23,7 +23,7 @@ class SoshTypographyTokens extends OudsTypographyTokens {
   SoshTypographyTokens(this.providersTokens);
 
   @override
-  Color get colorContentMarker => Color(0xff000000);
+  Color get colorContentMarker => Color(0x00ff0000);
   @override
   bool get headingLargeMarker => false;
   @Deprecated(

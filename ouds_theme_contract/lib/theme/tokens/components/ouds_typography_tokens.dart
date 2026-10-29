@@ -18,8 +18,12 @@ import 'package:material_ui/material_ui.dart';
 abstract class OudsTypographyTokens {
   late Color colorContentMarker;
   late bool headingLargeMarker;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late double spacePaddingBlockBottomHeadingLargeMarker;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late double spacePaddingBlockTopHeadingLargeMarker;
 }

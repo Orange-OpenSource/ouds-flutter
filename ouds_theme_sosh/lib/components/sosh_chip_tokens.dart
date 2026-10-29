@@ -34,11 +34,14 @@ class SoshChipTokens extends OudsChipTokens {
   @override
   double get borderWidthUnselected => providersTokens.borderTokens.widthThin;
   @override
-  double get borderWidthUnselectedInteraction => providersTokens.borderTokens.widthDefault;
+  double get borderWidthUnselectedInteraction =>
+      providersTokens.borderTokens.widthDefault;
   @override
-  Color get colorBgSelectedDisabled => providersTokens.colorScheme.actionDisabled;
+  Color get colorBgSelectedDisabled =>
+      providersTokens.colorScheme.actionDisabled;
   @override
-  Color get colorBgSelectedEnabled => providersTokens.colorScheme.actionSelected;
+  Color get colorBgSelectedEnabled =>
+      providersTokens.colorScheme.actionSelected;
   @override
   Color get colorBgSelectedFocus => providersTokens.colorScheme.actionFocus;
   @override
@@ -46,79 +49,114 @@ class SoshChipTokens extends OudsChipTokens {
   @override
   Color get colorBgSelectedPressed => providersTokens.colorScheme.actionPressed;
   @override
-  Color get colorBgUnselectedDisabled => providersTokens.colorScheme.opacityTransparent;
+  Color get colorBgUnselectedDisabled =>
+      providersTokens.colorScheme.opacityTransparent;
   @override
-  Color get colorBgUnselectedEnabled => providersTokens.colorScheme.opacityTransparent;
+  Color get colorBgUnselectedEnabled =>
+      providersTokens.colorScheme.opacityTransparent;
   @override
-  Color get colorBgUnselectedFocus => providersTokens.colorScheme.opacityTransparent;
+  Color get colorBgUnselectedFocus =>
+      providersTokens.colorScheme.opacityTransparent;
   @override
-  Color get colorBgUnselectedHover => providersTokens.colorScheme.opacityTransparent;
+  Color get colorBgUnselectedHover =>
+      providersTokens.colorScheme.opacityTransparent;
   @override
-  Color get colorBgUnselectedPressed => providersTokens.colorScheme.opacityTransparent;
+  Color get colorBgUnselectedPressed =>
+      providersTokens.colorScheme.opacityTransparent;
   @override
-  Color get colorBorderSelectedDisabled => providersTokens.colorScheme.opacityTransparent;
+  Color get colorBorderSelectedDisabled =>
+      providersTokens.colorScheme.opacityTransparent;
   @override
-  Color get colorBorderSelectedEnabled => providersTokens.colorScheme.opacityTransparent;
+  Color get colorBorderSelectedEnabled =>
+      providersTokens.colorScheme.opacityTransparent;
   @override
-  Color get colorBorderSelectedFocus => providersTokens.colorScheme.opacityTransparent;
+  Color get colorBorderSelectedFocus =>
+      providersTokens.colorScheme.opacityTransparent;
   @override
-  Color get colorBorderSelectedHover => providersTokens.colorScheme.opacityTransparent;
+  Color get colorBorderSelectedHover =>
+      providersTokens.colorScheme.opacityTransparent;
   @override
-  Color get colorBorderSelectedPressed => providersTokens.colorScheme.opacityTransparent;
+  Color get colorBorderSelectedPressed =>
+      providersTokens.colorScheme.opacityTransparent;
   @override
-  Color get colorBorderUnselectedDisabled => providersTokens.colorScheme.actionDisabled;
+  Color get colorBorderUnselectedDisabled =>
+      providersTokens.colorScheme.actionDisabled;
   @override
-  Color get colorBorderUnselectedEnabled => providersTokens.colorScheme.borderEmphasized;
+  Color get colorBorderUnselectedEnabled =>
+      providersTokens.colorScheme.borderEmphasized;
   @override
-  Color get colorBorderUnselectedFocus => providersTokens.colorScheme.actionFocus;
+  Color get colorBorderUnselectedFocus =>
+      providersTokens.colorScheme.actionFocus;
   @override
-  Color get colorBorderUnselectedHover => providersTokens.colorScheme.actionHover;
+  Color get colorBorderUnselectedHover =>
+      providersTokens.colorScheme.actionHover;
   @override
-  Color get colorBorderUnselectedPressed => providersTokens.colorScheme.actionPressed;
+  Color get colorBorderUnselectedPressed =>
+      providersTokens.colorScheme.actionPressed;
   @override
-  Color get colorContentSelectedDisabled => providersTokens.colorScheme.contentOnActionDisabled;
+  Color get colorContentSelectedDisabled =>
+      providersTokens.colorScheme.contentOnActionDisabled;
   @override
-  Color get colorContentSelectedEnabled => providersTokens.colorScheme.contentOnActionSelected;
+  Color get colorContentSelectedEnabled =>
+      providersTokens.colorScheme.contentOnActionSelected;
   @override
-  Color get colorContentSelectedFocus => providersTokens.colorScheme.contentOnActionFocus;
+  Color get colorContentSelectedFocus =>
+      providersTokens.colorScheme.contentOnActionFocus;
   @override
-  Color get colorContentSelectedHover => providersTokens.colorScheme.contentOnActionHover;
+  Color get colorContentSelectedHover =>
+      providersTokens.colorScheme.contentOnActionHover;
   @override
-  Color get colorContentSelectedPressed => providersTokens.colorScheme.contentOnActionPressed;
+  Color get colorContentSelectedPressed =>
+      providersTokens.colorScheme.contentOnActionPressed;
   @override
-  Color get colorContentSelectedTickEnabled => providersTokens.colorScheme.contentOnActionSelected;
+  Color get colorContentSelectedTickEnabled =>
+      providersTokens.colorScheme.contentOnActionSelected;
   @override
-  Color get colorContentUnselectedDisabled => providersTokens.colorScheme.actionDisabled;
+  Color get colorContentUnselectedDisabled =>
+      providersTokens.colorScheme.actionDisabled;
   @override
-  Color get colorContentUnselectedEnabled => providersTokens.colorScheme.contentDefault;
+  Color get colorContentUnselectedEnabled =>
+      providersTokens.colorScheme.contentDefault;
   @override
-  Color get colorContentUnselectedFocus => providersTokens.colorScheme.actionFocus;
+  Color get colorContentUnselectedFocus =>
+      providersTokens.colorScheme.actionFocus;
   @override
-  Color get colorContentUnselectedHover => providersTokens.colorScheme.actionHover;
+  Color get colorContentUnselectedHover =>
+      providersTokens.colorScheme.actionHover;
   @override
-  Color get colorContentUnselectedPressed => providersTokens.colorScheme.actionPressed;
+  Color get colorContentUnselectedPressed =>
+      providersTokens.colorScheme.actionPressed;
   @override
-  double get sizeIcon => providersTokens.sizeTokens.iconWithLabelMediumSizeSmall;
+  double get sizeIcon =>
+      providersTokens.sizeTokens.iconWithLabelMediumSizeSmall;
   @override
   double get sizeMinHeight => DimensionRawTokens.dimension400;
   @override
-  double get sizeMinHeightInteractiveArea => providersTokens.sizeTokens.minInteractiveAreaDefault;
+  double get sizeMinHeightInteractiveArea =>
+      providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
   double get sizeMinWidth => DimensionRawTokens.dimension650;
   @override
-  double get spaceColumnGapBadgeChevron => providersTokens.spaceTokens.columnGap2xsmall;
+  double get spaceColumnGapBadgeChevron =>
+      providersTokens.spaceTokens.columnGap2xsmall;
   @override
   double get spaceColumnGapIcon => providersTokens.spaceTokens.columnGapXsmall;
   @override
-  double get spacePaddingBlock => providersTokens.spaceTokens.paddingBlock2xsmall;
+  double get spacePaddingBlock =>
+      providersTokens.spaceTokens.paddingBlock2xsmall;
   @override
-  double get spacePaddingBlockIconOnly => providersTokens.spaceTokens.paddingBlockXsmall;
+  double get spacePaddingBlockIconOnly =>
+      providersTokens.spaceTokens.paddingBlockXsmall;
   @override
-  double get spacePaddingInlineBadgeStart => providersTokens.spaceTokens.paddingInline4xsmall;
+  double get spacePaddingInlineBadgeStart =>
+      providersTokens.spaceTokens.paddingInline4xsmall;
   @override
-  double get spacePaddingInlineChevronEnd => providersTokens.spaceTokens.paddingInlineXsmall;
+  double get spacePaddingInlineChevronEnd =>
+      providersTokens.spaceTokens.paddingInlineXsmall;
   @override
-  double get spacePaddingInlineIcon => providersTokens.spaceTokens.paddingInlineSmall;
+  double get spacePaddingInlineIcon =>
+      providersTokens.spaceTokens.paddingInlineSmall;
   @override
-  double get spacePaddingInlineIconNone => providersTokens.spaceTokens.paddingInlineLarge;
+  double get spacePaddingInlineIconNone =>
+      providersTokens.spaceTokens.paddingInlineLarge;
 }

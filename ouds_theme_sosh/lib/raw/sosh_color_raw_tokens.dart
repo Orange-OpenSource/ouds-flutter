@@ -92,10 +92,14 @@ class SoshColorRawTokens {
   static const colorOpacityLochmaraDark880520 = Color(0x8501558e);
   static const colorOpacityLochmaraDark960800 = Color(0xcc001524);
   static const colorOpacityLochmaraLight80080 = Color(0x1434acfe);
-  static const colorOpacityRaspberry100 = Color(0x1afc6999); /** Test for support Figma */
-  static const colorOpacityRaspberry640 = Color(0xa3960333); /** Test for support Figma */
-  static const colorOpacityTurbo160 = Color(0x29ffe500); /** Test for support Figma */
-  static const colorOpacityTurbo480 = Color(0x7a665c00); /** Test for support Figma */
+  static const colorOpacityRaspberry100 = Color(0x1afc6999);
+  /** Test for support Figma */
+  static const colorOpacityRaspberry640 = Color(0xa3960333);
+  /** Test for support Figma */
+  static const colorOpacityTurbo160 = Color(0x29ffe500);
+  /** Test for support Figma */
+  static const colorOpacityTurbo480 = Color(0x7a665c00);
+  /** Test for support Figma */
   static const colorOpacityWhite0 = Color(0x00edf6fc);
   static const colorOpacityWhite40 = Color(0x0aedf6fc);
   static const colorOpacityWhite80 = Color(0x14edf6fc);

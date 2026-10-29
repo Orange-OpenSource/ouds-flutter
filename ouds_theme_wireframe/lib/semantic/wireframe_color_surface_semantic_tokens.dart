@@ -18,7 +18,8 @@ import 'package:ouds_theme_wireframe/raw/wireframe_color_raw_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_surface_semantic_tokens.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class WireframeColorSurfaceSemanticTokens extends OudsColorSurfaceSemanticTokens {
+class WireframeColorSurfaceSemanticTokens
+    extends OudsColorSurfaceSemanticTokens {
   const WireframeColorSurfaceSemanticTokens({
     super.surfaceBrandPrimaryDark = WireframeColorRawTokens.colorRoyalBlue300,
     super.surfaceBrandPrimaryLight = WireframeColorRawTokens.colorRoyalBlue600,
@@ -26,32 +27,51 @@ class WireframeColorSurfaceSemanticTokens extends OudsColorSurfaceSemanticTokens
     super.surfaceBrandSecondaryLight = WireframeColorRawTokens.colorRustyRed600,
     super.surfaceBrandTertiaryDark = const Color(0x00ff0000),
     super.surfaceBrandTertiaryLight = const Color(0x00ff0000),
-    super.surfaceInverseHighDark = WireframeColorRawTokens.colorFunctionalGrayLight160,
-    super.surfaceInverseHighLight = WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.surfaceInverseHighDark =
+        WireframeColorRawTokens.colorFunctionalGrayLight160,
+    super.surfaceInverseHighLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
     super.surfaceInverseLowDark = WireframeColorRawTokens.colorOpacityWhite120,
-    super.surfaceInverseLowLight = WireframeColorRawTokens.colorFunctionalGrayDark720,
+    super.surfaceInverseLowLight =
+        WireframeColorRawTokens.colorFunctionalGrayDark720,
     super.surfacePrimaryDark = WireframeColorRawTokens.colorOpacityWhite40,
     super.surfacePrimaryLight = ColorRawTokens.colorFunctionalWhite,
     super.surfaceSecondaryDark = WireframeColorRawTokens.colorOpacityWhite80,
     super.surfaceSecondaryLight = WireframeColorRawTokens.colorOpacityBlack40,
-    super.surfaceStatusAccentEmphasizedDark = WireframeColorRawTokens.colorRustyRed300,
-    super.surfaceStatusAccentEmphasizedLight = WireframeColorRawTokens.colorRustyRed600,
-    super.surfaceStatusAccentMutedDark = WireframeColorRawTokens.colorOpacityRustyRed680,
-    super.surfaceStatusAccentMutedLight = WireframeColorRawTokens.colorOpacityRustyRed80,
-    super.surfaceStatusInfoEmphasizedDark = ColorRawTokens.colorFunctionalDodgerBlue300,
-    super.surfaceStatusInfoEmphasizedLight = ColorRawTokens.colorFunctionalDodgerBlue700,
+    super.surfaceStatusAccentEmphasizedDark =
+        WireframeColorRawTokens.colorRustyRed300,
+    super.surfaceStatusAccentEmphasizedLight =
+        WireframeColorRawTokens.colorRustyRed600,
+    super.surfaceStatusAccentMutedDark =
+        WireframeColorRawTokens.colorOpacityRustyRed680,
+    super.surfaceStatusAccentMutedLight =
+        WireframeColorRawTokens.colorOpacityRustyRed80,
+    super.surfaceStatusInfoEmphasizedDark =
+        ColorRawTokens.colorFunctionalDodgerBlue300,
+    super.surfaceStatusInfoEmphasizedLight =
+        ColorRawTokens.colorFunctionalDodgerBlue700,
     super.surfaceStatusInfoMutedDark = ColorRawTokens.colorOpacityDodgerBlue520,
     super.surfaceStatusInfoMutedLight = ColorRawTokens.colorOpacityDodgerBlue80,
-    super.surfaceStatusNegativeEmphasizedDark = ColorRawTokens.colorFunctionalScarlet300,
-    super.surfaceStatusNegativeEmphasizedLight = ColorRawTokens.colorFunctionalScarlet600,
-    super.surfaceStatusNegativeMutedDark = ColorRawTokens.colorOpacityScarlet320,
-    super.surfaceStatusNegativeMutedLight = ColorRawTokens.colorOpacityScarlet80,
-    super.surfaceStatusPositiveEmphasizedDark = ColorRawTokens.colorFunctionalMalachite300,
-    super.surfaceStatusPositiveEmphasizedLight = ColorRawTokens.colorFunctionalMalachite750,
-    super.surfaceStatusPositiveMutedDark = ColorRawTokens.colorOpacityMalachite640,
-    super.surfaceStatusPositiveMutedLight = ColorRawTokens.colorOpacityMalachite120,
-    super.surfaceStatusWarningEmphasizedDark = ColorRawTokens.colorFunctionalSun300,
-    super.surfaceStatusWarningEmphasizedLight = ColorRawTokens.colorFunctionalSun500,
+    super.surfaceStatusNegativeEmphasizedDark =
+        ColorRawTokens.colorFunctionalScarlet300,
+    super.surfaceStatusNegativeEmphasizedLight =
+        ColorRawTokens.colorFunctionalScarlet600,
+    super.surfaceStatusNegativeMutedDark =
+        ColorRawTokens.colorOpacityScarlet320,
+    super.surfaceStatusNegativeMutedLight =
+        ColorRawTokens.colorOpacityScarlet80,
+    super.surfaceStatusPositiveEmphasizedDark =
+        ColorRawTokens.colorFunctionalMalachite300,
+    super.surfaceStatusPositiveEmphasizedLight =
+        ColorRawTokens.colorFunctionalMalachite750,
+    super.surfaceStatusPositiveMutedDark =
+        ColorRawTokens.colorOpacityMalachite640,
+    super.surfaceStatusPositiveMutedLight =
+        ColorRawTokens.colorOpacityMalachite120,
+    super.surfaceStatusWarningEmphasizedDark =
+        ColorRawTokens.colorFunctionalSun300,
+    super.surfaceStatusWarningEmphasizedLight =
+        ColorRawTokens.colorFunctionalSun500,
     super.surfaceStatusWarningMutedDark = ColorRawTokens.colorOpacitySun480,
     super.surfaceStatusWarningMutedLight = ColorRawTokens.colorOpacitySun160,
     super.surfaceTertiaryDark = WireframeColorRawTokens.colorOpacityRustyRed680,
