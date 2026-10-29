@@ -33,9 +33,12 @@ class WireframeTextAreaTokens extends OudsTextAreaTokens {
   @override
   double get spacePaddingBlock => providersTokens.spaceTokens.paddingBlockSmall;
   @override
-  double get spacePaddingBlockEmptyTrailingContainer => providersTokens.spaceTokens.paddingBlock2xsmall;
+  double get spacePaddingBlockEmptyTrailingContainer =>
+      providersTokens.spaceTokens.paddingBlock2xsmall;
   @override
-  double get spacePaddingBlockTopEmpty => providersTokens.spaceTokens.paddingBlockMedium;
+  double get spacePaddingBlockTopEmpty =>
+      providersTokens.spaceTokens.paddingBlockMedium;
   @override
-  double get spacePaddingBlockTrailingContainer => providersTokens.spaceTokens.paddingBlockXsmall;
+  double get spacePaddingBlockTrailingContainer =>
+      providersTokens.spaceTokens.paddingBlockXsmall;
 }
