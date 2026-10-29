@@ -123,14 +123,17 @@ Widget build(BuildContext context) {
 
   &#47;&#47; Calculate effective theme mode based on tweak type
   final ThemeMode effectiveThemeMode = switch (tweak) {
-    OudsThemeTweakType.invert =&gt; isCurrentlyDark ? ThemeMode.light : ThemeMode.dark,
+    OudsThemeTweakType.invert =&gt;
+      isCurrentlyDark ? ThemeMode.light : ThemeMode.dark,
     OudsThemeTweakType.forceDark =&gt; ThemeMode.dark,
     OudsThemeTweakType.forceLight =&gt; ThemeMode.light,
   };
 
   &#47;&#47; Get appropriate ThemeData and theme contract
   final parentOudsTheme = OudsTheme.of(context);
-  final themeData = effectiveThemeMode == ThemeMode.dark ? parentOudsTheme.darkThemeData : parentOudsTheme.themeData;
+  final themeData = effectiveThemeMode == ThemeMode.dark
+      ? parentOudsTheme.darkThemeData
+      : parentOudsTheme.themeData;
 
   return _OudsThemeTweakScope(
     tweak: tweak,

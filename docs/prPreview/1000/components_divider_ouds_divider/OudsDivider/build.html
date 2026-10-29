@@ -109,7 +109,9 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  final actualThickness = thickness ?? OudsTheme.of(context).componentsTokens(context).divider.borderWidth;
+  final actualThickness =
+      thickness ??
+      OudsTheme.of(context).componentsTokens(context).divider.borderWidth;
 
   final divider = Container(
     color: color.getColor(context),
@@ -118,7 +120,12 @@ Widget build(BuildContext context) {
     margin: margin,
   );
 
-  return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).fixedNone), child: divider);
+  return Padding(
+    padding: EdgeInsetsDirectional.all(
+      OudsTheme.of(context).spaceScheme(context).fixedNone,
+    ),
+    child: divider,
+  );
 }</code></pre>
 </section>
 
