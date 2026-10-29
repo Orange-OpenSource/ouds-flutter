@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...develop)
 ### Added
 ### Changed
+- [DemoApp app] Apply the correct margin to item `skeletons` ([#1032](https://github.com/Orange-OpenSource/ouds-flutter/issues/1032))
 ### Fixed
 
 ## [3.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...3.1.0) - 2026-10-27

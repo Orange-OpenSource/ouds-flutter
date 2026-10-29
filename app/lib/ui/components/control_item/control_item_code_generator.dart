@@ -206,7 +206,7 @@ ${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_inclu
     final customizationState = ControlItemCustomization.of(context)!;
     // Add the skeleton property only when true.
     if (customizationState.hasSkeleton == true) {
-      return '\n skeleton: OudsSkeleton(),';
+      return '\n skeleton: OudsSkeleton(hasSecurityMargin: true),';
     } else {
       return '';
     }

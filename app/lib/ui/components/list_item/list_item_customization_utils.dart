@@ -610,7 +610,9 @@ class ListItemCustomizationUtils {
       onTap: state.clickable ? () {} : null,
       indicator: getIndicator(state.indicator),
       decoration: _convertCardDecoration(state.cardDecoration, state.divider),
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton
+          ? OudsSkeleton(hasSecurityMargin: true)
+          : null,
     );
   }
 
