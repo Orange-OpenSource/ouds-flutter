@@ -26,5 +26,8 @@ requirements of the relevant license of the Third Party software they are using.
 | [Flutter Markdown](https://pub.dev/packages/flutter_markdown)         | © 2017 The Flutter Authors                    | Apache License 2.0 |
 | [Provider](https://pub.dev/packages/provider/versions)                | © 2018 Remi Rousselet                         | Apache License 2.0 |
 | [Flutter SVG](https://pub.dev/packages/flutter_svg)                   | © 2018 The Flutter Authors                    | Apache License 2.0 |
+| [Dotted Border](https://pub.dev/packages/dotted_border)               | © 2019 Ajil Oommen                            | MIT License        |
+| [Package Info Plus](https://pub.dev/packages/package_info_plus)       | © 2017 The Chromium Authors                   | BSD-3-Clause License |
+| [App Settings](https://pub.dev/packages/app_settings)                 | © 2019 Daniel Spencer                         | MIT License        |
 | [Material UI](https://pub.dev/packages/material_ui)                   | © 2014 The Flutter Authors                    | BSD-3-Clause License |
 | [Cupertino UI](https://pub.dev/packages/cupertino_ui)                 | © 2014 The Flutter Authors                    | BSD-3-Clause License |

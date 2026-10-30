@@ -43,14 +43,14 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2
-  dotted_border: ^2.0.0
-  flutter_svg: ^2.2.3
+  dotted_border: ^3.1.0
+  flutter_svg: ^2.3.2
   # Read markdown.
-  markdown: ^7.1.1
+  markdown: ^7.3.1
   # WebView.
-  webview_flutter: ^4.13.0
+  webview_flutter: ^4.14.1
   # URL Lancher.
-  url_launcher: ^6.0.3
+  url_launcher: ^6.3.3
   # Core
   ouds_core: ^3.1.0
   # Global raw token
@@ -66,12 +66,13 @@ dependencies:
   # Wireframe Theme
   ouds_theme_wireframe: ^3.1.0
 
-  package_info_plus: ^8.3.1
+  package_info_plus: ^10.2.2
   # App Settings
-  app_settings: ^7.0.0
-
+  app_settings: ^9.0.1
+  # material ui
   material_ui: ^1.8.0
-  cupertino_ui: any
+  # cupertino ui
+  cupertino_ui: ^1.1.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

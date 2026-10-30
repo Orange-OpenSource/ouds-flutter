@@ -171,13 +171,13 @@ class BorderWidget extends StatelessWidget {
         children: [
           isDashed
               ? DottedBorder(
-                  color: color,
-                  strokeWidth: width,
-                  dashPattern: [2, 2],
-                  borderType: BorderType.RRect,
-                  radius: Radius.circular(radius),
-                  child: content,
-                )
+            options: RectDottedBorderOptions(
+              dashPattern: [2, 2],
+              strokeWidth: width,
+              color: color,
+            ),
+            child: content,
+          )
               : Container(
                   width: 64,
                   height: 64,
