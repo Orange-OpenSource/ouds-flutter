@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_core/components/typography/ouds_code_text.dart';
