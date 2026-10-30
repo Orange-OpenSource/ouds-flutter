@@ -40,11 +40,10 @@ name: Deploy Dartdoc with GitHub Pages dependencies preinstalled
 # Triggers
 # -----------------------------------------------------------------------------
 on:
-  # Deploy production docs when code is pushed to main or develop
+  # Deploy production docs when code is pushed to main only
   push:
     branches:
       - main
-      - develop
 
   # Allow manual trigger from GitHub Actions UI
   workflow_dispatch:
@@ -138,8 +137,9 @@ jobs:
   # JOB: deploy
   # ===========================================================================
   # Deploys the documentation to the PRODUCTION site.
-  # Only runs on push to main/develop or manual workflow_dispatch.
-  # Never runs on pull_request events.
+  # Only runs on push to main, or manual workflow_dispatch from main.
+  # Never runs on pull_request events or other branches, so production
+  # docs always match the latest version of main.
   #
   # Deployment target:
   #   Branch: gh-pages
@@ -150,7 +150,7 @@ jobs:
   # previews are not destroyed by a production deployment.
   # ===========================================================================
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: build
     permissions:
