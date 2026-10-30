@@ -10,8 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -29,16 +28,12 @@ enum ThemeSelectorOptions { orange, orangeCompact, sosh, wireframe }
 
 /// A dialog that allows the user to select a theme for the application.
 class ThemeSelectorDialog extends StatefulWidget {
-  const ThemeSelectorDialog({
-    super.key,
-  });
+  const ThemeSelectorDialog({super.key});
 
   /// Displays the [ThemeSelectorDialog].
   ///
   /// This static method provides a convenient way to show the theme selection dialog.
-  static void show(
-      BuildContext context,
-      ) {
+  static void show(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -48,8 +43,7 @@ class ThemeSelectorDialog extends StatefulWidget {
   }
 
   @override
-  State<ThemeSelectorDialog> createState() =>
-      _ThemeSelectorDialogState();
+  State<ThemeSelectorDialog> createState() => _ThemeSelectorDialogState();
 }
 
 /// The state for the [ThemeSelectorDialog].
@@ -67,7 +61,10 @@ class _ThemeSelectorDialogState extends State<ThemeSelectorDialog> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     // Set the initial selected theme based on the current theme from the ThemeController.
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     final currentTheme = themeController.currentTheme;
     if (currentTheme is OrangeCompactTheme) {
       _selectedOption = ThemeSelectorOptions.orangeCompact;
@@ -93,7 +90,10 @@ class _ThemeSelectorDialogState extends State<ThemeSelectorDialog> {
       _selectedOption = value;
     });
 
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     OudsThemeContract theme;
     switch (value) {
       case ThemeSelectorOptions.orange:
@@ -117,8 +117,7 @@ class _ThemeSelectorDialogState extends State<ThemeSelectorDialog> {
     return AlertDialog(
       title: Text(
         context.l10n.app_themeDialog_label,
-        style: OudsTheme.of(context)
-            .typographyTokens
+        style: OudsTheme.of(context).typographyTokens
             .typeHeadingMedium(context),
       ),
       content: Column(
@@ -126,36 +125,36 @@ class _ThemeSelectorDialogState extends State<ThemeSelectorDialog> {
         children: [
           // Radio button for the Orange theme.
           OudsRadioButtonItem<ThemeSelectorOptions>(
-              title: OrangeTheme(fontFamily).name,
-              value: ThemeSelectorOptions.orange,
-              groupValue: _selectedOption,
-              onChanged: _onThemeChanged,
-              reversed: true
+            title: OrangeTheme(fontFamily).name,
+            value: ThemeSelectorOptions.orange,
+            groupValue: _selectedOption,
+            onChanged: _onThemeChanged,
+            reversed: true,
           ),
           // Radio button for the Orange Compact theme.
           OudsRadioButtonItem<ThemeSelectorOptions>(
-              title: OrangeCompactTheme(fontFamily).name,
-              value: ThemeSelectorOptions.orangeCompact,
-              groupValue: _selectedOption,
-              onChanged: _onThemeChanged,
-              reversed: true
+            title: OrangeCompactTheme(fontFamily).name,
+            value: ThemeSelectorOptions.orangeCompact,
+            groupValue: _selectedOption,
+            onChanged: _onThemeChanged,
+            reversed: true,
           ),
           // Radio button for the Sosh theme.
           OudsRadioButtonItem<ThemeSelectorOptions>(
-              title: SoshTheme().name,
-              value: ThemeSelectorOptions.sosh,
-              groupValue: _selectedOption,
-              onChanged: _onThemeChanged,
-              reversed: true
+            title: SoshTheme().name,
+            value: ThemeSelectorOptions.sosh,
+            groupValue: _selectedOption,
+            onChanged: _onThemeChanged,
+            reversed: true,
           ),
           // Radio button for the Wireframe theme.
           OudsRadioButtonItem<ThemeSelectorOptions>(
-              title: WireframeTheme().name,
-              value: ThemeSelectorOptions.wireframe,
-              groupValue: _selectedOption,
-              onChanged: _onThemeChanged,
-              reversed: true
-          )
+            title: WireframeTheme().name,
+            value: ThemeSelectorOptions.wireframe,
+            groupValue: _selectedOption,
+            onChanged: _onThemeChanged,
+            reversed: true,
+          ),
         ],
       ),
     );

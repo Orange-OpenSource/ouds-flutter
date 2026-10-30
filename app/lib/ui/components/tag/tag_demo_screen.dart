@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -242,12 +242,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
           itemLeadingIcons: customizationState.statusState.list.map((status) {
             return () => Container(
-              width: OudsTheme.of(
-                context,
-              ).spaceScheme(context).paddingBlockMedium,
-              height: OudsTheme.of(
-                context,
-              ).spaceScheme(context).paddingBlockMedium,
+              width: OudsTheme.of(context)
+                  .spaceScheme(context)
+                  .paddingBlockMedium,
+              height: OudsTheme.of(context)
+                  .spaceScheme(context)
+                  .paddingBlockMedium,
               decoration: BoxDecoration(
                 color: TagCustomizationUtils.getStatusColor(
                   context,

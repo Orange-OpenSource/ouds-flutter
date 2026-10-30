@@ -14,7 +14,7 @@
 library;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
@@ -65,9 +65,9 @@ class CountrySelector extends StatefulWidget {
   final ValueChanged<Country>? onCountryChanged;
   final CountryFilter? countryFilter;
   final List<String>? codes;
-  Country? selectedCountry = Country.empty();
+  final Country? selectedCountry;
 
-  CountrySelector({
+  const CountrySelector({
     super.key,
     this.readOnly,
     this.onCountryChanged,
@@ -82,14 +82,16 @@ class CountrySelector extends StatefulWidget {
 
 class _CountryDropdownState extends State<CountrySelector> {
   List<Country> countries = [];
+  Country? _selectedCountry;
 
   @override
   void initState() {
     super.initState();
+    _selectedCountry = widget.selectedCountry;
     loadCountries();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widget.selectedCountry != null) {
-        widget.onCountryChanged?.call(widget.selectedCountry!);
+      if (_selectedCountry != null) {
+        widget.onCountryChanged?.call(_selectedCountry!);
       }
     });
   }
@@ -117,14 +119,12 @@ class _CountryDropdownState extends State<CountrySelector> {
     });
 
     if (countryCode != null && countryCode.isNotEmpty) {
-      widget.selectedCountry = countries.firstWhere(
+      _selectedCountry = countries.firstWhere(
         (c) => c.code.toUpperCase() == countryCode.toUpperCase(),
         orElse: () => countries.isNotEmpty ? countries[0] : Country.empty(),
       );
     } else {
-      widget.selectedCountry = countries.isNotEmpty
-          ? countries[0]
-          : Country.empty();
+      _selectedCountry = countries.isNotEmpty ? countries[0] : Country.empty();
     }
   }
 
@@ -135,7 +135,7 @@ class _CountryDropdownState extends State<CountrySelector> {
         country.isSelected = false;
       }
       newCountry.isSelected = true;
-      widget.selectedCountry = newCountry;
+      _selectedCountry = newCountry;
     });
     widget.onCountryChanged?.call(newCountry);
   }
@@ -152,7 +152,7 @@ class _CountryDropdownState extends State<CountrySelector> {
     return Semantics(
       label: l10n?.core_phoneNumberInput_countrySelector_a11y,
       hint: l10n?.core_phoneNumberInput_countrySelector_hint_a11y,
-      value: widget.selectedCountry?.name,
+      value: _selectedCountry?.name,
       child: ConstrainedBox(
         constraints: BoxConstraints(
           minHeight: button.sizeMinHeightDefault,
@@ -213,8 +213,7 @@ class _CountryDropdownState extends State<CountrySelector> {
                                 .copyWith(
                                   color: colorsScheme(context).contentDefault,
                                 ),
-                            overflow: TextOverflow
-                                .ellipsis, // Ajoute des points de suspension si trop long
+                            overflow: TextOverflow.ellipsis, // Ajoute des points de suspension si trop long
                             maxLines: 1, // Limite à une ligne
                           ),
                         ),
@@ -226,7 +225,7 @@ class _CountryDropdownState extends State<CountrySelector> {
                                 color: colorsScheme(context).contentDefault,
                               ),
                         ),
-                        if (country == widget.selectedCountry)
+                        if (country == _selectedCountry)
                           Semantics(
                             value: l10n?.core_common_selected_a11y,
                             child: SvgPicture.asset(

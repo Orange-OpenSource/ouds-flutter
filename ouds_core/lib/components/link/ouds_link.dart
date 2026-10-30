@@ -15,9 +15,9 @@
 library;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_border.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart';
@@ -783,9 +783,9 @@ class _OudsLinkState extends State<OudsLink> {
     final baseHeight = iconSize[OudsLinkDimensions.height.name];
     // Only the chevron (next/previous/external) grows with the text scale,
     // the custom "textAndIcon" icon keeps its fixed token size.
-    final textScaleFactor = MediaQuery.textScalerOf(
-      context,
-    ).scale(1.0).clamp(1.0, 2.0);
+    final textScaleFactor = MediaQuery.textScalerOf(context)
+        .scale(1.0)
+        .clamp(1.0, 2.0);
     final scaledWidth = !isIcon && baseWidth != null
         ? baseWidth * textScaleFactor
         : baseWidth;

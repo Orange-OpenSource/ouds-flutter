@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _CheckboxCustomization extends InheritedWidget {
-  const _CheckboxCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _CheckboxCustomization({required super.child, required this.data});
 
   final CheckboxCustomizationState data;
 
@@ -16,10 +13,7 @@ class _CheckboxCustomization extends InheritedWidget {
 
 /// Main Widget class for button customization
 class CheckboxCustomization extends StatefulWidget {
-  const CheckboxCustomization({
-    super.key,
-    required this.child,
-  });
+  const CheckboxCustomization({super.key, required this.child});
 
   final Widget child;
 
@@ -27,12 +21,15 @@ class CheckboxCustomization extends StatefulWidget {
   CheckboxCustomizationState createState() => CheckboxCustomizationState();
 
   static CheckboxCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_CheckboxCustomization>())?.data;
+    return (context
+            .dependOnInheritedWidgetOfExactType<_CheckboxCustomization>())
+        ?.data;
   }
 }
 
 /// Button customization state management
-class CheckboxCustomizationState extends CustomizationWidgetState<CheckboxCustomization> {
+class CheckboxCustomizationState
+    extends CustomizationWidgetState<CheckboxCustomization> {
   late final ErrorState errorState;
   late final ReadOnlyState readOnly;
 
@@ -80,10 +77,7 @@ class CheckboxCustomizationState extends CustomizationWidgetState<CheckboxCustom
 
   @override
   Widget build(BuildContext context) {
-    return _CheckboxCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _CheckboxCustomization(data: this, child: widget.child);
   }
 }
 

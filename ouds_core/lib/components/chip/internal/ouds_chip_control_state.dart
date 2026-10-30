@@ -13,13 +13,7 @@
 library;
 
 /// Enum representing the state of the chip input control.
-enum OudsChipControlState {
-  enabled,
-  hovered,
-  pressed,
-  disabled,
-  focused,
-}
+enum OudsChipControlState { enabled, hovered, pressed, disabled, focused }
 
 /// A class that determines the state of the OudsChip
 class OudsChipControlStateDeterminer {

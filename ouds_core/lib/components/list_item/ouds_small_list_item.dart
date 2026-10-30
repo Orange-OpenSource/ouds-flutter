@@ -14,7 +14,7 @@
 /// {@category List item}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_asset_builder.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_foreground_modifier.dart';
@@ -485,9 +485,9 @@ class OudsSmallListItem extends StatelessWidget {
     bool enable, {
     required OudsListItemContentAlignment contentAlignment,
   }) {
-    final tokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
+    final tokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .controlListItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
 
@@ -528,9 +528,9 @@ class OudsSmallListItem extends StatelessWidget {
       _kSmallAssetSize,
       format,
       semanticsLabel: semanticsLabel,
-      backgroundColor: OudsTheme.of(
-        context,
-      ).colorScheme(context).surfaceBrandPrimary,
+      backgroundColor: OudsTheme.of(context)
+          .colorScheme(context)
+          .surfaceBrandPrimary,
     );
   }
 }

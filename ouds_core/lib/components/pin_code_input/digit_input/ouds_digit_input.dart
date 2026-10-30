@@ -13,7 +13,7 @@
 /// {@category PIN code input}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_border_modifier.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_background_modifier.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_border_modifier.dart';
@@ -158,12 +158,12 @@ class _OudsDigitInputState extends State<OudsDigitInput>
 
   @override
   Widget build(BuildContext context) {
-    final pinCodeToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).pinCodeInput;
-    final textInputToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).textInput;
+    final pinCodeToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .pinCodeInput;
+    final textInputToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .textInput;
     final backgroundModifier = OudsPinCodeInputBackgroundColorModifier(context);
     final borderModifier = OudsPinCodeInputBorderModifier(context);
     final formBorderModifier = OudsFormFieldsBorderModifier(context);

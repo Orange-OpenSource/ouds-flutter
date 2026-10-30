@@ -13,7 +13,7 @@
 /// {@category Navigation}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
@@ -76,7 +76,7 @@ class OudsNavigationBarItem {
     String assetName,
     OudsNavigationBarStatusModifier modifier,
     OudsNavigationBarControlState controlState,
-    final OudsNavigationBarItemBadge? badge, {
+    OudsNavigationBarItemBadge? badge, {
     required bool isSelected,
   }) {
     final widgetIcon = SvgPicture.asset(
@@ -282,7 +282,7 @@ class OudsNavigationBarItem {
     String assetName,
     OudsNavigationBarStatusModifier modifier,
     OudsNavigationBarControlState controlState,
-    final OudsNavigationBarItemBadge? badge, {
+    OudsNavigationBarItemBadge? badge, {
     required bool isSelected,
     required int index,
     AnimationController? externalController, // Optional for iOS

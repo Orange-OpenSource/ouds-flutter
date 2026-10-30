@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
@@ -135,9 +135,7 @@ class ToolbarTopCustomizationUtils {
     switch (actionType) {
       case ToolbarTopActionTypeEnum.text:
         return OudsTopBarActionConfig.text(
-          actionLabel: context
-              .l10n
-              .app_components_common_label_label, // Provide only the relevant parameter.
+          actionLabel: context.l10n.app_components_common_label_label, // Provide only the relevant parameter.
           onActionPressed: customizationState.hasEnabled == true ? () {} : null,
         );
 

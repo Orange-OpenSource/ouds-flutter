@@ -5,8 +5,8 @@ homepage: https://flutter.unified-design-system.orange.com
 version: 3.2.0
 
 environment:
-  sdk: ^3.9.0
-  flutter: '>=3.35.0'
+  sdk: ^3.13.0
+  flutter: '>=3.47.0'
 
 resolution: workspace
 
@@ -19,6 +19,8 @@ dependencies:
   ouds_theme_contract: ^3.2.0
   # Global raw token
   ouds_global_raw_tokens: ^3.2.0
+  # material ui
+  material_ui: ^1.8.0
 
 dev_dependencies:
   flutter_test:

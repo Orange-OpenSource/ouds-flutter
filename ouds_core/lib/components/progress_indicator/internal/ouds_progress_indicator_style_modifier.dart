@@ -13,7 +13,7 @@ library;
 
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -32,9 +32,9 @@ class OudsProgressIndicatorStyleModifier {
 
   /// Retrieves the border radius value depending on whether rounded corners are enabled.
   double getDoubleBorderRadius() {
-    final progressIndicatorTokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).progressIndicator;
+    final progressIndicatorTokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .progressIndicator;
     final progressIndicatorRounded =
         OudsThemeConfigModel.of(context)?.progressIndicator?.rounded ?? false;
     switch (progressIndicatorRounded) {
@@ -82,9 +82,10 @@ class OudsProgressIndicatorStyleModifier {
   ///
   /// Returns the theme's content track color if `track` is true; otherwise, transparent.
   Color getTrackColor(bool track) {
-    final trackColor = OudsTheme.of(
-      context,
-    ).componentsTokens(context).progressIndicatorMono.colorContentTrack;
+    final trackColor = OudsTheme.of(context)
+        .componentsTokens(context)
+        .progressIndicatorMono
+        .colorContentTrack;
     return track ? trackColor : Colors.transparent;
   }
 }

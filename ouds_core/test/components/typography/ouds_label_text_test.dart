@@ -46,11 +46,9 @@ void main() {
       final textWidget = tester.widget<Text>(find.byType(Text));
       final wrapper =
           (textWidget.textSpan! as TextSpan).children!.single as TextSpan;
-      final boldSpan =
-          wrapper.children!.firstWhere(
-                (span) => (span as TextSpan).text == 'bold',
-              )
-              as TextSpan;
+      final boldSpan = wrapper.children!.firstWhere(
+        (span) => (span as TextSpan).text == 'bold',
+      ) as TextSpan;
       expect(boldSpan.style?.fontWeight, FontWeight.bold);
     });
   });
@@ -89,7 +87,10 @@ void main() {
           OudsLabelText.rich(
             text: buildOudsAnnotatedText((builder) {
               builder.append('Plain ');
-              builder.withColor((context) => Colors.red, () => builder.append('Colored'));
+              builder.withColor(
+                (context) => Colors.red,
+                () => builder.append('Colored'),
+              );
             }),
           ),
         ),

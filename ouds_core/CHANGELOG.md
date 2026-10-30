@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...develop)
 ### Added
 ### Changed
+- [Library][Tool] Upgrade Flutter version from 3.35 to 3.47 ([#980](https://github.com/Orange-OpenSource/ouds-flutter/issues/980))
 ### Fixed
 
 ## [3.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...3.1.0) - 2026-10-27
@@ -280,8 +281,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Library] Remove style loading `Button` and replace with loader ([#304](https://github.com/Orange-OpenSource/ouds-flutter/issues/304))
 - [Library] Update component - `Button version 3.0` ([#279](https://github.com/Orange-OpenSource/ouds-flutter/issues/279))
-- [Library] Refactor with custom configuration Rounded `Button`, `Tag` and `TextInput` ([#299](-https://github.com/Orange-OpenSource/ouds-flutter/issues/299))
-- [Library] Refactor `Chip` and `Button` classes name ([#298](-https://github.com/Orange-OpenSource/ouds-flutter/issues/298))
+- [Library] Refactor with custom configuration Rounded `Button`, `Tag` and `TextInput` ([#299](https://github.com/Orange-OpenSource/ouds-flutter/issues/299))
+- [Library] Refactor `Chip` and `Button` classes name ([#298](https://github.com/Orange-OpenSource/ouds-flutter/issues/298))
 
 ### Fixed
 - [Library] Wrong token used in tag input for disabled status ([#310](https://github.com/Orange-OpenSource/ouds-flutter/issues/310))

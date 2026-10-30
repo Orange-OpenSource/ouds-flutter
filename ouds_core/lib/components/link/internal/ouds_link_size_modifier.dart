@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 

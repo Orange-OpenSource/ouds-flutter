@@ -27,6 +27,8 @@ abstract class OudsAlertTokens {
   late double spacePaddingBlockBottomContent;
   late double spacePaddingInline;
   late double spaceRowGap;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late double spaceRowGapAction;
 }

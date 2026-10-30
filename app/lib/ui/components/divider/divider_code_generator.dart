@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_customization_utils.dart';
 
@@ -35,7 +35,8 @@ class DividerCodeGenerator {
 
   // Method to generate the selected color
   static String color(BuildContext context) {
-    final DividerCustomizationState? customizationState = DividerCustomization.of(context);
+    final DividerCustomizationState? customizationState =
+        DividerCustomization.of(context);
 
     return "color = ${DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)}";
   }

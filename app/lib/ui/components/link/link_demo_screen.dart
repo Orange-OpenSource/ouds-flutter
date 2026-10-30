@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_code_generator.dart';
@@ -112,9 +112,9 @@ class _LinkDemoState extends State<_LinkDemo> {
   Widget build(BuildContext context) {
     customizationState = LinkCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
-    final colorSurfaceBrandPrimary = OudsTheme.of(
-      context,
-    ).colorScheme(context).surfaceBrandPrimary;
+    final colorSurfaceBrandPrimary = OudsTheme.of(context)
+        .colorScheme(context)
+        .surfaceBrandPrimary;
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {

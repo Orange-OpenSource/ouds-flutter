@@ -12,7 +12,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -29,23 +29,20 @@ class OudsFormFieldsTextColorModifier {
     if (error) {
       switch (state) {
         case OudsFormFieldsControlState.enabled:
-          return colorsScheme(
-            context,
-          ).actionNegativeEnabled; // Color for enabled state with error
+          return colorsScheme(context)
+              .actionNegativeEnabled; // Color for enabled state with error
         case OudsFormFieldsControlState.disabled:
           throw StateError(
             "Color not allowed for disabled state when error is true",
           ); // Handle disabled state
         case OudsFormFieldsControlState.hovered:
-          return colorsScheme(
-            context,
-          ).actionNegativeHover; // Color for hovered state with error
+          return colorsScheme(context)
+              .actionNegativeHover; // Color for hovered state with error
         case OudsFormFieldsControlState.pressed:
           throw UnimplementedError();
         case OudsFormFieldsControlState.focused:
-          return colorsScheme(
-            context,
-          ).actionNegativePressed; // Color for focused state with error
+          return colorsScheme(context)
+              .actionNegativePressed; // Color for focused state with error
         case OudsFormFieldsControlState.readOnly:
           throw StateError(
             "Color not allowed for readOnly state when error is true",
@@ -60,15 +57,13 @@ class OudsFormFieldsTextColorModifier {
         case OudsFormFieldsControlState.enabled:
           return colorsScheme(context).contentMuted; // Color for selected state
         case OudsFormFieldsControlState.disabled:
-          return colorsScheme(
-            context,
-          ).actionDisabled; // Color for disabled state
+          return colorsScheme(context)
+              .actionDisabled; // Color for disabled state
         case OudsFormFieldsControlState.hovered:
           return colorsScheme(context).contentMuted; // Color for hovered state
         case OudsFormFieldsControlState.pressed:
-          return colorsScheme(
-            context,
-          ).contentDefault; // Color for pressed state
+          return colorsScheme(context)
+              .contentDefault; // Color for pressed state
         case OudsFormFieldsControlState.focused:
           return colorsScheme(context).contentMuted; // Color for focused state
         case OudsFormFieldsControlState.readOnly:
@@ -101,23 +96,20 @@ class OudsFormFieldsTextColorModifier {
     if (error) {
       switch (state) {
         case OudsFormFieldsControlState.enabled:
-          return colorsScheme(
-            context,
-          ).contentStatusNegative; // Color for enabled state with error
+          return colorsScheme(context)
+              .contentStatusNegative; // Color for enabled state with error
         case OudsFormFieldsControlState.disabled:
           throw StateError(
             "Color not allowed for disabled state when error is true",
           ); // Handle disabled state
         case OudsFormFieldsControlState.hovered:
-          return colorsScheme(
-            context,
-          ).contentStatusNegative; // Color for hovered state with error
+          return colorsScheme(context)
+              .contentStatusNegative; // Color for hovered state with error
         case OudsFormFieldsControlState.pressed:
           throw UnimplementedError();
         case OudsFormFieldsControlState.focused:
-          return colorsScheme(
-            context,
-          ).contentStatusNegative; // Color for focused state with error
+          return colorsScheme(context)
+              .contentStatusNegative; // Color for focused state with error
         case OudsFormFieldsControlState.readOnly:
           throw StateError(
             "Color not allowed for readOnly state when error is true",
@@ -136,9 +128,8 @@ class OudsFormFieldsTextColorModifier {
         case OudsFormFieldsControlState.hovered:
           return colorsScheme(context).contentMuted; // Color for hovered state
         case OudsFormFieldsControlState.pressed:
-          return colorsScheme(
-            context,
-          ).contentDefault; // Color for pressed state
+          return colorsScheme(context)
+              .contentDefault; // Color for pressed state
         case OudsFormFieldsControlState.focused:
           return colorsScheme(context).contentMuted; // Color for focused state
         case OudsFormFieldsControlState.readOnly:
@@ -200,27 +191,22 @@ class OudsFormFieldsTextColorModifier {
     if (error) {
       switch (state) {
         case OudsFormFieldsControlState.enabled:
-          return colorsScheme(
-            context,
-          ).actionNegativePressed; // Color for focused state with error
+          return colorsScheme(context)
+              .actionNegativePressed; // Color for focused state with error
         case OudsFormFieldsControlState.disabled:
-          return colorsScheme(
-            context,
-          ).actionNegativePressed; // Color for focused state with error
+          return colorsScheme(context)
+              .actionNegativePressed; // Color for focused state with error
         case OudsFormFieldsControlState.hovered:
-          return colorsScheme(
-            context,
-          ).actionNegativePressed; // Color for focused state with error
+          return colorsScheme(context)
+              .actionNegativePressed; // Color for focused state with error
         case OudsFormFieldsControlState.pressed:
           throw UnimplementedError();
         case OudsFormFieldsControlState.focused:
-          return colorsScheme(
-            context,
-          ).actionNegativePressed; // Color for focused state with error
+          return colorsScheme(context)
+              .actionNegativePressed; // Color for focused state with error
         case OudsFormFieldsControlState.readOnly:
-          return colorsScheme(
-            context,
-          ).actionNegativePressed; // Color for focused state with error
+          return colorsScheme(context)
+              .actionNegativePressed; // Color for focused state with error
         case OudsFormFieldsControlState.loading:
           throw UnimplementedError(
             "Error status for Loading state is not relevant",
@@ -229,33 +215,26 @@ class OudsFormFieldsTextColorModifier {
     } else {
       switch (state) {
         case OudsFormFieldsControlState.enabled:
-          return colorsScheme(
-            context,
-          ).contentDefault; // Color for focused state
+          return colorsScheme(context)
+              .contentDefault; // Color for focused state
         case OudsFormFieldsControlState.disabled:
-          return colorsScheme(
-            context,
-          ).contentDefault; // Color for focused state
+          return colorsScheme(context)
+              .contentDefault; // Color for focused state
         case OudsFormFieldsControlState.hovered:
-          return colorsScheme(
-            context,
-          ).contentDefault; // Color for focused state
+          return colorsScheme(context)
+              .contentDefault; // Color for focused state
         case OudsFormFieldsControlState.pressed:
-          return colorsScheme(
-            context,
-          ).contentDefault; // Color for focused state
+          return colorsScheme(context)
+              .contentDefault; // Color for focused state
         case OudsFormFieldsControlState.focused:
-          return colorsScheme(
-            context,
-          ).contentDefault; // Color for focused state
+          return colorsScheme(context)
+              .contentDefault; // Color for focused state
         case OudsFormFieldsControlState.readOnly:
-          return colorsScheme(
-            context,
-          ).contentDefault; // Color for focused state
+          return colorsScheme(context)
+              .contentDefault; // Color for focused state
         case OudsFormFieldsControlState.loading:
-          return colorsScheme(
-            context,
-          ).contentDefault; // Color for focused state
+          return colorsScheme(context)
+              .contentDefault; // Color for focused state
       }
     }
   }

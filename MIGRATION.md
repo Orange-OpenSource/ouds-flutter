@@ -1,4 +1,5 @@
 # Migration Guide
+- [v3.0.0 → v3.1.0](#v300--v310)
 - [v2.1.0 → v3.0.0](#v210--v300)
 - [v2.0.0 → v2.1.0](#v200--v210)
 - [v1.3.1 → v2.0.0](#v131--v200)
@@ -7,6 +8,49 @@
 - [v1.1.x → v1.2.0](#v11x--v120)
 - [v1.0.0 → v1.1.1](#v100--v111)
 - [Support](#support)
+
+## v3.0.0 → v3.1.0
+
+### Overview
+
+This release updates the Flutter SDK requirement from `>=3.35.0` to `>=3.47.0`. As a direct consequence of this update, the minimum supported OS versions enforced by the Flutter tooling are raised: **Android API 24 (Android 7.0)** instead of API 21 (Android 5.0), and **iOS 15.0** instead of iOS 13.0.
+
+### Before You Begin
+
+#### Prerequisites
+
+- Use version 3.1.0 or older
+- Upgrade your local Flutter SDK to `>=3.47.0`
+
+### Breaking Changes
+
+#### 1. Minimum supported Android and iOS versions raised
+
+Flutter 3.47's Gradle plugin defaults `minSdkVersion` to API 24 (Android 7.0), and its iOS tooling migrates the Xcode project's `IPHONEOS_DEPLOYMENT_TARGET` to 15.0. Apps consuming OUDS Flutter that still targeted Android API 21-23 or iOS 13-14 can no longer be installed on those older OS versions.
+
+**Impact**: High (breaking for end users on devices running Android 5.0–6.0 or iOS 13–14 — the app will no longer be installable on these OS versions)
+
+**Required Action**:
+- Upgrade your project's Flutter SDK to `>=3.47.0`
+- If your app explicitly overrides `minSdk` in `android/app/build.gradle`, align it to at least `24`, or confirm you accept the drop below it (unsupported by Flutter's default tooling)
+- If your app explicitly overrides `IPHONEOS_DEPLOYMENT_TARGET` in Xcode, raise it to at least `15.0`
+- Communicate the raised minimum OS requirements to your users/stores (Play Store listing, App Store listing) if your app's own minimums were lower than these new floors
+- Re-run accessibility and functional testing on the lowest OS versions you now support (Android 7.0+, iOS 15.0+)
+
+**Reason for Change**: Keep up to date with the Flutter SDK, which no longer supports building against lower Android/iOS minimums without manual overrides
+
+#### 2. `package:flutter/material.dart` and `package:flutter/cupertino.dart` replaced by the standalone `package:material_ui` and `package:cupertino_ui` packages
+
+Flutter 3.47 decouples the Material design system from the core SDK into the standalone `material_ui` package (and Cupertino into `cupertino_ui`), published independently on pub.dev. `package:flutter/material.dart` and `package:flutter/cupertino.dart` are both scheduled for formal deprecation in the Fall stable release. All OUDS Flutter packages (`ouds_core`, `ouds_theme_contract`, `ouds_theme_orange`, `ouds_theme_orange_compact`, `ouds_theme_sosh`, `ouds_theme_wireframe`, `ouds_global_raw_tokens`) now import `package:material_ui/material_ui.dart` instead of `package:flutter/material.dart`, and `package:cupertino_ui/cupertino_ui.dart` instead of `package:flutter/cupertino.dart` wherever Cupertino widgets are used. As a result, public getters such as `OudsThemeContract.themeData`/`darkThemeData` now return `material_ui`'s `ThemeData`, which is a distinct type from Flutter SDK's `ThemeData`, and Cupertino APIs (e.g. `CupertinoLocalizations`) must come from `cupertino_ui` to match the app's localization delegates.
+**Impact**: High (breaking — any app passing `themeData`/`darkThemeData` to a `flutter/material.dart`-based `MaterialApp`, or otherwise mixing OUDS Flutter widgets with `flutter/material.dart` types, will fail to compile)
+
+**Required Action**:
+- Run `dart fix --apply --code=migrate_design_widgets` in your app to migrate its own imports from `package:flutter/material.dart` to `package:material_ui/material_ui.dart` (add the dependency first with `flutter pub add material_ui`, and `flutter pub add cupertino_ui` if you use Cupertino widgets)
+- Replace `GlobalMaterialLocalizations.delegate` / `GlobalCupertinoLocalizations.delegate` / `GlobalWidgetsLocalizations.delegate` from `package:flutter_localizations` with `...GlobalMaterialLocalizations.delegates` from `package:material_ui`, since `flutter_localizations` still depends on the legacy `package:flutter/material.dart` and causes an ambiguous `GlobalMaterialLocalizations` import when combined with `material_ui`
+- If your app uses `GetMaterialApp` (GetX) or any other third-party widget still tied to `package:flutter/material.dart`, replace it with the plain `MaterialApp` from `material_ui` and restore the imperative navigation/dialog/snackbar helpers via `navigatorKey: Get.key` and `navigatorObservers: [GetObserver()]` — `GetMaterialApp` has not been migrated to `material_ui` and there is currently no compatibility bridge for a legacy app root hosting modern `material_ui` child widgets (`MaterialUiCompatibilityBridge` only supports the reverse: a modern root with legacy child subtrees)
+- If you still depend on other third-party packages that haven't migrated to `material_ui`, wrap only their specific widget subtrees with `material_ui`'s `MaterialUiCompatibilityBridge` instead of replacing your whole app root
+
+**Reason for Change**: Follow the official Flutter SDK migration path ahead of the formal deprecation of `package:flutter/material.dart`, and get independent, faster-shipping bug fixes/updates for Material widgets via `material_ui`
 
 ## v2.1.0 → v3.0.0
 

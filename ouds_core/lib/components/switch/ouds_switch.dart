@@ -12,7 +12,7 @@
 /// {@category Switch}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
@@ -126,9 +126,9 @@ class _OudsSwitchState extends State<OudsSwitch> {
     );
     final switchState = switchStateDeterminer.determineControlState();
     final switchTickModifier = OudsControlTickModifier(context);
-    final switchButton = OudsTheme.of(
-      context,
-    ).componentsTokens(context).switchButton;
+    final switchButton = OudsTheme.of(context)
+        .componentsTokens(context)
+        .switchButton;
 
     return MergeSemantics(
       child: Semantics(
@@ -222,9 +222,9 @@ class _OudsSwitchState extends State<OudsSwitch> {
     bool isHovered,
     bool isHighContrast,
   ) {
-    final switchButton = OudsTheme.of(
-      context,
-    ).componentsTokens(context).switchButton;
+    final switchButton = OudsTheme.of(context)
+        .componentsTokens(context)
+        .switchButton;
     const animationDuration = Duration(milliseconds: 150);
     const customCurve = Cubic(0.2, 0.0, 0.0, 1.0);
     final switchTickModifier = OudsControlTickModifier(context);

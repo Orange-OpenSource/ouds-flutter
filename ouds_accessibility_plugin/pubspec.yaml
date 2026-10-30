@@ -6,8 +6,8 @@ homepage: https://flutter.unified-design-system.orange.com
 resolution: workspace
 
 environment:
-  sdk: ^3.8.0
-  flutter: '>=1.17.0'
+  sdk: ^3.13.0
+  flutter: '>=3.47.0'
 
 dependencies:
   flutter:
@@ -38,6 +38,8 @@ flutter:
     platforms:
       android:
         package: com.orange.ouds_accessibility_plugin
+        pluginClass: OudsAccessibilityPlugin
+      ios:
         pluginClass: OudsAccessibilityPlugin
 
   # To add assets to your plugin package, add an assets section, like this:

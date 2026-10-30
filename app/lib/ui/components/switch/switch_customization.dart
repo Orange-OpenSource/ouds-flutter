@@ -11,15 +11,12 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _SwitchCustomization extends InheritedWidget {
-  const _SwitchCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _SwitchCustomization({required super.child, required this.data});
 
   final SwitchCustomizationState data;
 
@@ -29,10 +26,7 @@ class _SwitchCustomization extends InheritedWidget {
 
 /// Main Widget class for button customization
 class SwitchCustomization extends StatefulWidget {
-  const SwitchCustomization({
-    super.key,
-    required this.child,
-  });
+  const SwitchCustomization({super.key, required this.child});
 
   final Widget child;
 
@@ -40,12 +34,14 @@ class SwitchCustomization extends StatefulWidget {
   SwitchCustomizationState createState() => SwitchCustomizationState();
 
   static SwitchCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_SwitchCustomization>())?.data;
+    return (context.dependOnInheritedWidgetOfExactType<_SwitchCustomization>())
+        ?.data;
   }
 }
 
 /// Button customization state management
-class SwitchCustomizationState extends CustomizationWidgetState<SwitchCustomization> {
+class SwitchCustomizationState
+    extends CustomizationWidgetState<SwitchCustomization> {
   late final ErrorState errorState;
   late final ReadOnlyState readOnly;
 
@@ -93,10 +89,7 @@ class SwitchCustomizationState extends CustomizationWidgetState<SwitchCustomizat
 
   @override
   Widget build(BuildContext context) {
-    return _SwitchCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _SwitchCustomization(data: this, child: widget.child);
   }
 }
 

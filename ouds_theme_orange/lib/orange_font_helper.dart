@@ -12,7 +12,7 @@
  */
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Helper class for selecting the correct Helvetica Neue font family based on weight.
 ///

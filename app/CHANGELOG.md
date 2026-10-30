@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...develop)
 ### Added
 ### Changed
+- [DemoApp][Library][Tool] Upgrade Flutter version from 3.35 to 3.47 ([#980](https://github.com/Orange-OpenSource/ouds-flutter/issues/980))
 - [Tool] Migration version Xcode to 26.6 ([#1030](https://github.com/Orange-OpenSource/ouds-flutter/issues/1030))
 ### Fixed
 
@@ -316,8 +317,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Remove style loading `Button` and replace with loader ([#304](https://github.com/Orange-OpenSource/ouds-flutter/issues/304))
 - [DemoApp] Update Kotlin version to 2.0.0 ([#303](https://github.com/Orange-OpenSource/ouds-flutter/issues/303))
 - [DemoApp][Library] Update component - `Button version 3.0` ([#279](https://github.com/Orange-OpenSource/ouds-flutter/issues/279))
-- [DemoApp][Library] Refactor with custom configuration Rounded `Button`, `Tag` and `TextInput` ([#299](-https://github.com/Orange-OpenSource/ouds-flutter/issues/299))
-- [Library] Refactor `Chip` and `Button` classes name ([#298](-https://github.com/Orange-OpenSource/ouds-flutter/issues/298))
+- [DemoApp][Library] Refactor with custom configuration Rounded `Button`, `Tag` and `TextInput` ([#299](https://github.com/Orange-OpenSource/ouds-flutter/issues/299))
+- [Library] Refactor `Chip` and `Button` classes name ([#298](https://github.com/Orange-OpenSource/ouds-flutter/issues/298))
 - [DemoApp] Include Design Component version in Design Toolbox App ([#240](https://github.com/Orange-OpenSource/ouds-flutter/issues/240))
 - [DemoApp] Replace components illustrations by the components themselves ([#247](https://github.com/Orange-OpenSource/ouds-flutter/issues/247))
 - [DemoApp] Replace app icon with Flutter icon for Design Toolbox ([#268](https://github.com/Orange-OpenSource/ouds-flutter/issues/268))

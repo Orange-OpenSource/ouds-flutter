@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:flutter/cupertino.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';

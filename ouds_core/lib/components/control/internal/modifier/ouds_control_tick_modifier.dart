@@ -29,55 +29,83 @@ class OudsControlTickModifier {
     if (error) {
       switch (state) {
         case OudsControlState.enabled:
-          return colorsScheme(context).actionNegativeEnabled; // Color for enabled state with error
+          return colorsScheme(context)
+              .actionNegativeEnabled; // Color for enabled state with error
         case OudsControlState.disabled:
-          throw StateError("Color not allowed for disabled state when error is true"); // Handle disabled state
+          throw StateError(
+            "Color not allowed for disabled state when error is true",
+          ); // Handle disabled state
         case OudsControlState.hovered:
-          return colorsScheme(context).actionNegativeHover; // Color for hovered state with error
+          return colorsScheme(context)
+              .actionNegativeHover; // Color for hovered state with error
         case OudsControlState.pressed:
-          return colorsScheme(context).actionNegativePressed; // Color for pressed state with error
+          return colorsScheme(context)
+              .actionNegativePressed; // Color for pressed state with error
         case OudsControlState.focused:
-          return colorsScheme(context).actionNegativeFocus; // Color for focused state with error
+          return colorsScheme(context)
+              .actionNegativeFocus; // Color for focused state with error
         case OudsControlState.readOnly:
-          throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
+          throw StateError(
+            "Color not allowed for readOnly state when error is true",
+          ); // Handle readOnly state
       }
     } else {
       switch (state) {
         case OudsControlState.enabled:
           // In order to reach the a11y AAA level, the selected checkbox is black
-          return _isHighContrast ? colorsScheme(context).contentDefault : colorsScheme(context).actionSelected;
+          return _isHighContrast
+              ? colorsScheme(context).contentDefault
+              : colorsScheme(context).actionSelected;
         case OudsControlState.disabled:
-          return colorsScheme(context).actionDisabled; // Color for disabled state
+          return colorsScheme(context)
+              .actionDisabled; // Color for disabled state
         case OudsControlState.hovered:
           return colorsScheme(context).actionHover; // Color for hovered state
         case OudsControlState.pressed:
           // In order to reach the a11y AAA level, the pressed checkbox is black
-          return _isHighContrast ? colorsScheme(context).contentDefault : colorsScheme(context).actionPressed;
+          return _isHighContrast
+              ? colorsScheme(context).contentDefault
+              : colorsScheme(context).actionPressed;
         case OudsControlState.focused:
           return colorsScheme(context).actionFocus; // Color for focused state
         case OudsControlState.readOnly:
-          return colorsScheme(context).actionReadOnlyPrimary; // Color for disabled state
+          return colorsScheme(context)
+              .actionReadOnlyPrimary; // Color for disabled state
       }
     }
   }
 
-  Color getTickSwitchColor(OudsControlState state, bool selected, bool _isHighContrast) {
-    final switchTokens = OudsTheme.of(context).componentsTokens(context).switchButton;
+  Color getTickSwitchColor(
+    OudsControlState state,
+    bool selected,
+    bool isHighContrast,
+  ) {
+    final switchTokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .switchButton;
     final colorScheme = OudsTheme.of(context).colorScheme(context);
 
     switch (state) {
       case OudsControlState.enabled:
         // In order to reach the a11y AAA level, the selected switch is black
-        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+        return isHighContrast
+            ? colorScheme.contentDefault
+            : switchTokens.colorCheck;
       case OudsControlState.hovered:
         // In order to reach the a11y AAA level, the selected switch is black
-        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+        return isHighContrast
+            ? colorScheme.contentDefault
+            : switchTokens.colorCheck;
       case OudsControlState.focused:
         // In order to reach the a11y AAA level, the selected switch is black
-        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+        return isHighContrast
+            ? colorScheme.contentDefault
+            : switchTokens.colorCheck;
       case OudsControlState.pressed:
         // In order to reach the a11y AAA level, the selected switch is black
-        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+        return isHighContrast
+            ? colorScheme.contentDefault
+            : switchTokens.colorCheck;
       case OudsControlState.disabled:
         return colorScheme.actionDisabled;
       case OudsControlState.readOnly:
@@ -85,36 +113,50 @@ class OudsControlTickModifier {
     }
   }
 
-  Color? getBackgroundSwitchColor(OudsControlState state, bool selected, bool _isHighContrast) {
-    final switchTokens = OudsTheme.of(context).componentsTokens(context).switchButton;
+  Color? getBackgroundSwitchColor(
+    OudsControlState state,
+    bool selected,
+    bool isHighContrast,
+  ) {
+    final switchTokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .switchButton;
     final colorScheme = OudsTheme.of(context).colorScheme(context);
 
     switch (state) {
       case OudsControlState.enabled:
         if (selected) {
           // In order to reach the a11y AAA level, the selected switch is black
-          return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorTrackSelected;
+          return isHighContrast
+              ? colorScheme.contentDefault
+              : switchTokens.colorTrackSelected;
         } else {
           return switchTokens.colorTrackUnselected;
         }
       case OudsControlState.hovered:
         if (selected) {
           // In order to reach the a11y AAA level, the selected switch is black
-          return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
+          return isHighContrast
+              ? colorScheme.contentDefault
+              : switchTokens.colorTrackSelectedInteraction;
         } else {
           return switchTokens.colorTrackUnselectedInteraction;
         }
       case OudsControlState.focused:
         if (selected) {
           // In order to reach the a11y AAA level, the selected switch is black
-          return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
+          return isHighContrast
+              ? colorScheme.contentDefault
+              : switchTokens.colorTrackSelectedInteraction;
         } else {
           return switchTokens.colorTrackUnselectedInteraction;
         }
       case OudsControlState.pressed:
         if (selected) {
           // In order to reach the a11y AAA level, the selected switch is black
-          return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
+          return isHighContrast
+              ? colorScheme.contentDefault
+              : switchTokens.colorTrackSelectedInteraction;
         } else {
           return switchTokens.colorTrackUnselectedInteraction;
         }
@@ -131,17 +173,25 @@ class OudsControlTickModifier {
 
     switch (state) {
       case OudsControlState.enabled:
-        return colorsScheme(context).actionNegativeEnabled; // Color for enabled state with error
+        return colorsScheme(context)
+            .actionNegativeEnabled; // Color for enabled state with error
       case OudsControlState.disabled:
-        throw StateError("Color not allowed for disabled state when error is true"); // Handle disabled state
+        throw StateError(
+          "Color not allowed for disabled state when error is true",
+        ); // Handle disabled state
       case OudsControlState.hovered:
-        return colorsScheme(context).actionNegativeHover; // Color for hovered state with error
+        return colorsScheme(context)
+            .actionNegativeHover; // Color for hovered state with error
       case OudsControlState.pressed:
-        return colorsScheme(context).actionNegativePressed; // Color for pressed state with error
+        return colorsScheme(context)
+            .actionNegativePressed; // Color for pressed state with error
       case OudsControlState.focused:
-        return colorsScheme(context).actionNegativeFocus; // Color for focused state with error
+        return colorsScheme(context)
+            .actionNegativeFocus; // Color for focused state with error
       case OudsControlState.readOnly:
-        throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
+        throw StateError(
+          "Color not allowed for readOnly state when error is true",
+        ); // Handle readOnly state
     }
   }
 }

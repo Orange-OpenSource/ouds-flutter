@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_enum.dart';
@@ -19,7 +19,8 @@ import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_enum.d
 class NavigationBarCodeGenerator {
   /// Entry point – generates the full OudsNavigationBar code
   static String updateCode(BuildContext context) {
-    final NavigationBarCustomizationState? state = NavigationBarCustomization.of(context);
+    final NavigationBarCustomizationState? state =
+        NavigationBarCustomization.of(context);
 
     if (state == null) {
       return '// NavigationBarCustomizationState not found';
@@ -63,7 +64,8 @@ class NavigationBarCodeGenerator {
         '    OudsNavigationBarItem(',
         "      icon: 'assets/ic_heart.svg',",
         "      label: 'Label',",
-        if (generateBadgeCode(isFirstItem, badgeType).isNotEmpty) generateBadgeCode(isFirstItem, badgeType),
+        if (generateBadgeCode(isFirstItem, badgeType).isNotEmpty)
+          generateBadgeCode(isFirstItem, badgeType),
         '    ),',
       ];
 

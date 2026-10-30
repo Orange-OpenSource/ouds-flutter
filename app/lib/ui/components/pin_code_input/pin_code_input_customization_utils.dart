@@ -19,7 +19,6 @@ import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_en
 /// [PinCodeInput] properties.
 
 class PinCodeInputCustomizationUtils {
-
   /// Maps the length enum to 'OudsPinCodeInputLength'
   static OudsPinCodeInputLength getLength(Object length) {
     switch (length) {
@@ -33,26 +32,33 @@ class PinCodeInputCustomizationUtils {
   }
 
   /// Retrieves the helper text to display based on the current length.
-  static String? getPinCodeHelperText(PinCodeInputCustomizationState customizationState) {
-
+  static String? getPinCodeHelperText(
+    PinCodeInputCustomizationState customizationState,
+  ) {
     final label = customizationState.pinCodeHelperText;
     return label.isEmpty ? null : label;
   }
 
   /// Retrieves the pin code placeholder text to display based on the current customization state.
-  static String? getPinCodePlaceholderText(PinCodeInputCustomizationState customizationState) {
+  static String? getPinCodePlaceholderText(
+    PinCodeInputCustomizationState customizationState,
+  ) {
     final label = customizationState.pinCodePlaceholderText;
     return label.isEmpty ? null : label;
   }
 
   /// Retrieves the pin code error text to display based on the current customization state.
-  static String? getPinCodeErrorText(PinCodeInputCustomizationState customizationState) {
+  static String? getPinCodeErrorText(
+    PinCodeInputCustomizationState customizationState,
+  ) {
     final label = customizationState.pinCodeErrorText;
     return label.isEmpty ? null : label;
   }
 
   /// Maps the demo keyboard-type enum to the public [OudsPinCodeInputKeyboardType].
-  static OudsPinCodeInputKeyboardType getKeyboardType(PinCodeKeyboardTypeEnum value) {
+  static OudsPinCodeInputKeyboardType getKeyboardType(
+    PinCodeKeyboardTypeEnum value,
+  ) {
     switch (value) {
       case PinCodeKeyboardTypeEnum.numeric:
         return OudsPinCodeInputKeyboardType.numeric;

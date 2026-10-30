@@ -10,7 +10,7 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_enum.dart';
 
@@ -73,8 +73,7 @@ class TopBarCodeGenerator {
         actionConfigCode = 'OudsTopBarActionConfig.menu(onActionPressed: (){})';
         break;
       case NavigationIconTypeEnum.custom:
-        actionConfigCode =
-            '''OudsTopBarActionConfig.custom(icon: "assets/tips-and-tricks.svg", onActionPressed: (){})''';
+        actionConfigCode = '''OudsTopBarActionConfig.custom(icon: "assets/tips-and-tricks.svg", onActionPressed: (){})''';
         break;
       case NavigationIconTypeEnum.none:
         actionConfigCode = '''OudsTopBarActionConfig.none()''';

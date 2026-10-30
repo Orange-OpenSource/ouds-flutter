@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Wraps [child] in a [_BadgeBorderWrapper] that draws a 1-px circular border
@@ -47,9 +47,8 @@ class _BadgeBorderWrapper extends StatelessWidget {
     final badgeTokens = OudsTheme.of(context).componentsTokens(context).badge;
 
     final badgeRadius =
-        MediaQuery.textScalerOf(
-          context,
-        ).scale(hasCount ? badgeTokens.sizeMedium : badgeTokens.sizeXsmall) /
+        MediaQuery.textScalerOf(context)
+            .scale(hasCount ? badgeTokens.sizeMedium : badgeTokens.sizeXsmall) /
         2;
     //with MergeSemantics we grouped the widget with the badge
     // to be ready together with Talkback/Voice Over
