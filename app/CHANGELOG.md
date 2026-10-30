@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - [DemoApp][Library][Tool] Upgrade Flutter version from 3.35 to 3.47 ([#980](https://github.com/Orange-OpenSource/ouds-flutter/issues/980))
+- [Tool] Migration version Xcode to 26.6 ([#1030](https://github.com/Orange-OpenSource/ouds-flutter/issues/1030))
 ### Fixed
 
 ## [3.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...3.1.0) - 2026-10-27
