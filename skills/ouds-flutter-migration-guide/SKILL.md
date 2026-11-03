@@ -681,7 +681,7 @@ Before proposing changes:
 
 | Migration | Compatibility | Migration required | Main topics |
 |-----------|---------------|--------------------|-------------|
-| `v3.0.0 → v3.1.0` | Partial | Yes | List item icon slots (`OudsListItemLeadingIcon`, `OudsListItemTrailingIcon`, `OudsSmallListItemLeadingIcon`, `OudsSmallListItemTrailingIcon`) no longer accept the `Accent` status (breaking, use `Neutral` with a custom icon); `OudsListItemLeadingText`/`LeadingFlag`/`LeadingAvatar`/`TrailingFlag`/`TrailingAvatar` slots removed in favor of `OudsListItemLeadingContent`/`OudsListItemTrailingContent` (breaking, flag/avatar back in v1.0); non-breaking list item additions: `labelContent`, `belowTextContent`/`bottomContent`, small-item badge/tag trailing, `skeleton` parameter, async image slot `.provider` with `placeholder` |
+| `v3.1.0 → v3.2.0` | Partial | Yes | List item icon slots (`OudsListItemLeadingIcon`, `OudsListItemTrailingIcon`, `OudsSmallListItemLeadingIcon`, `OudsSmallListItemTrailingIcon`) no longer accept the `Accent` status (breaking, use `Neutral` with a custom icon); `OudsListItemLeadingText`/`LeadingFlag`/`LeadingAvatar`/`TrailingFlag`/`TrailingAvatar` slots removed in favor of `OudsListItemLeadingContent`/`OudsListItemTrailingContent` (breaking, flag/avatar back in v1.0); non-breaking list item additions: `labelContent`, `belowTextContent`/`bottomContent`, small-item badge/tag trailing, `skeleton` parameter, async image slot `.provider` with `placeholder` |
 | `v2.1.0 → v3.0.0` | No | Yes | Shared `OudsIcon` type replacing `OudsLinkIcon`/`OudsChipIcon`/`OudsTextInputPrefixIcon`/`OudsControlItemIcon` (breaking) across `OudsButton`, `OudsLink`, `OudsFilterChip`, `OudsSuggestionChip`, `OudsCheckboxItem`, `OudsRadioButtonItem`, `OudsSwitchButtonItem`, typed `OudsTextInput`/`OudsPhoneNumberInput` prefix/suffix icons; `OudsProgressIndicator` — `semanticLabel` → `semanticsLabel`, helper text API refactored, `left`/`right` → `start`/`end` (breaking); `OudsIconStatus.Neutral`/`Accent` gained `tinted`/`backgroundColor`/`semanticsLabel` (non-breaking); `Link` v2.4.0, icon pack v2.3.0, `OudsListItem` (new component), typography tokens |
 | `v2.0.0 → v2.1.0` | Full | No | `OudsNavigationButton`, `OudsCircularProgressIndicator`, `OudsLinearProgressIndicator`, tokens v2.6.0 |
 | `v1.3.1 → v2.0.0` | Partial | Yes for deprecated APIs | `OudsLink` named constructors (`.icon`, `.previous`, `.next`, `.external`), Markdown support, token/icon updates |
@@ -912,7 +912,7 @@ OudsLinearProgressIndicator(
 
 ---
 
-#### 3.3.0sexies List item icon slots — `Accent` status removed (`v3.0.0 → v3.1.0`, breaking)
+#### 3.3.0sexies List item icon slots — `Accent` status removed (`v3.1.0 → v3.2.0`, breaking)
 
 The leading and trailing icon slots of the list item family no longer accept the `Accent` icon status, in line with the OUDS Android list item icon statuses. Passing `Accent` now throws an `AssertionError` in debug builds.
 
@@ -936,7 +936,7 @@ OudsSmallListItemTrailingIcon(Neutral(icon: 'assets/icons/star.svg'))
 
 ---
 
-#### 3.3.0septies List item — `Text`, `Flag` and `Avatar` leading/trailing slots removed (`v3.0.0 → v3.1.0`, breaking)
+#### 3.3.0septies List item — `Text`, `Flag` and `Avatar` leading/trailing slots removed (`v3.1.0 → v3.2.0`, breaking)
 
 The `OudsListItemLeadingText`, `OudsListItemLeadingFlag`, `OudsListItemLeadingAvatar`, `OudsListItemTrailingFlag` and `OudsListItemTrailingAvatar` slots have been removed. Use the new generic content slots `OudsListItemLeadingContent` and `OudsListItemTrailingContent` instead: they accept a builder receiving the current `OudsListItemControlState`, so any widget (text, flag, avatar, …) can be rendered with knowledge of the list item enabled state. The `flag` and `avatar` slots are temporarily removed and will be reintroduced in v1.0 alongside the `OudsFlag`/`OudsAvatar` components.
 
@@ -969,11 +969,11 @@ OudsListItem(
 - Replace `OudsListItemLeadingText` / `OudsListItemLeadingFlag` / `OudsListItemLeadingAvatar` with `OudsListItemLeadingContent((context, state) => ...)`.
 - Replace `OudsListItemTrailingFlag` / `OudsListItemTrailingAvatar` with `OudsListItemTrailingContent((context, state) => ...)`.
 
-Non-breaking list item additions in `v3.0.0 → v3.1.0` (no migration needed): `OudsListItem.labelContent`/`OudsCardItem.labelContent` constructors, `belowTextContent`/`bottomContent` slots (Default size only), `OudsSmallListItemTrailingBadge`/`OudsSmallListItemTrailingTag` on `OudsSmallListItem` and `OudsSmallCardItem`, and a `skeleton` parameter on the four list item widgets.
+Non-breaking list item additions in `v3.1.0 → v3.2.0` (no migration needed): `OudsListItem.labelContent`/`OudsCardItem.labelContent` constructors, `belowTextContent`/`bottomContent` slots (Default size only), `OudsSmallListItemTrailingBadge`/`OudsSmallListItemTrailingTag` on `OudsSmallListItem` and `OudsSmallCardItem`, and a `skeleton` parameter on the four list item widgets.
 
 ---
 
-#### 3.3.0octies List item — asynchronous image support (`v3.0.0 → v3.1.0`, non-breaking)
+#### 3.3.0octies List item — asynchronous image support (`v3.1.0 → v3.2.0`, non-breaking)
 
 The image slots of `OudsListItem`, `OudsSmallListItem`, `OudsCardItem` and `OudsSmallCardItem` (`OudsListItemLeadingImage`/`OudsListItemTrailingImage`, `OudsSmallListItemLeadingImage`/`OudsSmallListItemTrailingImage`) now accept images loaded asynchronously. A new named constructor is available on each slot class, alongside the existing asset constructor:
 
@@ -1334,4 +1334,3 @@ If a migration is unclear or incomplete:
   - GitHub issues
   - GitHub discussions
   - `.github/MAINTAINERS.md`
-

@@ -1,5 +1,5 @@
 # Migration Guide
-- [v3.0.0 → v3.1.0](#v300--v310)
+- [v3.1.0 → v3.2.0](#v310--v320)
 - [v2.1.0 → v3.0.0](#v210--v300)
 - [v2.0.0 → v2.1.0](#v200--v210)
 - [v1.3.1 → v2.0.0](#v131--v200)
@@ -9,7 +9,7 @@
 - [v1.0.0 → v1.1.1](#v100--v111)
 - [Support](#support)
 
-## v3.0.0 → v3.1.0
+## v3.1.0 → v3.2.0
 
 ### Overview
 
@@ -19,7 +19,7 @@ This release refines the `List item` component family (`OudsListItem`, `OudsSmal
 
 #### Prerequisites
 
-- Use version 3.0.0
+- Use version 3.1.0
 
 ### Breaking Changes
 
@@ -1059,4 +1059,3 @@ If you encounter issues during migration:
 - [Open an issue](https://github.com/Orange-OpenSource/ouds-flutter/issues)
 - [Check existing discussions](https://github.com/Orange-OpenSource/ouds-flutter/discussions)
 - Contact the maintainers listed in [MAINTAINERS.md](.github/MAINTAINERS.md)
-

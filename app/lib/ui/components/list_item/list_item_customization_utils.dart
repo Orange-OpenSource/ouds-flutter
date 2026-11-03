@@ -474,10 +474,7 @@ class ListItemCustomizationUtils {
 
     return Container(
       padding: EdgeInsets.all(space.fixedExtraSmall),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(space.fixedTwoExtraSmall),
-      ),
+      decoration: BoxDecoration(color: color),
       alignment: Alignment.center,
       child: Text(
         context.l10n.app_components_listItem_content_tech,
