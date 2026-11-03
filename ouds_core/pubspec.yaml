@@ -5,8 +5,8 @@ homepage: https://flutter.unified-design-system.orange.com
 version: 3.2.0
 
 environment:
-  sdk: ^3.13.0
-  flutter: '>=3.47.0'
+  sdk: ^3.13.5
+  flutter: '>=3.47.7'
 
 resolution: workspace
 
@@ -22,7 +22,7 @@ dependencies:
   # ouds_theme_contract
   ouds_theme_contract: ^3.2.0
   # ouds_accessibility_plugin
-  ouds_accessibility_plugin: ^0.2.0
+  ouds_accessibility_plugin: ^0.3.0
   # phone number handling
   dlibphonenumber: ^1.1.51
   # material ui

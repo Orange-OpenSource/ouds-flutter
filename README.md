@@ -83,7 +83,7 @@ To access OUDS components and tokens throughout your app, you must wrap your UI 
 The ThemeOrange uses the Helvetica Neue font family. **Due to legal issues Helvetica Neue font files are not bundled with our library.**
 
 
-## Bugs, feature requests and discussions
+## 🪲 Bugs, feature requests and discussions
 
 Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/Orange-OpenSource/ouds-flutter/issues/new/choose).
 
@@ -91,9 +91,16 @@ If you want to share ideas or discuss API, features, components or other topics,
 [Q&A](https://github.com/Orange-OpenSource/ouds-flutter/discussions/categories/q-a) is more dedicated for help, otherwise feel free to open or update a topic in [Ideas](https://github.com/Orange-OpenSource/ouds-flutter/discussions/categories/ideas).
 Keep in mind internal or sensitive discussions must be in internal tools, not public ones.
 
-## Contributing
+## 🤝 Contributing
 
 Please read through our [contributing guidelines](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/.github/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development. More technical details are available also in the [DEVELOP](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/.github/DEVELOP.md) file.
+
+## 🔒 Data Privacy
+
+The Orange Unified Design System library is an SDK that allows a developer to create Orange branded mobile application. As such:
+
+- this SDK does not handle any personal data.
+- this SDK does not require any device permission to work.
 
 ## Copyright and license
 
