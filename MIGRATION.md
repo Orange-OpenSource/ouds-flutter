@@ -1,5 +1,5 @@
 # Migration Guide
-- [v3.0.0 → v3.1.0](#v300--v310)
+- [v3.1.0 → v3.2.0](#v310--v320)
 - [v2.1.0 → v3.0.0](#v210--v300)
 - [v2.0.0 → v2.1.0](#v200--v210)
 - [v1.3.1 → v2.0.0](#v131--v200)
@@ -41,7 +41,7 @@ Flutter 3.47's Gradle plugin defaults `minSdkVersion` to API 24 (Android 7.0), a
 
 #### 2. `package:flutter/material.dart` and `package:flutter/cupertino.dart` replaced by the standalone `package:material_ui` and `package:cupertino_ui` packages
 
-Flutter 3.47 decouples the Material design system from the core SDK into the standalone `material_ui` package (and Cupertino into `cupertino_ui`), published independently on pub.dev. `package:flutter/material.dart` and `package:flutter/cupertino.dart` are both scheduled for formal deprecation in the Fall stable release. All OUDS Flutter packages (`ouds_core`, `ouds_theme_contract`, `ouds_theme_orange`, `ouds_theme_orange_compact`, `ouds_theme_sosh`, `ouds_theme_wireframe`, `ouds_global_raw_tokens`) now import `package:material_ui/material_ui.dart` instead of `package:flutter/material.dart`, and `package:cupertino_ui/cupertino_ui.dart` instead of `package:flutter/cupertino.dart` wherever Cupertino widgets are used. As a result, public getters such as `OudsThemeContract.themeData`/`darkThemeData` now return `material_ui`'s `ThemeData`, which is a distinct type from Flutter SDK's `ThemeData`, and Cupertino APIs (e.g. `CupertinoLocalizations`) must come from `cupertino_ui` to match the app's localization delegates.
+Flutter 3.47.0 decouples the Material design system from the core SDK into the standalone `material_ui` package (and Cupertino into `cupertino_ui`), published independently on pub.dev. `package:flutter/material.dart` and `package:flutter/cupertino.dart` are both scheduled for formal deprecation in the Fall stable release. All OUDS Flutter packages (`ouds_core`, `ouds_theme_contract`, `ouds_theme_orange`, `ouds_theme_orange_compact`, `ouds_theme_sosh`, `ouds_theme_wireframe`, `ouds_global_raw_tokens`) now import `package:material_ui/material_ui.dart` instead of `package:flutter/material.dart`, and `package:cupertino_ui/cupertino_ui.dart` instead of `package:flutter/cupertino.dart` wherever Cupertino widgets are used. As a result, public getters such as `OudsThemeContract.themeData`/`darkThemeData` now return `material_ui`'s `ThemeData`, which is a distinct type from Flutter SDK's `ThemeData`, and Cupertino APIs (e.g. `CupertinoLocalizations`) must come from `cupertino_ui` to match the app's localization delegates.
 **Impact**: High (breaking — any app passing `themeData`/`darkThemeData` to a `flutter/material.dart`-based `MaterialApp`, or otherwise mixing OUDS Flutter widgets with `flutter/material.dart` types, will fail to compile)
 
 **Required Action**:
