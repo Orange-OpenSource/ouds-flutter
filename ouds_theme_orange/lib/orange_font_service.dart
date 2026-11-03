@@ -74,17 +74,18 @@ class OrangeFontService {
     try {
       if (isArabic) {
         return _loadedFontsFamily?.firstWhere(
-              (font) =>  font != null &&  font.toLowerCase().contains('arabic'),
+          (font) => font != null && font.toLowerCase().contains('arabic'),
         );
       }
 
       return _loadedFontsFamily?.firstWhere(
-            (font) => font != null && !font.toLowerCase().contains('arabic'),
+        (font) => font != null && !font.toLowerCase().contains('arabic'),
       );
     } on StateError {
       return null; // Return null if no font is found
     }
   }
+
   /// Returns true if fonts are currently being loaded.
   bool get isLoading => _isLoading;
 
@@ -113,19 +114,21 @@ class OrangeFontService {
     if (_isLoading || _loadedFontsFamily != null) return;
 
     _isLoading = true;
-    OrangeFontProvider.loadFromCdn().then((fontFamily) {
-      _loadedFontsFamily = fontFamily;
-      _isLoading = false;
-      _notifyListeners();
-      if (kDebugMode) {
-        print('🎨 Orange fonts loaded: $fontFamily');
-      }
-    }).catchError((error) {
-      _isLoading = false;
-      if (kDebugMode) {
-        print('❌ Failed to load Orange fonts: $error');
-      }
-    });
+    OrangeFontProvider.loadFromCdn()
+        .then((fontFamily) {
+          _loadedFontsFamily = fontFamily;
+          _isLoading = false;
+          _notifyListeners();
+          if (kDebugMode) {
+            print('🎨 Orange fonts loaded: $fontFamily');
+          }
+        })
+        .catchError((error) {
+          _isLoading = false;
+          if (kDebugMode) {
+            print('❌ Failed to load Orange fonts: $error');
+          }
+        });
   }
 
   /// Loads fonts from assets in background (non-blocking).
@@ -133,19 +136,21 @@ class OrangeFontService {
     if (_isLoading || _loadedFontsFamily != null) return;
 
     _isLoading = true;
-    OrangeFontProvider.loadFromAssets(fontFamily).then((loadedFontFamily) {
-      _loadedFontsFamily = [loadedFontFamily];
-      _isLoading = false;
-      _notifyListeners();
-      /*if (kDebugMode) {
+    OrangeFontProvider.loadFromAssets(fontFamily)
+        .then((loadedFontFamily) {
+          _loadedFontsFamily = [loadedFontFamily];
+          _isLoading = false;
+          _notifyListeners();
+          /*if (kDebugMode) {
         print('🎨 Orange fonts loaded from assets: $loadedFontFamily');
       }*/
-    }).catchError((error) {
-      _isLoading = false;
-      /*if (kDebugMode) {
+        })
+        .catchError((error) {
+          _isLoading = false;
+          /*if (kDebugMode) {
         print('❌ Failed to load Orange fonts from assets: $error');
       }*/
-    });
+        });
   }
 
   /// Resets the service (useful for testing or hot reload).

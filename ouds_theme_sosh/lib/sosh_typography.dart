@@ -12,6 +12,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_theme_contract/theme/scheme/typography/ouds_system_monospace_font.dart';
 import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart';
 
 /// Lightweight wrapper for OudsTypography that qualifies the "Sosh" font family with its
@@ -137,4 +138,10 @@ class SoshTypography extends OudsTypography {
   @override
   TextStyle typeLabelStrongSmall(BuildContext context) =>
       super.typeLabelStrongSmall(context).copyWith(package: _package);
+
+  // `inherit: false` prevents the Sosh font package from being applied to this native monospace font.
+  @override
+  TextStyle typeCodeMedium(BuildContext context) => super
+      .typeCodeMedium(context)
+      .copyWith(fontFamily: oudsSystemMonospaceFontFamily, inherit: false);
 }
