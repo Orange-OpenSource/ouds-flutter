@@ -21,7 +21,7 @@ version: 3.2.0+120
 
 environment:
   sdk: ^3.13.5
-  flutter: '>=3.47.7'
+  flutter: '>=3.47.0'
 
 resolution: workspace
 

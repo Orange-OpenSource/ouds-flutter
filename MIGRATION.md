@@ -9,7 +9,7 @@
 - [v1.0.0 → v1.1.1](#v100--v111)
 - [Support](#support)
 
-## v3.0.0 → v3.1.0
+## v3.1.0 → v3.2.0
 
 ### Overview
 
@@ -19,7 +19,7 @@ This release updates the Flutter SDK requirement from `>=3.35.0` to `>=3.47.0`. 
 
 #### Prerequisites
 
-- Use version 3.1.0 or older
+- Use version 3.2.0 or older
 - Upgrade your local Flutter SDK to `>=3.47.0`
 
 ### Breaking Changes
