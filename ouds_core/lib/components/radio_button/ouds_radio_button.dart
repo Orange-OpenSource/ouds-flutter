@@ -180,7 +180,6 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
         child: SizedBox(
           width: radioButton.sizeMinWidth,
           child: InkWell(
-            excludeFromSemantics: true,
             onTap: (!isReadOnly && widget.onChanged != null)
                 ? () {
                     _isPressed = true;

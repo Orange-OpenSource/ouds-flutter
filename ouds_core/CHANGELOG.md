@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- [Library] Bug A11Y `Radio Button` Add/modify the hint for unselected radio button ([#469](https://github.com/Orange-OpenSource/ouds-flutter/issues/469))
 
 ## [3.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...3.1.0) - 2026-10-27
 ### Added
