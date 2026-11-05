@@ -114,7 +114,7 @@ jobs:
             app/build/app/outputs/bundle/*/*.aab
 
   build-ios:
-    runs-on: macos-27
+    runs-on: xcode-27
     needs: test
     steps:
       - name: Checkout code
