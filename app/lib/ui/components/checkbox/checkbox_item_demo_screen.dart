@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_item.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
@@ -172,9 +172,9 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
                     ? AppAssets.icons.assistanceTipsAndTricks(themeController)
                     : AppAssets.icons.icUntintedSquare,
                 tinted: customizationState.isTinted,
-                backgroundColor: OudsTheme.of(
-                  context,
-                ).colorScheme(context).surfaceBrandPrimary,
+                backgroundColor: OudsTheme.of(context)
+                    .colorScheme(context)
+                    .surfaceBrandPrimary,
               )
             : null,
         isError: customizationState.hasError ? true : false,

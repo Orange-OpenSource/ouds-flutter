@@ -13,7 +13,7 @@
 /// {@category PIN code input}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
@@ -312,7 +312,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
 
         final nextIndex = _activeIndex + 1;
 
-        SemanticsService.announce(
+        SemanticsService.sendAnnouncement(
+          View.of(context),
           OudsLocalizations.of(
                 context,
               )?.core_pinCodeInput_digitPosition_a11y(nextIndex, totalDigits) ??
@@ -337,9 +338,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
   /// Triggered by a long-press on the cell row.
   Future<void> _pasteFromClipboard() async {
     try {
-      final data = await Clipboard.getData(
-        Clipboard.kTextPlain,
-      ).timeout(const Duration(seconds: 2), onTimeout: () => null);
+      final data = await Clipboard.getData(Clipboard.kTextPlain)
+          .timeout(const Duration(seconds: 2), onTimeout: () => null);
       if (!mounted) return;
       final text = data?.text;
       if (text == null || text.isEmpty) return;
@@ -398,7 +398,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
 
     switch (Localizations.localeOf(context).languageCode) {
       case 'fr':
-        ordinal = position == 1 ? '${position}er' : '${position}ème';
+        ordinal = position == 1 ? '${position}er' : '$positionème';
         break;
 
       case 'en':
@@ -424,12 +424,12 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
 
   @override
   Widget build(BuildContext context) {
-    final pinCodeToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).pinCodeInput;
-    final textInputToken = OudsTheme.of(
-      context,
-    ).componentsTokens(context).textInput;
+    final pinCodeToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .pinCodeInput;
+    final textInputToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .textInput;
     final theme = OudsTheme.of(context);
     final digitsCount = widget.length.digits;
     final isError =
@@ -577,9 +577,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                         baseStyle: theme.typographyTokens
                             .typeLabelDefaultMedium(context)
                             .copyWith(
-                              color: OudsPinCodeInputTextColorModifier(
-                                context,
-                              ).getPinCodeHelperTextColor(isError),
+                              color: OudsPinCodeInputTextColorModifier(context)
+                                  .getPinCodeHelperTextColor(isError),
                             ),
                       ),
                     ),

@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Constant defining the size of the avatar widget.
@@ -93,9 +93,9 @@ class _OudsAvatarState extends State<OudsAvatar> {
                   style: TextStyle(
                     color:
                         widget.monogramColor ??
-                        OudsTheme.of(
-                          context,
-                        ).colorScheme(context).contentInverse,
+                        OudsTheme.of(context)
+                            .colorScheme(context)
+                            .contentInverse,
                     fontFamily: OudsTheme.of(context).fontFamily,
                   ),
                 ),

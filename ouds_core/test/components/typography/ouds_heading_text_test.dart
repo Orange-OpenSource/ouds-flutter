@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
@@ -83,7 +83,10 @@ void main() {
           OudsHeadingText.rich(
             text: buildOudsAnnotatedText((builder) {
               builder.append('Plain ');
-              builder.withColor((context) => Colors.red, () => builder.append('Colored'));
+              builder.withColor(
+                (context) => Colors.red,
+                () => builder.append('Colored'),
+              );
             }),
           ),
         ),
@@ -123,7 +126,10 @@ void main() {
           OudsHeadingText.rich(
             text: buildOudsAnnotatedText((builder) {
               builder.append('Plain ');
-              builder.withColor((context) => Colors.red, () => builder.append('Colored'));
+              builder.withColor(
+                (context) => Colors.red,
+                () => builder.append('Colored'),
+              );
             }),
           ),
         ),
@@ -142,7 +148,10 @@ void main() {
         testableWidget(
           OudsHeadingText.rich(
             text: buildOudsAnnotatedText((builder) {
-              builder.withColor((context) => Colors.red, () => builder.append('Red'));
+              builder.withColor(
+                (context) => Colors.red,
+                () => builder.append('Red'),
+              );
               builder.append('Default again');
             }),
           ),

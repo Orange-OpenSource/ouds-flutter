@@ -11,7 +11,7 @@
 /// {@category Flag}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Base dimensions of a flag (logical pixels, before text-scale is applied).

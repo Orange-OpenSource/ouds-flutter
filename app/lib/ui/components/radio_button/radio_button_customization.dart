@@ -11,15 +11,12 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _RadioButtonCustomization extends InheritedWidget {
-  const _RadioButtonCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _RadioButtonCustomization({required super.child, required this.data});
 
   final RadioButtonCustomizationState data;
 
@@ -29,23 +26,24 @@ class _RadioButtonCustomization extends InheritedWidget {
 
 /// Main Widget class for button customization
 class RadioButtonCustomization extends StatefulWidget {
-  const RadioButtonCustomization({
-    super.key,
-    required this.child,
-  });
+  const RadioButtonCustomization({super.key, required this.child});
 
   final Widget child;
 
   @override
-  RadioButtonCustomizationState createState() => RadioButtonCustomizationState();
+  RadioButtonCustomizationState createState() =>
+      RadioButtonCustomizationState();
 
   static RadioButtonCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_RadioButtonCustomization>())?.data;
+    return (context
+            .dependOnInheritedWidgetOfExactType<_RadioButtonCustomization>())
+        ?.data;
   }
 }
 
 /// Button customization state management
-class RadioButtonCustomizationState extends CustomizationWidgetState<RadioButtonCustomization> {
+class RadioButtonCustomizationState
+    extends CustomizationWidgetState<RadioButtonCustomization> {
   late final ErrorState errorState;
   late final ReadOnlyState readOnly;
 
@@ -93,10 +91,7 @@ class RadioButtonCustomizationState extends CustomizationWidgetState<RadioButton
 
   @override
   Widget build(BuildContext context) {
-    return _RadioButtonCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _RadioButtonCustomization(data: this, child: widget.child);
   }
 }
 

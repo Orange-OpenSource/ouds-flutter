@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/utilities/colors_utils.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';

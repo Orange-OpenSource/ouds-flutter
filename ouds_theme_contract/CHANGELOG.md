@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...develop)
 ### Added
 ### Changed
+- [Library][Tool] Upgrade Flutter version from 3.35 to 3.47 ([#980](https://github.com/Orange-OpenSource/ouds-flutter/issues/980))
 ### Fixed
 
 ## [3.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...3.1.0) - 2026-10-27
@@ -99,7 +100,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Tokens: `badge` ([#238](https://github.com/Orange-OpenSource/ouds-flutter/issues/#238))
 
 ### Changed
-- [Library] Refactor with custom configuration Rounded `Button`, `Tag` and `TextInput` ([#299](-https://github.com/Orange-OpenSource/ouds-flutter/issues/299))
+- [Library] Refactor with custom configuration Rounded `Button`, `Tag` and `TextInput` ([#299](https://github.com/Orange-OpenSource/ouds-flutter/issues/299))
 - [Library] Update tokens 1.2.0 ([#236](https://github.com/Orange-OpenSource/ouds-flutter/issues/236))
 - [Library] Update tokens 1.1.0 ([#225](https://github.com/Orange-OpenSource/ouds-flutter/issues/225))
 - [Library] Token `size` values now adapt based on device type ([#218](https://github.com/Orange-OpenSource/ouds-flutter/issues/218))

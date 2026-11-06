@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 // ---------------------------------------------------------------------------
@@ -37,9 +37,9 @@ enum OudsListItemAssetSize {
 
   /// Resolves the pixel size from the active theme tokens.
   double value(BuildContext context) {
-    final tokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
+    final tokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .controlListItem;
     return switch (this) {
       OudsListItemAssetSize.small => tokens.sizeAssetSmall,
       OudsListItemAssetSize.medium => tokens.sizeAssetMedium,

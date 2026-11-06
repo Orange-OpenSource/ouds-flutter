@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_entities.dart';
 import 'package:ouds_flutter_demo/ui/utilities/display_image.dart';
@@ -24,47 +24,51 @@ class TokenDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var spacingM = 16.0;
     var spacingS = 8.0;
-    return  SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              displayImage(
-                token.imageResourceName,
-                MediaQuery.of(context).size.width,
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            displayImage(
+              token.imageResourceName,
+              MediaQuery.of(context).size.width,
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.all(spacingM),
+              child: Text(
+                token.description,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.all(spacingM),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.only(
+                start: spacingM,
+                top: spacingS,
+                bottom: spacingS,
+              ),
+              child: Semantics(
+                header: true,
                 child: Text(
-                  token.description,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  'AppLocalizations.of(context)!.tokensScreenVariantTitle',
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.only(start: spacingM, top: spacingS, bottom: spacingS),
-                child: Semantics(
-                  header: true,
-                  child: Text(
-                    'AppLocalizations.of(context)!.tokensScreenVariantTitle',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: token.variants?.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final variant = token.variants?[index];
-                  if (variant != null) {
-                    return VariantEntry(variant: variant);
-                  }
-                  return null;
-                },
-              ),
-            ],
-          ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: token.variants?.length,
+              itemBuilder: (BuildContext context, int index) {
+                final variant = token.variants?[index];
+                if (variant != null) {
+                  return VariantEntry(variant: variant);
+                }
+                return null;
+              },
+            ),
+          ],
         ),
+      ),
     );
   }
 }

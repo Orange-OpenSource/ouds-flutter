@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization_utils.dart';

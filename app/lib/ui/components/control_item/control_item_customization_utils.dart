@@ -26,19 +26,25 @@ class ControlItemCustomizationUtils {
   }
 
   /// Retrieves the additional label text to display based on the current customization state.
-  static String? getAdditionalLabelText(ControlItemCustomizationState customizationState) {
+  static String? getAdditionalLabelText(
+    ControlItemCustomizationState customizationState,
+  ) {
     final label = customizationState.extraLabelText;
     return label.isEmpty ? null : label;
   }
 
   /// Retrieves the helper label text to display based on the current customization state.
-  static String? getHelperLabelText(ControlItemCustomizationState customizationState) {
+  static String? getHelperLabelText(
+    ControlItemCustomizationState customizationState,
+  ) {
     final label = customizationState.descriptionLabel;
     return label.isEmpty ? null : label;
   }
 
   /// Retrieves the error message label text to display based on the current customization state.
-  static String? getErrorMessageLabelText(ControlItemCustomizationState customizationState) {
+  static String? getErrorMessageLabelText(
+    ControlItemCustomizationState customizationState,
+  ) {
     final label = customizationState.errorMessageLabel;
     return label.isEmpty ? null : label;
   }

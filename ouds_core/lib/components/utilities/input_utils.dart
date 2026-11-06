@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A utility class for handling common input-related operations in Flutter.
 class InputUtils {
@@ -38,6 +38,10 @@ class InputUtils {
     required bool isFocused,
     TextEditingController? controller,
   }) {
-    return (hintText != null || isFocused || (controller != null && controller.text.isNotEmpty)) ? 1 : 2;
+    return (hintText != null ||
+            isFocused ||
+            (controller != null && controller.text.isNotEmpty))
+        ? 1
+        : 2;
   }
 }

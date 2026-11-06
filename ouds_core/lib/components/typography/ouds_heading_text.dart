@@ -13,7 +13,7 @@
 /// {@category Typography}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/typography/internal/ouds_typography_size_modifier.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
@@ -198,9 +198,9 @@ class OudsHeadingText extends StatelessWidget {
     }
 
     final typographySizeModifier = OudsTypographySizeModifier(context);
-    final typographyTokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).typography;
+    final typographyTokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .typography;
 
     final textWidget = Container(
       constraints: BoxConstraints(

@@ -13,7 +13,7 @@
 /// {@category Alert}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/alert/internal/ouds_alert_status_modifier.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';

@@ -1,4 +1,3 @@
-
 /*
  * // Software Name: OUDS Flutter
  * // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -12,16 +11,13 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _TopBarCustomization extends InheritedWidget {
-  const _TopBarCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _TopBarCustomization({required super.child, required this.data});
 
   final TopBarCustomizationState data;
 
@@ -31,10 +27,7 @@ class _TopBarCustomization extends InheritedWidget {
 
 /// Main Widget class for button customization
 class TopBarCustomization extends StatefulWidget {
-  const TopBarCustomization({
-    super.key,
-    required this.child,
-  });
+  const TopBarCustomization({super.key, required this.child});
 
   final Widget child;
 
@@ -42,13 +35,14 @@ class TopBarCustomization extends StatefulWidget {
   TopBarCustomizationState createState() => TopBarCustomizationState();
 
   static TopBarCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_TopBarCustomization>())?.data;
+    return (context.dependOnInheritedWidgetOfExactType<_TopBarCustomization>())
+        ?.data;
   }
 }
 
 /// TopAppBar customization state management
-class TopBarCustomizationState extends CustomizationWidgetState<TopBarCustomization> {
-
+class TopBarCustomizationState
+    extends CustomizationWidgetState<TopBarCustomization> {
   //Material
   late final NavigationIconTypeState iconTypeState;
   late final ActionIconBadgeState actionIconBadgeState;
@@ -133,7 +127,8 @@ class TopBarCustomizationState extends CustomizationWidgetState<TopBarCustomizat
 
   // Getter and setter for action avatar monogram text state management
   String? get actionAvatarMonogramText => actionAvatarMonogramTextState.value;
-  set actionAvatarMonogramText(String? value) => actionAvatarMonogramTextState.value = value;
+  set actionAvatarMonogramText(String? value) =>
+      actionAvatarMonogramTextState.value = value;
 
   // Proxy getters and setters to expose the 'actionCountTextState' value directly.
   int get actionSelected => actionSelectedState.value;
@@ -144,14 +139,16 @@ class TopBarCustomizationState extends CustomizationWidgetState<TopBarCustomizat
 
   // IOS section
   // leading action type State Management
-  ToolbarTopActionTypeEnum get selectedLeadingActionType => leadingActionTypeState.selected;
+  ToolbarTopActionTypeEnum get selectedLeadingActionType =>
+      leadingActionTypeState.selected;
 
   set selectedLeadingActionType(ToolbarTopActionTypeEnum value) {
     leadingActionTypeState.selected = value;
   }
 
   // trailing action type State Management
-  ToolbarTopActionTypeEnum get selectedTrailingActionType => trailingActionTypeState.selected;
+  ToolbarTopActionTypeEnum get selectedTrailingActionType =>
+      trailingActionTypeState.selected;
 
   set selectedTrailingActionType(ToolbarTopActionTypeEnum value) {
     trailingActionTypeState.selected = value;
@@ -173,17 +170,14 @@ class TopBarCustomizationState extends CustomizationWidgetState<TopBarCustomizat
 
   // Getter and setter for previous title text state management
   String get previousPageTitleText => previousPageTitleState.value;
-  set previousPageTitleText(String value) => previousPageTitleState.value = value;
+  set previousPageTitleText(String value) =>
+      previousPageTitleState.value = value;
 
   @override
   Widget build(BuildContext context) {
-    return _TopBarCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _TopBarCustomization(data: this, child: widget.child);
   }
 }
-
 
 ///  Size State Management
 class SizeState {
@@ -223,7 +217,6 @@ class ActionIconBadgeState {
     ActionIconBadgeEnum.none,
     ActionIconBadgeEnum.dot,
     ActionIconBadgeEnum.count,
-
   ];
 
   ActionIconBadgeEnum _selectedStatus = ActionIconBadgeEnum.none;
@@ -241,7 +234,6 @@ class ActionIconBadgeState {
       _selectedStatus = newValue;
     });
   }
-
 }
 
 ///  navigation icon type Management
@@ -256,7 +248,6 @@ class NavigationIconTypeState {
     NavigationIconTypeEnum.close,
     NavigationIconTypeEnum.menu,
     NavigationIconTypeEnum.custom,
-
   ];
   NavigationIconTypeEnum _selectedType = NavigationIconTypeEnum.none;
 
@@ -405,11 +396,10 @@ class NavigationBarActionTypeState {
     ToolbarTopActionTypeEnum.none,
     ToolbarTopActionTypeEnum.back,
     ToolbarTopActionTypeEnum.icon,
-    ToolbarTopActionTypeEnum.text
+    ToolbarTopActionTypeEnum.text,
   ];
 
-  ToolbarTopActionTypeEnum _selectedType =
-      ToolbarTopActionTypeEnum.back;
+  ToolbarTopActionTypeEnum _selectedType = ToolbarTopActionTypeEnum.back;
 
   List<ToolbarTopActionTypeEnum> get list => _leadingActionType;
   set list(List<ToolbarTopActionTypeEnum> newList) {
@@ -424,7 +414,9 @@ class NavigationBarActionTypeState {
       _selectedType = newValue;
     });
   }
-}///  navigation icon type Management
+}
+
+///  navigation icon type Management
 class TrailingActionTypeState {
   TrailingActionTypeState(this._setTrailingActionType);
 
@@ -434,7 +426,6 @@ class TrailingActionTypeState {
     ToolbarTopActionTypeEnum.none,
     ToolbarTopActionTypeEnum.icon,
     ToolbarTopActionTypeEnum.text,
-
   ];
   ToolbarTopActionTypeEnum _selectedTrailingType =
       ToolbarTopActionTypeEnum.icon;
@@ -516,6 +507,7 @@ class TrailingActionSelectedState {
     });
   }
 }
+
 /// PreviousPageTitle State Management
 class PreviousPageTitleTextState {
   PreviousPageTitleTextState(this._setState);

@@ -10,9 +10,8 @@
  * Software description: Flutter library of reusable graphical components
  */
 
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_flutter_demo/l10n/gen/ouds_flutter_app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/main_screen.dart';
@@ -75,10 +74,17 @@ class _OudsApplicationState extends State<OudsApplication> {
       value: _themeController,
       child: Consumer<ThemeController>(
         builder: (context, themeController, _) {
-          return GetMaterialApp(
+          return MaterialApp(
             title: 'Design System Toolbox',
             theme: themeController.themeData,
             debugShowCheckedModeBanner: false,
+            // Plain MaterialApp (migrated to material_ui) + Get's navigator
+            // key/observer, since GetMaterialApp still depends on the legacy
+            // package:flutter/material.dart and isn't compatible with
+            // material_ui-based widget subtrees. Get.to()/Get.back() and the
+            // other imperative navigation helpers keep working unchanged.
+            navigatorKey: Get.key,
+            navigatorObservers: [GetObserver()],
             builder: (context, child) {
               return Directionality(
                 textDirection: Directionality.of(context) == TextDirection.rtl
@@ -117,9 +123,7 @@ class _OudsApplicationState extends State<OudsApplication> {
             localizationsDelegates: [
               AppLocalizations.delegate,
               OudsLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
+              ...GlobalMaterialLocalizations.delegates,
             ],
             localeResolutionCallback: (locale, supportedLocales) {
               //use the system language if available

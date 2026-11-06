@@ -11,16 +11,13 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _NavigationBarCustomization extends InheritedWidget {
-  const _NavigationBarCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _NavigationBarCustomization({required super.child, required this.data});
 
   final NavigationBarCustomizationState data;
 
@@ -30,22 +27,23 @@ class _NavigationBarCustomization extends InheritedWidget {
 
 /// Main Widget class for button customization
 class NavigationBarCustomization extends StatefulWidget {
-  const NavigationBarCustomization({
-    super.key,
-    required this.child,
-  });
+  const NavigationBarCustomization({super.key, required this.child});
 
   final Widget child;
 
   @override
-  NavigationBarCustomizationState createState() => NavigationBarCustomizationState();
+  NavigationBarCustomizationState createState() =>
+      NavigationBarCustomizationState();
 
   static NavigationBarCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_NavigationBarCustomization>())?.data;
+    return (context
+            .dependOnInheritedWidgetOfExactType<_NavigationBarCustomization>())
+        ?.data;
   }
 }
 
-class NavigationBarCustomizationState extends CustomizationWidgetState<NavigationBarCustomization> {
+class NavigationBarCustomizationState
+    extends CustomizationWidgetState<NavigationBarCustomization> {
   /// Manages the current badge type (none/dot/count) for the configured destination.
   late final ItemBadgeState itemBadgeState;
 
@@ -71,10 +69,7 @@ class NavigationBarCustomizationState extends CustomizationWidgetState<Navigatio
 
   @override
   Widget build(BuildContext context) {
-    return _NavigationBarCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _NavigationBarCustomization(data: this, child: widget.child);
   }
 }
 

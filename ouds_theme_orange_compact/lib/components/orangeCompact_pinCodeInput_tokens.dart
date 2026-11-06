@@ -27,5 +27,6 @@ class OrangeCompactPinCodeInputTokens extends OudsPinCodeInputTokens {
   @override
   double get sizeMinWidth => DimensionRawTokens.dimension500;
   @override
-  double get spaceColumnGapDigitInput => providersTokens.spaceTokens.columnGapMedium;
+  double get spaceColumnGapDigitInput =>
+      providersTokens.spaceTokens.columnGapMedium;
 }

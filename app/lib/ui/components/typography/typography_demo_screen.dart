@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_core/components/typography/ouds_code_text.dart';
@@ -147,9 +147,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         customizationState.selectedSize == OudsHeadingTextSize.large;
     // The marker is only supported by themes exposing `headingLargeMarker` (Orange, Orange
     // Compact, Wireframe);
-    final supportsHeadingMarker = OudsTheme.of(
-      context,
-    ).componentsTokens(context).typography.headingLargeMarker;
+    final supportsHeadingMarker = OudsTheme.of(context)
+        .componentsTokens(context)
+        .typography
+        .headingLargeMarker;
     if (supportsHeadingMarker &&
         customizationState.hasMarker &&
         isHeadingLarge &&
@@ -180,9 +181,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         customizationState.selectedSize == OudsHeadingTextSize.large;
     // The marker is only supported by themes exposing `headingLargeMarker` (Orange, Orange
     // Compact, Wireframe);
-    final supportsHeadingMarker = OudsTheme.of(
-      context,
-    ).componentsTokens(context).typography.headingLargeMarker;
+    final supportsHeadingMarker = OudsTheme.of(context)
+        .componentsTokens(context)
+        .typography
+        .headingLargeMarker;
 
     return CustomizableSection(
       children: [

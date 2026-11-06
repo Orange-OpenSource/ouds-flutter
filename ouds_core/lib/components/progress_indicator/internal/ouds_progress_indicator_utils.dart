@@ -13,7 +13,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -133,9 +133,9 @@ class OudsProgressIndicatorUtils {
 
     // iOS "Reduce Motion" — read from the platform dispatcher directly because
     // MediaQuery.disableAnimationsOf does not reliably reflect this flag on iOS.
-    final accessibilityFeatures = View.of(
-      context,
-    ).platformDispatcher.accessibilityFeatures;
+    final accessibilityFeatures = View.of(context)
+        .platformDispatcher
+        .accessibilityFeatures;
     return accessibilityFeatures.reduceMotion;
   }
 

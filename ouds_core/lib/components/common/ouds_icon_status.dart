@@ -18,7 +18,7 @@
 /// {@category Progress indicator}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 

@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OudsCardImage extends StatelessWidget {
@@ -32,20 +32,10 @@ class OudsCardImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: backgroundColor,
-      ),
+      decoration: BoxDecoration(color: backgroundColor),
       child: image.endsWith('.svg')
-          ? SvgPicture.asset(
-              image,
-              fit: contentScale,
-              alignment: alignment,
-            )
-          : Image.asset(
-              image,
-              fit: contentScale,
-              alignment: alignment,
-            ),
+          ? SvgPicture.asset(image, fit: contentScale, alignment: alignment)
+          : Image.asset(image, fit: contentScale, alignment: alignment),
     );
   }
 }

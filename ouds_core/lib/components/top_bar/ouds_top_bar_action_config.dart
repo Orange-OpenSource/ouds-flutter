@@ -13,7 +13,7 @@
 /// {@category TopBar}
 library;
 
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
@@ -574,8 +574,7 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
     // allowing for custom visual feedback without relying on CupertinoButton's
     // default opacity change.
     return GestureDetector(
-      excludeFromSemantics:
-          true, //exclude this wrapper from the semantics tree since the real accessible node is provided
+      excludeFromSemantics: true, //exclude this wrapper from the semantics tree since the real accessible node is provided
       onTapDown: (_) => setState(() => _isPressed = true),
       onTapUp: (_) => setState(() => _isPressed = false),
       onTapCancel: () => setState(() => _isPressed = false),

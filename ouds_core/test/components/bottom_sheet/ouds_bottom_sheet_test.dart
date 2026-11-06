@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/bottom_sheet/internal/ouds_bottom_sheet_constants.dart';
 import 'package:ouds_core/components/bottom_sheet/ouds_bottom_sheet_scaffold.dart';

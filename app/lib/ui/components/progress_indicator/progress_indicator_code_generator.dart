@@ -10,7 +10,7 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_enum.dart';

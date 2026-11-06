@@ -13,14 +13,7 @@
 library;
 
 /// Enum representing the state of the control.
-enum OudsControlState {
-  enabled,
-  hovered,
-  pressed,
-  disabled,
-  focused,
-  readOnly,
-}
+enum OudsControlState { enabled, hovered, pressed, disabled, focused, readOnly }
 
 /// A class that determines the state of the OudsCheckbox/OudsRadioButton/OudsSwitch.
 class OudsControlStateDeterminer {

@@ -27,9 +27,11 @@ class WireframeAlertTokens extends OudsAlertTokens {
   @override
   double get borderRadiusRounded => providersTokens.borderTokens.radiusLarge;
   @override
-  double get sizeAsset => providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
+  double get sizeAsset =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
   @override
-  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveAreaDefault;
+  double get sizeMinHeight =>
+      providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
   double get sizeMinHeightBottomAction => DimensionRawTokens.dimension1000;
   @override
@@ -39,16 +41,22 @@ class WireframeAlertTokens extends OudsAlertTokens {
   @override
   double get spaceColumnGapAction => providersTokens.spaceTokens.columnGapSmall;
   @override
-  double get spaceInsetProgressIndicator => providersTokens.spaceTokens.inset4xsmall;
+  double get spaceInsetProgressIndicator =>
+      providersTokens.spaceTokens.inset4xsmall;
   @override
-  double get spacePaddingBlock => providersTokens.spaceTokens.paddingBlockMedium;
+  double get spacePaddingBlock =>
+      providersTokens.spaceTokens.paddingBlockMedium;
   @override
-  double get spacePaddingBlockBottomContent => providersTokens.spaceTokens.paddingBlock3xsmall;
+  double get spacePaddingBlockBottomContent =>
+      providersTokens.spaceTokens.paddingBlock3xsmall;
   @override
-  double get spacePaddingInline => providersTokens.spaceTokens.paddingInlineLarge;
+  double get spacePaddingInline =>
+      providersTokens.spaceTokens.paddingInlineLarge;
   @override
   double get spaceRowGap => providersTokens.spaceTokens.rowGap2xsmall;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   @override
   double get spaceRowGapAction => providersTokens.spaceTokens.rowGap2xsmall;
 }

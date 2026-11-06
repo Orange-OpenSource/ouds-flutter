@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
 
 /// A custom painter for drawing an animated navigation bar indicator.

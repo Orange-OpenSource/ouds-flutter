@@ -12,7 +12,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 
 enum InteractionAspect { hover, pressed, focused, readOnly }
@@ -68,8 +68,14 @@ class OudsInheritedInteractionModel extends InheritedModel<InteractionAspect> {
     required super.child,
   });
 
-  static OudsInheritedInteractionModel? of(BuildContext context, InteractionAspect aspect) {
-    return InheritedModel.inheritFrom<OudsInheritedInteractionModel>(context, aspect: aspect);
+  static OudsInheritedInteractionModel? of(
+    BuildContext context,
+    InteractionAspect aspect,
+  ) {
+    return InheritedModel.inheritFrom<OudsInheritedInteractionModel>(
+      context,
+      aspect: aspect,
+    );
   }
 
   @override
@@ -78,14 +84,20 @@ class OudsInheritedInteractionModel extends InheritedModel<InteractionAspect> {
   }
 
   @override
-  bool updateShouldNotifyDependent(OudsInheritedInteractionModel oldWidget, Set<InteractionAspect> aspects) {
-    if (aspects.contains(InteractionAspect.hover) && state.isHovered != oldWidget.state.isHovered) {
+  bool updateShouldNotifyDependent(
+    OudsInheritedInteractionModel oldWidget,
+    Set<InteractionAspect> aspects,
+  ) {
+    if (aspects.contains(InteractionAspect.hover) &&
+        state.isHovered != oldWidget.state.isHovered) {
       return true;
     }
-    if (aspects.contains(InteractionAspect.pressed) && state.isPressed != oldWidget.state.isPressed) {
+    if (aspects.contains(InteractionAspect.pressed) &&
+        state.isPressed != oldWidget.state.isPressed) {
       return true;
     }
-    if (aspects.contains(InteractionAspect.focused) && state.isFocused != oldWidget.state.isFocused) {
+    if (aspects.contains(InteractionAspect.focused) &&
+        state.isFocused != oldWidget.state.isFocused) {
       return true;
     }
     return false;

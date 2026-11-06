@@ -37,7 +37,9 @@ class SoshBadgeTokens extends OudsBadgeTokens {
   @override
   double get spaceInsetXsmall => DimensionRawTokens.dimensionOutOfSystem25;
   @override
-  double get spacePaddingInlineLarge => providersTokens.spaceTokens.paddingInline2xsmall;
+  double get spacePaddingInlineLarge =>
+      providersTokens.spaceTokens.paddingInline2xsmall;
   @override
-  double get spacePaddingInlineMedium => providersTokens.spaceTokens.paddingInline3xsmall;
+  double get spacePaddingInlineMedium =>
+      providersTokens.spaceTokens.paddingInline3xsmall;
 }

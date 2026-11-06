@@ -47,11 +47,11 @@
 [![Code size](https://img.shields.io/github/languages/code-size/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter)
 [![Opened issues](https://img.shields.io/github/issues-raw/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues)
 
-[![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.35.0-FF2D95?style=for-the-badge)](https://flutter.dev)
-[![Dart SDK version](https://img.shields.io/badge/SDK-%5E3.9.0-D32F2F?style=for-the-badge)](https://dart.dev)
+[![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.47.0-FF2D95?style=for-the-badge)](https://flutter.dev)
+[![Dart SDK version](https://img.shields.io/badge/SDK-%5E3.13.0-D32F2F?style=for-the-badge)](https://dart.dev)
 
-[![iOS minimum](https://img.shields.io/badge/iOS-%3E%3D%2013.0-lightgrey?style=for-the-badge&logo=apple)](https://developer.apple.com/ios/)
-[![Android minimum](https://img.shields.io/badge/Android-%3E%3D%205.0%20(API%2021)-3DDC84?style=for-the-badge&logo=android)](https://developer.android.com)
+[![iOS minimum](https://img.shields.io/badge/iOS-%3E%3D%2015.0-lightgrey?style=for-the-badge&logo=apple)](https://developer.apple.com/ios/)
+[![Android minimum](https://img.shields.io/badge/Android-%3E%3D%207.0%20(API%2024)-3DDC84?style=for-the-badge&logo=android)](https://developer.android.com)
 
 
 
@@ -83,7 +83,7 @@ To access OUDS components and tokens throughout your app, you must wrap your UI 
 The ThemeOrange uses the Helvetica Neue font family. **Due to legal issues Helvetica Neue font files are not bundled with our library.**
 
 
-## Bugs, feature requests and discussions
+## 🪲 Bugs, feature requests and discussions
 
 Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/Orange-OpenSource/ouds-flutter/issues/new/choose).
 
@@ -91,9 +91,16 @@ If you want to share ideas or discuss API, features, components or other topics,
 [Q&A](https://github.com/Orange-OpenSource/ouds-flutter/discussions/categories/q-a) is more dedicated for help, otherwise feel free to open or update a topic in [Ideas](https://github.com/Orange-OpenSource/ouds-flutter/discussions/categories/ideas).
 Keep in mind internal or sensitive discussions must be in internal tools, not public ones.
 
-## Contributing
+## 🤝 Contributing
 
 Please read through our [contributing guidelines](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/.github/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development. More technical details are available also in the [DEVELOP](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/.github/DEVELOP.md) file.
+
+## 🔒 Data Privacy
+
+The Orange Unified Design System library is an SDK that allows a developer to create Orange branded mobile application. As such:
+
+- this SDK does not handle any personal data.
+- this SDK does not require any device permission to work.
 
 ## Copyright and license
 

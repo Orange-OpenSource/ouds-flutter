@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_icon_modifier.dart';
@@ -89,9 +89,9 @@ class OudsListItemAssetBuilder {
     'This method will be removed together with countries.dart.',
   )
   static Widget buildFlag(BuildContext context, ImageProvider asset) {
-    final tokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
+    final tokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .controlListItem;
     return ClipRRect(
       borderRadius: BorderRadius.circular(2),
       child: Image(
@@ -179,8 +179,7 @@ class OudsListItemAssetBuilder {
     bool enable = true,
     OudsListItemAssetSize size = OudsListItemAssetSize.medium,
   }) {
-    return OudsListItemIconModifier(
-      context,
-    ).buildIcon(iconStatus, enable: enable, size: size);
+    return OudsListItemIconModifier(context)
+        .buildIcon(iconStatus, enable: enable, size: size);
   }
 }

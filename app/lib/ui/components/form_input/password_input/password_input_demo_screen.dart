@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';

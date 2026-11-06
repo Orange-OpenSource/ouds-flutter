@@ -1,4 +1,3 @@
-
 //
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -14,7 +13,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A utility class that provides text styling for the `OudsToolbarTop` component.
@@ -22,23 +21,34 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// This class centralizes the logic for determining the text style of actions
 /// based on their enabled or disabled state.
 class OudsToolbarTopTextStyleModifier {
-
   final BuildContext context;
 
   OudsToolbarTopTextStyleModifier(this.context);
 
   /// Returns the [TextStyle] for a text-based action in the toolbar.
   TextStyle getTextActionStyle(VoidCallback? onActionPressed, bool isPressed) {
-    final enabledColorToken = OudsTheme.of(context).componentsTokens(context)
-        .button.colorContentMinimalEnabled;
-    final disabledColorToken = OudsTheme.of(context).componentsTokens(context)
-        .button.colorContentMinimalDisabled;
-    final pressedColor = OudsTheme.of(context).colorScheme(context).actionPressed;
+    final enabledColorToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .button
+        .colorContentMinimalEnabled;
+    final disabledColorToken = OudsTheme.of(context)
+        .componentsTokens(context)
+        .button
+        .colorContentMinimalDisabled;
+    final pressedColor = OudsTheme.of(context)
+        .colorScheme(context)
+        .actionPressed;
 
-    return OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
-      color: (onActionPressed != null && !isPressed) ? enabledColorToken : (onActionPressed != null && isPressed) ? pressedColor : disabledColorToken,
-      fontSize: 17,
-      letterSpacing: -0.43
-    );
+    return OudsTheme.of(context).typographyTokens
+        .typeLabelDefaultMedium(context)
+        .copyWith(
+          color: (onActionPressed != null && !isPressed)
+              ? enabledColorToken
+              : (onActionPressed != null && isPressed)
+              ? pressedColor
+              : disabledColorToken,
+          fontSize: 17,
+          letterSpacing: -0.43,
+        );
   }
 }

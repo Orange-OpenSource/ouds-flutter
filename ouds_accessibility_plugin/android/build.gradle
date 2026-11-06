@@ -1,6 +1,3 @@
-group = "com.orange.ouds_accessibility_plugin"
-version = "1.0-SNAPSHOT"
-
 buildscript {
     ext.kotlin_version = "2.1.0"
     repositories {
@@ -22,20 +19,15 @@ allprojects {
 }
 
 apply plugin: "com.android.library"
-apply plugin: "kotlin-android"
 
 android {
     namespace = "com.orange.ouds_accessibility_plugin"
 
-    compileSdk = 33
+    compileSdk = 36
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
     }
 
     sourceSets {
@@ -45,7 +37,7 @@ android {
 
     defaultConfig {
         minSdk = 21
-        targetSdkVersion 33
+        targetSdkVersion 36
     }
 
     dependencies {
@@ -63,5 +55,11 @@ android {
                showStandardStreams = true
             }
         }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
     }
 }

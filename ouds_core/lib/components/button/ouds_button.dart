@@ -13,7 +13,7 @@
 library;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_border_modifier.dart';
@@ -22,7 +22,7 @@ import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.d
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
-import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_border.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
@@ -290,17 +290,14 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
-    OudsButtonSize size = OudsButtonSize.defaultSize,
     this.loader,
     this.isLoading = false,
-    required OudsNavigationButtonLayout navigationLayout,
-    String? semanticsLabel,
+    required OudsNavigationButtonLayout this._navigationLayout,
+    this._semanticsLabel,
     this.skeleton,
-  }) : _size = size,
-       _component = OudsButtonComponent.navigationButton,
-       _navigationLayout = navigationLayout,
-       _semanticsLabel = semanticsLabel,
+  }) : _component = OudsButtonComponent.navigationButton,
        tinted = true,
+       _size = OudsButtonSize.defaultSize,
        _badge = null;
 
   @override
@@ -347,16 +344,13 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
-    OudsButtonSize size = OudsButtonSize.defaultSize,
-    String? semanticsLabel,
-    OudsTopBarActionBadge? badge,
+    this._size = OudsButtonSize.defaultSize,
+    this._semanticsLabel,
+    this._badge,
     required OudsButtonControlState buttonState,
   }) : label = null,
-       _size = size,
        _component = OudsButtonComponent.defaultButton,
        _navigationLayout = null,
-       _semanticsLabel = semanticsLabel,
-       _badge = badge,
        tinted = true,
        isLoading = false,
        loader = null,
@@ -485,9 +479,9 @@ class _OudsButtonState extends State<OudsButton> {
                     child: Container(
                       decoration: BoxDecoration(
                         border: OudsBorder().borderAll(
-                          color: OudsTheme.of(
-                            context,
-                          ).colorScheme(context).borderFocusInset,
+                          color: OudsTheme.of(context)
+                              .colorScheme(context)
+                              .borderFocusInset,
                           width: borderTokens.widthFocusInset,
                         ),
                         borderRadius: buttonBorderRadius,
@@ -609,9 +603,9 @@ class _OudsButtonState extends State<OudsButton> {
                       Flexible(
                         fit: FlexFit.loose,
                         child: Opacity(
-                          opacity: OudsTheme.of(
-                            context,
-                          ).opacityTokens.invisible,
+                          opacity: OudsTheme.of(context)
+                              .opacityTokens
+                              .invisible,
                           child: Text(
                             widget.label ?? "",
                             style: _labelTypography(context),
@@ -740,9 +734,8 @@ class _OudsButtonState extends State<OudsButton> {
                         fit: FlexFit.loose,
                         child: Text(
                           widget.label ?? "",
-                          style: _labelTypography(
-                            context,
-                          ).copyWith(color: Colors.transparent),
+                          style: _labelTypography(context)
+                              .copyWith(color: Colors.transparent),
                         ),
                       ),
                       SizedBox(
@@ -1018,9 +1011,10 @@ class _OudsButtonState extends State<OudsButton> {
   /// Builds the [OudsCircularProgressIndicator] shown inside the button during a loading state.
   Widget _buildLoadingIndicator(BuildContext context) {
     {
-      final progressIndicatorSize = OudsTheme.of(
-        context,
-      ).componentsTokens(context).button.sizeProgressIndicator(widget._size);
+      final progressIndicatorSize = OudsTheme.of(context)
+          .componentsTokens(context)
+          .button
+          .sizeProgressIndicator(widget._size);
 
       return SizedBox(
         width: progressIndicatorSize,
@@ -1061,9 +1055,9 @@ class _OudsButtonState extends State<OudsButton> {
   Widget _buildIcon(
     BuildContext context,
     String assetName,
-    final OudsButtonAppearance appearance,
-    final OudsButtonLayout layout,
-    final OudsButtonControlState buttonState,
+    OudsButtonAppearance appearance,
+    OudsButtonLayout layout,
+    OudsButtonControlState buttonState,
   ) {
     final bool isTinted = widget.icon?.tinted ?? true;
     final Color? iconColor = isTinted
@@ -1237,7 +1231,6 @@ class OudsNavigationButton extends StatelessWidget {
   final String? package;
   final bool? isFullWidth;
   final String? semanticsLabel;
-  final OudsButtonSize size;
   final OudsSkeleton? skeleton;
 
   const OudsNavigationButton({
@@ -1251,7 +1244,6 @@ class OudsNavigationButton extends StatelessWidget {
     this.isLoading = false,
     this.isFullWidth,
     this.semanticsLabel,
-    this.size = OudsButtonSize.defaultSize,
     this.skeleton,
   });
 
@@ -1279,7 +1271,6 @@ class OudsNavigationButton extends StatelessWidget {
       loader: loader,
       isLoading: isLoading,
       semanticsLabel: semanticsLabel,
-      size: size,
       skeleton: skeleton,
     );
   }

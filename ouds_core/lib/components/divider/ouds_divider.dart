@@ -13,7 +13,7 @@
 /// {@category Divider}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// [OUDS Divider design guidelines](https://r.orange.fr/r/S-ouds-doc-divider)
@@ -88,7 +88,9 @@ class OudsDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final actualThickness = thickness ?? OudsTheme.of(context).componentsTokens(context).divider.borderWidth;
+    final actualThickness =
+        thickness ??
+        OudsTheme.of(context).componentsTokens(context).divider.borderWidth;
 
     final divider = Container(
       color: color.getColor(context),
@@ -97,7 +99,12 @@ class OudsDivider extends StatelessWidget {
       margin: margin,
     );
 
-    return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).fixedNone), child: divider);
+    return Padding(
+      padding: EdgeInsetsDirectional.all(
+        OudsTheme.of(context).spaceScheme(context).fixedNone,
+      ),
+      child: divider,
+    );
   }
 }
 

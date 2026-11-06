@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/switch/ouds_switch_item.dart';
 
 class CustomizableSwitch extends StatelessWidget {
@@ -18,7 +18,12 @@ class CustomizableSwitch extends StatelessWidget {
   final bool value;
   final void Function(bool)? onChanged;
 
-  const CustomizableSwitch({super.key, required this.title, required this.value, this.onChanged});
+  const CustomizableSwitch({
+    super.key,
+    required this.title,
+    required this.value,
+    this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/ui/utilities/global_enum.dart';
 
 /// The possible expansion states of the standard bottom sheet.

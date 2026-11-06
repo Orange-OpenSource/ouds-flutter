@@ -12,7 +12,7 @@
 /// {@category Tag}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_border_modifier.dart';
@@ -351,13 +351,13 @@ class _OudsTagState extends State<OudsTag> {
             child: Semantics(
               child: CircularProgressIndicator(
                 padding: tagSizeModifier.getLoadingAssetsPadding(widget.size),
-                color: OudsTheme.of(
-                  context,
-                ).colorScheme(context).contentDefault,
+                color: OudsTheme.of(context)
+                    .colorScheme(context)
+                    .contentDefault,
                 strokeWidth: MediaQuery.textScalerOf(context).scale(
-                  OudsTheme.of(
-                    context,
-                  ).spaceScheme(context).scaledThreeExtraSmall,
+                  OudsTheme.of(context)
+                      .spaceScheme(context)
+                      .scaledThreeExtraSmall,
                 ),
               ),
             ),

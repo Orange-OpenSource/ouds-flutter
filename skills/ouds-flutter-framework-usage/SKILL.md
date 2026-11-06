@@ -13,7 +13,7 @@ This skill applies to the OUDS Flutter repository. Use it for Flutter components
 ## 1. Basic setup
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';

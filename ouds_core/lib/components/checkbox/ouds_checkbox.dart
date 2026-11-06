@@ -12,11 +12,11 @@
 /// {@category Checkbox}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
-import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_border.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
@@ -138,9 +138,9 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final checkboxBackgroundModifier = OudsControlBackgroundModifier(context);
     final checkboxTickModifier = OudsControlTickModifier(context);
     final checkbox = OudsTheme.of(context).componentsTokens(context).checkbox;
-    final controlListItem = OudsTheme.of(
-      context,
-    ).componentsTokens(context).controlListItem;
+    final controlListItem = OudsTheme.of(context)
+        .componentsTokens(context)
+        .controlListItem;
     final l10n = OudsLocalizations.of(context);
 
     String? semanticValue = widget.value == true

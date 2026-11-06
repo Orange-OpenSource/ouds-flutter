@@ -1,7 +1,5 @@
-
-import 'package:flutter/cupertino.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
-
 
 /// Represents the length of an OUDS PinCodeInput.
 enum PinCodeLengthEnum {
@@ -15,17 +13,21 @@ enum PinCodeLengthEnum {
     return context.l10n.app_components_pinCodeInput_length_label;
   }
 
-  static String getHelperText(BuildContext context, PinCodeLengthEnum value){
-
-      switch (value) {
-        case PinCodeLengthEnum.four:
-          return context.l10n.app_components_pinCodeInput_helperText_description_text_4;
-        case PinCodeLengthEnum.six:
-          return context.l10n.app_components_pinCodeInput_helperText_description_text_6;
-        case PinCodeLengthEnum.eight:
-          return context.l10n.app_components_pinCodeInput_helperText_description_text_8;
-      }
-
+  static String getHelperText(BuildContext context, PinCodeLengthEnum value) {
+    switch (value) {
+      case PinCodeLengthEnum.four:
+        return context
+            .l10n
+            .app_components_pinCodeInput_helperText_description_text_4;
+      case PinCodeLengthEnum.six:
+        return context
+            .l10n
+            .app_components_pinCodeInput_helperText_description_text_6;
+      case PinCodeLengthEnum.eight:
+        return context
+            .l10n
+            .app_components_pinCodeInput_helperText_description_text_8;
+    }
   }
 }
 
@@ -58,10 +60,13 @@ extension PinCodeKeyboardTypeLabel on PinCodeKeyboardTypeEnum {
   String stringValue(BuildContext context) {
     switch (this) {
       case PinCodeKeyboardTypeEnum.numeric:
-        return context.l10n.app_components_pinCodeInput_keyboardType_numeric_label;
+        return context
+            .l10n
+            .app_components_pinCodeInput_keyboardType_numeric_label;
       case PinCodeKeyboardTypeEnum.alphanumeric:
-        return context.l10n.app_components_pinCodeInput_keyboardType_alphanumeric_label;
+        return context
+            .l10n
+            .app_components_pinCodeInput_keyboardType_alphanumeric_label;
     }
   }
 }
-

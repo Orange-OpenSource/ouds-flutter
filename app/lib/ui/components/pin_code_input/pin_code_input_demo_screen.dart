@@ -9,7 +9,7 @@
 //
 // Software description: Flutter library of reusable graphical components
 //
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';

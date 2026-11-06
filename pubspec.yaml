@@ -1,7 +1,7 @@
 name: _
 publish_to: none
 environment:
-  sdk: ^3.9.0
+  sdk: ^3.13.5
 workspace:
   - app
   - ouds_core
@@ -12,5 +12,3 @@ workspace:
   - ouds_accessibility_plugin
   - ouds_theme_wireframe
   - ouds_theme_orange_compact
-dependencies:
-  flutter_svg: ^2.2.3

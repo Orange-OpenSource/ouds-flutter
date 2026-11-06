@@ -13,7 +13,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -23,21 +23,34 @@ class OudsChipControlBackgroundColorModifier {
 
   OudsChipControlBackgroundColorModifier(this.context);
 
-  Color? getBackgroundColor(OudsChipControlState state, [bool isSelected = false]) {
+  Color? getBackgroundColor(
+    OudsChipControlState state, [
+    bool isSelected = false,
+  ]) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final selected = isSelected == true;
 
     switch (state) {
       case OudsChipControlState.enabled:
-        return selected ? chipToken.colorBgSelectedEnabled : chipToken.colorBgUnselectedEnabled;
+        return selected
+            ? chipToken.colorBgSelectedEnabled
+            : chipToken.colorBgUnselectedEnabled;
       case OudsChipControlState.disabled:
-        return selected ? chipToken.colorBgSelectedDisabled : chipToken.colorBgUnselectedDisabled;
+        return selected
+            ? chipToken.colorBgSelectedDisabled
+            : chipToken.colorBgUnselectedDisabled;
       case OudsChipControlState.hovered:
-        return selected ? chipToken.colorBgSelectedHover : chipToken.colorBgUnselectedHover;
+        return selected
+            ? chipToken.colorBgSelectedHover
+            : chipToken.colorBgUnselectedHover;
       case OudsChipControlState.pressed:
-        return selected ? chipToken.colorBgSelectedPressed : chipToken.colorBgUnselectedPressed;
+        return selected
+            ? chipToken.colorBgSelectedPressed
+            : chipToken.colorBgUnselectedPressed;
       case OudsChipControlState.focused:
-        return selected ? chipToken.colorBgSelectedFocus : chipToken.colorBgUnselectedFocus;
+        return selected
+            ? chipToken.colorBgSelectedFocus
+            : chipToken.colorBgUnselectedFocus;
     }
   }
 }

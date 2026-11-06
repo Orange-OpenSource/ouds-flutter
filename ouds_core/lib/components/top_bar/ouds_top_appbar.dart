@@ -15,7 +15,7 @@
 /// {@category TopBar}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
@@ -229,9 +229,9 @@ class _OudsTopAppBarState extends State<OudsTopAppBar> {
                 widget.title ?? "",
                 maxLines: 1,
                 style: TextStyle(
-                  color: OudsTheme.of(
-                    context,
-                  ).colorScheme(context).contentDefault,
+                  color: OudsTheme.of(context)
+                      .colorScheme(context)
+                      .contentDefault,
                   overflow: TextOverflow.ellipsis,
                   fontFamily: OudsTheme.of(context).fontFamily,
                 ),
@@ -284,12 +284,13 @@ class _OudsTopAppBarState extends State<OudsTopAppBar> {
                   title: Text(
                     widget.title ?? "",
                     style: TextStyle(
-                      color: OudsTheme.of(
-                        context,
-                      ).colorScheme(context).contentDefault,
-                      fontFamily: Theme.of(
-                        context,
-                      ).appBarTheme.titleTextStyle?.fontFamily,
+                      color: OudsTheme.of(context)
+                          .colorScheme(context)
+                          .contentDefault,
+                      fontFamily: Theme.of(context)
+                          .appBarTheme
+                          .titleTextStyle
+                          ?.fontFamily,
                     ),
                     maxLines: widget.titleMaxLines,
                     softWrap: true,
@@ -355,12 +356,13 @@ class _OudsTopAppBarState extends State<OudsTopAppBar> {
                   title: Text(
                     widget.title ?? "",
                     style: TextStyle(
-                      color: OudsTheme.of(
-                        context,
-                      ).colorScheme(context).contentDefault,
-                      fontFamily: Theme.of(
-                        context,
-                      ).appBarTheme.titleTextStyle?.fontFamily,
+                      color: OudsTheme.of(context)
+                          .colorScheme(context)
+                          .contentDefault,
+                      fontFamily: Theme.of(context)
+                          .appBarTheme
+                          .titleTextStyle
+                          ?.fontFamily,
                     ),
                     maxLines: widget.titleMaxLines,
                     softWrap: true,

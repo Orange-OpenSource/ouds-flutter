@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
@@ -160,9 +160,9 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
                           )
                         : AppAssets.icons.icUntintedSquare,
                     tinted: customizationState.isTinted,
-                    backgroundColor: OudsTheme.of(
-                      context,
-                    ).colorScheme(context).surfaceBrandPrimary,
+                    backgroundColor: OudsTheme.of(context)
+                        .colorScheme(context)
+                        .surfaceBrandPrimary,
                   )
                 : null,
             isError: customizationState.hasError ? true : false,

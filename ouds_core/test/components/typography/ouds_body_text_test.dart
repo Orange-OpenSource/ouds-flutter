@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/typography/ouds_body_text.dart';
@@ -46,11 +46,9 @@ void main() {
       final textWidget = tester.widget<Text>(find.byType(Text));
       final wrapper =
           (textWidget.textSpan! as TextSpan).children!.single as TextSpan;
-      final boldSpan =
-          wrapper.children!.firstWhere(
-                (span) => (span as TextSpan).text == 'bold',
-              )
-              as TextSpan;
+      final boldSpan = wrapper.children!.firstWhere(
+        (span) => (span as TextSpan).text == 'bold',
+      ) as TextSpan;
       expect(boldSpan.style?.fontWeight, FontWeight.bold);
     });
   });

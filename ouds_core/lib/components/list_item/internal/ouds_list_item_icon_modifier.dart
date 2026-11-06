@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
@@ -83,9 +83,8 @@ class OudsListItemIconModifier {
         ? _statusIconColor(status, colorScheme)
         : colorScheme.contentDisabled;
 
-    final double scaledSize = MediaQuery.textScalerOf(
-      context,
-    ).scale(size.value(context));
+    final double scaledSize = MediaQuery.textScalerOf(context)
+        .scale(size.value(context));
 
     if (status is Warning && enable) {
       return Stack(

@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -67,8 +67,7 @@ class TypographyScreen extends StatelessWidget {
           ),
           Code(
             titleText: context.l10n.app_tokens_viewCodeExample_label,
-            code:
-                'OudsTheme.of(context).typographyTokens.typeDisplayLarge(context)',
+            code: 'OudsTheme.of(context).typographyTokens.typeDisplayLarge(context)',
           ),
           Padding(
             padding: EdgeInsetsDirectional.all(
@@ -165,9 +164,8 @@ class TypographyScreen extends StatelessWidget {
   /// [Function.toString] representation (e.g. "typeDisplayLarge" -> "DisplayLarge"), stripping
   /// the leading "type" prefix.
   String _tokenDisplayName(Function tokenGetter) {
-    final match = RegExp(
-      r"Function '(\w+)'",
-    ).firstMatch(tokenGetter.toString());
+    final match = RegExp(r"Function '(\w+)'")
+        .firstMatch(tokenGetter.toString());
     final rawName = match?.group(1) ?? '';
     const prefix = 'type';
     return rawName.startsWith(prefix)

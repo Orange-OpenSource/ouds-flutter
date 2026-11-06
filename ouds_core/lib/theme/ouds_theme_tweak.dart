@@ -13,7 +13,7 @@
 /// {@category Theme}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Defines adjustments that can be applied to the current [OudsTheme] via the [OudsThemeTweak] widget.
@@ -74,7 +74,8 @@ class _OudsThemeTweakScope extends InheritedWidget {
 
   @override
   bool updateShouldNotify(_OudsThemeTweakScope oldWidget) {
-    return oldWidget.tweak != tweak || oldWidget.effectiveThemeMode != effectiveThemeMode;
+    return oldWidget.tweak != tweak ||
+        oldWidget.effectiveThemeMode != effectiveThemeMode;
   }
 }
 
@@ -129,11 +130,7 @@ class OudsThemeTweak extends StatelessWidget {
   final OudsThemeTweakType tweak;
   final Widget child;
 
-  const OudsThemeTweak({
-    super.key,
-    required this.tweak,
-    required this.child,
-  });
+  const OudsThemeTweak({super.key, required this.tweak, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -151,14 +148,17 @@ class OudsThemeTweak extends StatelessWidget {
 
     // Calculate effective theme mode based on tweak type
     final ThemeMode effectiveThemeMode = switch (tweak) {
-      OudsThemeTweakType.invert => isCurrentlyDark ? ThemeMode.light : ThemeMode.dark,
+      OudsThemeTweakType.invert =>
+        isCurrentlyDark ? ThemeMode.light : ThemeMode.dark,
       OudsThemeTweakType.forceDark => ThemeMode.dark,
       OudsThemeTweakType.forceLight => ThemeMode.light,
     };
 
     // Get appropriate ThemeData and theme contract
     final parentOudsTheme = OudsTheme.of(context);
-    final themeData = effectiveThemeMode == ThemeMode.dark ? parentOudsTheme.darkThemeData : parentOudsTheme.themeData;
+    final themeData = effectiveThemeMode == ThemeMode.dark
+        ? parentOudsTheme.darkThemeData
+        : parentOudsTheme.themeData;
 
     return _OudsThemeTweakScope(
       tweak: tweak,

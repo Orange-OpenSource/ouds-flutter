@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/typography/ouds_display_text.dart';
@@ -54,7 +54,10 @@ void main() {
           OudsDisplayText.rich(
             text: buildOudsAnnotatedText((builder) {
               builder.append('Plain ');
-              builder.withColor((context) => Colors.red, () => builder.append('Colored'));
+              builder.withColor(
+                (context) => Colors.red,
+                () => builder.append('Colored'),
+              );
             }),
           ),
         ),

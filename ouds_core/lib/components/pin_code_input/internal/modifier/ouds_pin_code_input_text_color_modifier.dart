@@ -13,7 +13,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/cupertino.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A class that provides the tick color for the OudsPinCodeInput based on its state and error status.

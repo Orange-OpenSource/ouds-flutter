@@ -12,7 +12,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -29,7 +29,9 @@ class OudsFormFieldsForegroundColorModifier {
       case OudsFormFieldsControlState.enabled:
         return theme.colorScheme(context).actionNegativeEnabled;
       case OudsFormFieldsControlState.disabled:
-        throw UnimplementedError("Error status for Disabled state is not relevant");
+        throw UnimplementedError(
+          "Error status for Disabled state is not relevant",
+        );
       case OudsFormFieldsControlState.hovered:
         return theme.colorScheme(context).actionNegativeHover;
       case OudsFormFieldsControlState.pressed:
@@ -37,9 +39,13 @@ class OudsFormFieldsForegroundColorModifier {
       case OudsFormFieldsControlState.focused:
         return theme.colorScheme(context).actionNegativePressed;
       case OudsFormFieldsControlState.readOnly:
-        throw UnimplementedError("Error status for Read only state is not relevant");
+        throw UnimplementedError(
+          "Error status for Read only state is not relevant",
+        );
       case OudsFormFieldsControlState.loading:
-        throw UnimplementedError("Error status for Loading state is not relevant");
+        throw UnimplementedError(
+          "Error status for Loading state is not relevant",
+        );
     }
   }
 

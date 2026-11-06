@@ -14,13 +14,13 @@
 /// {@category Alert}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/alert/internal/ouds_alert_message_border_modifier.dart';
 import 'package:ouds_core/components/alert/internal/ouds_alert_status_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/common/ouds_border.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
@@ -205,9 +205,9 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     final theme = OudsTheme.of(context);
     final alertMessageStatusModifier = OudsAlertStatusModifier(context);
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
-    final alertMessageTokens = OudsTheme.of(
-      context,
-    ).componentsTokens(context).alertMessage;
+    final alertMessageTokens = OudsTheme.of(context)
+        .componentsTokens(context)
+        .alertMessage;
     final l10n = OudsLocalizations.of(context);
     // Build the action link widget if provided.
     final actionLink = widget.actionLayout != null
@@ -323,12 +323,10 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                         matchTextDirection: true,
                         excludeFromSemantics: true,
                         nonFunctionalIcon,
-                        width: MediaQuery.textScalerOf(
-                          context,
-                        ).scale(alertTokens.sizeAsset),
-                        height: MediaQuery.textScalerOf(
-                          context,
-                        ).scale(alertTokens.sizeAsset),
+                        width: MediaQuery.textScalerOf(context)
+                            .scale(alertTokens.sizeAsset),
+                        height: MediaQuery.textScalerOf(context)
+                            .scale(alertTokens.sizeAsset),
                         fit: BoxFit.contain,
                         colorFilter: widget.status.isTinted
                             ? ColorFilter.mode(
@@ -373,17 +371,14 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                           sortKey: const OrdinalSortKey(1.0),
                           container: true,
                           label: widget.status is Warning
-                              ? OudsLocalizations.of(
-                                  context,
-                                )?.core_common_warning_a11y
+                              ? OudsLocalizations.of(context)
+                                    ?.core_common_warning_a11y
                               : widget.status is Negative
-                              ? OudsLocalizations.of(
-                                  context,
-                                )?.core_common_error_a11y
+                              ? OudsLocalizations.of(context)
+                                    ?.core_common_error_a11y
                               : widget.status is Info
-                              ? OudsLocalizations.of(
-                                  context,
-                                )?.core_common_info_a11y
+                              ? OudsLocalizations.of(context)
+                                    ?.core_common_info_a11y
                               : null,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

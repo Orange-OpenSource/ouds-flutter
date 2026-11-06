@@ -15,7 +15,7 @@
 /// {@category Text input}
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 
 /// Configuration for icon in a some component like [OudsLink], [OudsButton] and [OudsFilterChip].

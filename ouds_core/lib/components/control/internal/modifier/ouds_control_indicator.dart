@@ -12,7 +12,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -37,14 +37,16 @@ class OudsControlIndicatorModifier {
     if (type != OudsControlItemType.switchButton &&
         type == OudsControlItemType.radio) {
       // Return the size of the radio button indicator
-      return OudsTheme.of(
-        context,
-      ).componentsTokens(context).controlListItem.sizeControlIndicator;
+      return OudsTheme.of(context)
+          .componentsTokens(context)
+          .controlListItem
+          .sizeControlIndicator;
     } else {
       // Return the size of the checkbox indicator
-      return OudsTheme.of(
-        context,
-      ).componentsTokens(context).controlListItem.sizeControlIndicator;
+      return OudsTheme.of(context)
+          .componentsTokens(context)
+          .controlListItem
+          .sizeControlIndicator;
     }
   }
 }
