@@ -1,4 +1,5 @@
 # Migration Guide
+- [Unreleased — Card family](#unreleased--card-family)
 - [v2.1.0 → v3.0.0](#v210--v300)
 - [v2.0.0 → v2.1.0](#v200--v210)
 - [v1.3.1 → v2.0.0](#v131--v200)
@@ -7,6 +8,49 @@
 - [v1.1.x → v1.2.0](#v11x--v120)
 - [v1.0.0 → v1.1.1](#v100--v111)
 - [Support](#support)
+
+## Unreleased — Card family
+
+The new `OudsCard` and `OudsActionCard` APIs are additive; existing applications
+require no changes.
+
+Import `package:ouds_core/components/card/ouds_card.dart` for a non-interactive
+container with independently accessible child actions. Import
+`package:ouds_core/components/card/ouds_action_card.dart` for a whole-surface
+action with one keyboard and accessibility target.
+
+Both require a concise, localized `semanticsLabel` and a `child` slot. They share
+`OudsCardStyle.filled`, `.outlined` and `.elevated`, `backgroundColor`,
+`divider` (filled only), `enabled` and `skeleton`. Content controls its own padding.
+Action cards additionally require `onPressed` and support
+`loader: OudsCardLoader(progress: ...)`; null progress means indeterminate.
+
+Card corner rounding is configured for both variants through the theme, not on
+individual widgets. Replace `rounded: true` on `OudsCard` or `OudsActionCard` with:
+
+```dart
+import 'package:ouds_theme_contract/config/component/ouds_card_config.dart';
+import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
+
+OudsThemeConfigModel(
+  card: OudsCardConfig(rounded: true),
+  child: OudsCard(
+    semanticsLabel: 'Manage your plan',
+    child: Text('Mobile plan'),
+  ),
+)
+```
+
+Omitting the card configuration preserves square corners.
+
+Do not put independent actions inside an action card: its descendants are
+presentation only and cannot receive focus or activation. A nested visual action
+may reinforce the card's action, but interaction-state styling is not
+automatically synchronized. Use `OudsCard` for multiple actions.
+
+Setting `enabled: false` blocks pointer, keyboard and accessibility activation.
+Pass disabled state to the slot's controls explicitly (for example, null
+callbacks) for appropriate visuals and announcements.
 
 ## v2.1.0 → v3.0.0
 
@@ -979,4 +1023,3 @@ If you encounter issues during migration:
 - [Open an issue](https://github.com/Orange-OpenSource/ouds-flutter/issues)
 - [Check existing discussions](https://github.com/Orange-OpenSource/ouds-flutter/discussions)
 - Contact the maintainers listed in [MAINTAINERS.md](.github/MAINTAINERS.md)
-

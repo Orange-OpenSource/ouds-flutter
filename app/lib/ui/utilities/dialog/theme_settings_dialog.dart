@@ -52,6 +52,7 @@ class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
   late bool _isTextInputRounded;
   late bool _isAlertMessageRounded;
   late bool _isCardItemRounded;
+  late bool _isCardRounded;
   late bool _isProgressIndicatorRounded;
 
   @override
@@ -62,6 +63,7 @@ class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
     _isAlertMessageRounded =
         widget.themeController.onBorderRadiusAlertMessageState;
     _isCardItemRounded = widget.themeController.onBorderRadiusCardItemState;
+    _isCardRounded = widget.themeController.onBorderRadiusCardState;
     _isProgressIndicatorRounded =
         widget.themeController.onBorderRadiusProgressIndicatorState;
   }
@@ -80,6 +82,7 @@ class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
         textInputRoundedConfig: _isTextInputRounded,
         alertMessageRoundedConfig: _isAlertMessageRounded,
         cardItemRoundedConfig: _isCardItemRounded,
+        cardRoundedConfig: _isCardRounded,
         progressIndicatorRoundedConfig: _isProgressIndicatorRounded,
 
         onAlertMessageRoundedChanged: (value) {
@@ -107,6 +110,11 @@ class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
             _isCardItemRounded = value;
           });
         },
+        onCardRoundedChanged: (value) {
+          setState(() {
+            _isCardRounded = value;
+          });
+        },
       ),
       actions: <Widget>[
         OudsButton(
@@ -132,6 +140,7 @@ class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
             widget.themeController.setOnBorderRadiusCardItemState(
               _isCardItemRounded,
             );
+            widget.themeController.setOnBorderRadiusCardState(_isCardRounded);
             widget.themeController.setOnBorderRadiusProgressIndicatorState(
               _isProgressIndicatorRounded,
             );
