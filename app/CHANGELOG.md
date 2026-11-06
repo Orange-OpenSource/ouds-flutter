@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Tool] Migration version Xcode to 26.6 ([#1030](https://github.com/Orange-OpenSource/ouds-flutter/issues/1030))
 ### Fixed
+- [DemoApp] Bug `Radio Button`  Regression : impossible to select a radio button item in group ([#615](https://github.com/Orange-OpenSource/ouds-flutter/issues/615))
+- [Library] Bug A11Y `Radio Button` Add/modify the hint for unselected radio button ([#469](https://github.com/Orange-OpenSource/ouds-flutter/issues/469))
+- [Library] Bug A11Y `Radio Button` Unselected state is not read by screenreaders ([#1008](https://github.com/Orange-OpenSource/ouds-flutter/issues/1008))
 
 ## [3.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...3.1.0) - 2026-10-27
 ### Added
