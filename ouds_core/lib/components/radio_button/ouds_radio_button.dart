@@ -158,6 +158,13 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
     final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
 
+    // VoiceOver's native "selected" trait is only announced when true and stays
+    // silent when false, so the "unselected" state would never be read. The
+    // selection state is therefore announced explicitly here.
+    final String? unselectStatusSemantics = _selected
+        ? ''
+        : l10n?.core_common_unselected_a11y;
+
     return OudsSkeletonLayout(
       visible: widget.skeleton != null,
       hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
@@ -174,13 +181,12 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
         // from inMutuallyExclusiveGroup), so the trait is announced explicitly in value on iOS.
         value: isIOS
             ? (widget.isError
-                  ? '${l10n?.core_radioButton_radioButton_a11y}. ${l10n?.core_common_error_a11y}'
-                  : l10n?.core_radioButton_radioButton_a11y)
+                  ? '${l10n?.core_radioButton_radioButton_a11y}, $unselectStatusSemantics. ${l10n?.core_common_error_a11y}'
+                  : '${l10n?.core_radioButton_radioButton_a11y}, $unselectStatusSemantics')
             : (widget.isError ? l10n?.core_common_error_a11y : null),
         child: SizedBox(
           width: radioButton.sizeMinWidth,
           child: InkWell(
-            excludeFromSemantics: true,
             onTap: (!isReadOnly && widget.onChanged != null)
                 ? () {
                     _isPressed = true;

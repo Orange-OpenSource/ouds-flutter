@@ -176,8 +176,6 @@ class OudsControlItemState extends State<OudsControlItem> {
             children: [
               Stack(
                 children: [
-                  //   Column(
-                  //    children: [
                   Container(
                     decoration: BoxDecoration(
                       color: controlItemBackgroundModifier.getBackgroundColor(
