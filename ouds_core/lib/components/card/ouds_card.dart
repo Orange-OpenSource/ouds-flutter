@@ -51,17 +51,13 @@ class OudsCard extends StatelessWidget {
   /// Creates a content card with a meaningful, localized [semanticsLabel].
   const OudsCard({
     super.key,
-    required this.semanticsLabel,
     required this.child,
     this.style = OudsCardStyle.filled,
     this.enabled = true,
     this.backgroundColor = true,
     this.divider = false,
     this.skeleton,
-  }) : assert(semanticsLabel != '');
-
-  /// A concise, localized accessible name for the content group.
-  final String semanticsLabel;
+  });
 
   /// Content with independently accessible actions and caller-defined padding.
   final Widget child;
@@ -85,7 +81,6 @@ class OudsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OudsCardSurface(
-    semanticsLabel: semanticsLabel,
     style: style,
     enabled: enabled,
     backgroundColor: backgroundColor,

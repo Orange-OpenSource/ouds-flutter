@@ -103,7 +103,6 @@ class _CardDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = CardCustomization.of(context)!;
-    final theme = OudsTheme.of(context);
     final backgroundColor =
         state.coloredBackground && state.style != OudsCardStyle.outlined
         ? true
@@ -111,47 +110,40 @@ class _CardDemo extends StatelessWidget {
 
     return LightDarkBox(
       hasConstrainedMaxWidthOption: true,
-      child: Padding(
-        padding: EdgeInsetsDirectional.symmetric(
-          horizontal: theme.spaceScheme(context).fixedMedium,
-        ),
-        child: actionCard
-            ? OudsActionCard(
-                semanticsLabel:
-                    context.l10n.app_components_card_actionCard_semantics_a11y,
-                onPressed: () => {},
-                style: state.style,
-                enabled: state.enabled,
-                backgroundColor: backgroundColor,
-                divider: state.divider,
-                loader: state.loading
-                    ? OudsCardLoader(
-                        progress: state.determinate ? state.progress : null,
-                      )
-                    : null,
-                skeleton: state.skeleton ? OudsSkeleton() : null,
-                child: _ActionCardContent(
-                  showVisualAction: state.showVisualAction,
-                ),
-              )
-            : OudsCard(
-                semanticsLabel:
-                    context.l10n.app_components_card_contentCard_semantics_a11y,
-                style: state.style,
-                enabled: state.enabled,
-                backgroundColor: backgroundColor,
-                divider: state.divider,
-                skeleton: state.skeleton ? OudsSkeleton() : null,
-                child: _ContentCardContent(
-                  onPrimaryAction: state.enabled
-                      ? () => {}
-                      : null,
-                  onSecondaryAction: state.enabled
-                      ? () => {}
-                      : null,
-                ),
+      child: actionCard
+          ? OudsActionCard(
+              semanticsLabel:
+                  context.l10n.app_components_card_actionCard_semantics_a11y,
+              onPressed: () => {},
+              style: state.style,
+              enabled: state.enabled,
+              backgroundColor: backgroundColor,
+              divider: state.divider,
+              loader: state.loading
+                  ? OudsCardLoader(
+                      progress: state.determinate ? state.progress : null,
+                    )
+                  : null,
+              skeleton: state.skeleton ? OudsSkeleton() : null,
+              child: _ActionCardContent(
+                showVisualAction: state.showVisualAction,
               ),
-      ),
+            )
+          : OudsCard(
+              style: state.style,
+              enabled: state.enabled,
+              backgroundColor: backgroundColor,
+              divider: state.divider,
+              skeleton: state.skeleton ? OudsSkeleton() : null,
+              child: _ContentCardContent(
+                onPrimaryAction: state.enabled
+                    ? () => {}
+                    : null,
+                onSecondaryAction: state.enabled
+                    ? () => {}
+                    : null,
+              ),
+            ),
     );
   }
 }

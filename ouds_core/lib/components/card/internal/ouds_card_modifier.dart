@@ -76,13 +76,12 @@ class OudsCardModifier {
     }
     switch (style) {
       case OudsCardStyle.filled:
+      case OudsCardStyle.elevated:
         return enabled
             ? colorTheme.actionSupportEnabled
             : colorTheme.actionSupportDisabled;
       case OudsCardStyle.outlined:
         return enabled ? Colors.transparent : colorTheme.actionDisabled;
-      case OudsCardStyle.elevated:
-        return colorTheme.surfacePrimary;
     }
   }
 }

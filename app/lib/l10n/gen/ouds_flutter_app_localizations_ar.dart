@@ -399,10 +399,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'Action card container هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح تفاعلي، وتتيح للمستخدم تنفيذ إجراء رئيسي واحد أو الانتقال إلى وجهة.';
 
   @override
-  String get app_components_card_contentCard_semantics_a11y =>
-      'إدارة باقة الهاتف المحمول';
-
-  @override
   String get app_components_card_actionCard_semantics_a11y =>
       'عرض باقة الهاتف المحمول';
 
@@ -870,7 +866,28 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_listItem_background_tech => 'Background';
 
   @override
+  String get app_components_listItem_belowTextContent_tech =>
+      'Below text content';
+
+  @override
   String get app_components_listItem_boldLabel_tech => 'Bold label';
+
+  @override
+  String get app_components_listItem_labelContent_tech => 'Label content';
+
+  @override
+  String get app_components_listItem_content_tech => 'Content';
+
+  @override
+  String get app_components_listItem_contentExampleAlert_label =>
+      'مثال على المحتوى';
+
+  @override
+  String get app_components_listItem_contentExampleAlert_description =>
+      'استخدم Content للمحتوى المخصص الذي لا يمكن تمثيله بعنصر آخر موجود.\nيوفر Content مرونة لمتطلبات المنتج المحددة، لكن يجب استخدامه كاستثناء وليس كالحل الافتراضي.';
+
+  @override
+  String get app_components_listItem_bottomContent_tech => 'Bottom content';
 
   @override
   String get app_components_listItem_cardType_tech => 'Card Item';
@@ -883,6 +900,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_listItem_iconSize_tech => 'Icon size';
+
+  @override
+  String get app_components_listItem_iconTint_tech => 'Icon tint';
 
   @override
   String get app_components_listItem_indicatorType_tech => 'Indicator Type';
@@ -905,9 +925,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_listItem_roundedMedia_tech => 'Rounded media';
-
-  @override
-  String get app_components_listItem_size_tech => 'Size';
 
   @override
   String get app_components_listItem_slot_tech => 'Slot';

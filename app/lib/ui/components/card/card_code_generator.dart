@@ -22,15 +22,14 @@ class CardCodeGenerator {
   static String updateCode(BuildContext context, {required bool actionCard}) {
     final state = CardCustomization.of(context)!;
     final component = actionCard ? 'OudsActionCard' : 'OudsCard';
-    final semanticsLabel = actionCard
-        ? context.l10n.app_components_card_actionCard_semantics_a11y
-        : context.l10n.app_components_card_contentCard_semantics_a11y;
+    final semanticsLabel = context.l10n.app_components_card_actionCard_semantics_a11y;
     final properties = <String>[
+      if(actionCard)
       'semanticsLabel: ${_stringLiteral(semanticsLabel)}',
       'style: OudsCardStyle.${state.style.name}',
       'enabled: ${state.enabled}',
       if (state.coloredBackground && state.style != OudsCardStyle.outlined)
-        'backgroundColor: OudsTheme.of(context).colorScheme(context).bgSecondary',
+        'backgroundColor: ${state.coloredBackground}',
       if (state.style == OudsCardStyle.filled) 'divider: ${state.divider}',
       if (state.skeleton) 'skeleton: OudsSkeleton()',
       if (actionCard) ...[

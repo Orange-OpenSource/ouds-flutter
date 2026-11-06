@@ -78,7 +78,6 @@ void main() {
       await tester.pumpWidget(
         _host(
           OudsCard(
-            semanticsLabel: 'Manage plan',
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -112,7 +111,6 @@ void main() {
       await tester.pumpWidget(
         _host(
           OudsCard(
-            semanticsLabel: 'Manage plan',
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -142,7 +140,6 @@ void main() {
       await tester.pumpWidget(
         _host(
           OudsCard(
-            semanticsLabel: 'Manage plan',
             enabled: false,
             child: TextButton(
               onPressed: () => count++,
@@ -169,7 +166,6 @@ void main() {
       var count = 0;
       Widget card(bool enabled) => _host(
         OudsCard(
-          semanticsLabel: 'Manage plan',
           enabled: enabled,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -210,7 +206,6 @@ void main() {
       await tester.pumpWidget(
         _host(
           OudsCard(
-            semanticsLabel: 'Account',
             enabled: false,
             child: OudsActionCard(
               semanticsLabel: 'View plan',
@@ -230,7 +225,6 @@ void main() {
       await tester.pumpWidget(
         _host(
           const OudsCard(
-            semanticsLabel: 'Plan',
             child: SizedBox(height: 100, child: Text('Plan')),
           ),
         ),
@@ -510,7 +504,6 @@ void main() {
                 child: const SizedBox(height: 100),
               )
             : const OudsCard(
-                semanticsLabel: 'Plan',
                 child: SizedBox(height: 100),
               );
         BorderRadiusGeometry radius() =>
@@ -550,7 +543,6 @@ void main() {
               OudsThemeConfigModel(
                 card: const OudsCardConfig(rounded: true),
                 child: OudsCard(
-                  semanticsLabel: 'Plan',
                   style: style,
                   divider: true,
                   backgroundColor: true,

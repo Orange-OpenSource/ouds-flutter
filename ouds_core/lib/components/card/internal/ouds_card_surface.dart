@@ -24,7 +24,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 class OudsCardSurface extends StatefulWidget {
   const OudsCardSurface({
     super.key,
-    required this.semanticsLabel,
+    this.semanticsLabel,
     required this.child,
     this.actionable = false,
     this.onPressed,
@@ -37,7 +37,7 @@ class OudsCardSurface extends StatefulWidget {
     this.skeleton,
   });
 
-  final String semanticsLabel;
+  final String? semanticsLabel;
   final Widget child;
   final bool actionable;
   final VoidCallback? onPressed;
@@ -64,10 +64,6 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
 
   @override
   Widget build(BuildContext context) {
-    assert(
-      widget.semanticsLabel.trim().isNotEmpty,
-      'A card must have a meaningful accessible name.',
-    );
     final theme = OudsTheme.of(context);
     final enabled =
         widget.enabled && (!widget.actionable || widget.onPressed != null);
@@ -213,7 +209,8 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                 : null,
             onTap: widget.actionable && interactive ? widget.onPressed : null,
             child: Material(
-              color: cardModifier.getBackgroundColor(
+              type: MaterialType.card,
+             color: cardModifier.getBackgroundColor(
                 widget.style,
                 widget.backgroundColor,
                 enabled,
@@ -223,7 +220,6 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                   ? theme.elevationTokens.raised
                   : theme.elevationTokens.none,
               shape: surfaceShape,
-              clipBehavior: Clip.antiAlias,
               child: widget.actionable
                   ? InkWell(
                       onTap: interactive ? widget.onPressed : null,

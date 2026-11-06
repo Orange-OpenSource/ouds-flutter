@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...develop)
 ### Added
 ### Changed
+- [Library] For `list item` components, support asynchronous images with customizable placeholder ([#900](https://github.com/Orange-OpenSource/ouds-flutter/issues/900))
+- [DemoApp][Library] In library, add `list item` component v0.3  ([#957](https://github.com/Orange-OpenSource/ouds-flutter/issues/957))
+- [DemoApp][Library] In library, add `list item` component v0.2  ([#956](https://github.com/Orange-OpenSource/ouds-flutter/issues/956))
 - [Tool] Migration version Xcode to 26.6 ([#1030](https://github.com/Orange-OpenSource/ouds-flutter/issues/1030))
 ### Fixed
 - [DemoApp] Bug `Radio Button`  Regression : impossible to select a radio button item in group ([#615](https://github.com/Orange-OpenSource/ouds-flutter/issues/615))

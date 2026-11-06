@@ -805,12 +805,6 @@ abstract class AppLocalizations {
   /// **'An action container card is a surface-like UI element that groups related information within an interactive surface and allows a user to perform a single primary action or navigate to a destination.'**
   String get app_components_card_actionCard_description_text;
 
-  /// No description provided for @app_components_card_contentCard_semantics_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage your mobile plan'**
-  String get app_components_card_contentCard_semantics_a11y;
-
   /// No description provided for @app_components_card_actionCard_semantics_a11y.
   ///
   /// In en, this message translates to:
@@ -1638,11 +1632,47 @@ abstract class AppLocalizations {
   /// **'Background'**
   String get app_components_listItem_background_tech;
 
+  /// No description provided for @app_components_listItem_belowTextContent_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Below text content'**
+  String get app_components_listItem_belowTextContent_tech;
+
   /// No description provided for @app_components_listItem_boldLabel_tech.
   ///
   /// In en, this message translates to:
   /// **'Bold label'**
   String get app_components_listItem_boldLabel_tech;
+
+  /// No description provided for @app_components_listItem_labelContent_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Label content'**
+  String get app_components_listItem_labelContent_tech;
+
+  /// No description provided for @app_components_listItem_content_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get app_components_listItem_content_tech;
+
+  /// No description provided for @app_components_listItem_contentExampleAlert_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Content example'**
+  String get app_components_listItem_contentExampleAlert_label;
+
+  /// No description provided for @app_components_listItem_contentExampleAlert_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Content for custom content that cannot be represented by another existing element.\nContent provides flexibility for specific product requirements, but it should be used as an exception rather than the default solution.'**
+  String get app_components_listItem_contentExampleAlert_description;
+
+  /// No description provided for @app_components_listItem_bottomContent_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom content'**
+  String get app_components_listItem_bottomContent_tech;
 
   /// No description provided for @app_components_listItem_cardType_tech.
   ///
@@ -1667,6 +1697,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Icon size'**
   String get app_components_listItem_iconSize_tech;
+
+  /// No description provided for @app_components_listItem_iconTint_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon tint'**
+  String get app_components_listItem_iconTint_tech;
 
   /// No description provided for @app_components_listItem_indicatorType_tech.
   ///
@@ -1709,12 +1745,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Rounded media'**
   String get app_components_listItem_roundedMedia_tech;
-
-  /// No description provided for @app_components_listItem_size_tech.
-  ///
-  /// In en, this message translates to:
-  /// **'Size'**
-  String get app_components_listItem_size_tech;
 
   /// No description provided for @app_components_listItem_slot_tech.
   ///

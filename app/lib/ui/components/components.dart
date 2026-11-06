@@ -221,15 +221,14 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_card_tech,
       ComponentContainer(
         child: OudsCard(
-          semanticsLabel:
-          context.l10n.app_components_card_contentCard_semantics_a11y,
-          child: Padding(
-            padding: EdgeInsetsDirectional.all(
-              theme.spaceScheme(context).fixedMedium,
-            ),
-            child: OudsHeadingText(
-              text: context.l10n.app_components_card_Title_text,
-              size: OudsHeadingTextSize.medium,
+          child: SizedBox(
+            width: 360,
+            height: 124,
+            child: Padding(
+              padding: EdgeInsetsDirectional.all(
+                theme.spaceScheme(context).fixedMedium,
+              ),
+              child: SizedBox(),
             ),
           ),
         ),
