@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
+import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/ouds_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
+import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_theme_contract/config/component/ouds_card_item_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
+import '../../helpers/async_image_test_helpers.dart';
 import '../../helpers/testable_widget_helper.dart';
 
 BorderRadius _listItemBorderRadius(WidgetTester tester) {
@@ -54,6 +58,27 @@ void main() {
         expect(listItem.enable, isFalse);
         expect(listItem.card, isTrue);
         expect(listItem.decoration, isA<OudsListItemDecorationOutlined>());
+      },
+    );
+
+    testWidgets(
+      'labelContent constructor delegates custom content to OudsListItem',
+      (tester) async {
+        await tester.pumpWidget(
+          testableWidget(
+            OudsCardItem.labelContent(
+              labelContent: (context, state) => const Text('Custom label'),
+              description: '5G incluse',
+            ),
+          ),
+        );
+
+        final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
+
+        expect(listItem.label, isNull);
+        expect(listItem.labelContent, isNotNull);
+        expect(listItem.card, isTrue);
+        expect(find.text('Custom label'), findsOneWidget);
       },
     );
 
@@ -149,6 +174,41 @@ void main() {
 
       expect(roundedRadius, greaterThan(defaultRadius));
     });
+
+    testWidgets('passes belowTextContent to OudsListItem', (tester) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsCardItem(
+            label: 'Main label',
+            description: 'Description',
+            belowTextContent: (context, state) =>
+                const Text('Below text content'),
+          ),
+        ),
+      );
+
+      expect(find.text('Below text content'), findsOneWidget);
+
+      final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
+      expect(listItem.belowTextContent, isNotNull);
+    });
+
+    testWidgets('passes bottomContent to OudsListItem', (tester) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsCardItem(
+            label: 'Main label',
+            bottomContent: (context, state) =>
+                const Text('Bottom content', key: Key('bottom-content')),
+          ),
+        ),
+      );
+
+      expect(find.byKey(const Key('bottom-content')), findsOneWidget);
+
+      final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
+      expect(listItem.bottomContent, isNotNull);
+    });
   });
 
   group('OudsSmallCardItem', () {
@@ -228,6 +288,74 @@ void main() {
       final roundedRadius = _listItemBorderRadius(tester).topLeft.x;
 
       expect(roundedRadius, greaterThan(defaultRadius));
+    });
+  });
+
+  group('skeleton', () {
+    testWidgets('forwards the skeleton to the underlying list item', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          const OudsCardItem(
+            label: 'Skeleton card',
+            skeleton: OudsSkeleton(animated: false),
+          ),
+        ),
+      );
+
+      final layout = tester.widget<OudsSkeletonLayout>(
+        find.byType(OudsSkeletonLayout),
+      );
+      expect(layout.visible, isTrue);
+    });
+  });
+
+  group('async image', () {
+    testWidgets('OudsCardItem shows the placeholder while loading', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsCardItem(
+            label: 'Async card',
+            leading: OudsListItemLeadingImage.provider(
+              provider: NeverCompletingImageProvider(),
+              placeholder: const SizedBox(
+                key: Key('placeholder'),
+                width: 10,
+                height: 10,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.byKey(const Key('placeholder')), findsOneWidget);
+    });
+
+    testWidgets('OudsSmallCardItem shows the placeholder while loading', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsSmallCardItem(
+            label: 'Async small card',
+            trailing: OudsSmallListItemTrailingImage.provider(
+              provider: NeverCompletingImageProvider(),
+              placeholder: const SizedBox(
+                key: Key('placeholder'),
+                width: 10,
+                height: 10,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.byKey(const Key('placeholder')), findsOneWidget);
     });
   });
 }

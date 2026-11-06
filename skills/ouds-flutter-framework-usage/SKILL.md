@@ -391,7 +391,7 @@ OudsInlineAlert(label: 'Check your connection.', status: Warning())
 
 ### Avatar
 
-Displays a profile image or a monogram (initials). Used standalone or as leading content in `OudsTopAppBar` / `OudsListItem`.
+Displays a profile image or a monogram (initials). Used standalone or as leading content in `OudsTopAppBar`.
 
 ```dart
 // Image avatar
@@ -630,10 +630,10 @@ Purely decorative country/region flag, always excluded from the semantics tree �
 OudsFlag('fr')
 OudsFlag('US')   // case-insensitive
 
-// Inside a list item
+// Inside a list item (dedicated flag slot returns in v1.0)
 OudsListItem(
   label: 'France',
-  leading: OudsListItemLeadingFlag(OudsFlag('fr')),
+  leading: OudsListItemLeadingContent((context, state) => OudsFlag('fr')),
 )
 ```
 
@@ -685,6 +685,41 @@ OudsSmallListItem(
   label: 'Compact row',
   leading: OudsSmallListItemLeadingIcon(Positive()),
 )
+
+// Custom leading/trailing widgets receiving the control state
+// (text, flag, avatar, … — replaces the removed Text/Flag/Avatar slots)
+OudsListItem(
+  label: 'Price',
+  leading: OudsListItemLeadingContent((context, state) => Text('99€')),
+)
+
+// Fully custom label + extra content slots (Default size only)
+OudsListItem.labelContent(
+  labelContent: (context, state) => MyCustomLabel(),
+  belowTextContent: (context, state) => MyBelowText(),
+  bottomContent: (context, state) => MyBottomContent(),
+)
+
+// Asynchronous image, with a placeholder shown while loading and on error
+OudsListItem(
+  label: 'Product',
+  leading: OudsListItemLeadingImage.provider(
+    provider: NetworkImage('https://example.com/photo.jpg'),
+    semanticsLabel: 'Product photo',
+    placeholder: Image.asset('assets/placeholder.jpg'),
+  ),
+)
+
+// Small item badge / tag trailing (also usable on OudsSmallCardItem)
+OudsSmallListItem(
+  label: 'Inbox',
+  trailing: OudsSmallListItemTrailingBadge(
+    (enable) => OudsBadge.standard(status: Info(), enabled: enable),
+  ),
+)
+
+// Skeleton loading placeholder (all four widgets)
+OudsListItem(label: 'Title', skeleton: OudsSkeleton())
 ```
 
 ---
