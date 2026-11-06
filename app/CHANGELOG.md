@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...develop)
 ### Added
 ### Changed
+- [DemoApp app] Apply the correct margin to item `skeletons` ([#1032](https://github.com/Orange-OpenSource/ouds-flutter/issues/1032))
 - [Tool] Migration version Xcode to 26.6 ([#1030](https://github.com/Orange-OpenSource/ouds-flutter/issues/1030))
 ### Fixed
 - [DemoApp] Bug `Radio Button`  Regression : impossible to select a radio button item in group ([#615](https://github.com/Orange-OpenSource/ouds-flutter/issues/615))
