@@ -17,7 +17,6 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/alert/internal/ouds_alert_status_modifier.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -41,7 +40,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// Each variant conveys a clear semantic meaning and must always be paired with its dedicated functional icon to ensure clarity and accessibility.
 /// Use functional alerts to inform user about state changes, confirmations, or issues that are directly connected to system logic or user actions. These
 /// messages carry functional meaning and help guide user response or acknowledgment.
-/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the inline message will appear once fully loaded.
+/// - [skeleton]: Whether to display a skeleton in place of the inline alert.
 ///
 class OudsInlineAlert extends StatefulWidget {
   /// Creates an OudsInlineAlert.
@@ -49,7 +48,7 @@ class OudsInlineAlert extends StatefulWidget {
     super.key,
     required this.label,
     this.status = const Neutral(),
-    this.skeleton,
+    this.skeleton = false,
   });
 
   /// The main message displayed in the alert.
@@ -58,8 +57,8 @@ class OudsInlineAlert extends StatefulWidget {
   /// The status of the alert, which determines its background color and icon.
   final OudsIconStatus status;
 
-  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the inline message will appear once fully loaded.
-  final OudsSkeleton? skeleton;
+  /// Whether to display the inline alert's skeleton.
+  final bool skeleton;
 
   @override
   State<OudsInlineAlert> createState() => _OudsInlineAlertState();
@@ -73,9 +72,8 @@ class _OudsInlineAlertState extends State<OudsInlineAlert> {
     final alertStatusModifier = OudsAlertStatusModifier(context);
 
     return OudsSkeletonLayout(
-      visible: widget.skeleton != null,
-      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-      animated: widget.skeleton?.animated ?? false,
+      visible: widget.skeleton,
+      hasSecurityMargin: true,
       content: (context) => Semantics(
         label: widget.status is Warning
             ? OudsLocalizations.of(context)?.core_common_warning_a11y

@@ -37,8 +37,8 @@ class OudsSkeletonLayout extends StatelessWidget {
   /// Whether the skeleton should be displayed instead of [content].
   final bool visible;
 
-  /// Whether to apply vertical padding to the skeleton. Defaults to `true`.
-  final bool hasSecurityMargin;
+  /// Whether to apply vertical padding to the skeleton.
+  final bool? hasSecurityMargin;
 
   /// The shape used to clip the skeleton so it matches the content's own shape (e.g. a button's
   /// rounded corners). Defaults to a plain rectangle.
@@ -55,7 +55,7 @@ class OudsSkeletonLayout extends StatelessWidget {
     super.key,
     required this.visible,
     required this.content,
-    this.hasSecurityMargin = true,
+    this.hasSecurityMargin,
     this.shape = const RoundedRectangleBorder(),
     this.animated = true,
   });
@@ -84,7 +84,7 @@ class OudsSkeletonLayout extends StatelessWidget {
           child: ClipPath(
             clipper: ShapeBorderClipper(shape: shape),
             child: OudsSkeleton(
-              hasSecurityMargin: hasSecurityMargin,
+              hasSecurityMargin: hasSecurityMargin ?? true,
               animated: animated,
             ),
           ),

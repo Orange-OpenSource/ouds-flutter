@@ -82,7 +82,7 @@ class OudsSkeleton extends StatefulWidget {
   const OudsSkeleton({
     super.key,
     this.animated = true,
-    this.hasSecurityMargin = false,
+    this.hasSecurityMargin = true,
   });
 
   @override

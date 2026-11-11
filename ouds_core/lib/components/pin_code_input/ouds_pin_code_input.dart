@@ -18,7 +18,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -131,7 +130,7 @@ class OudsPinCodeInput extends StatefulWidget {
   final void Function(String)? onEditingComplete;
   final void Function(String)? onChanged;
   final OudsDigitInputDecoration digitInputDecoration;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   const OudsPinCodeInput({
     super.key,
@@ -141,7 +140,7 @@ class OudsPinCodeInput extends StatefulWidget {
     this.controllers,
     this.onEditingComplete,
     this.onChanged,
-    this.skeleton,
+    this.skeleton = false,
     required this.digitInputDecoration,
   });
 
@@ -550,7 +549,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
           ),
 
           // ── Helper / error text ──────────────────────────────────────────
-          if (widget.skeleton == null &&
+          if (!(widget.skeleton == true) &&
               (widget.helperText != null ||
                   (widget.errorText != null && isError))) ...[
             Container(

@@ -54,7 +54,7 @@ class TagCodeGenerator {
         : "OudsTagSize.defaultSize";
     String? statusCode = _getStatusCode(customizationState);
     String? skeletonCode = customizationState.hasSkeleton
-        ? ' skeleton: OudsSkeleton()'
+        ? ' skeleton: true'
         : null;
 
     List<String> params = [

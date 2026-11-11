@@ -15,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_code_generator.dart';
@@ -215,7 +214,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               ? true
               : false,
         ),
-        skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+        skeleton: customizationState.hasSkeleton,
       ),
     );
   }

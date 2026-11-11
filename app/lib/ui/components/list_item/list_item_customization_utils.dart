@@ -26,7 +26,6 @@ import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 // TODO[v0.3]: uncomment when tag is available
 // import 'package:ouds_core/components/tag/ouds_tag.dart';
@@ -285,7 +284,7 @@ class ListItemCustomizationUtils {
       onTap: () {},
       indicator: getIndicator(state.indicator),
       edgeToEdge: state.edgeToEdge,
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
     );
   }
 
@@ -330,7 +329,7 @@ class ListItemCustomizationUtils {
       enable: state.enable,
       onTap: () {},
       indicator: getIndicator(state.indicator),
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
     );
   }
 
@@ -385,7 +384,7 @@ class ListItemCustomizationUtils {
       boldLabel: state.boldLabel,
       enable: state.enable,
       edgeToEdge: state.edgeToEdge,
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
     );
   }
 
@@ -429,7 +428,7 @@ class ListItemCustomizationUtils {
       boldLabel: state.boldLabel,
       enable: state.enable,
       edgeToEdge: state.edgeToEdge,
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
     );
   }
 
@@ -610,9 +609,7 @@ class ListItemCustomizationUtils {
       onTap: state.clickable ? () {} : null,
       indicator: getIndicator(state.indicator),
       decoration: _convertCardDecoration(state.cardDecoration, state.divider),
-      skeleton: state.hasSkeleton
-          ? OudsSkeleton(hasSecurityMargin: true)
-          : null,
+      skeleton: state.hasSkeleton,
     );
   }
 
@@ -656,7 +653,7 @@ class ListItemCustomizationUtils {
       onTap: state.clickable ? () {} : null,
       indicator: getIndicator(state.indicator),
       decoration: _convertCardDecoration(state.cardDecoration, state.divider),
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
     );
   }
 }
