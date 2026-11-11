@@ -96,7 +96,7 @@ class VariantEntry extends StatelessWidget {
       button: true,
       child: OudsListItem(
         size: OudsListItemSize.smallSize,
-        label: variant.title,
+        label: OudsListItemText(text: variant.title),
         boldLabel: true,
         onTap: () {
           Get.to(variant.screen);

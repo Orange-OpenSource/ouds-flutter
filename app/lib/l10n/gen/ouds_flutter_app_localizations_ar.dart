@@ -793,6 +793,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_listItem_boldLabel_tech => 'Bold label';
 
   @override
+  String get app_components_listItem_coloredText_tech => 'Colored text';
+
+  @override
+  String get app_components_listItem_richTextApi_tech =>
+      'The Ouds Api Allows the use Rich Text mode .';
+
+  @override
   String get app_components_listItem_labelContent_tech => 'Label content';
 
   @override

@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...develop)
 ### Added
 ### Changed
+- [Library] In library, add `list item` component v0.4  ([#958](https://github.com/Orange-OpenSource/ouds-flutter/issues/958))
 - [DemoApp][Library] In library, add `list item` component v0.3  ([#957](https://github.com/Orange-OpenSource/ouds-flutter/issues/957))
 - [DemoApp][Library] In library, add `list item` component v0.2  ([#956](https://github.com/Orange-OpenSource/ouds-flutter/issues/956))
 ### Fixed

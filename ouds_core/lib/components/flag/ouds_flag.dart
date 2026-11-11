@@ -41,8 +41,7 @@ const double _kFlagBaseHeight = 50.0;
 ///
 /// ### Semantics
 /// Flags are always excluded from the accessibility tree (decorative).
-/// The country name must be provided through a sibling text label in the UI
-/// (e.g. the [OudsListItem.label] next to the flag).
+/// The country name must be provided through a sibling text label in the UI.
 ///
 /// Example:
 /// ```dart
@@ -50,13 +49,13 @@ const double _kFlagBaseHeight = 50.0;
 /// OudsFlag('US')   // case-insensitive
 /// ```
 ///
-/// Example — inside a list item:
+/// Example — alongside a country name:
 /// ```dart
-/// OudsListItem(
-///   label: 'France',                              // country name in the label
-///   leading: OudsListItemLeadingContent(
-///     (context, state) => OudsFlag('fr'),
-///   ),
+/// const Row(
+///   children: [
+///     OudsFlag('fr'),
+///     Text('France'),
+///   ],
 /// )
 /// ```
 class OudsFlag extends StatelessWidget {

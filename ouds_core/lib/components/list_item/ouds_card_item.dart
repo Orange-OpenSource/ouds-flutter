@@ -42,7 +42,7 @@ class OudsCardItemDefaults {
 /// [OUDS Navigation Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-navigation-card-item)
 ///
 ///
-/// **Reference design version : 0.3.0**
+/// **Reference design version : 0.4.0**
 ///
 /// A card-formatted variant of [OudsListItem].
 ///
@@ -54,32 +54,35 @@ class OudsCardItemDefaults {
 /// The component keeps the default list-item density and always uses the grid
 /// margin for its horizontal padding, like an edge-to-edge [OudsListItem].
 ///
+/// Standard text fields use [OudsListItemText] for text and optional colors.
+/// See its documentation for supported emphasis and segment color precedence.
+///
 /// ### Usage Example
 ///
 /// ```dart
 /// OudsCardItem(
-///   label: 'Plan 200 Go',
-///   overline: 'Mobile',
-///   extraLabel: 'Sans engagement',
-///   description: '5G en France et en Europe',
+///   label: OudsListItemText(text: 'Plan 200 Go'),
+///   overline: OudsListItemText(text: 'Mobile'),
+///   extraLabel: OudsListItemText(text: 'Sans engagement'),
+///   description: OudsListItemText(text: '5G en France et en Europe'),
 ///   leading: OudsListItemLeadingIcon(Positive()),
 /// )
 ///
 /// OudsCardItem(
-///   label: 'Voir le détail',
-///   description: 'Ouvre une nouvelle page',
+///   label: OudsListItemText(text: 'Voir le détail'),
+///   description: OudsListItemText(text: 'Ouvre une nouvelle page'),
 ///   onTap: () {},
 /// )
 ///
 /// OudsCardItem.labelContent(
 ///   labelContent: (context, state) => Text('Custom label content'),
-///   description: 'Ouvre une nouvelle page',
+///   description: OudsListItemText(text: 'Ouvre une nouvelle page'),
 /// )
 ///
 /// // Card with an image loaded from the network and a custom
 /// // placeholder shown while loading (and if loading fails)
 /// OudsCardItem(
-///   label: 'Product',
+///   label: OudsListItemText(text: 'Product'),
 ///   leading: OudsListItemLeadingImage.provider(
 ///     provider: NetworkImage('https://example.com/photo.jpg'),
 ///     semanticsLabel: 'Product photo',
@@ -91,10 +94,10 @@ class OudsCardItem extends StatelessWidget {
   /// The mandatory main label displayed in the center column.
   ///
   /// Mutually exclusive with [labelContent] — use [OudsCardItem.labelContent]
-  /// to provide fully custom content instead of a plain text label.
-  final String? label;
+  /// to provide fully custom content instead of the standard text label.
+  final OudsListItemText? label;
 
-  /// Optional fully custom content replacing the plain text [label].
+  /// Optional fully custom content replacing the standard text [label].
   ///
   /// The builder receives the current [OudsListItemControlState].
   final Widget Function(BuildContext context, OudsListItemControlState state)?
@@ -110,13 +113,13 @@ class OudsCardItem extends StatelessWidget {
   final OudsListItemDecoration decoration;
 
   /// Optional text displayed above [label] in a smaller, muted style.
-  final String? overline;
+  final OudsListItemText? overline;
 
   /// Optional strong accompanying label displayed between [label] and [description].
-  final String? extraLabel;
+  final OudsListItemText? extraLabel;
 
   /// Optional secondary text displayed below [label] / [extraLabel].
-  final String? description;
+  final OudsListItemText? description;
 
   /// Optional content at the start of the row.
   final OudsListItemLeading? leading;
@@ -139,7 +142,10 @@ class OudsCardItem extends StatelessWidget {
   bottomContent;
 
   /// Optional helper text displayed below the row.
-  final String? helperText;
+  ///
+  /// Supports strong emphasis; field and segment colors are ignored in favor
+  /// of the default muted color.
+  final OudsListItemText? helperText;
 
   /// Whether [label] is rendered in bold. Defaults to `false`.
   final bool boldLabel;
@@ -159,7 +165,7 @@ class OudsCardItem extends StatelessWidget {
   /// Creates an OUDS card item.
   const OudsCardItem({
     super.key,
-    required String label,
+    required OudsListItemText label,
     this.contentAlignment = OudsCardItemDefaults.contentAlignment,
     this.decoration = OudsCardItemDefaults.decoration,
     this.overline,
@@ -182,7 +188,7 @@ class OudsCardItem extends StatelessWidget {
        labelContent = null;
 
   /// Creates an OUDS card item with fully custom [labelContent] instead of a
-  /// plain text label.
+  /// standard text label.
   const OudsCardItem.labelContent({
     super.key,
     required Widget Function(

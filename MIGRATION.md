@@ -21,6 +21,68 @@ This release refines the `List item` component family (`OudsListItem`, `OudsSmal
 
 - Use version 3.1.0
 
+### Rich text in list and card items
+
+**Breaking API change:** the four list-item variants now use
+`OudsListItemText` directly for `label`, `description` and `helperText`.
+Full-size variants also use it for `overline` and `extraLabel`, including the
+optional fields of `.labelContent`. Each field stores a single text/color value;
+there are no parallel rich-text fields or `.rich` constructors on the items.
+`OudsListItemText` is declared in `ouds_list_item.dart`, without a separate widget
+or global configuration. Rendering uses `OudsLabelText.rich`, preserving each
+field's base size and weight.
+
+Replace string arguments such as `label: 'Title'` with
+`label: OudsListItemText(text: 'Title')`. The value's default constructor supports
+only `**strong**` Markdown and remains const-compatible. Use `OudsListItemText.rich` with
+Typography's `OudsAnnotatedText` for independently colored segments.
+
+```dart
+import 'package:ouds_core/components/list_item/ouds_list_item.dart';
+
+const OudsListItem(
+  label: OudsListItemText(text: 'eSIM activation'),
+  description: OudsListItemText(
+    text: 'Your eSIM will be activated on **24 July**',
+  ),
+)
+```
+
+Set `OudsListItemText.color` to an active theme color to customize a whole field.
+Colorable fields are `label`, `extraLabel`, `overline` and `description`.
+All OUDS content color tokens are supported, not only status colors.
+When an item is disabled, `contentDisabled` overrides both whole-field and
+segment colors.
+Omitted colors retain the item's default content or muted colors.
+Helper text is an exception: it supports strong emphasis but always keeps its
+default muted color, including the disabled color when disabled. Field and
+segment color overrides are not applied to helper text.
+For independently colored segments, use `builder.withColor` with a
+`(context) => OudsTheme.of(context).colorScheme(context).contentStatusPositive`
+resolver, so colors follow the consuming widget's active theme. Segment colors
+override the whole-field color; a null segment color inherits it.
+Keep each pair of `**strong**` markers within one appended segment.
+Both constructors support the same Markdown. Only `description` and
+`helperText` interpret inline emphasis. `label`, `extraLabel` and `overline`
+display Markdown literally while retaining their existing base typography
+(including `boldLabel` and the strong extra-label style). Inline
+`**strong**` uses the full Label/Medium/Strong token, including within a field
+whose base style is different. Underline, strikethrough and link syntax are
+retained as visible markers, without decorations or tap actions; nested
+`**strong**` is still interpreted in descriptions and helper text (for example,
+`__**date**__` displays
+`__date__` with a strong date but no underline). Only the standard text
+fields use this restricted Markdown mode; custom content slots and other
+components retain their existing behavior. `OudsLabelText` is unchanged.
+
+Use emphasis sparingly in descriptions and helper text; it must not compensate
+for unclear writing. Use color sparingly and consistently, never solely for
+visual emphasis. Choose semantically
+appropriate OUDS content color tokens and verify contrast against the actual
+background in each theme and state. Color must not be the only indication of
+meaning. These editorial and contrast requirements remain the caller's
+responsibility; arbitrary supplied colors are not automatically validated.
+
 ### Breaking Changes
 
 #### 1. List item icon slots — `Accent` status no longer supported

@@ -115,9 +115,15 @@ class _ListItemCustomizationPanelState
         context.l10n.app_components_listItem_trailing_tech,
       ],
       children: [
-        CustomizableSection(children: _buildGeneralSection(customizationState)),
-        CustomizableSection(children: _buildLeadingSection(customizationState)),
-        CustomizableSection(children: _buildTextsSection(customizationState)),
+        CustomizableSection(
+          children: _buildGeneralSection(customizationState),
+        ),
+        CustomizableSection(
+          children: _buildLeadingSection(customizationState),
+        ),
+        CustomizableSection(
+          children: _buildTextsSection(customizationState),
+        ),
         CustomizableSection(
           children: _buildTrailingSection(customizationState),
         ),
@@ -348,6 +354,7 @@ class _ListItemCustomizationPanelState
     ListItemCustomizationState customizationState,
   ) {
     return [
+      ListItemCustomizationUtils.buildRichTextAlert(context),
       CustomizableTextField(
         title: context.l10n.app_components_common_label_label,
         text: customizationState.labelTextState.value,
@@ -412,6 +419,13 @@ class _ListItemCustomizationPanelState
             });
           },
         ),
+      CustomizableSwitch(
+        title: context.l10n.app_components_listItem_coloredText_tech,
+        value: customizationState.coloredText,
+        onChanged: (value) {
+          customizationState.coloredText = value;
+        },
+      ),
     ];
   }
 

@@ -9,6 +9,9 @@ import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
+import 'package:ouds_core/components/typography/ouds_label_text.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 import '../../helpers/async_image_test_helpers.dart';
 import '../../helpers/testable_widget_helper.dart';
@@ -46,14 +49,14 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           const OudsListItem(
-            label: 'Main label',
-            overline: 'Category',
-            extraLabel: 'Strong info',
-            description: 'Additional detail',
+            label: OudsListItemText(text: 'Main label'),
+            overline: OudsListItemText(text: 'Category'),
+            extraLabel: OudsListItemText(text: 'Strong info'),
+            description: OudsListItemText(text: 'Additional detail'),
             trailing: OudsListItemTrailingText(
               OudsListItemTrailingLabel('99€'),
             ),
-            helperText: 'Helper text',
+            helperText: OudsListItemText(text: 'Helper text'),
             boldLabel: true,
             enable: false,
             decoration: OudsListItemDecorationOutlined(),
@@ -63,12 +66,12 @@ void main() {
 
       final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
 
-      expect(listItem.label, 'Main label');
+      expect(listItem.label!.text.plainText, 'Main label');
       expect(listItem.size, OudsListItemSize.defaultSize);
-      expect(listItem.overline, 'Category');
-      expect(listItem.extraLabel, 'Strong info');
-      expect(listItem.description, 'Additional detail');
-      expect(listItem.helperText, 'Helper text');
+      expect(listItem.overline!.text.plainText, 'Category');
+      expect(listItem.extraLabel!.text.plainText, 'Strong info');
+      expect(listItem.description!.text.plainText, 'Additional detail');
+      expect(listItem.helperText!.text.plainText, 'Helper text');
       expect(listItem.boldLabel, isTrue);
       expect(listItem.enable, isFalse);
       expect(listItem.card, isFalse);
@@ -83,7 +86,7 @@ void main() {
 
       await tester.pumpWidget(
         testableWidget(
-          OudsListItem(label: 'Navigate', onTap: () => tapCount++),
+          OudsListItem(label: OudsListItemText(text: 'Navigate'), onTap: () => tapCount++),
         ),
       );
 
@@ -102,7 +105,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsListItem(
-            label: 'Back',
+            label: OudsListItemText(text: 'Back'),
             leading: OudsListItemLeadingIcon(Positive()),
             indicator: const OudsListItemIndicatorPrevious(),
             onTap: () {},
@@ -132,14 +135,110 @@ void main() {
       expect(listItem.label, isNull);
     });
 
+    testWidgets('renders rich descriptions through Typography with themed color', (
+      tester,
+    ) async {
+      final annotatedText = buildOudsAnnotatedText((builder) {
+        builder.append('Activated on ');
+        builder.withColor(
+          (context) =>
+              OudsTheme.of(context).colorScheme(context).contentStatusPositive,
+          () => builder.append('**24 July**'),
+        );
+      });
+
+      await tester.pumpWidget(
+        testableWidget(
+          Builder(
+            builder: (context) => OudsListItem(
+              label: OudsListItemText.rich(
+                text: buildOudsAnnotatedText((b) => b.append('eSIM activation')),
+              ),
+              description: OudsListItemText.rich(
+                text: annotatedText,
+                color: OudsTheme.of(context)
+                    .colorScheme(context).contentStatusNegative,
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final context = tester.element(find.byType(OudsListItem));
+      final textWidget = tester.widgetList<Text>(find.byType(Text)).firstWhere(
+        (text) =>
+            text.textSpan?.toPlainText().contains('24 July') ?? false,
+      );
+      final dateSpan = _findTextSpan(textWidget.textSpan!, '24 July')!;
+      final expectedStyle = OudsTheme.of(
+        context,
+      ).typographyTokens.typeLabelStrongMedium(context);
+
+      expect(dateSpan.style?.color, OudsTheme.of(
+        context,
+      ).colorScheme(context).contentStatusPositive);
+      expect(dateSpan.style, expectedStyle.copyWith(
+        color: OudsTheme.of(context).colorScheme(context).contentStatusPositive,
+      ));
+      final label = tester.widget<OudsLabelText>(
+        find.ancestor(
+          of: find.byWidget(textWidget),
+          matching: find.byType(OudsLabelText),
+        ),
+      );
+      expect(label.size, OudsLabelTextSize.medium);
+      expect(label.weight, OudsTextWeight.defaultWeight);
+      expect(label.color, OudsTheme.of(context)
+          .colorScheme(context).contentStatusNegative);
+    });
+
+    testWidgets('uses Typography sizes and weights for every rich text slot', (
+      tester,
+    ) async {
+      final text = OudsListItemText.rich(
+        text: buildOudsAnnotatedText((b) => b.append('Example')),
+      );
+      await tester.pumpWidget(
+        testableWidget(
+          OudsListItem(
+            label: text,
+            overline: text,
+            extraLabel: text,
+            description: text,
+            helperText: text,
+            boldLabel: true,
+          ),
+        ),
+      );
+
+      final labels = tester.widgetList<OudsLabelText>(
+        find.byType(OudsLabelText),
+      ).toList();
+      expect(labels, hasLength(5));
+      expect(labels.map((label) => label.size), [
+        OudsLabelTextSize.small,
+        OudsLabelTextSize.large,
+        OudsLabelTextSize.medium,
+        OudsLabelTextSize.medium,
+        OudsLabelTextSize.medium,
+      ]);
+      expect(labels.map((label) => label.weight), [
+        OudsTextWeight.moderate,
+        OudsTextWeight.strong,
+        OudsTextWeight.strong,
+        OudsTextWeight.defaultWeight,
+        OudsTextWeight.defaultWeight,
+      ]);
+    });
+
     testWidgets('renders belowTextContent after the description', (
       tester,
     ) async {
       await tester.pumpWidget(
         testableWidget(
           OudsListItem(
-            label: 'Main label',
-            description: 'Description',
+            label: OudsListItemText(text: 'Main label'),
+            description: OudsListItemText(text: 'Description'),
             belowTextContent: (context, state) =>
                 const Text('Below text content'),
           ),
@@ -153,7 +252,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsListItem(
-            label: 'Main label',
+            label: OudsListItemText(text: 'Main label'),
             bottomContent: (context, state) =>
                 const Text('Bottom content', key: Key('bottom-content')),
           ),
@@ -169,7 +268,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsListItem(
-            label: 'Main label',
+            label: OudsListItemText(text: 'Main label'),
             enable: false,
             trailing: OudsListItemTrailingContent(
               (context, state) => Text(state.name),
@@ -187,7 +286,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsListItem(
-            label: 'Main label',
+            label: OudsListItemText(text: 'Main label'),
             enable: false,
             leading: OudsListItemLeadingContent(
               (context, state) => Text(state.name),
@@ -205,7 +304,7 @@ void main() {
         await tester.pumpWidget(
           testableWidget(
             OudsListItem(
-              label: 'Main label',
+              label: OudsListItemText(text: 'Main label'),
               leading: OudsListItemLeadingContent(
                 (context, state) =>
                     Container(color: Colors.red, width: 200, height: 200),
@@ -259,8 +358,8 @@ void main() {
         await tester.pumpWidget(
           testableWidget(
             const OudsSmallListItem(
-              label: 'Compact item',
-              description: 'Secondary text',
+              label: OudsListItemText(text: 'Compact item'),
+              description: OudsListItemText(text: 'Secondary text'),
               trailing: OudsSmallListItemTrailingText('99€'),
               decoration: OudsListItemDecorationBackgroundOnInteraction(),
             ),
@@ -269,9 +368,9 @@ void main() {
 
         final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
 
-        expect(listItem.label, 'Compact item');
+        expect(listItem.label!.text.plainText, 'Compact item');
         expect(listItem.size, OudsListItemSize.smallSize);
-        expect(listItem.description, 'Secondary text');
+        expect(listItem.description!.text.plainText, 'Secondary text');
         expect(listItem.overline, isNull);
         expect(listItem.extraLabel, isNull);
         expect(listItem.card, isFalse);
@@ -291,7 +390,7 @@ void main() {
 
       await tester.pumpWidget(
         testableWidget(
-          OudsSmallListItem(label: 'Compact navigate', onTap: () => tapCount++),
+          OudsSmallListItem(label: OudsListItemText(text: 'Compact navigate'), onTap: () => tapCount++),
         ),
       );
 
@@ -312,7 +411,7 @@ void main() {
         await tester.pumpWidget(
           testableWidget(
             OudsSmallListItem(
-              label: 'Compact icons',
+              label: OudsListItemText(text: 'Compact icons'),
               leading: OudsSmallListItemLeadingIcon(Positive()),
               trailing: OudsSmallListItemTrailingIcon(Negative()),
             ),
@@ -338,7 +437,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           const OudsSmallListItem(
-            label: 'Rounded image',
+            label: OudsListItemText(text: 'Rounded image'),
             leading: OudsSmallListItemLeadingImage(
               asset: 'assets/component/alert/tick-confirmation-fill.svg',
               rounded: true,
@@ -363,7 +462,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           const OudsSmallListItem(
-            label: 'Square image',
+            label: OudsListItemText(text: 'Square image'),
             leading: OudsSmallListItemLeadingImage(
               asset: 'assets/component/alert/tick-confirmation-fill.svg',
             ),
@@ -385,7 +484,7 @@ void main() {
         await tester.pumpWidget(
           testableWidget(
             OudsSmallListItem(
-              label: 'Badge and tag',
+              label: OudsListItemText(text: 'Badge and tag'),
               enable: false,
               trailing: OudsSmallListItemTrailingBadge(
                 (enable) => Text('badge-$enable'),
@@ -398,7 +497,7 @@ void main() {
         await tester.pumpWidget(
           testableWidget(
             OudsSmallListItem(
-              label: 'Badge and tag',
+              label: OudsListItemText(text: 'Badge and tag'),
               trailing: OudsSmallListItemTrailingTag(
                 (enable) => Text('tag-$enable'),
               ),
@@ -417,7 +516,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           const OudsListItem(
-            label: 'Skeleton item',
+            label: OudsListItemText(text: 'Skeleton item'),
             skeleton: OudsSkeleton(animated: false),
           ),
         ),
@@ -431,7 +530,7 @@ void main() {
 
     testWidgets('keeps the skeleton layout hidden by default', (tester) async {
       await tester.pumpWidget(
-        testableWidget(const OudsListItem(label: 'Plain item')),
+        testableWidget(const OudsListItem(label: OudsListItemText(text: 'Plain item'))),
       );
 
       final layout = tester.widget<OudsSkeletonLayout>(
@@ -506,7 +605,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsListItem(
-            label: 'Async item',
+            label: OudsListItemText(text: 'Async item'),
             leading: OudsListItemLeadingImage.provider(
               provider: NeverCompletingImageProvider(),
               placeholder: const SizedBox(
@@ -531,7 +630,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsListItem(
-            label: 'Async item',
+            label: OudsListItemText(text: 'Async item'),
             leading: OudsListItemLeadingImage.provider(
               provider: SucceedingImageProvider(image),
               placeholder: const SizedBox(
@@ -552,7 +651,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsListItem(
-            label: 'Async item',
+            label: OudsListItemText(text: 'Async item'),
             leading: OudsListItemLeadingImage.provider(
               provider: FailingImageProvider(),
               placeholder: const SizedBox(
@@ -576,7 +675,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsListItem(
-            label: 'Async item',
+            label: OudsListItemText(text: 'Async item'),
             leading: OudsListItemLeadingImage.provider(
               provider: NeverCompletingImageProvider(),
               semanticsLabel: 'Product photo',
@@ -596,7 +695,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsSmallListItem(
-            label: 'Async small item',
+            label: OudsListItemText(text: 'Async small item'),
             leading: OudsSmallListItemLeadingImage.provider(
               provider: NeverCompletingImageProvider(),
               placeholder: const SizedBox(
@@ -613,4 +712,14 @@ void main() {
       expect(find.byKey(const Key('placeholder')), findsOneWidget);
     });
   });
+}
+
+TextSpan? _findTextSpan(InlineSpan span, String text) {
+  if (span is! TextSpan) return null;
+  if (span.text == text) return span;
+  for (final child in span.children ?? const <InlineSpan>[]) {
+    final match = _findTextSpan(child, text);
+    if (match != null) return match;
+  }
+  return null;
 }

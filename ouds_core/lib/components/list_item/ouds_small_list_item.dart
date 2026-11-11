@@ -362,9 +362,9 @@ class OudsSmallListItemTrailingTag extends OudsSmallListItemTrailing {
 // Widget
 // ---------------------------------------------------------------------------
 
-/// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
+/// [OUDS Small List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
 ///
-/// **Reference design version : 0.3.0**
+/// **Reference design version : 0.4.0**
 ///
 /// A compact variant of [OudsListItem] locked to [OudsListItemSize.smallSize].
 ///
@@ -416,32 +416,35 @@ class OudsSmallListItemTrailingTag extends OudsSmallListItemTrailing {
 /// - [edgeToEdge]: Whether the item spans the full width using the grid margin
 ///   instead of the component inline padding. Defaults to `true`.
 ///
+/// Standard text fields use [OudsListItemText] for text and optional colors.
+/// See its documentation for supported emphasis and segment color precedence.
+///
 /// ### Usage Example
 ///
 /// ```dart
 /// // Static compact item with a leading icon
 /// OudsSmallListItem(
-///   label: 'Compact item',
-///   description: 'Secondary text',
+///   label: OudsListItemText(text: 'Compact item'),
+///   description: OudsListItemText(text: 'Secondary text'),
 ///   leading: OudsSmallListItemLeadingIcon(Positive()),
 /// );
 ///
 /// // Navigation compact item
 /// OudsSmallListItem(
-///   label: 'Navigate',
+///   label: OudsListItemText(text: 'Navigate'),
 ///   onTap: () => Navigator.of(context).push(…),
 /// );
 ///
 /// // Compact item with trailing text
 /// OudsSmallListItem(
-///   label: 'Item with price',
+///   label: OudsListItemText(text: 'Item with price'),
 ///   trailing: OudsSmallListItemTrailingText('99€'),
 /// );
 ///
 /// // Compact item with an image loaded from the network and a custom
 /// // placeholder shown while loading (and if loading fails)
 /// OudsSmallListItem(
-///   label: 'Product',
+///   label: OudsListItemText(text: 'Product'),
 ///   leading: OudsSmallListItemLeadingImage.provider(
 ///     provider: NetworkImage('https://example.com/photo.jpg'),
 ///     semanticsLabel: 'Product photo',
@@ -451,7 +454,7 @@ class OudsSmallListItemTrailingTag extends OudsSmallListItemTrailing {
 /// ```
 class OudsSmallListItem extends StatelessWidget {
   /// The mandatory main text displayed in the center column.
-  final String label;
+  final OudsListItemText label;
 
   /// Vertical alignment of all slots within the row.
   ///
@@ -459,7 +462,7 @@ class OudsSmallListItem extends StatelessWidget {
   final OudsListItemContentAlignment contentAlignment;
 
   /// Optional secondary text displayed below [label].
-  final String? description;
+  final OudsListItemText? description;
 
   /// Optional content at the start of the row.
   ///
@@ -486,7 +489,10 @@ class OudsSmallListItem extends StatelessWidget {
   final OudsListItemDecoration? decoration;
 
   /// Optional helper text displayed below the row (and below the divider).
-  final String? helperText;
+  ///
+  /// Supports strong emphasis; field and segment colors are ignored in favor
+  /// of the default muted color.
+  final OudsListItemText? helperText;
 
   /// Whether [label] is rendered in bold. Defaults to `false`.
   final bool boldLabel;
