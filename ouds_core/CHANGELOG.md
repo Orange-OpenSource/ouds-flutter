@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...develop)
 ### Added
 ### Changed
+- [Library] For `list item` components, support asynchronous images with customizable placeholder ([#900](https://github.com/Orange-OpenSource/ouds-flutter/issues/900))
+- [Library] In library, add `list item` component v0.3  ([#957](https://github.com/Orange-OpenSource/ouds-flutter/issues/957))
+- [Library] In library, add `list item` component v0.2  ([#956](https://github.com/Orange-OpenSource/ouds-flutter/issues/956))
 ### Fixed
 - [Library] Bug For `skeleton` component, security margins must be set to `true` by default ([#1059](https://github.com/Orange-OpenSource/ouds-flutter/issues/1059)
 - [Library] Bug Apply the correct margin to item `skeletons` ([#1032](https://github.com/Orange-OpenSource/ouds-flutter/issues/1032)
