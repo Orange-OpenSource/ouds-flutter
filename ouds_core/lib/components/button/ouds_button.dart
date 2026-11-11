@@ -26,6 +26,7 @@ import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -294,7 +295,7 @@ class OudsButton extends StatefulWidget {
     this.isLoading = false,
     required OudsNavigationButtonLayout navigationLayout,
     String? semanticsLabel,
-    this.skeleton= false,
+    this.skeleton = false,
   }) : _size = size,
        _component = OudsButtonComponent.navigationButton,
        _navigationLayout = navigationLayout,
@@ -420,7 +421,9 @@ class _OudsButtonState extends State<OudsButton> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.skeleton == true) {
+    // The focused branch bypasses the skeleton layout, so clear the visual
+    // focus state when either the local or shared skeleton is active.
+    if (widget.skeleton || OudsSkeletonProvider.isEnabledOf(context)) {
       _isFocused = false;
     }
     // Determines the local visual state of the button (hovered, pressed, etc.)

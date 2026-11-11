@@ -20,6 +20,7 @@ import 'package:ouds_core/components/control/internal/interaction/ouds_inherited
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
@@ -98,6 +99,10 @@ class _OudsSwitchState extends State<OudsSwitch> {
 
   @override
   Widget build(BuildContext context) {
+    // The InkWell and its semantics are outside the skeleton layout,
+    // so they must also respond to the shared skeleton state.
+    final isSkeletonVisible =
+        widget.skeleton || OudsSkeletonProvider.isEnabledOf(context);
     final interactionModelHover = OudsInheritedInteractionModel.of(
       context,
       InteractionAspect.hover,
@@ -131,15 +136,19 @@ class _OudsSwitchState extends State<OudsSwitch> {
 
     return MergeSemantics(
       child: Semantics(
-        enabled: widget.onChanged != null,
-        toggled: widget.value,
-        button: true,
+        enabled: isSkeletonVisible ? null : widget.onChanged != null,
+        toggled: isSkeletonVisible ? null : widget.value,
+        button: isSkeletonVisible ? null : true,
         child: Material(
           color: Colors.transparent,
           child: SizedBox(
             height: switchButton.sizeMinHeightInteractiveArea,
             child: InkWell(
-              onTap: (!isReadOnly && widget.onChanged != null)
+              canRequestFocus: !isSkeletonVisible,
+              onTap:
+                  (!isSkeletonVisible &&
+                      !isReadOnly &&
+                      widget.onChanged != null)
                   ? () {
                       _isPressed = true;
                       // Added to improve visual rendering fluidity by allowing Flutter

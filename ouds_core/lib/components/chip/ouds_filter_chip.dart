@@ -26,6 +26,7 @@ import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -217,7 +218,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
 
-    if (widget.skeleton == true) {
+    // The focused branch bypasses the skeleton layout.
+    if (widget.skeleton || OudsSkeletonProvider.isEnabledOf(context)) {
       _isFocused = false;
     }
 
@@ -256,6 +258,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     OudsChipControlState chipState,
     bool isDisabled,
   ) {
+    // The InkWell and semantics wrap the skeleton layout and must also
+    // respond to the local or shared skeleton state.
+    final isSkeletonVisible =
+        widget.skeleton || OudsSkeletonProvider.isEnabledOf(context);
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
@@ -277,11 +283,11 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     }
 
     return Semantics(
-      button: true,
-      enabled: enabled,
-      label: accessibilityLabel,
-      selected: widget.selected,
-      hint: accessibilityHint,
+      button: isSkeletonVisible ? null : true,
+      enabled: isSkeletonVisible ? null : enabled,
+      label: isSkeletonVisible ? null : accessibilityLabel,
+      selected: isSkeletonVisible ? null : widget.selected,
+      hint: isSkeletonVisible ? null : accessibilityHint,
       child: Material(
         color: Colors.transparent,
         child: Container(
@@ -290,7 +296,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
           ),
           child: InkWell(
             focusNode: _focusNode,
-            onTap: isDisabled
+            canRequestFocus: !isDisabled && !isSkeletonVisible,
+            onTap: isDisabled || isSkeletonVisible
                 ? null
                 : () {
                     _updateSelectedData();

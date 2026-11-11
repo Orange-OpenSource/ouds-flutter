@@ -14,6 +14,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -44,31 +45,65 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// )
 /// ```
 ///
+/// To show skeletons on several supported OUDS components at once, wrap them
+/// in an `OudsSkeletonProvider`. Each component retains its own skeleton
+/// layout and security margin.
+///
 /// ## Accessibility
 ///
-/// By default, OudsSkeleton announces its loading state to screen readers.
-/// For screens with multiple skeletons, exclude them from semantics and provide
-/// a single screen-level loading announcement to avoid repetition.
+/// ### Isolated skeleton
+///
+/// Outside an enabled [OudsSkeletonProvider], each skeleton exposes a
+/// `Semantics` live region with the localized loading message from
+/// [OudsLocalizations]. Register the OUDS localization delegate in the
+/// application so this message is available. The skeleton's visual content
+/// is excluded from semantics.
 ///
 /// ```dart
-/// Column(
-///   children: [
-///     ExcludeSemantics(child: OudsSkeleton()),
-///     ExcludeSemantics(child: OudsSkeleton()),
-///     ExcludeSemantics(child: OudsSkeleton()),
-///   ],
-/// )
-///
-/// // Somewhere once for the whole screen:
-/// Semantics(
-///   liveRegion: true,
-///   label: OudsLocalizations.of(context)?.core_common_loading_a11y,
-///   child: ...,
+/// SizedBox(
+///   width: 200,
+///   height: 40,
+///   child: OudsSkeleton(),
 /// )
 /// ```
 ///
-/// Choose the pattern that matches the context: one loading announcement per isolated skeleton,
-/// or a single announcement for a screen presenting many skeletons at once.
+/// ### Multiple skeletons
+///
+/// Wrap related skeletons or supported OUDS components in an enabled
+/// [OudsSkeletonProvider] to suppress their individual loading announcements.
+/// Pass a localized `semanticsLabel` to expose one loading live region for
+/// the group. The provider does not supply a default label when it is omitted.
+///
+/// ```dart
+/// import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
+/// import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+///
+/// OudsSkeletonProvider(
+///   enabled: isLoading,
+///   semanticsLabel: OudsLocalizations.of(context)?.core_common_loading_a11y,
+///   child: Column(
+///     children: [
+///       OudsButton(
+///         label: 'Continue',
+///         appearance: OudsButtonAppearance.defaultAppearance,
+///         onPressed: () {},
+///       ),
+///       OudsTag.text(label: 'Status'),
+///     ],
+///   ),
+/// )
+/// ```
+///
+/// Other descendants remain accessible. When loading ends, components return
+/// to their normal semantics. Consecutive enabled providers share the outer
+/// provider's announcement; a disabled nested provider starts an independent
+/// scope, where individually enabled skeletons retain their own live regions.
+/// A custom label should be localized by the application.
+///
+/// A live region requests an announcement, but its timing and delivery depend
+/// on the screen reader. Check the loading transition with TalkBack and
+/// VoiceOver. The shimmer is automatically disabled when the system requests
+/// reduced motion.
 ///
 class OudsSkeleton extends StatefulWidget {
   /// Whether the shimmer sweep animation is enabled. Defaults to `true`. Automatically disabled
@@ -197,6 +232,10 @@ class _OudsSkeletonState extends State<OudsSkeleton>
         ),
       ),
     );
+
+    if (OudsSkeletonProvider.isEnabledOf(context)) {
+      return ExcludeSemantics(child: content);
+    }
 
     return Semantics(
       liveRegion: true,

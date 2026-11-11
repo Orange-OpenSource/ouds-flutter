@@ -24,6 +24,7 @@ import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -206,7 +207,8 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
       context,
       InteractionAspect.pressed,
     );
-    if (widget.skeleton == true) {
+    // The focus border is outside the skeleton layout.
+    if (widget.skeleton || OudsSkeletonProvider.isEnabledOf(context)) {
       _isFocused = false;
     }
     final isHovered = interactionModelHover?.state.isHovered ?? false;
@@ -245,10 +247,14 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
     OudsChipControlState chipState,
     bool isDisabled,
   ) {
+    // The InkWell and semantics wrap the skeleton layout and must also
+    // respond to the local or shared skeleton state.
+    final isSkeletonVisible =
+        widget.skeleton || OudsSkeletonProvider.isEnabledOf(context);
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final borderTokens = OudsTheme.of(context).borderTokens;
     return Semantics(
-      enabled: !isDisabled,
+      enabled: isSkeletonVisible ? null : !isDisabled,
       child: Material(
         color: Colors.transparent,
         child: Container(
@@ -256,9 +262,9 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
             minHeight: chipToken.sizeMinHeightInteractiveArea,
           ),
           child: InkWell(
-            onTap: widget.onPressed,
+            onTap: isSkeletonVisible ? null : widget.onPressed,
             focusNode: _focusNode,
-            canRequestFocus: !isDisabled,
+            canRequestFocus: !isDisabled && !isSkeletonVisible,
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             focusColor: Colors.transparent,
