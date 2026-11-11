@@ -331,7 +331,7 @@ class OudsListItem extends StatefulWidget {
     this.indicator = OudsListItemDefaults.indicator,
     this.card = false,
     this.edgeToEdge = true,
-    this.skeleton,
+    this.skeleton = false,
     // Field is nullable for the .labelContent constructor; the parameter stays
     // non-nullable so that `label: null` is a compile-time error.
     // ignore: prefer_initializing_formals

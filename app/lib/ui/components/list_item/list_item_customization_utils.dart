@@ -625,7 +625,7 @@ class ListItemCustomizationUtils {
     VoidCallback? onTap,
     OudsListItemIndicator indicator = OudsListItemDefaults.indicator,
     required bool edgeToEdge,
-    OudsSkeleton? skeleton,
+    bool skeleton = false,
     Widget Function(BuildContext context, OudsListItemControlState state)?
     belowTextContent,
     Widget Function(BuildContext context, OudsListItemControlState state)?
@@ -1101,7 +1101,7 @@ class ListItemCustomizationUtils {
         enable: state.enable,
         onTap: state.clickable ? () {} : null,
         indicator: getIndicator(state.indicator),
-        skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+        skeleton: state.hasSkeleton,
       );
     }
     return OudsCardItem(

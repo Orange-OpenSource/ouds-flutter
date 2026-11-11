@@ -158,8 +158,7 @@ class OudsControlItemState extends State<OudsControlItem> {
 
     return OudsSkeletonLayout(
       visible: widget.skeleton,
-      hasSecurityMargin: false,
-      animated: true,
+      hasSecurityMargin: true,
       content: (context) => OudsInheritedInteractionModel(
         state: interactionState,
         child: Padding(

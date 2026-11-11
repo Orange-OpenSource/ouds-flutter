@@ -203,7 +203,7 @@ class OudsCardItem extends StatelessWidget {
     this.enable = true,
     this.onTap,
     this.indicator = OudsCardItemDefaults.indicator,
-    this.skeleton,
+    this.skeleton = false,
   }) : label = null,
        // Field is nullable for the default constructor; the parameter stays
        // non-nullable so that `labelContent: null` is a compile-time error.
