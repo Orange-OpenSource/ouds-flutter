@@ -26,7 +26,7 @@ import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -56,7 +56,7 @@ enum OudsChipStyle { defaultStyle, selected }
 /// - [icon]: Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [selected]: Whether this chip is selected or not. If this value is null so the component is in disabled state.
 /// - [onSelected] : Called when this chip is clicked. A null value indicates that the component is disabled.
-/// - [skeleton] : An optional skeleton that improves the perceived loading time by providing a visual cue of where the filter chip will appear once fully loaded.
+/// - [skeleton]: Whether to display a skeleton in place of the filter chip.
 ///
 /// ### You can use [OudsFilterChip] component in your project, customizing parameters as needed :
 ///
@@ -90,7 +90,7 @@ enum OudsChipStyle { defaultStyle, selected }
 ///       label: 'Label',
 ///       selected: true,
 ///       onSelected: () {},
-///       skeleton: OudsSkeleton(),
+///       skeleton: true,
 ///     );
 /// ```
 class OudsFilterChip extends StatefulWidget {
@@ -106,7 +106,7 @@ class OudsFilterChip extends StatefulWidget {
   final String? contentDescription;
   final bool selected;
   final ValueChanged<bool>? onSelected;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   /// Creates a text-only [OudsFilterChip].
   ///
@@ -120,7 +120,7 @@ class OudsFilterChip extends StatefulWidget {
     this.avatar,
     this.selected = false,
     this.onSelected,
-    this.skeleton,
+    this.skeleton = false,
   }) : contentDescription = null,
        icon = null;
 
@@ -135,7 +135,7 @@ class OudsFilterChip extends StatefulWidget {
     this.selected = false,
     this.onSelected,
     this.contentDescription,
-    this.skeleton,
+    this.skeleton = false,
   }) : avatar = null;
 
   @override
@@ -218,7 +218,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
 
-    if (widget.skeleton != null) {
+    // The focused branch bypasses the skeleton layout.
+    if (widget.skeleton || OudsSkeletonProvider.isEnabledOf(context)) {
       _isFocused = false;
     }
 
@@ -257,6 +258,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     OudsChipControlState chipState,
     bool isDisabled,
   ) {
+    // The InkWell and semantics wrap the skeleton layout and must also
+    // respond to the local or shared skeleton state.
+    final isSkeletonVisible =
+        widget.skeleton || OudsSkeletonProvider.isEnabledOf(context);
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
@@ -278,11 +283,11 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     }
 
     return Semantics(
-      button: true,
-      enabled: enabled,
-      label: accessibilityLabel,
-      selected: widget.selected,
-      hint: accessibilityHint,
+      button: isSkeletonVisible ? null : true,
+      enabled: isSkeletonVisible ? null : enabled,
+      label: isSkeletonVisible ? null : accessibilityLabel,
+      selected: isSkeletonVisible ? null : widget.selected,
+      hint: isSkeletonVisible ? null : accessibilityHint,
       child: Material(
         color: Colors.transparent,
         child: Container(
@@ -291,7 +296,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
           ),
           child: InkWell(
             focusNode: _focusNode,
-            onTap: isDisabled
+            canRequestFocus: !isDisabled && !isSkeletonVisible,
+            onTap: isDisabled || isSkeletonVisible
                 ? null
                 : () {
                     _updateSelectedData();
@@ -378,10 +384,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     children: [
                       // Border interior + content
                       OudsSkeletonLayout(
-                        visible: widget.skeleton != null,
-                        hasSecurityMargin:
-                            widget.skeleton?.hasSecurityMargin ?? false,
-                        animated: widget.skeleton?.animated ?? false,
+                        visible: widget.skeleton,
+                        hasSecurityMargin: false,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                             OudsTheme.of(

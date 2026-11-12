@@ -20,7 +20,7 @@ import 'package:ouds_core/components/control/internal/interaction/ouds_inherited
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
@@ -45,7 +45,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 /// - [onChanged]: Callback triggered when the user selects this switch.
 /// If `null`, switch is disabled and non-interactive.
 /// - [readOnly]: Controls the read only state of the switch. When `true` the switch is disabled.
-/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the switch will appear once fully loaded.
+/// - [skeleton]: Whether to display a skeleton in place of the switch.
 ///
 /// ### You can use [OudsSwitch] component in your project, customizing parameters as needed :
 ///
@@ -56,7 +56,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 ///           // Handle switch change state.
 ///       }
 ///     readOnly: false,
-///     skeleton: OudsSkeleton(),
+///     skeleton: true,
 ///   );
 /// ```
 ///
@@ -65,14 +65,14 @@ class OudsSwitch extends StatefulWidget {
   final bool value;
   final ValueChanged<bool>? onChanged;
   final bool readOnly;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   const OudsSwitch({
     super.key,
     required this.value,
     this.onChanged,
     this.readOnly = false,
-    this.skeleton,
+    this.skeleton = false,
   });
 
   @override
@@ -99,6 +99,10 @@ class _OudsSwitchState extends State<OudsSwitch> {
 
   @override
   Widget build(BuildContext context) {
+    // The InkWell and its semantics are outside the skeleton layout,
+    // so they must also respond to the shared skeleton state.
+    final isSkeletonVisible =
+        widget.skeleton || OudsSkeletonProvider.isEnabledOf(context);
     final interactionModelHover = OudsInheritedInteractionModel.of(
       context,
       InteractionAspect.hover,
@@ -132,15 +136,19 @@ class _OudsSwitchState extends State<OudsSwitch> {
 
     return MergeSemantics(
       child: Semantics(
-        enabled: widget.onChanged != null,
-        toggled: widget.value,
-        button: true,
+        enabled: isSkeletonVisible ? null : widget.onChanged != null,
+        toggled: isSkeletonVisible ? null : widget.value,
+        button: isSkeletonVisible ? null : true,
         child: Material(
           color: Colors.transparent,
           child: SizedBox(
             height: switchButton.sizeMinHeightInteractiveArea,
             child: InkWell(
-              onTap: (!isReadOnly && widget.onChanged != null)
+              canRequestFocus: !isSkeletonVisible,
+              onTap:
+                  (!isSkeletonVisible &&
+                      !isReadOnly &&
+                      widget.onChanged != null)
                   ? () {
                       _isPressed = true;
                       // Added to improve visual rendering fluidity by allowing Flutter
@@ -171,10 +179,8 @@ class _OudsSwitchState extends State<OudsSwitch> {
               child: Align(
                 alignment: Alignment.center,
                 child: OudsSkeletonLayout(
-                  visible: widget.skeleton != null,
-                  hasSecurityMargin:
-                      widget.skeleton?.hasSecurityMargin ?? false,
-                  animated: widget.skeleton?.animated ?? false,
+                  visible: widget.skeleton,
+                  hasSecurityMargin: false,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       switchButton.borderRadiusTrack,

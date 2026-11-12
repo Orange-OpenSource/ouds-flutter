@@ -26,7 +26,6 @@ import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dar
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
@@ -149,6 +148,7 @@ class OudsListItemDefaults {
 ///   Defaults to `false`.
 /// - [edgeToEdge]: Whether the item spans the full width using the grid margin
 ///   instead of the component inline padding. Defaults to `true`.
+/// - [skeleton]: Whether to display the list item's skeleton.
 ///
 /// ### Usage Example
 ///
@@ -305,8 +305,8 @@ class OudsListItem extends StatefulWidget {
   /// with their own padding.
   final bool edgeToEdge;
 
-  /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the list item will appear once fully loaded.
-  final OudsSkeleton? skeleton;
+  /// Whether to display the list item's skeleton
+  final bool skeleton;
 
   /// Creates an OUDS list item with a plain text [label].
   const OudsListItem({
@@ -331,7 +331,7 @@ class OudsListItem extends StatefulWidget {
     this.indicator = OudsListItemDefaults.indicator,
     this.card = false,
     this.edgeToEdge = true,
-    this.skeleton,
+    this.skeleton = false,
     // Field is nullable for the .labelContent constructor; the parameter stays
     // non-nullable so that `label: null` is a compile-time error.
     // ignore: prefer_initializing_formals
@@ -366,7 +366,7 @@ class OudsListItem extends StatefulWidget {
     this.indicator = OudsListItemDefaults.indicator,
     this.card = false,
     this.edgeToEdge = true,
-    this.skeleton,
+    this.skeleton = false,
   }) : label = null,
        // Field is nullable for the default constructor; the parameter stays
        // non-nullable so that `labelContent: null` is a compile-time error.
@@ -466,9 +466,8 @@ class _OudsListItemState extends State<OudsListItem> {
     final verticalPadding = _verticalPadding(tokens);
 
     return OudsSkeletonLayout(
-      visible: widget.skeleton != null,
-      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-      animated: widget.skeleton?.animated ?? false,
+      visible: widget.skeleton,
+      hasSecurityMargin: true,
       shape: RoundedRectangleBorder(
         borderRadius:
             _resolveBorderRadius(tokens: tokens, decoration: decoration) ??

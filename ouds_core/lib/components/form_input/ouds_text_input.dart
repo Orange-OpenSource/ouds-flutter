@@ -25,7 +25,6 @@ import 'package:ouds_core/components/form_input/internal/ouds_form_input_decorat
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
@@ -84,7 +83,7 @@ class OudsTextField extends StatefulWidget {
   final void Function(String)? onEditingComplete;
   final OudsInputDecoration decoration;
   final OudsLink? helperLink;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   OudsTextField({
     super.key,
@@ -96,7 +95,7 @@ class OudsTextField extends StatefulWidget {
     this.onEditingComplete,
     required this.decoration,
     this.helperLink,
-    this.skeleton,
+    this.skeleton = false,
   }) : assert(
          !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
@@ -292,9 +291,8 @@ class _OudsTextInputState extends State<OudsTextField> {
     ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return OudsSkeletonLayout(
-      visible: widget.skeleton != null,
-      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-      animated: widget.skeleton?.animated ?? false,
+      visible: widget.skeleton,
+      hasSecurityMargin: false,
       shape: RoundedRectangleBorder(
         borderRadius: inputTextBorderModifier.getBorderRadius(context),
       ),

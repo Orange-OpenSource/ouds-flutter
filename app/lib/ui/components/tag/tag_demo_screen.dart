@@ -11,7 +11,6 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -113,7 +112,7 @@ class _TagDemoState extends State<_TagDemo> {
   Widget build(BuildContext context) {
     final customizationState = TagCustomization.of(context)!;
     final themeController = Provider.of<ThemeController>(context, listen: true);
-    final skeleton = customizationState.hasSkeleton ? OudsSkeleton() : null;
+    final skeleton = customizationState.hasSkeleton;
 
     return LightDarkBox(
       child: customizationState.selectedLayout == TagEnumLayout.bulletAndText

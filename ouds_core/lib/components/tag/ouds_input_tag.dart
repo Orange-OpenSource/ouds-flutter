@@ -18,7 +18,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_background_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_border_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_icon_style_modifier.dart';
@@ -44,7 +44,7 @@ import 'internal/ouds_tag_control_state.dart';
 /// Parameters:
 /// - [label]: Label displayed in the tag input which describes the tag option.
 /// - [onPressed]: Callback invoked when the tag input is clicked to delete it.
-/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the input tag will appear once fully loaded.
+/// - [skeleton]: Whether to display a skeleton in place of the input tag.
 
 /// ### You can use [OudsInputTag] like this :
 ///
@@ -60,13 +60,13 @@ import 'internal/ouds_tag_control_state.dart';
 class OudsInputTag extends StatefulWidget {
   final String label;
   final VoidCallback? onPressed;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   const OudsInputTag({
     super.key,
     required this.label,
     this.onPressed,
-    this.skeleton,
+    this.skeleton = false,
   });
 
   @override
@@ -128,13 +128,17 @@ class _OudsInputTagState extends State<OudsInputTag> {
     final tagBackgroundColorModifier =
         OudsInputTagControlBackgroundColorModifier(context);
 
-    return _buildInputTag(
-      context,
-      tagBorderModifier,
-      tagTextColorModifier,
-      tagBackgroundColorModifier,
-      tagState,
-      isDisabled,
+    // The interactive wrapper is outside the skeleton layout.
+    return IgnorePointer(
+      ignoring: widget.skeleton || OudsSkeletonProvider.isEnabledOf(context),
+      child: _buildInputTag(
+        context,
+        tagBorderModifier,
+        tagTextColorModifier,
+        tagBackgroundColorModifier,
+        tagState,
+        isDisabled,
+      ),
     );
   }
 
@@ -146,6 +150,9 @@ class _OudsInputTagState extends State<OudsInputTag> {
     OudsTagControlState tagState,
     bool isDisabled,
   ) {
+    // Disable the outer InkWell and semantics for local or shared skeletons.
+    final isSkeletonVisible =
+        widget.skeleton || OudsSkeletonProvider.isEnabledOf(context);
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     final inputTagToken = OudsTheme.of(
       context,
@@ -155,9 +162,9 @@ class _OudsInputTagState extends State<OudsInputTag> {
 
     return MergeSemantics(
       child: Semantics(
-        enabled: !isDisabled,
+        enabled: isSkeletonVisible ? null : !isDisabled,
         container: true,
-        button: true,
+        button: isSkeletonVisible ? null : true,
         child: Material(
           color: Colors.transparent,
           child: Container(
@@ -165,17 +172,20 @@ class _OudsInputTagState extends State<OudsInputTag> {
               minHeight: tagToken.sizeMinHeightInteractiveArea,
             ),
             child: InkWell(
-              onTap: () {
-                if (widget.onPressed != null) {
-                  widget.onPressed!.call();
-                  SemanticsService.announce(
-                    l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '',
-                    TextDirection.ltr,
-                  );
-                }
-              },
+              onTap: isSkeletonVisible
+                  ? null
+                  : () {
+                      if (widget.onPressed != null) {
+                        widget.onPressed!.call();
+                        SemanticsService.announce(
+                          l10n?.core_tag_tag_input_removed_a11y(widget.label) ??
+                              '',
+                          TextDirection.ltr,
+                        );
+                      }
+                    },
               focusNode: _focusNode,
-              canRequestFocus: !isDisabled,
+              canRequestFocus: !isDisabled && !isSkeletonVisible,
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               focusColor: Colors.transparent,
@@ -198,7 +208,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
                 clipBehavior: Clip.none,
                 alignment: Alignment.center,
                 children: [
-                  if (_isFocused && widget.skeleton == null)
+                  if (_isFocused && !isSkeletonVisible)
                     Positioned(
                       top: borderTokens.widthFocus / 2,
                       bottom: borderTokens.widthFocus / 2,
@@ -237,10 +247,8 @@ class _OudsInputTagState extends State<OudsInputTag> {
                       ),
                     ),
                     child: OudsSkeletonLayout(
-                      visible: widget.skeleton != null,
-                      hasSecurityMargin:
-                          widget.skeleton?.hasSecurityMargin ?? false,
-                      animated: widget.skeleton?.animated ?? false,
+                      visible: widget.skeleton,
+                      hasSecurityMargin: false,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           tagToken.borderRadius,

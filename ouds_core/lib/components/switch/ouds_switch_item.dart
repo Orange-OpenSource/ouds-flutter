@@ -15,7 +15,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
@@ -51,7 +50,7 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 ///   Rich text is supported only for error messages.
 /// - [edgeToEdge]: Controls the horizontal layout of the checkbox item. When `true`, the checkbox item is designed to span the full width of the screen or container. When `false`,
 ///   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
-/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the radio button item will appear once fully loaded.
+/// - [skeleton]: Whether to display a skeleton in place of the switch item.
 ///
 ///
 /// ### You can use [OudsSwitchItem] component in your project, customizing parameters as needed :
@@ -75,7 +74,7 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 ///     isError: false,
 ///     divider: true,
 ///     edgeToEdge: true,
-///     skeleton: OudsSkeleton(),
+///     skeleton: true,
 ///     );
 /// ```
 ///
@@ -94,7 +93,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
   final bool divider;
   final bool constrainedMaxWidth;
   final bool edgeToEdge;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   const OudsSwitchButtonItem({
     super.key,
@@ -111,7 +110,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
     this.divider = false,
     this.constrainedMaxWidth = false,
     this.edgeToEdge = true,
-    this.skeleton,
+    this.skeleton = false,
   });
 
   @override

@@ -13,7 +13,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_code_generator.dart';
@@ -161,7 +160,7 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
                 : null,
             isError: customizationState.hasError,
             readOnly: customizationState.hasReadOnly ? true : false,
-            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+            skeleton: customizationState.hasSkeleton,
           ),
           SizedBox(
             width: themeController.currentTheme
@@ -180,7 +179,7 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
                 : null,
             isError: customizationState.hasError,
             readOnly: customizationState.hasReadOnly ? true : false,
-            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+            skeleton: customizationState.hasSkeleton,
           ),
         ],
       ),

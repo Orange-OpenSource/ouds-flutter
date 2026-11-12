@@ -27,7 +27,6 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -64,8 +63,8 @@ class OudsControlItem extends StatefulWidget {
   /// with their own padding.
   final bool edgeToEdge;
 
-  ///An optional skeleton that improves the perceived loading time by providing a visual cue of where the control item will appear once fully loaded.
-  final OudsSkeleton? skeleton;
+  /// Whether to display the control item's skeleton.
+  final bool skeleton;
 
   const OudsControlItem({
     super.key,
@@ -86,7 +85,7 @@ class OudsControlItem extends StatefulWidget {
     this.constrainedMaxWidth = false,
     this.onTap,
     this.edgeToEdge = true,
-    this.skeleton,
+    this.skeleton = false,
   });
 
   @override
@@ -158,9 +157,8 @@ class OudsControlItemState extends State<OudsControlItem> {
     final controlItemTextModifier = OudsControlTextModifier(context);
 
     return OudsSkeletonLayout(
-      visible: widget.skeleton != null,
-      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-      animated: widget.skeleton?.animated ?? false,
+      visible: widget.skeleton,
+      hasSecurityMargin: true,
       content: (context) => OudsInheritedInteractionModel(
         state: interactionState,
         child: Padding(

@@ -111,7 +111,7 @@ class FormFieldsCodeGenerator {
       );
     }
     if (state.hasSkeleton == true) {
-      lines.add('skeleton: OudsSkeleton(),');
+      lines.add('skeleton: true,');
     }
 
     return lines.join("\n");

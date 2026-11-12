@@ -23,7 +23,6 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_bord
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -49,7 +48,7 @@ enum ToggleableState { off, indeterminate, on }
 ///   the checked state.
 /// - [tristate]: If true, the checkboxes value can be true, false, or null. If false, only true and false states are managed.
 /// - [isError]: Controls the error state of the checkbox.
-/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the checkbox will appear once fully loaded.
+/// - [skeleton]: Whether to display a skeleton in place of the checkbox.
 ///
 /// ### You can use [OudsCheckbox] component in your project, customizing parameters as needed :
 ///
@@ -68,7 +67,7 @@ enum ToggleableState { off, indeterminate, on }
 ///     },
 ///   isError: false,
 ///   readOnly: false,
-///   skeleton: OudsSkeleton(),
+///   skeleton: true,
 /// );
 /// ```
 ///
@@ -78,7 +77,7 @@ class OudsCheckbox extends StatefulWidget {
   final bool isError;
   final bool tristate;
   final bool readOnly;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   const OudsCheckbox({
     super.key,
@@ -87,7 +86,7 @@ class OudsCheckbox extends StatefulWidget {
     this.isError = false,
     this.tristate = false,
     this.readOnly = false,
-    this.skeleton,
+    this.skeleton = false,
   });
 
   @override
@@ -154,9 +153,8 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
         : '';
 
     return OudsSkeletonLayout(
-      visible: widget.skeleton != null,
-      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-      animated: widget.skeleton?.animated ?? false,
+      visible: widget.skeleton,
+      hasSecurityMargin: false,
       content: (context) => Semantics(
         enabled: widget.onChanged != null && !(widget.readOnly),
         value: '${l10n?.core_checkbox_trait_a11y}. $semanticValue',

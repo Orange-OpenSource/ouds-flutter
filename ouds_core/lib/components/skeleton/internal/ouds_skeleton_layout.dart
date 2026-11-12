@@ -15,9 +15,11 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 
 /// Lays out [content] as usual so it keeps dictating the natural width/height/shape a component
-/// would take, then — when [visible] is `true` — hides that content and overlays an
+/// would take, then — when [visible] is `true` or an [OudsSkeletonProvider]
+/// is enabled — hides that content and overlays an
 /// [OudsSkeleton] that exactly fills the same space, clipped to [shape].
 ///
 /// This lets any OUDS component expose a "skeleton" state without hardcoding its own
@@ -37,8 +39,8 @@ class OudsSkeletonLayout extends StatelessWidget {
   /// Whether the skeleton should be displayed instead of [content].
   final bool visible;
 
-  /// Whether to apply vertical padding to the skeleton. Defaults to `true`.
-  final bool hasSecurityMargin;
+  /// Whether to apply vertical padding to the skeleton.
+  final bool? hasSecurityMargin;
 
   /// The shape used to clip the skeleton so it matches the content's own shape (e.g. a button's
   /// rounded corners). Defaults to a plain rectangle.
@@ -55,14 +57,14 @@ class OudsSkeletonLayout extends StatelessWidget {
     super.key,
     required this.visible,
     required this.content,
-    this.hasSecurityMargin = true,
+    this.hasSecurityMargin,
     this.shape = const RoundedRectangleBorder(),
     this.animated = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (!visible) {
+    if (!visible && !OudsSkeletonProvider.isEnabledOf(context)) {
       return content(context);
     }
 
@@ -77,14 +79,19 @@ class OudsSkeletonLayout extends StatelessWidget {
           maintainAnimation: true,
           maintainState: true,
           child: IgnorePointer(
-            child: ExcludeSemantics(child: content(context)),
+            child: ExcludeSemantics(
+              child: OudsSkeletonProvider(
+                enabled: false,
+                child: Builder(builder: content),
+              ),
+            ),
           ),
         ),
         Positioned.fill(
           child: ClipPath(
             clipper: ShapeBorderClipper(shape: shape),
             child: OudsSkeleton(
-              hasSecurityMargin: hasSecurityMargin,
+              hasSecurityMargin: hasSecurityMargin ?? true,
               animated: animated,
             ),
           ),

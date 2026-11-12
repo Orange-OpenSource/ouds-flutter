@@ -109,8 +109,6 @@ $onPressedLine$coloredBoxSuffix''';
     final ButtonCustomizationState? customizationState = ButtonCustomization.of(
       context,
     );
-    return customizationState?.hasSkeleton == true
-        ? ' skeleton: OudsSkeleton(),'
-        : '';
+    return customizationState?.hasSkeleton == true ? ' skeleton: true,' : '';
   }
 }

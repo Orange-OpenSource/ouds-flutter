@@ -13,7 +13,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/alert/ouds_alert_message.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_code_generator.dart';
@@ -138,7 +137,7 @@ class _AlertMessageDemoState extends State<_AlertMessageDemo> {
         onDescriptionLinkTapped: (link) async {
           await launchUrl(Uri.parse(link));
         },
-        skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+        skeleton: customizationState.hasSkeleton,
       ),
     );
   }

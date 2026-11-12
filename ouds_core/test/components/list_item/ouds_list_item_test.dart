@@ -418,7 +418,7 @@ void main() {
         testableWidget(
           const OudsListItem(
             label: 'Skeleton item',
-            skeleton: OudsSkeleton(animated: false),
+            skeleton: true,
           ),
         ),
       );
