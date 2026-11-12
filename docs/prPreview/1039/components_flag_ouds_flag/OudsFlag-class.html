@@ -82,7 +82,9 @@ OudsFlag('US')   // case-insensitive
 <p>Example — inside a list item:</p>
 <pre class="language-dart"><code class="language-dart">OudsListItem(
   label: 'France',                              // country name in the label
-  leading: OudsListItemLeadingFlag(OudsFlag('fr')),
+  leading: OudsListItemLeadingContent(
+    (context, state) =&gt; OudsFlag('fr'),
+  ),
 )
 </code></pre>
 </section>

@@ -222,9 +222,8 @@ Widget build(BuildContext context) {
       : l10n?.core_common_unselected_a11y;
 
   return OudsSkeletonLayout(
-    visible: widget.skeleton != null,
-    hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-    animated: widget.skeleton?.animated ?? false,
+    visible: widget.skeleton,
+    hasSecurityMargin: false,
     content: (context) =&gt; Semantics(
       inMutuallyExclusiveGroup: true,
       &#47;&#47; Use checked with inMutuallyExclusiveGroup on Android for native radio-button announcements.

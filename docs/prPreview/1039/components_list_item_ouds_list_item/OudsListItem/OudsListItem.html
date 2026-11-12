@@ -61,8 +61,14 @@
 <li><span class="parameter" id="param-overline"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">overline</span>, </span></li>
 <li><span class="parameter" id="param-extraLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">extraLabel</span>, </span></li>
 <li><span class="parameter" id="param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">description</span>, </span></li>
+<li><span class="parameter" id="param-belowTextContent"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">belowTextContent</span>(<ol class="parameter-list single-line"> <li><span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
+<li><span class="parameter" id="param-state"><span class="type-annotation">OudsListItemControlState</span> <span class="parameter-name">state</span></span></li>
+</ol>)?, </span></li>
 <li><span class="parameter" id="param-leading"><span class="type-annotation"><a href="../../components_list_item_leading_ouds_list_item_leading/OudsListItemLeading-class.html">OudsListItemLeading</a>?</span> <span class="parameter-name">leading</span>, </span></li>
 <li><span class="parameter" id="param-trailing"><span class="type-annotation"><a href="../../components_list_item_trailing_ouds_list_item_trailing/OudsListItemTrailing-class.html">OudsListItemTrailing</a>?</span> <span class="parameter-name">trailing</span>, </span></li>
+<li><span class="parameter" id="param-bottomContent"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">bottomContent</span>(<ol class="parameter-list single-line"> <li><span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
+<li><span class="parameter" id="param-state"><span class="type-annotation">OudsListItemControlState</span> <span class="parameter-name">state</span></span></li>
+</ol>)?, </span></li>
 <li><span class="parameter" id="param-divider"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">divider</span> = <span class="default-value">true</span>, </span></li>
 <li><span class="parameter" id="param-background"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">background</span> = <span class="default-value">false</span>, </span></li>
 <li><span class="parameter" id="param-decoration"><span class="type-annotation">OudsListItemDecoration?</span> <span class="parameter-name">decoration</span>, </span></li>
@@ -73,12 +79,12 @@
 <li><span class="parameter" id="param-indicator"><span class="type-annotation">OudsListItemIndicator</span> <span class="parameter-name">indicator</span> = <span class="default-value">OudsListItemDefaults.indicator</span>, </span></li>
 <li><span class="parameter" id="param-card"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">card</span> = <span class="default-value">false</span>, </span></li>
 <li><span class="parameter" id="param-edgeToEdge"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">edgeToEdge</span> = <span class="default-value">true</span>, </span></li>
-<li><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="../../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span>, </span></li>
+<li><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">skeleton</span> = <span class="default-value">false</span>, </span></li>
 </ol>})
     </section>
     
 <section class="desc markdown">
-  <p>Creates an OUDS list item.</p>
+  <p>Creates an OUDS list item with a plain text <code>label</code>.</p>
 </section>
 
 
@@ -87,14 +93,16 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">const OudsListItem({
   super.key,
-  required this.label,
+  required String label,
   this.size = OudsListItemSize.defaultSize,
   this.contentAlignment = OudsListItemDefaults.contentAlignment,
   this.overline,
   this.extraLabel,
   this.description,
+  this.belowTextContent,
   this.leading,
   this.trailing,
+  this.bottomContent,
   this.divider = true,
   this.background = false,
   this.decoration,
@@ -105,8 +113,12 @@
   this.indicator = OudsListItemDefaults.indicator,
   this.card = false,
   this.edgeToEdge = true,
-  this.skeleton,
-});</code></pre>
+  this.skeleton = false,
+  &#47;&#47; Field is nullable for the .labelContent constructor; the parameter stays
+  &#47;&#47; non-nullable so that `label: null` is a compile-time error.
+  &#47;&#47; ignore: prefer_initializing_formals
+}) : label = label,
+     labelContent = null;</code></pre>
 </section>
 
 

@@ -109,15 +109,40 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
+  if (labelContent != null) {
+    return OudsListItem.labelContent(
+      labelContent: labelContent!,
+      size: OudsListItemSize.defaultSize,
+      contentAlignment: contentAlignment,
+      overline: overline,
+      extraLabel: extraLabel,
+      description: description,
+      belowTextContent: belowTextContent,
+      leading: leading,
+      trailing: trailing,
+      bottomContent: bottomContent,
+      decoration: decoration,
+      helperText: helperText,
+      boldLabel: boldLabel,
+      enable: enable,
+      onTap: onTap,
+      indicator: indicator,
+      card: true,
+      skeleton: skeleton,
+    );
+  }
   return OudsListItem(
-    label: label,
+    &#47;&#47; Safe: the constructors guarantee label != null when labelContent == null.
+    label: label!,
     size: OudsListItemSize.defaultSize,
     contentAlignment: contentAlignment,
     overline: overline,
     extraLabel: extraLabel,
     description: description,
+    belowTextContent: belowTextContent,
     leading: leading,
     trailing: trailing,
+    bottomContent: bottomContent,
     decoration: decoration,
     helperText: helperText,
     boldLabel: boldLabel,

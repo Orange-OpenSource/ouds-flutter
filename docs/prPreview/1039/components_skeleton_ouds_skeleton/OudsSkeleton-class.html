@@ -73,27 +73,54 @@ constraints provided by its parent. To display it at a specific size, wrap it in
   hasSecurityMargin: false,
 )
 </code></pre>
+<p>To show skeletons on several supported OUDS components at once, wrap them
+in an <code>OudsSkeletonProvider</code>. Each component retains its own skeleton
+layout and security margin.</p>
 <h2 id="accessibility">Accessibility</h2>
-<p>By default, OudsSkeleton announces its loading state to screen readers.
-For screens with multiple skeletons, exclude them from semantics and provide
-a single screen-level loading announcement to avoid repetition.</p>
-<pre class="language-dart"><code class="language-dart">Column(
-  children: [
-    ExcludeSemantics(child: OudsSkeleton()),
-    ExcludeSemantics(child: OudsSkeleton()),
-    ExcludeSemantics(child: OudsSkeleton()),
-  ],
-)
-
-// Somewhere once for the whole screen:
-Semantics(
-  liveRegion: true,
-  label: OudsLocalizations.of(context)?.core_common_loading_a11y,
-  child: ...,
+<h3 id="isolated-skeleton">Isolated skeleton</h3>
+<p>Outside an enabled <a href="../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider-class.html">OudsSkeletonProvider</a>, each skeleton exposes a
+<code>Semantics</code> live region with the localized loading message from
+<code>OudsLocalizations</code>. Register the OUDS localization delegate in the
+application so this message is available. The skeleton's visual content
+is excluded from semantics.</p>
+<pre class="language-dart"><code class="language-dart">SizedBox(
+  width: 200,
+  height: 40,
+  child: OudsSkeleton(),
 )
 </code></pre>
-<p>Choose the pattern that matches the context: one loading announcement per isolated skeleton,
-or a single announcement for a screen presenting many skeletons at once.</p>
+<h3 id="multiple-skeletons">Multiple skeletons</h3>
+<p>Wrap related skeletons or supported OUDS components in an enabled
+<a href="../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider-class.html">OudsSkeletonProvider</a> to suppress their individual loading announcements.
+Pass a localized <code>semanticsLabel</code> to expose one loading live region for
+the group. The provider does not supply a default label when it is omitted.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+
+OudsSkeletonProvider(
+  enabled: isLoading,
+  semanticsLabel: OudsLocalizations.of(context)?.core_common_loading_a11y,
+  child: Column(
+    children: [
+      OudsButton(
+        label: 'Continue',
+        appearance: OudsButtonAppearance.defaultAppearance,
+        onPressed: () {},
+      ),
+      OudsTag.text(label: 'Status'),
+    ],
+  ),
+)
+</code></pre>
+<p>Other descendants remain accessible. When loading ends, components return
+to their normal semantics. Consecutive enabled providers share the outer
+provider's announcement; a disabled nested provider starts an independent
+scope, where individually enabled skeletons retain their own live regions.
+A custom label should be localized by the application.</p>
+<p>A live region requests an announcement, but its timing and delivery depend
+on the screen reader. Check the loading transition with TalkBack and
+VoiceOver. The shimmer is automatically disabled when the system requests
+reduced motion.</p>
 </section>
 
 
@@ -127,7 +154,7 @@ or a single announcement for a screen presenting many skeletons at once.</p>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsSkeleton.new" class="callable">
-          <span class="name"><a href="../components_skeleton_ouds_skeleton/OudsSkeleton/OudsSkeleton.html">OudsSkeleton</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-animated"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">animated</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-hasSecurityMargin"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hasSecurityMargin</span> = <span class="default-value">false</span></span>})</span>
+          <span class="name"><a href="../components_skeleton_ouds_skeleton/OudsSkeleton/OudsSkeleton.html">OudsSkeleton</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-animated"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">animated</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-hasSecurityMargin"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hasSecurityMargin</span> = <span class="default-value">true</span></span>})</span>
         </dt>
         <dd>
           Creates an <a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>.
