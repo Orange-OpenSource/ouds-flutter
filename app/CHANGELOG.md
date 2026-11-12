@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - [Library] Bug For `skeleton` component, security margins must be set to `true` by default ([#1059](https://github.com/Orange-OpenSource/ouds-flutter/issues/1059)
 - [DemoApp][Library] Bug Apply the correct margin to item `skeletons` ([#1032](https://github.com/Orange-OpenSource/ouds-flutter/issues/1032)
+- [Tool] Update Ruby to 4.0.7 in the GitHub Actions workflow ([#1063](https://github.com/Orange-OpenSource/ouds-flutter/issues/1063))
 - [DemoApp] Bug `Radio Button`  Regression : impossible to select a radio button item in group ([#615](https://github.com/Orange-OpenSource/ouds-flutter/issues/615))
 - [Library] Bug A11Y `Radio Button` Add/modify the hint for unselected radio button ([#469](https://github.com/Orange-OpenSource/ouds-flutter/issues/469))
 - [Library] Bug A11Y `Radio Button` Unselected state is not read by screenreaders ([#1008](https://github.com/Orange-OpenSource/ouds-flutter/issues/1008))
