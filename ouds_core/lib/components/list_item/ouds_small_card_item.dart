@@ -21,9 +21,9 @@ import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
-/// [OUDS Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
+/// [OUDS Small Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
 ///
-/// **Reference design version : 0.3.0**
+/// **Reference design version : 0.4.0**
 ///
 /// A compact card-formatted variant of [OudsCardItem].
 ///
@@ -33,6 +33,9 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 ///
 /// It always uses the grid margin for its horizontal padding, like an
 /// edge-to-edge [OudsSmallListItem].
+///
+/// Standard text fields use [OudsListItemText] for text and optional colors.
+/// See its documentation for supported emphasis and segment color precedence.
 ///
 /// - [leading] accepts [OudsSmallListItemLeadingIcon] or
 ///   [OudsSmallListItemLeadingImage].
@@ -44,13 +47,13 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 ///
 /// ```dart
 /// OudsSmallCardItem(
-///   label: 'Messagerie',
-///   description: '3 notifications',
+///   label: OudsListItemText(text: 'Messagerie'),
+///   description: OudsListItemText(text: '3 notifications'),
 ///   leading: OudsSmallListItemLeadingIcon(Info()),
 /// )
 ///
 /// OudsSmallCardItem(
-///   label: 'Paiement',
+///   label: OudsListItemText(text: 'Paiement'),
 ///   trailing: OudsSmallListItemTrailingText('99€'),
 ///   onTap: () {},
 /// )
@@ -58,7 +61,7 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 /// // Small card with an image loaded from the network and a custom
 /// // placeholder shown while loading (and if loading fails)
 /// OudsSmallCardItem(
-///   label: 'Product',
+///   label: OudsListItemText(text: 'Product'),
 ///   leading: OudsSmallListItemLeadingImage.provider(
 ///     provider: NetworkImage('https://example.com/photo.jpg'),
 ///     semanticsLabel: 'Product photo',
@@ -68,7 +71,7 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 /// ```
 class OudsSmallCardItem extends StatelessWidget {
   /// The mandatory main label displayed in the center column.
-  final String label;
+  final OudsListItemText label;
 
   /// Vertical alignment of all slots.
   final OudsListItemContentAlignment contentAlignment;
@@ -80,7 +83,7 @@ class OudsSmallCardItem extends StatelessWidget {
   final OudsListItemDecoration decoration;
 
   /// Optional secondary text displayed below [label].
-  final String? description;
+  final OudsListItemText? description;
 
   /// Optional leading content.
   final OudsSmallListItemLeading? leading;
@@ -89,7 +92,10 @@ class OudsSmallCardItem extends StatelessWidget {
   final OudsSmallListItemTrailing? trailing;
 
   /// Optional helper text displayed below the row.
-  final String? helperText;
+  ///
+  /// Supports strong emphasis; field and segment colors are ignored in favor
+  /// of the default muted color.
+  final OudsListItemText? helperText;
 
   /// Whether [label] is rendered in bold. Defaults to `false`.
   final bool boldLabel;

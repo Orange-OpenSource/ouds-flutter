@@ -18,6 +18,28 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+/// Restricts standard list/card text fields to literal text or strong emphasis.
+///
+/// Kept around individual Typography widgets so custom content slots and other
+/// components retain their existing Markdown behavior.
+class ListItemMarkdownScope extends InheritedWidget {
+  const ListItemMarkdownScope({
+    super.key,
+    required this.allowStrong,
+    this.colorOverride,
+    required super.child,
+  });
+
+  final bool allowStrong;
+  /// Forces the field color for disabled items and uncolored helper text.
+  final Color? colorOverride;
+
+  @override
+  bool updateShouldNotify(ListItemMarkdownScope oldWidget) =>
+      allowStrong != oldWidget.allowStrong ||
+      colorOverride != oldWidget.colorOverride;
+}
+
 /// A lightweight markdown span builder for Flutter `RichText`.
 ///
 /// Supported syntax:
@@ -28,6 +50,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// This is not a full markdown parser. It is intended for simple styling
 /// and inline links in lightweight text content.
 class MarkdownSpanBuilder {
+  static final _boldPattern = RegExp(r'(\*\*.*?\*\*)');
+
   /// Builds an [InlineSpan] from plain text supporting only bold markdown.
   ///
   /// Supported syntax:
@@ -38,17 +62,21 @@ class MarkdownSpanBuilder {
   /// Parameters:
   /// - [text]: The source text to parse.
   /// - [baseStyle]: The default style applied to all text.
+  /// - [strongStyle]: The complete emphasis style. If omitted, uses [baseStyle]
+  ///   with [FontWeight.bold], preserving the behavior of existing callers.
   ///
   /// Returns:
   /// A tree of [InlineSpan] that can be used in `Text.rich` or `RichText`.
-  static InlineSpan buildBoldOnly(String text, {required TextStyle baseStyle}) {
+  static InlineSpan buildBoldOnly(
+    String text, {
+    required TextStyle baseStyle,
+    TextStyle? strongStyle,
+  }) {
     final spans = <InlineSpan>[];
-
-    final regex = RegExp(r'(\*\*.*?\*\*)');
 
     int currentPosition = 0;
 
-    for (final match in regex.allMatches(text)) {
+    for (final match in _boldPattern.allMatches(text)) {
       if (match.start > currentPosition) {
         spans.add(
           TextSpan(
@@ -63,7 +91,7 @@ class MarkdownSpanBuilder {
       spans.add(
         TextSpan(
           text: matchText.substring(2, matchText.length - 2),
-          style: baseStyle.copyWith(fontWeight: FontWeight.bold),
+          style: strongStyle ?? baseStyle.copyWith(fontWeight: FontWeight.bold),
         ),
       );
 
@@ -102,6 +130,10 @@ class MarkdownSpanBuilder {
   /// This function only parses and exposes links through [onLinkTap].
   /// The caller is responsible for handling link opening behavior
   /// (for example with `url_launcher` or an in-app WebView).
+  /// Within [ListItemMarkdownScope], text is literal unless
+  /// [ListItemMarkdownScope.allowStrong] permits `**strong**`, which uses the
+  /// complete Label/Medium/Strong token and retains [baseStyle]'s color.
+  /// Other markers remain visible and no link recognizers are created.
   ///
   /// Example:
   /// onLinkTap: (link) async {
@@ -115,6 +147,23 @@ class MarkdownSpanBuilder {
     void Function(String url)? onLinkTap,
   }) {
     final theme = OudsTheme.of(context);
+    final listItemScope =
+        context.dependOnInheritedWidgetOfExactType<ListItemMarkdownScope>();
+    if (listItemScope != null) {
+      final style = listItemScope.colorOverride == null
+          ? baseStyle
+          : baseStyle.copyWith(color: listItemScope.colorOverride);
+      if (!listItemScope.allowStrong) {
+        return TextSpan(text: text, style: style);
+      }
+      return buildBoldOnly(
+        text,
+        baseStyle: style,
+        strongStyle: theme.typographyTokens
+            .typeLabelStrongMedium(context)
+            .copyWith(color: style.color),
+      );
+    }
     final spans = <InlineSpan>[];
 
     final regex = RegExp(

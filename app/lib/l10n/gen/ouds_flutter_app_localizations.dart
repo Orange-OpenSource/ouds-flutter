@@ -1500,6 +1500,18 @@ abstract class AppLocalizations {
   /// **'Bold label'**
   String get app_components_listItem_boldLabel_tech;
 
+  /// No description provided for @app_components_listItem_coloredText_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Colored text'**
+  String get app_components_listItem_coloredText_tech;
+
+  /// No description provided for @app_components_listItem_richTextApi_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'The Ouds Api Allows the use Rich Text mode .'**
+  String get app_components_listItem_richTextApi_tech;
+
   /// No description provided for @app_components_listItem_labelContent_tech.
   ///
   /// In en, this message translates to:

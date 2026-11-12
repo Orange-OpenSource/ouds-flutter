@@ -27,12 +27,14 @@ import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.da
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
+import 'package:ouds_core/components/typography/ouds_label_text.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
-import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_listItem_tokens.dart';
 
 // ---------------------------------------------------------------------------
@@ -84,10 +86,10 @@ class OudsListItemDefaults {
 
 /// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-static-list-item)
 ///
-/// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-navigation-list-item)
+/// [OUDS Navigation List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-navigation-list-item)
 ///
 ///
-/// **Reference design version : 0.3.0**
+/// **Reference design version : 0.4.0**
 ///
 /// List item is a UI element that displays a row of information within a list.
 /// It mirrors Flutter's [ListTile] spirit — leading / label / trailing — but uses
@@ -155,24 +157,24 @@ class OudsListItemDefaults {
 /// ```dart
 /// // Static list item with a leading icon
 /// OudsListItem(
-///   label: 'Title',
-///   description: 'Secondary text',
+///   label: OudsListItemText(text: 'Title'),
+///   description: OudsListItemText(text: 'Secondary text'),
 ///   leading: OudsListItemLeadingIcon(Neutral(icon: 'assets/icons/star.svg')),
 ///   background: true,
 /// );
 ///
 /// // Navigation list item (chevron displayed automatically)
 /// OudsListItem(
-///   label: 'Navigate',
+///   label: OudsListItemText(text: 'Navigate'),
 ///   onTap: () => Navigator.of(context).push(…),
 /// );
 ///
 /// // List item with overline, extra label and trailing text
 /// OudsListItem(
-///   label: 'Main label',
-///   overline: 'Category',
-///   extraLabel: 'Strong info',
-///   description: 'Additional detail',
+///   label: OudsListItemText(text: 'Main label'),
+///   overline: OudsListItemText(text: 'Category'),
+///   extraLabel: OudsListItemText(text: 'Strong info'),
+///   description: OudsListItemText(text: 'Additional detail'),
 ///   trailing: OudsListItemTrailingText(
 ///     OudsListItemTrailingLabel('99€'),
 ///   ),
@@ -180,14 +182,14 @@ class OudsListItemDefaults {
 ///
 /// // Disabled list item
 /// OudsListItem(
-///   label: 'Unavailable',
+///   label: OudsListItemText(text: 'Unavailable'),
 ///   enable: false,
 /// );
 ///
 /// // List item with an image loaded from the network and a custom
 /// // placeholder shown while loading (and if loading fails)
 /// OudsListItem(
-///   label: 'Product',
+///   label: OudsListItemText(text: 'Product'),
 ///   leading: OudsListItemLeadingImage.provider(
 ///     provider: NetworkImage('https://example.com/photo.jpg'),
 ///     semanticsLabel: 'Product photo',
@@ -198,9 +200,11 @@ class OudsListItemDefaults {
 class OudsListItem extends StatefulWidget {
   /// The main label displayed in the center column.
   ///
+  /// See [OudsListItemText] for supported emphasis and color overrides.
+  ///
   /// Mutually exclusive with [labelContent] — use [OudsListItem.labelContent]
-  /// to render fully custom content instead of a plain text label.
-  final String? label;
+  /// to render fully custom content instead of the standard text label.
+  final OudsListItemText? label;
 
   /// Fully custom content rendered in place of [label], available only via
   /// the [OudsListItem.labelContent] constructor.
@@ -222,13 +226,13 @@ class OudsListItem extends StatefulWidget {
   final OudsListItemContentAlignment contentAlignment;
 
   /// Optional text displayed above [label] in a smaller, muted style.
-  final String? overline;
+  final OudsListItemText? overline;
 
   /// Optional strong accompanying label displayed between [label] and [description].
-  final String? extraLabel;
+  final OudsListItemText? extraLabel;
 
   /// Optional secondary text displayed below [label] / [extraLabel].
-  final String? description;
+  final OudsListItemText? description;
 
   /// Optional fully custom content displayed right after [description], inside
   /// the center text column, between [leading] and [trailing].
@@ -270,7 +274,10 @@ class OudsListItem extends StatefulWidget {
   final OudsListItemDecoration? decoration;
 
   /// Optional helper text displayed below the row (and below the divider).
-  final String? helperText;
+  ///
+  /// Supports strong emphasis, but always uses the default muted color.
+  /// Whole-field and annotated segment color overrides are not applied here.
+  final OudsListItemText? helperText;
 
   /// Whether [label] is rendered in bold. Defaults to `false`.
   final bool boldLabel;
@@ -308,10 +315,10 @@ class OudsListItem extends StatefulWidget {
   /// An optional skeleton that improves the perceived loading time by providing a visual cue of where the list item will appear once fully loaded.
   final OudsSkeleton? skeleton;
 
-  /// Creates an OUDS list item with a plain text [label].
+  /// Creates an OUDS list item with a text [label].
   const OudsListItem({
     super.key,
-    required String label,
+    required OudsListItemText label,
     this.size = OudsListItemSize.defaultSize,
     this.contentAlignment = OudsListItemDefaults.contentAlignment,
     this.overline,
@@ -339,7 +346,7 @@ class OudsListItem extends StatefulWidget {
        labelContent = null;
 
   /// Creates an OUDS list item with fully custom [labelContent] instead of a
-  /// plain text label.
+  /// standard text label.
   const OudsListItem.labelContent({
     super.key,
     required Widget Function(
@@ -423,7 +430,6 @@ class _OudsListItemState extends State<OudsListItem> {
   Widget build(BuildContext context) {
     final oudsTheme = OudsTheme.of(context);
     final tokens = oudsTheme.componentsTokens(context).controlListItem;
-    final typography = oudsTheme.typographyTokens;
     final colorScheme = oudsTheme.colorScheme(context);
 
     // Map background + onTap flags to the correct decoration type:
@@ -600,7 +606,6 @@ class _OudsListItemState extends State<OudsListItem> {
                                     child: _buildRow(
                                       context,
                                       state,
-                                      typography,
                                       contentColor,
                                       mutedColor,
                                       showPreviousIndicator,
@@ -616,7 +621,6 @@ class _OudsListItemState extends State<OudsListItem> {
                                         child: _buildRow(
                                           context,
                                           state,
-                                          typography,
                                           contentColor,
                                           mutedColor,
                                           showPreviousIndicator,
@@ -649,18 +653,18 @@ class _OudsListItemState extends State<OudsListItem> {
                   // Helper text below the divider — included in MergeSemantics
                   // for screen reader accessibility.
                   if (widget.helperText != null &&
-                      widget.helperText!.isNotEmpty)
+                      widget.helperText!._isNotEmpty)
                     Padding(
                       padding: EdgeInsets.only(
                         top: tokens.spacePaddingBlockTopHelperText,
                         left: _horizontalPadding(tokens),
                         right: _horizontalPadding(tokens),
                       ),
-                      child: Text(
+                      child: _buildText(
                         widget.helperText!,
-                        style: typography
-                            .typeLabelDefaultMedium(context)
-                            .copyWith(color: mutedColor),
+                        mutedColor,
+                        allowStrong: true,
+                        allowColor: false,
                       ),
                     ),
                 ],
@@ -690,7 +694,6 @@ class _OudsListItemState extends State<OudsListItem> {
   Widget _buildRow(
     BuildContext context,
     OudsListItemControlState state,
-    OudsTypography typography,
     Color contentColor,
     Color mutedColor,
     bool showPreviousIndicator,
@@ -733,13 +736,7 @@ class _OudsListItemState extends State<OudsListItem> {
 
         // Content column — expands to fill remaining space.
         Expanded(
-          child: _buildContent(
-            context,
-            typography,
-            contentColor,
-            mutedColor,
-            state,
-          ),
+          child: _buildContent(context, contentColor, mutedColor, state),
         ),
 
         // Trailing slot — only the Content variant is capped by
@@ -1304,7 +1301,6 @@ class _OudsListItemState extends State<OudsListItem> {
   /// so the first line of text aligns visually with the leading/trailing assets.
   Widget _buildContent(
     BuildContext context,
-    OudsTypography typography,
     Color contentColor,
     Color mutedColor,
     OudsListItemControlState state,
@@ -1329,41 +1325,139 @@ class _OudsListItemState extends State<OudsListItem> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (widget.overline != null)
-            Text(
+            _buildText(
               widget.overline!,
-              style: typography
-                  .typeLabelModerateSmall(context)
-                  .copyWith(color: mutedColor),
+              mutedColor,
+              size: OudsLabelTextSize.small,
+              weight: OudsTextWeight.moderate,
             ),
           if (widget.labelContent != null)
             widget.labelContent!(context, state)
           else
-            Text(
+            _buildText(
               widget.label!,
-              style:
-                  (widget.boldLabel
-                          ? typography.typeLabelStrongLarge(context)
-                          : typography.typeLabelDefaultLarge(context))
-                      .copyWith(color: contentColor),
+              contentColor,
+              size: OudsLabelTextSize.large,
+              weight: widget.boldLabel
+                  ? OudsTextWeight.strong
+                  : OudsTextWeight.defaultWeight,
             ),
-          if (widget.extraLabel != null && widget.extraLabel!.isNotEmpty)
-            Text(
+          if (widget.extraLabel != null && widget.extraLabel!._isNotEmpty)
+            _buildText(
               widget.extraLabel!,
-              style: typography
-                  .typeLabelStrongMedium(context)
-                  .copyWith(color: contentColor),
+              contentColor,
+              weight: OudsTextWeight.strong,
             ),
-          if (widget.description != null && widget.description!.isNotEmpty)
-            Text(
-              widget.description!,
-              style: typography
-                  .typeLabelDefaultMedium(context)
-                  .copyWith(color: mutedColor),
-            ),
+          if (widget.description != null && widget.description!._isNotEmpty)
+            _buildText(widget.description!, mutedColor, allowStrong: true),
           if (widget.belowTextContent != null)
             widget.belowTextContent!(context, state),
         ],
       ),
     );
   }
+
+  Widget _buildText(
+    OudsListItemText text,
+    Color color, {
+    OudsLabelTextSize size = OudsLabelTextSize.medium,
+    OudsTextWeight weight = OudsTextWeight.defaultWeight,
+    bool allowStrong = false,
+    bool allowColor = true,
+  }) {
+    final colorOverride = !widget.enable || !allowColor ? color : null;
+    return ListItemMarkdownScope(
+      allowStrong: allowStrong,
+      colorOverride: colorOverride,
+      child: OudsLabelText.rich(
+        text: text.text,
+        size: size,
+        weight: weight,
+        color: colorOverride ?? text.color ?? color,
+      ),
+    );
+  }
+}
+
+/// Text and its optional color for a list or card item text field.
+///
+/// Use the default constructor for a string, or [OudsListItemText.rich] for
+/// independently colored [OudsAnnotatedText] segments. Both constructors
+/// support the same Markdown and render through [OudsLabelText.rich].
+///
+/// The item controls the base Typography size and weight. When [color] is omitted,
+/// the field retains its default content or muted color.
+/// Only descriptions and helper text interpret `**strong**` Markdown, using
+/// Label/Medium/Strong. Label, extra label and overline display Markdown
+/// literally and keep their component-defined base styles.
+/// Other Markdown markers remain visible, without decorations or link actions;
+/// nested `**strong**` is still interpreted in descriptions and helper text.
+/// Use emphasis sparingly in descriptions and helper text; keep the message
+/// understandable without emphasis or color.
+/// Use color sparingly and consistently for semantic meaning, not decoration.
+///
+/// ```dart
+/// OudsListItemText(
+///   text: 'Payment problems',
+///   color: OudsTheme.of(context).colorScheme(context).contentStatusNegative,
+/// )
+/// ```
+
+@immutable
+class OudsListItemText {
+  /// Creates text supporting `**strong**` in descriptions and helper text only.
+  ///
+  /// ```dart
+  /// OudsListItemText(text: 'Activated on **24 July**')
+  /// ```
+  const OudsListItemText({required String text, this.color})
+    : _plainText = text,
+      _annotatedText = null;
+
+  /// Creates annotated text rendered by [OudsLabelText.rich].
+  ///
+  /// In enabled, colorable fields, segment colors take precedence over [color]
+  /// and are resolved from the
+  /// consuming Typography widget's context on each build. Keep each pair of
+  /// `**strong**` markers within one appended segment.
+  ///
+  /// ```dart
+  /// OudsListItemText.rich(
+  ///   text: buildOudsAnnotatedText((builder) {
+  ///     builder.append('Activated on ');
+  ///     builder.withColor(
+  ///       (context) => OudsTheme.of(context)
+  ///           .colorScheme(context).contentStatusPositive,
+  ///       () => builder.append('**24 July**'),
+  ///     );
+  ///   }),
+  /// )
+  /// ```
+  const OudsListItemText.rich({required OudsAnnotatedText text, this.color})
+    : _plainText = '',
+      _annotatedText = text;
+
+  final String _plainText;
+  final OudsAnnotatedText? _annotatedText;
+
+  bool get _isNotEmpty =>
+      _annotatedText?.plainText.isNotEmpty ?? _plainText.isNotEmpty;
+
+  /// Typography annotations, including optional strong Markdown and colors.
+  ///
+  /// Returns the supplied annotations for [OudsListItemText.rich], or wraps the
+  /// string in an uncolored segment for the default constructor. Markdown
+  /// markers are retained here and interpreted only when rendered.
+  OudsAnnotatedText get text =>
+      _annotatedText ??
+      buildOudsAnnotatedText((builder) => builder.append(_plainText));
+
+  /// Optional whole-text color; segment annotations may override it.
+  /// Neither field nor segment colors apply when used as helper text.
+  /// Disabled items use the disabled content color instead of any override.
+  ///
+  /// Use an appropriate OUDS content color token, not an arbitrary color.
+  /// Ensure sufficient contrast against the actual background in all supported
+  /// themes and states. Color must not be the only way to convey meaning.
+  final Color? color;
 }

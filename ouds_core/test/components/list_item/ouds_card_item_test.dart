@@ -34,11 +34,11 @@ void main() {
         await tester.pumpWidget(
           testableWidget(
             const OudsCardItem(
-              label: 'Plan 200 Go',
-              overline: 'Mobile',
-              extraLabel: 'Sans engagement',
-              description: '5G incluse',
-              helperText: 'Voir conditions',
+              label: OudsListItemText(text: 'Plan 200 Go'),
+              overline: OudsListItemText(text: 'Mobile'),
+              extraLabel: OudsListItemText(text: 'Sans engagement'),
+              description: OudsListItemText(text: '5G incluse'),
+              helperText: OudsListItemText(text: 'Voir conditions'),
               decoration: OudsListItemDecorationOutlined(),
               boldLabel: true,
               enable: false,
@@ -48,12 +48,12 @@ void main() {
 
         final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
 
-        expect(listItem.label, 'Plan 200 Go');
+        expect(listItem.label!.text.plainText, 'Plan 200 Go');
         expect(listItem.size, OudsListItemSize.defaultSize);
-        expect(listItem.overline, 'Mobile');
-        expect(listItem.extraLabel, 'Sans engagement');
-        expect(listItem.description, '5G incluse');
-        expect(listItem.helperText, 'Voir conditions');
+        expect(listItem.overline!.text.plainText, 'Mobile');
+        expect(listItem.extraLabel!.text.plainText, 'Sans engagement');
+        expect(listItem.description!.text.plainText, '5G incluse');
+        expect(listItem.helperText!.text.plainText, 'Voir conditions');
         expect(listItem.boldLabel, isTrue);
         expect(listItem.enable, isFalse);
         expect(listItem.card, isTrue);
@@ -68,7 +68,7 @@ void main() {
           testableWidget(
             OudsCardItem.labelContent(
               labelContent: (context, state) => const Text('Custom label'),
-              description: '5G incluse',
+              description: OudsListItemText(text: '5G incluse'),
             ),
           ),
         );
@@ -90,7 +90,7 @@ void main() {
 
       await tester.pumpWidget(
         testableWidget(
-          OudsCardItem(label: 'Voir le détail', onTap: () => tapCount++),
+          OudsCardItem(label: OudsListItemText(text: 'Voir le détail'), onTap: () => tapCount++),
         ),
       );
 
@@ -109,7 +109,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           const OudsCardItem(
-            label: 'Plan 200 Go',
+            label: OudsListItemText(text: 'Plan 200 Go'),
             trailing: OudsListItemTrailingText(
               OudsListItemTrailingLabelAndExtraLabel('99€', 'TTC'),
             ),
@@ -137,7 +137,7 @@ void main() {
         testableWidget(
           const OudsThemeConfigModel(
             cardItem: OudsCardItemConfig(rounded: false),
-            child: OudsCardItem(label: 'Plan 200 Go'),
+            child: OudsCardItem(label: OudsListItemText(text: 'Plan 200 Go')),
           ),
         ),
       );
@@ -154,7 +154,7 @@ void main() {
         testableWidget(
           const OudsThemeConfigModel(
             cardItem: OudsCardItemConfig(rounded: false),
-            child: OudsCardItem(label: 'Plan 200 Go'),
+            child: OudsCardItem(label: OudsListItemText(text: 'Plan 200 Go')),
           ),
         ),
       );
@@ -165,7 +165,7 @@ void main() {
         testableWidget(
           const OudsThemeConfigModel(
             cardItem: OudsCardItemConfig(rounded: true),
-            child: OudsCardItem(label: 'Plan 200 Go'),
+            child: OudsCardItem(label: OudsListItemText(text: 'Plan 200 Go')),
           ),
         ),
       );
@@ -179,8 +179,8 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsCardItem(
-            label: 'Main label',
-            description: 'Description',
+            label: OudsListItemText(text: 'Main label'),
+            description: OudsListItemText(text: 'Description'),
             belowTextContent: (context, state) =>
                 const Text('Below text content'),
           ),
@@ -197,7 +197,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsCardItem(
-            label: 'Main label',
+            label: OudsListItemText(text: 'Main label'),
             bottomContent: (context, state) =>
                 const Text('Bottom content', key: Key('bottom-content')),
           ),
@@ -218,8 +218,8 @@ void main() {
         await tester.pumpWidget(
           testableWidget(
             const OudsSmallCardItem(
-              label: 'Paiement',
-              description: 'Facture du mois',
+              label: OudsListItemText(text: 'Paiement'),
+              description: OudsListItemText(text: 'Facture du mois'),
               trailing: OudsSmallListItemTrailingText('99€'),
               decoration: OudsListItemDecorationBackgroundOnInteraction(),
             ),
@@ -228,9 +228,9 @@ void main() {
 
         final listItem = tester.widget<OudsListItem>(find.byType(OudsListItem));
 
-        expect(listItem.label, 'Paiement');
+        expect(listItem.label!.text.plainText, 'Paiement');
         expect(listItem.size, OudsListItemSize.smallSize);
-        expect(listItem.description, 'Facture du mois');
+        expect(listItem.description!.text.plainText, 'Facture du mois');
         expect(listItem.extraLabel, isNull);
         expect(listItem.card, isTrue);
         expect(
@@ -249,7 +249,7 @@ void main() {
 
       await tester.pumpWidget(
         testableWidget(
-          OudsSmallCardItem(label: 'Détails facture', onTap: () => tapCount++),
+          OudsSmallCardItem(label: OudsListItemText(text: 'Détails facture'), onTap: () => tapCount++),
         ),
       );
 
@@ -269,7 +269,7 @@ void main() {
         testableWidget(
           const OudsThemeConfigModel(
             cardItem: OudsCardItemConfig(rounded: false),
-            child: OudsSmallCardItem(label: 'Paiement'),
+            child: OudsSmallCardItem(label: OudsListItemText(text: 'Paiement')),
           ),
         ),
       );
@@ -280,7 +280,7 @@ void main() {
         testableWidget(
           const OudsThemeConfigModel(
             cardItem: OudsCardItemConfig(rounded: true),
-            child: OudsSmallCardItem(label: 'Paiement'),
+            child: OudsSmallCardItem(label: OudsListItemText(text: 'Paiement')),
           ),
         ),
       );
@@ -298,7 +298,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           const OudsCardItem(
-            label: 'Skeleton card',
+            label: OudsListItemText(text: 'Skeleton card'),
             skeleton: OudsSkeleton(animated: false),
           ),
         ),
@@ -318,7 +318,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsCardItem(
-            label: 'Async card',
+            label: OudsListItemText(text: 'Async card'),
             leading: OudsListItemLeadingImage.provider(
               provider: NeverCompletingImageProvider(),
               placeholder: const SizedBox(
@@ -341,7 +341,7 @@ void main() {
       await tester.pumpWidget(
         testableWidget(
           OudsSmallCardItem(
-            label: 'Async small card',
+            label: OudsListItemText(text: 'Async small card'),
             trailing: OudsSmallListItemTrailingImage.provider(
               provider: NeverCompletingImageProvider(),
               placeholder: const SizedBox(
