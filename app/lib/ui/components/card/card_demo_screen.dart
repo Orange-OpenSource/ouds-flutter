@@ -125,9 +125,7 @@ class _CardDemo extends StatelessWidget {
                     )
                   : null,
               skeleton: state.skeleton ? OudsSkeleton() : null,
-              child: _ActionCardContent(
-                showVisualAction: state.showVisualAction,
-              ),
+              child: _CardContent(),
             )
           : OudsCard(
               style: state.style,
@@ -135,27 +133,14 @@ class _CardDemo extends StatelessWidget {
               backgroundColor: backgroundColor,
               divider: state.divider,
               skeleton: state.skeleton ? OudsSkeleton() : null,
-              child: _ContentCardContent(
-                onPrimaryAction: state.enabled
-                    ? () => {}
-                    : null,
-                onSecondaryAction: state.enabled
-                    ? () => {}
-                    : null,
-              ),
+              child: _CardContent(),
             ),
     );
   }
 }
 
-class _ContentCardContent extends StatelessWidget {
-  const _ContentCardContent({
-    required this.onPrimaryAction,
-    required this.onSecondaryAction,
-  });
-
-  final VoidCallback? onPrimaryAction;
-  final VoidCallback? onSecondaryAction;
+class _CardContent extends StatelessWidget {
+  const _CardContent();
 
   @override
   Widget build(BuildContext context) {
@@ -165,70 +150,36 @@ class _ContentCardContent extends StatelessWidget {
       padding: EdgeInsetsDirectional.all(
         theme.spaceScheme(context).fixedMedium,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          OudsHeadingText(
-            text: context.l10n.app_components_card_Title_text,
-            size: OudsHeadingTextSize.xLarge,
-          ),
-          SizedBox(height: theme.spaceScheme(context).fixedMedium),
-          OudsBodyText(
-            text: context.l10n.app_components_card_planDescription_text,
-            size: OudsBodyTextSize.large,
-          ),
-          SizedBox(height: theme.spaceScheme(context).fixedMedium),
-          OudsListItem(label: context.l10n.app_components_card_checkDevice_text,
-            onTap: () {}),
-          OudsListItem(label: context.l10n.app_components_card_learnHow_button,
-            onTap: () {},),
-          SizedBox(height: theme.spaceScheme(context).fixedMedium),
-          OudsButton(
-            label: context.l10n.app_components_card_activate_button,
-            appearance: OudsButtonAppearance.strong,
-            onPressed: () {},
-          ),
-        ],
-      ),
+      child: _cardContent(context),
     );
   }
-}
 
-class _ActionCardContent extends StatelessWidget {
-  const _ActionCardContent({required this.showVisualAction});
-
-  final bool showVisualAction;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _cardContent(BuildContext context) {
     final theme = OudsTheme.of(context);
-    return Padding(
-      padding: EdgeInsetsDirectional.all(
-        theme.spaceScheme(context).paddingInlineMedium,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          OudsHeadingText(
-            text: context.l10n.app_components_card_Title_text,
-            size: OudsHeadingTextSize.medium,
-          ),
-          SizedBox(height: theme.spaceScheme(context).fixedMedium),
-          OudsBodyText(
-            text: context.l10n.app_components_card_planDescription_text,
-          ),
-          SizedBox(height: theme.spaceScheme(context).fixedMedium),
-          OudsListItem(label: context.l10n.app_components_card_checkDevice_text,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        OudsHeadingText(
+          text: context.l10n.app_components_card_Title_text,
+          size: OudsHeadingTextSize.xLarge,
+        ),
+        SizedBox(height: theme.spaceScheme(context).fixedMedium),
+        OudsBodyText(
+          text: context.l10n.app_components_card_planDescription_text,
+          size: OudsBodyTextSize.large,
+        ),
+        SizedBox(height: theme.spaceScheme(context).fixedMedium),
+        OudsListItem(label: context.l10n.app_components_card_checkDevice_text,
+            onTap: () {}),
+        OudsListItem(label: context.l10n.app_components_card_learnHow_button,
           onTap: () {},),
-
-          OudsButton(
-            label: context.l10n.app_components_card_open_button,
-            appearance: OudsButtonAppearance.strong,
-            onPressed: () {},
-          ),
-          ],
-      ),
+        SizedBox(height: theme.spaceScheme(context).fixedMedium),
+        OudsButton(
+          label: context.l10n.app_components_card_activate_button,
+          appearance: OudsButtonAppearance.strong,
+          onPressed: () {},
+        ),
+      ],
     );
   }
 }
@@ -306,11 +257,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 onChanged: state.updateProgress,
               ),
           ],
-          CustomizableSwitch(
-            title: context.l10n.app_components_card_visualAction_tech,
-            value: state.showVisualAction,
-            onChanged: state.updateVisualAction,
-          ),
         ],
       ],
     );

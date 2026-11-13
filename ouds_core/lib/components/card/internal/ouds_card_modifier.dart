@@ -14,6 +14,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/card/ouds_card_style.dart';
+import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Handles card surface colors.
@@ -76,12 +77,31 @@ class OudsCardModifier {
     }
     switch (style) {
       case OudsCardStyle.filled:
-      case OudsCardStyle.elevated:
         return enabled
             ? colorTheme.actionSupportEnabled
             : colorTheme.actionSupportDisabled;
       case OudsCardStyle.outlined:
         return enabled ? Colors.transparent : colorTheme.actionDisabled;
+        case OudsCardStyle.elevated:
+          return colorTheme.surfacePrimary;
+    }
+  }
+
+  /// Static method to get the border radius for an action card in focus state based on the border parameter.
+  /// Returns a [BorderRadius] object with the appropriate radius value.
+  static BorderRadius getBorderRadiusFocus(BuildContext context) {
+    //todo will changed with the tokens of card when available 2.8
+    final button = OudsTheme.of(context).componentsTokens(context).button;
+    final buttonRounded =
+        OudsThemeConfigModel.of(context)?.card?.rounded ?? false;
+    switch (buttonRounded) {
+      case true:
+        return BorderRadius.circular(
+          button.borderRadiusRounded +
+              (OudsTheme.of(context).borderTokens.widthFocus / 1.2),
+        );
+      case false:
+        return BorderRadius.circular(button.borderRadiusDefault);
     }
   }
 }

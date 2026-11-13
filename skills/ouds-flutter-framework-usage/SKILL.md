@@ -556,9 +556,10 @@ OudsActionCard(
 
 Provide a concise, localized `semanticsLabel`, not the complete slot text.
 `OudsCard` is a non-interactive group; its children retain independent
-accessibility and keyboard focus. Disabling it blocks interaction in the slot.
-Pass disabled state to child controls explicitly (for example, null callbacks)
-for appropriate visuals and announcements.
+accessibility and keyboard focus. Disabling it blocks interaction in the slot, and OUDS children (typography,
+button, link, list items, checkbox/radio/switch and their items, chips, tags,
+text/password/phone inputs) automatically render and behave as disabled.
+Non-OUDS children must receive their disabled state explicitly.
 `OudsActionCard` exposes one accessible action and prevents descendant focus and
 activation. Any nested visual action must represent the card's primary action;
 its hover/focus/press styling is not automatically synchronized with the card.

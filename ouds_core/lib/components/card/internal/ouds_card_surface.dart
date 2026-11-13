@@ -11,7 +11,10 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/card/internal/ouds_card_modifier.dart';
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
+import 'package:ouds_core/components/card/ouds_action_card.dart';
 import 'package:ouds_core/components/card/ouds_card_style.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/progress_indicator/internal/ouds_progress_indicator_utils.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
@@ -32,8 +35,7 @@ class OudsCardSurface extends StatefulWidget {
     this.enabled = true,
     this.backgroundColor = true,
     this.divider = false,
-    this.loading = false,
-    this.progress,
+    this.loader,
     this.skeleton,
   });
 
@@ -45,8 +47,7 @@ class OudsCardSurface extends StatefulWidget {
   final bool enabled;
   final bool backgroundColor;
   final bool divider;
-  final bool loading;
-  final double? progress;
+  final OudsCardLoader? loader;
   final OudsSkeleton? skeleton;
 
   @override
@@ -67,15 +68,19 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
     final theme = OudsTheme.of(context);
     final enabled =
         widget.enabled && (!widget.actionable || widget.onPressed != null);
-    final loading = enabled && widget.loading && widget.skeleton == null;
+    final loader = widget.loader;
+    final progress = loader?.progress;
+    final loading = enabled && loader != null && widget.skeleton == null;
     final interactive = enabled && !loading && widget.skeleton == null;
+    // A nested card cannot re-enable the content of a disabled parent.
+    final contentEnabled = enabled && OudsCardScope.enabledOf(context);
     _states.update(WidgetState.disabled, !interactive);
+    final rounded = OudsThemeConfigModel.of(context)?.card?.rounded ?? false;
+    final radius = rounded
+        ? theme.borderTokens.radiusLarge
+        : theme.borderTokens.radiusNone;
     final shape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(
-        (OudsThemeConfigModel.of(context)?.card?.rounded ?? false)
-            ? theme.borderTokens.radiusLarge
-            : theme.borderTokens.radiusNone,
-      ),
+      borderRadius: BorderRadius.circular(radius),
     );
 
     final cardModifier = OudsCardModifier(context);
@@ -119,6 +124,10 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                     width: theme.borderTokens.widthThin,
                   ),
           );
+
+          final cardBorderRadius = OudsCardModifier.getBorderRadiusFocus(
+            context,
+          );
           final content = ExcludeFocus(
             excluding: widget.actionable || !interactive,
             child: AbsorbPointer(
@@ -130,7 +139,10 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                   maintainSize: true,
                   maintainAnimation: true,
                   maintainState: true,
-                  child: widget.child,
+                  child: OudsCardScope(
+                    enabled: contentEnabled,
+                    child: widget.child,
+                  ),
                 ),
               ),
             ),
@@ -138,6 +150,7 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
 
           final body = Stack(
             alignment: AlignmentDirectional.centerStart,
+            clipBehavior: Clip.none,
             children: [
               content,
               if (overlayColor != null)
@@ -161,10 +174,10 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                   child: Center(
                     child: ExcludeSemantics(
                       child: OudsCircularProgressIndicator(
-                        progressType: widget.progress == null
+                        progressType: progress == null
                             ? OudsProgressIndicatorType.indeterminate
                             : OudsProgressIndicatorType.determinate,
-                        value: widget.progress?.clamp(0, 1).toDouble(),
+                        value: progress?.clamp(0, 1).toDouble(),
                         status: const Accent(),
                         track: false,
                       ),
@@ -173,14 +186,29 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                 ),
               if (focused)
                 Positioned.fill(
+                  left: -theme.borderTokens.widthFocus,
+                  right: -theme.borderTokens.widthFocus,
+                  top: -theme.borderTokens.widthFocus,
+                  bottom: -theme.borderTokens.widthFocus,
                   child: IgnorePointer(
-                    child: DecoratedBox(
-                      decoration: ShapeDecoration(
-                        shape: shape.copyWith(
-                          side: BorderSide(
-                            color: colors.actionFocus,
-                            width: theme.borderTokens.widthFocus,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: OudsBorder().borderAll(
+                          color: theme.colorScheme(context).borderFocus,
+                          width: theme.borderTokens.widthFocus / 2,
+                        ),
+                        // The border radius should match the card's radius.
+                        borderRadius: cardBorderRadius,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: OudsBorder().borderAll(
+                            color: OudsTheme.of(
+                              context,
+                            ).colorScheme(context).borderFocusInset,
+                            width: theme.borderTokens.widthFocusInset,
                           ),
+                          borderRadius: cardBorderRadius,
                         ),
                       ),
                     ),
@@ -199,10 +227,10 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                 ? OudsProgressIndicatorUtils.buildSemanticsLabel(
                     OudsLocalizations.of(context)?.core_common_loading_a11y,
                     OudsProgressIndicatorUtils.buildSemanticValueLabel(
-                      widget.progress == null
+                      progress == null
                           ? OudsProgressIndicatorType.indeterminate
                           : OudsProgressIndicatorType.determinate,
-                      widget.progress,
+                      progress,
                       OudsLocalizations.of(context),
                     ),
                   )
@@ -215,11 +243,19 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                 widget.backgroundColor,
                 enabled,
               ),
+              shadowColor: theme.colorScheme(context).actionEnabled,//todo change to ouds/elevation/color/raised
               surfaceTintColor: Colors.transparent,
               elevation: widget.style == OudsCardStyle.elevated
                   ? theme.elevationTokens.raised
                   : theme.elevationTokens.none,
-              shape: surfaceShape,
+              shape: focused
+                  ? shape.copyWith(
+                      side: BorderSide(
+                        color: theme.colorScheme(context).actionFocus,
+                        width: theme.borderTokens.widthThin,
+                      ),
+                    )
+                  : surfaceShape,
               child: widget.actionable
                   ? InkWell(
                       onTap: interactive ? widget.onPressed : null,
@@ -231,6 +267,7 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                         Colors.transparent,
                       ),
                       splashFactory: NoSplash.splashFactory,
+                      splashColor: Colors.transparent,
                       child: body,
                     )
                   : body,

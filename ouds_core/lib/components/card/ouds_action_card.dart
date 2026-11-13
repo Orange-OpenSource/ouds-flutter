@@ -41,25 +41,30 @@ class OudsCardLoader {
   final double? progress;
 }
 
-/// A card whose entire surface represents a single action.
 ///
-/// Reference design version: 1.0.0.
+/// [OUDS Action Container Card design guidelines](https://r.orange.fr/r/S-ouds-doc-action-card)
 ///
-/// [semanticsLabel] is the card's sole accessible name. Provide a concise,
-/// localized description of its action rather than repeating the entire slot.
-/// Descendants are presentation only: they cannot receive pointer events,
-/// keyboard focus or accessibility actions. A visual button or link in [child]
-/// must reinforce the same action, not introduce another destination.
-/// Use `OudsCard` for multiple independently interactive elements.
+/// **Reference design version: 1.0.0.**
 ///
-/// Hover, keyboard focus and press feedback covers the whole surface. Nested
-/// visual controls do not automatically share these interaction states; validate
-/// their presentation with the platform/design team when using such content.
+/// An action container card is a surface-like UI element that groups related information
+/// within an interactive surface and allows a user to perform a single primary action or
+/// navigate to a destination.
 ///
 /// A null [onPressed] or false [enabled] disables the card. A [loader] replaces
 /// content without changing layout and temporarily prevents activation.
 /// Corner rounding is shared with content cards through
 /// `OudsThemeConfigModel(card: OudsCardConfig(rounded: true), child: ...)`.
+///
+/// The following parameters are available:
+/// - [child]: Presentation-only content with caller-defined layout and padding.
+/// - [onPressed]: The primary action; null disables the card.
+/// - [style]: Style of the card among [OudsCardStyle] values, filled by default.
+/// - [enabled]: Whether the primary action is available.
+/// - [backgroundColor]: The Background controls the visibility of the predefined layer within the Card component.
+/// - [divider]: Whether filled cards have a bottom divider. Ignored for other styles.
+/// - [loader]: Replaces the content while an operation is in progress.
+/// - [skeleton]: A placeholder displayed instead of the card while content is loading.
+/// - [semanticsLabel]: A concise, localized accessible name describing the card's action.
 ///
 /// ```dart
 /// OudsActionCard(
@@ -121,8 +126,7 @@ class OudsActionCard extends StatelessWidget {
     enabled: enabled,
     backgroundColor: backgroundColor,
     divider: divider,
-    loading: loader != null,
-    progress: loader?.progress,
+    loader: loader,
     skeleton: skeleton,
     child: child,
   );

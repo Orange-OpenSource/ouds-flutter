@@ -18,6 +18,8 @@ import 'package:ouds_core/components/card/ouds_card.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/switch/ouds_switch_item.dart';
+import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/component/ouds_card_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
@@ -159,6 +161,78 @@ void main() {
       handle.dispose();
     });
 
+    testWidgets('disabled card renders its OUDS content as disabled', (
+      tester,
+    ) async {
+      Widget card({required bool enabled, required Widget child}) =>
+          _host(OudsCard(enabled: enabled, child: child));
+      Color? textColor(WidgetTester tester, String text) {
+        Color? found;
+        tester
+            .widget<RichText>(find.text(text, findRichText: true))
+            .text
+            .visitChildren((span) {
+              if (span is TextSpan && span.text == text) {
+                found = span.style?.color;
+              }
+              return true;
+            });
+        return found;
+      }
+
+      Widget content() => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const OudsBodyText(text: 'Plan'),
+          OudsButton(
+            label: 'View plan',
+            appearance: OudsButtonAppearance.strong,
+            onPressed: () {},
+          ),
+        ],
+      );
+      await tester.pumpWidget(card(enabled: true, child: content()));
+      final context = tester.element(find.byType(OudsCard));
+      final colors = OudsTheme.of(context).colorScheme(context);
+      expect(textColor(tester, 'Plan'), colors.contentDefault);
+
+      await tester.pumpWidget(card(enabled: false, child: content()));
+      await tester.pumpAndSettle();
+      expect(textColor(tester, 'Plan'), colors.contentDisabled);
+
+      await tester.pumpWidget(
+        card(
+          enabled: false,
+          child: const OudsCard(child: OudsBodyText(text: 'Nested')),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(textColor(tester, 'Nested'), colors.contentDisabled);
+    });
+
+    testWidgets('disabled card disables control items', (tester) async {
+      var changes = 0;
+      Widget card(bool enabled) => _host(
+        OudsCard(
+          enabled: enabled,
+          child: OudsSwitchButtonItem(
+            value: false,
+            title: 'Notifications',
+            onChanged: (_) => changes++,
+          ),
+        ),
+      );
+      await tester.pumpWidget(card(false));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Notifications'), warnIfMissed: false);
+      expect(changes, 0);
+      await tester.pumpWidget(card(true));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Notifications'));
+      await tester.pumpAndSettle();
+      expect(changes, 1);
+    });
+
     testWidgets('disabled card blocks OUDS actions and restores on re-enable', (
       tester,
     ) async {
@@ -224,9 +298,7 @@ void main() {
     testWidgets('never shows hover or press feedback', (tester) async {
       await tester.pumpWidget(
         _host(
-          const OudsCard(
-            child: SizedBox(height: 100, child: Text('Plan')),
-          ),
+          const OudsCard(child: SizedBox(height: 100, child: Text('Plan'))),
         ),
       );
       final mouse = await tester.createGesture(kind: PointerDeviceKind.mouse);
@@ -378,6 +450,23 @@ void main() {
       await tester.sendKeyEvent(LogicalKeyboardKey.tab);
       await tester.pump();
       expect(overlay(colors.actionSupportFocus), findsOneWidget);
+      Finder focusBorder(Color color) => find.byWidgetPredicate((widget) {
+        if (widget is! DecoratedBox) {
+          return false;
+        }
+        final decoration = widget.decoration;
+        if (decoration is! ShapeDecoration) {
+          return false;
+        }
+        final shape = decoration.shape;
+        return shape is RoundedRectangleBorder && shape.side.color == color;
+      });
+      expect(focusBorder(colors.borderFocus), findsOneWidget);
+      expect(focusBorder(colors.borderFocusInset), findsOneWidget);
+      expect(
+        tester.getSize(focusBorder(colors.borderFocus)).width,
+        greaterThan(tester.getSize(find.byType(OudsActionCard)).width),
+      );
     });
 
     testWidgets('loading retains size, announces progress and blocks actions', (
@@ -503,9 +592,7 @@ void main() {
                 onPressed: () {},
                 child: const SizedBox(height: 100),
               )
-            : const OudsCard(
-                child: SizedBox(height: 100),
-              );
+            : const OudsCard(child: SizedBox(height: 100));
         BorderRadiusGeometry radius() =>
             (_surface(tester).shape! as RoundedRectangleBorder).borderRadius;
         await tester.pumpWidget(_host(card));

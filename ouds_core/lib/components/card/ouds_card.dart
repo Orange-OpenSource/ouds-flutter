@@ -14,24 +14,25 @@ import 'package:ouds_core/components/card/internal/ouds_card_surface.dart';
 import 'package:ouds_core/components/card/ouds_card_style.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
-export 'package:ouds_core/components/card/ouds_card_style.dart';
-
-/// A non-interactive content container. Reference design version: 1.0.0.
 ///
-/// The card never becomes a button, takes keyboard focus, or reacts to hover,
-/// focus and press. Interactive children retain their individual actions,
-/// accessible names and focus targets. Use `OudsActionCard` instead when the
-/// entire surface represents one action.
+/// [OUDS Content Card Container design guidelines](https://r.orange.fr/r/S-ouds-doc-content-card)
 ///
-/// [semanticsLabel] must be a short, localized name describing the purpose of
-/// the group, not a concatenation of the slot's text. Content remains separately
-/// accessible. The slot controls its own padding and layout.
-/// Corner rounding is shared with action cards through
+/// **Reference design version : 1.0.0**
+///
+/// A Content Container Card groups related information within a single surface. The card itself is not interactive, but it can contain independently
+/// interactive elements, such as buttons and links. Its content is customizable through a slot, allowing designers to adapt the internal layout without
+/// changing the behavior of the container.
+///
+/// Corner rounding is shared with content cards through
 /// `OudsThemeConfigModel(card: OudsCardConfig(rounded: true), child: ...)`.
 ///
-/// Setting [enabled] to false blocks pointer, keyboard and accessibility
-/// activation in the slot. Pass disabled state to the children explicitly
-/// (for example, null callbacks) for appropriate visuals and announcements.
+/// The following parameters are available:
+/// - [style]: Style of the card among [OudsCardStyle] values, filled by default.
+/// - [enabled]: Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state..
+/// - [backgroundColor]: Background for filled and elevated cards; transparent when omitted.
+/// - [divider]: Whether to draw a bottom divider. Only applies to filled cards.
+/// - [skeleton]: A placeholder displayed instead of the card while content is loading.
+/// - [child]: Content with independently accessible actions and caller-defined padding.
 ///
 /// ```dart
 /// OudsCard(
@@ -47,6 +48,7 @@ export 'package:ouds_core/components/card/ouds_card_style.dart';
 ///   ),
 /// )
 /// ```
+/// {@category Content card}
 class OudsCard extends StatelessWidget {
   /// Creates a content card with a meaningful, localized [semanticsLabel].
   const OudsCard({

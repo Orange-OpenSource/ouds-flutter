@@ -13,6 +13,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/card/ouds_card.dart';
+import 'package:ouds_core/components/card/ouds_card_style.dart';
 
 class _CardCustomization extends InheritedWidget {
   const _CardCustomization({required super.child, required this.data});
@@ -75,10 +76,6 @@ class CardCustomizationState extends State<CardCustomization> {
 
   void updateDeterminate(bool value) {
     setState(() => determinate = value);
-  }
-
-  void updateVisualAction(bool value) {
-    setState(() => showVisualAction = value);
   }
 
   void updateProgress(double value) {

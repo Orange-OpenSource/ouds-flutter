@@ -15,6 +15,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/card/ouds_card.dart';
+import 'package:ouds_core/components/card/ouds_card_style.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/card/card_customization.dart';
 
