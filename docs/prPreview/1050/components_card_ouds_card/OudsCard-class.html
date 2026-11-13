@@ -54,19 +54,22 @@
 
     
 <section class="desc markdown">
-  <p>A non-interactive content container. Reference design version: 1.0.0.</p>
-<p>The card never becomes a button, takes keyboard focus, or reacts to hover,
-focus and press. Interactive children retain their individual actions,
-accessible names and focus targets. Use <code>OudsActionCard</code> instead when the
-entire surface represents one action.</p>
-<p><a href="../components_card_ouds_card/OudsCard/semanticsLabel.html">semanticsLabel</a> must be a short, localized name describing the purpose of
-the group, not a concatenation of the slot's text. Content remains separately
-accessible. The slot controls its own padding and layout.
-Corner rounding is shared with action cards through
+  <p><a href="https://r.orange.fr/r/S-ouds-doc-content-card">OUDS Content Card Container design guidelines</a></p>
+<p><strong>Reference design version : 1.0.0</strong></p>
+<p>A Content Container Card groups related information within a single surface. The card itself is not interactive, but it can contain independently
+interactive elements, such as buttons and links. Its content is customizable through a slot, allowing designers to adapt the internal layout without
+changing the behavior of the container.</p>
+<p>Corner rounding is shared with content cards through
 <code>OudsThemeConfigModel(card: OudsCardConfig(rounded: true), child: ...)</code>.</p>
-<p>Setting <a href="../components_card_ouds_card/OudsCard/enabled.html">enabled</a> to false blocks pointer, keyboard and accessibility
-activation in the slot. Pass disabled state to the children explicitly
-(for example, null callbacks) for appropriate visuals and announcements.</p>
+<p>The following parameters are available:</p>
+<ul>
+<li><a href="../components_card_ouds_card/OudsCard/style.html">style</a>: Style of the card among <a href="../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a> values, filled by default.</li>
+<li><a href="../components_card_ouds_card/OudsCard/enabled.html">enabled</a>: Controls the enabled state of the card. When <code>false</code>, the OUDS components inside will be in disabled state..</li>
+<li><a href="../components_card_ouds_card/OudsCard/backgroundColor.html">backgroundColor</a>: Background for filled and elevated cards; transparent when omitted.</li>
+<li><a href="../components_card_ouds_card/OudsCard/divider.html">divider</a>: Whether to draw a bottom divider. Only applies to filled cards.</li>
+<li><a href="../components_card_ouds_card/OudsCard/skeleton.html">skeleton</a>: A placeholder displayed instead of the card while content is loading.</li>
+<li><a href="../components_card_ouds_card/OudsCard/child.html">child</a>: Content with independently accessible actions and caller-defined padding.</li>
+</ul>
 <pre class="language-dart"><code class="language-dart">OudsCard(
   semanticsLabel: 'Manage your mobile plan',
   style: OudsCardStyle.outlined,
@@ -113,7 +116,7 @@ activation in the slot. Pass disabled state to the children explicitly
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsCard.new" class="callable">
-          <span class="name"><a href="../components_card_ouds_card/OudsCard/OudsCard.html">OudsCard</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-semanticsLabel"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">semanticsLabel</span>, </span><span class="parameter" id="param-child"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">child</span>, </span><span class="parameter" id="param-style"><span class="type-annotation"><a href="../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a></span> <span class="parameter-name">style</span> = <span class="default-value">OudsCardStyle.filled</span>, </span><span class="parameter" id="param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-backgroundColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">backgroundColor</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-divider"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">divider</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span></span>})</span>
+          <span class="name"><a href="../components_card_ouds_card/OudsCard/OudsCard.html">OudsCard</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-child"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">child</span>, </span><span class="parameter" id="param-style"><span class="type-annotation"><a href="../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a></span> <span class="parameter-name">style</span> = <span class="default-value">OudsCardStyle.filled</span>, </span><span class="parameter" id="param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-backgroundColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">backgroundColor</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-divider"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">divider</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span></span>})</span>
         </dt>
         <dd>
           Creates a content card with a meaningful, localized <code>semanticsLabel</code>.
@@ -208,18 +211,6 @@ activation in the slot. Pass disabled state to the children explicitly
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
-
-</dd>
-
-        <dt id="semanticsLabel" class="property">
-  <span class="name"><a href="../components_card_ouds_card/OudsCard/semanticsLabel.html">semanticsLabel</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
-  
-
-</dt>
-<dd>
-  A concise, localized accessible name for the content group.
-  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 

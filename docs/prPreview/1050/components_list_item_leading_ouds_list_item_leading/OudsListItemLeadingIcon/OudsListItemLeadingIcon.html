@@ -61,6 +61,7 @@
     
 <section class="desc markdown">
   <p>Creates a leading icon configuration.</p>
+<p>Throws an <a href="https://api.flutter.dev/flutter/dart-core/AssertionError-class.html">AssertionError</a> if <code>iconStatus</code> is <a href="../../components_common_ouds_icon_status/Accent-class.html">Accent</a>.</p>
 </section>
 
 
@@ -70,7 +71,11 @@
   <pre class="language-dart"><code class="language-dart">const OudsListItemLeadingIcon(
   this.iconStatus, {
   this.size = OudsListItemIconSize.medium,
-});</code></pre>
+}) : assert(
+       iconStatus is! Accent,
+       &#39;Accent is not supported in list item icon slots. &#39;
+       &#39;Use Neutral with a custom icon instead.&#39;,
+     );</code></pre>
 </section>
 
 

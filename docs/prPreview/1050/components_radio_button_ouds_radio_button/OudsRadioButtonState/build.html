@@ -187,7 +187,7 @@ Widget build(BuildContext context) {
   final isHoveredInherited = interactionModelHover?.state.isHovered ?? false;
   final isPressedInherited =
       interactionModelPressed?.state.isPressed ?? false;
-  final isEnabled = widget.onChanged != null;
+  final isEnabled = _onChanged != null;
   final bool isReadOnly = widget.readOnly;
 
   final radioButtonStateDeterminer = OudsControlStateDeterminer(
@@ -210,7 +210,7 @@ Widget build(BuildContext context) {
     context,
   ).componentsTokens(context).controlListItem;
   final l10n = OudsLocalizations.of(context);
-  final isItemEnabled = widget.onChanged != null &amp;&amp; !(widget.readOnly);
+  final isItemEnabled = _onChanged != null &amp;&amp; !(widget.readOnly);
 
   final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
 
@@ -243,13 +243,13 @@ Widget build(BuildContext context) {
       child: SizedBox(
         width: radioButton.sizeMinWidth,
         child: InkWell(
-          onTap: (!isReadOnly &amp;&amp; widget.onChanged != null)
+          onTap: (!isReadOnly &amp;&amp; _onChanged != null)
               ? () {
                   _isPressed = true;
                   &#47;&#47; Added to improve visual rendering fluidity by allowing Flutter
                   &#47;&#47; to complete the current frame before executing the onChanged callback.
                   SchedulerBinding.instance.addPostFrameCallback((_) {
-                    widget.onChanged!(widget.value);
+                    _onChanged!(widget.value);
                     _isPressed = false;
                   });
                 }

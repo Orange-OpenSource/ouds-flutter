@@ -110,8 +110,12 @@ and</li>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
   final style = textStyle(context);
-  final definedColor =
-      color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
+  final cardEnabled = OudsCardScope.enabledOf(context);
+  final colorScheme = OudsTheme.of(context).colorScheme(context);
+  &#47;&#47; A disabled card always dims its text, even when a color is provided.
+  final definedColor = !cardEnabled
+      ? colorScheme.contentDisabled
+      : color ?? colorScheme.contentDefault;
   final annotatedText = _annotatedText;
 
   final List&lt;InlineSpan&gt; children;
@@ -119,7 +123,9 @@ Widget build(BuildContext context) {
   &#47;&#47; and links are always supported, whether the text is plain or annotated with colors.
   if (annotatedText != null) {
     children = annotatedText.resolveSpans(context).map((span) {
-      final segmentColor = span.style?.color ?? definedColor;
+      final segmentColor = cardEnabled
+          ? span.style?.color ?? definedColor
+          : definedColor;
       return MarkdownSpanBuilder.buildRichText(
         context,
         span.toPlainText(),

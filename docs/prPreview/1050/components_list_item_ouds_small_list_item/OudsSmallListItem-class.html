@@ -55,14 +55,15 @@
     
 <section class="desc markdown">
   <p><a href="https://r.orange.fr/r/S-ouds-doc-list-item">OUDS List Item Design Guidelines</a></p>
-<p><strong>Reference design version : 1.0.0</strong></p>
+<p><strong>Reference design version : 0.3.0</strong></p>
 <p>A compact variant of <a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a> locked to <a href="../components_list_item_ouds_list_item/OudsListItemSize.html">OudsListItemSize.smallSize</a>.</p>
 <p>Compared to <a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a>, this variant:</p>
 <ul>
 <li>Does <strong>not</strong> support <code>overline</code> or <code>extraLabel</code> — only <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/label.html">label</a> and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/description.html">description</a>.</li>
 <li>Restricts leading content to <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingIcon-class.html">OudsSmallListItemLeadingIcon</a> and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingImage-class.html">OudsSmallListItemLeadingImage</a>.</li>
-<li>Restricts trailing content to <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingIcon-class.html">OudsSmallListItemTrailingIcon</a>, <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage-class.html">OudsSmallListItemTrailingImage</a>
-and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingText-class.html">OudsSmallListItemTrailingText</a>.</li>
+<li>Restricts trailing content to <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingIcon-class.html">OudsSmallListItemTrailingIcon</a>, <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage-class.html">OudsSmallListItemTrailingImage</a>,
+<a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingText-class.html">OudsSmallListItemTrailingText</a>, <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingBadge-class.html">OudsSmallListItemTrailingBadge</a> and
+<a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingTag-class.html">OudsSmallListItemTrailingTag</a>.</li>
 <li>Renders all icons and images at <code>OudsListItemAssetSize.small</code>.</li>
 </ul>
 <hr>
@@ -91,7 +92,8 @@ to the entire navigation target.</li>
 <li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/description.html">description</a>: Optional secondary text displayed below <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/label.html">label</a>.</li>
 <li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/leading.html">leading</a>: Optional leading content. Accepts <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingIcon-class.html">OudsSmallListItemLeadingIcon</a> or <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingImage-class.html">OudsSmallListItemLeadingImage</a>.</li>
 <li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/trailing.html">trailing</a>: Optional trailing content. Accepts <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingIcon-class.html">OudsSmallListItemTrailingIcon</a>,
-<a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage-class.html">OudsSmallListItemTrailingImage</a> or <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingText-class.html">OudsSmallListItemTrailingText</a>.</li>
+<a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage-class.html">OudsSmallListItemTrailingImage</a>, <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingText-class.html">OudsSmallListItemTrailingText</a>,
+<a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingBadge-class.html">OudsSmallListItemTrailingBadge</a> or <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingTag-class.html">OudsSmallListItemTrailingTag</a>.</li>
 <li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/divider.html">divider</a>: Whether a horizontal divider is drawn below the item. Defaults to <code>true</code>.</li>
 <li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/background.html">background</a>: Whether the item has a persistent background color. Defaults to <code>false</code>.
 This mirrors the constructor default and is delegated to <a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a>.</li>
@@ -104,6 +106,8 @@ When non-null, it takes precedence over <a href="../components_list_item_ouds_sm
 a <strong>navigation item</strong> and displays an indicator.</li>
 <li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/indicator.html">indicator</a>: Navigation indicator. Defaults to <a href="../components_list_item_ouds_list_item/OudsListItemDefaults/indicator-constant.html">OudsListItemDefaults.indicator</a>.</li>
 <li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/card.html">card</a>: Whether the item should use the card decoration and rounded shape. Defaults to <code>false</code>.</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/edgeToEdge.html">edgeToEdge</a>: Whether the item spans the full width using the grid margin
+instead of the component inline padding. Defaults to <code>true</code>.</li>
 </ul>
 <h3 id="usage-example">Usage Example</h3>
 <pre class="language-dart"><code class="language-dart">// Static compact item with a leading icon
@@ -123,6 +127,17 @@ OudsSmallListItem(
 OudsSmallListItem(
   label: 'Item with price',
   trailing: OudsSmallListItemTrailingText('99€'),
+);
+
+// Compact item with an image loaded from the network and a custom
+// placeholder shown while loading (and if loading fails)
+OudsSmallListItem(
+  label: 'Product',
+  leading: OudsSmallListItemLeadingImage.provider(
+    provider: NetworkImage('https://example.com/photo.jpg'),
+    semanticsLabel: 'Product photo',
+    placeholder: Image.asset('assets/placeholder.jpg'),
+  ),
 );
 </code></pre>
 </section>

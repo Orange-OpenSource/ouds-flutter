@@ -54,21 +54,27 @@
 
     
 <section class="desc markdown">
-  <p>A card whose entire surface represents a single action.</p>
-<p>Reference design version: 1.0.0.</p>
-<p><a href="../components_card_ouds_action_card/OudsActionCard/semanticsLabel.html">semanticsLabel</a> is the card's sole accessible name. Provide a concise,
-localized description of its action rather than repeating the entire slot.
-Descendants are presentation only: they cannot receive pointer events,
-keyboard focus or accessibility actions. A visual button or link in <a href="../components_card_ouds_action_card/OudsActionCard/child.html">child</a>
-must reinforce the same action, not introduce another destination.
-Use <code>OudsCard</code> for multiple independently interactive elements.</p>
-<p>Hover, keyboard focus and press feedback covers the whole surface. Nested
-visual controls do not automatically share these interaction states; validate
-their presentation with the platform/design team when using such content.</p>
+  <p><a href="https://r.orange.fr/r/S-ouds-doc-action-card">OUDS Action Container Card design guidelines</a></p>
+<p><strong>Reference design version: 1.0.0.</strong></p>
+<p>An action container card is a surface-like UI element that groups related information
+within an interactive surface and allows a user to perform a single primary action or
+navigate to a destination.</p>
 <p>A null <a href="../components_card_ouds_action_card/OudsActionCard/onPressed.html">onPressed</a> or false <a href="../components_card_ouds_action_card/OudsActionCard/enabled.html">enabled</a> disables the card. A <a href="../components_card_ouds_action_card/OudsActionCard/loader.html">loader</a> replaces
 content without changing layout and temporarily prevents activation.
 Corner rounding is shared with content cards through
 <code>OudsThemeConfigModel(card: OudsCardConfig(rounded: true), child: ...)</code>.</p>
+<p>The following parameters are available:</p>
+<ul>
+<li><a href="../components_card_ouds_action_card/OudsActionCard/child.html">child</a>: Presentation-only content with caller-defined layout and padding.</li>
+<li><a href="../components_card_ouds_action_card/OudsActionCard/onPressed.html">onPressed</a>: The primary action; null disables the card.</li>
+<li><a href="../components_card_ouds_action_card/OudsActionCard/style.html">style</a>: Style of the card among <a href="../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a> values, filled by default.</li>
+<li><a href="../components_card_ouds_action_card/OudsActionCard/enabled.html">enabled</a>: Whether the primary action is available.</li>
+<li><a href="../components_card_ouds_action_card/OudsActionCard/backgroundColor.html">backgroundColor</a>: The Background controls the visibility of the predefined layer within the Card component.</li>
+<li><a href="../components_card_ouds_action_card/OudsActionCard/divider.html">divider</a>: Whether filled cards have a bottom divider. Ignored for other styles.</li>
+<li><a href="../components_card_ouds_action_card/OudsActionCard/loader.html">loader</a>: Replaces the content while an operation is in progress.</li>
+<li><a href="../components_card_ouds_action_card/OudsActionCard/skeleton.html">skeleton</a>: A placeholder displayed instead of the card while content is loading.</li>
+<li><a href="../components_card_ouds_action_card/OudsActionCard/semanticsLabel.html">semanticsLabel</a>: A concise, localized accessible name describing the card's action.</li>
+</ul>
 <pre class="language-dart"><code class="language-dart">OudsActionCard(
   semanticsLabel: 'View your mobile plan',
   onPressed: () {},

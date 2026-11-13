@@ -55,17 +55,19 @@
     
 <section class="desc markdown">
   <p><a href="https://r.orange.fr/r/S-ouds-doc-list-item">OUDS Card Item Design Guidelines</a></p>
-<p><strong>Reference design version : 1.0.0</strong></p>
+<p><strong>Reference design version : 0.3.0</strong></p>
 <p>A compact card-formatted variant of <a href="../components_list_item_ouds_card_item/OudsCardItem-class.html">OudsCardItem</a>.</p>
 <p>Compared to <a href="../components_list_item_ouds_card_item/OudsCardItem-class.html">OudsCardItem</a>, this variant omits <code>overline</code> and <code>extraLabel</code>
 and reuses the restricted leading / trailing model from <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem-class.html">OudsSmallListItem</a>,
 while applying the card decoration defaults.</p>
-<p>It reuses the same horizontal padding as <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem-class.html">OudsSmallListItem</a>.</p>
+<p>It always uses the grid margin for its horizontal padding, like an
+edge-to-edge <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem-class.html">OudsSmallListItem</a>.</p>
 <ul>
 <li><a href="../components_list_item_ouds_small_card_item/OudsSmallCardItem/leading.html">leading</a> accepts <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingIcon-class.html">OudsSmallListItemLeadingIcon</a> or
 <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingImage-class.html">OudsSmallListItemLeadingImage</a>.</li>
 <li><a href="../components_list_item_ouds_small_card_item/OudsSmallCardItem/trailing.html">trailing</a> accepts <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingIcon-class.html">OudsSmallListItemTrailingIcon</a>,
-<a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage-class.html">OudsSmallListItemTrailingImage</a> or <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingText-class.html">OudsSmallListItemTrailingText</a>.</li>
+<a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage-class.html">OudsSmallListItemTrailingImage</a>, <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingText-class.html">OudsSmallListItemTrailingText</a>,
+<a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingBadge-class.html">OudsSmallListItemTrailingBadge</a> or <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingTag-class.html">OudsSmallListItemTrailingTag</a>.</li>
 </ul>
 <h3 id="usage-example">Usage Example</h3>
 <pre class="language-dart"><code class="language-dart">OudsSmallCardItem(
@@ -78,6 +80,17 @@ OudsSmallCardItem(
   label: 'Paiement',
   trailing: OudsSmallListItemTrailingText('99€'),
   onTap: () {},
+)
+
+// Small card with an image loaded from the network and a custom
+// placeholder shown while loading (and if loading fails)
+OudsSmallCardItem(
+  label: 'Product',
+  leading: OudsSmallListItemLeadingImage.provider(
+    provider: NetworkImage('https://example.com/photo.jpg'),
+    semanticsLabel: 'Product photo',
+    placeholder: Image.asset('assets/placeholder.jpg'),
+  ),
 )
 </code></pre>
 </section>
@@ -158,7 +171,10 @@ OudsSmallCardItem(
 
 </dt>
 <dd>
-  Visual decoration of the card. Defaults to a persistent background.
+  Visual decoration of the card. Defaults to
+<a href="../components_list_item_ouds_card_item/OudsCardItemDefaults/decoration-constant.html">OudsCardItemDefaults.decoration</a> (persistent background with a bottom
+divider). Pass <code>OudsListItemDecorationBackground(divider: false)</code> to keep
+the background without the divider.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
