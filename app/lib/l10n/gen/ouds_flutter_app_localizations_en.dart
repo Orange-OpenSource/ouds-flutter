@@ -392,11 +392,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_card_contentCard_description_text =>
-      'A content card container is a surface-like UI element that groups related information within a single non-interactive surface that can include independently interactive elements.';
+      'A card is a surface-like UI element that groups related information within a single non-interactive surface that can include independently interactive elements.';
 
   @override
   String get app_components_card_actionCard_description_text =>
-      'An action container card is a surface-like UI element that groups related information within an interactive surface and allows a user to perform a single primary action or navigate to a destination.';
+      'An action card is a surface-like UI element that groups related information within an interactive surface and allows a user to perform a single primary action or navigate to a destination.';
 
   @override
   String get app_components_card_actionCard_semantics_a11y =>
@@ -418,10 +418,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Learn how eSIM activation works';
 
   @override
-  String get app_components_card_activate_button => 'Activate eSIM';
-
-  @override
-  String get app_components_card_open_button => 'Open';
+  String get app_components_card_button => 'Order';
 
   @override
   String get app_components_card_backgroundColor_tech => 'Background';
@@ -440,9 +437,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_card_progress_tech => 'Loading progress';
-
-  @override
-  String get app_components_card_visualAction_tech => 'Show visual action';
 
   @override
   String get app_components_card_style_filled_tech => 'Filled';

@@ -42,11 +42,11 @@ class OudsCardLoader {
 }
 
 ///
-/// [OUDS Action Container Card design guidelines](https://r.orange.fr/r/S-ouds-doc-action-card)
+/// [OUDS Action Card design guidelines](https://r.orange.fr/r/S-ouds-doc-action-card)
 ///
 /// **Reference design version: 1.0.0.**
 ///
-/// An action container card is a surface-like UI element that groups related information
+/// An action card is a surface-like UI element that groups related information
 /// within an interactive surface and allows a user to perform a single primary action or
 /// navigate to a destination.
 ///

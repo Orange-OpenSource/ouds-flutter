@@ -114,6 +114,7 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                 pressed: pressed,
                 focused: focused,
                 hovered: hovered,
+                backgroundColor: widget.backgroundColor,
               );
 
           final surfaceShape = shape.copyWith(
@@ -238,24 +239,16 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
             onTap: widget.actionable && interactive ? widget.onPressed : null,
             child: Material(
               type: MaterialType.card,
-             color: cardModifier.getBackgroundColor(
-                widget.style,
-                widget.backgroundColor,
-                enabled,
-              ),
-              shadowColor: theme.colorScheme(context).actionEnabled,//todo change to ouds/elevation/color/raised
+              color: cardModifier.getBackgroundColor(
+                widget.style),
+              shadowColor: theme
+                  .colorScheme(context)
+                  .contentOnActionSelected, //todo change to ouds/elevation/color/raised
               surfaceTintColor: Colors.transparent,
               elevation: widget.style == OudsCardStyle.elevated
                   ? theme.elevationTokens.raised
                   : theme.elevationTokens.none,
-              shape: focused
-                  ? shape.copyWith(
-                      side: BorderSide(
-                        color: theme.colorScheme(context).actionFocus,
-                        width: theme.borderTokens.widthThin,
-                      ),
-                    )
-                  : surfaceShape,
+              shape: surfaceShape,
               child: widget.actionable
                   ? InkWell(
                       onTap: interactive ? widget.onPressed : null,

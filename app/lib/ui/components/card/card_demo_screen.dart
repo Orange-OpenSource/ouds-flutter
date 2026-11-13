@@ -15,8 +15,11 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/card/ouds_action_card.dart';
 import 'package:ouds_core/components/card/ouds_card.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/tag/ouds_input_tag.dart';
+import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_core/components/typography/ouds_heading_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -125,7 +128,7 @@ class _CardDemo extends StatelessWidget {
                     )
                   : null,
               skeleton: state.skeleton ? OudsSkeleton() : null,
-              child: _CardContent(),
+              child: _ActionCardContent(),
             )
           : OudsCard(
               style: state.style,
@@ -144,17 +147,61 @@ class _CardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return SizedBox(
+      width: 360,
+      child: _cardContent(context),
+    );
+  }
+
+  Widget _cardContent(BuildContext context) {
+    final theme = OudsTheme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        OudsTag.text(label: "New",status: Warning(),roundedCorners: false,),
+        Padding(
+          padding:  EdgeInsetsDirectional.all(theme.spaceScheme(context).fixedMedium,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              OudsHeadingText(
+                text: "Samsung",
+                size: OudsHeadingTextSize.medium,
+              ),
+              Text("Galaxy S26 FE EE",
+              style: theme.typographyTokens.typeLabelModerateXLarge(context),),
+              SizedBox(height: theme.spaceScheme(context).fixedMedium),
+              OudsButton(
+                label: context.l10n.app_components_card_button,
+                appearance: OudsButtonAppearance.strong,
+                isFullWidth: true,
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ActionCardContent extends StatelessWidget {
+  const _ActionCardContent();
+
+  @override
+  Widget build(BuildContext context) {
     final theme = OudsTheme.of(context);
     return Container(
       width: 360,
       padding: EdgeInsetsDirectional.all(
         theme.spaceScheme(context).fixedMedium,
       ),
-      child: _cardContent(context),
+      child: _actionCardContent(context),
     );
   }
 
-  Widget _cardContent(BuildContext context) {
+  Widget _actionCardContent(BuildContext context) {
     final theme = OudsTheme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,13 +216,8 @@ class _CardContent extends StatelessWidget {
           size: OudsBodyTextSize.large,
         ),
         SizedBox(height: theme.spaceScheme(context).fixedMedium),
-        OudsListItem(label: context.l10n.app_components_card_checkDevice_text,
-            onTap: () {}),
-        OudsListItem(label: context.l10n.app_components_card_learnHow_button,
-          onTap: () {},),
-        SizedBox(height: theme.spaceScheme(context).fixedMedium),
         OudsButton(
-          label: context.l10n.app_components_card_activate_button,
+          label: context.l10n.app_components_card_button,
           appearance: OudsButtonAppearance.strong,
           onPressed: () {},
         ),

@@ -796,13 +796,13 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_card_contentCard_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A content card container is a surface-like UI element that groups related information within a single non-interactive surface that can include independently interactive elements.'**
+  /// **'A card is a surface-like UI element that groups related information within a single non-interactive surface that can include independently interactive elements.'**
   String get app_components_card_contentCard_description_text;
 
   /// No description provided for @app_components_card_actionCard_description_text.
   ///
   /// In en, this message translates to:
-  /// **'An action container card is a surface-like UI element that groups related information within an interactive surface and allows a user to perform a single primary action or navigate to a destination.'**
+  /// **'An action card is a surface-like UI element that groups related information within an interactive surface and allows a user to perform a single primary action or navigate to a destination.'**
   String get app_components_card_actionCard_description_text;
 
   /// No description provided for @app_components_card_actionCard_semantics_a11y.
@@ -835,17 +835,11 @@ abstract class AppLocalizations {
   /// **'Learn how eSIM activation works'**
   String get app_components_card_learnHow_button;
 
-  /// No description provided for @app_components_card_activate_button.
+  /// No description provided for @app_components_card_button.
   ///
   /// In en, this message translates to:
-  /// **'Activate eSIM'**
-  String get app_components_card_activate_button;
-
-  /// No description provided for @app_components_card_open_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Open'**
-  String get app_components_card_open_button;
+  /// **'Order'**
+  String get app_components_card_button;
 
   /// No description provided for @app_components_card_backgroundColor_tech.
   ///
@@ -882,12 +876,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Loading progress'**
   String get app_components_card_progress_tech;
-
-  /// No description provided for @app_components_card_visualAction_tech.
-  ///
-  /// In en, this message translates to:
-  /// **'Show visual action'**
-  String get app_components_card_visualAction_tech;
 
   /// No description provided for @app_components_card_style_filled_tech.
   ///

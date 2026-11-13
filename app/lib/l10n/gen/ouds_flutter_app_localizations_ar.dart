@@ -385,18 +385,18 @@ class AppLocalizationsAr extends AppLocalizations {
       'تجمع البطاقات المحتوى المرتبط ضمن مساحة محددة. استخدم بطاقة المحتوى للإجراءات المستقلة، أو بطاقة الإجراء عندما تمثل المساحة كلها إجراءً واحدًا.';
 
   @override
-  String get app_components_card_contentCard_tech => 'بطاقة محتوى';
+  String get app_components_card_contentCard_tech => 'Content card';
 
   @override
-  String get app_components_card_actionCard_tech => 'بطاقة إجراء';
+  String get app_components_card_actionCard_tech => 'Action card';
 
   @override
   String get app_components_card_contentCard_description_text =>
-      'Content card container هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح واحد غير تفاعلي، وقد تتضمن عناصر تفاعلية مستقلة.';
+      'Card هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح واحد غير تفاعلي، وقد تتضمن عناصر تفاعلية مستقلة.';
 
   @override
   String get app_components_card_actionCard_description_text =>
-      'Action card container هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح تفاعلي، وتتيح للمستخدم تنفيذ إجراء رئيسي واحد أو الانتقال إلى وجهة.';
+      'Action card هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح تفاعلي، وتتيح للمستخدم تنفيذ إجراء رئيسي واحد أو الانتقال إلى وجهة.';
 
   @override
   String get app_components_card_actionCard_semantics_a11y =>
@@ -418,31 +418,25 @@ class AppLocalizationsAr extends AppLocalizations {
       'Learn how eSIM activation works';
 
   @override
-  String get app_components_card_activate_button => 'Activate eSIM';
+  String get app_components_card_button => 'Order';
 
   @override
-  String get app_components_card_open_button => 'فتح';
+  String get app_components_card_backgroundColor_tech => 'Background';
 
   @override
-  String get app_components_card_backgroundColor_tech => 'خلفية مخصصة';
+  String get app_components_card_loading_tech => 'Loading';
 
   @override
-  String get app_components_card_loading_tech => 'جارٍ التحميل';
+  String get app_components_card_progressMode_tech => 'Progress mode';
 
   @override
-  String get app_components_card_progressMode_tech => 'وضع التقدم';
+  String get app_components_card_determinate_label => 'Determinate';
 
   @override
-  String get app_components_card_determinate_label => 'محدد';
+  String get app_components_card_indeterminate_label => 'Indeterminate';
 
   @override
-  String get app_components_card_indeterminate_label => 'غير محدد';
-
-  @override
-  String get app_components_card_progress_tech => 'تقدم التحميل';
-
-  @override
-  String get app_components_card_visualAction_tech => 'إظهار الإجراء المرئي';
+  String get app_components_card_progress_tech => 'Loading progress';
 
   @override
   String get app_components_card_style_filled_tech => 'Filled';

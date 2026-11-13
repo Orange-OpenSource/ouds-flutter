@@ -15,13 +15,12 @@ import 'package:ouds_core/components/card/ouds_card_style.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
 ///
-/// [OUDS Content Card Container design guidelines](https://r.orange.fr/r/S-ouds-doc-content-card)
+/// [OUDS Card design guidelines](https://r.orange.fr/r/S-ouds-doc-content-card)
 ///
 /// **Reference design version : 1.0.0**
 ///
-/// A Content Container Card groups related information within a single surface. The card itself is not interactive, but it can contain independently
-/// interactive elements, such as buttons and links. Its content is customizable through a slot, allowing designers to adapt the internal layout without
-/// changing the behavior of the container.
+/// A card is a surface-like UI element that groups related information within
+/// a single non-interactive surface that can include independently interactive elements.
 ///
 /// Corner rounding is shared with content cards through
 /// `OudsThemeConfigModel(card: OudsCardConfig(rounded: true), child: ...)`.

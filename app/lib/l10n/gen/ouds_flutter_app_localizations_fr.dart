@@ -387,18 +387,18 @@ class AppLocalizationsFr extends AppLocalizations {
       'Les cartes regroupent des contenus liés dans une surface délimitée. Choisissez une carte de contenu pour des actions indépendantes ou une carte action lorsque toute la surface représente une seule action.';
 
   @override
-  String get app_components_card_contentCard_tech => 'Carte de contenu';
+  String get app_components_card_contentCard_tech => 'Content card';
 
   @override
-  String get app_components_card_actionCard_tech => 'Carte action';
+  String get app_components_card_actionCard_tech => 'Action card';
 
   @override
   String get app_components_card_contentCard_description_text =>
-      'Un content card (ou conteneur de carte de contenu) est un élément d’interface semblable à une surface. Il regroupe des informations liées au sein d’une surface non interactive unique, qui peut contenir des éléments interactifs indépendants.';
+      'Un card (ou une carte) est un élément d’interface semblable à une surface. Il regroupe des informations liées au sein d’une surface non interactive unique, qui peut contenir des éléments interactifs indépendants.';
 
   @override
   String get app_components_card_actionCard_description_text =>
-      'Un action card (ou conteneur de carte d’action) est un élément d’interface semblable à une surface. Il regroupe des informations liées au sein d’une surface interactive et permet à l’utilisateur d’effectuer une action principale ou d’accéder à une destination.';
+      'Un action card (ou une carte d’action) est un élément d’interface semblable à une surface. Il regroupe des informations liées au sein d’une surface interactive et permet à l’utilisateur d’effectuer une action principale ou d’accéder à une destination.';
 
   @override
   String get app_components_card_actionCard_semantics_a11y =>
@@ -420,33 +420,25 @@ class AppLocalizationsFr extends AppLocalizations {
       'Learn how eSIM activation works';
 
   @override
-  String get app_components_card_activate_button => 'Activate eSIM';
+  String get app_components_card_button => 'Order';
 
   @override
-  String get app_components_card_open_button => 'Ouvrir';
+  String get app_components_card_backgroundColor_tech => 'Background';
 
   @override
-  String get app_components_card_backgroundColor_tech =>
-      'Arrière-plan personnalisé';
+  String get app_components_card_loading_tech => 'Loading';
 
   @override
-  String get app_components_card_loading_tech => 'Chargement';
+  String get app_components_card_progressMode_tech => 'Progress mode';
 
   @override
-  String get app_components_card_progressMode_tech => 'Mode de progression';
+  String get app_components_card_determinate_label => 'Determinate';
 
   @override
-  String get app_components_card_determinate_label => 'Déterminée';
+  String get app_components_card_indeterminate_label => 'Indeterminate';
 
   @override
-  String get app_components_card_indeterminate_label => 'Indéterminée';
-
-  @override
-  String get app_components_card_progress_tech => 'Progression du chargement';
-
-  @override
-  String get app_components_card_visualAction_tech =>
-      'Afficher l\'action visuelle';
+  String get app_components_card_progress_tech => 'Loading progress';
 
   @override
   String get app_components_card_style_filled_tech => 'Filled';

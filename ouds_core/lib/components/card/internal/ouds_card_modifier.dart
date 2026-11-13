@@ -31,6 +31,7 @@ class OudsCardModifier {
     required bool pressed,
     required bool focused,
     required bool hovered,
+    required bool backgroundColor,
   }) {
     final colors = OudsTheme.of(context).colorScheme(context);
     if (style == OudsCardStyle.outlined) {
@@ -61,30 +62,19 @@ class OudsCardModifier {
           ? colors.actionSupportFocus
           : hovered
           ? colors.actionSupportHover
+          : backgroundColor
+          ? colors.actionSupportEnabled
           : null,
     );
   }
 
-  /// Returns the background color based on the alert message status.
-  Color getBackgroundColor(
-    OudsCardStyle style,
-    bool backgroundColor,
-    bool enabled,
-  ) {
+  /// Returns the background color based on the card.
+  Color getBackgroundColor(OudsCardStyle style) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
-    if (style != OudsCardStyle.outlined && !backgroundColor && enabled) {
-      return Colors.transparent;
+    if (style == OudsCardStyle.elevated) {
+      return colorTheme.surfacePrimary;
     }
-    switch (style) {
-      case OudsCardStyle.filled:
-        return enabled
-            ? colorTheme.actionSupportEnabled
-            : colorTheme.actionSupportDisabled;
-      case OudsCardStyle.outlined:
-        return enabled ? Colors.transparent : colorTheme.actionDisabled;
-        case OudsCardStyle.elevated:
-          return colorTheme.surfacePrimary;
-    }
+    return Colors.transparent;
   }
 
   /// Static method to get the border radius for an action card in focus state based on the border parameter.
