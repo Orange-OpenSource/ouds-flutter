@@ -11,6 +11,7 @@
 
 /// @nodoc
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -94,6 +95,10 @@ class OudsControlItem extends StatefulWidget {
 }
 
 class OudsControlItemState extends State<OudsControlItem> {
+  // A disabled card disables its OUDS content.
+  VoidCallback? get _onTap =>
+      OudsCardScope.enabledOf(context) ? widget.onTap : null;
+
   // Create an instance of the state controller to manage interaction changes
   final OudsInteractionStateController interactionState =
       OudsInteractionStateController();
@@ -141,7 +146,7 @@ class OudsControlItemState extends State<OudsControlItem> {
   @override
   Widget build(BuildContext context) {
     final controlItemStateDeterminer = OudsControlStateDeterminer(
-      enabled: widget.onTap != null,
+      enabled: _onTap != null,
       isPressed: interactionState.isPressed,
       isHovered: interactionState.isHovered,
       isReadOnly: widget.readOnly,
@@ -200,12 +205,12 @@ class OudsControlItemState extends State<OudsControlItem> {
                               SchedulerBinding.instance.addPostFrameCallback((
                                 _,
                               ) {
-                                widget.onTap?.call();
+                                _onTap?.call();
                                 interactionState.setPressed(false);
                               });
                             }
                           : null,
-                      onHighlightChanged: widget.onTap != null
+                      onHighlightChanged: _onTap != null
                           ? interactionState.setPressed
                           : null,
                       onHover: interactionState.setHovered,

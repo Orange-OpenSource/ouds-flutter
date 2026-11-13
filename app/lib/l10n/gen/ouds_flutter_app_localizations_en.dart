@@ -104,6 +104,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Rounded corner card items';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerCards_label =>
+      'Rounded corner cards';
+
+  @override
   String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
       'Rounded corner progress indicators';
 
@@ -372,6 +376,82 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_alert_inlineAlert_description_text =>
       'Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.';
+
+  @override
+  String get app_components_card_tech => 'Card';
+
+  @override
+  String get app_components_card_description_text =>
+      'Cards group related content into a contained surface. Choose a content card for independent actions or an action card when the whole surface represents one action.';
+
+  @override
+  String get app_components_card_contentCard_tech => 'Content card';
+
+  @override
+  String get app_components_card_actionCard_tech => 'Action card';
+
+  @override
+  String get app_components_card_contentCard_description_text =>
+      'A content card container is a surface-like UI element that groups related information within a single non-interactive surface that can include independently interactive elements.';
+
+  @override
+  String get app_components_card_actionCard_description_text =>
+      'An action container card is a surface-like UI element that groups related information within an interactive surface and allows a user to perform a single primary action or navigate to a destination.';
+
+  @override
+  String get app_components_card_actionCard_semantics_a11y =>
+      'View your mobile plan';
+
+  @override
+  String get app_components_card_Title_text => 'Before activating your eSIM';
+
+  @override
+  String get app_components_card_planDescription_text =>
+      'Make sure your device is connected to Wi-Fi and compatible with eSIM. Once activation starts, it may take a few minutes to complete.';
+
+  @override
+  String get app_components_card_checkDevice_text =>
+      'Check device compatibility';
+
+  @override
+  String get app_components_card_learnHow_button =>
+      'Learn how eSIM activation works';
+
+  @override
+  String get app_components_card_activate_button => 'Activate eSIM';
+
+  @override
+  String get app_components_card_open_button => 'Open';
+
+  @override
+  String get app_components_card_backgroundColor_tech => 'Background';
+
+  @override
+  String get app_components_card_loading_tech => 'Loading';
+
+  @override
+  String get app_components_card_progressMode_tech => 'Progress mode';
+
+  @override
+  String get app_components_card_determinate_label => 'Determinate';
+
+  @override
+  String get app_components_card_indeterminate_label => 'Indeterminate';
+
+  @override
+  String get app_components_card_progress_tech => 'Loading progress';
+
+  @override
+  String get app_components_card_visualAction_tech => 'Show visual action';
+
+  @override
+  String get app_components_card_style_filled_tech => 'Filled';
+
+  @override
+  String get app_components_card_style_outlined_tech => 'Outlined';
+
+  @override
+  String get app_components_card_style_elevated_tech => 'Elevated';
 
   @override
   String get app_components_bottomSheet_tech => 'Bottom sheet';

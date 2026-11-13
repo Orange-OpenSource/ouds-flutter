@@ -12,6 +12,7 @@
 /// {@category Chip}
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -161,6 +162,10 @@ class OudsFilterChip extends StatefulWidget {
 }
 
 class _OudsFilterChipState extends State<OudsFilterChip> {
+  // A disabled card disables its OUDS content.
+  ValueChanged<bool>? get _onSelected =>
+      OudsCardScope.enabledOf(context) ? widget.onSelected : null;
+
   late FocusNode _focusNode;
   bool _isHovered = false;
   bool _isFocused = false;
@@ -198,7 +203,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onSelected == null) {
+    if (_onSelected == null) {
       _isFocused = false; // Ignore focus changes if disabled
     }
     setState(() => _isFocused = focus);
@@ -206,7 +211,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
 
   @override
   Widget build(BuildContext context) {
-    final isDisabled = widget.onSelected == null;
+    final isDisabled = _onSelected == null;
     final interactionModelHover = OudsInheritedInteractionModel.of(
       context,
       InteractionAspect.hover,
@@ -260,7 +265,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
-    final enabled = widget.onSelected != null;
+    final enabled = _onSelected != null;
     final resolvedSemanticsLabel =
         widget.contentDescription ?? widget.icon?.semanticsLabel;
 
@@ -783,7 +788,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       bool? newValue;
       newValue = !widget.selected;
-      widget.onSelected!(newValue);
+      _onSelected!(newValue);
       widget.selected == newValue;
     });
   }

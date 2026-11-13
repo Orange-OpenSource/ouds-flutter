@@ -36,6 +36,7 @@
   "app_themeSettingsDialog_roundedCornerTextInputs_label" :"حقول إدخال نص بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerAlertMessage_label" :"رسالة تنبيه بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerCardItems_label" :"عناصر البطاقة بزوايا مستديرة",
+  "app_themeSettingsDialog_roundedCornerCards_label": "بطاقات بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerProgressIndicators_label" :"مؤشرات التقدم ذات الزوايا المستديرة",
 
   "@_tokens": {},
@@ -73,6 +74,24 @@
   "app_components_alert_description_text": "مكونات alerte هي عناصر واجهة المستخدم التي تعرض معلومات، ردود فعل النظام أو تغييرات الحالة.",
   "app_components_alert_alertMessage_description_text": "Alert message (أو رسالة التحذير) هي عنصر من عناصر واجهة المستخدم التي تعرض معلومات النظام، تغييرات الحالة أو إجراء مطلوب؛ وذلك من خلال تواصل مفصل، مرئي، مستمر وقابل للاستخدام.",
   "app_components_alert_inlineAlert_description_text": "Inline alert هو عنصر واجهة مستخدم خفيف الوزن، يتم وضعه داخل تدفّق المحتوى، ويُستخدم لعرض المعلومات أو ملاحظات النظام أو تغيّرات الحالة، من خلال رسائل قصيرة وواضحة وبارزة ومستمرّة، وغير قابلة لاتخاذ إجراء.",
+
+  "@_components_card": {},
+  "app_components_card_tech": "بطاقة",
+  "app_components_card_description_text": "تجمع البطاقات المحتوى المرتبط ضمن مساحة محددة. استخدم بطاقة المحتوى للإجراءات المستقلة، أو بطاقة الإجراء عندما تمثل المساحة كلها إجراءً واحدًا.",
+  "app_components_card_contentCard_tech": "بطاقة محتوى",
+  "app_components_card_actionCard_tech": "بطاقة إجراء",
+  "app_components_card_contentCard_description_text": "Content card container هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح واحد غير تفاعلي، وقد تتضمن عناصر تفاعلية مستقلة.",
+  "app_components_card_actionCard_description_text": "Action card container هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح تفاعلي، وتتيح للمستخدم تنفيذ إجراء رئيسي واحد أو الانتقال إلى وجهة.",
+  "app_components_card_actionCard_semantics_a11y": "عرض باقة الهاتف المحمول",
+  "app_components_card_open_button": "فتح",
+  "app_components_card_backgroundColor_tech": "خلفية مخصصة",
+  "app_components_card_loading_tech": "جارٍ التحميل",
+  "app_components_card_progressMode_tech": "وضع التقدم",
+  "app_components_card_determinate_label": "محدد",
+  "app_components_card_indeterminate_label": "غير محدد",
+  "app_components_card_progress_tech": "تقدم التحميل",
+  "app_components_card_visualAction_tech": "إظهار الإجراء المرئي",
+
 
   "@_components_button": {},
   "app_components_button_description_text": "Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.",

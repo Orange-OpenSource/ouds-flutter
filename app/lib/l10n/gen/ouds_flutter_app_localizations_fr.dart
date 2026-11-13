@@ -105,6 +105,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Éléments de card à coins arrondis';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerCards_label =>
+      'Cartes à coins arrondis';
+
+  @override
   String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
       'Progress indicators avec coins arrondis';
 
@@ -374,6 +378,84 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get app_components_alert_inlineAlert_description_text =>
       'Une Inline alert est un élément d\'interface utilisateur léger, placé dans le flux de contenu, qui affiche des informations, des commentaires système et des changements d\'état au moyen d\'une communication courte, visible, persistante et non exploitable.';
+
+  @override
+  String get app_components_card_tech => 'Carte';
+
+  @override
+  String get app_components_card_description_text =>
+      'Les cartes regroupent des contenus liés dans une surface délimitée. Choisissez une carte de contenu pour des actions indépendantes ou une carte action lorsque toute la surface représente une seule action.';
+
+  @override
+  String get app_components_card_contentCard_tech => 'Carte de contenu';
+
+  @override
+  String get app_components_card_actionCard_tech => 'Carte action';
+
+  @override
+  String get app_components_card_contentCard_description_text =>
+      'Un content card (ou conteneur de carte de contenu) est un élément d’interface semblable à une surface. Il regroupe des informations liées au sein d’une surface non interactive unique, qui peut contenir des éléments interactifs indépendants.';
+
+  @override
+  String get app_components_card_actionCard_description_text =>
+      'Un action card (ou conteneur de carte d’action) est un élément d’interface semblable à une surface. Il regroupe des informations liées au sein d’une surface interactive et permet à l’utilisateur d’effectuer une action principale ou d’accéder à une destination.';
+
+  @override
+  String get app_components_card_actionCard_semantics_a11y =>
+      'Voir votre forfait mobile';
+
+  @override
+  String get app_components_card_Title_text => 'Before activating your eSIM';
+
+  @override
+  String get app_components_card_planDescription_text =>
+      'Make sure your device is connected to Wi-Fi and compatible with eSIM. Once activation starts, it may take a few minutes to complete.';
+
+  @override
+  String get app_components_card_checkDevice_text =>
+      'Check device compatibility';
+
+  @override
+  String get app_components_card_learnHow_button =>
+      'Learn how eSIM activation works';
+
+  @override
+  String get app_components_card_activate_button => 'Activate eSIM';
+
+  @override
+  String get app_components_card_open_button => 'Ouvrir';
+
+  @override
+  String get app_components_card_backgroundColor_tech =>
+      'Arrière-plan personnalisé';
+
+  @override
+  String get app_components_card_loading_tech => 'Chargement';
+
+  @override
+  String get app_components_card_progressMode_tech => 'Mode de progression';
+
+  @override
+  String get app_components_card_determinate_label => 'Déterminée';
+
+  @override
+  String get app_components_card_indeterminate_label => 'Indéterminée';
+
+  @override
+  String get app_components_card_progress_tech => 'Progression du chargement';
+
+  @override
+  String get app_components_card_visualAction_tech =>
+      'Afficher l\'action visuelle';
+
+  @override
+  String get app_components_card_style_filled_tech => 'Filled';
+
+  @override
+  String get app_components_card_style_outlined_tech => 'Outlined';
+
+  @override
+  String get app_components_card_style_elevated_tech => 'Elevated';
 
   @override
   String get app_components_bottomSheet_tech => 'Bottom sheet';

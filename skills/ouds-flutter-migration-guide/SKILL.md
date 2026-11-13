@@ -114,6 +114,8 @@ class MyApp extends StatelessWidget {
 | `NavigationBar` / `BottomNavigationBar` | `OudsNavigationBar` | `package:ouds_core/components/navigation/ouds_navigation_bar.dart` |
 | `AppBar` / `SliverAppBar` | `OudsTopBar` / `OudsTopAppBar` | `package:ouds_core/components/top_bar/` |
 | `SnackBar` / `Banner` | `OudsAlertMessage` / `OudsInlineAlert` | `package:ouds_core/components/alert/` |
+| `Card` (content container) | `OudsCard` | `package:ouds_core/components/card/ouds_card.dart` |
+| Clickable `Card` / `InkWell` around card content | `OudsActionCard` | `package:ouds_core/components/card/ouds_action_card.dart` |
 | `showModalBottomSheet` | `OudsModalBottomSheet` | `package:ouds_core/components/bottom_sheet/ouds_modal_bottom_sheet.dart` |
 | `DraggableScrollableSheet` (persistent) | `OudsBottomSheetScaffold` | `package:ouds_core/components/bottom_sheet/ouds_bottom_sheet_scaffold.dart` |
 | `CircularProgressIndicator` | `OudsCircularProgressIndicator` | `package:ouds_core/components/progress/` |
@@ -590,6 +592,16 @@ class _CustomToggleState extends State<CustomToggle> {
 
 ### 2.6 Migrating custom cards and containers
 
+Use `OudsCard` for a non-interactive container with independently accessible
+children, or `OudsActionCard` for a single action covering the entire surface.
+Both require a concise, localized `semanticsLabel`; do not concatenate all slot
+text. Both support `OudsCardStyle.filled`, `.outlined`, `.elevated`,
+`backgroundColor`, `divider` (filled only), `enabled` and `skeleton`.
+Action cards also accept `onPressed` and `loader: OudsCardLoader(progress: ...)`.
+Their slot is presentation-only: no descendant focus or independent actions.
+Nested visual actions must reinforce the same primary action; their interaction
+styling is not automatically synchronized with the card.
+
 | What | Replace with |
 |------|-------------|
 | `color: const Color(0xFF...)` | `colors.bgSecondary` or `colors.bgPrimary` |
@@ -614,19 +626,31 @@ Container(
 **After:**
 
 ```dart
-final colors = OudsTheme.of(context).colorScheme(context);
 final spaces = OudsTheme.of(context).spaceScheme(context);
 
-Container(
-  padding: EdgeInsets.all(spaces.fixedMedium),
-  decoration: BoxDecoration(
-    color: colors.bgPrimary,
-    borderRadius: BorderRadius.circular(12), // keep until radius tokens are available
-    border: Border.all(color: colors.borderDefault),
+OudsThemeConfigModel(
+  card: OudsCardConfig(rounded: true),
+  child: OudsCard(
+    semanticsLabel: localizedCardName,
+    style: OudsCardStyle.outlined,
+    child: Padding(
+      padding: EdgeInsets.all(spaces.fixedMedium),
+      child: content,
+    ),
   ),
-  child: content,
 )
 ```
+
+Import `package:ouds_theme_contract/config/component/ouds_card_config.dart`.
+Move the former `rounded` argument on either card variant to
+`OudsThemeConfigModel.card`. Both variants share this configuration; square
+corners remain the default when it is absent.
+
+There is no implicit slot padding. `enabled: false` blocks pointer, keyboard and
+accessibility activation. Pass disabled state to child controls explicitly
+(for example, null callbacks) for appropriate visuals and announcements.
+Existing APIs are unchanged; adoption of
+the new card family is optional.
 
 ---
 

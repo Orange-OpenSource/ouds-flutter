@@ -12,6 +12,7 @@
 /// {@category Tag}
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
@@ -74,6 +75,10 @@ class OudsInputTag extends StatefulWidget {
 }
 
 class _OudsInputTagState extends State<OudsInputTag> {
+  // A disabled card disables its OUDS content.
+  VoidCallback? get _onPressed =>
+      OudsCardScope.enabledOf(context) ? widget.onPressed : null;
+
   late FocusNode _focusNode;
   bool _isHovered = false;
   bool _isPressed = false;
@@ -97,7 +102,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onPressed == null) {
+    if (_onPressed == null) {
       _isFocused = false; // Ignore focus changes if disabled
     }
     setState(() => _isFocused = focus);
@@ -105,7 +110,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
 
   @override
   Widget build(BuildContext context) {
-    final isDisabled = widget.onPressed == null;
+    final isDisabled = _onPressed == null;
     final interactionModelHover = OudsInheritedInteractionModel.of(
       context,
       InteractionAspect.hover,
@@ -166,8 +171,8 @@ class _OudsInputTagState extends State<OudsInputTag> {
             ),
             child: InkWell(
               onTap: () {
-                if (widget.onPressed != null) {
-                  widget.onPressed!.call();
+                if (_onPressed != null) {
+                  _onPressed!.call();
                   SemanticsService.announce(
                     l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '',
                     TextDirection.ltr,

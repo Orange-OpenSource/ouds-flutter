@@ -17,6 +17,7 @@ library;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_asset_builder.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_background_modifier.dart';
@@ -378,6 +379,9 @@ class OudsListItem extends StatefulWidget {
 }
 
 class _OudsListItemState extends State<OudsListItem> {
+  /// Whether the item is enabled, also considering a disabled parent card.
+  bool get _enable => widget.enable && OudsCardScope.enabledOf(context);
+
   // Local interaction states — updated by MouseRegion, GestureDetector and
   // FocusNode so that hover/pressed/focused appearance is applied without
   // relying on a parent OudsInheritedInteractionModel.
@@ -404,7 +408,7 @@ class _OudsListItemState extends State<OudsListItem> {
   void _onFocusChange() => setState(() => _isFocused = _focusNode.hasFocus);
 
   /// Whether this item is interactive (has a tap callback and is enabled).
-  bool get _isInteractive => widget.enable && widget.onTap != null;
+  bool get _isInteractive => _enable && widget.onTap != null;
 
   void _onEnter(_) => setState(() => _isHovered = true);
   void _onExit(_) => setState(() => _isHovered = false);
@@ -444,7 +448,7 @@ class _OudsListItemState extends State<OudsListItem> {
     // Resolve the interaction state from local hover/pressed/focused tracking.
     // Disabled takes priority over everything else.
     final state = OudsListItemControlStateDeterminer(
-      enabled: widget.enable,
+      enabled: _enable,
       isPressed: _isPressed,
       isHovered: _isHovered,
       isFocused: _isFocused,
@@ -452,8 +456,8 @@ class _OudsListItemState extends State<OudsListItem> {
 
     // Resolve foreground colors once — reused in the content column and helper text.
     final foreground = OudsListItemForegroundModifier(context);
-    final contentColor = foreground.contentColor(widget.enable);
-    final mutedColor = foreground.mutedColor(widget.enable);
+    final contentColor = foreground.contentColor(_enable);
+    final mutedColor = foreground.mutedColor(_enable);
 
     // Indicator placement: Previous → start, Next/External → end.
     final showPreviousIndicator =
@@ -509,7 +513,7 @@ class _OudsListItemState extends State<OudsListItem> {
                         ? OudsLocalizations.of(context)?.core_link_trait_a11y
                         : null,
                     // Group all content (leading, labels, trailing) into single label
-                    enabled: widget.enable,
+                    enabled: _enable,
                     child: Focus(
                       focusNode: _focusNode,
                       // Skip focus entirely for non-interactive items.
@@ -533,7 +537,7 @@ class _OudsListItemState extends State<OudsListItem> {
                         onEnter: _isInteractive ? _onEnter : null,
                         onExit: _isInteractive ? _onExit : null,
                         child: GestureDetector(
-                          onTap: widget.enable ? widget.onTap : null,
+                          onTap: _enable ? widget.onTap : null,
                           onTapDown: _isInteractive ? _onTapDown : null,
                           onTapUp: _isInteractive ? _onTapUp : null,
                           onTapCancel: _isInteractive ? _onTapCancel : null,
@@ -723,7 +727,7 @@ class _OudsListItemState extends State<OudsListItem> {
           _buildLeading(
             context,
             widget.leading!,
-            enable: widget.enable,
+            enable: _enable,
             state: state,
             contentAlignment: widget.contentAlignment,
             size: widget.size,
@@ -752,7 +756,7 @@ class _OudsListItemState extends State<OudsListItem> {
           _buildTrailing(
             context,
             widget.trailing!,
-            enable: widget.enable,
+            enable: _enable,
             state: state,
             contentAlignment: widget.contentAlignment,
             size: widget.size,
@@ -838,9 +842,7 @@ class _OudsListItemState extends State<OudsListItem> {
 
     return switch (decoration) {
       OudsListItemDecorationOutlined() => Border.all(
-        color: widget.enable
-            ? colorScheme.borderDefault
-            : colorScheme.actionDisabled,
+        color: _enable ? colorScheme.borderDefault : colorScheme.actionDisabled,
         width: tokens.borderWidthDefault,
       ),
       OudsListItemDecorationOutlinedOnInteraction() => switch (state) {
@@ -1239,7 +1241,7 @@ class _OudsListItemState extends State<OudsListItem> {
             indicatorSize,
             state,
             packageName,
-            enable: widget.enable,
+            enable: _enable,
           ),
         OudsListItemIndicatorPrevious() =>
           OudsListItemAssetBuilder.buildIndicatorIcon(
@@ -1248,7 +1250,7 @@ class _OudsListItemState extends State<OudsListItem> {
             indicatorSize,
             state,
             packageName,
-            enable: widget.enable,
+            enable: _enable,
           ),
         OudsListItemIndicatorExternal() =>
           OudsListItemAssetBuilder.buildIndicatorIcon(
@@ -1257,7 +1259,7 @@ class _OudsListItemState extends State<OudsListItem> {
             indicatorSize,
             state,
             packageName,
-            enable: widget.enable,
+            enable: _enable,
           ),
       },
     );

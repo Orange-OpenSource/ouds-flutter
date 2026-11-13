@@ -14,6 +14,7 @@
 /// {@category Phone number input}
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:dlibphonenumber/dlibphonenumber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -153,6 +154,10 @@ class OudsPhoneNumberInput extends StatefulWidget {
 }
 
 class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
+  // A disabled card disables its OUDS content.
+  bool? get _enabled =>
+      OudsCardScope.enabledOf(context) ? widget.enabled : false;
+
   final bool _isHovered = false;
   bool _isFocused = false;
   FocusNode? _internalFocusNode;
@@ -243,7 +248,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
     // Determine the current control state (enabled, focused, hovered, loading)
     final inputTextStateDeterminer = OudsFormFieldsControlStateDeterminer(
-      enabled: widget.enabled ?? true,
+      enabled: _enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
       isLoading: widget.decoration.loader != null,
@@ -283,7 +288,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         : widget.decoration.helperText ?? "";
 
     // Determine disabled/readOnly label
-    final isEnabled = widget.enabled ?? true;
+    final isEnabled = _enabled ?? true;
     final isReadOnly = widget.readOnly ?? false;
     final statusLabel = !isEnabled
         ? l10n?.core_common_disabled_a11y ?? ""
@@ -475,7 +480,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       style: theme.typographyTokens
           .typeLabelModerateLarge(context)
           .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
-      enabled: widget.enabled,
+      enabled: _enabled,
       readOnly: widget.readOnly ?? false,
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,

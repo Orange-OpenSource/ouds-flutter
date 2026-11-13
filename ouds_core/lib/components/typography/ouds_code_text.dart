@@ -14,6 +14,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -116,8 +117,12 @@ class OudsCodeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = textStyle(context);
-    final definedColor =
-        color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
+    final cardEnabled = OudsCardScope.enabledOf(context);
+    final colorScheme = OudsTheme.of(context).colorScheme(context);
+    // A disabled card always dims its text, even when a color is provided.
+    final definedColor = !cardEnabled
+        ? colorScheme.contentDisabled
+        : color ?? colorScheme.contentDefault;
     final annotatedText = _annotatedText;
 
     final List<InlineSpan> children;
@@ -125,7 +130,9 @@ class OudsCodeText extends StatelessWidget {
     // bold and links are always supported, whether the text is plain or annotated with colors.
     if (annotatedText != null) {
       children = annotatedText.resolveSpans(context).map((span) {
-        final segmentColor = span.style?.color ?? definedColor;
+        final segmentColor = cardEnabled
+            ? span.style?.color ?? definedColor
+            : definedColor;
         return MarkdownSpanBuilder.buildRichText(
           context,
           span.toPlainText(),

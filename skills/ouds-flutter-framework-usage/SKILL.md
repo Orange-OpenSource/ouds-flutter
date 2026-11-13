@@ -521,6 +521,53 @@ OudsButton(
 
 ---
 
+### Card
+
+Import `package:ouds_core/components/card/ouds_card.dart` for `OudsCard` and
+`package:ouds_core/components/card/ouds_action_card.dart` for `OudsActionCard`.
+Both support `OudsCardStyle.filled`, `.outlined`, `.elevated`,
+`backgroundColor`, `divider` (filled only), `enabled` and `skeleton`.
+The slot controls its own padding.
+
+Configure corners for both variants through
+`OudsThemeConfigModel(card: OudsCardConfig(rounded: true), child: ...)`.
+Import `package:ouds_theme_contract/config/component/ouds_card_config.dart`.
+There is no per-widget `rounded` parameter; the default is square corners.
+
+```dart
+OudsCard(
+  semanticsLabel: 'Manage your plan',
+  style: OudsCardStyle.outlined,
+  child: Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      OudsLink(label: 'View plan', onPressed: () {}),
+      OudsLink(label: 'Manage options', onPressed: () {}),
+    ],
+  ),
+)
+
+OudsActionCard(
+  semanticsLabel: 'View your plan',
+  onPressed: () {},
+  child: Text('200 GB plan'),
+)
+```
+
+Provide a concise, localized `semanticsLabel`, not the complete slot text.
+`OudsCard` is a non-interactive group; its children retain independent
+accessibility and keyboard focus. Disabling it blocks interaction in the slot, and OUDS children (typography,
+button, link, list items, checkbox/radio/switch and their items, chips, tags,
+text/password/phone inputs) automatically render and behave as disabled.
+Non-OUDS children must receive their disabled state explicitly.
+`OudsActionCard` exposes one accessible action and prevents descendant focus and
+activation. Any nested visual action must represent the card's primary action;
+its hover/focus/press styling is not automatically synchronized with the card.
+Use `loader: OudsCardLoader(progress: null)` for indeterminate loading or pass a
+finite progress value (clamped to 0–1) for determinate loading.
+
+---
+
 ### Checkbox / Switch / Radio button
 
 These use `ouds_accessibility_plugin` internally for high-contrast detection. Semantics strings are provided automatically via `OudsLocalizations`. See §5 for state patterns.
@@ -962,4 +1009,3 @@ cd ouds_core && flutter gen-l10n
 - [ ] Component tested with all 4 themes: **Orange**, **Orange Compact**, **Sosh**, **Wireframe**
 - [ ] Component tested in **light** and **dark** mode
 - [ ] Full accessibility checklist completed → load **`ouds-flutter-accessibility`** skill for details
-

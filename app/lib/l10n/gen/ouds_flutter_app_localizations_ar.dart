@@ -104,6 +104,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'عناصر البطاقة بزوايا مستديرة';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerCards_label =>
+      'بطاقات بزوايا مستديرة';
+
+  @override
   String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
       'مؤشرات التقدم ذات الزوايا المستديرة';
 
@@ -372,6 +376,82 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_alert_inlineAlert_description_text =>
       'Inline alert هو عنصر واجهة مستخدم خفيف الوزن، يتم وضعه داخل تدفّق المحتوى، ويُستخدم لعرض المعلومات أو ملاحظات النظام أو تغيّرات الحالة، من خلال رسائل قصيرة وواضحة وبارزة ومستمرّة، وغير قابلة لاتخاذ إجراء.';
+
+  @override
+  String get app_components_card_tech => 'بطاقة';
+
+  @override
+  String get app_components_card_description_text =>
+      'تجمع البطاقات المحتوى المرتبط ضمن مساحة محددة. استخدم بطاقة المحتوى للإجراءات المستقلة، أو بطاقة الإجراء عندما تمثل المساحة كلها إجراءً واحدًا.';
+
+  @override
+  String get app_components_card_contentCard_tech => 'بطاقة محتوى';
+
+  @override
+  String get app_components_card_actionCard_tech => 'بطاقة إجراء';
+
+  @override
+  String get app_components_card_contentCard_description_text =>
+      'Content card container هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح واحد غير تفاعلي، وقد تتضمن عناصر تفاعلية مستقلة.';
+
+  @override
+  String get app_components_card_actionCard_description_text =>
+      'Action card container هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح تفاعلي، وتتيح للمستخدم تنفيذ إجراء رئيسي واحد أو الانتقال إلى وجهة.';
+
+  @override
+  String get app_components_card_actionCard_semantics_a11y =>
+      'عرض باقة الهاتف المحمول';
+
+  @override
+  String get app_components_card_Title_text => 'Before activating your eSIM';
+
+  @override
+  String get app_components_card_planDescription_text =>
+      'Make sure your device is connected to Wi-Fi and compatible with eSIM. Once activation starts, it may take a few minutes to complete.';
+
+  @override
+  String get app_components_card_checkDevice_text =>
+      'Check device compatibility';
+
+  @override
+  String get app_components_card_learnHow_button =>
+      'Learn how eSIM activation works';
+
+  @override
+  String get app_components_card_activate_button => 'Activate eSIM';
+
+  @override
+  String get app_components_card_open_button => 'فتح';
+
+  @override
+  String get app_components_card_backgroundColor_tech => 'خلفية مخصصة';
+
+  @override
+  String get app_components_card_loading_tech => 'جارٍ التحميل';
+
+  @override
+  String get app_components_card_progressMode_tech => 'وضع التقدم';
+
+  @override
+  String get app_components_card_determinate_label => 'محدد';
+
+  @override
+  String get app_components_card_indeterminate_label => 'غير محدد';
+
+  @override
+  String get app_components_card_progress_tech => 'تقدم التحميل';
+
+  @override
+  String get app_components_card_visualAction_tech => 'إظهار الإجراء المرئي';
+
+  @override
+  String get app_components_card_style_filled_tech => 'Filled';
+
+  @override
+  String get app_components_card_style_outlined_tech => 'Outlined';
+
+  @override
+  String get app_components_card_style_elevated_tech => 'Elevated';
 
   @override
   String get app_components_bottomSheet_tech => 'Bottom sheet';

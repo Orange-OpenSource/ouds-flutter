@@ -16,6 +16,7 @@ import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/bottom_sheet/internal/ouds_bottom_sheet_defaults.dart';
 import 'package:ouds_core/components/bottom_sheet/internal/ouds_bottom_sheet_theme_helper.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/card/ouds_card.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
@@ -49,6 +50,7 @@ import 'package:ouds_flutter_demo/ui/components/bottom_sheet/modal_bottom_sheet_
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/navigation_button_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/card/card_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_filter_demo_sreen.dart';
@@ -211,6 +213,40 @@ List<Component> components(BuildContext context) {
           context.l10n.app_components_button_navigationButton_tech,
           NavigationButtonDemoScreen(
             previousPageTitle: context.l10n.app_components_button_label,
+          ),
+        ),
+      ],
+    ),
+    Component.withVariant(
+      context.l10n.app_components_card_tech,
+      ComponentContainer(
+        child: OudsCard(
+          child: SizedBox(
+            width: 360,
+            height: 124,
+            child: Padding(
+              padding: EdgeInsetsDirectional.all(
+                theme.spaceScheme(context).fixedMedium,
+              ),
+              child: SizedBox(),
+            ),
+          ),
+        ),
+      ),
+      context.l10n.app_components_card_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_card_contentCard_tech,
+          CardDemoScreen(
+            actionCard: false,
+            previousPageTitle: context.l10n.app_components_card_tech,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_card_actionCard_tech,
+          CardDemoScreen(
+            actionCard: true,
+            previousPageTitle: context.l10n.app_components_card_tech,
           ),
         ),
       ],

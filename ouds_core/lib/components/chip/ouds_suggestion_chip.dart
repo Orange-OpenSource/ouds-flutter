@@ -12,6 +12,7 @@
 /// {@category Chip}
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
@@ -154,6 +155,10 @@ class OudsSuggestionChip extends StatefulWidget {
 }
 
 class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
+  // A disabled card disables its OUDS content.
+  VoidCallback? get _onPressed =>
+      OudsCardScope.enabledOf(context) ? widget.onPressed : null;
+
   late FocusNode _focusNode;
   bool _isHovered = false;
   bool _isPressed = false;
@@ -190,7 +195,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onPressed == null) {
+    if (_onPressed == null) {
       _isFocused = false; // Ignore focus changes if disabled
     }
     setState(() => _isFocused = focus);
@@ -198,7 +203,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
 
   @override
   Widget build(BuildContext context) {
-    final isDisabled = widget.onPressed == null;
+    final isDisabled = _onPressed == null;
     final interactionModelHover = OudsInheritedInteractionModel.of(
       context,
       InteractionAspect.hover,
@@ -257,7 +262,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
             minHeight: chipToken.sizeMinHeightInteractiveArea,
           ),
           child: InkWell(
-            onTap: widget.onPressed,
+            onTap: _onPressed,
             focusNode: _focusNode,
             canRequestFocus: !isDisabled,
             splashColor: Colors.transparent,
@@ -421,7 +426,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
     return Semantics(
       label: resolvedSemanticsLabel,
       button: true,
-      enabled: widget.onPressed != null,
+      enabled: _onPressed != null,
       child: Stack(
         children: [
           // Draws the border behind the content without affecting layout size.
@@ -489,7 +494,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
 
     return Semantics(
       button: true,
-      enabled: widget.onPressed != null,
+      enabled: _onPressed != null,
       child: Stack(
         children: [
           // Draws the border behind the content without affecting layout size.
@@ -572,7 +577,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
 
     return Semantics(
       button: true,
-      enabled: widget.onPressed != null,
+      enabled: _onPressed != null,
       child: Stack(
         children: [
           // Draws the border behind the content without affecting layout size.
