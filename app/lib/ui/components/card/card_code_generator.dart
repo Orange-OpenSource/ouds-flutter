@@ -16,6 +16,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/card/card_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/card/card_enum.dart';
 
 class CardCodeGenerator {
   static String updateCode(BuildContext context, {required bool actionCard}) {
@@ -47,7 +48,7 @@ class CardCodeGenerator {
         if (state.loading)
           'loader: OudsCardLoader(progress: ${state.determinate ? state.progress.toStringAsFixed(2) : 'null'})',
       ],
-      'child: const Text(${_stringLiteral(context.l10n.app_components_card_Title_text)})',
+      'child: /* custom widget */ ',
     ];
 
     return '$component(\n${properties.map((line) => '  $line').join(',\n')}\n)';

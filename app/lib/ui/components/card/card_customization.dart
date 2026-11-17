@@ -13,6 +13,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/components/card/card_enum.dart';
 
 class _CardCustomization extends InheritedWidget {
   const _CardCustomization({required super.child, required this.data});
@@ -40,6 +41,7 @@ class CardCustomization extends StatefulWidget {
 
 class CardCustomizationState extends State<CardCustomization> {
   CardStyleEnum style = CardStyleEnum.filled;
+  CardContentEnum content = CardContentEnum.useCase;
   bool enabled = true;
   bool coloredBackground = true;
   bool divider = false;
@@ -81,6 +83,10 @@ class CardCustomizationState extends State<CardCustomization> {
     setState(() => progress = value);
   }
 
+  void updateContent(CardContentEnum value) {
+    setState(() => content = value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return _CardCustomization(data: this, child: widget.child);
@@ -112,28 +118,5 @@ class CardStyleState {
     _setStyle(() {
       _selectedType = newValue;
     });
-  }
-}
-
-enum CardStyleEnum {
-  filled,
-  outlined,
-  elevated;
-
-  static String enumName(BuildContext context) {
-    return context.l10n.app_components_common_style_label;
-  }
-}
-
-extension CustomElementStyle on CardStyleEnum {
-  String stringValue(BuildContext context) {
-    switch (this) {
-      case CardStyleEnum.filled:
-        return context.l10n.app_components_card_style_filled_tech;
-      case CardStyleEnum.outlined:
-        return context.l10n.app_components_card_style_outlined_tech;
-      case CardStyleEnum.elevated:
-        return context.l10n.app_components_card_style_elevated_tech;
-    }
   }
 }

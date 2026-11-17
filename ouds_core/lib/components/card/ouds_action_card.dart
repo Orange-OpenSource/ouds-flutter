@@ -11,10 +11,9 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/card/internal/ouds_card_surface.dart';
-import 'package:ouds_core/components/card/ouds_card_style.dart';
+import 'package:ouds_core/components/card/internal/ouds_card_style.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
-
-export 'package:ouds_core/components/card/ouds_card_style.dart';
+export 'package:ouds_core/components/card/internal/ouds_card_style.dart';
 
 /// Replaces an action card's content with a circular progress indicator.
 ///

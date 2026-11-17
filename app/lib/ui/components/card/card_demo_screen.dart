@@ -18,12 +18,15 @@ import 'package:ouds_core/components/card/ouds_card.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
+import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_core/components/typography/ouds_heading_text.dart';
+import 'package:ouds_core/components/typography/ouds_label_text.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/card/card_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/card/card_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/card/card_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
@@ -110,7 +113,7 @@ class _CardDemo extends StatelessWidget {
         : false;
     final card = actionCard
         ? _buildActionCard(context, state, backgroundColor)
-        : _buildContentCard(state, backgroundColor);
+        : _buildContentCard(context, state, backgroundColor);
 
     return LightDarkBox(hasConstrainedMaxWidthOption: true, child: card);
   }
@@ -135,7 +138,7 @@ class _CardDemo extends StatelessWidget {
         divider: state.divider,
         loader: loader,
         skeleton: skeleton,
-        child: _ActionCardContent(),
+        child: _CardContent(state),
       ),
       CardStyleEnum.outlined => OudsActionCard.outlined(
         semanticsLabel: semanticsLabel,
@@ -145,7 +148,7 @@ class _CardDemo extends StatelessWidget {
         divider: state.divider,
         loader: loader,
         skeleton: skeleton,
-        child: _ActionCardContent(),
+        child: _CardContent(state),
       ),
       CardStyleEnum.elevated => OudsActionCard.elevated(
         semanticsLabel: semanticsLabel,
@@ -155,12 +158,16 @@ class _CardDemo extends StatelessWidget {
         divider: state.divider,
         loader: loader,
         skeleton: skeleton,
-        child: _ActionCardContent(),
+        child: _CardContent(state),
       ),
     };
   }
 
-  Widget _buildContentCard(CardCustomizationState state, bool backgroundColor) {
+  Widget _buildContentCard(
+    BuildContext context,
+    CardCustomizationState state,
+    bool backgroundColor,
+  ) {
     final skeleton = state.skeleton ? OudsSkeleton() : null;
     return switch (state.style) {
       CardStyleEnum.filled => OudsCard.filled(
@@ -168,28 +175,30 @@ class _CardDemo extends StatelessWidget {
         backgroundColor: backgroundColor,
         divider: state.divider,
         skeleton: skeleton,
-        child: _CardContent(),
+        child: _CardContent(state),
       ),
       CardStyleEnum.outlined => OudsCard.outlined(
         enabled: state.enabled,
         backgroundColor: backgroundColor,
         divider: state.divider,
         skeleton: skeleton,
-        child: _CardContent(),
+        child: _CardContent(state),
       ),
       CardStyleEnum.elevated => OudsCard.elevated(
         enabled: state.enabled,
         backgroundColor: backgroundColor,
         divider: state.divider,
         skeleton: skeleton,
-        child: _CardContent(),
+        child: _CardContent(state),
       ),
     };
   }
 }
 
 class _CardContent extends StatelessWidget {
-  const _CardContent();
+  const _CardContent(this.state);
+
+  final CardCustomizationState state;
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +206,27 @@ class _CardContent extends StatelessWidget {
   }
 
   Widget _cardContent(BuildContext context) {
+    if(state.content == CardContentEnum.useCase) {
+      return _content(context);
+    }else{
+      final theme = OudsTheme.of(context);
+      return SizedBox(
+        width: double.infinity,
+        child: Container(
+          padding: EdgeInsetsDirectional.all(
+            theme.spaceScheme(context).fixedFiveExtraLarge,
+          ),
+          alignment: Alignment.center,
+          color: theme.colorScheme(context).surfaceStatusInfoMuted,
+          child: OudsLabelText(text: context.l10n.app_components_common_content_tech, weight: OudsTextWeight.moderate,),
+        ),
+      );
+    }
+  }
+
+  Widget _content(BuildContext context){
     final theme = OudsTheme.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -213,9 +242,10 @@ class _CardContent extends StatelessWidget {
                 text: "Samsung",
                 size: OudsHeadingTextSize.medium,
               ),
-              Text(
-                "Galaxy S26 FE EE",
-                style: theme.typographyTokens.typeLabelModerateXLarge(context),
+              OudsLabelText(
+                text: "Galaxy S26 FE EE",
+                weight: OudsTextWeight.moderate,
+                size: OudsLabelTextSize.xLarge,
               ),
               SizedBox(height: theme.spaceScheme(context).fixedMedium),
               OudsButton(
@@ -311,6 +341,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             value: state.divider,
             onChanged: state.updateDivider,
           ),
+        CustomizableChips<CardContentEnum>(
+          title: CardContentEnum.enumName(context),
+          options: CardContentEnum.values,
+          selectedOption: state.content,
+          getText: (option) => option.stringValue(context),
+          onSelected: state.updateContent,
+        ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_skeleton_tech,
           value: state.skeleton,

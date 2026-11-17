@@ -335,6 +335,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_skeleton_tech => 'Skeleton';
 
   @override
+  String get app_components_common_content_tech => 'Content';
+
+  @override
   String get app_components_alert_tech => 'Alert';
 
   @override
@@ -400,7 +403,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_card_actionCard_semantics_a11y =>
-      'عرض باقة الهاتف المحمول';
+      'اطلب Samsung Galaxy S26 FE EE';
 
   @override
   String get app_components_card_Title_text => 'Before activating your eSIM';
@@ -446,6 +449,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_card_style_elevated_tech => 'Elevated';
+
+  @override
+  String get app_components_card_content_exemple_tech => 'Content example';
 
   @override
   String get app_components_bottomSheet_tech => 'Bottom sheet';
@@ -868,9 +874,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_listItem_labelContent_tech => 'Label content';
-
-  @override
-  String get app_components_listItem_content_tech => 'Content';
 
   @override
   String get app_components_listItem_contentExampleAlert_label =>

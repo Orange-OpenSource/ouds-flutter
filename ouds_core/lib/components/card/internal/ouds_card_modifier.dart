@@ -13,7 +13,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/card/ouds_card_style.dart';
+import 'package:ouds_core/components/card/internal/ouds_card_style.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 

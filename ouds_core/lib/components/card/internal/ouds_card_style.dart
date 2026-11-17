@@ -6,7 +6,7 @@
 // the text of which is available at https://opensource.org/license/MIT/
 // or see the "LICENSE" file for more details.
 
-/// {@category Card}
+///@nodoc
 library;
 
 /// The surface treatment shared by content and action cards.

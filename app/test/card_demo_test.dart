@@ -6,6 +6,7 @@ import 'package:ouds_core/components/card/ouds_card.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/components/card/card_enum.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/card/card_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/card/card_customization.dart';
@@ -50,6 +51,15 @@ void main() {
       CardCodeGenerator.updateCode(context, actionCard: false),
       contains('OudsCard.filled('),
     );
+    expect(
+      CardCodeGenerator.updateCode(context, actionCard: false),
+      contains('semanticsLabel: "Samsung Galaxy S26 FE EE"'),
+    );
+    final initialCode = CardCodeGenerator.updateCode(
+      context,
+      actionCard: false,
+    );
+    expect(initialCode, contains('child: /* custom widget */'));
 
     state.updateStyle(CardStyleEnum.outlined);
     await tester.pump();
@@ -70,6 +80,10 @@ void main() {
 
     final actionCode = CardCodeGenerator.updateCode(context, actionCard: true);
     expect(actionCode, contains('OudsActionCard.elevated('));
+    expect(
+      actionCode,
+      contains('semanticsLabel: "Order Samsung Galaxy S26 FE EE"'),
+    );
 
     state.updateStyle(CardStyleEnum.filled);
     await tester.pump();

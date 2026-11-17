@@ -99,7 +99,7 @@
   "app_components_card_description_text": "Les cartes regroupent des contenus liés dans une surface délimitée. Choisissez une carte de contenu pour des actions indépendantes ou une carte action lorsque toute la surface représente une seule action.",
   "app_components_card_contentCard_description_text": "Un card (ou une carte) est un élément d’interface semblable à une surface. Il regroupe des informations liées au sein d’une surface non interactive unique, qui peut contenir des éléments interactifs indépendants.",
   "app_components_card_actionCard_description_text": "Un action card (ou une carte d’action) est un élément d’interface semblable à une surface. Il regroupe des informations liées au sein d’une surface interactive et permet à l’utilisateur d’effectuer une action principale ou d’accéder à une destination.",
-  "app_components_card_actionCard_semantics_a11y": "Voir votre forfait mobile",
+  "app_components_card_actionCard_semantics_a11y": "Commander Samsung Galaxy S26 FE EE",
 
   "@_components_badge": {},
   "app_components_badge_description_text": "Un Badge est un élément d'interface utilisateur qui met en évidence les notifications système, l'état ou la catégorisation d'une information, uniquement par le biais de la couleur.",

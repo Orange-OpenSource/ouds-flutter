@@ -697,6 +697,12 @@ abstract class AppLocalizations {
   /// **'Skeleton'**
   String get app_components_common_skeleton_tech;
 
+  /// No description provided for @app_components_common_content_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get app_components_common_content_tech;
+
   /// No description provided for @app_components_alert_tech.
   ///
   /// In en, this message translates to:
@@ -808,7 +814,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_card_actionCard_semantics_a11y.
   ///
   /// In en, this message translates to:
-  /// **'View your mobile plan'**
+  /// **'Order Samsung Galaxy S26 FE EE'**
   String get app_components_card_actionCard_semantics_a11y;
 
   /// No description provided for @app_components_card_Title_text.
@@ -894,6 +900,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Elevated'**
   String get app_components_card_style_elevated_tech;
+
+  /// No description provided for @app_components_card_content_exemple_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Content example'**
+  String get app_components_card_content_exemple_tech;
 
   /// No description provided for @app_components_bottomSheet_tech.
   ///
@@ -1637,12 +1649,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Label content'**
   String get app_components_listItem_labelContent_tech;
-
-  /// No description provided for @app_components_listItem_content_tech.
-  ///
-  /// In en, this message translates to:
-  /// **'Content'**
-  String get app_components_listItem_content_tech;
 
   /// No description provided for @app_components_listItem_contentExampleAlert_label.
   ///

@@ -80,7 +80,7 @@
   "app_components_card_description_text": "تجمع البطاقات المحتوى المرتبط ضمن مساحة محددة. استخدم بطاقة المحتوى للإجراءات المستقلة، أو بطاقة الإجراء عندما تمثل المساحة كلها إجراءً واحدًا.",
   "app_components_card_contentCard_description_text": "Card هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح واحد غير تفاعلي، وقد تتضمن عناصر تفاعلية مستقلة.",
   "app_components_card_actionCard_description_text": "Action card هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح تفاعلي، وتتيح للمستخدم تنفيذ إجراء رئيسي واحد أو الانتقال إلى وجهة.",
-  "app_components_card_actionCard_semantics_a11y": "عرض باقة الهاتف المحمول",
+  "app_components_card_actionCard_semantics_a11y": "اطلب Samsung Galaxy S26 FE EE",
 
   "@_components_button": {},
   "app_components_button_description_text": "Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.",
