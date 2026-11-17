@@ -66,8 +66,6 @@ class ChipSuggestionCodeGenerator {
     final ChipCustomizationState? customizationState = ChipCustomization.of(
       context,
     );
-    return customizationState?.hasSkeleton == true
-        ? ' skeleton: OudsSkeleton(),\n'
-        : '';
+    return customizationState?.hasSkeleton == true ? ' skeleton: true,\n' : '';
   }
 }

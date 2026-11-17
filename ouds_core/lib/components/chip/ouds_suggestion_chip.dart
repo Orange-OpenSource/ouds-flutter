@@ -24,7 +24,7 @@ import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -51,7 +51,7 @@ enum OudsChipStyle { defaultStyle, selected }
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
 /// - [icon]: Icon displayed in the suggestion chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the suggestion chip is clicked.
-/// - [skeleton] : An optional skeleton that improves the perceived loading time by providing a visual cue of where the suggestion chip will appear once fully loaded.
+/// - [skeleton]: Whether to display a skeleton in place of the suggestion chip.
 ///
 /// ### You can use [OudsSuggestionChip] component in your project, customizing parameters as needed :
 ///
@@ -82,7 +82,7 @@ enum OudsChipStyle { defaultStyle, selected }
 /// OudsSuggestionChip(
 ///       label: 'Label',
 ///       onPressed: () {},
-///       skeleton: OudsSkeleton(),
+///       skeleton: true,
 ///     );
 /// ```
 ///
@@ -98,7 +98,7 @@ class OudsSuggestionChip extends StatefulWidget {
   )
   final String? contentDescription;
   final VoidCallback? onPressed;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   /// Creates a text-only [OudsSuggestionChip].
   ///
@@ -115,7 +115,7 @@ class OudsSuggestionChip extends StatefulWidget {
     )
     this.contentDescription,
     this.onPressed,
-    this.skeleton,
+    this.skeleton = false,
   }) : icon = null;
 
   /// Creates an [OudsSuggestionChip] with a text and an icon.
@@ -127,7 +127,7 @@ class OudsSuggestionChip extends StatefulWidget {
     this.label,
     this.icon,
     this.onPressed,
-    this.skeleton,
+    this.skeleton = false,
   }) : avatar = null,
        contentDescription = null;
 
@@ -207,7 +207,8 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
       context,
       InteractionAspect.pressed,
     );
-    if (widget.skeleton != null) {
+    // The focus border is outside the skeleton layout.
+    if (widget.skeleton || OudsSkeletonProvider.isEnabledOf(context)) {
       _isFocused = false;
     }
     final isHovered = interactionModelHover?.state.isHovered ?? false;
@@ -246,10 +247,14 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
     OudsChipControlState chipState,
     bool isDisabled,
   ) {
+    // The InkWell and semantics wrap the skeleton layout and must also
+    // respond to the local or shared skeleton state.
+    final isSkeletonVisible =
+        widget.skeleton || OudsSkeletonProvider.isEnabledOf(context);
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final borderTokens = OudsTheme.of(context).borderTokens;
     return Semantics(
-      enabled: !isDisabled,
+      enabled: isSkeletonVisible ? null : !isDisabled,
       child: Material(
         color: Colors.transparent,
         child: Container(
@@ -257,9 +262,9 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
             minHeight: chipToken.sizeMinHeightInteractiveArea,
           ),
           child: InkWell(
-            onTap: widget.onPressed,
+            onTap: isSkeletonVisible ? null : widget.onPressed,
             focusNode: _focusNode,
-            canRequestFocus: !isDisabled,
+            canRequestFocus: !isDisabled && !isSkeletonVisible,
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             focusColor: Colors.transparent,
@@ -312,10 +317,8 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                   ),
                 // Border interior + content
                 OudsSkeletonLayout(
-                  visible: widget.skeleton != null,
-                  hasSecurityMargin:
-                      widget.skeleton?.hasSecurityMargin ?? false,
-                  animated: widget.skeleton?.animated ?? false,
+                  visible: widget.skeleton,
+                  hasSecurityMargin: false,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       OudsTheme.of(

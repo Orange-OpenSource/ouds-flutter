@@ -12,7 +12,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_code_generator.dart';
@@ -149,7 +148,7 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
             isError: customizationState.hasError,
             tristate: widget.indeterminate,
             readOnly: customizationState.hasReadOnly ? true : false,
-            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+            skeleton: customizationState.hasSkeleton,
           ),
           SizedBox(
             width: themeController.currentTheme
@@ -168,7 +167,7 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
             isError: customizationState.hasError ? true : false,
             tristate: widget.indeterminate,
             readOnly: customizationState.hasReadOnly ? true : false,
-            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+            skeleton: customizationState.hasSkeleton,
           ),
         ],
       ),

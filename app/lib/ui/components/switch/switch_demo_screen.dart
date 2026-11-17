@@ -12,7 +12,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -124,9 +123,7 @@ class _SwitchDemoState extends State<_SwitchDemo> {
                       }
                     : null,
                 readOnly: customizationState.hasReadOnly ? true : false,
-                skeleton: customizationState.hasSkeleton
-                    ? OudsSkeleton()
-                    : null,
+                skeleton: customizationState.hasSkeleton,
               ),
             ],
           ),

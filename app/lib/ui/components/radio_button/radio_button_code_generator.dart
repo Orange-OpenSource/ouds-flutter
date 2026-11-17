@@ -69,7 +69,7 @@ class RadioButtonCodeGenerator {
 
     // Add the skeleton property only when true.
     if (customizationState?.hasSkeleton == true) {
-      code.add('  skeleton: OudsSkeleton(),');
+      code.add('  skeleton: true,');
     }
     // End of the widget declaration.
     code.add(');');

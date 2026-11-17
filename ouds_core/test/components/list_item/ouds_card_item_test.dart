@@ -299,7 +299,7 @@ void main() {
         testableWidget(
           const OudsCardItem(
             label: 'Skeleton card',
-            skeleton: OudsSkeleton(animated: false),
+            skeleton: true,
           ),
         ),
       );

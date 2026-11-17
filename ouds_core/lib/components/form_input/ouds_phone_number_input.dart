@@ -28,7 +28,6 @@ import 'package:ouds_core/components/form_input/internal/ouds_form_input_control
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -58,7 +57,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [countrySelector]: Optional. If provided, displays a country selector for choosing the country of the number.
 /// - [decoration]: Decoration configuration for the input field, including labels, icons, helper texts, etc.
 /// - [onEditingComplete]: Callback invoked when editing is complete.
-/// - [skeleton]: An optional [OudsSkeleton] to display a loading skeleton.
+/// - [skeleton]: Whether to display a skeleton in place of the phone number input.
 ///
 /// ### You can use [OudsPhoneNumberInput] component in your project, customizing parameters as needed :
 ///
@@ -92,7 +91,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 ///   controller: myController,
 ///   // No countrySelector provided
 ///   readOnly: false,
-///   skeleton: OudsSkeleton(),
+///   skeleton: true,
 /// )
 /// ```
 //
@@ -106,7 +105,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
   final CountrySelector? countrySelector;
   final OudsInputDecoration decoration;
   final void Function(String)? onEditingComplete;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   OudsPhoneNumberInput({
     super.key,
@@ -118,7 +117,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
     this.countrySelector,
     required this.decoration,
     this.onEditingComplete,
-    this.skeleton,
+    this.skeleton = false,
   }) : assert(
          !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
@@ -313,9 +312,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return OudsSkeletonLayout(
-      visible: widget.skeleton != null,
-      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-      animated: widget.skeleton?.animated ?? false,
+      visible: widget.skeleton,
+      hasSecurityMargin: false,
       shape: RoundedRectangleBorder(
         borderRadius: inputTextBorderModifier.getBorderRadius(context),
       ),
