@@ -10,6 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// {@category Skeleton}
+library;
+
 import 'package:flutter/widgets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
@@ -92,9 +95,7 @@ class OudsSkeletonProvider extends StatelessWidget {
         container: announce,
         explicitChildNodes: announce,
         liveRegion: announce,
-        label: announce
-            ? semanticsLabel
-            : null,
+        label: announce ? semanticsLabel : null,
         child: child,
       ),
     );
