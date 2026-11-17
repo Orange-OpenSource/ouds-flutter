@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/card/internal/ouds_card_modifier.dart';
 import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:ouds_core/components/card/ouds_action_card.dart';
-import 'package:ouds_core/components/card/ouds_card_style.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/progress_indicator/internal/ouds_progress_indicator_utils.dart';
@@ -217,6 +216,58 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                 ),
             ],
           );
+          final cardChild = widget.actionable
+              ? InkWell(
+                  onTap: interactive ? widget.onPressed : null,
+                  canRequestFocus: interactive,
+                  excludeFromSemantics: true,
+                  statesController: _states,
+                  customBorder: shape,
+                  overlayColor: const WidgetStatePropertyAll(
+                    Colors.transparent,
+                  ),
+                  splashFactory: NoSplash.splashFactory,
+                  splashColor: Colors.transparent,
+                  child: body,
+                )
+              : body;
+          final cardColor = cardModifier.getBackgroundColor(widget.style);
+          final shadowColor = theme
+              .colorScheme(context)
+              .contentOnActionSelected; //todo change to ouds/elevation/color/raised
+          final card = switch (widget.style) {
+            OudsCardStyle.filled => Card.filled(
+              color: cardColor,
+              shadowColor: shadowColor,
+              surfaceTintColor: Colors.transparent,
+              elevation: theme.elevationTokens.none,
+              shape: surfaceShape,
+              margin: EdgeInsets.zero,
+              semanticContainer: false,
+              child: cardChild,
+            ),
+            OudsCardStyle.outlined => Card.outlined(
+              color: cardColor,
+              shadowColor: shadowColor,
+              surfaceTintColor: Colors.transparent,
+              elevation: theme.elevationTokens.none,
+              shape: surfaceShape,
+              margin: EdgeInsets.zero,
+              semanticContainer: false,
+              child: cardChild,
+            ),
+            OudsCardStyle.elevated => Card(
+              color: cardColor,
+              shadowColor: shadowColor,
+              surfaceTintColor: Colors.transparent,
+              elevation: theme.elevationTokens.raised,
+              shape: surfaceShape,
+              margin: EdgeInsets.zero,
+              semanticContainer: false,
+              child: cardChild,
+            ),
+          };
+
           return Semantics(
             container: true,
             explicitChildNodes: !widget.actionable,
@@ -237,34 +288,7 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
                   )
                 : null,
             onTap: widget.actionable && interactive ? widget.onPressed : null,
-            child: Material(
-              type: MaterialType.card,
-              color: cardModifier.getBackgroundColor(
-                widget.style),
-              shadowColor: theme
-                  .colorScheme(context)
-                  .contentOnActionSelected, //todo change to ouds/elevation/color/raised
-              surfaceTintColor: Colors.transparent,
-              elevation: widget.style == OudsCardStyle.elevated
-                  ? theme.elevationTokens.raised
-                  : theme.elevationTokens.none,
-              shape: surfaceShape,
-              child: widget.actionable
-                  ? InkWell(
-                      onTap: interactive ? widget.onPressed : null,
-                      canRequestFocus: interactive,
-                      excludeFromSemantics: true,
-                      statesController: _states,
-                      customBorder: shape,
-                      overlayColor: const WidgetStatePropertyAll(
-                        Colors.transparent,
-                      ),
-                      splashFactory: NoSplash.splashFactory,
-                      splashColor: Colors.transparent,
-                      child: body,
-                    )
-                  : body,
-            ),
+            child: card,
           );
         },
       ),

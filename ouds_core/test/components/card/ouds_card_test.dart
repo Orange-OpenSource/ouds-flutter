@@ -79,7 +79,8 @@ void main() {
       var second = 0;
       await tester.pumpWidget(
         _host(
-          OudsCard(
+          OudsCard.elevated(
+            semanticsLabel: 'Manage plan',
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -112,7 +113,7 @@ void main() {
     ) async {
       await tester.pumpWidget(
         _host(
-          OudsCard(
+          OudsCard.elevated(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -141,7 +142,7 @@ void main() {
       var count = 0;
       await tester.pumpWidget(
         _host(
-          OudsCard(
+          OudsCard.elevated(
             enabled: false,
             child: TextButton(
               onPressed: () => count++,
@@ -165,7 +166,7 @@ void main() {
       tester,
     ) async {
       Widget card({required bool enabled, required Widget child}) =>
-          _host(OudsCard(enabled: enabled, child: child));
+          _host(OudsCard.elevated(enabled: enabled, child: child));
       Color? textColor(WidgetTester tester, String text) {
         Color? found;
         tester
@@ -203,7 +204,7 @@ void main() {
       await tester.pumpWidget(
         card(
           enabled: false,
-          child: const OudsCard(child: OudsBodyText(text: 'Nested')),
+          child: const OudsCard.elevated(child: OudsBodyText(text: 'Nested')),
         ),
       );
       await tester.pumpAndSettle();
@@ -213,7 +214,7 @@ void main() {
     testWidgets('disabled card disables control items', (tester) async {
       var changes = 0;
       Widget card(bool enabled) => _host(
-        OudsCard(
+        OudsCard.elevated(
           enabled: enabled,
           child: OudsSwitchButtonItem(
             value: false,
@@ -239,7 +240,7 @@ void main() {
       final handle = tester.ensureSemantics();
       var count = 0;
       Widget card(bool enabled) => _host(
-        OudsCard(
+        OudsCard.elevated(
           enabled: enabled,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -279,9 +280,9 @@ void main() {
       final handle = tester.ensureSemantics();
       await tester.pumpWidget(
         _host(
-          OudsCard(
+          OudsCard.elevated(
             enabled: false,
-            child: OudsActionCard(
+            child: OudsActionCard.elevated(
               semanticsLabel: 'View plan',
               onPressed: () {},
               child: const SizedBox(height: 100, child: Text('Plan')),
@@ -295,10 +296,37 @@ void main() {
       handle.dispose();
     });
 
+    testWidgets('named constructors select their card variants', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _host(
+          Column(
+            children: [
+              const OudsCard.elevated(child: SizedBox(height: 40)),
+              const OudsCard.filled(child: SizedBox(height: 40)),
+              const OudsCard.outlined(child: SizedBox(height: 40)),
+            ],
+          ),
+        ),
+      );
+
+      final cards = tester
+          .widgetList<OudsCardSurface>(find.byType(OudsCardSurface))
+          .toList();
+      expect(cards.map((card) => card.style), [
+        OudsCardStyle.elevated,
+        OudsCardStyle.filled,
+        OudsCardStyle.outlined,
+      ]);
+    });
+
     testWidgets('never shows hover or press feedback', (tester) async {
       await tester.pumpWidget(
         _host(
-          const OudsCard(child: SizedBox(height: 100, child: Text('Plan'))),
+          const OudsCard.elevated(
+            child: SizedBox(height: 100, child: Text('Plan')),
+          ),
         ),
       );
       final mouse = await tester.createGesture(kind: PointerDeviceKind.mouse);
@@ -307,11 +335,63 @@ void main() {
       await mouse.moveTo(tester.getCenter(find.byType(OudsCard)));
       await tester.pump();
       expect(find.byType(InkWell), findsNothing);
-      expect(find.byType(ColoredBox), findsNothing);
+      final context = tester.element(find.byType(OudsCard));
+      final colors = OudsTheme.of(context).colorScheme(context);
+      for (final color in [
+        colors.actionSupportHover,
+        colors.actionSupportPressed,
+      ]) {
+        expect(
+          find.descendant(
+            of: find.byType(OudsCard),
+            matching: find.byWidgetPredicate(
+              (widget) => widget is ColoredBox && widget.color == color,
+            ),
+          ),
+          findsNothing,
+        );
+      }
     });
   });
 
   group('OudsActionCard', () {
+    testWidgets('named constructors select their card variants', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _host(
+          Column(
+            children: [
+              OudsActionCard.elevated(
+                semanticsLabel: 'Elevated card',
+                onPressed: () {},
+                child: const SizedBox(height: 40),
+              ),
+              OudsActionCard.filled(
+                semanticsLabel: 'Filled card',
+                onPressed: () {},
+                child: const SizedBox(height: 40),
+              ),
+              OudsActionCard.outlined(
+                semanticsLabel: 'Outlined card',
+                onPressed: () {},
+                child: const SizedBox(height: 40),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      final cards = tester
+          .widgetList<OudsCardSurface>(find.byType(OudsCardSurface))
+          .toList();
+      expect(cards.map((card) => card.style), [
+        OudsCardStyle.elevated,
+        OudsCardStyle.filled,
+        OudsCardStyle.outlined,
+      ]);
+    });
+
     testWidgets(
       'has one named semantic action, with presentation-only slot',
       (tester) async {
@@ -320,7 +400,7 @@ void main() {
         var nested = 0;
         await tester.pumpWidget(
           _host(
-            OudsActionCard(
+            OudsActionCard.elevated(
               semanticsLabel: 'Activate your eSIM',
               onPressed: () => primary++,
               child: Column(
@@ -390,7 +470,7 @@ void main() {
           var count = 0;
           await tester.pumpWidget(
             _host(
-              OudsActionCard(
+              OudsActionCard.elevated(
                 semanticsLabel: 'View plan',
                 enabled: disabledByCallback,
                 onPressed: disabledByCallback ? null : () => count++,
@@ -419,7 +499,7 @@ void main() {
     ) async {
       await tester.pumpWidget(
         _host(
-          OudsActionCard(
+          OudsActionCard.elevated(
             semanticsLabel: 'View plan',
             onPressed: () {},
             child: const SizedBox(height: 100, child: Text('Plan')),
@@ -455,11 +535,13 @@ void main() {
           return false;
         }
         final decoration = widget.decoration;
-        if (decoration is! ShapeDecoration) {
+        if (decoration is! BoxDecoration) {
           return false;
         }
-        final shape = decoration.shape;
-        return shape is RoundedRectangleBorder && shape.side.color == color;
+        final border = decoration.border;
+        return border is Border &&
+            border.top.color == color &&
+            border.left.color == color;
       });
       expect(focusBorder(colors.borderFocus), findsOneWidget);
       expect(focusBorder(colors.borderFocusInset), findsOneWidget);
@@ -475,7 +557,7 @@ void main() {
       final handle = tester.ensureSemantics();
       var count = 0;
       Widget card(OudsCardLoader? loader) => _host(
-        OudsActionCard(
+        OudsActionCard.elevated(
           semanticsLabel: 'Activate eSIM',
           onPressed: () => count++,
           loader: loader,
@@ -518,7 +600,7 @@ void main() {
       for (final value in [-0.5, 1.5]) {
         await tester.pumpWidget(
           _host(
-            OudsActionCard(
+            OudsActionCard.elevated(
               semanticsLabel: 'Activate eSIM',
               onPressed: () {},
               loader: OudsCardLoader(progress: value),
@@ -538,7 +620,7 @@ void main() {
     ) async {
       await tester.pumpWidget(
         _host(
-          OudsActionCard(
+          OudsActionCard.elevated(
             semanticsLabel: 'Activate eSIM',
             enabled: false,
             onPressed: () {},
@@ -562,7 +644,7 @@ void main() {
       var count = 0;
       await tester.pumpWidget(
         _host(
-          OudsActionCard(
+          OudsActionCard.elevated(
             semanticsLabel: 'View plan',
             onPressed: () => count++,
             skeleton: const OudsSkeleton(animated: false),
@@ -587,12 +669,12 @@ void main() {
         tester,
       ) async {
         final card = actionable
-            ? OudsActionCard(
+            ? OudsActionCard.elevated(
                 semanticsLabel: 'Plan',
                 onPressed: () {},
                 child: const SizedBox(height: 100),
               )
-            : const OudsCard(child: SizedBox(height: 100));
+            : const OudsCard.elevated(child: SizedBox(height: 100));
         BorderRadiusGeometry radius() =>
             (_surface(tester).shape! as RoundedRectangleBorder).borderRadius;
         await tester.pumpWidget(_host(card));
@@ -625,16 +707,28 @@ void main() {
         testWidgets('$style in $mode uses theme values and natural height', (
           tester,
         ) async {
+          final card = switch (style) {
+            OudsCardStyle.filled => OudsCard.filled(
+              divider: true,
+              backgroundColor: true,
+              child: const SizedBox(height: 100),
+            ),
+            OudsCardStyle.outlined => OudsCard.outlined(
+              divider: true,
+              backgroundColor: true,
+              child: const SizedBox(height: 100),
+            ),
+            OudsCardStyle.elevated => OudsCard.elevated(
+              divider: true,
+              backgroundColor: true,
+              child: const SizedBox(height: 100),
+            ),
+          };
           await tester.pumpWidget(
             _host(
               OudsThemeConfigModel(
                 card: const OudsCardConfig(rounded: true),
-                child: OudsCard(
-                  style: style,
-                  divider: true,
-                  backgroundColor: true,
-                  child: const SizedBox(height: 100),
-                ),
+                child: card,
               ),
               mode: mode,
             ),
@@ -648,10 +742,11 @@ void main() {
                 ? theme.elevationTokens.raised
                 : theme.elevationTokens.none,
           );
-          expect(
-            material.color,
-            style == OudsCardStyle.outlined ? Colors.transparent : Colors.blue,
-          );
+          expect(material.color, switch (style) {
+            OudsCardStyle.filled ||
+            OudsCardStyle.outlined => Colors.transparent,
+            OudsCardStyle.elevated => theme.colorScheme(context).surfacePrimary,
+          });
           final shape = material.shape! as RoundedRectangleBorder;
           expect(
             shape.borderRadius,
@@ -686,7 +781,7 @@ void main() {
       addTearDown(tester.view.resetDevicePixelRatio);
       await tester.pumpWidget(
         _host(
-          OudsActionCard(
+          OudsActionCard.elevated(
             semanticsLabel: 'View your plan',
             onPressed: () {},
             child: const Padding(

@@ -594,13 +594,19 @@ class _CustomToggleState extends State<CustomToggle> {
 
 Use `OudsCard` for a non-interactive container with independently accessible
 children, or `OudsActionCard` for a single action covering the entire surface.
-Both require a concise, localized `semanticsLabel`; do not concatenate all slot
-text. Both support `OudsCardStyle.filled`, `.outlined`, `.elevated`,
-`backgroundColor`, `divider` (filled only), `enabled` and `skeleton`.
-Action cards also accept `onPressed` and `loader: OudsCardLoader(progress: ...)`.
-Their slot is presentation-only: no descendant focus or independent actions.
-Nested visual actions must reinforce the same primary action; their interaction
-styling is not automatically synchronized with the card.
+Provide a concise, localized `semanticsLabel` when a card needs an accessible
+group or action name; do not concatenate all slot text. `OudsActionCard`
+requires this label, while it is optional on `OudsCard`. Choose a content-card
+variant with `OudsCard.elevated()`, `OudsCard.filled()` or
+`OudsCard.outlined()`. Action cards use `OudsActionCard.elevated()`,
+`OudsActionCard.filled()` or `OudsActionCard.outlined()`. Both components
+expose only named variant constructors and no `style` parameter. Both support
+`backgroundColor`, `divider` (filled only), `enabled` and `skeleton`. Action
+cards require `onPressed` and also accept
+`loader: OudsCardLoader(progress: ...)`. Their slot is presentation-only: no
+descendant focus or independent actions. Nested visual actions must reinforce
+the same primary action; their interaction styling is not automatically
+synchronized with the card.
 
 | What | Replace with |
 |------|-------------|
@@ -630,9 +636,8 @@ final spaces = OudsTheme.of(context).spaceScheme(context);
 
 OudsThemeConfigModel(
   card: OudsCardConfig(rounded: true),
-  child: OudsCard(
+  child: OudsCard.outlined(
     semanticsLabel: localizedCardName,
-    style: OudsCardStyle.outlined,
     child: Padding(
       padding: EdgeInsets.all(spaces.fixedMedium),
       child: content,
@@ -649,8 +654,8 @@ corners remain the default when it is absent.
 There is no implicit slot padding. `enabled: false` blocks pointer, keyboard and
 accessibility activation. Pass disabled state to child controls explicitly
 (for example, null callbacks) for appropriate visuals and announcements.
-Existing APIs are unchanged; adoption of
-the new card family is optional.
+When migrating from the former unnamed card constructors, use the named
+`.elevated` constructor or choose `.filled` or `.outlined`.
 
 ---
 

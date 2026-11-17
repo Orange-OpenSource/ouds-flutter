@@ -19,24 +19,18 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 ///
 /// **Reference design version : 1.0.0**
 ///
-/// A card is a surface-like UI element that groups related information within
-/// a single non-interactive surface that can include independently interactive elements.
+/// A card groups related information within a non-interactive surface. Its
+/// children can include independently interactive elements.
 ///
 /// Corner rounding is shared with content cards through
 /// `OudsThemeConfigModel(card: OudsCardConfig(rounded: true), child: ...)`.
 ///
-/// The following parameters are available:
-/// - [style]: Style of the card among [OudsCardStyle] values, filled by default.
-/// - [enabled]: Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state..
-/// - [backgroundColor]: Background for filled and elevated cards; transparent when omitted.
-/// - [divider]: Whether to draw a bottom divider. Only applies to filled cards.
-/// - [skeleton]: A placeholder displayed instead of the card while content is loading.
-/// - [child]: Content with independently accessible actions and caller-defined padding.
+/// Use [OudsCard.elevated], [OudsCard.filled] or [OudsCard.outlined] to choose
+/// the surface treatment.
 ///
 /// ```dart
-/// OudsCard(
+/// OudsCard.elevated(
 ///   semanticsLabel: 'Manage your mobile plan',
-///   style: OudsCardStyle.outlined,
 ///   child: Column(
 ///     mainAxisSize: MainAxisSize.min,
 ///     children: [
@@ -46,30 +40,66 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 ///     ],
 ///   ),
 /// )
+///
+/// OudsCard.outlined(
+///   semanticsLabel: 'Manage your mobile plan',
+///   child: Text('200 GB plan'),
+/// )
+///
+/// OudsCard.filled(
+///   semanticsLabel: 'Manage your mobile plan',
+///   child: Text('200 GB plan'),
+/// )
 /// ```
-/// {@category Content card}
 class OudsCard extends StatelessWidget {
-  /// Creates a content card with a meaningful, localized [semanticsLabel].
-  const OudsCard({
+  /// Creates an elevated content card.
+  const OudsCard.elevated({
     super.key,
     required this.child,
-    this.style = OudsCardStyle.filled,
     this.enabled = true,
     this.backgroundColor = true,
     this.divider = false,
     this.skeleton,
-  });
+    this.semanticsLabel,
+  }) : _style = OudsCardStyle.elevated,
+       assert(semanticsLabel == null || semanticsLabel != '');
+
+  /// Creates a filled content card.
+  const OudsCard.filled({
+    super.key,
+    required this.child,
+    this.enabled = true,
+    this.backgroundColor = true,
+    this.divider = false,
+    this.skeleton,
+    this.semanticsLabel,
+  }) : _style = OudsCardStyle.filled,
+       assert(semanticsLabel == null || semanticsLabel != '');
+
+  /// Creates an outlined content card.
+  const OudsCard.outlined({
+    super.key,
+    required this.child,
+    this.enabled = true,
+    this.backgroundColor = true,
+    this.divider = false,
+    this.skeleton,
+    this.semanticsLabel,
+  }) : _style = OudsCardStyle.outlined,
+       assert(semanticsLabel == null || semanticsLabel != '');
 
   /// Content with independently accessible actions and caller-defined padding.
   final Widget child;
 
-  /// The surface treatment, filled by default.
-  final OudsCardStyle style;
+  final OudsCardStyle _style;
 
   /// Whether nested controls can receive user interaction.
   final bool enabled;
 
-  /// Background for filled and elevated cards; transparent when omitted.
+  /// A concise, localized accessible name for the card's content group.
+  final String? semanticsLabel;
+
+  /// Whether to show the background for filled and elevated cards.
   ///
   /// Ignored by outlined cards, whose background is always transparent.
   final bool backgroundColor;
@@ -82,7 +112,8 @@ class OudsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OudsCardSurface(
-    style: style,
+    semanticsLabel: semanticsLabel,
+    style: _style,
     enabled: enabled,
     backgroundColor: backgroundColor,
     divider: divider,

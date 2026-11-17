@@ -7,6 +7,8 @@ import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
+import 'package:ouds_flutter_demo/ui/components/card/card_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/card/card_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/components.dart' as catalog;
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dialog/theme_settings_dialog.dart';
@@ -22,6 +24,69 @@ import 'package:provider/provider.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets('generated card code uses the named content-card constructors', (
+    tester,
+  ) async {
+    late BuildContext context;
+    late CardCustomizationState state;
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: CardCustomization(
+          child: Builder(
+            builder: (buildContext) {
+              context = buildContext;
+              state = CardCustomization.of(buildContext)!;
+              return const SizedBox();
+            },
+          ),
+        ),
+      ),
+    );
+
+    expect(
+      CardCodeGenerator.updateCode(context, actionCard: false),
+      contains('OudsCard.filled('),
+    );
+
+    state.updateStyle(CardStyleEnum.outlined);
+    await tester.pump();
+    expect(
+      CardCodeGenerator.updateCode(context, actionCard: false),
+      contains('OudsCard.outlined('),
+    );
+
+    state.updateStyle(CardStyleEnum.elevated);
+    state.updateColoredBackground(false);
+    await tester.pump();
+    final elevatedCode = CardCodeGenerator.updateCode(
+      context,
+      actionCard: false,
+    );
+    expect(elevatedCode, contains('OudsCard.elevated('));
+    expect(elevatedCode, contains('backgroundColor: false'));
+
+    final actionCode = CardCodeGenerator.updateCode(context, actionCard: true);
+    expect(actionCode, contains('OudsActionCard.elevated('));
+
+    state.updateStyle(CardStyleEnum.filled);
+    await tester.pump();
+    expect(
+      CardCodeGenerator.updateCode(context, actionCard: true),
+      contains('OudsActionCard.filled('),
+    );
+
+    state.updateStyle(CardStyleEnum.outlined);
+    await tester.pump();
+    final outlinedActionCode = CardCodeGenerator.updateCode(
+      context,
+      actionCard: true,
+    );
+    expect(outlinedActionCode, contains('OudsActionCard.outlined('));
+    expect(outlinedActionCode, isNot(contains('backgroundColor:')));
+  });
 
   test('Card rounding defaults to false and notifies only on changes', () {
     final controller = ThemeController(null);

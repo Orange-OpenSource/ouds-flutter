@@ -14,24 +14,33 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/card/ouds_card.dart';
-import 'package:ouds_core/components/card/ouds_card_style.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/card/card_customization.dart';
 
 class CardCodeGenerator {
   static String updateCode(BuildContext context, {required bool actionCard}) {
     final state = CardCustomization.of(context)!;
-    final component = actionCard ? 'OudsActionCard' : 'OudsCard';
-    final semanticsLabel = context.l10n.app_components_card_actionCard_semantics_a11y;
+    final style = state.style;
+    final component = switch ((actionCard, style)) {
+      (true, CardStyleEnum.filled) => 'OudsActionCard.filled',
+      (true, CardStyleEnum.outlined) => 'OudsActionCard.outlined',
+      (true, CardStyleEnum.elevated) => 'OudsActionCard.elevated',
+      (false, CardStyleEnum.filled) => 'OudsCard.filled',
+      (false, CardStyleEnum.outlined) => 'OudsCard.outlined',
+      (false, CardStyleEnum.elevated) => 'OudsCard.elevated',
+    };
+    final title = context.l10n.app_components_card_Title_text;
+    final semanticsLabel =
+        context.l10n.app_components_card_actionCard_semantics_a11y;
     final properties = <String>[
-      if(actionCard)
-      'semanticsLabel: ${_stringLiteral(semanticsLabel)}',
-      'style: OudsCardStyle.${state.style.name}',
+      if (actionCard)
+        'semanticsLabel: ${_stringLiteral(semanticsLabel)}'
+      else
+        'semanticsLabel: ${_stringLiteral(title)}',
       'enabled: ${state.enabled}',
-      if (state.coloredBackground && state.style != OudsCardStyle.outlined)
+      if (style != CardStyleEnum.outlined)
         'backgroundColor: ${state.coloredBackground}',
-      if (state.style == OudsCardStyle.filled) 'divider: ${state.divider}',
+      if (style == CardStyleEnum.filled) 'divider: ${state.divider}',
       if (state.skeleton) 'skeleton: OudsSkeleton()',
       if (actionCard) ...[
         'onPressed: () {}',

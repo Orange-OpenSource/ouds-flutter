@@ -22,7 +22,7 @@ export 'package:ouds_core/components/card/ouds_card_style.dart';
 /// clamped to the range 0 to 1 when rendered.
 ///
 /// ```dart
-/// OudsActionCard(
+/// OudsActionCard.elevated(
 ///   semanticsLabel: 'Activate your eSIM',
 ///   onPressed: () {},
 ///   loader: OudsCardLoader(progress: 0.5),
@@ -46,48 +46,78 @@ class OudsCardLoader {
 ///
 /// **Reference design version: 1.0.0.**
 ///
-/// An action card is a surface-like UI element that groups related information
-/// within an interactive surface and allows a user to perform a single primary action or
-/// navigate to a destination.
+/// An action card groups related information in an interactive surface and
+/// performs one primary action or navigates to a destination.
 ///
 /// A null [onPressed] or false [enabled] disables the card. A [loader] replaces
 /// content without changing layout and temporarily prevents activation.
 /// Corner rounding is shared with content cards through
 /// `OudsThemeConfigModel(card: OudsCardConfig(rounded: true), child: ...)`.
 ///
-/// The following parameters are available:
-/// - [child]: Presentation-only content with caller-defined layout and padding.
-/// - [onPressed]: The primary action; null disables the card.
-/// - [style]: Style of the card among [OudsCardStyle] values, filled by default.
-/// - [enabled]: Whether the primary action is available.
-/// - [backgroundColor]: The Background controls the visibility of the predefined layer within the Card component.
-/// - [divider]: Whether filled cards have a bottom divider. Ignored for other styles.
-/// - [loader]: Replaces the content while an operation is in progress.
-/// - [skeleton]: A placeholder displayed instead of the card while content is loading.
-/// - [semanticsLabel]: A concise, localized accessible name describing the card's action.
+/// Use [OudsActionCard.elevated], [OudsActionCard.filled] or
+/// [OudsActionCard.outlined] to choose the surface treatment.
 ///
 /// ```dart
-/// OudsActionCard(
+/// OudsActionCard.elevated(
 ///   semanticsLabel: 'View your mobile plan',
 ///   onPressed: () {},
-///   style: OudsCardStyle.elevated,
+///   child: Text('200 GB plan'),
+/// )
+///
+/// OudsActionCard.filled(
+///   semanticsLabel: 'View your mobile plan',
+///   onPressed: () {},
+///   child: Text('200 GB plan'),
+/// )
+///
+/// OudsActionCard.outlined(
+///   semanticsLabel: 'View your mobile plan',
+///   onPressed: () {},
 ///   child: Text('200 GB plan'),
 /// )
 /// ```
 class OudsActionCard extends StatelessWidget {
-  /// Creates a single-action card with a localized accessible name.
-  const OudsActionCard({
+  /// Creates an elevated single-action card.
+  const OudsActionCard.elevated({
     super.key,
     required this.semanticsLabel,
     required this.onPressed,
     required this.child,
-    this.style = OudsCardStyle.filled,
     this.enabled = true,
     this.backgroundColor = true,
     this.divider = false,
     this.loader,
     this.skeleton,
-  }) : assert(semanticsLabel != '');
+  }) : _style = OudsCardStyle.elevated,
+       assert(semanticsLabel != '');
+
+  /// Creates a filled single-action card.
+  const OudsActionCard.filled({
+    super.key,
+    required this.semanticsLabel,
+    required this.onPressed,
+    required this.child,
+    this.enabled = true,
+    this.backgroundColor = true,
+    this.divider = false,
+    this.loader,
+    this.skeleton,
+  }) : _style = OudsCardStyle.filled,
+       assert(semanticsLabel != '');
+
+  /// Creates an outlined single-action card.
+  const OudsActionCard.outlined({
+    super.key,
+    required this.semanticsLabel,
+    required this.onPressed,
+    required this.child,
+    this.enabled = true,
+    this.backgroundColor = true,
+    this.divider = false,
+    this.loader,
+    this.skeleton,
+  }) : _style = OudsCardStyle.outlined,
+       assert(semanticsLabel != '');
 
   /// A concise, localized accessible name describing the card's action.
   final String semanticsLabel;
@@ -98,14 +128,14 @@ class OudsActionCard extends StatelessWidget {
   /// Presentation-only content with caller-defined layout and padding.
   final Widget child;
 
-  /// The surface treatment, filled by default.
-  final OudsCardStyle style;
+  final OudsCardStyle _style;
 
   /// Whether the primary action is available.
   final bool enabled;
 
-  /// The Background controls the visibility of the predefined layer within the Card component.
-  /// This property is available for the Filled and Elevated styles when State = Enabled
+  /// Whether to show the background for filled and elevated cards.
+  ///
+  /// Ignored by outlined cards, whose background is always transparent.
   final bool backgroundColor;
 
   /// Whether filled cards have a bottom divider. Ignored for other styles.
@@ -122,7 +152,7 @@ class OudsActionCard extends StatelessWidget {
     semanticsLabel: semanticsLabel,
     actionable: true,
     onPressed: onPressed,
-    style: style,
+    style: _style,
     enabled: enabled,
     backgroundColor: backgroundColor,
     divider: divider,

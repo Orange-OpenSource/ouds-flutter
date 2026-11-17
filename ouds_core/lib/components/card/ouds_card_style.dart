@@ -12,9 +12,8 @@ library;
 /// The surface treatment shared by content and action cards.
 ///
 /// ```dart
-/// OudsCard(
+/// OudsCard.outlined(
 ///   semanticsLabel: 'Your mobile plan',
-///   style: OudsCardStyle.outlined,
 ///   child: Text('200 GB plan'),
 /// )
 /// ```

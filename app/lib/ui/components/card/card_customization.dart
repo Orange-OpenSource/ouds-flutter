@@ -12,8 +12,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/card/ouds_card.dart';
-import 'package:ouds_core/components/card/ouds_card_style.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 
 class _CardCustomization extends InheritedWidget {
   const _CardCustomization({required super.child, required this.data});
@@ -40,7 +39,7 @@ class CardCustomization extends StatefulWidget {
 }
 
 class CardCustomizationState extends State<CardCustomization> {
-  OudsCardStyle style = OudsCardStyle.filled;
+  CardStyleEnum style = CardStyleEnum.filled;
   bool enabled = true;
   bool coloredBackground = true;
   bool divider = false;
@@ -50,7 +49,7 @@ class CardCustomizationState extends State<CardCustomization> {
   bool showVisualAction = true;
   double progress = 0.65;
 
-  void updateStyle(OudsCardStyle value) {
+  void updateStyle(CardStyleEnum value) {
     setState(() => style = value);
   }
 
@@ -85,5 +84,56 @@ class CardCustomizationState extends State<CardCustomization> {
   @override
   Widget build(BuildContext context) {
     return _CardCustomization(data: this, child: widget.child);
+  }
+}
+
+///  card style state Management
+class CardStyleState {
+  CardStyleState(this._setStyle);
+
+  final void Function(void Function()) _setStyle;
+
+  List<CardStyleEnum> _style = [
+    CardStyleEnum.filled,
+    CardStyleEnum.outlined,
+    CardStyleEnum.elevated,
+  ];
+  CardStyleEnum _selectedType = CardStyleEnum.filled;
+
+  List<CardStyleEnum> get list => _style;
+  set list(List<CardStyleEnum> newList) {
+    _setStyle(() {
+      _style = newList;
+    });
+  }
+
+  CardStyleEnum get selected => _selectedType;
+  set selected(CardStyleEnum newValue) {
+    _setStyle(() {
+      _selectedType = newValue;
+    });
+  }
+}
+
+enum CardStyleEnum {
+  filled,
+  outlined,
+  elevated;
+
+  static String enumName(BuildContext context) {
+    return context.l10n.app_components_common_style_label;
+  }
+}
+
+extension CustomElementStyle on CardStyleEnum {
+  String stringValue(BuildContext context) {
+    switch (this) {
+      case CardStyleEnum.filled:
+        return context.l10n.app_components_card_style_filled_tech;
+      case CardStyleEnum.outlined:
+        return context.l10n.app_components_card_style_outlined_tech;
+      case CardStyleEnum.elevated:
+        return context.l10n.app_components_card_style_elevated_tech;
+    }
   }
 }
