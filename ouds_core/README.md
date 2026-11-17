@@ -132,11 +132,11 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Navigation card item</td>
-      <td>0.1.0</td>
+      <td>0.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Navigation list item</td>
-      <td>0.1.0</td>
+      <td>0.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Password Input</td>
@@ -156,11 +156,11 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Static card item</td>
-      <td>0.1.0</td>
+      <td>0.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Static list item</td>
-      <td>0.1.0</td>
+      <td>0.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Suggestion chip</td>
@@ -226,17 +226,17 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```yaml
   # Core
-  ouds_core: ^3.1.0
+  ouds_core: ^3.2.0
   # Orange Theme contract
-  ouds_theme_contract: ^3.1.0
+  ouds_theme_contract: ^3.2.0
   # Orange Theme
-  ouds_theme_orange: ^3.1.0
+  ouds_theme_orange: ^3.2.0
   # Orange Theme Compact
-  ouds_theme_orange_compact: ^3.1.0
+  ouds_theme_orange_compact: ^3.2.0
   # Sosh Theme
-  ouds_theme_sosh: ^3.1.0
+  ouds_theme_sosh: ^3.2.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^3.1.0
+  ouds_theme_wireframe: ^3.2.0
   
 dependency_overrides:
   intl: ^0.20.2

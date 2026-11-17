@@ -54,7 +54,9 @@ const double _kFlagBaseHeight = 50.0;
 /// ```dart
 /// OudsListItem(
 ///   label: 'France',                              // country name in the label
-///   leading: OudsListItemLeadingFlag(OudsFlag('fr')),
+///   leading: OudsListItemLeadingContent(
+///     (context, state) => OudsFlag('fr'),
+///   ),
 /// )
 /// ```
 class OudsFlag extends StatelessWidget {

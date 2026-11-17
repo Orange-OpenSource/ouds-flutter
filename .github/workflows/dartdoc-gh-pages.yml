@@ -40,11 +40,10 @@ name: Deploy Dartdoc with GitHub Pages dependencies preinstalled
 # Triggers
 # -----------------------------------------------------------------------------
 on:
-  # Deploy production docs when code is pushed to main or develop
+  # Deploy production docs when code is pushed to main only
   push:
     branches:
       - main
-      - develop
 
   # Allow manual trigger from GitHub Actions UI
   workflow_dispatch:
@@ -104,9 +103,9 @@ jobs:
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@a6e6f86333f0a2523ece813039b8b4be04560854 # v1.190.0
+        uses: ruby/setup-ruby@b3aaceaef7e0ee231b499e7b5f49c03fc1d32199 # v1.338.0
         with:
-          ruby-version: 3.3.4
+          ruby-version: 4.0.7
 
       # Generate API documentation from ouds_core package
       - name: Build with Dartdoc
@@ -138,8 +137,9 @@ jobs:
   # JOB: deploy
   # ===========================================================================
   # Deploys the documentation to the PRODUCTION site.
-  # Only runs on push to main/develop or manual workflow_dispatch.
-  # Never runs on pull_request events.
+  # Only runs on push to main, or manual workflow_dispatch from main.
+  # Never runs on pull_request events or other branches, so production
+  # docs always match the latest version of main.
   #
   # Deployment target:
   #   Branch: gh-pages
@@ -150,7 +150,7 @@ jobs:
   # previews are not destroyed by a production deployment.
   # ===========================================================================
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: build
     permissions:

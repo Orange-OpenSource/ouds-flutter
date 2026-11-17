@@ -137,8 +137,6 @@ class AlertCodeGenerator {
 
   /// Method to generate the skeleton code
   static String _skeletonCode(AlertCustomizationState customizationState) {
-    return customizationState.hasSkeleton == true
-        ? 'skeleton: OudsSkeleton(),'
-        : '';
+    return customizationState.hasSkeleton == true ? 'skeleton: true,' : '';
   }
 }

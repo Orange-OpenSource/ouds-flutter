@@ -4,10 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.2.0...develop)
 ### Added
 ### Changed
 ### Fixed
+
+## [3.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...3.2.0) - 2026-11-17
+### Added
+### Changed
+- [Library] For `list item` components, support asynchronous images with customizable placeholder ([#900](https://github.com/Orange-OpenSource/ouds-flutter/issues/900))
+- [DemoApp][Library] In library, add `list item` component v0.3  ([#957](https://github.com/Orange-OpenSource/ouds-flutter/issues/957))
+- [DemoApp][Library] In library, add `list item` component v0.2  ([#956](https://github.com/Orange-OpenSource/ouds-flutter/issues/956))
+- [Tool] Migration version Xcode to 26.6 ([#1030](https://github.com/Orange-OpenSource/ouds-flutter/issues/1030))
+### Fixed
+- [Library] Bug For `skeleton` component, security margins must be set to `true` by default ([#1059](https://github.com/Orange-OpenSource/ouds-flutter/issues/1059)
+- [DemoApp][Library] Bug Apply the correct margin to item `skeletons` ([#1032](https://github.com/Orange-OpenSource/ouds-flutter/issues/1032)
+- [Tool] Update Ruby to 4.0.7 in the GitHub Actions workflow ([#1063](https://github.com/Orange-OpenSource/ouds-flutter/issues/1063))
+- [DemoApp] Bug `Radio Button`  Regression : impossible to select a radio button item in group ([#615](https://github.com/Orange-OpenSource/ouds-flutter/issues/615))
+- [Library] Bug A11Y `Radio Button` Add/modify the hint for unselected radio button ([#469](https://github.com/Orange-OpenSource/ouds-flutter/issues/469))
+- [Library] Bug A11Y `Radio Button` Unselected state is not read by screenreaders ([#1008](https://github.com/Orange-OpenSource/ouds-flutter/issues/1008))
 
 ## [3.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.0.0...3.1.0) - 2026-10-27
 ### Added

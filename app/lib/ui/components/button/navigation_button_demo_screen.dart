@@ -12,7 +12,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
@@ -104,68 +103,63 @@ class _NavigationButtonDemo extends StatefulWidget {
 }
 
 class _NavigationButtonDemoState extends State<_NavigationButtonDemo> {
-  ButtonCustomizationState? customizationState;
   ThemeController? themeController;
 
   @override
   Widget build(BuildContext context) {
-    customizationState = ButtonCustomization.of(context);
+    final customizationState = ButtonCustomization.of(context)!;
     themeController = Provider.of<ThemeController>(context, listen: true);
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+      themeController?.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
 
-    if (customizationState?.hasOnColoredBox == true) {
+    if (customizationState.hasOnColoredBox == true) {
       return ComponentDemoBox(
-        colored: customizationState?.hasOnColoredBox == true,
+        colored: customizationState.hasOnColoredBox == true,
         child: OudsNavigationButton(
-          label: customizationState!.textValue.isNotEmpty
-              ? customizationState!.textValue
+          label: customizationState.textValue.isNotEmpty
+              ? customizationState.textValue
               : null,
           layout: ButtonCustomizationUtils.getNavigationLayout(
-            customizationState!.selectedChevron,
+            customizationState.selectedChevron,
           ),
           appearance: ButtonCustomizationUtils.getNavigationAppearance(
-            customizationState!.selectedNavigationAppearance,
+            customizationState.selectedNavigationAppearance,
           ),
           package: OudsTheme.of(context).packageName,
           isLoading: ButtonCustomizationUtils.getLoader(customizationState),
-          onPressed: customizationState?.hasEnabled == true ? () {} : null,
-          isFullWidth: customizationState?.hasFullWidth,
+          onPressed: customizationState.hasEnabled == true ? () {} : null,
+          isFullWidth: customizationState.hasFullWidth,
           semanticsLabel: ButtonCustomizationUtils.getSemanticsLabel(
             context,
             customizationState,
           ),
-          skeleton: customizationState?.hasSkeleton == true
-              ? OudsSkeleton()
-              : null,
+          skeleton: customizationState.hasSkeleton,
         ),
       );
     } else {
       return LightDarkBox(
         child: OudsNavigationButton(
-          label: customizationState!.textValue.isNotEmpty
-              ? customizationState!.textValue
+          label: customizationState.textValue.isNotEmpty
+              ? customizationState.textValue
               : null,
           layout: ButtonCustomizationUtils.getNavigationLayout(
-            customizationState!.selectedChevron,
+            customizationState.selectedChevron,
           ),
           appearance: ButtonCustomizationUtils.getNavigationAppearance(
-            customizationState!.selectedNavigationAppearance,
+            customizationState.selectedNavigationAppearance,
           ),
           package: OudsTheme.of(context).packageName,
           isLoading: ButtonCustomizationUtils.getLoader(customizationState),
-          onPressed: customizationState?.hasEnabled == true ? () {} : null,
-          isFullWidth: customizationState?.hasFullWidth,
+          onPressed: customizationState.hasEnabled == true ? () {} : null,
+          isFullWidth: customizationState.hasFullWidth,
           semanticsLabel: ButtonCustomizationUtils.getSemanticsLabel(
             context,
             customizationState,
           ),
-          skeleton: customizationState?.hasSkeleton == true
-              ? OudsSkeleton()
-              : null,
+          skeleton: customizationState.hasSkeleton,
         ),
       );
     }

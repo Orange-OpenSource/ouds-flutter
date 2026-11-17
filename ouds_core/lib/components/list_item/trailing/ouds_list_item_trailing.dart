@@ -15,9 +15,12 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/avatar/ouds_avatar.dart';
+// TODO[v1.0]: Uncomment when avatar support is implemented.
+// import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
-import 'package:ouds_core/components/flag/ouds_flag.dart';
+// TODO[v1.0]: Uncomment when flag support is implemented.
+// import 'package:ouds_core/components/flag/ouds_flag.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 
 /// Base sealed class for the trailing slot of an [OudsListItem].
@@ -40,6 +43,9 @@ sealed class OudsListItemTrailingTextType {
 }
 
 /// Default label style on the trailing side.
+///
+/// Use for standard secondary information that should remain clearly readable
+/// without drawing more attention than the primary label.
 class OudsListItemTrailingLabel extends OudsListItemTrailingTextType {
   /// The trailing text to render.
   final String text;
@@ -49,6 +55,9 @@ class OudsListItemTrailingLabel extends OudsListItemTrailingTextType {
 }
 
 /// Muted (secondary) label style on the trailing side.
+///
+/// Use for low-priority metadata that supports the item but is not essential
+/// to its immediate understanding.
 class OudsListItemTrailingLabelMuted extends OudsListItemTrailingTextType {
   /// The trailing text to render.
   final String text;
@@ -58,6 +67,10 @@ class OudsListItemTrailingLabelMuted extends OudsListItemTrailingTextType {
 }
 
 /// Bold (strong) label style on the trailing side.
+///
+/// Use when the trailing value requires additional visual emphasis, for
+/// example when users need to compare important values across a navigation
+/// list.
 class OudsListItemTrailingLabelStrong extends OudsListItemTrailingTextType {
   /// The trailing text to render.
   final String text;
@@ -152,6 +165,10 @@ class OudsListItemTrailingTag extends OudsListItemTrailing {
 /// ```
 class OudsListItemTrailingIcon extends OudsListItemTrailing {
   /// The icon status that drives both the asset and its color.
+  ///
+  /// Functional statuses ([Positive], [Info], [Warning], [Negative]) use fixed
+  /// icons. The contextual status ([Neutral]) accepts a custom icon asset
+  /// path. [Accent] is not supported in list item icon slots.
   final OudsIconStatus iconStatus;
 
   /// Size of the icon. Defaults to [OudsListItemIconSize.medium].
@@ -163,10 +180,16 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
   final OudsListItemIconSize size;
 
   /// Creates a trailing icon configuration.
+  ///
+  /// Throws an [AssertionError] if [iconStatus] is [Accent].
   const OudsListItemTrailingIcon(
     this.iconStatus, {
     this.size = OudsListItemIconSize.medium,
-  });
+  }) : assert(
+         iconStatus is! Accent,
+         'Accent is not supported in list item icon slots. '
+         'Use Neutral with a custom icon instead.',
+       );
 }
 
 // ---------------------------------------------------------------------------
@@ -174,6 +197,11 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
 // ---------------------------------------------------------------------------
 
 /// Trailing image slot.
+///
+/// The image comes either from a local [asset] or from an asynchronous
+/// source ([NetworkImage], [MemoryImage] or any custom [ImageProvider])
+/// via the `provider` named constructor — the Flutter counterpart of passing
+/// an async `Painter` on Android.
 ///
 /// Example:
 /// ```dart
@@ -184,10 +212,37 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
 ///   format: OudsListItemImageFormat.widescreen,
 ///   rounded: true,
 /// )
+/// // Asynchronous image from the network, with a placeholder shown while
+/// // loading (and if loading fails)
+/// OudsListItemTrailingImage.provider(
+///   provider: NetworkImage('https://example.com/photo.jpg'),
+///   semanticsLabel: 'Product photo',
+///   placeholder: Image.asset('assets/placeholder.jpg'),
+/// )
+/// // Or from any other ImageProvider (memory, file, app-provided caching
+/// // library), with a custom placeholder
+/// OudsListItemTrailingImage.provider(
+///   provider: MemoryImage(bytes),
+///   placeholder: const ColoredBox(color: Color(0xFFEFEFEF)),
+/// )
 /// ```
 class OudsListItemTrailingImage extends OudsListItemTrailing {
   /// Path to the image asset (raster or SVG).
-  final String asset;
+  ///
+  /// Mutually exclusive with [provider] — set by the default constructor.
+  final String? asset;
+
+  /// Image provider for an image loaded asynchronously or from a non-asset
+  /// source ([NetworkImage], [MemoryImage] or any custom provider).
+  ///
+  /// Mutually exclusive with [asset] — set by the `provider` named constructor.
+  final ImageProvider? provider;
+
+  /// Widget displayed in place of the image while [provider] is loading and
+  /// if loading fails. Ignored for asset images.
+  ///
+  /// When `null`, the image background color is shown as a plain placeholder.
+  final Widget? placeholder;
 
   /// Accessibility description of the image for screen readers.
   ///
@@ -221,60 +276,76 @@ class OudsListItemTrailingImage extends OudsListItemTrailing {
   /// - `true`: Displays the image with rounded corners.
   final bool rounded;
 
-  /// Creates a trailing image configuration.
+  /// Creates a trailing image configuration from a local asset.
   const OudsListItemTrailingImage({
-    required this.asset,
+    required String this.asset,
     this.semanticsLabel,
     this.size = OudsListItemImageSize.medium,
     this.format = OudsListItemImageFormat.square,
     this.rounded = false,
-  });
+  }) : provider = null,
+       placeholder = null;
+
+  /// Creates a trailing image configuration from any [ImageProvider]
+  /// ([NetworkImage], [MemoryImage] or a provider supplied by the app).
+  ///
+  /// [placeholder] is shown while the image is loading and if loading fails;
+  /// when `null`, the image background color shows through instead.
+  ///
+  /// ```dart
+  /// OudsListItemTrailingImage.provider(
+  ///   provider: NetworkImage('https://example.com/photo.jpg'),
+  ///   semanticsLabel: 'Product photo',
+  ///   placeholder: Image.asset('assets/placeholder.jpg'),
+  /// )
+  /// ```
+  const OudsListItemTrailingImage.provider({
+    required this.provider,
+    this.semanticsLabel,
+    this.size = OudsListItemImageSize.medium,
+    this.format = OudsListItemImageFormat.square,
+    this.rounded = false,
+    this.placeholder,
+  }) : asset = null;
 }
 
-/// Trailing flag slot — renders an [OudsFlag] on the trailing side of the row.
-///
-/// Pass a pre-configured [OudsFlag] instance with the desired country code and size.
-///
-/// Example:
-/// ```dart
-/// OudsListItemTrailingFlag(OudsFlag('fr'))
-/// OudsListItemTrailingFlag(OudsFlag('gb', semanticsLabel: 'United Kingdom flag'))
-/// ```
-class OudsListItemTrailingFlag extends OudsListItemTrailing {
-  /// The flag widget to display.
-  final OudsFlag flag;
-
-  /// Creates a trailing flag configuration.
-  const OudsListItemTrailingFlag(this.flag);
-}
-
-// TODO[v0.4]: Uncomment when video support is implemented.
-// /// Trailing video slot — renders a play-icon placeholder using token-defined size.
-// class OudsListItemTrailingVideo extends OudsListItemTrailing {
-//   /// The video URL associated with the placeholder.
-//   final Uri url;
-
-//   /// Creates a trailing video configuration.
-//   const OudsListItemTrailingVideo(this.url);
+// TODO[v1.0]: Uncomment when flag support is implemented.
+// /// Trailing flag slot — renders an [OudsFlag] on the trailing side of the row.
+// ///
+// /// Pass an [OudsFlag] with the desired country code. The flag is resized to
+// /// match the list item token dimensions, whatever its intrinsic size.
+// ///
+// /// Example:
+// /// ```dart
+// /// OudsListItemTrailingFlag(OudsFlag('fr'))
+// /// OudsListItemTrailingFlag(OudsFlag('gb'))
+// /// ```
+// class OudsListItemTrailingFlag extends OudsListItemTrailing {
+//   /// The flag widget to display.
+//   final OudsFlag flag;
+//
+//   /// Creates a trailing flag configuration.
+//   const OudsListItemTrailingFlag(this.flag);
 // }
 
 // ---------------------------------------------------------------------------
 // Avatar
 // ---------------------------------------------------------------------------
 
-/// Trailing avatar slot.
-///
-/// Example:
-/// ```dart
-/// OudsListItemTrailingAvatar(OudsAvatar(monogram: 'JD'))
-/// ```
-class OudsListItemTrailingAvatar extends OudsListItemTrailing {
-  /// The avatar widget to display.
-  final OudsAvatar avatar;
-
-  /// Creates a trailing avatar configuration.
-  const OudsListItemTrailingAvatar(this.avatar);
-}
+// TODO[v1.0]: Uncomment when avatar support is implemented.
+// /// Trailing avatar slot.
+// ///
+// /// Example:
+// /// ```dart
+// /// OudsListItemTrailingAvatar(OudsAvatar(monogram: 'JD'))
+// /// ```
+// class OudsListItemTrailingAvatar extends OudsListItemTrailing {
+//   /// The avatar widget to display.
+//   final OudsAvatar avatar;
+//
+//   /// Creates a trailing avatar configuration.
+//   const OudsListItemTrailingAvatar(this.avatar);
+// }
 
 // ---------------------------------------------------------------------------
 // Custom
@@ -289,4 +360,34 @@ class OudsListItemTrailingCustom extends OudsListItemTrailing {
 
   /// Creates a custom trailing configuration.
   const OudsListItemTrailingCustom(this.builder);
+}
+
+/// A fully custom trailing slot.
+///
+/// Use it for custom trailing content that cannot be represented by the other
+/// available trailing types. It provides flexibility for specific product
+/// requirements, but it should be used as an exception rather than the default
+/// solution.
+///
+/// The [builder] receives the current [OudsListItemControlState] so the custom
+/// content can adapt its appearance (e.g. opacity, color) to the item's
+/// interaction state.
+///
+/// The rendered content is capped to the `sizeMaxSizeLeadingTrailingSlot`
+/// component token on both dimensions (96 dp on Orange, 72 dp on Orange
+/// Compact).
+///
+/// Example:
+/// ```dart
+/// OudsListItemTrailingContent(
+///   (context, state) => MyCustomTrailingWidget(enabled: state != OudsListItemControlState.disabled),
+/// )
+/// ```
+class OudsListItemTrailingContent extends OudsListItemTrailing {
+  /// Builder used to render the custom trailing content with the current [OudsListItemControlState].
+  final Widget Function(BuildContext context, OudsListItemControlState state)
+  builder;
+
+  /// Creates a trailing content configuration.
+  const OudsListItemTrailingContent(this.builder);
 }

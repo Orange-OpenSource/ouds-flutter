@@ -15,19 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/utilities/global_enum.dart';
 
-/// Demo enum for [OudsListItem.size].
-enum ListItemSizeEnum {
-  defaultSize,
-  small;
-
-  static String enumName(BuildContext context) =>
-      context.l10n.app_components_listItem_size_tech;
-}
-
-extension ListItemSizeLabel on ListItemSizeEnum {
-  String stringValue(BuildContext context) => capitalizeEnumValue(this);
-}
-
 /// Demo enum for [OudsListItem.contentAlignment].
 enum ListItemContentAlignmentEnum {
   center,
@@ -45,7 +32,8 @@ extension ListItemContentAlignmentLabel on ListItemContentAlignmentEnum {
 enum ListItemLeadingEnum {
   none,
   icon,
-  image; // TODO[v0.4]: add avatar, flag — TODO[v0.4]: add video
+  image,
+  content; // TODO[v1.0]: add avatar, flag
 
   static String enumName(BuildContext context) =>
       context.l10n.app_components_listItem_leading_tech;
@@ -66,16 +54,21 @@ extension ListItemLeadingLabel on ListItemLeadingEnum {
 enum ListItemTrailingEnum {
   none,
   text,
+  badge,
+  tag,
   icon,
-  image; // TODO[v0.3]: add badge, tag — TODO[v0.4]: add avatar, flag, video
+  image,
+  content; // TODO[v1.0]: add avatar, flag
 
   static String enumName(BuildContext context) =>
       context.l10n.app_components_listItem_trailing_tech;
 
-  /// Options available for [OudsSmallListItem] (icon, image and text only).
+  /// Options available for [OudsSmallListItem] (badge/tag available on both sizes).
   static const List<ListItemTrailingEnum> smallOptions = [
     ListItemTrailingEnum.none,
     ListItemTrailingEnum.text,
+    ListItemTrailingEnum.badge,
+    ListItemTrailingEnum.tag,
     ListItemTrailingEnum.icon,
     ListItemTrailingEnum.image,
   ];

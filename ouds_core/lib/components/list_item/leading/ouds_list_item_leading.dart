@@ -15,9 +15,12 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/avatar/ouds_avatar.dart';
+// TODO[v1.0]: Uncomment when avatar support is implemented.
+// import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
-import 'package:ouds_core/components/flag/ouds_flag.dart';
+// TODO[v1.0]: Uncomment when flag support is implemented.
+// import 'package:ouds_core/components/flag/ouds_flag.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 
 /// Base sealed class for the leading slot of an [OudsListItem].
@@ -41,6 +44,10 @@ sealed class OudsListItemLeading {
 /// ```
 class OudsListItemLeadingIcon extends OudsListItemLeading {
   /// The icon status that drives both the asset and its color.
+  ///
+  /// Functional statuses ([Positive], [Info], [Warning], [Negative]) use fixed
+  /// icons. The contextual status ([Neutral]) accepts a custom icon asset
+  /// path. [Accent] is not supported in list item icon slots.
   final OudsIconStatus iconStatus;
 
   /// Size of the icon. Defaults to [OudsListItemIconSize.medium].
@@ -52,13 +59,24 @@ class OudsListItemLeadingIcon extends OudsListItemLeading {
   final OudsListItemIconSize size;
 
   /// Creates a leading icon configuration.
+  ///
+  /// Throws an [AssertionError] if [iconStatus] is [Accent].
   const OudsListItemLeadingIcon(
     this.iconStatus, {
     this.size = OudsListItemIconSize.medium,
-  });
+  }) : assert(
+         iconStatus is! Accent,
+         'Accent is not supported in list item icon slots. '
+         'Use Neutral with a custom icon instead.',
+       );
 }
 
 /// Leading image slot.
+///
+/// The image comes either from a local [asset] or from an asynchronous
+/// source ([NetworkImage], [MemoryImage] or any custom [ImageProvider])
+/// via the `provider` named constructor — the Flutter counterpart of passing
+/// an async `Painter` on Android.
 ///
 /// Example:
 /// ```dart
@@ -69,10 +87,37 @@ class OudsListItemLeadingIcon extends OudsListItemLeading {
 ///   format: OudsListItemImageFormat.widescreen,
 ///   rounded: true,
 /// )
+/// // Asynchronous image from the network, with a placeholder shown while
+/// // loading (and if loading fails)
+/// OudsListItemLeadingImage.provider(
+///   provider: NetworkImage('https://example.com/photo.jpg'),
+///   semanticsLabel: 'Product photo',
+///   placeholder: Image.asset('assets/placeholder.jpg'),
+/// )
+/// // Or from any other ImageProvider (memory, file, app-provided caching
+/// // library), with a custom placeholder
+/// OudsListItemLeadingImage.provider(
+///   provider: MemoryImage(bytes),
+///   placeholder: const ColoredBox(color: Color(0xFFEFEFEF)),
+/// )
 /// ```
 class OudsListItemLeadingImage extends OudsListItemLeading {
   /// Path to the image asset (raster or SVG).
-  final String asset;
+  ///
+  /// Mutually exclusive with [provider] — set by the default constructor.
+  final String? asset;
+
+  /// Image provider for an image loaded asynchronously or from a non-asset
+  /// source ([NetworkImage], [MemoryImage] or any custom provider).
+  ///
+  /// Mutually exclusive with [asset] — set by the `provider` named constructor.
+  final ImageProvider? provider;
+
+  /// Widget displayed in place of the image while [provider] is loading and
+  /// if loading fails. Ignored for asset images.
+  ///
+  /// When `null`, the image background color is shown as a plain placeholder.
+  final Widget? placeholder;
 
   /// Accessibility description of the image for screen readers.
   ///
@@ -106,88 +151,73 @@ class OudsListItemLeadingImage extends OudsListItemLeading {
   /// - `true`: Displays the image with rounded corners.
   final bool rounded;
 
-  /// Creates a leading image configuration.
+  /// Creates a leading image configuration from a local asset.
   const OudsListItemLeadingImage({
-    required this.asset,
+    required String this.asset,
     this.semanticsLabel,
     this.size = OudsListItemImageSize.medium,
     this.format = OudsListItemImageFormat.square,
     this.rounded = false,
-  });
+  }) : provider = null,
+       placeholder = null;
+
+  /// Creates a leading image configuration from any [ImageProvider]
+  /// ([NetworkImage], [MemoryImage] or a provider supplied by the app).
+  ///
+  /// [placeholder] is shown while the image is loading and if loading fails;
+  /// when `null`, the image background color shows through instead.
+  ///
+  /// ```dart
+  /// OudsListItemLeadingImage.provider(
+  ///   provider: NetworkImage('https://example.com/photo.jpg'),
+  ///   semanticsLabel: 'Product photo',
+  ///   placeholder: Image.asset('assets/placeholder.jpg'),
+  /// )
+  /// ```
+  const OudsListItemLeadingImage.provider({
+    required this.provider,
+    this.semanticsLabel,
+    this.size = OudsListItemImageSize.medium,
+    this.format = OudsListItemImageFormat.square,
+    this.rounded = false,
+    this.placeholder,
+  }) : asset = null;
 }
 
-/// Leading flag slot — renders an [OudsFlag] on the leading side of the row.
-///
-/// Pass a pre-configured [OudsFlag] instance with the desired country code and size.
-/// The flag size is automatically constrained to match the list item token dimensions,
-/// so prefer [OudsFlagSize.small] or [OudsFlagSize.medium] here.
-///
-/// Example:
-/// ```dart
-/// OudsListItemLeadingFlag(OudsFlag('fr'))
-/// OudsListItemLeadingFlag(OudsFlag('us', semanticsLabel: 'United States flag'))
-/// ```
-class OudsListItemLeadingFlag extends OudsListItemLeading {
-  /// The flag widget to display.
-  final OudsFlag flag;
-
-  /// Creates a leading flag configuration.
-  const OudsListItemLeadingFlag(this.flag);
-}
-
-// TODO[v0.4]: Uncomment when video support is implemented.
-// /// Leading video placeholder slot.
+// TODO[v1.0]: Uncomment when flag support is implemented.
+// /// Leading flag slot — renders an [OudsFlag] on the leading side of the row.
+// ///
+// /// Pass an [OudsFlag] with the desired country code. The flag is resized to
+// /// match the list item token dimensions, whatever its intrinsic size.
 // ///
 // /// Example:
 // /// ```dart
-// /// OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))
+// /// OudsListItemLeadingFlag(OudsFlag('fr'))
+// /// OudsListItemLeadingFlag(OudsFlag('us'))
 // /// ```
-// class OudsListItemLeadingVideo extends OudsListItemLeading {
-//   /// The video URL associated with the placeholder.
-//   final Uri url;
-
-//   /// Creates a leading video configuration.
-//   const OudsListItemLeadingVideo(this.url);
+// class OudsListItemLeadingFlag extends OudsListItemLeading {
+//   /// The flag widget to display.
+//   final OudsFlag flag;
+//
+//   /// Creates a leading flag configuration.
+//   const OudsListItemLeadingFlag(this.flag);
 // }
 
-/// Leading avatar slot.
-///
-/// Example:
-/// ```dart
-///
-/// OudsListItemLeadingAvatar(OudsAvatar(monogram: 'JD'))
-/// ```
-class OudsListItemLeadingAvatar extends OudsListItemLeading {
-  /// The avatar widget to display.
-  final OudsAvatar avatar;
-
-  /// Creates a leading avatar configuration.
-  const OudsListItemLeadingAvatar(this.avatar);
-}
-
-/// Leading text slot — renders a label and an optional extra-label.
-///
-/// Example:
-/// ```dart
-/// OudsListItemLeadingText('99€', extraLabel: 'TTC', style: OudsListItemTextStyle.labelStrong)
-/// ```
-class OudsListItemLeadingText extends OudsListItemLeading {
-  /// The primary text displayed in the leading slot.
-  final String label;
-
-  /// Optional extra text displayed below [label].
-  final String? extraLabel;
-
-  /// Style of the text. Defaults to [OudsListItemTextStyle.label].
-  final OudsListItemTextStyle style;
-
-  /// Creates a leading text configuration.
-  const OudsListItemLeadingText(
-    this.label, {
-    this.extraLabel,
-    this.style = OudsListItemTextStyle.label,
-  });
-}
+// TODO[v1.0]: Uncomment when avatar support is implemented.
+// /// Leading avatar slot.
+// ///
+// /// Example:
+// /// ```dart
+// ///
+// /// OudsListItemLeadingAvatar(OudsAvatar(monogram: 'JD'))
+// /// ```
+// class OudsListItemLeadingAvatar extends OudsListItemLeading {
+//   /// The avatar widget to display.
+//   final OudsAvatar avatar;
+//
+//   /// Creates a leading avatar configuration.
+//   const OudsListItemLeadingAvatar(this.avatar);
+// }
 
 /// A custom leading slot with a widget builder function.
 ///
@@ -198,4 +228,34 @@ class OudsListItemLeadingCustom extends OudsListItemLeading {
 
   /// Creates a custom leading configuration.
   const OudsListItemLeadingCustom(this.builder);
+}
+
+/// A fully custom leading slot.
+///
+/// Use it for custom leading content that cannot be represented by the other
+/// available leading types. It provides flexibility for specific product
+/// requirements, but it should be used as an exception rather than the default
+/// solution.
+///
+/// The [builder] receives the current [OudsListItemControlState] so the custom
+/// content can adapt its appearance (e.g. opacity, color) to the item's
+/// interaction state.
+///
+/// The rendered content is capped to the `sizeMaxSizeLeadingTrailingSlot`
+/// component token on both dimensions (96 dp on Orange, 72 dp on Orange
+/// Compact).
+///
+/// Example:
+/// ```dart
+/// OudsListItemLeadingContent(
+///   (context, state) => MyCustomLeadingWidget(enabled: state != OudsListItemControlState.disabled),
+/// )
+/// ```
+class OudsListItemLeadingContent extends OudsListItemLeading {
+  /// Builder used to render the custom leading content with the current [OudsListItemControlState].
+  final Widget Function(BuildContext context, OudsListItemControlState state)
+  builder;
+
+  /// Creates a leading content configuration.
+  const OudsListItemLeadingContent(this.builder);
 }

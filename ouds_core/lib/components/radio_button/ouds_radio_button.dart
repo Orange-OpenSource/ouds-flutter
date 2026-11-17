@@ -26,7 +26,6 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_bord
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -51,7 +50,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// If `null`, the radio button is disabled and non-interactive.
 /// - [isError]: Indicates whether the radio button is in an error state.
 /// - [readOnly]: Controls the read only state of the radio button. When `true` the radio button is disabled.
-/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the radio button will appear once fully loaded.
+/// - [skeleton]: Whether to display a skeleton in place of the radio button.
 ///
 /// ### You can use [OudsRadioButton] component in your project, customizing parameters as needed :
 ///
@@ -73,7 +72,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///    }
 ///    isError: false,
 ///    readOnly: false,
-///    skeleton: OudsSkeleton(),
+///    skeleton: true,
 /// );
 /// ```
 ///
@@ -84,7 +83,7 @@ class OudsRadioButton<T> extends StatefulWidget {
   final ValueChanged<T?>? onChanged;
   final bool isError;
   final bool readOnly;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   const OudsRadioButton({
     super.key,
@@ -93,7 +92,7 @@ class OudsRadioButton<T> extends StatefulWidget {
     required this.onChanged,
     this.isError = false,
     this.readOnly = false,
-    this.skeleton,
+    this.skeleton = false,
   });
 
   @override
@@ -158,10 +157,16 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
     final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
 
+    // VoiceOver's native "selected" trait is only announced when true and stays
+    // silent when false, so the "unselected" state would never be read. The
+    // selection state is therefore announced explicitly here.
+    final String? unselectStatusSemantics = _selected
+        ? ''
+        : l10n?.core_common_unselected_a11y;
+
     return OudsSkeletonLayout(
-      visible: widget.skeleton != null,
-      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-      animated: widget.skeleton?.animated ?? false,
+      visible: widget.skeleton,
+      hasSecurityMargin: false,
       content: (context) => Semantics(
         inMutuallyExclusiveGroup: true,
         // Use checked with inMutuallyExclusiveGroup on Android for native radio-button announcements.
@@ -174,13 +179,12 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
         // from inMutuallyExclusiveGroup), so the trait is announced explicitly in value on iOS.
         value: isIOS
             ? (widget.isError
-                  ? '${l10n?.core_radioButton_radioButton_a11y}. ${l10n?.core_common_error_a11y}'
-                  : l10n?.core_radioButton_radioButton_a11y)
+                  ? '${l10n?.core_radioButton_radioButton_a11y}, $unselectStatusSemantics. ${l10n?.core_common_error_a11y}'
+                  : '${l10n?.core_radioButton_radioButton_a11y}, $unselectStatusSemantics')
             : (widget.isError ? l10n?.core_common_error_a11y : null),
         child: SizedBox(
           width: radioButton.sizeMinWidth,
           child: InkWell(
-            excludeFromSemantics: true,
             onTap: (!isReadOnly && widget.onChanged != null)
                 ? () {
                     _isPressed = true;
