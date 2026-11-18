@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.2.0...develop)
 ### Added
 ### Changed
+- [DemoApp][Library] In library, update pack icons to v2.4 ([#1045](https://github.com/Orange-OpenSource/ouds-flutter/issues/1045))
 ### Fixed
 
 ## [3.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...3.2.0) - 2026-11-17
