@@ -105,6 +105,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Éléments de card à coins arrondis';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerCards_label =>
+      'Cartes à coins arrondis';
+
+  @override
   String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
       'Progress indicators avec coins arrondis';
 
@@ -333,6 +337,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_common_skeleton_tech => 'Skeleton';
 
   @override
+  String get app_components_common_content_tech => 'Content';
+
+  @override
   String get app_components_alert_tech => 'Alert';
 
   @override
@@ -374,6 +381,55 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get app_components_alert_inlineAlert_description_text =>
       'Une Inline alert est un élément d\'interface utilisateur léger, placé dans le flux de contenu, qui affiche des informations, des commentaires système et des changements d\'état au moyen d\'une communication courte, visible, persistante et non exploitable.';
+
+  @override
+  String get app_components_card_tech => 'Carte';
+
+  @override
+  String get app_components_card_description_text =>
+      'Les cartes regroupent des contenus liés dans une surface délimitée. Choisissez une carte de contenu pour des actions indépendantes ou une carte action lorsque toute la surface représente une seule action.';
+
+  @override
+  String get app_components_card_contentCard_tech => 'Content card';
+
+  @override
+  String get app_components_card_actionCard_tech => 'Action card';
+
+  @override
+  String get app_components_card_contentCard_description_text =>
+      'Un card (ou une carte) est un élément d’interface semblable à une surface. Il regroupe des informations liées au sein d’une surface non interactive unique, qui peut contenir des éléments interactifs indépendants.';
+
+  @override
+  String get app_components_card_actionCard_description_text =>
+      'Un action card (ou une carte d’action) est un élément d’interface semblable à une surface. Il regroupe des informations liées au sein d’une surface interactive et permet à l’utilisateur d’effectuer une action principale ou d’accéder à une destination.';
+
+  @override
+  String get app_components_card_actionCard_semantics_a11y =>
+      'Commander Samsung Galaxy S26 FE EE';
+
+  @override
+  String get app_components_card_button => 'Order';
+
+  @override
+  String get app_components_card_backgroundColor_tech => 'Background';
+
+  @override
+  String get app_components_card_loading_tech => 'Loading';
+
+  @override
+  String get app_components_card_progress_tech => 'Loading progress';
+
+  @override
+  String get app_components_card_style_filled_tech => 'Filled';
+
+  @override
+  String get app_components_card_style_outlined_tech => 'Outlined';
+
+  @override
+  String get app_components_card_style_elevated_tech => 'Elevated';
+
+  @override
+  String get app_components_card_content_exemple_tech => 'Content example';
 
   @override
   String get app_components_bottomSheet_tech => 'Bottom sheet';
@@ -797,9 +853,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_listItem_labelContent_tech => 'Label content';
-
-  @override
-  String get app_components_listItem_content_tech => 'Content';
 
   @override
   String get app_components_listItem_contentExampleAlert_label =>

@@ -17,6 +17,7 @@ library;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
@@ -362,6 +363,10 @@ class OudsLink extends StatefulWidget {
 }
 
 class _OudsLinkState extends State<OudsLink> {
+  /// The press callback, ignored while the link sits in a disabled card.
+  VoidCallback? get _onPressed =>
+      OudsCardScope.enabledOf(context) ? widget.onPressed : null;
+
   late FocusNode _focusNode;
   bool _isHovered = false;
   bool _isFocused = false;
@@ -384,7 +389,7 @@ class _OudsLinkState extends State<OudsLink> {
   /// Updates [_isFocused] based on the focus node state, and forces it back
   /// to `false` when the link is disabled (no [OudsLink.onPressed] callback).
   void _handleFocusChange(bool focus) {
-    if (widget.onPressed == null) _isFocused = false;
+    if (_onPressed == null) _isFocused = false;
     setState(() => _isFocused = focus);
   }
 
@@ -392,7 +397,7 @@ class _OudsLinkState extends State<OudsLink> {
   /// a leading or trailing icon/chevron), dispatching to the right layout
   /// helper based on the resolved indicator/layout for this [widget].
   Widget _buildLinkContent(BuildContext context) {
-    final isDisabled = widget.onPressed == null;
+    final isDisabled = _onPressed == null;
     final interactionModelHover = OudsInheritedInteractionModel.of(
       context,
       InteractionAspect.hover,
@@ -476,7 +481,7 @@ class _OudsLinkState extends State<OudsLink> {
   /// container (focus, hover, press handling and constraints).
   @override
   Widget build(BuildContext context) {
-    final isDisabled = widget.onPressed == null;
+    final isDisabled = _onPressed == null;
     final linkSizeModifier = OudsLinkSizeModifier(context);
 
     return OudsSkeletonLayout(
@@ -687,7 +692,7 @@ class _OudsLinkState extends State<OudsLink> {
                   ),
                 ),
                 child: InkWell(
-                  onTap: widget.onPressed,
+                  onTap: _onPressed,
                   focusNode: _focusNode,
                   canRequestFocus: !isDisabled,
                   splashColor: Colors.transparent,
@@ -739,7 +744,7 @@ class _OudsLinkState extends State<OudsLink> {
             ),
             padding: linkSizeModifier.getPadding(widget.size, widget.density),
             child: InkWell(
-              onTap: widget.onPressed,
+              onTap: _onPressed,
               focusNode: _focusNode,
               canRequestFocus: !isDisabled,
               splashColor: Colors.transparent,

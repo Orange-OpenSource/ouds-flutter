@@ -12,6 +12,7 @@
 /// {@category Password input}
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
@@ -122,6 +123,10 @@ class OudsPasswordInput extends StatefulWidget {
 }
 
 class _OudsPasswordInputState extends State<OudsPasswordInput> {
+  // A disabled card disables its OUDS content.
+  bool? get _enabled =>
+      OudsCardScope.enabledOf(context) ? widget.enabled : false;
+
   final bool _isHovered = false;
   bool _isFocused = false;
   bool _isPasswordHidden = true;
@@ -211,7 +216,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
     // Determine the current control state (enabled, focused, hovered, loading)
     final inputTextStateDeterminer = OudsFormFieldsControlStateDeterminer(
-      enabled: widget.enabled ?? true,
+      enabled: _enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
       isLoading: (widget.decoration.loader != null && _isTyping) ? true : false,
@@ -390,7 +395,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       style: theme.typographyTokens
           .typeLabelModerateLarge(context)
           .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
-      enabled: widget.enabled,
+      enabled: _enabled,
       readOnly: widget.readOnly ?? false,
       onChanged: (value) {
         if (widget.controller != null) {
@@ -651,7 +656,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                     ? AppAssets.icons.accessibilityAccessibilityVision
                     : AppAssets.icons.settingsAndToolsAccessibilityHide,
               ),
-              onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false))
+              onPressed: (_enabled ?? true && !(widget.readOnly ?? false))
                   ? _toggleIcon
                   : null,
               package: theme.packageName,

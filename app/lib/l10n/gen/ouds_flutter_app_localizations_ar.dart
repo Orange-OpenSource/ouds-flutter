@@ -104,6 +104,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'عناصر البطاقة بزوايا مستديرة';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerCards_label =>
+      'بطاقات بزوايا مستديرة';
+
+  @override
   String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
       'مؤشرات التقدم ذات الزوايا المستديرة';
 
@@ -331,6 +335,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_skeleton_tech => 'Skeleton';
 
   @override
+  String get app_components_common_content_tech => 'Content';
+
+  @override
   String get app_components_alert_tech => 'Alert';
 
   @override
@@ -372,6 +379,55 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_alert_inlineAlert_description_text =>
       'Inline alert هو عنصر واجهة مستخدم خفيف الوزن، يتم وضعه داخل تدفّق المحتوى، ويُستخدم لعرض المعلومات أو ملاحظات النظام أو تغيّرات الحالة، من خلال رسائل قصيرة وواضحة وبارزة ومستمرّة، وغير قابلة لاتخاذ إجراء.';
+
+  @override
+  String get app_components_card_tech => 'بطاقة';
+
+  @override
+  String get app_components_card_description_text =>
+      'تجمع البطاقات المحتوى المرتبط ضمن مساحة محددة. استخدم بطاقة المحتوى للإجراءات المستقلة، أو بطاقة الإجراء عندما تمثل المساحة كلها إجراءً واحدًا.';
+
+  @override
+  String get app_components_card_contentCard_tech => 'Content card';
+
+  @override
+  String get app_components_card_actionCard_tech => 'Action card';
+
+  @override
+  String get app_components_card_contentCard_description_text =>
+      'Card هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح واحد غير تفاعلي، وقد تتضمن عناصر تفاعلية مستقلة.';
+
+  @override
+  String get app_components_card_actionCard_description_text =>
+      'Action card هي عنصر في واجهة المستخدم يشبه السطح. تجمع معلومات مترابطة ضمن سطح تفاعلي، وتتيح للمستخدم تنفيذ إجراء رئيسي واحد أو الانتقال إلى وجهة.';
+
+  @override
+  String get app_components_card_actionCard_semantics_a11y =>
+      'اطلب Samsung Galaxy S26 FE EE';
+
+  @override
+  String get app_components_card_button => 'Order';
+
+  @override
+  String get app_components_card_backgroundColor_tech => 'Background';
+
+  @override
+  String get app_components_card_loading_tech => 'Loading';
+
+  @override
+  String get app_components_card_progress_tech => 'Loading progress';
+
+  @override
+  String get app_components_card_style_filled_tech => 'Filled';
+
+  @override
+  String get app_components_card_style_outlined_tech => 'Outlined';
+
+  @override
+  String get app_components_card_style_elevated_tech => 'Elevated';
+
+  @override
+  String get app_components_card_content_exemple_tech => 'Content example';
 
   @override
   String get app_components_bottomSheet_tech => 'Bottom sheet';
@@ -794,9 +850,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_listItem_labelContent_tech => 'Label content';
-
-  @override
-  String get app_components_listItem_content_tech => 'Content';
 
   @override
   String get app_components_listItem_contentExampleAlert_label =>

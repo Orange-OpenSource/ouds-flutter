@@ -22,6 +22,7 @@ import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.d
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
@@ -364,6 +365,10 @@ class OudsButton extends StatefulWidget {
 }
 
 class _OudsButtonState extends State<OudsButton> {
+  /// The press callback, ignored while the button sits in a disabled card.
+  VoidCallback? get _onPressed =>
+      OudsCardScope.enabledOf(context) ? widget.onPressed : null;
+
   // Tracks hover and press states manually for custom SVG icon rendering.
   //
   // Flutter’s [ButtonStyle] uses [WidgetStateProperty] for styling based on
@@ -398,7 +403,7 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onPressed == null) {
+    if (_onPressed == null) {
       _isFocused = false;
     } // Ignore focus changes if disabled
     setState(() => _isFocused = focus);
@@ -430,7 +435,7 @@ class _OudsButtonState extends State<OudsButton> {
     // using internal flags managed via a [MouseRegion] and gesture listeners.
     // This state is used to compute dynamic styling (e.g., background color).
     final buttonStateDeterminer = OudsButtonControlStateDeterminer(
-      enabled: widget.onPressed != null,
+      enabled: _onPressed != null,
       isPressed: _isPressed,
       isHovered: _isHovered,
       isFocused: _isFocused,
@@ -535,7 +540,7 @@ class _OudsButtonState extends State<OudsButton> {
             widget.layout,
             widget.appearance,
             buttonState,
-            widget.onPressed,
+            _onPressed,
             widget.icon?.assetsName,
             widget._badge,
             widget.package,
@@ -653,9 +658,9 @@ class _OudsButtonState extends State<OudsButton> {
               child: ExcludeSemantics(
                 child: OutlinedButton(
                   focusNode: _focusNode,
-                  onPressed: widget.onPressed == null
+                  onPressed: _onPressed == null
                       ? null
-                      : () => _handlePressed(widget.onPressed),
+                      : () => _handlePressed(_onPressed),
                   style: OudsButtonStyleModifier.buildButtonStyle(
                     context,
                     appearance: widget.appearance,
@@ -782,13 +787,13 @@ class _OudsButtonState extends State<OudsButton> {
             child: Semantics(
               label: widget.label ?? "${widget._semanticsLabel}",
               button: true,
-              enabled: widget.onPressed != null,
+              enabled: _onPressed != null,
               child: ExcludeSemantics(
                 child: OutlinedButton(
                   focusNode: _focusNode,
-                  onPressed: widget.onPressed == null
+                  onPressed: _onPressed == null
                       ? null
-                      : () => _handlePressed(widget.onPressed),
+                      : () => _handlePressed(_onPressed),
                   style: OudsButtonStyleModifier.buildButtonStyle(
                     context,
                     appearance: widget.appearance,
@@ -918,7 +923,7 @@ class _OudsButtonState extends State<OudsButton> {
                   ? widget._semanticsLabel
                   : widget.icon?.semanticsLabel,
               button: true,
-              enabled: widget.onPressed != null,
+              enabled: _onPressed != null,
               child: ExcludeSemantics(
                 child: SizedBox(
                   width: buttonToken.sizeMinWidth(widget._size),
@@ -933,9 +938,9 @@ class _OudsButtonState extends State<OudsButton> {
                       componentType: widget._component,
                       size: widget._size,
                     ),
-                    onPressed: widget.onPressed == null
+                    onPressed: _onPressed == null
                         ? null
-                        : () => _handlePressed(widget.onPressed),
+                        : () => _handlePressed(_onPressed),
                     icon: _buildIcon(
                       context,
                       widget.icon?.assetsName ?? "",
@@ -1003,9 +1008,9 @@ class _OudsButtonState extends State<OudsButton> {
             componentType: widget._component,
             size: widget._size,
           ),
-          onPressed: widget.onPressed == null
+          onPressed: _onPressed == null
               ? null
-              : () => _handlePressed(widget.onPressed),
+              : () => _handlePressed(_onPressed),
           child: Text(
             widget.label ?? "",
             textAlign: TextAlign.center,

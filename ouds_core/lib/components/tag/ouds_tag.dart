@@ -12,6 +12,7 @@
 /// {@category Tag}
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
@@ -166,6 +167,9 @@ class OudsTag extends StatefulWidget {
 }
 
 class _OudsTagState extends State<OudsTag> {
+  // A disabled card disables its OUDS content.
+  bool get _enabled => widget.enabled && OudsCardScope.enabledOf(context);
+
   @override
   void initState() {
     super.initState();
@@ -191,7 +195,7 @@ class _OudsTagState extends State<OudsTag> {
         label: widget.loading
             ? "${l10n?.core_common_loading_a11y}, ${widget.label}"
             : widget.label,
-        enabled: widget.enabled,
+        enabled: _enabled,
         child: Material(
           color: Colors.transparent,
           child: ExcludeSemantics(
@@ -368,7 +372,7 @@ class _OudsTagState extends State<OudsTag> {
                 status: widget.status,
                 size: widget.size ?? OudsTagSize.defaultSize,
                 isLoading: widget.loading,
-                isEnabled: widget.enabled,
+                isEnabled: _enabled,
               ),
             ),
           ),
@@ -397,7 +401,7 @@ class _OudsTagState extends State<OudsTag> {
         color: tagStatusModifier.getStatusColor(
           widget.status,
           widget.appearance,
-          widget.enabled,
+          _enabled,
         ),
       ),
       constraints: BoxConstraints(
@@ -427,7 +431,7 @@ class _OudsTagState extends State<OudsTag> {
                 context,
                 widget.status,
                 widget.appearance,
-                widget.enabled,
+                _enabled,
               ),
             ),
           ),
@@ -440,7 +444,7 @@ class _OudsTagState extends State<OudsTag> {
                 appearance: widget.appearance,
                 status: widget.status,
                 size: widget.size,
-                isEnabled: widget.enabled,
+                isEnabled: _enabled,
               ),
             ),
           ),
@@ -470,7 +474,7 @@ class _OudsTagState extends State<OudsTag> {
         color: tagStatusModifier.getStatusColor(
           widget.status,
           widget.appearance,
-          widget.enabled,
+          _enabled,
         ),
       ),
       constraints: BoxConstraints(
@@ -500,7 +504,7 @@ class _OudsTagState extends State<OudsTag> {
                 color: tagStatusModifier.getStatusIconColor(
                   widget.status,
                   widget.appearance,
-                  widget.enabled,
+                  _enabled,
                 ),
                 shape: BoxShape.circle,
               ),
@@ -519,7 +523,7 @@ class _OudsTagState extends State<OudsTag> {
                 appearance: widget.appearance,
                 status: widget.status,
                 size: widget.size,
-                isEnabled: widget.enabled,
+                isEnabled: _enabled,
               ),
             ),
           ),
@@ -553,7 +557,7 @@ class _OudsTagState extends State<OudsTag> {
               color: tagStatusModifier.getStatusColor(
                 widget.status,
                 widget.appearance,
-                widget.enabled,
+                _enabled,
               ),
               padding: tagSizeModifier.getPadding(widget.size, false),
               child: Row(
@@ -568,7 +572,7 @@ class _OudsTagState extends State<OudsTag> {
                         appearance: widget.appearance,
                         status: widget.status,
                         size: widget.size,
-                        isEnabled: widget.enabled,
+                        isEnabled: _enabled,
                       ),
                     ),
                   ),

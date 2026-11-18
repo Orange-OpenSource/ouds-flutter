@@ -12,6 +12,7 @@
 /// {@category Checkbox}
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
@@ -94,6 +95,10 @@ class OudsCheckbox extends StatefulWidget {
 }
 
 class _OudsCheckboxState extends State<OudsCheckbox> {
+  // A disabled card disables its OUDS content.
+  ValueChanged<bool?>? get _onChanged =>
+      OudsCardScope.enabledOf(context) ? widget.onChanged : null;
+
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isHighContrast = false;
@@ -126,7 +131,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final bool isReadOnly = widget.readOnly;
 
     final checkboxStateDeterminer = OudsControlStateDeterminer(
-      enabled: (widget.onChanged != null) || isReadOnly,
+      enabled: (_onChanged != null) || isReadOnly,
       isPressed: (!isReadOnly) && (isPressedInherited || _isPressed),
       isHovered: (!isReadOnly) && (isHoveredInherited || _isHovered),
       isReadOnly: isReadOnly,
@@ -148,7 +153,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
         ? l10n?.core_checkbox_indeterminate_a11y
         : l10n?.core_checkbox_unchecked_a11y;
 
-    String toggleActionLabel = (widget.onChanged != null && !widget.readOnly)
+    String toggleActionLabel = (_onChanged != null && !widget.readOnly)
         ? '${l10n?.core_checkbox_hint_a11y}'
         : '';
 
@@ -156,7 +161,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
       visible: widget.skeleton,
       hasSecurityMargin: false,
       content: (context) => Semantics(
-        enabled: widget.onChanged != null && !(widget.readOnly),
+        enabled: _onChanged != null && !(widget.readOnly),
         value: '${l10n?.core_checkbox_trait_a11y}. $semanticValue',
         hint: widget.isError
             ? '${'${l10n!.core_common_error_a11y}, '}$toggleActionLabel'
@@ -168,7 +173,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
           child: SizedBox(
             width: checkbox.sizeMaxHeight,
             child: InkWell(
-              onTap: (!isReadOnly && widget.onChanged != null)
+              onTap: (!isReadOnly && _onChanged != null)
                   ? () {
                       _isPressed = true;
                       SchedulerBinding.instance.addPostFrameCallback((_) {
@@ -185,7 +190,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           newValue = !widget.value!;
                         }
 
-                        widget.onChanged!(newValue);
+                        _onChanged!(newValue);
                         _isPressed = false;
                       });
                     }

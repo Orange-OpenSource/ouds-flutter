@@ -12,6 +12,7 @@
 /// {@category Text input}
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
@@ -141,6 +142,10 @@ class OudsTextField extends StatefulWidget {
 }
 
 class _OudsTextInputState extends State<OudsTextField> {
+  // A disabled card disables its OUDS content.
+  bool? get _enabled =>
+      OudsCardScope.enabledOf(context) ? widget.enabled : false;
+
   final bool _isHovered = false;
   bool _isFocused = false;
   FocusNode? _internalFocusNode;
@@ -224,7 +229,7 @@ class _OudsTextInputState extends State<OudsTextField> {
 
     // Determine the current control state (enabled, focused, hovered, loading)
     final inputTextStateDeterminer = OudsFormFieldsControlStateDeterminer(
-      enabled: widget.enabled ?? true,
+      enabled: _enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
       isLoading: (widget.decoration.loader != null && _isTyping) ? true : false,
@@ -263,7 +268,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         : widget.decoration.helperText ?? "";
 
     // Determine disabled/readOnly label
-    final isEnabled = widget.enabled ?? true;
+    final isEnabled = _enabled ?? true;
     final isReadOnly = widget.readOnly ?? false;
     final statusLabel = !isEnabled
         ? l10n?.core_common_disabled_a11y ?? ""
@@ -481,7 +486,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       style: theme.typographyTokens
           .typeLabelModerateLarge(context)
           .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
-      enabled: widget.enabled,
+      enabled: _enabled,
       readOnly: widget.readOnly ?? false,
       onChanged: (value) {
         if (widget.controller != null) {
@@ -780,8 +785,7 @@ class _OudsTextInputState extends State<OudsTextField> {
               child: OudsButton(
                 appearance: OudsButtonAppearance.minimal,
                 icon: suffixIcon.icon,
-                onPressed:
-                    ((widget.enabled ?? true) && !(widget.readOnly ?? false))
+                onPressed: ((_enabled ?? true) && !(widget.readOnly ?? false))
                     ? suffixIcon.onPressed
                     : null,
               ),

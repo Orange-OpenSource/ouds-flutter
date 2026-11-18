@@ -477,7 +477,7 @@ class ListItemCustomizationUtils {
       decoration: BoxDecoration(color: color),
       alignment: Alignment.center,
       child: Text(
-        context.l10n.app_components_listItem_content_tech,
+        context.l10n.app_components_common_content_tech,
         style: oudsTheme.typographyTokens
             .typeLabelDefaultSmall(context)
             .copyWith(color: textColor, fontWeight: FontWeight.bold),

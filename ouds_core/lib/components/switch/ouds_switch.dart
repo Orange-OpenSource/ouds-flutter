@@ -12,6 +12,7 @@
 /// {@category Switch}
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -80,6 +81,10 @@ class OudsSwitch extends StatefulWidget {
 }
 
 class _OudsSwitchState extends State<OudsSwitch> {
+  // A disabled card disables its OUDS content.
+  ValueChanged<bool>? get _onChanged =>
+      OudsCardScope.enabledOf(context) ? widget.onChanged : null;
+
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
@@ -122,7 +127,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
     final bool isReadOnly = widget.readOnly;
 
     final switchStateDeterminer = OudsControlStateDeterminer(
-      enabled: widget.onChanged != null || isReadOnly,
+      enabled: _onChanged != null || isReadOnly,
       isPressed: (!isReadOnly) && (isPressedInherited || _isPressed),
       isHovered: (!isReadOnly) && (isHoveredInherited || _isHovered),
       isReadOnly: isReadOnly,
@@ -154,7 +159,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
                       // Added to improve visual rendering fluidity by allowing Flutter
                       // to complete the current frame before executing the state change logic.
                       SchedulerBinding.instance.addPostFrameCallback((_) {
-                        widget.onChanged!(!widget.value);
+                        _onChanged!(!widget.value);
                         _isPressed = false;
                       });
                     }

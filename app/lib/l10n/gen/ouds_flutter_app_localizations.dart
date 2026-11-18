@@ -277,6 +277,12 @@ abstract class AppLocalizations {
   /// **'Rounded corner card items'**
   String get app_themeSettingsDialog_roundedCornerCardItems_label;
 
+  /// No description provided for @app_themeSettingsDialog_roundedCornerCards_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner cards'**
+  String get app_themeSettingsDialog_roundedCornerCards_label;
+
   /// No description provided for @app_themeSettingsDialog_roundedCornerProgressIndicators_label.
   ///
   /// In en, this message translates to:
@@ -691,6 +697,12 @@ abstract class AppLocalizations {
   /// **'Skeleton'**
   String get app_components_common_skeleton_tech;
 
+  /// No description provided for @app_components_common_content_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get app_components_common_content_tech;
+
   /// No description provided for @app_components_alert_tech.
   ///
   /// In en, this message translates to:
@@ -762,6 +774,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.'**
   String get app_components_alert_inlineAlert_description_text;
+
+  /// No description provided for @app_components_card_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Card'**
+  String get app_components_card_tech;
+
+  /// No description provided for @app_components_card_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards group related content into a contained surface. Choose a content card for independent actions or an action card when the whole surface represents one action.'**
+  String get app_components_card_description_text;
+
+  /// No description provided for @app_components_card_contentCard_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Content card'**
+  String get app_components_card_contentCard_tech;
+
+  /// No description provided for @app_components_card_actionCard_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Action card'**
+  String get app_components_card_actionCard_tech;
+
+  /// No description provided for @app_components_card_contentCard_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A card is a surface-like UI element that groups related information within a single non-interactive surface that can include independently interactive elements.'**
+  String get app_components_card_contentCard_description_text;
+
+  /// No description provided for @app_components_card_actionCard_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'An action card is a surface-like UI element that groups related information within an interactive surface and allows a user to perform a single primary action or navigate to a destination.'**
+  String get app_components_card_actionCard_description_text;
+
+  /// No description provided for @app_components_card_actionCard_semantics_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Samsung Galaxy S26 FE EE'**
+  String get app_components_card_actionCard_semantics_a11y;
+
+  /// No description provided for @app_components_card_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get app_components_card_button;
+
+  /// No description provided for @app_components_card_backgroundColor_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Background'**
+  String get app_components_card_backgroundColor_tech;
+
+  /// No description provided for @app_components_card_loading_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get app_components_card_loading_tech;
+
+  /// No description provided for @app_components_card_progress_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading progress'**
+  String get app_components_card_progress_tech;
+
+  /// No description provided for @app_components_card_style_filled_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Filled'**
+  String get app_components_card_style_filled_tech;
+
+  /// No description provided for @app_components_card_style_outlined_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Outlined'**
+  String get app_components_card_style_outlined_tech;
+
+  /// No description provided for @app_components_card_style_elevated_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Elevated'**
+  String get app_components_card_style_elevated_tech;
+
+  /// No description provided for @app_components_card_content_exemple_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Content example'**
+  String get app_components_card_content_exemple_tech;
 
   /// No description provided for @app_components_bottomSheet_tech.
   ///
@@ -1505,12 +1607,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Label content'**
   String get app_components_listItem_labelContent_tech;
-
-  /// No description provided for @app_components_listItem_content_tech.
-  ///
-  /// In en, this message translates to:
-  /// **'Content'**
-  String get app_components_listItem_content_tech;
 
   /// No description provided for @app_components_listItem_contentExampleAlert_label.
   ///

@@ -13,6 +13,7 @@
 /// @nodoc
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -246,7 +247,8 @@ class _CountryDropdownState extends State<CountrySelector> {
                     ),
                   );
                 }).toList(),
-                onChanged: widget.readOnly == false
+                onChanged:
+                    widget.readOnly == false && OudsCardScope.enabledOf(context)
                     ? (Country? newValue) {
                         if (newValue != null) {
                           updateSelection(newValue);

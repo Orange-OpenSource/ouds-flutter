@@ -104,6 +104,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Rounded corner card items';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerCards_label =>
+      'Rounded corner cards';
+
+  @override
   String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
       'Rounded corner progress indicators';
 
@@ -331,6 +335,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_skeleton_tech => 'Skeleton';
 
   @override
+  String get app_components_common_content_tech => 'Content';
+
+  @override
   String get app_components_alert_tech => 'Alert';
 
   @override
@@ -372,6 +379,55 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_alert_inlineAlert_description_text =>
       'Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.';
+
+  @override
+  String get app_components_card_tech => 'Card';
+
+  @override
+  String get app_components_card_description_text =>
+      'Cards group related content into a contained surface. Choose a content card for independent actions or an action card when the whole surface represents one action.';
+
+  @override
+  String get app_components_card_contentCard_tech => 'Content card';
+
+  @override
+  String get app_components_card_actionCard_tech => 'Action card';
+
+  @override
+  String get app_components_card_contentCard_description_text =>
+      'A card is a surface-like UI element that groups related information within a single non-interactive surface that can include independently interactive elements.';
+
+  @override
+  String get app_components_card_actionCard_description_text =>
+      'An action card is a surface-like UI element that groups related information within an interactive surface and allows a user to perform a single primary action or navigate to a destination.';
+
+  @override
+  String get app_components_card_actionCard_semantics_a11y =>
+      'Order Samsung Galaxy S26 FE EE';
+
+  @override
+  String get app_components_card_button => 'Order';
+
+  @override
+  String get app_components_card_backgroundColor_tech => 'Background';
+
+  @override
+  String get app_components_card_loading_tech => 'Loading';
+
+  @override
+  String get app_components_card_progress_tech => 'Loading progress';
+
+  @override
+  String get app_components_card_style_filled_tech => 'Filled';
+
+  @override
+  String get app_components_card_style_outlined_tech => 'Outlined';
+
+  @override
+  String get app_components_card_style_elevated_tech => 'Elevated';
+
+  @override
+  String get app_components_card_content_exemple_tech => 'Content example';
 
   @override
   String get app_components_bottomSheet_tech => 'Bottom sheet';
@@ -793,9 +849,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_listItem_labelContent_tech => 'Label content';
-
-  @override
-  String get app_components_listItem_content_tech => 'Content';
 
   @override
   String get app_components_listItem_contentExampleAlert_label =>

@@ -14,6 +14,7 @@
 /// {@category Radio button}
 library;
 
+import 'package:ouds_core/components/card/internal/ouds_card_scope.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -100,6 +101,10 @@ class OudsRadioButton<T> extends StatefulWidget {
 }
 
 class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
+  // A disabled card disables its OUDS content.
+  ValueChanged<T?>? get _onChanged =>
+      OudsCardScope.enabledOf(context) ? widget.onChanged : null;
+
   bool _isHovered = false;
   bool _isPressed = false;
   bool get _selected => widget.value == widget.groupValue;
@@ -130,7 +135,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
     final isHoveredInherited = interactionModelHover?.state.isHovered ?? false;
     final isPressedInherited =
         interactionModelPressed?.state.isPressed ?? false;
-    final isEnabled = widget.onChanged != null;
+    final isEnabled = _onChanged != null;
     final bool isReadOnly = widget.readOnly;
 
     final radioButtonStateDeterminer = OudsControlStateDeterminer(
@@ -153,7 +158,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
       context,
     ).componentsTokens(context).controlListItem;
     final l10n = OudsLocalizations.of(context);
-    final isItemEnabled = widget.onChanged != null && !(widget.readOnly);
+    final isItemEnabled = _onChanged != null && !(widget.readOnly);
 
     final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
 
@@ -185,13 +190,13 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
         child: SizedBox(
           width: radioButton.sizeMinWidth,
           child: InkWell(
-            onTap: (!isReadOnly && widget.onChanged != null)
+            onTap: (!isReadOnly && _onChanged != null)
                 ? () {
                     _isPressed = true;
                     // Added to improve visual rendering fluidity by allowing Flutter
                     // to complete the current frame before executing the onChanged callback.
                     SchedulerBinding.instance.addPostFrameCallback((_) {
-                      widget.onChanged!(widget.value);
+                      _onChanged!(widget.value);
                       _isPressed = false;
                     });
                   }
@@ -291,6 +296,6 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
   }
 
   void updateValue(T value) {
-    widget.onChanged!(value);
+    _onChanged!(value);
   }
 }
