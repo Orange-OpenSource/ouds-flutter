@@ -361,7 +361,7 @@ class OudsSmallListItemTrailingTag extends OudsSmallListItemTrailing {
 // Widget
 // ---------------------------------------------------------------------------
 
-/// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
+/// [OUDS Static List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-static-list-item)
 ///
 /// **Reference design version : 0.3.0**
 ///

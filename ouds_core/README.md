@@ -91,10 +91,6 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.2.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Circular progress indicator</td>
-      <td>1.2.0</td>
-    </tr>
-    <tr>
       <td style="padding:10px;">Divider</td>
       <td>1.0.0</td>
     </tr>
@@ -109,10 +105,6 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     <tr>
       <td style="padding:10px;">Input tag</td>
       <td>1.2.0</td>
-    </tr>
-    <tr>
-      <td style="padding:10px;">Linear progress indicator</td>
-      <td>1.1.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Linear progress indicator</td>
