@@ -84,7 +84,7 @@ class SkeletonSecurityMarginState {
   SkeletonSecurityMarginState(this._setState);
 
   final void Function(void Function()) _setState;
-  bool _hasSecurityMargin = false;
+  bool _hasSecurityMargin = true;
 
   bool get value => _hasSecurityMargin;
   set value(bool newValue) {

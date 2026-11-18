@@ -8,7 +8,6 @@ import 'package:ouds_core/components/list_item/ouds_small_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_theme_contract/config/component/ouds_card_item_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import '../../helpers/async_image_test_helpers.dart';
@@ -90,7 +89,10 @@ void main() {
 
       await tester.pumpWidget(
         testableWidget(
-          OudsCardItem(label: OudsListItemText(text: 'Voir le détail'), onTap: () => tapCount++),
+          OudsCardItem(
+            label: OudsListItemText(text: 'Voir le détail'),
+            onTap: () => tapCount++,
+          ),
         ),
       );
 
@@ -249,7 +251,10 @@ void main() {
 
       await tester.pumpWidget(
         testableWidget(
-          OudsSmallCardItem(label: OudsListItemText(text: 'Détails facture'), onTap: () => tapCount++),
+          OudsSmallCardItem(
+            label: OudsListItemText(text: 'Détails facture'),
+            onTap: () => tapCount++,
+          ),
         ),
       );
 
@@ -299,7 +304,7 @@ void main() {
         testableWidget(
           const OudsCardItem(
             label: OudsListItemText(text: 'Skeleton card'),
-            skeleton: OudsSkeleton(animated: false),
+            skeleton: true,
           ),
         ),
       );

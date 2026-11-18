@@ -8,7 +8,6 @@ import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 import 'package:ouds_core/components/typography/ouds_label_text.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -86,7 +85,10 @@ void main() {
 
       await tester.pumpWidget(
         testableWidget(
-          OudsListItem(label: OudsListItemText(text: 'Navigate'), onTap: () => tapCount++),
+          OudsListItem(
+            label: OudsListItemText(text: 'Navigate'),
+            onTap: () => tapCount++,
+          ),
         ),
       );
 
@@ -135,62 +137,77 @@ void main() {
       expect(listItem.label, isNull);
     });
 
-    testWidgets('renders rich descriptions through Typography with themed color', (
-      tester,
-    ) async {
-      final annotatedText = buildOudsAnnotatedText((builder) {
-        builder.append('Activated on ');
-        builder.withColor(
-          (context) =>
-              OudsTheme.of(context).colorScheme(context).contentStatusPositive,
-          () => builder.append('**24 July**'),
-        );
-      });
+    testWidgets(
+      'renders rich descriptions through Typography with themed color',
+      (tester) async {
+        final annotatedText = buildOudsAnnotatedText((builder) {
+          builder.append('Activated on ');
+          builder.withColor(
+            (context) => OudsTheme.of(
+              context,
+            ).colorScheme(context).contentStatusPositive,
+            () => builder.append('**24 July**'),
+          );
+        });
 
-      await tester.pumpWidget(
-        testableWidget(
-          Builder(
-            builder: (context) => OudsListItem(
-              label: OudsListItemText.rich(
-                text: buildOudsAnnotatedText((b) => b.append('eSIM activation')),
-              ),
-              description: OudsListItemText.rich(
-                text: annotatedText,
-                color: OudsTheme.of(context)
-                    .colorScheme(context).contentStatusNegative,
+        await tester.pumpWidget(
+          testableWidget(
+            Builder(
+              builder: (context) => OudsListItem(
+                label: OudsListItemText.rich(
+                  text: buildOudsAnnotatedText(
+                    (b) => b.append('eSIM activation'),
+                  ),
+                ),
+                description: OudsListItemText.rich(
+                  text: annotatedText,
+                  color: OudsTheme.of(
+                    context,
+                  ).colorScheme(context).contentStatusNegative,
+                ),
               ),
             ),
           ),
-        ),
-      );
+        );
 
-      final context = tester.element(find.byType(OudsListItem));
-      final textWidget = tester.widgetList<Text>(find.byType(Text)).firstWhere(
-        (text) =>
-            text.textSpan?.toPlainText().contains('24 July') ?? false,
-      );
-      final dateSpan = _findTextSpan(textWidget.textSpan!, '24 July')!;
-      final expectedStyle = OudsTheme.of(
-        context,
-      ).typographyTokens.typeLabelStrongMedium(context);
+        final context = tester.element(find.byType(OudsListItem));
+        final textWidget = tester
+            .widgetList<Text>(find.byType(Text))
+            .firstWhere(
+              (text) =>
+                  text.textSpan?.toPlainText().contains('24 July') ?? false,
+            );
+        final dateSpan = _findTextSpan(textWidget.textSpan!, '24 July')!;
+        final expectedStyle = OudsTheme.of(
+          context,
+        ).typographyTokens.typeLabelStrongMedium(context);
 
-      expect(dateSpan.style?.color, OudsTheme.of(
-        context,
-      ).colorScheme(context).contentStatusPositive);
-      expect(dateSpan.style, expectedStyle.copyWith(
-        color: OudsTheme.of(context).colorScheme(context).contentStatusPositive,
-      ));
-      final label = tester.widget<OudsLabelText>(
-        find.ancestor(
-          of: find.byWidget(textWidget),
-          matching: find.byType(OudsLabelText),
-        ),
-      );
-      expect(label.size, OudsLabelTextSize.medium);
-      expect(label.weight, OudsTextWeight.defaultWeight);
-      expect(label.color, OudsTheme.of(context)
-          .colorScheme(context).contentStatusNegative);
-    });
+        expect(
+          dateSpan.style?.color,
+          OudsTheme.of(context).colorScheme(context).contentStatusPositive,
+        );
+        expect(
+          dateSpan.style,
+          expectedStyle.copyWith(
+            color: OudsTheme.of(
+              context,
+            ).colorScheme(context).contentStatusPositive,
+          ),
+        );
+        final label = tester.widget<OudsLabelText>(
+          find.ancestor(
+            of: find.byWidget(textWidget),
+            matching: find.byType(OudsLabelText),
+          ),
+        );
+        expect(label.size, OudsLabelTextSize.medium);
+        expect(label.weight, OudsTextWeight.defaultWeight);
+        expect(
+          label.color,
+          OudsTheme.of(context).colorScheme(context).contentStatusNegative,
+        );
+      },
+    );
 
     testWidgets('uses Typography sizes and weights for every rich text slot', (
       tester,
@@ -211,9 +228,9 @@ void main() {
         ),
       );
 
-      final labels = tester.widgetList<OudsLabelText>(
-        find.byType(OudsLabelText),
-      ).toList();
+      final labels = tester
+          .widgetList<OudsLabelText>(find.byType(OudsLabelText))
+          .toList();
       expect(labels, hasLength(5));
       expect(labels.map((label) => label.size), [
         OudsLabelTextSize.small,
@@ -390,7 +407,10 @@ void main() {
 
       await tester.pumpWidget(
         testableWidget(
-          OudsSmallListItem(label: OudsListItemText(text: 'Compact navigate'), onTap: () => tapCount++),
+          OudsSmallListItem(
+            label: OudsListItemText(text: 'Compact navigate'),
+            onTap: () => tapCount++,
+          ),
         ),
       );
 
@@ -517,7 +537,7 @@ void main() {
         testableWidget(
           const OudsListItem(
             label: OudsListItemText(text: 'Skeleton item'),
-            skeleton: OudsSkeleton(animated: false),
+            skeleton: true,
           ),
         ),
       );
@@ -530,7 +550,9 @@ void main() {
 
     testWidgets('keeps the skeleton layout hidden by default', (tester) async {
       await tester.pumpWidget(
-        testableWidget(const OudsListItem(label: OudsListItemText(text: 'Plain item'))),
+        testableWidget(
+          const OudsListItem(label: OudsListItemText(text: 'Plain item')),
+        ),
       );
 
       final layout = tester.widget<OudsSkeletonLayout>(

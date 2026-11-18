@@ -24,7 +24,6 @@ import 'package:ouds_core/components/form_input/internal/ouds_form_input_control
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -54,7 +53,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [readOnly]: Whether the input is read-only.
 /// - [keyboardType]: The type of keyboard to display.
 /// - [decoration]: An [OudsInputDecoration] object to configure label,
-/// - [skeleton]: An optional [OudsSkeleton] to display a loading skeleton.
+/// - [skeleton]: Whether to display a skeleton in place of the password input.
 ///
 /// ### You can use [OudsPasswordInput] component in your project, customizing parameters as needed :
 ///
@@ -77,7 +76,7 @@ class OudsPasswordInput extends StatefulWidget {
   final TextInputType? keyboardType;
   final void Function(String)? onEditingComplete;
   final OudsPasswordInputDecoration decoration;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   OudsPasswordInput({
     super.key,
@@ -88,7 +87,7 @@ class OudsPasswordInput extends StatefulWidget {
     this.keyboardType,
     this.onEditingComplete,
     required this.decoration,
-    this.skeleton,
+    this.skeleton = false,
   }) : assert(
          !(decoration.loader != null && decoration.errorText != null),
          "Error status for Loading state is not relevant",
@@ -240,9 +239,8 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         : widget.decoration.helperText ?? "";
 
     return OudsSkeletonLayout(
-      visible: widget.skeleton != null,
-      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-      animated: widget.skeleton?.animated ?? false,
+      visible: widget.skeleton,
+      hasSecurityMargin: false,
       shape: RoundedRectangleBorder(
         borderRadius: inputTextBorderModifier.getBorderRadius(context),
       ),

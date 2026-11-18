@@ -617,7 +617,7 @@ class ListItemCustomizationUtils {
       onTap: () {},
       indicator: getIndicator(state.indicator),
       edgeToEdge: state.edgeToEdge,
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
       belowTextContent: state.belowTextContentEnabled
           ? (context, state) => _buildBelowTextContent(context, state)
           : null,
@@ -647,7 +647,7 @@ class ListItemCustomizationUtils {
     VoidCallback? onTap,
     OudsListItemIndicator indicator = OudsListItemDefaults.indicator,
     required bool edgeToEdge,
-    OudsSkeleton? skeleton,
+    bool skeleton = false,
     Widget Function(BuildContext context, OudsListItemControlState state)?
     belowTextContent,
     Widget Function(BuildContext context, OudsListItemControlState state)?
@@ -783,7 +783,7 @@ class ListItemCustomizationUtils {
       onTap: () {},
       indicator: getIndicator(state.indicator),
       edgeToEdge: state.edgeToEdge,
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
     );
   }
 
@@ -844,7 +844,7 @@ class ListItemCustomizationUtils {
       boldLabel: state.boldLabel,
       enable: state.enable,
       edgeToEdge: state.edgeToEdge,
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
       belowTextContent: state.belowTextContentEnabled
           ? (context, state) => _buildBelowTextContent(context, state)
           : null,
@@ -902,7 +902,7 @@ class ListItemCustomizationUtils {
       boldLabel: state.boldLabel,
       enable: state.enable,
       edgeToEdge: state.edgeToEdge,
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
     );
   }
 
@@ -1127,7 +1127,7 @@ class ListItemCustomizationUtils {
         enable: state.enable,
         onTap: state.clickable ? () {} : null,
         indicator: getIndicator(state.indicator),
-        skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+        skeleton: state.hasSkeleton,
       );
     }
     return OudsCardItem(
@@ -1146,7 +1146,7 @@ class ListItemCustomizationUtils {
       enable: state.enable,
       onTap: state.clickable ? () {} : null,
       indicator: getIndicator(state.indicator),
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
     );
   }
 
@@ -1198,7 +1198,7 @@ class ListItemCustomizationUtils {
       onTap: state.clickable ? () {} : null,
       indicator: getIndicator(state.indicator),
       decoration: _convertCardDecoration(state.cardDecoration, state.divider),
-      skeleton: state.hasSkeleton ? OudsSkeleton() : null,
+      skeleton: state.hasSkeleton,
     );
   }
 }

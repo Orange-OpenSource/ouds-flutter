@@ -15,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
@@ -196,7 +195,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
             constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                 ? true
                 : false,
-            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+            skeleton: customizationState.hasSkeleton,
           ),
           SizedBox(
             height: themeController.currentTheme.gridScheme(context).margin,
@@ -243,7 +242,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
             constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
                 ? true
                 : false,
-            skeleton: customizationState.hasSkeleton ? OudsSkeleton() : null,
+            skeleton: customizationState.hasSkeleton,
           ),
         ],
       ),

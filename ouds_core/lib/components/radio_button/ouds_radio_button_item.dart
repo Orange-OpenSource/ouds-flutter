@@ -19,7 +19,6 @@ import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 
 ///
 /// [OUDS Radio Button Design Guidelines](https://r.orange.fr/r/S-ouds-doc-radio-button)
@@ -57,7 +56,7 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 ///   Rich text is supported only for error messages.
 /// - [edgeToEdge]: Controls the horizontal layout of the checkbox item. When `true`, the checkbox item is designed to span the full width of the screen or container. When `false`,
 ///   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
-/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the radio button item will appear once fully loaded.
+/// - [skeleton]: Whether to display a skeleton in place of the radio button item.
 ///
 /// ### You can use [OudsRadioButtonItem] component in your project, customizing parameters as needed :
 ///
@@ -83,7 +82,7 @@ import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 ///     divider: true,
 ///     outlined: false,
 ///     edgeToEdge: true,
-///     skeleton: OudsSkeleton(),
+///     skeleton: true,
 /// );
 /// ```
 ///
@@ -105,7 +104,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
   final bool divider;
   final bool constrainedMaxWidth;
   final bool edgeToEdge;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   const OudsRadioButtonItem({
     super.key,
@@ -125,7 +124,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
     this.divider = false,
     this.constrainedMaxWidth = false,
     this.edgeToEdge = true,
-    this.skeleton,
+    this.skeleton = false,
   });
 
   bool get _selected => value == groupValue;
