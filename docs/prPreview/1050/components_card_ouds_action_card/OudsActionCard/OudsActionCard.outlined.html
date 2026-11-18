@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the values constant from the OudsCardStyle enum, for the Dart programming language.">
-  <title>values constant - OudsCardStyle enum - ouds_card_style library - Dart API</title>
+  <meta name="description" content="API docs for the OudsActionCard.outlined constructor from Class OudsActionCard from the ouds_action_card library, for the Dart programming language.">
+  <title>OudsActionCard.outlined constructor - OudsActionCard - ouds_action_card library - Dart API</title>
 
 
   
@@ -25,11 +25,11 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_card_ouds_card_style/">components&#47;card&#47;ouds_card_style.dart</a></li>
-    <li><a href="../../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a></li>
-    <li class="self-crumb">values constant</li>
+    <li><a href="../../components_card_ouds_action_card/">components&#47;card&#47;ouds_action_card.dart</a></li>
+    <li><a href="../../components_card_ouds_action_card/OudsActionCard-class.html">OudsActionCard</a></li>
+    <li class="self-crumb">OudsActionCard.outlined const constructor</li>
   </ol>
-  <div class="self-name">values</div>
+  <div class="self-name">OudsActionCard.outlined</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -43,35 +43,55 @@
   </button>
 </header>
 <main>
-<div
-    id="dartdoc-main-content"
-    class="main-content"
-    data-above-sidebar="components_card_ouds_card_style&#47;OudsCardStyle-enum-sidebar.html"
-    data-below-sidebar="">
-    <div>
-<h1><span class="kind-property">values</span> constant 
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="components_card_ouds_action_card&#47;OudsActionCard-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">OudsActionCard.outlined</span> constructor 
 </h1></div>
 
+    <section class="multi-line-signature">
+      const
+      <span class="name ">OudsActionCard.outlined</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="outlined-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
+<li><span class="parameter" id="outlined-param-semanticsLabel"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">semanticsLabel</span>, </span></li>
+<li><span class="parameter" id="outlined-param-onPressed"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span></li>
+<li><span class="parameter" id="outlined-param-child"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">child</span>, </span></li>
+<li><span class="parameter" id="outlined-param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span></li>
+<li><span class="parameter" id="outlined-param-backgroundColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">backgroundColor</span> = <span class="default-value">true</span>, </span></li>
+<li><span class="parameter" id="outlined-param-divider"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">divider</span> = <span class="default-value">false</span>, </span></li>
+<li><span class="parameter" id="outlined-param-loader"><span class="type-annotation"><a href="../../components_card_ouds_action_card/OudsCardLoader-class.html">OudsCardLoader</a>?</span> <span class="parameter-name">loader</span>, </span></li>
+<li><span class="parameter" id="outlined-param-skeleton"><span class="type-annotation"><a href="../../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span>, </span></li>
+</ol>})
+    </section>
     
-      <section class="multi-line-signature">
-        
-        <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a></span>&gt;</span>
-        const <span class="name ">values</span>
-        
-
-      </section>
-      
 <section class="desc markdown">
-  <p>A constant List of the values in this enum, in order of their declaration.</p>
+  <p>Creates an outlined single-action card.</p>
 </section>
 
-      
-
 
     
-</div> <!-- /.main-content -->
-<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">const OudsActionCard.outlined({
+  super.key,
+  required this.semanticsLabel,
+  required this.onPressed,
+  required this.child,
+  this.enabled = true,
+  this.backgroundColor = true,
+  this.divider = false,
+  this.loader,
+  this.skeleton,
+}) : _style = OudsCardStyle.outlined,
+     assert(semanticsLabel != &#39;&#39;);</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -79,16 +99,16 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_card_ouds_card_style/">ouds_card_style</a></li>
-    <li><a href="../../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a></li>
-    <li class="self-crumb">values constant</li>
+    <li><a href="../../components_card_ouds_action_card/">ouds_action_card</a></li>
+    <li><a href="../../components_card_ouds_action_card/OudsActionCard-class.html">OudsActionCard</a></li>
+    <li class="self-crumb">OudsActionCard.outlined const constructor</li>
 </ol>
 
-  <h5>OudsCardStyle enum</h5>
-  <div id="dartdoc-sidebar-left-content"></div>
-</div><!--/.sidebar-offcanvas-->
-<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-</div><!--/.sidebar-offcanvas-->
+    <h5>OudsActionCard class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">

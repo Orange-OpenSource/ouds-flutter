@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the OudsActionCard.new constructor from Class OudsActionCard from the ouds_action_card library, for the Dart programming language.">
-  <title>OudsActionCard.new constructor - OudsActionCard - ouds_action_card library - Dart API</title>
+  <meta name="description" content="API docs for the isEnabledOf method from the OudsSkeletonProvider class, for the Dart programming language.">
+  <title>isEnabledOf method - OudsSkeletonProvider class - ouds_skeleton_provider library - Dart API</title>
 
 
   
@@ -25,11 +25,11 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_card_ouds_action_card/">components&#47;card&#47;ouds_action_card.dart</a></li>
-    <li><a href="../../components_card_ouds_action_card/OudsActionCard-class.html">OudsActionCard</a></li>
-    <li class="self-crumb">OudsActionCard.new const constructor</li>
+    <li><a href="../../components_skeleton_ouds_skeleton_provider/">components&#47;skeleton&#47;ouds_skeleton_provider.dart</a></li>
+    <li><a href="../../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider-class.html">OudsSkeletonProvider</a></li>
+    <li class="self-crumb">isEnabledOf static method</li>
   </ol>
-  <div class="self-name">OudsActionCard.new</div>
+  <div class="self-name">isEnabledOf</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -43,50 +43,39 @@
   </button>
 </header>
 <main>
-  <div
-      id="dartdoc-main-content"
-      class="main-content"
-      data-above-sidebar="components_card_ouds_action_card&#47;OudsActionCard-class-sidebar.html"
-      data-below-sidebar="">
-      <div>
-<h1><span class="kind-constructor">OudsActionCard</span> constructor 
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="components_skeleton_ouds_skeleton_provider&#47;OudsSkeletonProvider-class-sidebar.html"
+    data-below-sidebar="">
+    <div>
+<h1><span class="kind-method">isEnabledOf</span> static method 
 </h1></div>
 
     <section class="multi-line-signature">
-      const
-      <span class="name ">OudsActionCard</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
-<li><span class="parameter" id="param-semanticsLabel"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">semanticsLabel</span>, </span></li>
-<li><span class="parameter" id="param-onPressed"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span></li>
-<li><span class="parameter" id="param-child"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">child</span>, </span></li>
-<li><span class="parameter" id="param-style"><span class="type-annotation"><a href="../../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a></span> <span class="parameter-name">style</span> = <span class="default-value">OudsCardStyle.filled</span>, </span></li>
-<li><span class="parameter" id="param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span></li>
-<li><span class="parameter" id="param-backgroundColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">backgroundColor</span> = <span class="default-value">true</span>, </span></li>
-<li><span class="parameter" id="param-divider"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">divider</span> = <span class="default-value">false</span>, </span></li>
-<li><span class="parameter" id="param-loader"><span class="type-annotation"><a href="../../components_card_ouds_action_card/OudsCardLoader-class.html">OudsCardLoader</a>?</span> <span class="parameter-name">loader</span>, </span></li>
-<li><span class="parameter" id="param-skeleton"><span class="type-annotation"><a href="../../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span>, </span></li>
-</ol>})
+      
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+<span class="name ">isEnabledOf</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="isEnabledOf-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
+</ol>)
+
+      
+
     </section>
     
 <section class="desc markdown">
-  <p>Creates a single-action card with a localized accessible name.</p>
+  <p>Returns the nearest shared skeleton state, or <code>false</code> without a provider.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">const OudsActionCard({
-  super.key,
-  required this.semanticsLabel,
-  required this.onPressed,
-  required this.child,
-  this.style = OudsCardStyle.filled,
-  this.enabled = true,
-  this.backgroundColor = true,
-  this.divider = false,
-  this.loader,
-  this.skeleton,
-}) : assert(semanticsLabel != &#39;&#39;);</code></pre>
+  <pre class="language-dart"><code class="language-dart">static bool isEnabledOf(BuildContext context) {
+  return context
+          .dependOnInheritedWidgetOfExactType&lt;_SkeletonScope&gt;()
+          ?.enabled ??
+      false;
+}</code></pre>
 </section>
 
 
@@ -100,16 +89,16 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_card_ouds_action_card/">ouds_action_card</a></li>
-    <li><a href="../../components_card_ouds_action_card/OudsActionCard-class.html">OudsActionCard</a></li>
-    <li class="self-crumb">OudsActionCard.new const constructor</li>
+    <li><a href="../../components_skeleton_ouds_skeleton_provider/">ouds_skeleton_provider</a></li>
+    <li><a href="../../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider-class.html">OudsSkeletonProvider</a></li>
+    <li class="self-crumb">isEnabledOf static method</li>
 </ol>
 
-    <h5>OudsActionCard class</h5>
+    <h5>OudsSkeletonProvider class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
-  </div><!--/.sidebar-offcanvas-left-->
-  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+</div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">

@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the style property from the OudsActionCard class, for the Dart programming language.">
-  <title>style property - OudsActionCard class - ouds_action_card library - Dart API</title>
+  <meta name="description" content="API docs for the OudsCard.outlined constructor from Class OudsCard from the ouds_card library, for the Dart programming language.">
+  <title>OudsCard.outlined constructor - OudsCard - ouds_card library - Dart API</title>
 
 
   
@@ -25,11 +25,11 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_card_ouds_action_card/">components&#47;card&#47;ouds_action_card.dart</a></li>
-    <li><a href="../../components_card_ouds_action_card/OudsActionCard-class.html">OudsActionCard</a></li>
-    <li class="self-crumb">style property</li>
+    <li><a href="../../components_card_ouds_card/">components&#47;card&#47;ouds_card.dart</a></li>
+    <li><a href="../../components_card_ouds_card/OudsCard-class.html">OudsCard</a></li>
+    <li class="self-crumb">OudsCard.outlined const constructor</li>
   </ol>
-  <div class="self-name">style</div>
+  <div class="self-name">OudsCard.outlined</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -43,39 +43,51 @@
   </button>
 </header>
 <main>
-<div
-    id="dartdoc-main-content"
-    class="main-content"
-    data-above-sidebar="components_card_ouds_action_card&#47;OudsActionCard-class-sidebar.html"
-    data-below-sidebar="">
-    <div>
-<h1><span class="kind-property">style</span> property 
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="components_card_ouds_card&#47;OudsCard-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">OudsCard.outlined</span> constructor 
 </h1></div>
 
+    <section class="multi-line-signature">
+      const
+      <span class="name ">OudsCard.outlined</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="outlined-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
+<li><span class="parameter" id="outlined-param-child"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">child</span>, </span></li>
+<li><span class="parameter" id="outlined-param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span></li>
+<li><span class="parameter" id="outlined-param-backgroundColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">backgroundColor</span> = <span class="default-value">true</span>, </span></li>
+<li><span class="parameter" id="outlined-param-divider"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">divider</span> = <span class="default-value">false</span>, </span></li>
+<li><span class="parameter" id="outlined-param-skeleton"><span class="type-annotation"><a href="../../components_skeleton_ouds_skeleton/OudsSkeleton-class.html">OudsSkeleton</a>?</span> <span class="parameter-name">skeleton</span>, </span></li>
+<li><span class="parameter" id="outlined-param-semanticsLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticsLabel</span>, </span></li>
+</ol>})
+    </section>
     
-      <section class="multi-line-signature">
-        
-        <a href="../../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a>
-        <span class="name ">style</span>
-        <div class="features"><span class="feature">final</span></div>
-
-      </section>
-      
 <section class="desc markdown">
-  <p>The surface treatment, filled by default.</p>
+  <p>Creates an outlined content card.</p>
 </section>
 
-      
+
+    
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final OudsCardStyle style;</code></pre>
+  <pre class="language-dart"><code class="language-dart">const OudsCard.outlined({
+  super.key,
+  required this.child,
+  this.enabled = true,
+  this.backgroundColor = true,
+  this.divider = false,
+  this.skeleton,
+  this.semanticsLabel,
+}) : _style = OudsCardStyle.outlined,
+     assert(semanticsLabel == null || semanticsLabel != &#39;&#39;);</code></pre>
 </section>
 
 
-    
-</div> <!-- /.main-content -->
-<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -83,16 +95,16 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_card_ouds_action_card/">ouds_action_card</a></li>
-    <li><a href="../../components_card_ouds_action_card/OudsActionCard-class.html">OudsActionCard</a></li>
-    <li class="self-crumb">style property</li>
+    <li><a href="../../components_card_ouds_card/">ouds_card</a></li>
+    <li><a href="../../components_card_ouds_card/OudsCard-class.html">OudsCard</a></li>
+    <li class="self-crumb">OudsCard.outlined const constructor</li>
 </ol>
 
-  <h5>OudsActionCard class</h5>
-  <div id="dartdoc-sidebar-left-content"></div>
-</div><!--/.sidebar-offcanvas-->
-<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-</div><!--/.sidebar-offcanvas-->
+    <h5>OudsCard class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">

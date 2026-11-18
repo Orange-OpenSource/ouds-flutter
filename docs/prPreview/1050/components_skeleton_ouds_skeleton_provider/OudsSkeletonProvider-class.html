@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the OudsCardStyle enum from the ouds_card_style library, for the Dart programming language.">
-  <title>OudsCardStyle enum - ouds_card_style library - Dart API</title>
+  <meta name="description" content="API docs for the OudsSkeletonProvider class from the ouds_skeleton_provider library, for the Dart programming language.">
+  <title>OudsSkeletonProvider class - ouds_skeleton_provider library - Dart API</title>
 
 
   
@@ -25,10 +25,10 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">ouds_core</a></li>
-    <li><a href="../components_card_ouds_card_style/">components&#47;card&#47;ouds_card_style.dart</a></li>
-    <li class="self-crumb">OudsCardStyle enum</li>
+    <li><a href="../components_skeleton_ouds_skeleton_provider/">components&#47;skeleton&#47;ouds_skeleton_provider.dart</a></li>
+    <li class="self-crumb">OudsSkeletonProvider class</li>
   </ol>
-  <div class="self-name">OudsCardStyle</div>
+  <div class="self-name">OudsSkeletonProvider</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -45,105 +45,116 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="components_card_ouds_card_style&#47;components_card_ouds_card_style-library-sidebar.html"
-    data-below-sidebar="components_card_ouds_card_style&#47;OudsCardStyle-enum-sidebar.html">
+    data-above-sidebar="components_skeleton_ouds_skeleton_provider&#47;components_skeleton_ouds_skeleton_provider-library-sidebar.html"
+    data-below-sidebar="components_skeleton_ouds_skeleton_provider&#47;OudsSkeletonProvider-class-sidebar.html">
     <div>
-
-      <h1>
-        <span class="kind-enum">OudsCardStyle</span>
-        enum 
+<h1><span class="kind-class">OudsSkeletonProvider</span> class 
  
-
-      </h1>
-    </div>
+</h1></div>
 
     
 <section class="desc markdown">
-  <p>The surface treatment shared by content and action cards.</p>
-<pre class="language-dart"><code class="language-dart">OudsCard(
-  semanticsLabel: 'Your mobile plan',
-  style: OudsCardStyle.outlined,
-  child: Text('200 GB plan'),
+  <p>Controls the skeleton state of supported OUDS components in a subtree.</p>
+<p>The nearest provider determines the shared state. An individual component
+with <code>skeleton: true</code> remains in its skeleton state even when the provider
+is disabled. Because <code>skeleton</code> defaults to <code>false</code>, setting it to <code>false</code>
+does not override an enabled provider. A nested disabled provider can
+exclude a subtree.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
+
+OudsSkeletonProvider(
+  enabled: isLoading,
+  semanticsLabel: localizedLoadingMessage,
+  child: Column(
+    children: [
+      OudsButton(
+        label: 'Continue',
+        appearance: OudsButtonAppearance.defaultAppearance,
+        onPressed: () {},
+      ),
+      OudsTag.text(label: 'Status'),
+    ],
+  ),
 )
 </code></pre>
+<p>An enabled provider exposes one loading live region and suppresses the
+individual announcements of skeletons in its scope. Other descendants
+remain accessible. Supply a localized <a href="../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider/semanticsLabel.html">semanticsLabel</a>; no default label
+is provided. Consecutive enabled providers share the outer announcement;
+a disabled provider starts an independent scope.</p>
 </section>
 
 
-      <section>
-        <dl class="dl-horizontal">
-          
+    <section>
+      <dl class="dl-horizontal">
+        
   <dt>Inheritance</dt>
   <dd>
-    <ul class="gt-separated dark eNum-relationships">
+    <ul class="gt-separated dark clazz-relationships">
       <li><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></li>
-        <li><a href="https://api.flutter.dev/flutter/dart-core/Enum-class.html">Enum</a></li>
-      <li>OudsCardStyle</li>
+        <li><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html">DiagnosticableTree</a></li>
+        <li><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></li>
+        <li><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a></li>
+      <li>OudsSkeletonProvider</li>
     </ul>
   </dd>
 
-          
-          
-          
-  <dt>Available extensions</dt>
-  <dd><ul class="comma-separated clazz-relationships">
-      <li><a href="https://api.flutter.dev/flutter/dart-core/EnumName.html">EnumName</a></li>
-  </ul></dd>
-          
+        
+        
 
 
-        </dl>
-      </section>
+        
+        
 
-      <section class="summary offset-anchor" id="values">
-        <h2>Values</h2>
-        <dl class="properties">
-            <dt id="filled" class="constant">
-    <span class="name ">filled</span>
-  <span class="signature">&#8594; const <a href="../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a></span>
-  
 
-</dt>
-<dd>
-  <p>A configurable background with an optional bottom divider.</p>
-  
-
-</dd>
-
-            <dt id="outlined" class="constant">
-    <span class="name ">outlined</span>
-  <span class="signature">&#8594; const <a href="../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a></span>
-  
-
-</dt>
-<dd>
-  <p>A transparent surface bounded by a border.</p>
-  
-
-</dd>
-
-            <dt id="elevated" class="constant">
-    <span class="name ">elevated</span>
-  <span class="signature">&#8594; const <a href="../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a></span>
-  
-
-</dt>
-<dd>
-  <p>A configurable background raised by a shadow.</p>
-  
-
-</dd>
-
-        </dl>
-      </section>
+      </dl>
+    </section>
 
     
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="OudsSkeletonProvider.new" class="callable">
+          <span class="name"><a href="../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider/OudsSkeletonProvider.html">OudsSkeletonProvider</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-enabled"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span>, </span><span class="parameter" id="param-semanticsLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticsLabel</span>, </span><span class="parameter" id="param-child"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">child</span></span>})</span>
+        </dt>
+        <dd>
+          Creates a scope for a shared skeleton state.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+    </dl>
+  </section>
+    
   <section
-      class="summary offset-anchor inherited"
+      class="summary offset-anchor"
       id="instance-properties">
     <h2>Properties</h2>
     <dl class="properties">
+        <dt id="child" class="property">
+  <span class="name"><a href="../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider/child.html">child</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
+  
+
+</dt>
+<dd>
+  Descendants controlled by this provider.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="enabled" class="property">
+  <span class="name"><a href="../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider/enabled.html">enabled</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  
+
+</dt>
+<dd>
+  Whether supported descendant components display their skeletons.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
         <dt id="hashCode" class="property inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/hashCode.html">hashCode</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
@@ -154,31 +165,15 @@
 
 </dd>
 
-        <dt id="index" class="property inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Enum/index.html">index</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
+        <dt id="key" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/key.html">key</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span>
   
 
 </dt>
 <dd class="inherited">
-  A numeric identifier for the enumerated value.
-  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
-
-</dd>
-
-        <dt id="name" class="property">
-  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/EnumName/name.html">name</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
-  
-
-</dt>
-<dd>
-      <p class="from-extension">
-        <span>Available on <a href="https://api.flutter.dev/flutter/dart-core/Enum-class.html">Enum</a>,
-        provided by the <a href="https://api.flutter.dev/flutter/dart-core/EnumName.html">EnumName</a> extension</span>
-      </p>
-  The name of the enum value.
-  <div class="features"><span class="feature">no setter</span></div>
+  Controls how one widget replaces another widget in the tree.
+  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
 
 </dd>
 
@@ -194,15 +189,80 @@
 
 </dd>
 
+        <dt id="semanticsLabel" class="property">
+  <span class="name"><a href="../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider/semanticsLabel.html">semanticsLabel</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Optional localized loading announcement for this group.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
     </dl>
   </section>
 
     
   <section
-      class="summary offset-anchor inherited"
+      class="summary offset-anchor"
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
+        <dt id="build" class="callable">
+  <span class="name"><a href="../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider/build.html">build</a></span><span class="signature">(<wbr><span class="parameter" id="build-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Describes the part of the user interface represented by this widget.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="createElement" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html">createElement</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="debugDescribeChildren" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html">debugDescribeChildren</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a list of <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a> objects describing this node's
+children.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="debugFillProperties" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html">debugFillProperties</a></span><span class="signature">(<wbr><span class="parameter" id="debugFillProperties-param-properties"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticPropertiesBuilder-class.html">DiagnosticPropertiesBuilder</a></span> <span class="parameter-name">properties</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Add additional properties associated with the node.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
         <dt id="noSuchMethod" class="callable inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
     <span class="returntype parameter">&#8594; dynamic</span>
@@ -216,8 +276,22 @@
 
 </dd>
 
+        <dt id="toDiagnosticsNode" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html">toDiagnosticsNode</a></span><span class="signature">(<wbr>{<span class="parameter" id="toDiagnosticsNode-param-name"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">name</span>, </span><span class="parameter" id="toDiagnosticsNode-param-style"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticsTreeStyle.html">DiagnosticsTreeStyle</a>?</span> <span class="parameter-name">style</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a debug representation of the object that is used by debugging
+tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode/toStringDeep.html">DiagnosticsNode.toStringDeep</a>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
         <dt id="toString" class="callable inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html">toString</a></span><span class="signature">(<wbr>{<span class="parameter" id="toString-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.info</span></span>})
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
   </span>
   
@@ -225,6 +299,45 @@
 </dt>
 <dd class="inherited">
   A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toStringDeep" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html">toStringDeep</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringDeep-param-prefixLineOne"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">prefixLineOne</span> = <span class="default-value">&#39;&#39;</span>, </span><span class="parameter" id="toStringDeep-param-prefixOtherLines"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">prefixOtherLines</span>, </span><span class="parameter" id="toStringDeep-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.debug</span>, </span><span class="parameter" id="toStringDeep-param-wrapWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">wrapWidth</span> = <span class="default-value">65</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a string representation of this node and its descendants.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toStringShallow" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html">toStringShallow</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringShallow-param-joiner"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">joiner</span> = <span class="default-value">&#39;, &#39;</span>, </span><span class="parameter" id="toStringShallow-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.debug</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a one-line detailed description of the object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toStringShort" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/toStringShort.html">toStringShort</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A short, textual description of this widget.
   <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
@@ -238,7 +351,7 @@
     <h2>Operators</h2>
     <dl class="callables">
         <dt id="operator ==" class="callable inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   </span>
   
@@ -254,28 +367,29 @@
   </section>
     
     
-    
-
-  <section class="summary offset-anchor" id="constants">
-    <h2>Constants</h2>
-    <dl class="properties">
-        <dt id="values" class="constant">
-    <span class="name "><a href="../components_card_ouds_card_style/OudsCardStyle/values-constant.html">values</a></span>
-  <span class="signature">&#8594; const <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../components_card_ouds_card_style/OudsCardStyle.html">OudsCardStyle</a></span>&gt;</span></span>
+  <section class="summary offset-anchor" id="static-methods">
+    <h2>Static Methods</h2>
+    <dl class="callables">
+        <dt id="isEnabledOf" class="callable">
+  <span class="name"><a href="../components_skeleton_ouds_skeleton_provider/OudsSkeletonProvider/isEnabledOf.html">isEnabledOf</a></span><span class="signature">(<wbr><span class="parameter" id="isEnabledOf-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
   
 
 </dt>
 <dd>
-  A constant List of the values in this enum, in order of their declaration.
+  Returns the nearest shared skeleton state, or <code>false</code> without a provider.
   
 
 </dd>
 
     </dl>
   </section>
-</div><!-- /.main-content -->
-<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -283,15 +397,15 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">ouds_core</a></li>
-    <li><a href="../components_card_ouds_card_style/">ouds_card_style</a></li>
-    <li class="self-crumb">OudsCardStyle enum</li>
+    <li><a href="../components_skeleton_ouds_skeleton_provider/">ouds_skeleton_provider</a></li>
+    <li class="self-crumb">OudsSkeletonProvider class</li>
 </ol>
 
-  <h5>ouds_card_style library</h5>
-  <div id="dartdoc-sidebar-left-content"></div>
-</div>
-<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-</div><!-- /.sidebar-offcanvas -->
+    <h5>ouds_skeleton_provider library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">
