@@ -55,12 +55,12 @@
     
 <section class="desc markdown">
   <p>Replaces an action card's content with a circular progress indicator.</p>
-<p>A null <a href="../components_card_ouds_action_card/OudsCardLoader/progress.html">progress</a> indicates an indeterminate operation. Finite values are
+<p>A null <a href="https://pub.dev/documentation/petitparser/7.0.1/debug/progress.html">progress</a> indicates an indeterminate operation. Finite values are
 clamped to the range 0 to 1 when rendered.</p>
 <pre class="language-dart"><code class="language-dart">OudsActionCard.elevated(
   semanticsLabel: 'Activate your eSIM',
   onPressed: () {},
-  loader: OudsCardLoader(progress: 0.5),
+  loader: OudsCardLoader(),
   child: Text('Activate eSIM'),
 )
 </code></pre>
@@ -73,17 +73,17 @@ clamped to the range 0 to 1 when rendered.</p>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsCardLoader.new" class="callable">
-          <span class="name"><a href="../components_card_ouds_action_card/OudsCardLoader/OudsCardLoader.html">OudsCardLoader</a></span><span class="signature">({<span class="parameter" id="param-progress"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">progress</span></span>})</span>
+          <span class="name"><a href="../components_card_ouds_action_card/OudsCardLoader/OudsCardLoader.html">OudsCardLoader</a></span><span class="signature">()</span>
         </dt>
         <dd>
-          Creates a determinate or indeterminate card loading indicator.
+          Creates an or indeterminate card loading indicator.
             <div class="constructor-modifier features">const</div>
         </dd>
     </dl>
   </section>
     
   <section
-      class="summary offset-anchor"
+      class="summary offset-anchor inherited"
       id="instance-properties">
     <h2>Properties</h2>
     <dl class="properties">
@@ -96,18 +96,6 @@ clamped to the range 0 to 1 when rendered.</p>
 <dd class="inherited">
   The hash code for this object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
-
-</dd>
-
-        <dt id="progress" class="property">
-  <span class="name"><a href="../components_card_ouds_action_card/OudsCardLoader/progress.html">progress</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span>
-  
-
-</dt>
-<dd>
-  Progress between 0 and 1, or null for an indeterminate operation.
-  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
