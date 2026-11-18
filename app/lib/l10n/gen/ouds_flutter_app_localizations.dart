@@ -817,30 +817,6 @@ abstract class AppLocalizations {
   /// **'Order Samsung Galaxy S26 FE EE'**
   String get app_components_card_actionCard_semantics_a11y;
 
-  /// No description provided for @app_components_card_Title_text.
-  ///
-  /// In en, this message translates to:
-  /// **'Before activating your eSIM'**
-  String get app_components_card_Title_text;
-
-  /// No description provided for @app_components_card_planDescription_text.
-  ///
-  /// In en, this message translates to:
-  /// **'Make sure your device is connected to Wi-Fi and compatible with eSIM. Once activation starts, it may take a few minutes to complete.'**
-  String get app_components_card_planDescription_text;
-
-  /// No description provided for @app_components_card_checkDevice_text.
-  ///
-  /// In en, this message translates to:
-  /// **'Check device compatibility'**
-  String get app_components_card_checkDevice_text;
-
-  /// No description provided for @app_components_card_learnHow_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Learn how eSIM activation works'**
-  String get app_components_card_learnHow_button;
-
   /// No description provided for @app_components_card_button.
   ///
   /// In en, this message translates to:
@@ -858,24 +834,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Loading'**
   String get app_components_card_loading_tech;
-
-  /// No description provided for @app_components_card_progressMode_tech.
-  ///
-  /// In en, this message translates to:
-  /// **'Progress mode'**
-  String get app_components_card_progressMode_tech;
-
-  /// No description provided for @app_components_card_determinate_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Determinate'**
-  String get app_components_card_determinate_label;
-
-  /// No description provided for @app_components_card_indeterminate_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Indeterminate'**
-  String get app_components_card_indeterminate_label;
 
   /// No description provided for @app_components_card_progress_tech.
   ///

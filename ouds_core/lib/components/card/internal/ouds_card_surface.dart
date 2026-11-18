@@ -68,7 +68,6 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
     final enabled =
         widget.enabled && (!widget.actionable || widget.onPressed != null);
     final loader = widget.loader;
-    final progress = loader?.progress;
     final loading = enabled && loader != null && widget.skeleton == null;
     final interactive = enabled && !loading && widget.skeleton == null;
     // A nested card cannot re-enable the content of a disabled parent.
@@ -172,15 +171,11 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
               if (loading)
                 Positioned.fill(
                   child: Center(
-                    child: ExcludeSemantics(
-                      child: OudsCircularProgressIndicator(
-                        progressType: progress == null
-                            ? OudsProgressIndicatorType.indeterminate
-                            : OudsProgressIndicatorType.determinate,
-                        value: progress?.clamp(0, 1).toDouble(),
-                        status: const Accent(),
-                        track: false,
-                      ),
+                    child: OudsCircularProgressIndicator(
+                      progressType: OudsProgressIndicatorType.indeterminate,
+                      value: null,
+                      status: const Accent(),
+                      track: false,
                     ),
                   ),
                 ),
@@ -276,16 +271,7 @@ class _OudsCardSurfaceState extends State<OudsCardSurface> {
             enabled: widget.actionable || !enabled ? interactive : null,
             liveRegion: loading,
             value: loading
-                ? OudsProgressIndicatorUtils.buildSemanticsLabel(
-                    OudsLocalizations.of(context)?.core_common_loading_a11y,
-                    OudsProgressIndicatorUtils.buildSemanticValueLabel(
-                      progress == null
-                          ? OudsProgressIndicatorType.indeterminate
-                          : OudsProgressIndicatorType.determinate,
-                      progress,
-                      OudsLocalizations.of(context),
-                    ),
-                  )
+                ? OudsLocalizations.of(context)?.core_common_loading_a11y
                 : null,
             onTap: widget.actionable && interactive ? widget.onPressed : null,
             child: card,

@@ -118,6 +118,7 @@ class _CardDemo extends StatelessWidget {
     return LightDarkBox(hasConstrainedMaxWidthOption: true, child: card);
   }
 
+  /// Builds the selected action-card variant.
   Widget _buildActionCard(
     BuildContext context,
     CardCustomizationState state,
@@ -126,7 +127,7 @@ class _CardDemo extends StatelessWidget {
     final semanticsLabel =
         context.l10n.app_components_card_actionCard_semantics_a11y;
     final loader = state.loading
-        ? OudsCardLoader(progress: state.determinate ? state.progress : null)
+        ? OudsCardLoader()
         : null;
     final skeleton = state.skeleton ? OudsSkeleton() : null;
     return switch (state.style) {
@@ -163,6 +164,7 @@ class _CardDemo extends StatelessWidget {
     };
   }
 
+  /// Builds the selected content-card variant.
   Widget _buildContentCard(
     BuildContext context,
     CardCustomizationState state,
@@ -200,11 +202,13 @@ class _CardContent extends StatelessWidget {
 
   final CardCustomizationState state;
 
+  /// Sizes and displays the card's selected example content.
   @override
   Widget build(BuildContext context) {
     return SizedBox(width: 360, child: _cardContent(context));
   }
 
+  /// Chooses between the use-case example and the simple content placeholder.
   Widget _cardContent(BuildContext context) {
     if(state.content == CardContentEnum.useCase) {
       return _content(context);
@@ -224,6 +228,7 @@ class _CardContent extends StatelessWidget {
     }
   }
 
+  /// Builds the product example shown inside the card.
   Widget _content(BuildContext context){
     final theme = OudsTheme.of(context);
 
@@ -256,46 +261,6 @@ class _CardContent extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ],
-    );
-  }
-}
-
-class _ActionCardContent extends StatelessWidget {
-  const _ActionCardContent();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = OudsTheme.of(context);
-    return Container(
-      width: 360,
-      padding: EdgeInsetsDirectional.all(
-        theme.spaceScheme(context).fixedMedium,
-      ),
-      child: _actionCardContent(context),
-    );
-  }
-
-  Widget _actionCardContent(BuildContext context) {
-    final theme = OudsTheme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        OudsHeadingText(
-          text: context.l10n.app_components_card_Title_text,
-          size: OudsHeadingTextSize.xLarge,
-        ),
-        SizedBox(height: theme.spaceScheme(context).fixedMedium),
-        OudsBodyText(
-          text: context.l10n.app_components_card_planDescription_text,
-          size: OudsBodyTextSize.large,
-        ),
-        SizedBox(height: theme.spaceScheme(context).fixedMedium),
-        OudsButton(
-          label: context.l10n.app_components_card_button,
-          appearance: OudsButtonAppearance.strong,
-          onPressed: () {},
         ),
       ],
     );
@@ -359,46 +324,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             value: state.loading,
             onChanged: state.updateLoading,
           ),
-          if (state.loading) ...[
-            CustomizableChips<bool>(
-              title: context.l10n.app_components_card_progressMode_tech,
-              options: const [true, false],
-              selectedOption: state.determinate,
-              getText: (determinate) => determinate
-                  ? context.l10n.app_components_card_determinate_label
-                  : context.l10n.app_components_card_indeterminate_label,
-              onSelected: state.updateDeterminate,
-            ),
-            if (state.determinate)
-              _ProgressSlider(
-                value: state.progress,
-                onChanged: state.updateProgress,
-              ),
-          ],
         ],
       ],
-    );
-  }
-}
-
-class _ProgressSlider extends StatelessWidget {
-  const _ProgressSlider({required this.value, required this.onChanged});
-
-  final double value;
-  final ValueChanged<double> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final space = OudsTheme.of(context).spaceScheme(context);
-    return Padding(
-      padding: EdgeInsetsDirectional.symmetric(
-        horizontal: space.fixedMedium,
-        vertical: space.fixedExtraSmall,
-      ),
-      child: Semantics(
-        label: context.l10n.app_components_card_progress_tech,
-        child: Slider(value: value, onChanged: onChanged),
-      ),
     );
   }
 }

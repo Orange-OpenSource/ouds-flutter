@@ -19,6 +19,7 @@ import 'package:ouds_flutter_demo/ui/components/card/card_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/card/card_enum.dart';
 
 class CardCodeGenerator {
+  /// Generates a code example matching the current card customization.
   static String updateCode(BuildContext context, {required bool actionCard}) {
     final state = CardCustomization.of(context)!;
     final style = state.style;
@@ -30,14 +31,11 @@ class CardCodeGenerator {
       (false, CardStyleEnum.outlined) => 'OudsCard.outlined',
       (false, CardStyleEnum.elevated) => 'OudsCard.elevated',
     };
-    final title = context.l10n.app_components_card_Title_text;
     final semanticsLabel =
         context.l10n.app_components_card_actionCard_semantics_a11y;
     final properties = <String>[
       if (actionCard)
         'semanticsLabel: ${_stringLiteral(semanticsLabel)}'
-      else
-        'semanticsLabel: ${_stringLiteral(title)}',
       'enabled: ${state.enabled}',
       if (style != CardStyleEnum.outlined)
         'backgroundColor: ${state.coloredBackground}',
@@ -46,7 +44,7 @@ class CardCodeGenerator {
       if (actionCard) ...[
         'onPressed: () {}',
         if (state.loading)
-          'loader: OudsCardLoader(progress: ${state.determinate ? state.progress.toStringAsFixed(2) : 'null'})',
+          'loader: OudsCardLoader()',
       ],
       'child: /* custom widget */ ',
     ];
@@ -54,6 +52,7 @@ class CardCodeGenerator {
     return '$component(\n${properties.map((line) => '  $line').join(',\n')}\n)';
   }
 
+  /// Escapes [value] as a Dart string literal.
   static String _stringLiteral(String value) =>
       jsonEncode(value).replaceAll(r'$', r'\$');
 }

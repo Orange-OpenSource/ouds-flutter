@@ -24,20 +24,14 @@ export 'package:ouds_core/components/card/internal/ouds_card_style.dart';
 /// OudsActionCard.elevated(
 ///   semanticsLabel: 'Activate your eSIM',
 ///   onPressed: () {},
-///   loader: OudsCardLoader(progress: 0.5),
+///   loader: OudsCardLoader(),
 ///   child: Text('Activate eSIM'),
 /// )
 /// ```
 class OudsCardLoader {
-  /// Creates a determinate or indeterminate card loading indicator.
-  const OudsCardLoader({this.progress})
-    : assert(
-        progress == null ||
-            (progress > double.negativeInfinity && progress < double.infinity),
-      );
+  /// Creates an or indeterminate card loading indicator.
+  const OudsCardLoader();
 
-  /// Progress between 0 and 1, or null for an indeterminate operation.
-  final double? progress;
 }
 
 ///

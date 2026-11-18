@@ -408,21 +408,6 @@ class AppLocalizationsFr extends AppLocalizations {
       'Commander Samsung Galaxy S26 FE EE';
 
   @override
-  String get app_components_card_Title_text => 'Before activating your eSIM';
-
-  @override
-  String get app_components_card_planDescription_text =>
-      'Make sure your device is connected to Wi-Fi and compatible with eSIM. Once activation starts, it may take a few minutes to complete.';
-
-  @override
-  String get app_components_card_checkDevice_text =>
-      'Check device compatibility';
-
-  @override
-  String get app_components_card_learnHow_button =>
-      'Learn how eSIM activation works';
-
-  @override
   String get app_components_card_button => 'Order';
 
   @override
@@ -430,15 +415,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_card_loading_tech => 'Loading';
-
-  @override
-  String get app_components_card_progressMode_tech => 'Progress mode';
-
-  @override
-  String get app_components_card_determinate_label => 'Determinate';
-
-  @override
-  String get app_components_card_indeterminate_label => 'Indeterminate';
 
   @override
   String get app_components_card_progress_tech => 'Loading progress';

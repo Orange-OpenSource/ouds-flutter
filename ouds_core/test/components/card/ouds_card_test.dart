@@ -566,7 +566,7 @@ void main() {
       );
       await tester.pumpWidget(card(null));
       final initialSize = tester.getSize(find.byType(OudsActionCard));
-      await tester.pumpWidget(card(const OudsCardLoader(progress: 0.5)));
+      await tester.pumpWidget(card(const OudsCardLoader()));
       await tester.pump();
       expect(tester.getSize(find.byType(OudsActionCard)), initialSize);
       final node = tester.getSemantics(find.bySemanticsLabel('Activate eSIM'));
@@ -603,7 +603,7 @@ void main() {
             OudsActionCard.elevated(
               semanticsLabel: 'Activate eSIM',
               onPressed: () {},
-              loader: OudsCardLoader(progress: value),
+              loader: OudsCardLoader(),
               child: const SizedBox(height: 100),
             ),
           ),

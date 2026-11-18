@@ -21,6 +21,7 @@ enum CardContentEnum {
 
   useCase;
 
+  /// Returns the localized label for the content selector.
   static String enumName(BuildContext context) {
     return context.l10n.app_components_card_content_exemple_tech;
   }
@@ -28,6 +29,7 @@ enum CardContentEnum {
 
 /// Extension providing user-facing string representations for [CardContentEnum].
 extension CustomElementAppearance on CardContentEnum {
+  /// Returns the display label for this content option.
   String stringValue(BuildContext context) {
     switch (this) {
       case CardContentEnum.simpleContent:
@@ -44,12 +46,14 @@ enum CardStyleEnum {
   outlined,
   elevated;
 
+  /// Returns the localized label for the style selector.
   static String enumName(BuildContext context) {
     return context.l10n.app_components_common_style_label;
   }
 }
 
 extension CustomElementStyle on CardStyleEnum {
+  /// Returns the localized label for this card style.
   String stringValue(BuildContext context) {
     switch (this) {
       case CardStyleEnum.filled:

@@ -20,6 +20,7 @@ class _CardCustomization extends InheritedWidget {
 
   final CardCustomizationState data;
 
+  /// Notifies dependents when the card customization state changes.
   @override
   bool updateShouldNotify(_CardCustomization oldWidget) => true;
 }
@@ -47,46 +48,49 @@ class CardCustomizationState extends State<CardCustomization> {
   bool divider = false;
   bool skeleton = false;
   bool loading = false;
-  bool determinate = true;
-  bool showVisualAction = true;
   double progress = 0.65;
 
+  /// Updates the card's visual style.
   void updateStyle(CardStyleEnum value) {
     setState(() => style = value);
   }
 
+  /// Updates whether the card is enabled.
   void updateEnabled(bool value) {
     setState(() => enabled = value);
   }
 
+  /// Updates whether the card uses a colored background.
   void updateColoredBackground(bool value) {
     setState(() => coloredBackground = value);
   }
 
+  /// Updates whether the filled card displays a divider.
   void updateDivider(bool value) {
     setState(() => divider = value);
   }
 
+  /// Updates whether the card displays skeleton content.
   void updateSkeleton(bool value) {
     setState(() => skeleton = value);
   }
 
+  /// Updates whether the action card displays its loading indicator.
   void updateLoading(bool value) {
     setState(() => loading = value);
   }
 
-  void updateDeterminate(bool value) {
-    setState(() => determinate = value);
-  }
-
+  /// Updates the progress value used by the card loader.
   void updateProgress(double value) {
     setState(() => progress = value);
   }
 
+  /// Updates the example content displayed inside the card.
   void updateContent(CardContentEnum value) {
     setState(() => content = value);
   }
 
+  /// Provides the customization state to descendant widgets.
   @override
   Widget build(BuildContext context) {
     return _CardCustomization(data: this, child: widget.child);
@@ -106,14 +110,20 @@ class CardStyleState {
   ];
   CardStyleEnum _selectedType = CardStyleEnum.filled;
 
+  /// Returns the card styles available for selection.
   List<CardStyleEnum> get list => _style;
+
+  /// Replaces the available card styles and notifies the owning state.
   set list(List<CardStyleEnum> newList) {
     _setStyle(() {
       _style = newList;
     });
   }
 
+  /// Returns the currently selected card style.
   CardStyleEnum get selected => _selectedType;
+
+  /// Updates the selected card style and notifies the owning state.
   set selected(CardStyleEnum newValue) {
     _setStyle(() {
       _selectedType = newValue;
