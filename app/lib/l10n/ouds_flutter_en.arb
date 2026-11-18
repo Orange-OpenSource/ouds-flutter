@@ -358,6 +358,8 @@
   "app_components_listItem_background_tech": "Background",
   "app_components_listItem_belowTextContent_tech": "Below text content",
   "app_components_listItem_boldLabel_tech": "Bold label",
+  "app_components_listItem_coloredText_tech": "Colored text",
+  "app_components_listItem_richTextApi_tech": "The Ouds Api Allows the use Rich Text mode .",
   "app_components_listItem_labelContent_tech": "Label content",
   "app_components_listItem_content_tech": "Content",
   "app_components_listItem_contentExampleAlert_label": "Content example",

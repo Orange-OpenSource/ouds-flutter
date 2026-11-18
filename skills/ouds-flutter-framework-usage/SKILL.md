@@ -632,7 +632,7 @@ OudsFlag('US')   // case-insensitive
 
 // Inside a list item (dedicated flag slot returns in v1.0)
 OudsListItem(
-  label: 'France',
+  label: OudsListItemText(text: 'France'),
   leading: OudsListItemLeadingContent((context, state) => OudsFlag('fr')),
 )
 ```
@@ -665,31 +665,56 @@ OudsLink.external(label: 'Visit website', onPressed: () {})
 
 `OudsListItem` mirrors Flutter's `ListTile` spirit (leading / label / trailing) using OUDS tokens. Static (read-only) by default, becomes a navigation item when `onTap` is provided. `OudsSmallListItem` is a compact variant restricted to icon/image leading content; `OudsCardItem` / `OudsSmallCardItem` apply card styling.
 
+All supported text fields accept `OudsListItemText(text: 'Text', color: ...)`,
+not String arguments. It is declared in `ouds_list_item.dart`. Use
+`OudsListItemText.rich(text: annotatedText, color: ...)` for annotated segments;
+the items themselves have no `.rich` constructor. Field sizes and weights remain
+controlled by the item and are rendered through `OudsLabelText.rich`.
+Only description and helper text interpret `**strong**` Markdown, using the full
+Label/Medium/Strong token. Other Markdown syntax remains literal (no underline,
+strikethrough or link actions); nested `**strong**` is still interpreted.
+Keep each strong marker pair within one appended annotation segment.
+Segment colors override the field color; a null segment color inherits it.
+Resolve segment colors with `builder.withColor((context) => ..., () { ... })`
+so they follow the consuming widget's active theme.
+Custom content slots keep their own behavior.
+Helper text supports strong emphasis but always uses its default muted color;
+whole-field and segment colors are not applied to it.
+Labels, extra labels and overlines display all Markdown literally.
+Colors are customizable only on label, extra label, overline and description;
+all OUDS content color tokens are supported. Disabled items override field and
+segment colors with `contentDisabled`.
+Use emphasis sparingly, use semantically appropriate content color tokens, and
+verify contrast against the actual background. Text must make sense without
+color. These usage requirements are not automatically validated.
+Neither emphasis nor color should compensate for unclear writing; color should
+not be used solely for visual emphasis.
+
 ```dart
 // Static, with leading icon
 OudsListItem(
-  label: 'Title',
-  description: 'Secondary text',
+  label: OudsListItemText(text: 'Title'),
+  description: OudsListItemText(text: 'Secondary text'),
   leading: OudsListItemLeadingIcon(Neutral(icon: 'assets/icons/star.svg')),
   background: true,
 )
 
 // Navigation item — chevron indicator shown automatically
 OudsListItem(
-  label: 'Navigate',
+  label: OudsListItemText(text: 'Navigate'),
   onTap: () => Navigator.of(context).push(route),
 )
 
 // Compact variant
 OudsSmallListItem(
-  label: 'Compact row',
+  label: OudsListItemText(text: 'Compact row'),
   leading: OudsSmallListItemLeadingIcon(Positive()),
 )
 
 // Custom leading/trailing widgets receiving the control state
 // (text, flag, avatar, … — replaces the removed Text/Flag/Avatar slots)
 OudsListItem(
-  label: 'Price',
+  label: OudsListItemText(text: 'Price'),
   leading: OudsListItemLeadingContent((context, state) => Text('99€')),
 )
 
@@ -702,7 +727,7 @@ OudsListItem.labelContent(
 
 // Asynchronous image, with a placeholder shown while loading and on error
 OudsListItem(
-  label: 'Product',
+  label: OudsListItemText(text: 'Product'),
   leading: OudsListItemLeadingImage.provider(
     provider: NetworkImage('https://example.com/photo.jpg'),
     semanticsLabel: 'Product photo',
@@ -712,14 +737,14 @@ OudsListItem(
 
 // Small item badge / tag trailing (also usable on OudsSmallCardItem)
 OudsSmallListItem(
-  label: 'Inbox',
+  label: OudsListItemText(text: 'Inbox'),
   trailing: OudsSmallListItemTrailingBadge(
     (enable) => OudsBadge.standard(status: Info(), enabled: enable),
   ),
 )
 
 // Skeleton loading placeholder (all four widgets)
-OudsListItem(label: 'Title', skeleton: OudsSkeleton())
+OudsListItem(label: OudsListItemText(text: 'Title'), skeleton: OudsSkeleton())
 ```
 
 ---
@@ -962,4 +987,3 @@ cd ouds_core && flutter gen-l10n
 - [ ] Component tested with all 4 themes: **Orange**, **Orange Compact**, **Sosh**, **Wireframe**
 - [ ] Component tested in **light** and **dark** mode
 - [ ] Full accessibility checklist completed → load **`ouds-flutter-accessibility`** skill for details
-

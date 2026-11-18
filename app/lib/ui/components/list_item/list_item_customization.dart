@@ -61,6 +61,7 @@ class ListItemCustomizationState
   late final BoolState dividerState;
   late final BoolState backgroundState;
   late final BoolState boldLabelState;
+  late final BoolState coloredTextState;
   late final IndicatorState indicatorState;
   late final ImageSizeState leadingImageSizeState;
   late final ImageSizeState trailingImageSizeState;
@@ -110,6 +111,7 @@ class ListItemCustomizationState
     dividerState = BoolState(setState, initial: true);
     backgroundState = BoolState(setState);
     boldLabelState = BoolState(setState);
+    coloredTextState = BoolState(setState);
     indicatorState = IndicatorState(setState);
     leadingImageSizeState = ImageSizeState(setState);
     trailingImageSizeState = ImageSizeState(setState);
@@ -219,6 +221,9 @@ class ListItemCustomizationState
 
   bool get boldLabel => boldLabelState.value;
   set boldLabel(bool value) => boldLabelState.value = value;
+
+  bool get coloredText => coloredTextState.value;
+  set coloredText(bool value) => coloredTextState.value = value;
 
   ListItemIndicatorEnum get indicator => indicatorState.selected;
   set indicator(ListItemIndicatorEnum value) => indicatorState.selected = value;

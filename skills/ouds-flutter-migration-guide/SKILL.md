@@ -22,6 +22,37 @@ Use this skill when a user asks how to:
 
 ## Part 1 — Adoption: Native Flutter / Material → OUDS Flutter
 
+List/card item text fields now accept only `OudsListItemText`, replacing String
+arguments (breaking). Use `OudsListItemText(text: 'Title', color: optionalColor)`
+for plain/Markdown text, or `OudsListItemText.rich(text: annotatedText, color: ...)`
+for annotated segments. These immutable values are declared in
+`ouds_list_item.dart` and group text and color, without a separate widget or
+global configuration. There are no parallel rich fields or item `.rich`
+constructors. The custom `.labelContent` constructor remains available.
+Typography's `OudsLabelText.rich` handles rendering and Markdown; field sizes
+and weights are preserved for base text. Only descriptions and helper text
+interpret inline `**strong**`; labels, extra labels and overlines retain
+Markdown literally. Inline `**strong**` always uses the
+full Label/Medium/Strong token. All other Markdown syntax stays literal:
+no underline, strikethrough or link actions; nested `**strong**` is still
+interpreted. Keep strong marker pairs within a single appended segment.
+This restriction applies only to
+standard list/card text fields, not custom slots or other components.
+Choose semantic content colors, verify contrast on the actual background, and
+keep meaning understandable without color; these remain usage responsibilities.
+Omitted colors retain the field defaults. Use
+`buildOudsAnnotatedText` and `builder.withColor((context) => ..., () { ... })`
+for independently colored segments resolved against the consuming widget's
+theme. Segment colors override the field color; null inherits the field color.
+Helper text retains its default muted color regardless of field or segment
+colors; strong emphasis remains supported.
+Only label, extra label, overline and description support color customization,
+using any appropriate OUDS content color token. Disabled items use
+`contentDisabled` instead of field or segment colors. Use emphasis and color
+sparingly and consistently; neither replaces clear writing, and color must not
+be used solely for visual emphasis.
+See `MIGRATION.md` for a complete example.
+
 ### 1.1 Quick decision checklist
 
 Before touching any widget, answer these questions:
@@ -990,7 +1021,7 @@ OudsListItem(
 
 // After — image from the network, with a custom placeholder
 OudsListItem(
-  label: 'Product',
+  label: OudsListItemText(text: 'Product'),
   leading: OudsListItemLeadingImage.provider(
     provider: NetworkImage('https://example.com/photo.jpg'),
     semanticsLabel: 'Product photo',
@@ -1000,7 +1031,7 @@ OudsListItem(
 
 // Or from any other ImageProvider (memory, file, app-provided caching library)
 OudsListItem(
-  label: 'Product',
+  label: OudsListItemText(text: 'Product'),
   leading: OudsListItemLeadingImage.provider(
     provider: MemoryImage(bytes),
     placeholder: const ColoredBox(color: Color(0xFFEFEFEF)),

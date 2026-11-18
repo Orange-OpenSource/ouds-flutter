@@ -19,6 +19,31 @@ import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
 class ListItemCodeGenerator {
   ListItemCodeGenerator._();
 
+  static String _stringLiteral(String text) {
+    final escaped = text
+        .replaceAll('\\', r'\\')
+        .replaceAll("'", r"\'")
+        .replaceAll(r'$', r'\$')
+        .replaceAll('\r', r'\r')
+        .replaceAll('\n', r'\n')
+        .replaceAll('\t', r'\t');
+    return "'$escaped'";
+  }
+
+  static String _textCode(
+    String text,
+    ListItemCustomizationState state,
+    String colorToken,
+  ) {
+    if (!state.coloredText) {
+      return 'OudsListItemText(text: ${_stringLiteral(text)})';
+    }
+    return 'OudsListItemText(\n'
+        '    text: ${_stringLiteral(text)},\n'
+        '    color: OudsTheme.of(context).colorScheme(context).$colorToken,\n'
+        '  )';
+  }
+
   /// Builds the code string for the current list item customization state.
   ///
   /// Set [isSmall] to `true` to generate [OudsSmallListItem] code,
@@ -40,29 +65,29 @@ class ListItemCodeGenerator {
   static String _defaultCode(ListItemCustomizationState state) {
     final params = <String>[
       if (state.labelContentEnabled)
-        '  labelContent: (context, state) => /* custom label content */,'
+        '  labelContent: (context, state) => const SizedBox.shrink(), // Replace with custom label content.'
       else
-        "  label: '${state.label}',",
+        "  label: ${_textCode(state.label, state, 'contentStatusNegative')},",
       if (state.contentAlignment != ListItemContentAlignmentEnum.center)
         '  contentAlignment: ${_alignmentCode(state.contentAlignment)},',
       if (state.overline.trim().isNotEmpty)
-        "  overline: '${state.overline.trim()}',",
+        "  overline: ${_textCode(state.overline.trim(), state, 'contentStatusPositive')},",
       if (state.extraLabel.trim().isNotEmpty)
-        "  extraLabel: '${state.extraLabel.trim()}',",
+        "  extraLabel: ${_textCode(state.extraLabel.trim(), state, 'contentStatusAccent')},",
       if (state.description.trim().isNotEmpty)
-        "  description: '${state.description.trim()}',",
+        "  description: ${_textCode(state.description.trim(), state, 'contentStatusWarning')},",
       if (state.belowTextContentEnabled)
-        '  belowTextContent: (context, state) => /* custom content */,',
+        '  belowTextContent: (context, state) => const SizedBox.shrink(), // Replace with custom content.',
       if (state.leading != ListItemLeadingEnum.none)
         '  leading: ${_leadingCode(state.leading, state)},',
       if (state.trailing != ListItemTrailingEnum.none)
         '  trailing: ${_trailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel, state.trailingTextExtraLabel, state)},',
       if (state.bottomContentEnabled)
-        '  bottomContent: (context, state) => /* custom content */,',
+        '  bottomContent: (context, state) => const SizedBox.shrink(), // Replace with custom content.',
       if (!state.divider) '  divider: false,',
       if (state.background) '  background: true,',
       if (state.helperText.trim().isNotEmpty)
-        "  helperText: '${state.helperText.trim()}',",
+        '  helperText: OudsListItemText(text: ${_stringLiteral(state.helperText.trim())}),',
       if (state.boldLabel) '  boldLabel: true,',
       if (!state.enable) '  enable: false,',
       if (state.clickable) '  onTap: () { /* navigate */ },',
@@ -78,11 +103,11 @@ class ListItemCodeGenerator {
 
   static String _smallCode(ListItemCustomizationState state) {
     final params = <String>[
-      "  label: '${state.label}',",
+      "  label: ${_textCode(state.label, state, 'contentStatusNegative')},",
       if (state.contentAlignment != ListItemContentAlignmentEnum.center)
         '  contentAlignment: ${_alignmentCode(state.contentAlignment)},',
       if (state.description.trim().isNotEmpty)
-        "  description: '${state.description.trim()}',",
+        "  description: ${_textCode(state.description.trim(), state, 'contentStatusWarning')},",
       if (state.leading != ListItemLeadingEnum.none &&
           ListItemLeadingEnum.smallOptions.contains(state.leading))
         '  leading: ${_smallLeadingCode(state.leading, state)},',
@@ -92,7 +117,7 @@ class ListItemCodeGenerator {
       if (!state.divider) '  divider: false,',
       if (state.background) '  background: true,',
       if (state.helperText.trim().isNotEmpty)
-        "  helperText: '${state.helperText.trim()}',",
+        '  helperText: OudsListItemText(text: ${_stringLiteral(state.helperText.trim())}),',
       if (state.boldLabel) '  boldLabel: true,',
       if (!state.enable) '  enable: false,',
       if (state.clickable) '  onTap: () { /* navigate */ },',
@@ -113,28 +138,28 @@ class ListItemCodeGenerator {
     );
     final params = <String>[
       if (state.labelContentEnabled)
-        '  labelContent: (context, state) => /* custom label content */,'
+        '  labelContent: (context, state) => const SizedBox.shrink(), // Replace with custom label content.'
       else
-        "  label: '${state.label}',",
+        "  label: ${_textCode(state.label, state, 'contentStatusNegative')},",
       if (state.contentAlignment != ListItemContentAlignmentEnum.center)
         '  contentAlignment: ${_alignmentCode(state.contentAlignment)},',
       if (decorationCode != null) '  decoration: $decorationCode,',
       if (state.overline.trim().isNotEmpty)
-        "  overline: '${state.overline.trim()}',",
+        "  overline: ${_textCode(state.overline.trim(), state, 'contentStatusPositive')},",
       if (state.extraLabel.trim().isNotEmpty)
-        "  extraLabel: '${state.extraLabel.trim()}',",
+        "  extraLabel: ${_textCode(state.extraLabel.trim(), state, 'contentStatusAccent')},",
       if (state.description.trim().isNotEmpty)
-        "  description: '${state.description.trim()}',",
+        "  description: ${_textCode(state.description.trim(), state, 'contentStatusWarning')},",
       if (state.belowTextContentEnabled)
-        '  belowTextContent: (context, state) => /* custom content */,',
+        '  belowTextContent: (context, state) => const SizedBox.shrink(), // Replace with custom content.',
       if (state.leading != ListItemLeadingEnum.none)
         '  leading: ${_leadingCode(state.leading, state)},',
       if (state.trailing != ListItemTrailingEnum.none)
         '  trailing: ${_trailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel, state.trailingTextExtraLabel, state)},',
       if (state.bottomContentEnabled)
-        '  bottomContent: (context, state) => /* custom content */,',
+        '  bottomContent: (context, state) => const SizedBox.shrink(), // Replace with custom content.',
       if (state.helperText.trim().isNotEmpty)
-        "  helperText: '${state.helperText.trim()}',",
+        '  helperText: OudsListItemText(text: ${_stringLiteral(state.helperText.trim())}),',
       if (state.boldLabel) '  boldLabel: true,',
       if (!state.enable) '  enable: false,',
       if (state.clickable) '  onTap: () { /* navigate */ },',
@@ -154,12 +179,12 @@ class ListItemCodeGenerator {
       state.divider,
     );
     final params = <String>[
-      "  label: '${state.label}',",
+      "  label: ${_textCode(state.label, state, 'contentStatusNegative')},",
       if (state.contentAlignment != ListItemContentAlignmentEnum.center)
         '  contentAlignment: ${_alignmentCode(state.contentAlignment)},',
       if (decorationCode != null) '  decoration: $decorationCode,',
       if (state.description.trim().isNotEmpty)
-        "  description: '${state.description.trim()}',",
+        "  description: ${_textCode(state.description.trim(), state, 'contentStatusWarning')},",
       if (state.leading != ListItemLeadingEnum.none &&
           ListItemLeadingEnum.smallOptions.contains(state.leading))
         '  leading: ${_smallLeadingCode(state.leading, state)},',
@@ -167,7 +192,7 @@ class ListItemCodeGenerator {
           ListItemTrailingEnum.smallOptions.contains(state.trailing))
         '  trailing: ${_smallTrailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel, state)},',
       if (state.helperText.trim().isNotEmpty)
-        "  helperText: '${state.helperText.trim()}',",
+        '  helperText: OudsListItemText(text: ${_stringLiteral(state.helperText.trim())}),',
       if (state.boldLabel) '  boldLabel: true,',
       if (!state.enable) '  enable: false,',
       if (state.clickable) '  onTap: () { /* navigate */ },',
@@ -183,7 +208,7 @@ class ListItemCodeGenerator {
   /// [depth] is the nesting level of the call, used to indent the argument
   /// lines and the closing parenthesis relatively to the line on which the
   /// snippet starts.
-  static String _call(String name, List<String> args, {int depth = 1}) {
+  static String _call(String name, List<String> args, {int depth = 2}) {
     final inner = '  ' * depth;
     final closing = '  ' * (depth - 1);
     return '$name(\n${args.map((a) => '$inner$a').join('\n')}\n$closing)';
@@ -257,7 +282,7 @@ class ListItemCodeGenerator {
       rounded: state.leadingImageRounded,
     ),
     ListItemLeadingEnum.content =>
-      "OudsListItemLeadingContent((context, state) => /* custom widget */)",
+      'OudsListItemLeadingContent((context, state) => const SizedBox.shrink())',
     // TODO[v1.0]: uncomment avatar when available
     // ListItemLeadingEnum.avatar =>
     //   "OudsListItemLeadingAvatar(OudsAvatar(monogram: 'AB'))",
@@ -292,13 +317,13 @@ class ListItemCodeGenerator {
     ListItemTrailingEnum.none => '',
     ListItemTrailingEnum.text => switch (trailingTextStyle) {
       ListItemTrailingTextStyleEnum.label =>
-        "OudsListItemTrailingText(OudsListItemTrailingLabel('$trailingTextLabel'))",
+        'OudsListItemTrailingText(OudsListItemTrailingLabel(${_stringLiteral(trailingTextLabel)}))',
       ListItemTrailingTextStyleEnum.labelMuted =>
-        "OudsListItemTrailingText(OudsListItemTrailingLabelMuted('$trailingTextLabel'))",
+        'OudsListItemTrailingText(OudsListItemTrailingLabelMuted(${_stringLiteral(trailingTextLabel)}))',
       ListItemTrailingTextStyleEnum.labelStrong =>
-        "OudsListItemTrailingText(OudsListItemTrailingLabelStrong('$trailingTextLabel'))",
+        'OudsListItemTrailingText(OudsListItemTrailingLabelStrong(${_stringLiteral(trailingTextLabel)}))',
       ListItemTrailingTextStyleEnum.labelAndExtraLabel =>
-        "OudsListItemTrailingText(OudsListItemTrailingLabelAndExtraLabel('$trailingTextLabel', '$trailingTextExtraLabel'))",
+        'OudsListItemTrailingText(OudsListItemTrailingLabelAndExtraLabel(${_stringLiteral(trailingTextLabel)}, ${_stringLiteral(trailingTextExtraLabel)}))',
     },
     ListItemTrailingEnum.badge => _badgeCode(state),
     ListItemTrailingEnum.tag => _tagCode(state),
@@ -315,7 +340,7 @@ class ListItemCodeGenerator {
       rounded: state.trailingImageRounded,
     ),
     ListItemTrailingEnum.content =>
-      "OudsListItemTrailingContent((context, state) => /* custom widget */)",
+      'OudsListItemTrailingContent((context, state) => const SizedBox.shrink())',
     // TODO[v1.0]: uncomment avatar when available
     // TODO[v1.0]: uncomment flag when available
   };
@@ -332,7 +357,7 @@ class ListItemCodeGenerator {
     final enabledArg = state.trailingBadgeEnabled ? 'enable' : 'false';
     final isCount = state.trailingBadgeType == BadgeEnumType.count;
     final badgeArgs = <String>[
-      if (isCount) "label: '${state.trailingBadgeCount}',",
+      if (isCount) 'label: ${_stringLiteral(state.trailingBadgeCount)},',
       'status: $statusConstructor,',
       'size: OudsBadgeSize.$size,',
       'enabled: $enabledArg,',
@@ -340,7 +365,7 @@ class ListItemCodeGenerator {
     final badgeCall = _call(
       isCount ? 'OudsBadge.count' : 'OudsBadge.standard',
       badgeArgs,
-      depth: 2,
+      depth: 3,
     );
     return _call('OudsListItemTrailingBadge', ['(enable) => $badgeCall,']);
   }
@@ -362,14 +387,14 @@ class ListItemCodeGenerator {
     // the item state, like the preview.
     final enabledArg = state.trailingTagEnabled ? 'enable' : 'false';
     final tagCall = _call('OudsTag.$constructorName', [
-      "label: '${state.trailingTagLabel}',",
+      'label: ${_stringLiteral(state.trailingTagLabel)},',
       'status: $statusConstructor,',
       'appearance: OudsTagAppearance.$appearance,',
       'size: OudsTagSize.$size,',
       'loading: ${state.trailingTagLoader},',
       'roundedCorners: ${state.trailingTagRoundedCorners},',
       'enabled: $enabledArg,',
-    ], depth: 2);
+    ], depth: 3);
     return _call('OudsListItemTrailingTag', ['(enable) => $tagCall,']);
   }
 
@@ -381,18 +406,18 @@ class ListItemCodeGenerator {
   ) => switch (trailing) {
     ListItemTrailingEnum.text => switch (trailingTextStyle) {
       ListItemTrailingTextStyleEnum.label =>
-        "OudsSmallListItemTrailingText('$trailingTextLabel')",
+        'OudsSmallListItemTrailingText(${_stringLiteral(trailingTextLabel)})',
       ListItemTrailingTextStyleEnum.labelMuted => _call(
         'OudsSmallListItemTrailingText',
-        ["'$trailingTextLabel',", 'style: OudsListItemTextStyle.labelMuted,'],
+        ['${_stringLiteral(trailingTextLabel)},', 'style: OudsListItemTextStyle.labelMuted,'],
       ),
       ListItemTrailingTextStyleEnum.labelStrong => _call(
         'OudsSmallListItemTrailingText',
-        ["'$trailingTextLabel',", 'style: OudsListItemTextStyle.labelStrong,'],
+        ['${_stringLiteral(trailingTextLabel)},', 'style: OudsListItemTextStyle.labelStrong,'],
       ),
       // labelAndExtraLabel is not supported in small — falls back to label
       ListItemTrailingTextStyleEnum.labelAndExtraLabel =>
-        "OudsSmallListItemTrailingText('$trailingTextLabel')",
+        'OudsSmallListItemTrailingText(${_stringLiteral(trailingTextLabel)})',
     },
     ListItemTrailingEnum.badge => _badgeCode(state).replaceFirst(
       'OudsListItemTrailingBadge',
