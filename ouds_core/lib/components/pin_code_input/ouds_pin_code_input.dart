@@ -18,7 +18,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -103,7 +103,7 @@ enum OudsPinCodeInputKeyboardType {
 /// - [onEditingComplete]: Called with the full PIN when all cells are filled.
 /// - [onChanged]: Called with the current PIN on every keystroke.
 /// - [digitInputDecoration]: Visual and keyboard configuration for the cells.
-/// - [skeleton]: Optional skeleton widget to display while loading or in a placeholder state.
+/// - [skeleton]: Whether to display skeletons while the PIN code is loading.
 ///
 /// ## Rich text in [helperText] and [errorText]
 ///
@@ -131,7 +131,7 @@ class OudsPinCodeInput extends StatefulWidget {
   final void Function(String)? onEditingComplete;
   final void Function(String)? onChanged;
   final OudsDigitInputDecoration digitInputDecoration;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   const OudsPinCodeInput({
     super.key,
@@ -141,7 +141,7 @@ class OudsPinCodeInput extends StatefulWidget {
     this.controllers,
     this.onEditingComplete,
     this.onChanged,
-    this.skeleton,
+    this.skeleton = false,
     required this.digitInputDecoration,
   });
 
@@ -424,6 +424,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
 
   @override
   Widget build(BuildContext context) {
+    // The hidden input and gestures are outside the digit skeleton layouts,
+    // so they must also respond to the shared skeleton state.
+    final isSkeletonVisible = widget.skeleton || OudsSkeletonProvider.isEnabledOf(context);
     final pinCodeToken = OudsTheme.of(
       context,
     ).componentsTokens(context).pinCodeInput;
@@ -470,6 +473,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
               child: SizedBox(
                 height: 1,
                 child: TextField(
+                  enabled: !isSkeletonVisible,
                   controller: _hiddenController,
                   focusNode: _hiddenFocusNode,
                   showCursor: false,
@@ -496,11 +500,13 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
           // A GestureDetector wraps the entire row so a tap anywhere opens the
           // keyboard. Long-press triggers clipboard paste.
           GestureDetector(
-            onTap: () => _hiddenFocusNode.requestFocus(),
-            onLongPress: _pasteFromClipboard,
+            onTap: isSkeletonVisible
+                ? null
+                : () => _hiddenFocusNode.requestFocus(),
+            onLongPress: isSkeletonVisible ? null : _pasteFromClipboard,
             child: Semantics(
-              hint: hintSemanticText,
-              label: semanticsLabel,
+              hint: isSkeletonVisible ? null : hintSemanticText,
+              label: isSkeletonVisible ? null : semanticsLabel,
               child: Row(
                 mainAxisAlignment:
                     widget.digitInputDecoration.constrainedMaxWidth
@@ -521,12 +527,15 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                       // Disable live regions in accessibility mode to prevent
                       // the screen reader from jumping to cells whose content
                       // changed after a keystroke.
-                      liveRegion: true,
-                      hint: l10n?.core_common_hint_a11y,
-                      label:
-                          "${getDigitPositionLabel(context, index)}, "
-                          "${!widget.digitInputDecoration.hiddenCharacter && widget.controllers != null ? widget.controllers![index].text : ''}, "
-                          "${l10n?.core_pinCodeInput_trait_a11y}",
+                      liveRegion: !isSkeletonVisible,
+                      hint: isSkeletonVisible
+                          ? null
+                          : l10n?.core_common_hint_a11y,
+                      label: isSkeletonVisible
+                          ? null
+                          : "${getDigitPositionLabel(context, index)}, "
+                                "${!widget.digitInputDecoration.hiddenCharacter && widget.controllers != null ? widget.controllers![index].text : ''}, "
+                                "${l10n?.core_pinCodeInput_trait_a11y}",
                       child: OudsDigitInput(
                         index: index,
                         isError: isError,
@@ -550,7 +559,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
           ),
 
           // ── Helper / error text ──────────────────────────────────────────
-          if (widget.skeleton == null &&
+          if (!isSkeletonVisible &&
               (widget.helperText != null ||
                   (widget.errorText != null && isError))) ...[
             Container(

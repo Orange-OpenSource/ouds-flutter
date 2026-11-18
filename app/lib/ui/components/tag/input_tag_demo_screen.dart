@@ -11,7 +11,6 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_core/components/tag/ouds_input_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -114,9 +113,7 @@ class _InputTagDemoState extends State<_InputTagDemo> {
       child: OudsInputTag(
         label: customizationState?.labelText ?? "",
         onPressed: customizationState?.hasEnabled == true ? () {} : null,
-        skeleton: customizationState?.hasSkeleton == true
-            ? OudsSkeleton()
-            : null,
+        skeleton: customizationState?.hasSkeleton == true,
       ),
     );
   }

@@ -12,7 +12,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_code_generator.dart';
@@ -128,9 +127,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     final loader = ButtonCustomizationUtils.getLoader(customizationState);
     final onPressed = customizationState?.hasEnabled == true ? () {} : null;
     final isFullWidth = customizationState?.hasFullWidth;
-    final skeleton = customizationState?.hasSkeleton == true
-        ? OudsSkeleton()
-        : null;
+    final skeleton = customizationState?.hasSkeleton == true;
 
     return size == OudsButtonSize.small
         ? OudsButton.small(

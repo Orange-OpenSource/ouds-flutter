@@ -27,7 +27,7 @@ import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
+import 'package:ouds_core/components/skeleton/ouds_skeleton_provider.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -129,7 +129,7 @@ enum OudsButtonComponent {
 ///   must be provided. For instance, suppose a package called `my_icons` has
 ///   `icons/heart.svg` .
 /// - [isFullWidth]: Flag to let button take all the screen width, set to *false* by default.
-/// - [skeleton]: An optional skeleton that improves the perceived loading time by providing a visual cue of where the button will appear once fully loaded.
+/// - [skeleton]: Whether to display a skeleton in place of the button.
 ///
 /// ## Usage example :
 ///
@@ -145,7 +145,7 @@ enum OudsButtonComponent {
 ///       onPressed: () {
 ///         // Handle button tap.
 ///      },
-///       skeleton: OudsSkeleton(),
+///       skeleton: true,
 ///     );
 /// ```
 ///
@@ -184,7 +184,7 @@ enum OudsButtonComponent {
 ///  label: "Label",
 ///  layout: OudsNavigationButtonLayout.next,
 ///  appearance: OudsNavigationButtonAppearance.defaultAppearance,
-///  skeleton: OudsSkeleton(),
+///  skeleton: true,
 ///  onPressed: () {},
 /// );
 /// ```
@@ -228,8 +228,8 @@ class OudsButton extends StatefulWidget {
   /// Optional badge to display on the button.
   final OudsTopBarActionBadge? _badge;
 
-  /// Optional skeleton that improves the perceived loading time by providing a visual cue of where the button will appear once fully loaded.
-  final OudsSkeleton? skeleton;
+  /// Whether to display the button's skeleton.
+  final bool skeleton;
 
   const OudsButton({
     super.key,
@@ -242,7 +242,7 @@ class OudsButton extends StatefulWidget {
     this.package,
     this.isFullWidth = false,
     this.tinted = true,
-    this.skeleton,
+    this.skeleton = false,
   }) : _size = OudsButtonSize.defaultSize,
        _component = OudsButtonComponent.defaultButton,
        _navigationLayout = null,
@@ -274,7 +274,7 @@ class OudsButton extends StatefulWidget {
     this.package,
     this.isFullWidth = false,
     this.tinted = true,
-    this.skeleton,
+    this.skeleton = false,
   }) : _size = OudsButtonSize.small,
        _component = OudsButtonComponent.defaultButton,
        _navigationLayout = null,
@@ -296,7 +296,7 @@ class OudsButton extends StatefulWidget {
     this.isLoading = false,
     required OudsNavigationButtonLayout navigationLayout,
     String? semanticsLabel,
-    this.skeleton,
+    this.skeleton = false,
   }) : _size = size,
        _component = OudsButtonComponent.navigationButton,
        _navigationLayout = navigationLayout,
@@ -361,7 +361,7 @@ class OudsButton extends StatefulWidget {
        tinted = true,
        isLoading = false,
        loader = null,
-       skeleton = null;
+       skeleton = false;
 }
 
 class _OudsButtonState extends State<OudsButton> {
@@ -426,7 +426,9 @@ class _OudsButtonState extends State<OudsButton> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.skeleton != null) {
+    // The focused branch bypasses the skeleton layout, so clear the visual
+    // focus state when either the local or shared skeleton is active.
+    if (widget.skeleton || OudsSkeletonProvider.isEnabledOf(context)) {
       _isFocused = false;
     }
     // Determines the local visual state of the button (hovered, pressed, etc.)
@@ -504,9 +506,8 @@ class _OudsButtonState extends State<OudsButton> {
             ],
           )
         : OudsSkeletonLayout(
-            visible: widget.skeleton != null,
-            hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-            animated: widget.skeleton?.animated ?? false,
+            visible: widget.skeleton,
+            hasSecurityMargin: false,
             shape: RoundedRectangleBorder(
               borderRadius: OudsButtonBorderModifier.getBorderRadius(context),
             ),
@@ -1243,7 +1244,7 @@ class OudsNavigationButton extends StatelessWidget {
   final bool? isFullWidth;
   final String? semanticsLabel;
   final OudsButtonSize size;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   const OudsNavigationButton({
     super.key,
@@ -1257,7 +1258,7 @@ class OudsNavigationButton extends StatelessWidget {
     this.isFullWidth,
     this.semanticsLabel,
     this.size = OudsButtonSize.defaultSize,
-    this.skeleton,
+    this.skeleton = false,
   });
 
   @override

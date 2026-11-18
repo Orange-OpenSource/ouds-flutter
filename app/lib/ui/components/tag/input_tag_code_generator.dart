@@ -19,6 +19,6 @@ class InputTagCodeGenerator {
     // Get the text value for the tag from customization state
     String label = customizationState?.labelText ?? "Label";
 
-    return """OudsInputTag(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},${customizationState?.hasSkeleton == true ? '\nskeleton: OudsSkeleton(),' : ''}\n);""";
+    return """OudsInputTag(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},${customizationState?.hasSkeleton == true ? '\nskeleton: true,' : ''}\n);""";
   }
 }

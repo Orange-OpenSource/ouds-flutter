@@ -21,7 +21,6 @@ import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_c
 import 'package:ouds_core/components/pin_code_input/internal/ouds_pin_code_input_control_state.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/skeleton/internal/ouds_skeleton_layout.dart';
-import 'package:ouds_core/components/skeleton/ouds_skeleton.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// [OUDS Pin Code Input guidelines](https://unified-design-system.orange.com/472794e18/p/9767bc-pin-code-input-v1)
@@ -95,6 +94,7 @@ class OudsDigitInputDecoration {
 /// - [isFocused]: Whether this cell is the currently active position.
 /// - [displayValue]: Character to display; empty string when the cell is empty.
 /// - [digitInputDecoration]: Decoration options (hint, masking, style, …).
+/// - [skeleton]: Whether to display a skeleton in place of the digit input.
 ///
 class OudsDigitInput extends StatefulWidget {
   final int index;
@@ -102,7 +102,7 @@ class OudsDigitInput extends StatefulWidget {
   final OudsDigitInputDecoration? digitInputDecoration;
   final bool isFocused;
   final String displayValue;
-  final OudsSkeleton? skeleton;
+  final bool skeleton;
 
   const OudsDigitInput({
     super.key,
@@ -111,7 +111,7 @@ class OudsDigitInput extends StatefulWidget {
     this.digitInputDecoration,
     this.isFocused = false,
     this.displayValue = '',
-    this.skeleton,
+    this.skeleton = false,
   });
 
   @override
@@ -208,9 +208,8 @@ class _OudsDigitInputState extends State<OudsDigitInput>
     );
 
     return OudsSkeletonLayout(
-      visible: widget.skeleton != null,
-      hasSecurityMargin: widget.skeleton?.hasSecurityMargin ?? false,
-      animated: widget.skeleton?.animated ?? false,
+      visible: widget.skeleton,
+      hasSecurityMargin: false,
       content: (context) => ExcludeSemantics(
         child: MouseRegion(
           onEnter: (_) {
