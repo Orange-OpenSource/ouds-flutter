@@ -357,12 +357,12 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                   child: Padding(
                     padding: EdgeInsetsGeometry.directional(
                       start: widget.countrySelector != null
-                          ? textInput.spacePaddingInlineTrailingAction
+                          ? textInput.spacePaddingInlineLeadingTrailingAction
                           : textInput.spacePaddingInlineDefault,
                       end:
                           (widget.decoration.errorText != null ||
                               widget.decoration.loader != null)
-                          ? textInput.spacePaddingInlineTrailingAction
+                          ? textInput.spacePaddingInlineLeadingTrailingAction
                           : textInput.spacePaddingInlineDefault,
                       top: textInput.spacePaddingBlockDefault,
                       bottom: textInput.spacePaddingBlockDefault,
@@ -767,7 +767,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     // Return the Text widget with proper color and padding
     return Padding(
       padding: EdgeInsets.only(
-        top: textInput.spacePaddingBlockTopHelperText,
+        top: textInput.spacePaddingBlockHelperText,
         left: textInput.spacePaddingInlineDefault,
         right: textInput.spacePaddingInlineDefault,
       ),

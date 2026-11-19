@@ -426,7 +426,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
   Widget build(BuildContext context) {
     // The hidden input and gestures are outside the digit skeleton layouts,
     // so they must also respond to the shared skeleton state.
-    final isSkeletonVisible = widget.skeleton || OudsSkeletonProvider.isEnabledOf(context);
+    final isSkeletonVisible =
+        widget.skeleton || OudsSkeletonProvider.isEnabledOf(context);
     final pinCodeToken = OudsTheme.of(
       context,
     ).componentsTokens(context).pinCodeInput;
@@ -566,13 +567,13 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
               constraints: BoxConstraints(
                 maxWidth: widget.digitInputDecoration.constrainedMaxWidth
                     ? double.infinity
-                    : digitsCount * pinCodeToken.sizeMaxWidth +
+                    : digitsCount * pinCodeToken.sizeMaxWidthDigitInput +
                           (digitsCount - 1) *
                               pinCodeToken.spaceColumnGapDigitInput,
               ),
               child: Padding(
                 padding: EdgeInsets.only(
-                  top: textInputToken.spacePaddingBlockTopHelperText,
+                  top: textInputToken.spacePaddingBlockHelperText,
                 ),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
