@@ -18,6 +18,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bulletList_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_buttonMono_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_card_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_chip_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.dart';
@@ -46,6 +47,7 @@ class OudsComponentsTokens {
   final OudsBulletListTokens bulletList;
   final OudsButtonTokens button;
   final OudsButtonMonoTokens buttonMono;
+  final OudsCardTokens card;
   final OudsCheckboxTokens checkbox;
   final OudsChipTokens chip;
   final OudsDividerTokens divider;
@@ -74,6 +76,7 @@ class OudsComponentsTokens {
     required this.bulletList,
     required this.button,
     required this.buttonMono,
+    required this.card,
     required this.checkbox,
     required this.chip,
     required this.divider,

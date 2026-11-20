@@ -36,6 +36,7 @@ import 'package:ouds_theme_orange/components/orange_bar_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_bulletList_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_buttonMono_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_button_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_card_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_checkbox_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_chip_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_divider_tokens.dart';
@@ -396,6 +397,7 @@ class OrangeTheme implements OudsThemeContract {
       bulletList: OrangeBulletListTokens(providersTokens(context)),
       button: OrangeButtonTokens(providersTokens(context)),
       buttonMono: OrangeButtonMonoTokens(providersTokens(context)),
+      card: OrangeCardTokens(providersTokens(context)),
       checkbox: OrangeCheckboxTokens(providersTokens(context)),
       chip: OrangeChipTokens(providersTokens(context)),
       divider: OrangeDividerTokens(providersTokens(context)),

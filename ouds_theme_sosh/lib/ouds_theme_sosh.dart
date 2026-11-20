@@ -36,6 +36,7 @@ import 'package:ouds_theme_sosh/components/sosh_bar_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_bulletList_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_buttonMono_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_button_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_card_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_checkbox_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_chip_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_divider_tokens.dart';
@@ -239,6 +240,7 @@ class SoshTheme implements OudsThemeContract {
       bulletList: SoshBulletListTokens(providersTokens(context)),
       button: SoshButtonTokens(providersTokens(context)),
       buttonMono: SoshButtonMonoTokens(providersTokens(context)),
+      card: SoshCardTokens(providersTokens(context)),
       checkbox: SoshCheckboxTokens(providersTokens(context)),
       chip: SoshChipTokens(providersTokens(context)),
       divider: SoshDividerTokens(providersTokens(context)),
