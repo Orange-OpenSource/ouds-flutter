@@ -22,6 +22,26 @@ Use this skill when a user asks how to:
 
 ## Part 1 — Adoption: Native Flutter / Material → OUDS Flutter
 
+All five typography widgets (`OudsDisplayText`, `OudsHeadingText`,
+`OudsBodyText`, `OudsLabelText`, `OudsCodeText`) support an optional
+`colorBuilder: (context) => ...` in plain and `.rich` constructors.
+**Breaking change:** the `color` parameter and property are removed, not
+deprecated. Replace every typography `color: ...` argument with
+`colorBuilder: (context) => ...`. Calls without color overrides are unchanged.
+Constructors remain `const`, but remove `const` from calls using inline
+callbacks (or pass a top-level/static function tear-off).
+**Use `colorBuilder` to apply OUDS color tokens.** Define the callback in the
+app and resolve the token inside it using its supplied context, not a captured
+ancestor context or pre-resolved color. The widget invokes it with its local
+context on each build, so reused widgets follow light/dark theme overrides.
+For example:
+`colorBuilder: (context) => OudsTheme.of(context).colorScheme(context).contentStatusPositive`.
+An absent callback or null result falls back to `contentDefault`.
+Annotated segment colors remain higher priority.
+For explicit fixed colors, use `colorBuilder: (_) => fixedColor`.
+For annotated segments use
+`withColor((context) => ..., ...)` with the same deferred token resolution.
+
 ### 1.1 Quick decision checklist
 
 Before touching any widget, answer these questions:

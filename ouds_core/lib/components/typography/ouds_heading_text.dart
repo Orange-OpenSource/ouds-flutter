@@ -54,7 +54,8 @@ enum OudsHeadingTextSize { xLarge, large, medium, small }
 /// OudsHeadingText(
 ///   text: 'Section title',
 ///   size: OudsHeadingTextSize.large,
-///   color: OudsTheme.of(context).colorScheme(context).contentDefault,
+///   colorBuilder: (context) =>
+///       OudsTheme.of(context).colorScheme(context).contentDefault,
 /// )
 /// ```
 ///
@@ -78,8 +79,20 @@ class OudsHeadingText extends StatelessWidget {
   /// The text to display. Empty when built via [OudsHeadingText.rich].
   final String text;
 
-  /// An optional color override. When null, the theme's `contentDefault` color is used.
-  final Color? color;
+  /// Resolves the base color with this widget's context on each build.
+  ///
+  /// Use this callback for theme color tokens instead of resolving them before
+  /// constructing the widget. If absent or returning null, the theme's
+  /// `contentDefault` color is used. Annotated segment colors take priority.
+  ///
+  /// ```dart
+  /// OudsHeadingText(
+  ///   text: 'Saved',
+  ///   colorBuilder: (context) =>
+  ///       OudsTheme.of(context).colorScheme(context).contentStatusPositive,
+  /// )
+  /// ```
+  final Color? Function(BuildContext context)? colorBuilder;
 
   /// The size of the heading text, see [OudsHeadingTextSize]. Defaults to [OudsHeadingTextSize.large].
   final OudsHeadingTextSize size;
@@ -115,7 +128,7 @@ class OudsHeadingText extends StatelessWidget {
   const OudsHeadingText({
     super.key,
     required this.text,
-    this.color,
+    this.colorBuilder,
     this.size = OudsHeadingTextSize.large,
     this.marker = true,
     this.maxLines,
@@ -130,7 +143,7 @@ class OudsHeadingText extends StatelessWidget {
   const OudsHeadingText.rich({
     super.key,
     required OudsAnnotatedText text,
-    this.color,
+    this.colorBuilder,
     this.size = OudsHeadingTextSize.large,
     this.marker = true,
     this.maxLines,
@@ -160,7 +173,8 @@ class OudsHeadingText extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = textStyle(context);
     final definedColor =
-        color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
+        colorBuilder?.call(context) ??
+        OudsTheme.of(context).colorScheme(context).contentDefault;
     final annotatedText = _annotatedText;
     final Text textContent;
     final List<InlineSpan> children;

@@ -861,7 +861,7 @@ Use `OudsTopAppBar` when you need the full Material top app bar implementation (
 
 ### Typography
 
-Five typography widgets — `OudsDisplayText`, `OudsHeadingText`, `OudsBodyText`, `OudsLabelText`, `OudsCodeText` — render text using OUDS typography tokens. Each exposes a plain constructor (`text: String`) and a `.rich` constructor (`text: OudsAnnotatedText`) for coloring or styling part of the text. All support `color` (override the default content color), `maxLines`, `textAlign`, `overflow` and `softWrap`.
+Five typography widgets — `OudsDisplayText`, `OudsHeadingText`, `OudsBodyText`, `OudsLabelText`, `OudsCodeText` — render text using OUDS typography tokens. Each exposes a plain constructor (`text: String`) and a `.rich` constructor (`text: OudsAnnotatedText`) for coloring or styling part of the text. All support `colorBuilder` (resolve the base content color), `maxLines`, `textAlign`, `overflow` and `softWrap`.
 
 | Widget | Size enum | Extra params |
 |---|---|---|
@@ -901,14 +901,12 @@ Use `buildOudsAnnotatedText` with the `.rich` constructor to color only part of 
 ```dart
 import 'package:ouds_core/components/typography/ouds_annotated_text.dart';
 
-final colors = OudsTheme.of(context).colorScheme(context);
-
 OudsHeadingText.rich(
   size: OudsHeadingTextSize.medium,
   text: buildOudsAnnotatedText((builder) {
     builder.append('Here is the ');
     builder.withColor(
-      colors.contentBrandPrimary,
+      (context) => OudsTheme.of(context).colorScheme(context).contentBrandPrimary,
       () => builder.append('new Livebox'),
     );
   }),
@@ -918,14 +916,39 @@ OudsBodyText.rich(
   text: buildOudsAnnotatedText((builder) {
     builder.append('Your option has been ');
     builder.withColor(
-      colors.contentStatusNegative,
+      (context) => OudsTheme.of(context).colorScheme(context).contentStatusNegative,
       () => builder.append('removed'),
     );
   }),
 )
 ```
 
-> Never hardcode the `Color` passed to `withColor` — always resolve it from `OudsTheme.of(context).colorScheme(context)` (e.g. `contentBrandPrimary`, `contentStatusPositive`, `contentStatusNegative`, `contentStatusInfo`, `contentStatusWarning`).
+> `withColor` takes a callback, not a pre-resolved `Color`. Always resolve the token inside that callback from `OudsTheme.of(context).colorScheme(context)` using its supplied context (e.g. `contentBrandPrimary`, `contentStatusPositive`, `contentStatusNegative`, `contentStatusInfo`, `contentStatusWarning`).
+
+#### Coloring the text — `colorBuilder`
+
+All five typography widgets accept `colorBuilder` in plain and `.rich`
+constructors. **Use `colorBuilder` to apply an OUDS color token**, resolving
+it inside the callback using the supplied context. Do not capture an ancestor
+context or pre-resolved color: the callback must resolve the token at build
+time so reused widgets follow local light/dark theme tweaks. The app selects
+the token; the library invokes the callback.
+
+```dart
+OudsHeadingText(
+  text: 'Saved',
+  colorBuilder: (context) =>
+      OudsTheme.of(context).colorScheme(context).contentStatusPositive,
+)
+```
+
+**Breaking change:** the `color` parameter and property have been removed.
+Replace every typography `color: ...` with `colorBuilder: (context) => ...`.
+For an explicit fixed color, use `colorBuilder: (_) => fixedColor`.
+Constructors remain `const`, but calls with inline callbacks cannot be const;
+remove `const` or pass a top-level/static function tear-off.
+Priority is: annotated segment color, non-null builder result, then
+`contentDefault`. An absent callback or null result uses `contentDefault`.
 
 ---
 
@@ -962,4 +985,3 @@ cd ouds_core && flutter gen-l10n
 - [ ] Component tested with all 4 themes: **Orange**, **Orange Compact**, **Sosh**, **Wireframe**
 - [ ] Component tested in **light** and **dark** mode
 - [ ] Full accessibility checklist completed → load **`ouds-flutter-accessibility`** skill for details
-

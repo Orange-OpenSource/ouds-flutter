@@ -46,7 +46,8 @@ enum OudsLabelTextSize { xLarge, large, medium, small }
 /// OudsLabelText(
 ///   text: 'Submit',
 ///   size: OudsLabelTextSize.medium,
-///   color: OudsTheme.of(context).colorScheme(context).contentDefault,
+///   colorBuilder: (context) =>
+///       OudsTheme.of(context).colorScheme(context).contentDefault,
 /// )
 /// ```
 ///
@@ -84,8 +85,22 @@ class OudsLabelText extends StatelessWidget {
   /// The text to display. Empty when built via [OudsLabelText.rich].
   final String text;
 
-  /// An optional color override. When null, the theme's `contentDefault` color is used.
-  final Color? color;
+  /// Resolves the base color using this label's context on each build.
+  ///
+  /// The caller supplies the color selection logic. If absent or returning null,
+  /// the theme's `contentDefault` color is used. Annotated segment colors take
+  /// priority.
+  /// Use this callback for theme color tokens, resolving them inside the
+  /// callback rather than capturing a color from an ancestor's context.
+  ///
+  /// ```dart
+  /// OudsLabelText(
+  ///   text: 'Saved',
+  ///   colorBuilder: (context) =>
+  ///       OudsTheme.of(context).colorScheme(context).contentStatusPositive,
+  /// )
+  /// ```
+  final Color? Function(BuildContext context)? colorBuilder;
 
   /// The size of the label text, see [OudsLabelTextSize]. Defaults to [OudsLabelTextSize.medium].
   final OudsLabelTextSize size;
@@ -119,7 +134,7 @@ class OudsLabelText extends StatelessWidget {
   const OudsLabelText({
     super.key,
     required this.text,
-    this.color,
+    this.colorBuilder,
     this.size = OudsLabelTextSize.medium,
     this.weight = OudsTextWeight.defaultWeight,
     this.maxLines,
@@ -135,7 +150,7 @@ class OudsLabelText extends StatelessWidget {
   const OudsLabelText.rich({
     super.key,
     required OudsAnnotatedText text,
-    this.color,
+    this.colorBuilder,
     this.size = OudsLabelTextSize.medium,
     this.weight = OudsTextWeight.defaultWeight,
     this.onLinkTap,
@@ -191,12 +206,10 @@ class OudsLabelText extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = textStyle(context);
     final definedColor =
-        color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
+        colorBuilder?.call(context) ??
+        OudsTheme.of(context).colorScheme(context).contentDefault;
     final annotatedText = _annotatedText;
-
     final List<InlineSpan> children;
-    // Every span (or the plain text) is run through the markdown span builder so bold, underline
-    // bold and links are always supported, whether the text is plain or annotated with colors.
     if (annotatedText != null) {
       children = annotatedText.resolveSpans(context).map((span) {
         final segmentColor = span.style?.color ?? definedColor;
