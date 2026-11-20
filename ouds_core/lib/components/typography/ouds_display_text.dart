@@ -49,7 +49,8 @@ enum OudsDisplayTextSize { large, medium, small }
 /// OudsDisplayText(
 ///   text: 'Welcome',
 ///   size: OudsDisplayTextSize.large,
-///   color: OudsTheme.of(context).colorScheme(context).contentDefault,
+///   colorBuilder: (context) =>
+///       OudsTheme.of(context).colorScheme(context).contentDefault,
 /// )
 /// ```
 ///
@@ -73,8 +74,20 @@ class OudsDisplayText extends StatelessWidget {
   /// The text to display. Empty when built via [OudsDisplayText.rich].
   final String text;
 
-  /// An optional color override. When null, the theme's `contentDefault` color is used.
-  final Color? color;
+  /// Resolves the base color with this widget's context on each build.
+  ///
+  /// Use this callback for theme color tokens instead of resolving them before
+  /// constructing the widget. If absent or returning null, the theme's
+  /// `contentDefault` color is used. Annotated segment colors take priority.
+  ///
+  /// ```dart
+  /// OudsDisplayText(
+  ///   text: 'Saved',
+  ///   colorBuilder: (context) =>
+  ///       OudsTheme.of(context).colorScheme(context).contentStatusPositive,
+  /// )
+  /// ```
+  final Color? Function(BuildContext context)? colorBuilder;
 
   /// The size of the display text, see [OudsDisplayTextSize]. Defaults to [OudsDisplayTextSize.large].
   final OudsDisplayTextSize size;
@@ -103,7 +116,7 @@ class OudsDisplayText extends StatelessWidget {
   const OudsDisplayText({
     super.key,
     required this.text,
-    this.color,
+    this.colorBuilder,
     this.size = OudsDisplayTextSize.large,
     this.maxLines,
     this.textAlign,
@@ -117,7 +130,7 @@ class OudsDisplayText extends StatelessWidget {
   const OudsDisplayText.rich({
     super.key,
     required OudsAnnotatedText text,
-    this.color,
+    this.colorBuilder,
     this.size = OudsDisplayTextSize.large,
     this.maxLines,
     this.textAlign,
@@ -144,7 +157,8 @@ class OudsDisplayText extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = textStyle(context);
     final definedColor =
-        color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
+        colorBuilder?.call(context) ??
+        OudsTheme.of(context).colorScheme(context).contentDefault;
     final annotatedText = _annotatedText;
     final Text textWidget;
     // Every span (or the plain text) is run through the markdown span builder so bold, underline

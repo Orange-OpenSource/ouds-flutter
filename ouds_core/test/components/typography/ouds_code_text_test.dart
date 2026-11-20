@@ -31,7 +31,7 @@ void main() {
     testWidgets('applies the color override when provided', (tester) async {
       await tester.pumpWidget(
         testableWidget(
-          const OudsCodeText(text: 'Colored text', color: Colors.red),
+          OudsCodeText(text: 'Colored text', colorBuilder: (_) => Colors.red),
         ),
       );
 
@@ -58,7 +58,10 @@ void main() {
           OudsCodeText.rich(
             text: buildOudsAnnotatedText((builder) {
               builder.append('Plain ');
-              builder.withColor((context) => Colors.red, () => builder.append('Colored'));
+              builder.withColor(
+                (context) => Colors.red,
+                () => builder.append('Colored'),
+              );
             }),
           ),
         ),

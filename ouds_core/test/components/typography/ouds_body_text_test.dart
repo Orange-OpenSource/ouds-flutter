@@ -19,6 +19,30 @@ import '../../helpers/testable_widget_helper.dart';
 
 void main() {
   group('OudsBodyText common behavior', () {
+    testWidgets('preserves builder color when rendering bold text', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        testableWidget(
+          OudsBodyText(
+            text: 'This is **bold** text',
+            colorBuilder: (_) => Colors.green,
+          ),
+        ),
+      );
+
+      final text = tester.widget<Text>(find.byType(Text));
+      final root = text.textSpan! as TextSpan;
+      final wrapper = root.children!.single as TextSpan;
+      final bold = wrapper.children!.whereType<TextSpan>().singleWhere(
+        (span) => span.text == 'bold',
+      );
+      expect(root.toPlainText(), 'This is bold text');
+      expect(root.style?.color, Colors.green);
+      expect(bold.style?.color, Colors.green);
+      expect(bold.style?.fontWeight, FontWeight.bold);
+    });
+
     testWidgets('renders the provided text', (tester) async {
       await tester.pumpWidget(
         testableWidget(const OudsBodyText(text: 'Hello world')),
@@ -30,7 +54,7 @@ void main() {
     testWidgets('applies the color override when provided', (tester) async {
       await tester.pumpWidget(
         testableWidget(
-          const OudsBodyText(text: 'Colored text', color: Colors.red),
+          OudsBodyText(text: 'Colored text', colorBuilder: (_) => Colors.red),
         ),
       );
 

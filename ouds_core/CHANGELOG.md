@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- [Library] Fix `typography` color resolution to respect the local context ([#1082](https://github.com/Orange-OpenSource/ouds-flutter/issues/1082))
 
 ## [3.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...3.2.0) - 2026-11-17
 ### Added

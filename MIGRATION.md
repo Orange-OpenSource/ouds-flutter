@@ -1,4 +1,5 @@
 # Migration Guide
+- [v3.2.0 → v3.3.0](#v320--v330)
 - [v3.1.0 → v3.2.0](#v310--v320)
 - [v2.1.0 → v3.0.0](#v210--v300)
 - [v2.0.0 → v2.1.0](#v200--v210)
@@ -8,6 +9,62 @@
 - [v1.1.x → v1.2.0](#v11x--v120)
 - [v1.0.0 → v1.1.1](#v100--v111)
 - [Support](#support)
+
+## v3.2.0 → v3.3.0
+
+### Overview
+
+This release replaces typography color overrides with context-aware color builders.
+
+### Before You Begin
+
+#### Prerequisites
+
+- Use version 3.2.0
+
+### Typography — replace `color` with `colorBuilder` (breaking)
+
+`OudsDisplayText`, `OudsHeadingText`, `OudsBodyText`, `OudsLabelText` and
+`OudsCodeText` replace the `color` parameter and property with an optional
+`Color? Function(BuildContext context)? colorBuilder` in both plain and `.rich`
+constructors. **The `color` parameter is removed**, not deprecated.
+Calls without a color override are unchanged, and constructors remain `const`.
+**Use `colorBuilder` to apply an OUDS color token.** Resolve the token inside
+the callback using the supplied context, not a captured ancestor context or
+a pre-resolved color. This ensures the correct value under light/dark theme
+overrides, even when the same widget is reused. The app chooses the token;
+the library only invokes the callback at build time.
+
+Before (no longer supported):
+
+```dart
+OudsHeadingText(
+  text: 'Saved',
+  color: OudsTheme.of(context).colorScheme(context).contentStatusPositive,
+)
+```
+
+After:
+
+```dart
+OudsHeadingText(
+  text: 'Saved',
+  colorBuilder: (context) =>
+      OudsTheme.of(context).colorScheme(context).contentStatusPositive,
+)
+```
+
+**Required actions:** replace every typography `color: ...` argument with
+`colorBuilder: (context) => ...`. Remove `const` from calls using inline
+callbacks (or supply a top-level/static function tear-off). For an explicit
+fixed color, return it from the callback: `colorBuilder: (_) => fixedColor`.
+
+Priority is: annotated segment color, non-null `colorBuilder` result,
+then the theme's `contentDefault`. An absent callback or null result uses
+`contentDefault`.
+For individual annotated segments, use
+`builder.withColor((context) => OudsTheme.of(context).colorScheme(context).contentStatusPositive, ...)`
+with the same deferred resolution rule.
 
 ## v3.1.0 → v3.2.0
 

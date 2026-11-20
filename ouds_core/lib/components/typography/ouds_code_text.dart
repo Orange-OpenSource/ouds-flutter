@@ -37,7 +37,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// ```dart
 /// OudsCodeText(
 ///   text: 'const x = 1;',
-///   color: OudsTheme.of(context).colorScheme(context).contentDefault,
+///   colorBuilder: (context) =>
+///       OudsTheme.of(context).colorScheme(context).contentDefault,
 /// )
 /// ```
 ///
@@ -62,8 +63,20 @@ class OudsCodeText extends StatelessWidget {
   /// The text to display. Empty when built via [OudsCodeText.rich].
   final String text;
 
-  /// An optional color override. When null, the theme's `contentDefault` color is used.
-  final Color? color;
+  /// Resolves the base color with this widget's context on each build.
+  ///
+  /// Use this callback for theme color tokens instead of resolving them before
+  /// constructing the widget. If absent or returning null, the theme's
+  /// `contentDefault` color is used. Annotated segment colors take priority.
+  ///
+  /// ```dart
+  /// OudsCodeText(
+  ///   text: 'Saved',
+  ///   colorBuilder: (context) =>
+  ///       OudsTheme.of(context).colorScheme(context).contentStatusPositive,
+  /// )
+  /// ```
+  final Color? Function(BuildContext context)? colorBuilder;
 
   /// An optional maximum number of lines for the text to span, wrapping if necessary.
   /// If the text exceeds the given number of lines, it will be truncated according to [overflow] and
@@ -86,7 +99,7 @@ class OudsCodeText extends StatelessWidget {
   final OudsAnnotatedText? _annotatedText;
 
   /// Creates an [OudsCodeText].
-  const OudsCodeText({super.key, required this.text, this.color})
+  const OudsCodeText({super.key, required this.text, this.colorBuilder})
     : maxLines = null,
       textAlign = null,
       overflow = null,
@@ -98,7 +111,7 @@ class OudsCodeText extends StatelessWidget {
   /// of the text, e.g. to highlight a word or phrase.
   const OudsCodeText.rich({
     super.key,
-    this.color,
+    this.colorBuilder,
     required OudsAnnotatedText text,
     this.maxLines,
     this.textAlign,
@@ -117,7 +130,8 @@ class OudsCodeText extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = textStyle(context);
     final definedColor =
-        color ?? OudsTheme.of(context).colorScheme(context).contentDefault;
+        colorBuilder?.call(context) ??
+        OudsTheme.of(context).colorScheme(context).contentDefault;
     final annotatedText = _annotatedText;
 
     final List<InlineSpan> children;
