@@ -21,6 +21,7 @@ class OudsComponentVersion {
   static const bottomSheet = '0.0.0';
   static const bulletList = '1.1.0';
   static const button = '3.4.0';
+  static const card = '1.0.0';
   static const checkbox = '2.4.0';
   static const circularProgressIndicator = '1.2.0';
   static const divider = '1.0.0';
@@ -45,9 +46,9 @@ class OudsComponentVersion {
   static const tag = '1.5.0';
   static const textArea = '1.2.1';
   static const textInput = '1.4.1';
-  static const body = '1.0.0';
-  static const code = '1.0.0';
-  static const display = '1.0.0';
-  static const heading = '1.1.0';
-  static const label = '1.0.0';
+  static const typographyBody = '1.0.0';
+  static const typographyCode = '1.0.0';
+  static const typographyDisplay = '1.0.0';
+  static const typographyHeading = '1.1.0';
+  static const typographyLabel = '1.0.0';
 }

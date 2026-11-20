@@ -293,15 +293,15 @@ class _BodyState extends State<_Body> {
   String _versionFor(TypographyVariant variant) {
     switch (variant) {
       case TypographyVariant.display:
-        return OudsComponentVersion.display;
+        return OudsComponentVersion.typographyDisplay;
       case TypographyVariant.heading:
-        return OudsComponentVersion.heading;
+        return OudsComponentVersion.typographyHeading;
       case TypographyVariant.body:
-        return OudsComponentVersion.body;
+        return OudsComponentVersion.typographyBody;
       case TypographyVariant.label:
-        return OudsComponentVersion.label;
+        return OudsComponentVersion.typographyLabel;
       case TypographyVariant.code:
-        return OudsComponentVersion.code;
+        return OudsComponentVersion.typographyCode;
     }
   }
 }

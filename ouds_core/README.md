@@ -32,7 +32,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ## Tokens version
 
-- **OUDS core token version**: 1.11.0.
+- **OUDS core token version**: 1.12.0.
 
 ## Other OUDS Libraries
 

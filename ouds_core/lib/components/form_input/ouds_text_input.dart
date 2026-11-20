@@ -345,7 +345,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                           (widget.decoration.suffixIcon != null ||
                               widget.decoration.errorText != null ||
                               widget.decoration.loader != null)
-                          ? textInput.spacePaddingInlineTrailingAction
+                          ? textInput.spacePaddingInlineLeadingTrailingAction
                           : textInput.spacePaddingInlineDefault,
                       top: textInput.spacePaddingBlockDefault,
                       bottom: textInput.spacePaddingBlockDefault,
@@ -644,7 +644,7 @@ class _OudsTextInputState extends State<OudsTextField> {
     // Return the Text widget with proper color and padding
     return Padding(
       padding: EdgeInsets.only(
-        top: textInput.spacePaddingBlockTopHelperText,
+        top: textInput.spacePaddingBlockHelperText,
         left: textInput.spacePaddingInlineDefault,
         right: textInput.spacePaddingInlineDefault,
       ),

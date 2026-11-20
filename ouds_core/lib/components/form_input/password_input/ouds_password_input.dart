@@ -277,7 +277,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
               child: Padding(
                 padding: EdgeInsetsGeometry.directional(
                   start: textInput.spacePaddingInlineDefault,
-                  end: textInput.spacePaddingInlineTrailingAction,
+                  end: textInput.spacePaddingInlineLeadingTrailingAction,
                   top: textInput.spacePaddingBlockDefault,
                   bottom: textInput.spacePaddingBlockDefault,
                 ),
@@ -518,7 +518,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     // Return the Text widget with proper color and padding
     return Padding(
       padding: EdgeInsets.only(
-        top: textInput.spacePaddingBlockTopHelperText,
+        top: textInput.spacePaddingBlockHelperText,
         left: textInput.spacePaddingInlineDefault,
         right: textInput.spacePaddingInlineDefault,
       ),

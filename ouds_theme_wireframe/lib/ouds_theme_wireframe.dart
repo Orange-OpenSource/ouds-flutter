@@ -36,6 +36,7 @@ import 'package:ouds_theme_wireframe/components/wireframe_bar_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_bulletList_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_buttonMono_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_button_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_card_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_checkbox_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_chip_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_divider_tokens.dart';
@@ -245,6 +246,7 @@ class WireframeTheme implements OudsThemeContract {
       bulletList: WireframeBulletListTokens(providersTokens(context)),
       button: WireframeButtonTokens(providersTokens(context)),
       buttonMono: WireframeButtonMonoTokens(providersTokens(context)),
+      card: WireframeCardTokens(providersTokens(context)),
       checkbox: WireframeCheckboxTokens(providersTokens(context)),
       chip: WireframeChipTokens(providersTokens(context)),
       divider: WireframeDividerTokens(providersTokens(context)),

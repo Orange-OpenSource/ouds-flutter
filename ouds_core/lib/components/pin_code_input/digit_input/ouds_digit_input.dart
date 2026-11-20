@@ -221,8 +221,8 @@ class _OudsDigitInputState extends State<OudsDigitInput>
           child: Container(
             height: textInputToken.sizeMinHeight,
             constraints: BoxConstraints(
-              maxWidth: pinCodeToken.sizeMaxWidth,
-              minWidth: pinCodeToken.sizeMinWidth,
+              maxWidth: pinCodeToken.sizeMaxWidthDigitInput,
+              minWidth: pinCodeToken.sizeMinWidthDigitInput,
             ),
             decoration: BoxDecoration(
               color: backgroundModifier.getPinCodeBackgroundColor(
