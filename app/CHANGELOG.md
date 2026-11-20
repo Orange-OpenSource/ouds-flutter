@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.2.0...develop)
 ### Added
+- [DemoApp] For design system toolbox, use `tag` and `inline alert` to show components in `draft` and `WIP` mode ([#1028](https://github.com/Orange-OpenSource/ouds-flutter/issues/1028))
 ### Changed
 ### Fixed
 

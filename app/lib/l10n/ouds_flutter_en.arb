@@ -14,6 +14,10 @@
   "app_common_customizeChipList_a11y": "Chip list",
   "app_common_customizeChipsHint_a11y": "Please select a chip by navigating through the options",
   "app_common_selected_tech": "Selected",
+  "app_components_maturity_draft_label": "Draft",
+  "app_components_maturity_wip_label": "WIP",
+  "app_components_maturity_draft_description": "This component is available for use, but its design is not yet finalized.",
+  "app_components_maturity_wip_description": "This component can be used with limited functionality and no breaking change, as its development is not yet complete.",
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Change theme",

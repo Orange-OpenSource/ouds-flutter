@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/component_life_cycle.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/constants_sheets_bottom.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +41,7 @@ class DetailScreenDescription extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ?ComponentLifeCycle.demoAlert(context),
             if (description != null)
               Padding(
                 padding: EdgeInsetsDirectional.all(
