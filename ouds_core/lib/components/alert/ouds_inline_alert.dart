@@ -22,11 +22,12 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// [OUDS Inline Alert design guidelines](https://r.orange.fr/r/S-ouds-doc-inline-alert)
 ///
+/// **Reference design version : 1.0.0**
+///
 /// Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent,
 /// persistent and non-actionable communication. Inline alert includes functional icon and semantic colour, and does not include a close button and/or action
 /// link. Inline alert does not disappear and remains visible.
 ///
-/// **Reference design version : 1.0.0**
 ///
 /// ## Parameters :
 /// - [label]: Label displayed in the inline alert. Main message that should be short, clear, and readable at a glance.

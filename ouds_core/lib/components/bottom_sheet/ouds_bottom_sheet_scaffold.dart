@@ -26,6 +26,8 @@ const double kOudsBottomSheetPeekHeight =
 /// A scaffold that displays a standard (persistent) bottom sheet anchored to
 /// the bottom of the screen, co-existing with the main content.
 ///
+/// **Reference design version : draft**
+///
 /// Unlike a modal bottom sheet, a standard bottom sheet remains visible while
 /// the user interacts with the rest of the screen.
 ///

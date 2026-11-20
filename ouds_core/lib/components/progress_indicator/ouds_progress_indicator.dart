@@ -75,9 +75,9 @@ abstract class OudsProgressIndicator extends StatefulWidget {
   final String? semanticsLabel;
 }
 
-// TODO Update description and add design guideline link when available
+/// [OUDS Circular Progress Indicator Design Guidelines](https://r.orange.fr/r/S-ouds-doc-circular-progress-indicator)
 ///
-/// **Reference design version : 1.0.0**
+/// **Reference design version : 1.2.0**
 ///
 /// A circular progress indicator that shows the progress of a task as a ring.
 /// Useful when more visual focus is needed or when space is limited.
@@ -448,7 +448,9 @@ class OudsCircularProgressIndicatorHelperText {
   });
 }
 
-/// **Reference design version : 1.0.0**
+/// [OUDS Linear Progress Indicator Design Guidelines](https://r.orange.fr/r/S-ouds-doc-linear-progress-indicator)
+///
+/// **Reference design version : 1.1.0**
 ///
 /// A linear progress indicator that shows the progress of a task as a
 /// horizontal bar. Supports both determinate and indeterminate modes and is

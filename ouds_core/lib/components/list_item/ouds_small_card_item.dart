@@ -20,7 +20,7 @@ import 'package:ouds_core/components/list_item/ouds_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 
-/// [OUDS Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
+/// [OUDS Static Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-static-card-item)
 ///
 /// **Reference design version : 0.3.0**
 ///

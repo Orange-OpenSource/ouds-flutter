@@ -9,9 +9,13 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// {@category Alert}
 /// {@category Button}
+/// {@category Checkbox}
 /// {@category Chip}
 /// {@category Link}
+/// {@category Radio button}
+/// {@category Switch}
 /// {@category Text input}
 library;
 

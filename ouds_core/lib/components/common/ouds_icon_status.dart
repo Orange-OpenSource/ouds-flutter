@@ -11,11 +11,11 @@
  * //
  */
 
-/// {@category Badge}
-/// {@category Tag}
 /// {@category Alert}
+/// {@category Badge}
 /// {@category List item}
 /// {@category Progress indicator}
+/// {@category Tag}
 library;
 
 import 'package:flutter/material.dart';

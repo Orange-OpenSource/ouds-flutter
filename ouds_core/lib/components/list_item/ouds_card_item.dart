@@ -36,7 +36,7 @@ class OudsCardItemDefaults {
       OudsListItemDecorationBackground();
 }
 
-/// [OUDS Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-static-card-item)
+/// [OUDS Static Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-static-card-item)
 ///
 /// [OUDS Navigation Card Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-navigation-card-item)
 ///

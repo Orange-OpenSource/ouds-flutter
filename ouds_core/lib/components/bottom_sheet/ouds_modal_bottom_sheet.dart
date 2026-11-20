@@ -20,6 +20,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// A modal bottom sheet that temporarily blocks interaction with the main
 /// screen, displaying secondary content anchored to the bottom.
 ///
+/// **Reference design version : draft**
+///
 /// The sheet appears in front of app content with a scrim overlay, and remains
 /// on screen until dismissed by the user (tap outside, swipe down, or back
 /// button).
