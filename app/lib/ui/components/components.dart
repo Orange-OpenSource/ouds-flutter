@@ -81,6 +81,7 @@ import 'package:ouds_flutter_demo/ui/components/typography/typography_demo_scree
 import 'package:ouds_flutter_demo/ui/components/typography/typography_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
+import 'package:ouds_flutter_demo/ui/utilities/component_life_cycle.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -98,6 +99,7 @@ List<Component> components(BuildContext context) {
         child: OudsAlertMessage(label: 'Label', onClose: () {}),
       ),
       context.l10n.app_components_alert_description_text,
+      ComponentType.alert,
       [
         VariantComponent(
           context.l10n.app_components_alert_alertMessage_tech,
@@ -127,6 +129,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_badge_description_text,
+      ComponentType.badge,
       BadgeDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
@@ -143,6 +146,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_bottomSheet_description_text,
+      ComponentType.bottomSheet,
       [
         VariantComponent(
           context.l10n.app_components_bottomSheet_standardBottomSheet_tech,
@@ -176,6 +180,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_navigationBar_description_text,
+      ComponentType.navigationBar,
       NavigationBarDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
@@ -200,6 +205,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_button_description_text,
+      ComponentType.button,
       [
         VariantComponent(
           context.l10n.app_components_button_label,
@@ -227,6 +233,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_checkbox_description_text,
+      ComponentType.checkbox,
       [
         VariantComponent(
           context.l10n.app_components_checkbox_checkbox_label,
@@ -278,6 +285,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_chip_description_text,
+      ComponentType.chip,
       [
         VariantComponent(
           context.l10n.app_components_filterChip_label,
@@ -299,6 +307,7 @@ List<Component> components(BuildContext context) {
         child: Column(children: [OudsDivider.horizontal(length: 300)]),
       ),
       context.l10n.app_components_divider_description_text,
+      ComponentType.divider,
       [
         VariantComponent(
           context.l10n.app_components_divider_horizontalDivider_label,
@@ -324,6 +333,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_link_description_text,
+      ComponentType.link,
       LinkDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
@@ -348,6 +358,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_listItem_description_text,
+      ComponentType.listItem,
       [
         VariantComponent(
           context.l10n.app_components_listItem_tech,
@@ -390,6 +401,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_passwordInput_description_text,
+      ComponentType.passwordInput,
       PasswordInputDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
@@ -410,6 +422,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_phoneNumberInput_description_text,
+      ComponentType.phoneNumberInput,
       PhoneNumberInputDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
@@ -433,6 +446,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_pinCodeInput_description_text,
+      ComponentType.pinCodeInput,
       PinCodeInputDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
@@ -447,6 +461,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_progressIndicator_description_text,
+      ComponentType.progressIndicator,
       [
         VariantComponent(
           context
@@ -488,6 +503,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_radioButton_description_text,
+      ComponentType.radioButton,
       [
         VariantComponent(
           context.l10n.app_components_radioButton_radioButton_label,
@@ -509,6 +525,7 @@ List<Component> components(BuildContext context) {
         child: SizedBox(width: 200, height: 62, child: const OudsSkeleton()),
       ),
       context.l10n.app_components_skeleton_description_text,
+      ComponentType.skeleton,
       SkeletonDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
@@ -525,6 +542,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_switch_description_text,
+      ComponentType.switchButton,
       [
         VariantComponent(
           context.l10n.app_components_switch_switch_label,
@@ -549,6 +567,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_tag_description_text,
+      ComponentType.tag,
       [
         VariantComponent(
           context.l10n.app_components_tag_tag_label,
@@ -576,6 +595,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_textInput_description_text,
+      ComponentType.textInput,
       TextInputDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
@@ -606,6 +626,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_topAppBar_description_text,
+      ComponentType.topAppBar,
       TopBarDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
@@ -619,6 +640,7 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_typography_description_text,
+      ComponentType.typography,
       [
         VariantComponent(
           context.l10n.app_components_typography_body_tech,

@@ -17,6 +17,7 @@ import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/component_variants_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_illustration_component_card.dart';
+import 'package:ouds_flutter_demo/ui/utilities/component_life_cycle.dart';
 import 'package:provider/provider.dart';
 
 class ComponentsScreen extends StatelessWidget {
@@ -49,10 +50,17 @@ class ComponentsScreen extends StatelessWidget {
               OudsIllustrationComponentCard(
                 title: component.title,
                 customComponent: component.customComponent,
+                lifeCycleComponent: ComponentLifeCycle.tag(
+                  context,
+                  component.type,
+                ),
                 onClick: () {
                   if (component.variants == null) {
                     Get.to(
-                      component.screen,
+                      ComponentLifeCycle.demoScreen(
+                        component.type,
+                        component.screen!,
+                      ),
                       transition: Transition.rightToLeft,
                     );
                   } else {

@@ -17,6 +17,7 @@ import 'package:ouds_core/components/typography/ouds_body_text.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/component_life_cycle.dart';
 import 'package:provider/provider.dart';
 
 class ComponentVariantsScreen extends StatelessWidget {
@@ -33,6 +34,7 @@ class ComponentVariantsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);
     final currentTheme = themeController.currentTheme;
+    final maturityAlert = ComponentLifeCycle.alert(context, component.type);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -47,6 +49,7 @@ class ComponentVariantsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(child: component.customComponent),
+              ?maturityAlert,
               Padding(
                 padding: EdgeInsetsDirectional.all(
                   currentTheme.spaceScheme(context).insetMedium,
