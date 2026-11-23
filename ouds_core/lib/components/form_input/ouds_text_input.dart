@@ -145,6 +145,7 @@ class _OudsTextInputState extends State<OudsTextField> {
   bool _isFocused = false;
   FocusNode? _internalFocusNode;
   bool _isTyping = false;
+  String _uncontrolledText = '';
 
   @override
   void initState() {
@@ -167,16 +168,11 @@ class _OudsTextInputState extends State<OudsTextField> {
 
   void _handleTextChanged() {
     // Get the current text from the controller
-    final text = widget.controller?.text ?? '';
+    final text = widget.controller?.text ?? _uncontrolledText;
 
-    // Trigger a rebuild only when the "typing" state actually changes
-    // (prevents unnecessary rebuilds on every keystroke)
-    final typing = text.isNotEmpty;
-    if (typing != _isTyping) {
-      setState(() {
-        _isTyping = typing;
-      });
-    }
+    setState(() {
+      _isTyping = text.isNotEmpty;
+    });
   }
 
   @override
@@ -185,6 +181,22 @@ class _OudsTextInputState extends State<OudsTextField> {
     if (oldWidget.controller != widget.controller) {
       oldWidget.controller?.removeListener(_handleTextChanged);
       widget.controller?.addListener(_handleTextChanged);
+      if (widget.controller == null) {
+        _uncontrolledText = oldWidget.controller?.text ?? _uncontrolledText;
+      }
+    }
+    if (oldWidget.focusNode != widget.focusNode) {
+      (oldWidget.focusNode ?? _internalFocusNode)?.removeListener(
+        _handleFocusChange,
+      );
+      if (widget.focusNode == null) {
+        _internalFocusNode ??= FocusNode();
+        _internalFocusNode!.addListener(_handleFocusChange);
+      } else {
+        _internalFocusNode?.dispose();
+        _internalFocusNode = null;
+        widget.focusNode!.addListener(_handleFocusChange);
+      }
     }
   }
 
@@ -251,7 +263,7 @@ class _OudsTextInputState extends State<OudsTextField> {
     final l10n = OudsLocalizations.of(context);
 
     //needed for accessibility
-    final contentText = widget.controller?.text ?? "";
+    final contentText = widget.controller?.text ?? _uncontrolledText;
     final prefixText = contentText.isNotEmpty
         ? ", ${widget.decoration.prefix ?? ""}"
         : "";
@@ -261,6 +273,10 @@ class _OudsTextInputState extends State<OudsTextField> {
     final helperText = isError
         ? widget.decoration.errorText ?? ""
         : widget.decoration.helperText ?? "";
+    final accessibleHelperText = MarkdownSpanBuilder.buildBoldOnly(
+      helperText,
+      baseStyle: const TextStyle(),
+    ).toPlainText();
 
     // Determine disabled/readOnly label
     final isEnabled = widget.enabled ?? true;
@@ -282,9 +298,9 @@ class _OudsTextInputState extends State<OudsTextField> {
       l10n?.core_textInput_trait_a11y,
       widget.decoration.labelText,
       prefixText,
-      contentText,
+      if (!_isFocused) MarkdownSpanBuilder.toPlainText(contentText),
       suffixText,
-      helperText,
+      accessibleHelperText,
       statusLabel,
       hintLabel,
       loadingLabel,
@@ -302,8 +318,12 @@ class _OudsTextInputState extends State<OudsTextField> {
             ? ''
             : l10n?.core_common_hint_a11y,
         value: isError ? l10n?.core_common_error_a11y : null,
-        focused: effectiveFocusNode != null,
+        focused: _isFocused,
         focusable: true,
+        textField: !_isFocused ? true : null,
+        onTap: !_isFocused && isEnabled && !isReadOnly
+            ? effectiveFocusNode?.requestFocus
+            : null,
         child: ConstrainedBox(
           constraints: BoxConstraints(
             minWidth: textInput.sizeMinWidth,
@@ -363,6 +383,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                         Flexible(
                           fit: FlexFit.loose,
                           child: ExcludeSemantics(
+                            excluding: !_isFocused,
                             child:
                                 widget.readOnly == true ||
                                     (widget.decoration.loader != null &&
@@ -486,6 +507,8 @@ class _OudsTextInputState extends State<OudsTextField> {
       onChanged: (value) {
         if (widget.controller != null) {
           widget.controller!.text = value;
+        } else {
+          _uncontrolledText = value;
         }
         _handleTextChanged();
         widget.onEditingComplete?.call(value);

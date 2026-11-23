@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 ### Fixed
+- [Library] Bug `A11Y` Markdown characters used to annotate text are read ([#1025](https://github.com/Orange-OpenSource/ouds-flutter/issues/1025))
 
 ## [3.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...3.2.0) - 2026-11-17
 ### Added
