@@ -229,6 +229,9 @@ OudsTextField(
 ```
 
 State parameters: `readOnly`, `enabled`, `OudsInputDecoration(loader: true)`.
+`OudsTextField` automatically omits supported Markdown delimiters from content
+announcements outside editing, without an activation parameter. During editing,
+the original text remains accessible and unchanged.
 > **⛔ Forbidden**: `loader: true` + `errorText != null` simultaneously → assertion error.
 
 ---

@@ -23,11 +23,42 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// Supported syntax:
 /// - `**bold**`
 /// - `__**underline bold**__`
+/// - `~~strikethrough~~`
 /// - `[link](https://example.com)`
 ///
 /// This is not a full markdown parser. It is intended for simple styling
 /// and inline links in lightweight text content.
 class MarkdownSpanBuilder {
+  static final _richTextPattern = RegExp(
+    r'(__\*\*.*?\*\*__)|'
+    r'(\*\*.*?\*\*)|'
+    r'(~~.*?~~)|'
+    r'(\[.*?\]\(.*?\))',
+  );
+
+  /// Returns the text represented by the supported inline markup.
+  /// Also omits paired `__` delimiters from screen-reader announcements.
+  ///
+  /// ```dart
+  /// MarkdownSpanBuilder.toPlainText('A **bold** word'); // 'A bold word'
+  /// ```
+  static String toPlainText(String text) {
+    final plainText = text.replaceAllMapped(_richTextPattern, (match) {
+      final token = match.group(0)!;
+      if (token.startsWith('__**')) {
+        return token.substring(4, token.length - 4);
+      }
+      if (token.startsWith('[')) {
+        return token.substring(1, token.indexOf(']('));
+      }
+      return token.substring(2, token.length - 2);
+    });
+    return plainText.replaceAllMapped(
+      RegExp(r'__(.+?)__'),
+      (match) => match.group(1)!,
+    );
+  }
+
   /// Builds an [InlineSpan] from plain text supporting only bold markdown.
   ///
   /// Supported syntax:
@@ -84,6 +115,7 @@ class MarkdownSpanBuilder {
   /// Supported syntax:
   /// - `**bold**`
   /// - `__**underline bold**__`
+  /// - `~~strikethrough~~`
   /// - `[link](https://example.com)`
   ///
   /// Link text is rendered with an underline style and can trigger [onLinkTap]
@@ -117,16 +149,9 @@ class MarkdownSpanBuilder {
     final theme = OudsTheme.of(context);
     final spans = <InlineSpan>[];
 
-    final regex = RegExp(
-      r'(__\*\*.*?\*\*__)|' // underline bold
-      r'(\*\*.*?\*\*)|' // bold
-      r'(~~.*?~~)|' // line through
-      r'(\[.*?\]\(.*?\))', // link
-    );
-
     int currentPosition = 0;
 
-    for (final match in regex.allMatches(text)) {
+    for (final match in _richTextPattern.allMatches(text)) {
       if (match.start > currentPosition) {
         spans.add(
           TextSpan(
