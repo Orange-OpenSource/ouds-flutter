@@ -181,30 +181,6 @@ abstract class AppLocalizations {
   /// **'Selected'**
   String get app_common_selected_tech;
 
-  /// No description provided for @app_components_maturity_draft_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Draft'**
-  String get app_components_maturity_draft_label;
-
-  /// No description provided for @app_components_maturity_wip_label.
-  ///
-  /// In en, this message translates to:
-  /// **'WIP'**
-  String get app_components_maturity_wip_label;
-
-  /// No description provided for @app_components_maturity_draft_description.
-  ///
-  /// In en, this message translates to:
-  /// **'This component is available for use, but its design is not yet finalized.'**
-  String get app_components_maturity_draft_description;
-
-  /// No description provided for @app_components_maturity_wip_description.
-  ///
-  /// In en, this message translates to:
-  /// **'This component can be used with limited functionality and no breaking change, as its development is not yet complete.'**
-  String get app_components_maturity_wip_description;
-
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:
@@ -474,6 +450,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Style'**
   String get app_tokens_border_style_label;
+
+  /// No description provided for @app_components_maturity_draft_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get app_components_maturity_draft_label;
+
+  /// No description provided for @app_components_maturity_wip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'WIP'**
+  String get app_components_maturity_wip_label;
+
+  /// No description provided for @app_components_maturity_draft_description.
+  ///
+  /// In en, this message translates to:
+  /// **'This component is available for use, but its design is not yet finalized.'**
+  String get app_components_maturity_draft_description;
+
+  /// No description provided for @app_components_maturity_wip_description.
+  ///
+  /// In en, this message translates to:
+  /// **'This component can be used with limited functionality and no breaking change, as its development is not yet complete.'**
+  String get app_components_maturity_wip_description;
 
   /// No description provided for @app_components_common_color_label.
   ///

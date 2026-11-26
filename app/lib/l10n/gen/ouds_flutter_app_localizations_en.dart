@@ -52,20 +52,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_common_selected_tech => 'Selected';
 
   @override
-  String get app_components_maturity_draft_label => 'Draft';
-
-  @override
-  String get app_components_maturity_wip_label => 'WIP';
-
-  @override
-  String get app_components_maturity_draft_description =>
-      'This component is available for use, but its design is not yet finalized.';
-
-  @override
-  String get app_components_maturity_wip_description =>
-      'This component can be used with limited functionality and no breaking change, as its development is not yet complete.';
-
-  @override
   String get app_topBar_theme_button_a11y => 'Change theme';
 
   @override
@@ -219,6 +205,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_tokens_border_style_label => 'Style';
+
+  @override
+  String get app_components_maturity_draft_label => 'Draft';
+
+  @override
+  String get app_components_maturity_wip_label => 'WIP';
+
+  @override
+  String get app_components_maturity_draft_description =>
+      'This component is available for use, but its design is not yet finalized.';
+
+  @override
+  String get app_components_maturity_wip_description =>
+      'This component can be used with limited functionality and no breaking change, as its development is not yet complete.';
 
   @override
   String get app_components_common_color_label => 'Color';

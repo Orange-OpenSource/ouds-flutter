@@ -10,45 +10,120 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+/// Identifies a component family whose design lifecycle is tracked.
 enum ComponentType {
+  /// Alert message and inline alert components.
   alert,
+
+  /// Standard, count, and icon badges.
   badge,
+
+  /// Bottom sheet components.
   bottomSheet,
+
+  /// Navigation bar component.
   navigationBar,
+
+  /// Button and navigation button components.
   button,
+
+  /// Checkbox component.
   checkbox,
+
+  /// Filter and suggestion chips.
   chip,
+
+  /// Divider component.
   divider,
+
+  /// Link component.
   link,
+
+  /// List item and card item components.
   listItem,
+
+  /// Password input component.
   passwordInput,
+
+  /// Phone number input component.
   phoneNumberInput,
+
+  /// PIN code input component.
   pinCodeInput,
+
+  /// Circular and linear progress indicators.
   progressIndicator,
+
+  /// Radio button component.
   radioButton,
+
+  /// Skeleton loading component.
   skeleton,
+
+  /// Switch button component.
   switchButton,
+
+  /// Tag and input tag components.
   tag,
+
+  /// Text input component.
   textInput,
+
+  /// Top app bar component.
   topAppBar,
+
+  /// Body, code, display, heading, and label typography components.
   typography,
 }
 
-enum ComponentLifeCycleStatus { draft, wip, production }
+/// Lifecycle maturity derived from a component's design version.
+enum ComponentLifeCycleStatus {
+  /// The design version is `0.0.0`.
+  draft,
 
+  /// The design version has a zero major number but is not `0.0.0`.
+  wip,
+
+  /// The design version has a non-zero major number.
+  production,
+}
+
+/// Resolves component lifecycle status and builds its related demo UI.
+///
+/// Lifecycle is derived from the design version of every variant in a
+/// [ComponentType]. When variants have different maturities, the least mature
+/// status is used.
+///
+/// For example, wrap a demo screen to make its lifecycle alert available to
+/// descendant widgets:
+///
+/// ```dart
+/// ComponentLifeCycle.demoScreen(
+///   ComponentType.button,
+///   const ButtonDemoScreen(),
+/// )
+/// ```
 class ComponentLifeCycle {
   const ComponentLifeCycle._();
 
+  /// Associates [screen] with [type] for lifecycle-aware descendant widgets.
+  ///
+  /// A descendant can use [demoAlert] to show the appropriate lifecycle alert.
   static Widget demoScreen(ComponentType type, Widget screen) {
     return _ComponentLifeCycleScope(type: type, child: screen);
   }
 
+  /// Returns the lifecycle alert for the nearest [demoScreen] scope.
+  ///
+  /// Returns `null` when the [context] is not below a lifecycle scope or when
+  /// the scoped component is in production.
   static Widget? demoAlert(BuildContext context) {
     final scope = context
         .dependOnInheritedWidgetOfExactType<_ComponentLifeCycleScope>();
     return scope == null ? null : alert(context, scope.type);
   }
 
+  /// Returns the least mature status among the design versions for [type].
   static ComponentLifeCycleStatus status(ComponentType type) {
     final versions = switch (type) {
       ComponentType.alert => [
@@ -106,6 +181,13 @@ class ComponentLifeCycle {
     return fromVersions(versions);
   }
 
+  /// Converts a semantic design [version] into its lifecycle status.
+  ///
+  /// The version must use `major.minor.patch` numeric notation. `0.0.0` is
+  /// draft, other `0.x.y` versions are work in progress, and versions with a
+  /// non-zero major number are production.
+  ///
+  /// Throws [FormatException] if [version] is not a valid semantic version.
   static ComponentLifeCycleStatus fromVersion(String version) {
     final match = RegExp(
       r'^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$',
@@ -118,6 +200,10 @@ class ComponentLifeCycle {
     return ComponentLifeCycleStatus.production;
   }
 
+  /// Returns the least mature status among [versions].
+  ///
+  /// Throws [ArgumentError] when [versions] is empty, and [FormatException]
+  /// when any version is invalid.
   static ComponentLifeCycleStatus fromVersions(List<String> versions) {
     if (versions.isEmpty) {
       throw ArgumentError.value(versions, 'versions', 'Must not be empty');
@@ -132,6 +218,7 @@ class ComponentLifeCycle {
     return ComponentLifeCycleStatus.production;
   }
 
+  /// Builds a lifecycle tag for [type], or returns `null` in production.
   static Widget? tag(BuildContext context, ComponentType type) {
     return switch (status(type)) {
       ComponentLifeCycleStatus.draft => OudsTag.text(
@@ -147,6 +234,7 @@ class ComponentLifeCycle {
     };
   }
 
+  /// Builds a lifecycle alert for [type], or returns `null` in production.
   static Widget? alert(BuildContext context, ComponentType type) {
     final lifeCycleStatus = status(type);
     if (lifeCycleStatus == ComponentLifeCycleStatus.production) return null;

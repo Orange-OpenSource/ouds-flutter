@@ -14,11 +14,6 @@
   "app_common_customizeChipList_a11y": "Chip list",
   "app_common_customizeChipsHint_a11y": "Please select a chip by navigating through the options",
   "app_common_selected_tech": "Selected",
-  "app_components_maturity_draft_label": "Draft",
-  "app_components_maturity_wip_label": "WIP",
-  "app_components_maturity_draft_description": "This component is available for use, but its design is not yet finalized.",
-  "app_components_maturity_wip_description": "This component can be used with limited functionality and no breaking change, as its development is not yet complete.",
-
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Change theme",
   "app_topBar_themeSettings_button_a11y":"Change theme settings",
@@ -147,6 +142,10 @@
   "app_tokens_border_style_label":"Style",
 
   "@_components": {},
+  "app_components_maturity_draft_label": "Draft",
+  "app_components_maturity_wip_label": "WIP",
+  "app_components_maturity_draft_description": "This component is available for use, but its design is not yet finalized.",
+  "app_components_maturity_wip_description": "This component can be used with limited functionality and no breaking change, as its development is not yet complete.",
   "app_components_common_color_label": "Color",
   "app_components_common_error_label": "Error",
   "app_components_common_error_message": "Error message",
