@@ -21,6 +21,7 @@ class OudsIllustrationComponentCard extends StatelessWidget {
     super.key,
     required this.title,
     this.customComponent,
+    this.lifeCycleComponent,
     this.child,
     this.onClick,
   });
@@ -29,6 +30,9 @@ class OudsIllustrationComponentCard extends StatelessWidget {
 
   /// The optional custom widget displayed in the card (replaces image).
   final Widget? customComponent;
+
+  /// Optional content displayed at the top trailing corner of the illustration.
+  final Widget? lifeCycleComponent;
 
   /// The optional custom widget displayed inside the card.
   final Widget? child;
@@ -54,11 +58,20 @@ class OudsIllustrationComponentCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ExcludeSemantics(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: _contentHeight,
-                  child: customComponent,
+              SizedBox(
+                width: double.infinity,
+                height: _contentHeight,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    ExcludeSemantics(child: customComponent),
+                    if (lifeCycleComponent != null)
+                      PositionedDirectional(
+                        top: theme.spaceScheme(context).insetMedium,
+                        end: theme.spaceScheme(context).insetMedium,
+                        child: lifeCycleComponent!,
+                      ),
+                  ],
                 ),
               ),
               Padding(

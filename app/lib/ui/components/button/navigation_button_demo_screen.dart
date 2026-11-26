@@ -89,7 +89,9 @@ class _BodyState extends State<_Body> {
                 .fixedMedium,
           ),
           Code(code: NavigationButtonCodeGenerator.updateCode(context)),
-          ReferenceDesignVersionComponent(version: OudsComponentVersion.button),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.navigationButton,
+          ),
         ],
       ),
     );

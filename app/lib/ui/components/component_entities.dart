@@ -13,6 +13,7 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter_demo/ui/utilities/component_life_cycle.dart';
 
 class Component {
   String title;
@@ -20,13 +21,21 @@ class Component {
   String description;
   Widget? screen;
   List<VariantComponent>? variants;
+  final ComponentType type;
 
-  Component(this.title, this.customComponent, this.description, this.screen);
+  Component(
+    this.title,
+    this.customComponent,
+    this.description,
+    this.type,
+    this.screen,
+  );
 
   Component.withVariant(
     this.title,
     this.customComponent,
     this.description,
+    this.type,
     this.variants,
   );
 }
