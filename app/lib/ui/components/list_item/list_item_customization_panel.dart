@@ -115,15 +115,9 @@ class _ListItemCustomizationPanelState
         context.l10n.app_components_listItem_trailing_tech,
       ],
       children: [
-        CustomizableSection(
-          children: _buildGeneralSection(customizationState),
-        ),
-        CustomizableSection(
-          children: _buildLeadingSection(customizationState),
-        ),
-        CustomizableSection(
-          children: _buildTextsSection(customizationState),
-        ),
+        CustomizableSection(children: _buildGeneralSection(customizationState)),
+        CustomizableSection(children: _buildLeadingSection(customizationState)),
+        CustomizableSection(children: _buildTextsSection(customizationState)),
         CustomizableSection(
           children: _buildTrailingSection(customizationState),
         ),
@@ -420,7 +414,7 @@ class _ListItemCustomizationPanelState
           },
         ),
       CustomizableSwitch(
-        title: context.l10n.app_components_listItem_coloredText_tech,
+        title: context.l10n.app_components_listItem_coloredTextExample_tech,
         value: customizationState.coloredText,
         onChanged: (value) {
           customizationState.coloredText = value;

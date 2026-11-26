@@ -7,13 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.2.0...develop)
 ### Added
 ### Changed
+- [Library] In library, add `list item` component v0.4  ([#958](https://github.com/Orange-OpenSource/ouds-flutter/issues/958))
 ### Fixed
 
 ## [3.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/3.1.0...3.2.0) - 2026-11-17
 ### Added
 ### Changed
-- [Library] In library, add `list item` component v0.4  ([#958](https://github.com/Orange-OpenSource/ouds-flutter/issues/958))
-- [Library] **Breaking:** list/card text fields now accept `OudsListItemText` instead of `String`, grouping text and color. Rendering uses `OudsLabelText.rich`; inline strong emphasis uses Label/Medium/Strong, without underline, strikethrough or link actions. See the [migration guide](../MIGRATION.md#rich-text-in-list-and-card-items).
 - [Library] For `list item` components, support asynchronous images with customizable placeholder ([#900](https://github.com/Orange-OpenSource/ouds-flutter/issues/900))
 - [Library] In library, add `list item` component v0.3  ([#957](https://github.com/Orange-OpenSource/ouds-flutter/issues/957))
 - [Library] In library, add `list item` component v0.2  ([#956](https://github.com/Orange-OpenSource/ouds-flutter/issues/956))

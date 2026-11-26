@@ -333,6 +333,8 @@
 
   "@_components_list_item": {},
   "app_components_listItem_tech" : "List item",
+  "app_components_listItem_label": "Label",
+  "app_components_listItem_description": "Description",
   "app_components_listItem_description_text": "List item is a UI element that displays a unit of information either in an interactive or non-interactive row, within a structured list.\n Card item is a UI element that displays a unit of information either in an interactive or non-interactive card, within a card layout or independently.",
   "app_components_listItem_listItem_tech": "List item",
   "app_components_listItem_smallListItem_tech": "Small list item",
@@ -358,7 +360,7 @@
   "app_components_listItem_background_tech": "Background",
   "app_components_listItem_belowTextContent_tech": "Below text content",
   "app_components_listItem_boldLabel_tech": "Bold label",
-  "app_components_listItem_coloredText_tech": "Colored text",
+  "app_components_listItem_coloredTextExample_tech": "Colored text exemple",
   "app_components_listItem_richTextApi_tech": "The Ouds Api Allows the use Rich Text mode .",
   "app_components_listItem_labelContent_tech": "Label content",
   "app_components_listItem_content_tech": "Content",

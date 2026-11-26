@@ -64,17 +64,20 @@ void main() {
           find.byType(CustomizableSwitch),
         );
         expect(
-          switches.where((control) =>
-              control.title.toLowerCase().contains('rich text') ||
-              control.title.toLowerCase().contains('colours to examples')),
+          switches.where(
+            (control) =>
+                control.title.toLowerCase().contains('rich text') ||
+                control.title.toLowerCase().contains('colours to examples'),
+          ),
           isEmpty,
         );
         if (index == 2) {
           expect(banner, findsOneWidget);
           expect(
             tester.widget<OudsAlertMessage>(banner).label,
-            AppLocalizations.of(tester.element(banner))!
-                .app_components_listItem_richTextApi_tech,
+            AppLocalizations.of(
+              tester.element(banner),
+            )!.app_components_listItem_richTextApi_tech,
           );
           expect(
             tester.getBottomLeft(banner).dy,
@@ -92,64 +95,96 @@ void main() {
       state.label = 'eSIM activation';
       state.description = 'Your eSIM will be activated on **24 July**';
       final code = switch (variant) {
-        ListItemDemoVariant.listItem =>
-          ListItemCodeGenerator.updateCode(context, isSmall: false),
-        ListItemDemoVariant.smallListItem =>
-          ListItemCodeGenerator.updateCode(context, isSmall: true),
-        ListItemDemoVariant.cardItem =>
-          ListItemCodeGenerator.updateCardCode(context, isSmall: false),
+        ListItemDemoVariant.listItem => ListItemCodeGenerator.updateCode(
+          context,
+          isSmall: false,
+        ),
+        ListItemDemoVariant.smallListItem => ListItemCodeGenerator.updateCode(
+          context,
+          isSmall: true,
+        ),
+        ListItemDemoVariant.cardItem => ListItemCodeGenerator.updateCardCode(
+          context,
+          isSmall: false,
+        ),
         ListItemDemoVariant.smallCardItem =>
           ListItemCodeGenerator.updateCardCode(context, isSmall: true),
       };
-      expect(code, contains("label: OudsListItemText(text: 'eSIM activation')"));
-      expect(code, contains(
-        "description: OudsListItemText(text: "
-        "'Your eSIM will be activated on **24 July**')",
-      ));
+      expect(
+        code,
+        contains("label: OudsListItemText(text: 'eSIM activation')"),
+      );
+      expect(
+        code,
+        contains(
+          "description: OudsListItemText(text: "
+          "'Your eSIM will be activated on **24 July**')",
+        ),
+      );
       expect(code, isNot(contains('.rich(')));
 
       state.leading = ListItemLeadingEnum.image;
       state.leadingImageRounded = true;
       final imageCode = switch (variant) {
-        ListItemDemoVariant.listItem =>
-          ListItemCodeGenerator.updateCode(context, isSmall: false),
-        ListItemDemoVariant.smallListItem =>
-          ListItemCodeGenerator.updateCode(context, isSmall: true),
-        ListItemDemoVariant.cardItem =>
-          ListItemCodeGenerator.updateCardCode(context, isSmall: false),
+        ListItemDemoVariant.listItem => ListItemCodeGenerator.updateCode(
+          context,
+          isSmall: false,
+        ),
+        ListItemDemoVariant.smallListItem => ListItemCodeGenerator.updateCode(
+          context,
+          isSmall: true,
+        ),
+        ListItemDemoVariant.cardItem => ListItemCodeGenerator.updateCardCode(
+          context,
+          isSmall: false,
+        ),
         ListItemDemoVariant.smallCardItem =>
           ListItemCodeGenerator.updateCardCode(context, isSmall: true),
       };
-      final small = variant == ListItemDemoVariant.smallListItem ||
+      final small =
+          variant == ListItemDemoVariant.smallListItem ||
           variant == ListItemDemoVariant.smallCardItem;
-      expect(imageCode, contains(
-        '  leading: ${small ? 'OudsSmallListItemLeadingImage' : 'OudsListItemLeadingImage'}(\n'
-        "    asset: 'assets/photo.jpg',\n"
-        '    rounded: true,\n'
-        '  ),',
-      ));
+      expect(
+        imageCode,
+        contains(
+          '  leading: ${small ? 'OudsSmallListItemLeadingImage' : 'OudsListItemLeadingImage'}(\n'
+          "    asset: 'assets/photo.jpg',\n"
+          '    rounded: true,\n'
+          '  ),',
+        ),
+      );
       state.leading = ListItemLeadingEnum.none;
 
       const specialText = "It's \$5\\month\nNext\rTab\t";
       state.label = specialText;
       state.helperText = specialText;
       final escapedCode = switch (variant) {
-        ListItemDemoVariant.listItem =>
-          ListItemCodeGenerator.updateCode(context, isSmall: false),
-        ListItemDemoVariant.smallListItem =>
-          ListItemCodeGenerator.updateCode(context, isSmall: true),
-        ListItemDemoVariant.cardItem =>
-          ListItemCodeGenerator.updateCardCode(context, isSmall: false),
+        ListItemDemoVariant.listItem => ListItemCodeGenerator.updateCode(
+          context,
+          isSmall: false,
+        ),
+        ListItemDemoVariant.smallListItem => ListItemCodeGenerator.updateCode(
+          context,
+          isSmall: true,
+        ),
+        ListItemDemoVariant.cardItem => ListItemCodeGenerator.updateCardCode(
+          context,
+          isSmall: false,
+        ),
         ListItemDemoVariant.smallCardItem =>
           ListItemCodeGenerator.updateCardCode(context, isSmall: true),
       };
       expect(
         escapedCode,
-        contains(r"label: OudsListItemText(text: 'It\'s \$5\\month\nNext\rTab\t')"),
+        contains(
+          r"label: OudsListItemText(text: 'It\'s \$5\\month\nNext\rTab\t')",
+        ),
       );
       expect(
         escapedCode,
-        contains(r"helperText: OudsListItemText(text: 'It\'s \$5\\month\nNext\rTab')"),
+        contains(
+          r"helperText: OudsListItemText(text: 'It\'s \$5\\month\nNext\rTab')",
+        ),
       );
       state.label = 'eSIM activation';
       state.overline = '**Services activated**';
@@ -161,13 +196,17 @@ void main() {
       await tester.tap(find.text(tabsWidget.tabs[2]));
       await tester.pump();
       final colorSwitch = find.byWidgetPredicate(
-        (widget) => widget is CustomizableSwitch &&
-            widget.title == AppLocalizations.of(context)!
-                .app_components_listItem_coloredText_tech,
+        (widget) =>
+            widget is CustomizableSwitch &&
+            widget.title ==
+                AppLocalizations.of(
+                  context,
+                )!.app_components_listItem_coloredTextExample_tech,
       );
       expect(colorSwitch, findsOneWidget);
       expect(
-        tester.widget<CustomizableSwitch>(find.byType(CustomizableSwitch).last)
+        tester
+            .widget<CustomizableSwitch>(find.byType(CustomizableSwitch).last)
             .title,
         tester.widget<CustomizableSwitch>(colorSwitch).title,
       );
@@ -201,14 +240,30 @@ void main() {
         for (final builder in builders) {
           final preview = builder(context, state, controller);
           final fields = switch (preview) {
-            OudsListItem() => [preview.label, preview.description,
-              preview.helperText, preview.overline, preview.extraLabel],
-            OudsCardItem() => [preview.label, preview.description,
-              preview.helperText, preview.overline, preview.extraLabel],
-            OudsSmallListItem() => [preview.label, preview.description,
-              preview.helperText],
-            OudsSmallCardItem() => [preview.label, preview.description,
-              preview.helperText],
+            OudsListItem() => [
+              preview.label,
+              preview.description,
+              preview.helperText,
+              preview.overline,
+              preview.extraLabel,
+            ],
+            OudsCardItem() => [
+              preview.label,
+              preview.description,
+              preview.helperText,
+              preview.overline,
+              preview.extraLabel,
+            ],
+            OudsSmallListItem() => [
+              preview.label,
+              preview.description,
+              preview.helperText,
+            ],
+            OudsSmallCardItem() => [
+              preview.label,
+              preview.description,
+              preview.helperText,
+            ],
             _ => throw StateError('Unexpected preview: $preview'),
           };
           final expected = [
@@ -225,12 +280,18 @@ void main() {
           }
         }
         final coloredCode = switch (variant) {
-          ListItemDemoVariant.listItem =>
-            ListItemCodeGenerator.updateCode(context, isSmall: false),
-          ListItemDemoVariant.smallListItem =>
-            ListItemCodeGenerator.updateCode(context, isSmall: true),
-          ListItemDemoVariant.cardItem =>
-            ListItemCodeGenerator.updateCardCode(context, isSmall: false),
+          ListItemDemoVariant.listItem => ListItemCodeGenerator.updateCode(
+            context,
+            isSmall: false,
+          ),
+          ListItemDemoVariant.smallListItem => ListItemCodeGenerator.updateCode(
+            context,
+            isSmall: true,
+          ),
+          ListItemDemoVariant.cardItem => ListItemCodeGenerator.updateCardCode(
+            context,
+            isSmall: false,
+          ),
           ListItemDemoVariant.smallCardItem =>
             ListItemCodeGenerator.updateCardCode(context, isSmall: true),
         };
@@ -239,13 +300,16 @@ void main() {
           enabled,
         );
         if (enabled) {
-          expect(coloredCode, contains(
-            "  label: OudsListItemText(\n"
-            "    text: 'eSIM activation',\n"
-            "    color: OudsTheme.of(context).colorScheme(context)"
-            ".contentStatusNegative,\n"
-            "  ),",
-          ));
+          expect(
+            coloredCode,
+            contains(
+              "  label: OudsListItemText(\n"
+              "    text: 'eSIM activation',\n"
+              "    color: OudsTheme.of(context).colorScheme(context)"
+              ".contentStatusNegative,\n"
+              "  ),",
+            ),
+          );
         }
         expect(
           coloredCode.contains('colorScheme(context).contentStatusWarning'),

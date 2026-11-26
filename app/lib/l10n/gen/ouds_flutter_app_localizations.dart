@@ -1350,6 +1350,18 @@ abstract class AppLocalizations {
   /// **'List item'**
   String get app_components_listItem_tech;
 
+  /// No description provided for @app_components_listItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Label'**
+  String get app_components_listItem_label;
+
+  /// No description provided for @app_components_listItem_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get app_components_listItem_description;
+
   /// No description provided for @app_components_listItem_description_text.
   ///
   /// In en, this message translates to:
@@ -1500,11 +1512,11 @@ abstract class AppLocalizations {
   /// **'Bold label'**
   String get app_components_listItem_boldLabel_tech;
 
-  /// No description provided for @app_components_listItem_coloredText_tech.
+  /// No description provided for @app_components_listItem_coloredTextExample_tech.
   ///
   /// In en, this message translates to:
-  /// **'Colored text'**
-  String get app_components_listItem_coloredText_tech;
+  /// **'Colored text exemple'**
+  String get app_components_listItem_coloredTextExample_tech;
 
   /// No description provided for @app_components_listItem_richTextApi_tech.
   ///
