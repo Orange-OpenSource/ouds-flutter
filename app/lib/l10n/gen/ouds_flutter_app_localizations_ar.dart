@@ -713,6 +713,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_listItem_tech => 'List item';
 
   @override
+  String get app_components_listItem_label => 'Label';
+
+  @override
+  String get app_components_listItem_description => 'Description';
+
+  @override
   String get app_components_listItem_description_text =>
       'List item هو عنصر واجهة مستخدم  يعرض وحدة من المعلومات في صف تفاعلي أو غير تفاعلي ضمن قائمة منظمة.\n Card item هو عنصر واجهة مستخدم يعرض وحدة من المعلومات في بطاقة تفاعلية أو غير تفاعلية، ضمن تخطيط بطاقات أو بشكل مستقل.';
 
@@ -791,6 +797,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_listItem_boldLabel_tech => 'Bold label';
+
+  @override
+  String get app_components_listItem_coloredTextExample_tech =>
+      'Colored text exemple';
+
+  @override
+  String get app_components_listItem_richTextApi_tech =>
+      'The Ouds Api Allows the use Rich Text mode .';
 
   @override
   String get app_components_listItem_labelContent_tech => 'Label content';

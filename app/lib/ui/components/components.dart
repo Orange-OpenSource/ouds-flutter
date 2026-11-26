@@ -334,8 +334,12 @@ List<Component> components(BuildContext context) {
         child: Column(
           children: [
             OudsListItem(
-              label: 'Label',
-              description: 'Description',
+              label: OudsListItemText(
+                text: context.l10n.app_components_listItem_label,
+              ),
+              description: OudsListItemText(
+                text: context.l10n.app_components_listItem_description,
+              ),
               leading: OudsListItemLeadingIcon(
                 Neutral(
                   icon: AppAssets.icons.assistanceTipsAndTricks(

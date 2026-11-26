@@ -348,6 +348,7 @@ class _ListItemCustomizationPanelState
     ListItemCustomizationState customizationState,
   ) {
     return [
+      ListItemCustomizationUtils.buildRichTextAlert(context),
       CustomizableTextField(
         title: context.l10n.app_components_common_label_label,
         text: customizationState.labelTextState.value,
@@ -412,6 +413,13 @@ class _ListItemCustomizationPanelState
             });
           },
         ),
+      CustomizableSwitch(
+        title: context.l10n.app_components_listItem_coloredTextExample_tech,
+        value: customizationState.coloredText,
+        onChanged: (value) {
+          customizationState.coloredText = value;
+        },
+      ),
     ];
   }
 

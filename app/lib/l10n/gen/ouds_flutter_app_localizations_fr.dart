@@ -717,6 +717,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_listItem_tech => 'List item';
 
   @override
+  String get app_components_listItem_label => 'Label';
+
+  @override
+  String get app_components_listItem_description => 'Description';
+
+  @override
   String get app_components_listItem_description_text =>
       'L\'élément de liste est un composant d\'interface utilisateur qui affiche une unité d\'information dans une ligne interactive ou non interactive, au sein d\'une liste structurée.\n L\'élément de carte est un composant d\'interface utilisateur qui affiche une unité d\'information dans une carte interactive ou non interactive, au sein d\'une disposition en cartes ou de manière indépendante.';
 
@@ -794,6 +800,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_listItem_boldLabel_tech => 'Bold label';
+
+  @override
+  String get app_components_listItem_coloredTextExample_tech =>
+      'Colored text exemple';
+
+  @override
+  String get app_components_listItem_richTextApi_tech =>
+      'The Ouds Api Allows the use Rich Text mode .';
 
   @override
   String get app_components_listItem_labelContent_tech => 'Label content';

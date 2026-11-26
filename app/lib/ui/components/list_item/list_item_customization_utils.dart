@@ -456,6 +456,21 @@ class ListItemCustomizationUtils {
     );
   }
 
+  /// Explains API-only rich text support above the text controls.
+  static Widget buildRichTextAlert(BuildContext context) {
+    final spaces = OudsTheme.of(context).spaceScheme(context);
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: spaces.fixedSmall,
+        vertical: spaces.fixedSmall,
+      ),
+      child: OudsAlertMessage(
+        label: context.l10n.app_components_listItem_richTextApi_tech,
+        status: Info(),
+      ),
+    );
+  }
+
   /// Builds demo content for leading/trailing content slots.
   ///
   /// Displays a colored box with "Content" text, adapting to the control state.
@@ -523,6 +538,12 @@ class ListItemCustomizationUtils {
   }
 
   /// Converts blank text input to `null` so optional fields stay omitted.
+  static OudsListItemText? _optionalText(String value, {Color? color}) {
+    final text = emptyToNull(value);
+    return text == null ? null : OudsListItemText(text: text, color: color);
+  }
+
+  /// Converts blank input to `null` and trims nonempty input.
   static String? emptyToNull(String value) {
     final trimmed = value.trim();
     return trimmed.isEmpty ? null : trimmed;
@@ -543,6 +564,7 @@ class ListItemCustomizationUtils {
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
+    final colors = OudsTheme.of(context).colorScheme(context);
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
@@ -556,14 +578,14 @@ class ListItemCustomizationUtils {
       themeController,
     );
     return _listItem(
-      label: state.label,
+      label: OudsListItemText(text: state.label, color: state.coloredText ? colors.contentStatusNegative : null),
       labelContent: state.labelContentEnabled
           ? (context, controlState) => _buildLabelContent(context, controlState)
           : null,
       contentAlignment: getContentAlignment(state.contentAlignment),
-      overline: emptyToNull(state.overline),
-      extraLabel: emptyToNull(state.extraLabel),
-      description: emptyToNull(state.description),
+      overline: _optionalText(state.overline, color: state.coloredText ? colors.contentStatusPositive : null),
+      extraLabel: _optionalText(state.extraLabel, color: state.coloredText ? colors.contentStatusAccent : null),
+      description: _optionalText(state.description, color: state.coloredText ? colors.contentStatusWarning : null),
       leading: getLeading(
         context,
         state.leading,
@@ -589,7 +611,7 @@ class ListItemCustomizationUtils {
       ),
       divider: state.divider,
       background: state.background,
-      helperText: emptyToNull(state.helperText),
+      helperText: _optionalText(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
       onTap: () {},
@@ -608,18 +630,18 @@ class ListItemCustomizationUtils {
   /// Builds an [OudsListItem], selecting the plain-label constructor or the
   /// mutually exclusive [OudsListItem.labelContent] constructor.
   static OudsListItem _listItem({
-    required String label,
+    required OudsListItemText label,
     Widget Function(BuildContext context, OudsListItemControlState state)?
     labelContent,
     required OudsListItemContentAlignment contentAlignment,
-    String? overline,
-    String? extraLabel,
-    String? description,
+    OudsListItemText? overline,
+    OudsListItemText? extraLabel,
+    OudsListItemText? description,
     OudsListItemLeading? leading,
     OudsListItemTrailing? trailing,
     required bool divider,
     required bool background,
-    String? helperText,
+    OudsListItemText? helperText,
     required bool boldLabel,
     required bool enable,
     VoidCallback? onTap,
@@ -717,6 +739,7 @@ class ListItemCustomizationUtils {
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
+    final colors = OudsTheme.of(context).colorScheme(context);
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
@@ -730,9 +753,9 @@ class ListItemCustomizationUtils {
       themeController,
     );
     return OudsSmallListItem(
-      label: state.label,
+      label: OudsListItemText(text: state.label, color: state.coloredText ? colors.contentStatusNegative : null),
       contentAlignment: getContentAlignment(state.contentAlignment),
-      description: emptyToNull(state.description),
+      description: _optionalText(state.description, color: state.coloredText ? colors.contentStatusWarning : null),
       leading: getSmallLeading(
         state.leading,
         leadingIconStatus,
@@ -754,7 +777,7 @@ class ListItemCustomizationUtils {
       ),
       divider: state.divider,
       background: state.background,
-      helperText: emptyToNull(state.helperText),
+      helperText: _optionalText(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
       onTap: () {},
@@ -770,6 +793,7 @@ class ListItemCustomizationUtils {
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
+    final colors = OudsTheme.of(context).colorScheme(context);
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
@@ -783,14 +807,14 @@ class ListItemCustomizationUtils {
       themeController,
     );
     return _listItem(
-      label: state.label,
+      label: OudsListItemText(text: state.label, color: state.coloredText ? colors.contentStatusNegative : null),
       labelContent: state.labelContentEnabled
           ? (context, controlState) => _buildLabelContent(context, controlState)
           : null,
       contentAlignment: getContentAlignment(state.contentAlignment),
-      overline: emptyToNull(state.overline),
-      extraLabel: emptyToNull(state.extraLabel),
-      description: emptyToNull(state.description),
+      overline: _optionalText(state.overline, color: state.coloredText ? colors.contentStatusPositive : null),
+      extraLabel: _optionalText(state.extraLabel, color: state.coloredText ? colors.contentStatusAccent : null),
+      description: _optionalText(state.description, color: state.coloredText ? colors.contentStatusWarning : null),
       leading: getLeading(
         context,
         state.leading,
@@ -816,7 +840,7 @@ class ListItemCustomizationUtils {
       ),
       divider: state.divider,
       background: state.background,
-      helperText: emptyToNull(state.helperText),
+      helperText: _optionalText(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
       edgeToEdge: state.edgeToEdge,
@@ -836,6 +860,7 @@ class ListItemCustomizationUtils {
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
+    final colors = OudsTheme.of(context).colorScheme(context);
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
@@ -849,9 +874,9 @@ class ListItemCustomizationUtils {
       themeController,
     );
     return OudsSmallListItem(
-      label: state.label,
+      label: OudsListItemText(text: state.label, color: state.coloredText ? colors.contentStatusNegative : null),
       contentAlignment: getContentAlignment(state.contentAlignment),
-      description: emptyToNull(state.description),
+      description: _optionalText(state.description, color: state.coloredText ? colors.contentStatusWarning : null),
       leading: getSmallLeading(
         state.leading,
         leadingIconStatus,
@@ -873,7 +898,7 @@ class ListItemCustomizationUtils {
       ),
       divider: state.divider,
       background: state.background,
-      helperText: emptyToNull(state.helperText),
+      helperText: _optionalText(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
       edgeToEdge: state.edgeToEdge,
@@ -1035,6 +1060,7 @@ class ListItemCustomizationUtils {
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
+    final colors = OudsTheme.of(context).colorScheme(context);
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
@@ -1089,14 +1115,14 @@ class ListItemCustomizationUtils {
             _buildLabelContent(context, controlState),
         contentAlignment: contentAlignment,
         decoration: decoration,
-        overline: emptyToNull(state.overline),
-        extraLabel: emptyToNull(state.extraLabel),
-        description: emptyToNull(state.description),
+        overline: _optionalText(state.overline, color: state.coloredText ? colors.contentStatusPositive : null),
+        extraLabel: _optionalText(state.extraLabel, color: state.coloredText ? colors.contentStatusAccent : null),
+        description: _optionalText(state.description, color: state.coloredText ? colors.contentStatusWarning : null),
         belowTextContent: belowTextContent,
         leading: leading,
         trailing: trailing,
         bottomContent: bottomContent,
-        helperText: emptyToNull(state.helperText),
+        helperText: _optionalText(state.helperText),
         boldLabel: state.boldLabel,
         enable: state.enable,
         onTap: state.clickable ? () {} : null,
@@ -1105,17 +1131,17 @@ class ListItemCustomizationUtils {
       );
     }
     return OudsCardItem(
-      label: state.label,
+      label: OudsListItemText(text: state.label, color: state.coloredText ? colors.contentStatusNegative : null),
       contentAlignment: contentAlignment,
       decoration: decoration,
-      overline: emptyToNull(state.overline),
-      extraLabel: emptyToNull(state.extraLabel),
-      description: emptyToNull(state.description),
+      overline: _optionalText(state.overline, color: state.coloredText ? colors.contentStatusPositive : null),
+      extraLabel: _optionalText(state.extraLabel, color: state.coloredText ? colors.contentStatusAccent : null),
+      description: _optionalText(state.description, color: state.coloredText ? colors.contentStatusWarning : null),
       belowTextContent: belowTextContent,
       leading: leading,
       trailing: trailing,
       bottomContent: bottomContent,
-      helperText: emptyToNull(state.helperText),
+      helperText: _optionalText(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
       onTap: state.clickable ? () {} : null,
@@ -1130,6 +1156,7 @@ class ListItemCustomizationUtils {
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
+    final colors = OudsTheme.of(context).colorScheme(context);
     final leadingIconStatus = getIconStatus(
       context,
       state.leadingIconStatus,
@@ -1143,9 +1170,9 @@ class ListItemCustomizationUtils {
       themeController,
     );
     return OudsSmallCardItem(
-      label: state.label,
+      label: OudsListItemText(text: state.label, color: state.coloredText ? colors.contentStatusNegative : null),
       contentAlignment: getContentAlignment(state.contentAlignment),
-      description: emptyToNull(state.description),
+      description: _optionalText(state.description, color: state.coloredText ? colors.contentStatusWarning : null),
       leading: getSmallLeading(
         state.leading,
         leadingIconStatus,
@@ -1165,7 +1192,7 @@ class ListItemCustomizationUtils {
         state,
         themeController,
       ),
-      helperText: emptyToNull(state.helperText),
+      helperText: _optionalText(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
       onTap: state.clickable ? () {} : null,
